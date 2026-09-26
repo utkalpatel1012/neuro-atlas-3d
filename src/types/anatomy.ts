@@ -2,13 +2,20 @@
  * 3D Neuroanatomy Atlas: Core Anatomical Structure Data Model
  * Standard: AAS-2026-NEURO-V1 / TA2 / FIPAT
  * 
- * Re-architected in Phase 0.1 to decouple anatomical identity from
- * atlas parcellations, coordinates, evidence claims, and presentation states.
+ * Re-architected in Phase 0.1.1 to decouple anatomical identity from
+ * atlas parcellations, coordinates, evidence claims, presentation states,
+ * and physical 3D asset files.
  */
 
-import { BaseNeuroEntity, AnatomicalStructureSubtype, EntityRelationship } from './entity';
+import {
+  BaseNeuroEntity,
+  AnatomicalStructureSubtype,
+  EntityRelationship,
+  Laterality,
+  RepresentationScope
+} from './entity';
 import { SpatialDescriptor } from './coordinates';
-import { AssetProvenance } from './provenance';
+import { EntityProvenance, AssetProvenance } from './provenance';
 import { EvidenceClaim, Citation } from './evidence';
 import { RDoCAssociation } from './rdoc';
 import { PsychopharmacologyMapping } from './pharmacology';
@@ -25,6 +32,33 @@ export type EmbryologicalDivision =
   | 'peripheral_nervous_system';
 
 export type Hemisphere = 'left' | 'right' | 'bilateral' | 'midline';
+
+export type AnatomicSystem =
+  | 'central_nervous_system_telencephalon'
+  | 'central_nervous_system_diencephalon'
+  | 'central_nervous_system_brainstem'
+  | 'central_nervous_system_cerebellum'
+  | 'central_nervous_system_spinal_cord'
+  | 'peripheral_nervous_system_cranial'
+  | 'cerebrovascular_arterial'
+  | 'cerebrovascular_venous'
+  | 'ventricular_csf_system'
+  | 'meningeal_coverings';
+
+/**
+ * Flexible structural taxonomy model replacing rigid hierarchical trees.
+ * Accommodates cerebral lobes, subcortical nuclei, brainstem segments,
+ * cranial nerves, vascular trees, and ventricular compartments.
+ */
+export interface StructuralTaxonomy {
+  anatomic_system?: AnatomicSystem;
+  division: EmbryologicalDivision;
+  hemisphere: Hemisphere;
+  lobe?: string;             // Present for cerebral cortex; omitted for deep nuclei, vessels, nerves
+  subsystem?: string;        // e.g., 'basal_ganglia', 'limbic_system', 'tegmentum', 'circle_of_willis'
+  parent_id?: string;
+  children_ids: string[];
+}
 
 export interface TopographicalBoundaries {
   superior?: string;
@@ -58,6 +92,13 @@ export interface AnatomicalStructure extends BaseNeuroEntity {
   entity_type: 'anatomical_structure';
   subtype: AnatomicalStructureSubtype;
 
+  /** Latin name and aliases */
+  latin_name?: string;
+  clinical_aliases?: string[];
+  abbreviations?: string[];
+  laterality: Laterality;
+  representation_scope: RepresentationScope;
+
   /** Standard Names & Synonyms */
   name: {
     official_latin: string;
@@ -74,18 +115,20 @@ export interface AnatomicalStructure extends BaseNeuroEntity {
     neuronaes_id?: string;    // NeuroNames identifier
   };
 
-  /** Hierarchical Taxonomy */
-  hierarchy: {
-    division: EmbryologicalDivision;
-    hemisphere: Hemisphere;
-    lobe?: string;
-    subsystem: string;        // e.g., 'basal_ganglia', 'limbic_system', 'tegmentum'
-    parent_id?: string;
-    children_ids: string[];
-  };
+  /** Flexible Structural Taxonomy */
+  hierarchy: StructuralTaxonomy;
 
-  /** Spatial Geometry & Registration Metadata */
-  spatial: SpatialDescriptor;
+  /**
+   * Spatial Geometry & Registration Metadata:
+   * Optional to allow structures to be registered in catalogue before 3D meshes exist.
+   */
+  spatial?: SpatialDescriptor;
+
+  /** Optional reference to physical 3D mesh asset in assets.manifest.json */
+  asset_id?: string;
+
+  /** Optional physical asset provenance for 3D mesh files */
+  asset_provenance?: AssetProvenance;
 
   /** Presentation Layer Visibility Categorization */
   presentation: {
@@ -124,8 +167,8 @@ export interface AnatomicalStructure extends BaseNeuroEntity {
   /** Neuroimaging Profile */
   imaging: ImagingFeature[];
 
-  /** Granular Asset Provenance */
-  provenance: AssetProvenance;
+  /** Semantic and Ontological Entity Provenance */
+  provenance: EntityProvenance;
 
   /** Direct Evidence Claims Grounding this Structure */
   evidence_claims: EvidenceClaim[];

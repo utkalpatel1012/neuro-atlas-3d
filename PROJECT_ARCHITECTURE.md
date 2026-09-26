@@ -1,9 +1,9 @@
 # 3D Neuroanatomy Atlas: Project Architecture Specification
 
-**Document Version**: 2.0.0 (Remediated in Phase 0.1)  
-**Status**: APPROVED FOUNDATION  
+**Document Version**: 2.1.0 (Phase 0.1.1 Remediation Pass)  
+**Status**: APPROVED FOUNDATION & LOCKED  
 **Primary Audience**: Psychiatry Residents, Clinical Neuroscientists, Neuroanatomy Educators, Technical Engineers  
-**Project Root**: `C:\Users\UTKAL PATEL\.gemini\antigravity\scratch\neuro-atlas-3d`
+**Project Root**: `C:\Users\UTKAL PATEL\.gemini\antigravity\scratch\neuro-atlas-3d`  
 
 ---
 
@@ -24,17 +24,17 @@ To prevent conflation of physical anatomy, atlas parcellations, coordinates, and
 ```
 1. SOURCE DATA              Raw scientific geometries (Z-Anatomy, HCP, FreeSurfer)
       ↓
-2. PROVENANCE               Asset-level cryptographic hashes, licenses, & quarantine
+2. PROVENANCE               Decoupled EntityProvenance (authority) & AssetProvenance (crypto hash, quarantine)
       ↓
-3. ANATOMICAL ONTOLOGY      NeuroEntity model (Organs vs Parcels vs Tracts vs Networks)
+3. ANATOMICAL ONTOLOGY      8-type NeuroEntity discriminated union (Anatomy, Parcels, Tracts, Networks, Pathways, Targets, Lesions, Claims)
       ↓
-4. COORDINATE SYSTEMS       Explicit frames (Native, World, MNI152, fs_LR, AC-PC, 10-20)
+4. COORDINATE SYSTEMS       Coupled stereotaxic frames (Native, World, MNI152, fs_LR 32k, AC-PC, 10-20)
       ↓
-5. CANONICAL GEOMETRY       Resting manifold meshes with weighted normals & center pivots
+5. CANONICAL GEOMETRY       Resting manifold meshes with weighted normals & center pivots (unaltered by presentation)
       ↓
 6. ATLAS/PARCELLATION       HCP MMP 1.0 & Brodmann areas mapped as GPU vertex attributes
       ↓
-7. EVIDENCE/KNOWLEDGE       Structured EvidenceClaims with GRADE certainty & citations
+7. EVIDENCE/KNOWLEDGE       Structured EvidenceClaims with domain-appropriate assessment (GRADE, CEBM, Anatomical Consensus)
       ↓
 8. RENDERING ENGINE         Three.js r172+ WebGPURenderer (TSL) with WebGL2 fallback
       ↓
@@ -82,14 +82,19 @@ To prevent conflation of physical anatomy, atlas parcellations, coordinates, and
 
 ## E. Knowledge Architecture: Academic Psychiatry Focus
 
-1. **RDoC Versioned Matrix (`src/types/rdoc.ts`)**:
+1. **Polymorphic NeuroEntity Ontology (`src/types/entity.ts`)**:
+   * Complete 8-member discriminated union (`AnatomicalStructure`, `CorticalParcelEntity`, `WhiteMatterTractEntity`, `FunctionalNetworkEntity`, `NeuralPathwayEntity`, `NeuromodulationTargetEntity`, `LesionModelEntity`, `EvidenceClaimEntity`).
+   * Strict separation of concerns enforced by [`ARCHITECTURAL_INVARIANTS.md`](./ARCHITECTURAL_INVARIANTS.md).
+   * 8 distinct URI namespaces documented in [`ENTITY_IDENTITY_AND_REFERENCING.md`](./ENTITY_IDENTITY_AND_REFERENCING.md).
+2. **RDoC Versioned Matrix (`src/types/rdoc.ts`)**:
    * Versioned hierarchical representation supporting all 6 domains (including Sensorimotor Systems).
-2. **Psychopharmacology & Molecular Neurobiology (`src/types/pharmacology.ts`)**:
-   * Structured targets specifying receptor subtypes (e.g., 5-HT1A, 5-HT2A, D2), synaptic locus (presynaptic autoreceptor vs postsynaptic), G-protein cascades ($G_{i/o}, G_s, G_{q/11}$), and clinical agents.
-3. **Neuromodulation Protocols (`src/types/neuromodulation.ts`)**:
-   * Distinguishes physical application sites (scalp 10-20 or stereotaxic coordinate), electrode/coil montages (RUL vs Bitemporal ECT), local induced fields (VTA/E-field), and downstream network engagement.
-4. **GRADE Epistemological Certainty (`src/types/evidence.ts`)**:
-   * Rigorous distinction: Association $\ne$ Causation; Mechanistic Hypothesis $\ne$ Established Clinical Fact.
+3. **Psychopharmacology & Molecular Neurobiology (`src/types/pharmacology.ts`)**:
+   * Structured targets specifying receptor subtypes, quantitative affinity ($K_i, \text{IC}_{50}, \text{EC}_{50}$), synaptic locus, G-protein cascades, and contextual density profiles with measurement methodology.
+4. **Neuromodulation Protocols & Targets (`src/types/neuromodulation.ts`, `src/types/entity.ts`)**:
+   * Distinguishes clinical stimulation targets (`NeuromodulationTargetEntity`) from underlying anatomy and protocols. Extensible structured regulatory records across jurisdictions.
+5. **Epistemological Certainty (`src/types/evidence.ts`)**:
+   * Domains: `anatomical`, `functional`, `mechanistic`, `clinical`, `pharmacological`, `neuromodulatory`.
+   * Frameworks: GRADE (clinical), Oxford CEBM, Qualitative Anatomical Consensus (textbooks/FIPAT), and Preclinical/Theoretical.
 
 ---
 

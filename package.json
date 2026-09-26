@@ -1,0 +1,24 @@
+{
+  "name": "neuro-atlas-3d",
+  "version": "0.1.1",
+  "description": "Interactive 3D Human Brain Atlas for Advanced Academic Neuropsychiatry",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "tsx src/schema_validation.test.ts"
+  },
+  "keywords": [
+    "neuroanatomy",
+    "3d",
+    "psychiatry",
+    "atlas",
+    "threejs"
+  ],
+  "author": "Utkal Patel",
+  "license": "CC-BY-SA-4.0",
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.9.3"
+  }
+}

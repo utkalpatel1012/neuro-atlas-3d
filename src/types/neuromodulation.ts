@@ -6,6 +6,8 @@
  * 1. Neuromodulation is NOT a simple 1:1 anatomical target property.
  * 2. ECT is a distributed multi-circuit intervention whose effects CANNOT be reduced to the hippocampus.
  * 3. Distinguishes: Physical Application Site != Electrode/Coil Montage != Local Induced Field (VTA/E-field) != Downstream Network Engagement.
+ * 4. Regulatory information is modeled as extensible structured records across jurisdictions,
+ *    not frozen or fragile enums.
  */
 
 import { CoordinateFrame } from './coordinates';
@@ -23,12 +25,36 @@ export type NeuromodulationModality =
   | 'tACS'              // Transcranial Alternating Current Stimulation
   | 'tFUS';             // Transcranial Focused Ultrasound (low-intensity neuromodulation)
 
+export type RegulatoryStatusCategory =
+  | 'cleared_standard_indication'
+  | 'humanitarian_device_exemption'
+  | 'ce_mark_certified'
+  | 'investigational_device_exemption'
+  | 'off_label_evidence_supported'
+  | 'preclinical_experimental';
+
+/** Legacy alias for backwards compatibility */
 export type RegulatoryApprovalStatus =
-  | 'FDA_CLEARED_FIRST_LINE'        // FDA cleared indication (e.g., rTMS for MDD, OCD)
-  | 'FDA_CLEARED_HUMANITARIAN'      // Humanitarian Device Exemption (e.g., DBS for severe refractory OCD)
+  | 'FDA_CLEARED_FIRST_LINE'
+  | 'FDA_CLEARED_HUMANITARIAN'
   | 'CE_MARKED_EUROPE'
-  | 'INVESTIGATIONAL_CLINICAL_TRIAL'// Active IDE / Phase II-III trial (e.g., DBS for TRD in Area 25)
+  | 'INVESTIGATIONAL_CLINICAL_TRIAL'
   | 'OFF_LABEL_CLINICAL_PRACTICE';
+
+/**
+ * Extensible regulatory clearance record supporting multi-jurisdictional approvals,
+ * device clearances, and historical indications without enum fragility.
+ */
+export interface RegulatoryClearance {
+  jurisdiction: string;                // e.g., 'United States', 'European Union', 'United Kingdom', 'Japan'
+  regulatory_agency: string;           // e.g., 'US FDA', 'EMA / Notified Body', 'MHRA', 'PMDA'
+  status_category: RegulatoryStatusCategory;
+  formal_indication_label: string;     // Exact cleared indication text
+  cleared_device_examples?: string[];  // e.g., ['NeuroStar TMS', 'MagVenture MagPro', 'Brainsway H1']
+  approval_or_clearance_year?: number; // e.g., 2008, 2018
+  regulatory_identifier?: string;      // e.g., '510(k) K061053', 'PMA P130009', 'HDE H050003'
+  guideline_reference?: string;        // e.g., 'CANMAT Depression Guidelines (2016)'
+}
 
 export interface PhysicalApplicationSite {
   site_designation: string; // e.g., 'Left DLPFC (Beam F3 / 5.5cm rule)', 'Subcallosal Cingulate Area 25 (Bilateral)'
@@ -76,8 +102,9 @@ export interface NeuromodulationProtocol {
   local_induced_field_description: string; // Describes the electric field (E-field) or Volume of Tissue Activated (VTA)
   downstream_network_effects: DownstreamNetworkEngagement[];
   primary_clinical_indication: string; // e.g., 'Treatment-Resistant Major Depressive Disorder without psychosis'
-  regulatory_status: RegulatoryApprovalStatus;
-  jurisdiction: 'United States (FDA)' | 'European Union (CE)' | 'International / Investigational';
+  regulatory_clearances: RegulatoryClearance[];
+  regulatory_status?: RegulatoryApprovalStatus; // Backwards-compatible legacy field
+  jurisdiction?: string; // Backwards-compatible legacy field
   adverse_effect_profile: string[];
   contraindications: string[]; // e.g., 'Ferromagnetic intracranial implants', 'History of non-iatrogenic seizure disorder'
   evidence_claim_ids: string[];

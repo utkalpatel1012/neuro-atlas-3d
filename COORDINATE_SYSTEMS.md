@@ -1,23 +1,24 @@
 # Coordinate Systems & Spatial Transformation Architecture
 
-**Document Version**: 1.0.0  
+**Document Version**: 1.1.0 (Phase 0.1.1 Remediation Pass)  
 **Authority**: Senior Visualization Engineer & Computational Neuroanatomy Specialist  
 **Standard**: AAS-2026-NEURO-V1  
-**Repository**: `https://github.com/utkalpatel1012/neuro-atlas-3d`
+**Repository**: `https://github.com/utkalpatel1012/neuro-atlas-3d`  
 
 ---
 
 ## 1. Core Architectural Mandate
 
-> **Meshes and spatial coordinates from disparate scientific and anatomical sources are NEVER assumed to be in standard MNI space.**
-> 
+> **Meshes and spatial coordinates from disparate scientific and anatomical sources are NEVER assumed to be in standard MNI space.**  
 > Treating artistic or unaligned anatomical meshes as inherently being in MNI152 space produces false stereotaxic coordinates, invalidates clinical TMS/DBS target alignments, and corrupts scientific credibility. Every spatial coordinate, bounding volume, and mesh origin must explicitly declare its coordinate frame, registration method, transformation provenance, and uncertainty metric.
+> 
+> **Phase 0.1.1 Semantic Safety Mandate**: In TypeScript types (`SpatialDescriptor` and `SpatialCoordinate`), a registered coordinate **CANNOT** exist without its corresponding target coordinate frame and `RegistrationMetadata`. Decoupling them is a compile-time type error.
 
 ---
 
 ## 2. Standard Reference Coordinate Frames
 
-The atlas supports eight distinct spatial coordinate systems, each serving a specific neurobiological or computational role:
+The atlas supports eight distinct spatial coordinate systems, partitioned into volumetric Cartesian frames and cortical surface metric spaces:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐

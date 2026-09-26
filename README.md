@@ -22,17 +22,19 @@ The ultimate objective is to bridge:
 
 ## 🧭 Repository Structure & Documentation
 
-### Core Architectural Specifications (Phase 0 & 0.1)
+### Core Architectural Specifications (Phase 0, 0.1, & 0.1.1)
+* [`ARCHITECTURAL_INVARIANTS.md`](./ARCHITECTURAL_INVARIANTS.md): **[Phase 0.1.1 Locked]** Ten core architectural mandates enforcing ontological separation, coordinate coupling, and provenance integrity.
+* [`ENTITY_IDENTITY_AND_REFERENCING.md`](./ENTITY_IDENTITY_AND_REFERENCING.md): **[Phase 0.1.1 Locked]** Deterministic URI taxonomy across 8 distinct namespaces (`brain.*`, `parcel.*`, `mesh.*`, `claim.*`, `network.*`, `pathway.*`, `target.*`, `lesion.*`).
 * [`PROJECT_ARCHITECTURE.md`](./PROJECT_ARCHITECTURE.md): Complete 11-tier architectural blueprint covering technical, 3D, data, knowledge, and AI tutor architectures.
 * [`ANATOMICAL_ACCURACY_STANDARD.md`](./ANATOMICAL_ACCURACY_STANDARD.md): Standard AAS-2026-NEURO-V2 defining non-negotiable scientific policies, anti-hallucination rules, and evidence criteria.
 * [`SOURCES_AND_LICENSES.md`](./SOURCES_AND_LICENSES.md): Tri-tier provenance matrix (`PRODUCTION_ALLOWED`, `RESEARCH_ONLY`, `LEGAL_REVIEW_REQUIRED`) covering Z-Anatomy, BodyParts3D, HCP, and EBRAINS.
 * [`TECH_STACK_DECISION.md`](./TECH_STACK_DECISION.md): Technical justifications and failure mode analysis (Three.js WebGPURenderer, TSL, Meshopt, KTX2, BatchedMesh, BVH raycasting).
 * [`DEVELOPMENT_ROADMAP.md`](./DEVELOPMENT_ROADMAP.md): Detailed execution plan from Phase 0 to Phase 8.
-* [`ANTIGRAVITY_RULES.md`](./ANTIGRAVITY_RULES.md): 15 mandatory directives for AI coding agents and human contributors.
+* [`ANTIGRAVITY_RULES.md`](./ANTIGRAVITY_RULES.md): 16 mandatory directives for AI coding agents and human contributors.
 
 ### Phase 0.1 Technical & Spatial Architecture
 * [`PHASE_0_1_AUDIT.md`](./PHASE_0_1_AUDIT.md): Comprehensive architectural and scientific audit identifying 14 critical-to-medium issues and remediation actions.
-* [`COORDINATE_SYSTEMS.md`](./COORDINATE_SYSTEMS.md): Coordinate space taxonomy (`native_mesh`, `blender_world`, `mni152_nonlinear_2009c_asym`, `hcp_fslr_32k`, `ac_pc_surgical`, `eeg_10_20_scalp`) and registration uncertainty metrics.
+* [`COORDINATE_SYSTEMS.md`](./COORDINATE_SYSTEMS.md): Coordinate space taxonomy (`native_mesh`, `blender_world`, `mni152_nonlinear_2009c_asym`, `hcp_fslr_32k`, `ac_pc_surgical`, `eeg_10_20_scalp`) and coupled registration records.
 * [`RENDERER_RESILIENCE.md`](./RENDERER_RESILIENCE.md): Lifecycle state machine (`HEALTHY`, `DEGRADED`, `CONTEXT_LOST`, `RECOVERING`, `FAILED`) and state-restoration snapshot architecture.
 * [`PERFORMANCE_BUDGETS.md`](./PERFORMANCE_BUDGETS.md): Empirical budgets stratified across 7 device classes (Desktop, Mac, iPad Pro, Base iPad, Mobile).
 * [`CORTICAL_PARCELLATION_ARCHITECTURE.md`](./CORTICAL_PARCELLATION_ARCHITECTURE.md): Technical strategy for separating physical cortex from HCP MMP 1.0 parcels and GPU vertex attribute shading.
@@ -41,21 +43,23 @@ The ultimate objective is to bridge:
 * [`docs/ASSET_STREAMING_ARCHITECTURE.md`](./docs/ASSET_STREAMING_ARCHITECTURE.md): Lazy loading, priority queues, Web Worker decoding, and LRU memory-pressure recovery.
 * [`docs/BATCHING_AND_LABELING_ARCHITECTURE.md`](./docs/BATCHING_AND_LABELING_ARCHITECTURE.md): Semantic `THREE.BatchedMesh` multi-draw batching and label LOD architecture.
 * [`PHASE_0_1_COMPLETION_CHECKLIST.md`](./PHASE_0_1_COMPLETION_CHECKLIST.md): Formal verification checklist verifying all 27 remediation mandates.
+* [`PHASE_0_1_1_REPORT.md`](./PHASE_0_1_1_REPORT.md): Final schema-integrity and architectural-consistency audit report.
 
 ### Type System & Exemplar Datasets
 * [`src/types/`](./src/types/): Modular, strongly-typed TypeScript models:
-  * `entity.ts`: Polymorphic `NeuroEntity` discriminated union separating organs, parcels, tracts, networks, and lesions.
-  * `coordinates.ts`: Explicit coordinate spaces, bounding boxes, and registration metadata.
-  * `provenance.ts`: Asset-level provenance tracking and manifest types.
-  * `evidence.ts`: Structured `EvidenceClaim` model with GRADE certainty levels.
+  * `entity.ts`: Polymorphic `NeuroEntity` discriminated union covering all 8 concrete entities: `AnatomicalStructure`, `CorticalParcelEntity`, `WhiteMatterTractEntity`, `FunctionalNetworkEntity`, `NeuralPathwayEntity`, `NeuromodulationTargetEntity`, `LesionModelEntity`, and `EvidenceClaimEntity`.
+  * `coordinates.ts`: Coupled stereotaxic registrations, bounding boxes, and coordinate frames.
+  * `provenance.ts`: Decoupled `EntityProvenance` and `AssetProvenance` with `AssetValidationStatus`.
+  * `evidence.ts`: Structured `EvidenceClaim` model with domain-appropriate assessment frameworks (`GRADE`, `OXFORD_CEBM`, `QUALITATIVE_ANATOMICAL_CONSENSUS`).
   * `rdoc.ts`: Versioned hierarchical RDoC framework (including the 6th Sensorimotor domain).
-  * `pharmacology.ts`: Detailed neuroreceptors, transporters, and synaptic locus mechanisms.
-  * `neuromodulation.ts`: Multi-modal protocols separating physical montages from network engagement.
+  * `pharmacology.ts`: Detailed neuroreceptors, transporters, and quantitative affinity constants.
+  * `neuromodulation.ts`: Multi-modal protocols and extensible structured regulatory records.
   * `imaging.ts`: Contextual neuroimaging features parameterized by pulse sequences and field strength.
   * `presentation.ts`: Decoupled `VisibilityPreset` and `ExplosionProfile` runtime models.
   * `catalogue.ts`: Master catalogue entries and validation transition events.
-  * `anatomy.ts`: Canonical `AnatomicalStructure` model.
-* [`data/structures/hippocampus_left.json`](./data/structures/hippocampus_left.json): Remediated clinical dataset for the Left Hippocampus decoupled from BA28 and grounded in GRADE evidence claims.
+  * `anatomy.ts`: Canonical `AnatomicalStructure` model with flexible `StructuralTaxonomy`.
+* [`data/structures/hippocampus_left.json`](./data/structures/hippocampus_left.json): Remediated clinical dataset for the Left Hippocampus with zero fake hashes and verified scientific evidence claims.
+* [`src/schema_validation.test.ts`](./src/schema_validation.test.ts): Automated test suite verifying type narrowing, coordinate safety, non-physical entities, and exemplar integrity (`npm test`).
 
 ---
 
@@ -66,6 +70,7 @@ The ultimate objective is to bridge:
 * **3D Binding**: Hybrid React Three Fiber (R3F) + Imperative Three.js Core
 * **3D Compression**: glTF 2.0 Binary (`.glb`) with **Meshopt (`EXT_meshopt_compression`)** & **KTX2 / Basis Universal (`KHR_texture_basisu`)**
 * **Acceleration**: `three-mesh-bvh` (<1.5 ms raycasting latency target over 500,000+ polygons)
+* **Testing**: `tsx src/schema_validation.test.ts` (`npm test`) & `tsc --noEmit` (`npm run typecheck`)
 * **State & Search**: Zustand (spatial state) + MiniSearch (client-side fuzzy medical term search)
 * **Persistence & PWA**: Dexie.js (IndexedDB) + Service Worker Cache API for 100% offline usage on iPadOS and desktop
 

@@ -1,40 +1,53 @@
 # Production Asset Provenance & Manifest Specification
 
-**Document Version**: 1.0.0  
+**Document Version**: 1.1.0  
 **Authority**: Lead Technical Architect & Digital Neuroanatomy Specialist  
-**Standard**: AAS-2026-NEURO-V1  
-**Target Manifest**: `assets/assets.manifest.json`
+**Standard**: AAS-2026-NEURO-V1 (Phase 0.1.1 Remediation)  
+**Target Manifest**: `assets/assets.manifest.json`  
 
 ---
 
-## 1. Core Principle: Asset-Level vs. Dataset-Level Provenance
+## 1. Core Principle: Entity Provenance vs. Asset Provenance
 
-> **Every production asset must possess its own verifiable cryptographic and legal provenance chain.**
-> 
-> General assertions such as "Z-Anatomy is CC-BY-SA" or "HCP is open access" are insufficient for production medical software. Z-Anatomy contains meshes integrated from BodyParts3D (under CC-BY-SA 2.1 Japan) alongside newer Blender retopologies under CC-BY-SA 4.0. Connectome data is governed by the WU-Minn HCP Open Access Data Use Agreement with strict subject protection covenants.
-> 
-> Therefore, provenance is enforced at the **individual asset level** (per `.glb` node, `.ktx2` texture, or `.json` dataset).
+In the Phase 0.1.1 architecture, we strictly decouple **Entity Provenance** from **Asset Provenance**:
+
+1. **Entity Provenance (`EntityProvenance` in `src/types/provenance.ts`)**:
+   * Applied to semantic and epistemic graph entities (structures, functional networks, pathways, evidence claims).
+   * Tracks scientific authorities (e.g., FIPAT TA2, NIMH RDoC, Glasser et al.), dataset references, literature citations, and ontological cross-references.
+   * Enables an entity to exist and be fully validated **before any physical 3D mesh is modeled or acquired**.
+2. **Asset Provenance (`AssetProvenance` in `src/types/provenance.ts`)**:
+   * Applied strictly to physical 3D files (`.glb`, `.ktx2`, displacement warps).
+   * Tracks cryptographic SHA-256 hashes, upstream mesh nodes, geometric cleaning steps, decimation history, and legal redistribution covenants.
+
+> **Every production asset must possess its own verifiable cryptographic and legal provenance chain.**  
+> Non-commercial datasets (e.g., CC-BY-NC-SA 4.0) are strictly quarantined. Fake hashes and simulated commit records are prohibited. Pre-pipeline assets must declare `resulting_sha256_hash: "NOT_YET_GENERATED"`.
 
 ---
 
-## 2. Production Eligibility Tiers
+## 2. Asset Lifecycle & Validation Status
 
-Every asset registered in the manifest must be categorized under one of three strict operational tiers:
+Every asset registered in `assets.manifest.json` progresses through a strict state machine:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                        Asset Eligibility Tiers                         │
+│                        Asset Validation States                         │
 ├─────────────────────────┬──────────────────────────────────────────────┤
-│ `PRODUCTION_ALLOWED`    │ Permitted for compilation and distribution   │
-│                         │ in public web client bundles.                │
+│ `UNVERIFIED`            │ Registered in manifest, not yet validated.   │
 ├─────────────────────────┼──────────────────────────────────────────────┤
-│ `RESEARCH_ONLY`         │ Strictly quarantined for internal scientific │
-│                         │ validation; barred from client builds.       │
+│ `PENDING`               │ Pipeline decimation/cleaning in progress.    │
 ├─────────────────────────┼──────────────────────────────────────────────┤
-│ `LEGAL_REVIEW_REQUIRED` │ Ambiguous or complex data use terms;         │
-│                         │ barred from production pending clearance.    │
+│ `VERIFIED`              │ Geometry manifold checked, hash verified.    │
+├─────────────────────────┼──────────────────────────────────────────────┤
+│ `CLEARED`               │ Signed off for production web bundle.        │
+├─────────────────────────┼──────────────────────────────────────────────┤
+│ `RESTRICTED`            │ Quarantined for research only or barred.     │
 └─────────────────────────┴──────────────────────────────────────────────┘
 ```
+
+Along with the validation status, every asset declares its `production_eligibility`:
+* `PRODUCTION_ALLOWED`: Permitted for public web client bundles.
+* `RESEARCH_ONLY`: Quarantined for internal validation; barred from client builds.
+* `LEGAL_REVIEW_REQUIRED`: Ambiguous terms undergoing formal review.
 
 ---
 
@@ -42,19 +55,19 @@ Every asset registered in the manifest must be categorized under one of three st
 
 The production asset manifest (`assets/assets.manifest.json`) is the machine-readable registry generated during the Phase-1 asset pipeline. Its TypeScript schema is defined in [`src/types/provenance.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/provenance.ts).
 
-### Exemplar Manifest Structure
+### Exemplar Manifest Structure (Illustrative)
 ```json
 {
   "$schema": "./assets.manifest.schema.json",
-  "manifest_version": "1.0.0",
+  "manifest_version": "1.1.0",
   "generated_at": "2026-09-26T12:00:00Z",
   "generator_script": "scripts/pipeline/generate_manifest.py",
   "total_assets": 1,
-  "production_whitelist": ["mesh.hippocampus.left.v2"],
+  "production_whitelist": ["mesh.hippocampus.left.v1"],
   "research_quarantine": ["julich.cyto.ca1.prob_map.v3"],
   "assets": {
-    "mesh.hippocampus.left.v2": {
-      "asset_id": "mesh.hippocampus.left.v2",
+    "mesh.hippocampus.left.v1": {
+      "asset_id": "mesh.hippocampus.left.v1",
       "dataset_name": "Z-Anatomy",
       "dataset_version": "2024.1.0",
       "source_url": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
@@ -69,7 +82,7 @@ The production asset manifest (`assets/assets.manifest.json`) is the machine-rea
           "script_relative_path": "scripts/pipeline/clean_mesh.py",
           "parameters": { "merge_distance_mm": 0.0001, "recalculate_normals": true },
           "executed_by": "AssetPipeline_Agent",
-          "git_commit_hash": "d03cacf",
+          "git_commit_hash": "EXAMPLE_PIPELINE_COMMIT",
           "timestamp": "2026-09-26T12:30:00Z"
         },
         {
@@ -78,7 +91,7 @@ The production asset manifest (`assets/assets.manifest.json`) is the machine-rea
           "script_relative_path": "scripts/pipeline/smooth_mesh.py",
           "parameters": { "iterations": 15, "pass_band": 0.1 },
           "executed_by": "AssetPipeline_Agent",
-          "git_commit_hash": "d03cacf",
+          "git_commit_hash": "EXAMPLE_PIPELINE_COMMIT",
           "timestamp": "2026-09-26T12:31:00Z"
         },
         {
@@ -87,7 +100,7 @@ The production asset manifest (`assets/assets.manifest.json`) is the machine-rea
           "script_relative_path": "scripts/pipeline/decimate_mesh.py",
           "parameters": { "target_triangles": 3240, "preserve_boundaries": true },
           "executed_by": "AssetPipeline_Agent",
-          "git_commit_hash": "d03cacf",
+          "git_commit_hash": "EXAMPLE_PIPELINE_COMMIT",
           "timestamp": "2026-09-26T12:32:00Z"
         },
         {
@@ -96,11 +109,11 @@ The production asset manifest (`assets/assets.manifest.json`) is the machine-rea
           "script_relative_path": "scripts/pipeline/compress_meshopt.py",
           "parameters": { "position_bits": 14, "normal_bits": 8, "subgroup_optimization": true },
           "executed_by": "AssetPipeline_Agent",
-          "git_commit_hash": "d03cacf",
+          "git_commit_hash": "EXAMPLE_PIPELINE_COMMIT",
           "timestamp": "2026-09-26T12:33:00Z"
         }
       ],
-      "resulting_sha256_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "resulting_sha256_hash": "EXAMPLE_ONLY_NOT_YET_CALCULATED",
       "resulting_license": "CC-BY-SA 4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
       "commercial_redistribution": "PERMITTED",
@@ -108,7 +121,7 @@ The production asset manifest (`assets/assets.manifest.json`) is the machine-rea
         "Must preserve author attribution to Z-Anatomy in application NOTICE file",
         "Derivative 3D meshes must be shared under identical CC-BY-SA 4.0 terms"
       ],
-      "legal_review_status": "CLEARED",
+      "validation_status": "CLEARED",
       "legal_review_notes": "Meets all ShareAlike downstream criteria. Codebase remains separate Apache-2.0 work."
     }
   }

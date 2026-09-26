@@ -2,23 +2,31 @@
  * 3D Neuroanatomy Atlas: Coordinate System & Spatial Transformation Model
  * Standard: AAS-2026-NEURO-V1
  * 
- * Core Architectural Mandate:
- * Meshes and anatomical landmarks are NOT assumed to be in universal MNI space.
- * Every spatial point or bounding volume must explicitly specify its coordinate frame,
- * registration method, transformation provenance, and uncertainty metric.
+ * Core Architectural Mandates:
+ * 1. Meshes and anatomical landmarks are NOT assumed to be in universal MNI space.
+ * 2. Every registered coordinate requires an explicit coordinate frame AND registration metadata.
+ *    No registered point may exist without provenance and uncertainty metrics.
+ * 3. Surface coordinate frames (e.g., fs_LR 32k) are topologically and mathematically distinct
+ *    from 3D volumetric Cartesian frames (e.g., MNI152).
+ * 4. Surgical AC-PC stereotaxic space is distinct from population-averaged MNI template spaces.
  */
 
-export type CoordinateFrame =
+export type VolumetricCoordinateFrame =
   | 'native_mesh'                      // Local untransformed vertex positions from source 3D asset
-  | 'blender_world'                     // Scene world space in Blender 4.x (standardized +Y Up, +Z Forward)
+  | 'blender_world'                     // Scene world space in Blender 4.x (+Y Up, +Z Forward)
   | 'mni152_nonlinear_2009c_asym'       // ICBM 152 Nonlinear Asymmetric 2009c (Standard neuroimaging space)
   | 'mni152_linear_6th_gen'             // Legacy linear MNI template
   | 'talairach_tournoux'                // Classical stereotaxic atlas space
+  | 'ac_pc_surgical'                    // Anterior Commissure - Posterior Commissure aligned stereotaxic space (DBS)
+  | 'patient_dicom_lps';                // Native scanner physical space (Left-Posterior-Superior)
+
+export type SurfaceCoordinateFrame =
   | 'hcp_fslr_32k'                      // Human Connectome Project fs_LR surface mesh (32,492 vertices/hemisphere)
   | 'freesurfer_fsaverage'              // FreeSurfer standard spherical average surface
-  | 'ac_pc_surgical'                    // Anterior Commissure - Posterior Commissure aligned stereotaxic space (DBS)
-  | 'eeg_10_20_scalp'                   // International 10-20 electroencephalographic scalp coordinate system (TMS)
-  | 'patient_dicom_lps';                // Native scanner physical space (Left-Posterior-Superior)
+  | 'freesurfer_fsaverage6'             // FreeSurfer fsaverage6 intermediate surface resolution
+  | 'eeg_10_20_scalp';                  // Scalp surface coordinate system (TMS/EEG)
+
+export type CoordinateFrame = VolumetricCoordinateFrame | SurfaceCoordinateFrame;
 
 export type RegistrationMethod =
   | 'unregistered_raw'                  // Native unaligned source mesh
@@ -54,27 +62,46 @@ export interface SpatialBoundingBox {
 }
 
 /**
- * Explicit Spatial Coordinate record distinguishing raw source coordinates
- * from verified stereotaxic registered coordinates.
+ * Coupled Stereotaxic Registration Record:
+ * Guarantees that a registered point cannot exist without its target frame
+ * and registration metadata.
  */
-export interface RegisteredCoordinate {
-  source_coordinate: [number, number, number];
-  source_coordinate_frame: CoordinateFrame;
-  registered_coordinate?: [number, number, number];
-  registered_coordinate_frame?: CoordinateFrame;
-  registration?: RegistrationMetadata;
+export interface StereotaxicRegistrationRecord {
+  registered_coordinate: [number, number, number];
+  registered_coordinate_frame: CoordinateFrame;
+  registration: RegistrationMetadata;
 }
 
 /**
+ * Discriminated spatial coordinate record ensuring compile-time safety
+ * between raw unregistered points and verified stereotaxic registrations.
+ */
+export type SpatialCoordinate =
+  | {
+      status: 'unregistered';
+      source_coordinate: [number, number, number];
+      source_coordinate_frame: CoordinateFrame;
+    }
+  | {
+      status: 'registered';
+      source_coordinate: [number, number, number];
+      source_coordinate_frame: CoordinateFrame;
+      stereotaxic: StereotaxicRegistrationRecord;
+    };
+
+/**
  * Complete spatial configuration of an anatomical structure mesh.
+ * Couples registered centroid with registration metadata for semantic safety.
  */
 export interface SpatialDescriptor {
-  mesh_node_name: string;               // Exact Node ID in .glb scene graph
+  mesh_node_name?: string;               // Exact Node ID in .glb scene graph (optional for pre-mesh records)
   source_centroid: [number, number, number];
   source_coordinate_frame: CoordinateFrame;
-  registered_centroid?: [number, number, number];
-  registered_coordinate_frame?: CoordinateFrame;
-  registration?: RegistrationMetadata;
+  stereotaxic_registration?: {
+    registered_centroid: [number, number, number];
+    registered_coordinate_frame: CoordinateFrame;
+    registration: RegistrationMetadata;
+  };
   bounding_box: SpatialBoundingBox;
   estimated_volume_cm3?: number;
   default_hex_color: string;

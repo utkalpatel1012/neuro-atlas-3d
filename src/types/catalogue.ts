@@ -7,7 +7,7 @@
  * Prevents unvalidated or placeholder anatomy from leaking into production.
  */
 
-import { AnatomicalStructureSubtype, Laterality } from './entity';
+import { AnatomicalStructureSubtype, Laterality, RepresentationScope } from './entity';
 import { SemanticVisibilityGroup } from './presentation';
 
 export type StructureValidationState =
@@ -34,6 +34,7 @@ export interface CatalogueStructureEntry {
   synonyms: string[];
   structure_subtype: AnatomicalStructureSubtype;
   laterality: Laterality;
+  representation_scope?: RepresentationScope;
   parent_id?: string;
   ta2_id: string;
   fma_id?: string;

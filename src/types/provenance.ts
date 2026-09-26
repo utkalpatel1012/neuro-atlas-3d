@@ -1,11 +1,16 @@
 /**
- * 3D Neuroanatomy Atlas: Asset-Level Provenance & Licensing Model
+ * 3D Neuroanatomy Atlas: Asset-Level and Entity-Level Provenance & Licensing Model
  * Standard: AAS-2026-NEURO-V1
  * 
- * Core Architectural Mandate:
- * Licensing is tracked at the granular ASSET level, not dataset level.
- * Research-only datasets (e.g., CC-BY-NC-SA) are strictly quarantined.
- * Assets with ambiguous terms are explicitly marked LEGAL_REVIEW_REQUIRED.
+ * Core Architectural Mandates:
+ * 1. ENTITY PROVENANCE != ASSET PROVENANCE:
+ *    - An entity (functional network, pathway, evidence claim, or planned structure) has
+ *      epistemic/source provenance (scientific literature, ontologies, authorities).
+ *    - A physical asset (.glb, .ktx2, point cloud) has asset provenance (cryptographic hash,
+ *      decimation pipeline, upstream 3D repository, licensing restrictions).
+ * 2. Licensing is tracked at the granular ASSET level, not broad dataset level.
+ * 3. Research-only datasets (e.g., CC-BY-NC-SA) are strictly quarantined.
+ * 4. Fake hashes and fake production clearance states are strictly prohibited.
  */
 
 export type ProductionEligibility =
@@ -31,6 +36,13 @@ export type UpstreamLicenseType =
   | 'ALLEN_INSTITUTE_TERMS'     // Allen Institute Terms of Use (Academic / Non-commercial research)
   | 'PROPRIETARY_RESTRICTIVE';  // Custom institutional restrictions
 
+export type AssetValidationStatus =
+  | 'UNVERIFIED'   // Asset has been registered but not yet cryptographically verified or processed
+  | 'PENDING'      // Asset transformation or legal review currently in progress
+  | 'VERIFIED'     // Geometry validated, manifold verified, hash cryptographically confirmed
+  | 'CLEARED'      // Formally audited and approved for production web bundle
+  | 'RESTRICTED';  // Quarantined, research-only, or third-party license restricted
+
 export interface TransformationStep {
   step_number: number;
   operation_name: string;       // e.g., 'Taubin_Smoothing', 'QEM_Decimation', 'Meshopt_Compression'
@@ -41,8 +53,12 @@ export interface TransformationStep {
   timestamp: string;
 }
 
+/**
+ * Physical Asset Provenance:
+ * Applied strictly to material files (3D meshes, textures, binary point clouds, atlas buffers).
+ */
 export interface AssetProvenance {
-  asset_id: string;                      // Unique ID of this specific 3D mesh, texture, or dataset record
+  asset_id: string;                      // Unique ID of this specific 3D mesh, texture, or dataset record (e.g., 'mesh.hippocampus.left.v1')
   dataset_name: string;                  // e.g., 'Z-Anatomy', 'Human Connectome Project'
   dataset_version: string;               // e.g., 'v2024.1.0', '1200 Subjects Release'
   source_url: string;                    // Direct repository or data portal URL
@@ -51,13 +67,28 @@ export interface AssetProvenance {
   attribution_text_required: string;     // Exact citation text that must be published in NOTICE / About panel
   acquisition_date: string;              // ISO date format (YYYY-MM-DD)
   modifications_applied: TransformationStep[];
-  resulting_sha256_hash: string;         // Cryptographic SHA-256 hash of the final processed asset
+  resulting_sha256_hash: string;         // Cryptographic SHA-256 hash, or 'NOT_YET_GENERATED' for planned/pre-pipeline assets
   resulting_license: string;             // License governing the output asset (e.g., 'CC-BY-SA 4.0')
   production_eligibility: ProductionEligibility;
   commercial_redistribution: CommercialPermission;
   restrictions_and_covenants: string[];  // e.g., 'Must not contact or re-identify subjects', 'Must redistribute derivatives under CC-BY-SA'
-  legal_review_status: 'NOT_REQUIRED' | 'PENDING' | 'CLEARED' | 'RESTRICTED';
+  validation_status: AssetValidationStatus;
   legal_review_notes?: string;
+}
+
+/**
+ * Entity-Level Provenance:
+ * Applied to semantic graph entities (structures, functional networks, pathways, evidence claims).
+ * An entity may exist before any 3D asset exists, or may never have a 3D asset.
+ */
+export interface EntityProvenance {
+  source_authority: string;              // e.g., 'Terminologia Anatomica 2 (FIPAT)', 'Glasser et al. 2016 (HCP)', 'NIMH RDoC Matrix 2019'
+  dataset_name?: string;                 // e.g., 'HCP_S1200', 'Julich-Brain_v3.0', 'Z-Anatomy'
+  dataset_version?: string;              // e.g., 'v2024.1.0'
+  ontology_reference?: string;           // e.g., 'TA2:5488', 'FMA:275020', 'UBERON:0001954'
+  citation_keys?: string[];              // Literature references grounding this entity's definition
+  provenance_notes?: string;             // Epistemic, historical, or boundary notes
+  last_reviewed?: string;                // ISO date YYYY-MM-DD
 }
 
 /**

@@ -1,15 +1,14 @@
 # Anatomical Accuracy Standard & Scientific Policy
 
-**Standard ID**: AAS-2026-NEURO-V2 (Remediated in Phase 0.1)  
+**Standard ID**: AAS-2026-NEURO-V2 (Remediated in Phase 0.1 & Phase 0.1.1)  
 **Authority**: Senior Digital Neuroanatomy Specialist & Lead Clinical Architect  
-**Scope**: All 3D meshes, coordinate spaces, parcellation mappings, metadata fields, circuit diagrams, and clinical correlations in the 3D Neuroanatomy Atlas.
+**Scope**: All 3D meshes, coordinate spaces, parcellation mappings, metadata fields, circuit diagrams, and clinical correlations in the 3D Neuroanatomy Atlas.  
 
 ---
 
 ## 1. Core Scientific Principle
 
-> **We are not building a visually artistic approximation of the brain. We are building a scientifically credible, rigorously sourced digital neuroanatomy atlas for clinical and academic use.**
-> 
+> **We are not building a visually artistic approximation of the brain. We are building a scientifically credible, rigorously sourced digital neuroanatomy atlas for clinical and academic use.**  
 > Visual aesthetics must never take precedence over anatomical veracity. In every conflict between visual flair and scientific correctness, scientific correctness is the non-negotiable priority.
 
 ---
@@ -40,11 +39,14 @@
    * Observational correlations (e.g., reduced hippocampal volume in MDD, altered resting-state functional connectivity) must **never** be described as direct causal mechanisms unless demonstrated by rigorous interventional or lesion-deficit evidence.
 
 7. **PROHIBITION: Conflation of Mechanistic Hypotheses with Clinical Consensus**:
-   * Theoretical translational models (e.g., adult hippocampal neurogenesis in depression, ketamine lateral habenula bursting models, Grace dopamine hyperactivity model in schizophrenia) must be explicitly classified as `theoretical_mechanistic_hypothesis` and `UNGRADED_THEORY`, never as established clinical facts.
+   * Theoretical translational models (e.g., adult hippocampal neurogenesis in depression, ketamine lateral habenula bursting models, Grace dopamine hyperactivity model in schizophrenia) must be explicitly classified as `theoretical_mechanistic_hypothesis` and domain-appropriate frameworks, never as established clinical facts.
 
 8. **PROHIBITION: Treating Coordinate Systems as Interchangeable**:
    * Raw mesh coordinates (`native_mesh` / `blender_world`) must never be assumed to be in MNI152 or Talairach space.
-   * Every spatial coordinate must declare its coordinate frame, registration method, and uncertainty bounds.
+   * Every spatial coordinate must declare its coordinate frame, registration method, and uncertainty bounds. Decoupling registered coordinates from target frames and registration metadata is impossible under the type schema.
+
+9. **PROHIBITION: No Fake or Simulated Provenance Hashes**:
+   * Pre-pipeline assets must declare `resulting_sha256_hash: "NOT_YET_GENERATED"`. Generating placeholder SHA-256 strings or dummy commit IDs in production metadata is strictly prohibited.
 
 ---
 
@@ -75,11 +77,15 @@ All anatomical data, structural boundaries, and clinical assertions must derive 
 
 ## 4. Evidence Certainty & Epistemic Labeling
 
-Every scientific claim in the metadata must be classified according to the GRADE certainty framework (`src/types/evidence.ts`):
-* **`GRADE_HIGH`**: Replicated across multiple large-scale meta-analyses (e.g., ENIGMA MDD consortium) or proven by focal human neurological lesions.
-* **`GRADE_MODERATE`**: High-quality observational neuroimaging or controlled clinical trials with minor indirectness.
-* **`GRADE_LOW`**: Small-cohort exploratory studies or indirect findings.
-* **`GRADE_VERY_LOW`**: Uncontrolled case series or animal models with uncertain human translation.
-* **`UNGRADED_THEORY`**: Computational, preclinical, or mechanistic biological hypotheses.
+Every scientific claim in the metadata must be classified according to its specific `evidence_domain` and corresponding assessment framework (`src/types/evidence.ts`):
+* **`GRADE` (Clinical Domain)**:
+  * `GRADE_HIGH`: Replicated across multiple large-scale meta-analyses (e.g., ENIGMA MDD consortium) or proven by focal human neurological lesions.
+  * `GRADE_MODERATE`: High-quality observational neuroimaging or controlled clinical trials.
+  * `GRADE_LOW`: Small-cohort exploratory studies or indirect findings.
+  * `GRADE_VERY_LOW`: Uncontrolled case series or animal models with uncertain human translation.
+* **`QUALITATIVE_ANATOMICAL_CONSENSUS` (Anatomical Domain)**:
+  * Established macroscopic and microscopic structural morphology documented by consensus textbooks (Snell, Netter) and international nomenclature (FIPAT TA2).
+* **`COMPUTATIONAL_THEORETICAL` / `PRECLINICAL` (Mechanistic Domain)**:
+  * Translational hypotheses (e.g., neurogenesis model) labeled `NOT_APPLICABLE_NON_CLINICAL` under GRADE and evaluated with narrative certainty summaries.
 
 Claims lacking verified primary literature backing must be flagged with `verification_status: "NEEDS_SOURCE_VERIFICATION"`.

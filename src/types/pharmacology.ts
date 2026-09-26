@@ -2,10 +2,13 @@
  * 3D Neuroanatomy Atlas: Psychopharmacology & Molecular Neurobiology Schema
  * Standard: AAS-2026-NEURO-V1
  * 
- * Core Architectural Mandate:
- * Drug information is structured into precise molecular and circuit targets,
- * not unstructured prose strings. Explicitly captures receptor subtypes,
- * synaptic topologies (pre/postsynaptic), G-protein cascades, and clinical indications.
+ * Core Architectural Mandates:
+ * 1. Drug information is structured into precise molecular and circuit targets,
+ *    not unstructured prose strings.
+ * 2. Receptor densities are NOT declared as arbitrary subjective labels; they must
+ *    declare their measurement modality (autoradiography, PET BP_ND, snRNA-seq),
+ *    species, and experimental tissue context.
+ * 3. Captures quantitative affinity (Ki, IC50, EC50), synaptic locus, and clinical occupancy.
  */
 
 export type NeurotransmitterFamily =
@@ -58,6 +61,23 @@ export type GProteinCoupling =
   | 'ionotropic_channel' // Direct ion flux (e.g., NMDA, AMPA, GABA-A, 5-HT3)
   | 'non_gpcr';
 
+export type DensityMeasurementMethod =
+  | 'autoradiography_radioligand'        // Post-mortem human quantitative in vitro radioligand autoradiography (e.g., [3H]8-OH-DPAT)
+  | 'pet_in_vivo_binding_potential'      // In vivo human PET BP_ND / distribution volume ratio (DVR)
+  | 'mrna_microarray_allen_human'        // Allen Human Brain Atlas normalized microarray z-score
+  | 'single_nucleus_rna_seq'             // snRNA-seq transcripts per million (TPM) in identified neuronal clusters
+  | 'immunohistochemistry_semiquant';    // Optical density grading on histological sections
+
+export interface ReceptorDensityProfile {
+  qualitative_density: 'very_high' | 'high' | 'moderate' | 'low' | 'negligible';
+  measurement_method?: DensityMeasurementMethod;
+  quantitative_value?: number;
+  quantitative_unit?: string;            // e.g., 'fmol/mg protein', 'BP_ND', 'log2 expression z-score'
+  reference_species: 'human' | 'non_human_primate' | 'rodent';
+  tissue_source: 'post_mortem_adult_human' | 'in_vivo_volunteer_pet' | 'surgical_resection';
+  density_notes?: string;
+}
+
 export interface ReceptorTargetSpecification {
   target_id: string; // e.g., 'receptor.5ht.1a', 'receptor.dopamine.d2', 'transporter.sert'
   gene_symbol: string; // e.g., 'HTR1A', 'DRD2', 'SLC6A4'
@@ -72,18 +92,22 @@ export interface ReceptorTargetSpecification {
 
 export interface DrugReceptorInteraction {
   generic_drug_name: string;
-  drug_class: string; // e.g., 'SSRI', 'Atypical Antipsychotic (SDA)', 'NMDA Antagonist'
+  drug_class: string;                    // e.g., 'SSRI', 'Atypical Antipsychotic (SDA)', 'NMDA Antagonist'
   target_id: string;
   action_type: PharmacologicalAction;
-  binding_affinity_ki_nm?: number; // In vitro binding affinity Ki in nanomolar
-  clinical_occupancy_percentage?: string; // e.g., '>65-70% D2 occupancy required for antipsychotic efficacy'
+  binding_affinity_ki_nm?: number;       // In vitro binding affinity Ki in nanomolar (equilibrium dissociation constant)
+  half_maximal_inhibitory_ic50_nm?: number; // IC50 in nanomolar if enzyme or transporter
+  half_maximal_effective_ec50_nm?: number;  // EC50 in nanomolar if agonist
+  clinical_occupancy_percentage?: string;// e.g., '>65-70% D2 occupancy required for antipsychotic efficacy'
   functional_consequence: string;
+  evidence_claim_ids?: string[];
 }
 
 export interface PsychopharmacologyMapping {
   mapping_id: string;
   structure_id: string; // Canonical anatomical structure ID
   receptor_target: ReceptorTargetSpecification;
+  density?: ReceptorDensityProfile;
   density_in_structure: 'very_high' | 'high' | 'moderate' | 'low' | 'negligible';
   lamina_distribution?: string; // e.g., 'Predominantly Layers I-II and Va'
   clinical_drug_interactions: DrugReceptorInteraction[];

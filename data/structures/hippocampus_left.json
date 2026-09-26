@@ -3,7 +3,15 @@
   "entity_type": "anatomical_structure",
   "subtype": "subcortical_nucleus",
   "canonical_name": "Hippocampus (Left)",
-  "official_latin": "Hippocampus",
+  "latin_name": "Hippocampus",
+  "clinical_aliases": [
+    "Cornu Ammonis",
+    "Ammon's Horn",
+    "Hippocampus Proper (CA1-CA3)"
+  ],
+  "abbreviations": ["Hpc", "HIP", "CA"],
+  "laterality": "left",
+  "representation_scope": "paired_separate",
   "name": {
     "official_latin": "Hippocampus",
     "official_english": "Hippocampus (Left)",
@@ -14,7 +22,6 @@
     ],
     "standard_abbreviations": ["Hpc", "HIP", "CA"]
   },
-  "laterality": "left",
   "ontology": {
     "ta2_id": "TA2:5488",
     "fma_id": "FMA:275020",
@@ -22,6 +29,7 @@
     "neuronaes_id": "NN:196"
   },
   "hierarchy": {
+    "anatomic_system": "central_nervous_system_telencephalon",
     "division": "telencephalon",
     "hemisphere": "left",
     "lobe": "temporal_lobe",
@@ -37,16 +45,18 @@
     "mesh_node_name": "Mesh_Hippocampus_L",
     "source_centroid": [-26.2, -20.8, -16.4],
     "source_coordinate_frame": "blender_world",
-    "registered_centroid": [-26.4, -21.1, -16.2],
-    "registered_coordinate_frame": "mni152_nonlinear_2009c_asym",
-    "registration": {
-      "registration_method": "affine_linear_12dof",
-      "registration_source": "scripts/pipeline/register_to_mni152.py",
-      "target_reference_template": "MNI152NLin2009cAsym_1mm.nii.gz",
-      "registration_uncertainty_mm": 1.1,
-      "dice_similarity_coefficient": 0.81,
-      "validation_date": "2026-09-26",
-      "validator_notes": "Affine alignment verified against Harvard-Oxford subcortical atlas mask."
+    "stereotaxic_registration": {
+      "registered_centroid": [-26.4, -21.1, -16.2],
+      "registered_coordinate_frame": "mni152_nonlinear_2009c_asym",
+      "registration": {
+        "registration_method": "affine_linear_12dof",
+        "registration_source": "scripts/pipeline/register_to_mni152.py",
+        "target_reference_template": "MNI152NLin2009cAsym_1mm.nii.gz",
+        "registration_uncertainty_mm": 1.1,
+        "dice_similarity_coefficient": 0.81,
+        "validation_date": "2026-09-26",
+        "validator_notes": "Affine alignment verified against Harvard-Oxford subcortical atlas mask."
+      }
     },
     "bounding_box": {
       "min": [-35.0, -38.0, -25.0],
@@ -55,6 +65,28 @@
     },
     "estimated_volume_cm3": 3.8,
     "default_hex_color": "#D4A373"
+  },
+  "asset_id": "mesh.hippocampus.left.v1",
+  "asset_provenance": {
+    "asset_id": "mesh.hippocampus.left.v1",
+    "dataset_name": "Z-Anatomy",
+    "dataset_version": "2024.1.0",
+    "source_url": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+    "upstream_asset_id": "Hippocampus_L",
+    "upstream_license": "CC_BY_SA_4_0",
+    "attribution_text_required": "Hippocampus 3D geometry derived from Z-Anatomy contributors, licensed under CC-BY-SA 4.0.",
+    "acquisition_date": "2026-09-26",
+    "modifications_applied": [],
+    "resulting_sha256_hash": "NOT_YET_GENERATED",
+    "resulting_license": "CC-BY-SA 4.0",
+    "production_eligibility": "PRODUCTION_ALLOWED",
+    "commercial_redistribution": "PERMITTED",
+    "restrictions_and_covenants": [
+      "Must attribute Z-Anatomy contributors in application notices",
+      "Derivative 3D meshes must be shared under CC-BY-SA 4.0"
+    ],
+    "validation_status": "PENDING",
+    "legal_review_notes": "License terms confirmed under CC-BY-SA 4.0. Mesh decimation, manifold check, and SHA-256 calculation scheduled for Phase 1 asset pipeline."
   },
   "presentation": {
     "visibility_groups": ["limbic_circuitry", "cortex_allocortex"]
@@ -70,24 +102,28 @@
     },
     "relationships": [
       {
+        "source_entity_id": "brain.telencephalon.left.limbic.hippocampus",
         "target_entity_id": "brain.telencephalon.left.limbic.dentate_gyrus",
         "relationship_type": "adjacent_to",
         "evidence_claim_ids": ["claim.anatomy.hpc.dg_tri_synaptic"],
         "notes": "Dentate gyrus interlocks with cornu ammonis, receiving perforant path inputs and projecting mossy fibers to CA3."
       },
       {
+        "source_entity_id": "brain.telencephalon.left.limbic.hippocampus",
         "target_entity_id": "brain.telencephalon.left.limbic.subiculum",
         "relationship_type": "adjacent_to",
         "evidence_claim_ids": ["claim.anatomy.hpc.subiculum_transition"],
         "notes": "Transition zone between 3-layered archicortex of CA1 and 6-layered parahippocampal neocortex."
       },
       {
+        "source_entity_id": "brain.telencephalon.left.limbic.hippocampus",
         "target_entity_id": "brain.telencephalon.left.limbic.amygdala",
         "relationship_type": "adjacent_to",
         "evidence_claim_ids": ["claim.anatomy.hpc.amygdala_boundary"],
         "notes": "Located immediately anterosuperior to the hippocampal head."
       },
       {
+        "source_entity_id": "brain.telencephalon.left.limbic.hippocampus",
         "target_entity_id": "parcel.brodmann.area_28",
         "relationship_type": "associated_with_parcel",
         "evidence_claim_ids": ["claim.anatomy.hpc.entorhinal_perforant"],
@@ -237,6 +273,18 @@
           }
         ],
         "primary_clinical_indication": "Severe Treatment-Resistant Depression with Psychotic Features or Acute Suicidal Emergency",
+        "regulatory_clearances": [
+          {
+            "jurisdiction": "United States",
+            "regulatory_agency": "US FDA",
+            "status_category": "cleared_standard_indication",
+            "formal_indication_label": "Severe major depressive episode associated with major depressive disorder or bipolar disorder, catatonia, or severe treatment-resistant depression in patients 13 years of age and older",
+            "cleared_device_examples": ["Mecta SpECTrum 5000Q", "Somatics Thymatron System IV"],
+            "approval_or_clearance_year": 2018,
+            "regulatory_identifier": "FDA Final Rule 83 FR 66103",
+            "guideline_reference": "APA Task Force on ECT (2001) / FDA 2018 Special Controls"
+          }
+        ],
         "regulatory_status": "FDA_CLEARED_FIRST_LINE",
         "jurisdiction": "United States (FDA)",
         "adverse_effect_profile": [
@@ -291,66 +339,24 @@
     }
   ],
   "provenance": {
-    "asset_id": "mesh.hippocampus.left.v2",
-    "dataset_name": "Z-Anatomy",
+    "source_authority": "Terminologia Anatomica 2 (FIPAT) / Snell's Clinical Neuroanatomy 8th Ed",
+    "dataset_name": "Z-Anatomy (Pre-pipeline Candidate Geometry)",
     "dataset_version": "2024.1.0",
-    "source_url": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
-    "upstream_asset_id": "Hippocampus_L",
-    "upstream_license": "CC_BY_SA_4_0",
-    "attribution_text_required": "Hippocampus 3D geometry derived from Z-Anatomy contributors, licensed under CC-BY-SA 4.0.",
-    "acquisition_date": "2026-09-26",
-    "modifications_applied": [
-      {
-        "step_number": 1,
-        "operation_name": "Centroid_Origin_Centering",
-        "script_relative_path": "scripts/pipeline/center_mesh_origin.py",
-        "parameters": { "pivot": "center_of_mass" },
-        "executed_by": "AssetPipeline_Agent",
-        "git_commit_hash": "d03cacf",
-        "timestamp": "2026-09-26T12:00:00Z"
-      },
-      {
-        "step_number": 2,
-        "operation_name": "Manifold_Repair",
-        "script_relative_path": "scripts/pipeline/clean_mesh.py",
-        "parameters": { "merge_distance_mm": 0.0001 },
-        "executed_by": "AssetPipeline_Agent",
-        "git_commit_hash": "d03cacf",
-        "timestamp": "2026-09-26T12:05:00Z"
-      },
-      {
-        "step_number": 3,
-        "operation_name": "QEM_Decimation",
-        "script_relative_path": "scripts/pipeline/decimate_mesh.py",
-        "parameters": { "target_triangles": 3240 },
-        "executed_by": "AssetPipeline_Agent",
-        "git_commit_hash": "d03cacf",
-        "timestamp": "2026-09-26T12:10:00Z"
-      },
-      {
-        "step_number": 4,
-        "operation_name": "Meshopt_Compression",
-        "script_relative_path": "scripts/pipeline/compress_meshopt.py",
-        "parameters": { "quantization_bits": 14 },
-        "executed_by": "AssetPipeline_Agent",
-        "git_commit_hash": "d03cacf",
-        "timestamp": "2026-09-26T12:15:00Z"
-      }
+    "ontology_reference": "TA2:5488 / FMA:275020",
+    "citation_keys": [
+      "Schmaal2016",
+      "Scoville1957",
+      "Splittgerber2018"
     ],
-    "resulting_sha256_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "resulting_license": "CC-BY-SA 4.0",
-    "production_eligibility": "PRODUCTION_ALLOWED",
-    "commercial_redistribution": "PERMITTED",
-    "restrictions_and_covenants": [
-      "Must attribute Z-Anatomy contributors in application notices",
-      "Derivative 3D meshes must be shared under CC-BY-SA 4.0"
-    ],
-    "legal_review_status": "CLEARED"
+    "provenance_notes": "Anatomical identity and boundaries defined according to FIPAT TA2. 3D geometry candidate identified in Z-Anatomy; production mesh processing scheduled for Phase 1.",
+    "last_reviewed": "2026-09-26"
   },
   "evidence_claims": [
     {
       "id": "claim.hpc.volume_reduction.mdd.enigma2016",
       "claim_statement": "Adults with major depressive disorder demonstrate robust bilateral hippocampal volume reduction on structural MRI compared with healthy controls, most pronounced in recurrent or early-onset illness.",
+      "evidence_domain": "clinical",
+      "evidence_assessment_framework": "GRADE",
       "evidence_type": "systematic_review_meta_analysis",
       "population": "clinical_psychiatric_humans",
       "sample_size": 8927,
@@ -377,11 +383,14 @@
     {
       "id": "claim.hpc.neurogenesis_hypothesis.mdd",
       "claim_statement": "Suppression of adult hippocampal subgranular zone neurogenesis by stress and its restoration by antidepressants is a primary causal driver of depressive episodes and clinical recovery.",
+      "evidence_domain": "mechanistic",
+      "evidence_assessment_framework": "COMPUTATIONAL_THEORETICAL",
       "evidence_type": "computational_mechanistic_model",
       "population": "rodent_models",
       "outcome_measure": "BrdU+ / DCX+ newborn neurons in dentate gyrus and behavioral immobility time",
       "relationship_nature": "theoretical_mechanistic_hypothesis",
-      "certainty_grade": "UNGRADED_THEORY",
+      "certainty_grade": "NOT_APPLICABLE_NON_CLINICAL",
+      "certainty_summary": "Preclinical and theoretical hypothesis; human post-mortem stereological evidence remains deeply contested.",
       "replication_status": "INCONCLUSIVE",
       "clinical_applicability": "TRANSLATIONAL_INVESTIGATIONAL",
       "limitations_identified": [
@@ -415,6 +424,8 @@
     {
       "id": "claim.lesion.bilateral_hpc.scoville1957",
       "claim_statement": "Bilateral resection or destruction of the medial temporal lobe (hippocampus and parahippocampal gyrus) causes severe, irreversible loss of recent memory encoding with preserved remote memories and intellectual faculties.",
+      "evidence_domain": "clinical",
+      "evidence_assessment_framework": "OXFORD_CEBM",
       "evidence_type": "controlled_clinical_trial",
       "population": "clinical_psychiatric_humans",
       "sample_size": 10,
