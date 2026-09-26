@@ -41,8 +41,10 @@ export class AssetManager {
   private refCounts: Map<string, number> = new Map();
   private assetBaseUrl: string;
 
-  constructor(assetBaseUrl = '') {
-    this.assetBaseUrl = assetBaseUrl;
+  constructor(assetBaseUrl?: string) {
+    this.assetBaseUrl = assetBaseUrl !== undefined
+      ? assetBaseUrl
+      : (typeof import.meta !== 'undefined' && (import.meta as any).env?.BASE_URL ? (import.meta as any).env.BASE_URL : '');
     this.gltfLoader = new GLTFLoader();
     this.gltfLoader.setMeshoptDecoder(MeshoptDecoder);
   }
@@ -59,7 +61,9 @@ export class AssetManager {
 
     try {
       if (typeof window !== 'undefined' && typeof fetch === 'function') {
-        const url = this.assetBaseUrl ? `${this.assetBaseUrl}/${manifestOrUrl}` : manifestOrUrl;
+        const cleanManifest = manifestOrUrl.startsWith('/') ? manifestOrUrl.slice(1) : manifestOrUrl;
+        const base = this.assetBaseUrl ? this.assetBaseUrl.replace(/\/+$/, '') : '';
+        const url = base ? `${base}/${cleanManifest}` : cleanManifest;
         const res = await fetch(url);
         if (!res.ok) throw new Error(`HTTP ${res.status} fetching manifest from ${url}`);
         this.manifest = (await res.json()) as AssetsManifest;
@@ -241,7 +245,9 @@ export class AssetManager {
     const relativePath = `assets/derived/${assetId}/runtime/${assetId}.${lod}.meshopt.glb`;
 
     if (typeof window !== 'undefined' && typeof fetch === 'function') {
-      const url = this.assetBaseUrl ? `${this.assetBaseUrl}/${relativePath}` : `/${relativePath}`;
+      const cleanRel = relativePath.startsWith('/') ? relativePath.slice(1) : relativePath;
+      const base = this.assetBaseUrl ? this.assetBaseUrl.replace(/\/+$/, '') : '';
+      const url = base ? `${base}/${cleanRel}` : cleanRel;
       const res = await fetch(url);
       if (!res.ok) {
         // Fallback to relative URL

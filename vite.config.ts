@@ -2,7 +2,50 @@ import { defineConfig } from 'vite';
 import path from 'path';
 import fs from 'fs';
 
+function copyRuntimeAssets() {
+  const distDir = path.resolve(process.cwd(), 'dist');
+  if (!fs.existsSync(distDir)) return;
+
+  // 1. Copy manifests
+  const manifestSrc = path.resolve(process.cwd(), 'assets/manifests');
+  const manifestDst = path.resolve(distDir, 'assets/manifests');
+  if (fs.existsSync(manifestSrc)) {
+    fs.mkdirSync(manifestDst, { recursive: true });
+    fs.cpSync(manifestSrc, manifestDst, { recursive: true });
+  }
+
+  const rootManifestSrc = path.resolve(process.cwd(), 'assets/assets.manifest.json');
+  if (fs.existsSync(rootManifestSrc)) {
+    fs.copyFileSync(rootManifestSrc, path.resolve(distDir, 'assets/assets.manifest.json'));
+  }
+
+  // 2. Copy derived runtime models (*.meshopt.glb)
+  const derivedSrc = path.resolve(process.cwd(), 'assets/derived');
+  if (fs.existsSync(derivedSrc)) {
+    const assetFolders = fs.readdirSync(derivedSrc);
+    for (const folder of assetFolders) {
+      const runtimeSrc = path.join(derivedSrc, folder, 'runtime');
+      if (fs.existsSync(runtimeSrc)) {
+        const runtimeDst = path.join(distDir, 'assets/derived', folder, 'runtime');
+        fs.mkdirSync(runtimeDst, { recursive: true });
+        fs.cpSync(runtimeSrc, runtimeDst, { recursive: true });
+      }
+    }
+  }
+
+  // 3. Copy data directory
+  const dataSrc = path.resolve(process.cwd(), 'data');
+  const dataDst = path.resolve(distDir, 'data');
+  if (fs.existsSync(dataSrc)) {
+    fs.mkdirSync(dataDst, { recursive: true });
+    fs.cpSync(dataSrc, dataDst, { recursive: true });
+  }
+
+  console.info('[Vite] Successfully copied neuro runtime 3D models, manifests, and data into dist/.');
+}
+
 export default defineConfig({
+  base: './',
   root: '.',
   server: {
     port: 3000,
@@ -32,6 +75,12 @@ export default defineConfig({
           next();
         });
       }
+    },
+    {
+      name: 'copy-neuro-runtime-assets',
+      closeBundle() {
+        copyRuntimeAssets();
+      }
     }
   ],
   build: {
@@ -40,3 +89,4 @@ export default defineConfig({
     assetsInlineLimit: 0
   }
 });
+

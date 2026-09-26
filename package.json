@@ -17,7 +17,8 @@
     "test:cortex": "tsx src/cerebral_cortex.test.ts",
     "asset:validate": "tsx scripts/validate_asset.ts",
     "audit:phase1": "tsx scripts/audit_phase1.ts",
-    "pipeline:run": "tsx scripts/pipeline/run_pipeline.ts"
+    "pipeline:run": "tsx scripts/pipeline/run_pipeline.ts",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [
     "neuroanatomy",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "@types/node": "^22.10.0",
     "@types/three": "^0.186.0",
+    "gh-pages": "^6.3.0",
     "meshoptimizer": "^1.3.0",
     "tsx": "^4.19.3",
     "typescript": "^5.9.3",

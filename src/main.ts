@@ -23,7 +23,7 @@ async function bootstrap() {
   // 1. Instantiate Application Engine
   const app = new AtlasApplication({
     container: canvasContainer,
-    manifestPath: '/assets/manifests/assets.manifest.json',
+    manifestPath: 'assets/manifests/assets.manifest.json',
     initialProfile: 'HIGH',
     enableGrid: true,
     enableOriginMarker: true
@@ -31,7 +31,7 @@ async function bootstrap() {
 
   try {
     // 2. Initialize Engine (GPU renderer, capabilities, shaders)
-    await app.initialize('/assets/manifests/assets.manifest.json');
+    await app.initialize('assets/manifests/assets.manifest.json');
 
     // 3. Define and Load Bilateral Hippocampus Structures
     const leftRecord: AnatomicalEntityRecord = {
