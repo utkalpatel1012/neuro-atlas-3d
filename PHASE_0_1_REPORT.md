@@ -89,17 +89,17 @@
 
 | Module | Core Purpose & Types Introduced |
 | :--- | :--- |
-| [`src/types/entity.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/entity.ts) | Polymorphic `NeuroEntity` discriminated union; `CorticalParcelEntity`, `WhiteMatterTractEntity`, `FunctionalNetworkEntity`, `NeuralPathwayEntity`, `LesionModelEntity`. |
-| [`src/types/coordinates.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/coordinates.ts) | `CoordinateFrame` (8 reference spaces), `RegistrationMetadata`, `SpatialBoundingBox`, `RegisteredCoordinate`, `SpatialDescriptor`. |
-| [`src/types/provenance.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/provenance.ts) | `AssetProvenance`, `TransformationStep`, `ProductionEligibility`, `CommercialPermission`, `AssetsManifest`. |
-| [`src/types/evidence.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/evidence.ts) | `EvidenceClaim`, `EvidenceType` (17 categories), `StudyPopulation`, `RelationshipNature`, `EvidenceCertaintyGRADE`, `VerificationStatus`. |
-| [`src/types/rdoc.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/rdoc.ts) | Versioned hierarchical RDoC framework; supports 6 domains (including Sensorimotor Systems), constructs, subconstructs, and units of analysis. |
-| [`src/types/pharmacology.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/pharmacology.ts) | `PsychopharmacologyMapping`, `ReceptorTargetSpecification`, `SynapticLocus`, `PharmacologicalAction`, `GProteinCoupling`, `DrugReceptorInteraction`. |
-| [`src/types/neuromodulation.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/neuromodulation.ts) | `NeuromodulationProtocol`, `PhysicalApplicationSite`, `DownstreamNetworkEngagement`, `RegulatoryApprovalStatus`. |
-| [`src/types/imaging.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/imaging.ts) | `ImagingFeature`, `MRISequencePhysics`, `MagneticFieldStrength`, `RelativeSignalIntensity`, `PathologicalImagingSign`. |
-| [`src/types/presentation.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/presentation.ts) | `VisibilityPreset`, `SemanticVisibilityGroup`, `ExplosionProfile`, `VisualizationMode`. |
-| [`src/types/catalogue.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/catalogue.ts) | `AnatomyCatalogue`, `CatalogueStructureEntry`, `StructureValidationState` (7 lifecycle stages). |
-| [`src/types/anatomy.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/anatomy.ts) | Refactored canonical `AnatomicalStructure` model consuming modular types; verified via `tsc --noEmit`. |
+| [`src/types/entity.ts`](./src/types/entity.ts) | Polymorphic `NeuroEntity` discriminated union; `CorticalParcelEntity`, `WhiteMatterTractEntity`, `FunctionalNetworkEntity`, `NeuralPathwayEntity`, `LesionModelEntity`. |
+| [`src/types/coordinates.ts`](./src/types/coordinates.ts) | `CoordinateFrame` (8 reference spaces), `RegistrationMetadata`, `SpatialBoundingBox`, `RegisteredCoordinate`, `SpatialDescriptor`. |
+| [`src/types/provenance.ts`](./src/types/provenance.ts) | `AssetProvenance`, `TransformationStep`, `ProductionEligibility`, `CommercialPermission`, `AssetsManifest`. |
+| [`src/types/evidence.ts`](./src/types/evidence.ts) | `EvidenceClaim`, `EvidenceType` (17 categories), `StudyPopulation`, `RelationshipNature`, `EvidenceCertaintyGRADE`, `VerificationStatus`. |
+| [`src/types/rdoc.ts`](./src/types/rdoc.ts) | Versioned hierarchical RDoC framework; supports 6 domains (including Sensorimotor Systems), constructs, subconstructs, and units of analysis. |
+| [`src/types/pharmacology.ts`](./src/types/pharmacology.ts) | `PsychopharmacologyMapping`, `ReceptorTargetSpecification`, `SynapticLocus`, `PharmacologicalAction`, `GProteinCoupling`, `DrugReceptorInteraction`. |
+| [`src/types/neuromodulation.ts`](./src/types/neuromodulation.ts) | `NeuromodulationProtocol`, `PhysicalApplicationSite`, `DownstreamNetworkEngagement`, `RegulatoryApprovalStatus`. |
+| [`src/types/imaging.ts`](./src/types/imaging.ts) | `ImagingFeature`, `MRISequencePhysics`, `MagneticFieldStrength`, `RelativeSignalIntensity`, `PathologicalImagingSign`. |
+| [`src/types/presentation.ts`](./src/types/presentation.ts) | `VisibilityPreset`, `SemanticVisibilityGroup`, `ExplosionProfile`, `VisualizationMode`. |
+| [`src/types/catalogue.ts`](./src/types/catalogue.ts) | `AnatomyCatalogue`, `CatalogueStructureEntry`, `StructureValidationState` (7 lifecycle stages). |
+| [`src/types/anatomy.ts`](./src/types/anatomy.ts) | Refactored canonical `AnatomicalStructure` model consuming modular types; verified via `tsc --noEmit`. |
 
 ---
 

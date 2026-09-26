@@ -46,3 +46,17 @@ Per §43 (documented limitation ≠ block), the repository may proceed to Phase 
 PLANNING when instructed. Phase 4 execution additionally requires, per phase:
 verified dataset provenance BEFORE any MRI import, section-plane math proofs, and
 reviewer-agent sign-off as defined by the Phase 4 plan.
+
+## Phase 3.2 certification (entry-certification pass, same file, no boxes altered)
+
+Phase 3.2 verified every box above still holds after its own changes and added:
+landmark policy (`docs/ANATOMICAL_LANDMARK_VALIDATION.md`, all 24 anchors classified
+SCHEMATIC with misplacements itemized); section-plane math spec + tested pure module
+(`docs/SECTION_PLANE_SPECIFICATION.md`, `src/engine/sectionPlanes.ts`, 22 checks;
+coronal→Z / axial→Y mapping verified against measured axes); MRI strategy with
+acquisition deferred (`docs/MRI_REFERENCE_DATA_STRATEGY.md` + machine-checked
+`data/mri_candidates.json`); license matrix (`docs/PRODUCTION_DATASET_LICENSE_MATRIX.md`);
+independent review (`docs/PHASE_3_2_INDEPENDENT_REVIEW.md`: 2 MAJOR fixed, rest
+documented); runtime constraints (`docs/PHASE_4_RUNTIME_CONSTRAINTS.md`); parcellation
++ psychiatry schema compatibility verified additive-only (no schema change needed).
+Verdict: `PHASE_3_2_ENTRY_CERTIFICATION.md`.

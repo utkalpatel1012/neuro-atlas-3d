@@ -53,7 +53,7 @@ Along with the validation status, every asset declares its `production_eligibili
 
 ## 3. Schema of `assets.manifest.json`
 
-The production asset manifest (`assets/assets.manifest.json`) is the machine-readable registry generated during the Phase-1 asset pipeline. Its TypeScript schema is defined in [`src/types/provenance.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/provenance.ts).
+The production asset manifest (`assets/assets.manifest.json`) is the machine-readable registry generated during the Phase-1 asset pipeline. Its TypeScript schema is defined in [`src/types/provenance.ts`](./src/types/provenance.ts).
 
 ### Production Benchmark Manifest Record (`mesh.hippocampus.left.v1`)
 > Phase 3.1 note: this example predates the 2026-09-27 integrity corrections. The live

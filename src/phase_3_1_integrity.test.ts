@@ -377,6 +377,42 @@ async function runTests() {
   console.log(`[PASS] Deps honest: planned-only tech absent; three (${threeImporters} files) + bvh (${bvhImporters} files) used.`);
   passedChecks += 3;
 
+  // --------------------------------------------------------------------------
+  // TEST 13: Landmark status semantics + MRI candidate metadata (Phase 3.2 §16)
+  // Data-shape assertions, never prose. Registry shape guards future edits;
+  // candidates file guards Gate 3 (nothing acquired, nothing production-ready).
+  // --------------------------------------------------------------------------
+  console.log('\n--- TEST 13: Landmark Semantics + MRI Candidate Metadata ---');
+  const VALID_CATEGORIES = ['SULCAL_LANDMARK', 'FISSURE', 'GYRAL_LANDMARK', 'CORTICAL_POLE', 'ANATOMICAL_BORDER'];
+  const VALID_LATERALITY = ['left', 'right', 'midline', 'bilateral'];
+  const VALID_STATES = [undefined, 'SCHEMATIC_UNVALIDATED', 'EXPERT_VERIFIED'];
+  const seenIds = new Set<string>();
+  for (const lm of CEREBRAL_LANDMARKS) {
+    assert(typeof lm.landmarkId === 'string' && lm.landmarkId.length > 0, 'landmark has id');
+    assert(!seenIds.has(lm.landmarkId), `landmark id unique: ${lm.landmarkId}`);
+    seenIds.add(lm.landmarkId);
+    assert(VALID_CATEGORIES.includes(lm.category as string), `${lm.landmarkId}: valid category`);
+    assert(VALID_LATERALITY.includes(lm.laterality as string), `${lm.landmarkId}: valid laterality`);
+    assert(VALID_STATES.includes(lm.validationState), `${lm.landmarkId}: valid validation state`);
+    assert(Array.isArray(lm.worldPositionMm) && lm.worldPositionMm.length === 3 &&
+      lm.worldPositionMm.every(Number.isFinite), `${lm.landmarkId}: finite 3D anchor`);
+  }
+  const cands = readJson('data/mri_candidates.json');
+  assert(Array.isArray(cands.candidates) && cands.candidates.length >= 3, 'candidate list non-empty');
+  const VALID_TYPES = ['A', 'B', 'C', 'D', 'E'];
+  for (const c of cands.candidates) {
+    for (const k of ['id', 'mri_type', 'purpose', 'coordinate_space', 'license_summary', 'acquisition']) {
+      assert(typeof c[k] === 'string' && c[k].length > 0, `candidate ${c.id}: field ${k} present`);
+    }
+    assert(VALID_TYPES.includes(c.mri_type), `candidate ${c.id}: valid MRI type`);
+    assert(typeof c.production_compatible === 'boolean', `candidate ${c.id}: production flag boolean`);
+    assert(typeof c.legal_review_required === 'boolean', `candidate ${c.id}: review flag boolean`);
+    assert(c.acquisition === 'deferred', `candidate ${c.id}: nothing acquired in Phase 3.2`);
+    assert(c.production_compatible === false, `candidate ${c.id}: nothing production-ready without verification`);
+  }
+  console.log(`[PASS] ${seenIds.size} landmarks well-formed (all schematic); ${cands.candidates.length} MRI candidates deferred, none production-ready.`);
+  passedChecks += 4;
+
   console.log('\n================================================================');
   console.log(`ALL PHASE 3.1 INTEGRITY TESTS PASSED (${passedChecks} checks).`);
   console.log('================================================================\n');

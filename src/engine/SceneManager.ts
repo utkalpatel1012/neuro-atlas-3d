@@ -95,8 +95,11 @@ export class SceneManager {
   }
 
   /**
-   * Sets up stereotaxic reference landmarks in ReferenceRoot.
-   * World coordinates are calibrated in 1:1 millimeters (RAS: +X Right, +Y Superior, +Z Anterior).
+   * Sets up reference landmarks in ReferenceRoot.
+   * Phase 3.2 (Gate 5): coordinates are 1:1 mm in the INTERNAL canonical space
+   * (+X Right, +Y Superior, +Z POSTERIOR — NOT RAS, NOT MNI). The origin is an
+   * ASSERTED approximation of the mid-commissural plane, never a measured AC-PC
+   * point; node names below state that explicitly.
    */
   private setupReferenceLandmarks(enableGrid: boolean, enableAxes: boolean): void {
     if (enableGrid) {
@@ -108,13 +111,14 @@ export class SceneManager {
     }
 
     if (enableAxes) {
-      // 30 mm anatomical orientation axes (+X Red Right, +Y Green Superior, +Z Blue Anterior)
+      // 30 mm canonical orientation axes (+X Red Right, +Y Green Superior, +Z Blue Posterior)
       this.axesHelper = new THREE.AxesHelper(30);
       this.axesHelper.position.set(0, 0, 0);
-      this.axesHelper.name = 'Ref_RAS_Axes_30mm';
+      this.axesHelper.name = 'Ref_Canonical_Axes_30mm';
       this.referenceRoot.add(this.axesHelper);
 
-      // Subtle AC-PC Origin marker sphere (Radius 1.5 mm at [0, 0, 0])
+      // Asserted-origin marker sphere (Radius 1.5 mm at [0, 0, 0]).
+      // NOT a measured AC-PC point — see origin note above.
       const originGeom = new THREE.SphereGeometry(1.5, 16, 16);
       const originMat = new THREE.MeshBasicMaterial({
         color: 0x38BDF8,
@@ -124,7 +128,7 @@ export class SceneManager {
       });
       this.originMarker = new THREE.Mesh(originGeom, originMat);
       this.originMarker.position.set(0, 0, 0);
-      this.originMarker.name = 'Ref_AC_PC_Origin';
+      this.originMarker.name = 'Ref_Canonical_Origin_Approx';
       this.referenceRoot.add(this.originMarker);
     }
   }

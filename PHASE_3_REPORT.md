@@ -25,19 +25,19 @@
 Phase 3 transitions the Neuro Atlas 3D application from a single-structure subcortical testbed to large-scale, high-fidelity human cerebral macroanatomy. A fully reproducible, provenance-safe, scientifically auditable production asset pipeline has been established and proven using the **bilateral cerebral cortex** (`mesh.cortex.left.v1` and `mesh.cortex.right.v1`).
 
 ### Primary Accomplishments
-1. **Source Evaluation & Authentication**: Completed exhaustive legal, anatomical, and format review of BodyParts3D, Z-Anatomy, FreeSurfer fsaverage, HCP MMP 1.0, and EBRAINS Julich-Brain in [`docs/PHASE_3_SOURCE_EVALUATION.md`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/docs/PHASE_3_SOURCE_EVALUATION.md).
-2. **Authentic Ingestion Engine**: Created [`scripts/pipeline/ingest_cerebral_cortex.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/scripts/pipeline/ingest_cerebral_cortex.ts). Ingested and welded 14 authentic anatomical gyrus/lobar structures per hemisphere from BodyParts3D Release 3.0 into master raw STLs with cryptographic SHA-256 verification.
+1. **Source Evaluation & Authentication**: Completed exhaustive legal, anatomical, and format review of BodyParts3D, Z-Anatomy, FreeSurfer fsaverage, HCP MMP 1.0, and EBRAINS Julich-Brain in [`docs/PHASE_3_SOURCE_EVALUATION.md`](./docs/PHASE_3_SOURCE_EVALUATION.md).
+2. **Authentic Ingestion Engine**: Created [`scripts/pipeline/ingest_cerebral_cortex.ts`](./scripts/pipeline/ingest_cerebral_cortex.ts). Ingested and welded 14 authentic anatomical gyrus/lobar structures per hemisphere from BodyParts3D Release 3.0 into master raw STLs with cryptographic SHA-256 verification.
 3. **Decoupled Quality Assurance**: Validated geometric topological cleanliness (0 non-manifold edges, 0 zero-area faces, 0 duplicate faces, 100% watertight) and adult human anatomical plausibility (volume ~260 cm³ per hemisphere, adult brain dimensions).
 4. **Coordinate Canonicalization**: Normalized DICOM LPS whole-body coordinates to `canonical_atlas_ras` (+X Right, +Y Superior, +Z Anterior). Confirmed symmetric alignment and preservation of the biological 1.08 mm interhemispheric fissure across midline.
 5. **Deterministic Multi-LOD & Meshopt Compression**: Generated 4 LOD levels (LOD0: 100%, LOD1: 75%, LOD2: 50%, LOD3: 25%) via Meshopt Quadric Error Metric simplification. Compressed to production runtime `.meshopt.glb` containers delivering 47.03% bandwidth reduction with bit-exact lossless roundtrip verification.
-6. **Central Manifest Synchronization**: Recompiled [`assets/manifests/assets.manifest.json`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/assets/manifests/assets.manifest.json) indexing all 4 production assets (bilateral hippocampus + bilateral cortex) with full SHA-256 audit trails, centroids, dimensions, and legal redistribution covenants.
-7. **Ontological Metadata Records**: Authored [`data/structures/cortex_left.json`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/data/structures/cortex_left.json) and [`data/structures/cortex_right.json`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/data/structures/cortex_right.json) linking to FMA, TA2, and UBERON ontologies.
-8. **Semantic Macroanatomy & Landmark Registry**: Authored [`src/types/semantic.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/semantic.ts) defining major lobes (Frontal, Parietal, Temporal, Occipital, Insula, Limbic) and 24 canonical sulcal/gyral landmarks. Decoupled semantic regions from physical mesh boundaries.
+6. **Central Manifest Synchronization**: Recompiled [`assets/manifests/assets.manifest.json`](./assets/manifests/assets.manifest.json) indexing all 4 production assets (bilateral hippocampus + bilateral cortex) with full SHA-256 audit trails, centroids, dimensions, and legal redistribution covenants.
+7. **Ontological Metadata Records**: Authored [`data/structures/cortex_left.json`](./data/structures/cortex_left.json) and [`data/structures/cortex_right.json`](./data/structures/cortex_right.json) linking to FMA, TA2, and UBERON ontologies.
+8. **Semantic Macroanatomy & Landmark Registry**: Authored [`src/types/semantic.ts`](./src/types/semantic.ts) defining major lobes (Frontal, Parietal, Temporal, Occipital, Insula, Limbic) and 24 canonical sulcal/gyral landmarks. Decoupled semantic regions from physical mesh boundaries.
 9. **Engine Enhancements**:
-   - Expanded [`AnatomicalAssemblyManager.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/engine/AnatomicalAssemblyManager.ts) with `region.cortex` and all 6 lobar semantic groups.
-   - Implemented [`src/engine/LabelManager.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/engine/LabelManager.ts) for 3D projected screen-space labels with distance priority culling, surface normal occlusion testing, and 2D collision decluttering.
-   - Upgraded [`CameraManager.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/engine/CameraManager.ts) and [`ControlsBar.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/ui/ControlsBar.ts) with all standard anatomical projection presets (Ant, Post, Sup, Inf, Lat L/R, Med L/R, Iso) and label controls.
-10. **Automated Verification**: Created [`src/cerebral_cortex.test.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/cerebral_cortex.test.ts) passing all 39 checks, including BVH raycast responsiveness ($1.317\text{ ms}$ on 198k triangles).
+   - Expanded [`AnatomicalAssemblyManager.ts`](./src/engine/AnatomicalAssemblyManager.ts) with `region.cortex` and all 6 lobar semantic groups.
+   - Implemented [`src/engine/LabelManager.ts`](./src/engine/LabelManager.ts) for 3D projected screen-space labels with distance priority culling, surface normal occlusion testing, and 2D collision decluttering.
+   - Upgraded [`CameraManager.ts`](./src/engine/CameraManager.ts) and [`ControlsBar.ts`](./src/ui/ControlsBar.ts) with all standard anatomical projection presets (Ant, Post, Sup, Inf, Lat L/R, Med L/R, Iso) and label controls.
+10. **Automated Verification**: Created [`src/cerebral_cortex.test.ts`](./src/cerebral_cortex.test.ts) passing all 39 checks, including BVH raycast responsiveness ($1.317\text{ ms}$ on 198k triangles).
 
 ---
 
@@ -65,10 +65,10 @@ Phase 3 transitions the Neuro Atlas 3D application from a single-structure subco
 ## 3. Artifact Documentation Ledger
 
 The following authoritative documentation artifacts have been published:
-- [`docs/PHASE_3_SOURCE_EVALUATION.md`](file:///C:/Users/UTKAL PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/docs/PHASE_3_SOURCE_EVALUATION.md): Legal and scientific evaluation of candidate datasets.
-- [`docs/PHASE_3_ASSET_PIPELINE.md`](file:///C:/Users/UTKAL PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/docs/PHASE_3_ASSET_PIPELINE.md): Full technical specification of pipeline stages, transformations, and CLI reproduction steps.
-- [`docs/PHASE_3_PERFORMANCE_BASELINE.md`](file:///C:/Users/UTKAL PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/docs/PHASE_3_PERFORMANCE_BASELINE.md): Raycast, VRAM, Meshopt decompression, and LOD benchmarks.
-- [`docs/PHASE_3_ANATOMICAL_QA.md`](file:///C:/Users/UTKAL PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/docs/PHASE_3_ANATOMICAL_QA.md): Morphological verification of sulcal/gyral landmarks and decoupling principles.
+- [`docs/PHASE_3_SOURCE_EVALUATION.md`](./docs/PHASE_3_SOURCE_EVALUATION.md): Legal and scientific evaluation of candidate datasets.
+- [`docs/PHASE_3_ASSET_PIPELINE.md`](./docs/PHASE_3_ASSET_PIPELINE.md): Full technical specification of pipeline stages, transformations, and CLI reproduction steps.
+- [`docs/PHASE_3_PERFORMANCE_BASELINE.md`](./docs/PHASE_3_PERFORMANCE_BASELINE.md): Raycast, VRAM, Meshopt decompression, and LOD benchmarks.
+- [`docs/PHASE_3_ANATOMICAL_QA.md`](./docs/PHASE_3_ANATOMICAL_QA.md): Morphological verification of sulcal/gyral landmarks and decoupling principles.
 
 ---
 

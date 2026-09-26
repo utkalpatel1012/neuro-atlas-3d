@@ -1,0 +1,62 @@
+{
+  "_comment": "Phase 3.2 Gate 3 candidate metadata (NOT acquired — strategy shortlist only). Machine-validated by phase_3_1_integrity TEST 13. See docs/MRI_REFERENCE_DATA_STRATEGY.md.",
+  "candidates": [
+    {
+      "id": "mni152-2009c-nlin-asym",
+      "mri_type": "B",
+      "purpose": "Registration target only; never replaces canonical geometry",
+      "resolution_requirement_mm": 1.0,
+      "coordinate_space": "MNI152NLin2009cAsym (versioned template space)",
+      "license_summary": "Redistribution terms version/package-dependent; unverified for standalone use",
+      "production_compatible": false,
+      "legal_review_required": true,
+      "acquisition": "deferred"
+    },
+    {
+      "id": "colin27-average",
+      "mri_type": "A",
+      "purpose": "High-detail single-subject reference backdrop",
+      "resolution_requirement_mm": 1.0,
+      "coordinate_space": "Colin27 (package-dependent versioning)",
+      "license_summary": "Package-dependent terms; unverified",
+      "production_compatible": false,
+      "legal_review_required": true,
+      "acquisition": "deferred"
+    },
+    {
+      "id": "fsaverage-7.4.1",
+      "mri_type": "B",
+      "purpose": "Surface-template reference for future parcellation work",
+      "resolution_requirement_mm": 1.0,
+      "coordinate_space": "fsaverage (FreeSurfer)",
+      "license_summary": "FreeSurfer custom license; terms apply",
+      "production_compatible": false,
+      "legal_review_required": true,
+      "acquisition": "deferred"
+    },
+    {
+      "id": "bigbrain-20um",
+      "mri_type": "C",
+      "purpose": "Histological reference (offline only)",
+      "resolution_requirement_mm": 0.02,
+      "coordinate_space": "BigBrain space (MNI-registered release)",
+      "license_summary": "CC-BY-NC-SA 4.0 (non-commercial)",
+      "production_compatible": false,
+      "legal_review_required": false,
+      "acquisition": "deferred",
+      "quarantine": "RESEARCH_ONLY"
+    },
+    {
+      "id": "julich-brain-3.0.2",
+      "mri_type": "C",
+      "purpose": "Cytoarchitectonic reference (offline only)",
+      "resolution_requirement_mm": 1.0,
+      "coordinate_space": "MNI152 2009c NLin Asym (per release)",
+      "license_summary": "CC-BY-NC-SA 4.0 (non-commercial)",
+      "production_compatible": false,
+      "legal_review_required": false,
+      "acquisition": "deferred",
+      "quarantine": "RESEARCH_ONLY"
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 **Document Version**: 2.2.0 (Phase 1.0 Operational Asset Pipeline)  
 **Status**: APPROVED FOUNDATION & PRODUCTION BENCHMARK PROVEN  
 **Primary Audience**: Psychiatry Residents, Clinical Neuroscientists, Neuroanatomy Educators, Technical Engineers  
-**Project Root**: `C:\Users\UTKAL PATEL\.gemini\antigravity\scratch\neuro-atlas-3d`  
+**Project Root**: this repository (paths in this doc are repo-relative; Phase 3.2 removed a dead machine-local absolute path here)  
 
 ---
 

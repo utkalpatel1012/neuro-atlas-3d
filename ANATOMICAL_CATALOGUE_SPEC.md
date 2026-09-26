@@ -59,7 +59,7 @@ Every structure in the catalogue progresses through a strict 7-stage lifecycle:
 
 ## 3. Catalogue JSON Structure (`data/catalogue/anatomy.catalogue.json`)
 
-The catalogue is typed according to [`src/types/catalogue.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/catalogue.ts).
+The catalogue is typed according to [`src/types/catalogue.ts`](./src/types/catalogue.ts).
 
 ### Exemplar Structure Entry
 ```json
