@@ -1,7 +1,20 @@
 /**
- * 3D Neuroanatomy Atlas: Core Data Model & Schema Definitions
+ * 3D Neuroanatomy Atlas: Core Anatomical Structure Data Model
  * Standard: AAS-2026-NEURO-V1 / TA2 / FIPAT
+ * 
+ * Re-architected in Phase 0.1 to decouple anatomical identity from
+ * atlas parcellations, coordinates, evidence claims, and presentation states.
  */
+
+import { BaseNeuroEntity, AnatomicalStructureSubtype, EntityRelationship } from './entity';
+import { SpatialDescriptor } from './coordinates';
+import { AssetProvenance } from './provenance';
+import { EvidenceClaim, Citation } from './evidence';
+import { RDoCAssociation } from './rdoc';
+import { PsychopharmacologyMapping } from './pharmacology';
+import { NeuromodulationProtocol } from './neuromodulation';
+import { ImagingFeature } from './imaging';
+import { SemanticVisibilityGroup } from './presentation';
 
 export type EmbryologicalDivision =
   | 'telencephalon'
@@ -13,80 +26,6 @@ export type EmbryologicalDivision =
 
 export type Hemisphere = 'left' | 'right' | 'bilateral' | 'midline';
 
-export type AnatomicalClassification =
-  | 'cortical'
-  | 'subcortical_gray'
-  | 'diencephalic'
-  | 'brainstem'
-  | 'cerebellar'
-  | 'ventricular'
-  | 'white_matter_tract'
-  | 'cranial_nerve'
-  | 'cerebral_artery'
-  | 'cerebral_vein'
-  | 'meningeal';
-
-export type EvidenceLevel = 'established_consensus' | 'investigational';
-
-export type RDoCDomain =
-  | 'negative_valence'
-  | 'positive_valence'
-  | 'cognitive_systems'
-  | 'social_processes'
-  | 'arousal_regulatory';
-
-export type NeuromodulationModality =
-  | 'rTMS'
-  | 'DBS'
-  | 'ECT'
-  | 'tDCS'
-  | 'VNS';
-
-export interface Citation {
-  title: string;
-  authors: string[];
-  journal_or_book: string;
-  year: number;
-  pmid?: string;
-  doi?: string;
-  isbn?: string;
-}
-
-export interface PsychiatricCorrelate {
-  disorder: string;
-  pathophysiology_summary: string;
-  evidence_level: EvidenceLevel;
-  associated_symptoms: string[];
-  references: Citation[];
-}
-
-export interface PsychopharmacologyMapping {
-  neurotransmitter_system: 'dopamine' | 'serotonin' | 'norepinephrine' | 'gaba' | 'glutamate' | 'acetylcholine' | 'opioid';
-  predominant_receptors: string[];
-  mechanism_summary: string;
-  clinical_agents: string[];
-}
-
-export interface NeuromodulationTarget {
-  modality: NeuromodulationModality;
-  target_name: string;
-  stereotaxic_mni_coordinates?: [number, number, number];
-  clinical_indication: string;
-  clinical_trials_or_fda_status: string;
-}
-
-export interface NeurologicalDeficit {
-  syndrome_or_lesion_name: string;
-  clinical_manifestation: string;
-  bedside_examination_test: string;
-}
-
-export interface NeuroimagingFeatures {
-  t1_intensity: 'hypointense' | 'isointense' | 'hyperintense';
-  t2_flair_intensity: 'hypointense' | 'isointense' | 'hyperintense';
-  radiological_landmarks: string;
-}
-
 export interface TopographicalBoundaries {
   superior?: string;
   inferior?: string;
@@ -96,12 +35,28 @@ export interface TopographicalBoundaries {
   lateral?: string;
 }
 
-export interface AnatomicalStructure {
-  /**
-   * Deterministic canonical identifier:
-   * e.g., 'brain.telencephalon.left.frontal_lobe.precentral_gyrus'
-   */
-  id: string;
+export interface NeurologicalDeficit {
+  syndrome_or_lesion_name: string;
+  clinical_manifestation: string;
+  bedside_examination_test: string;
+  evidence_claim_ids: string[];
+}
+
+export interface PsychiatricConditionAssociation {
+  disorder_name: string;
+  dsm5_tr_code?: string;
+  pathophysiological_role: string;
+  associated_symptoms: string[];
+  evidence_claim_ids: string[];
+}
+
+/**
+ * Concrete Physical Anatomical Structure (Organ / Nucleus / Gyrus / Vessel).
+ * Implements BaseNeuroEntity with rigorous separation of concerns.
+ */
+export interface AnatomicalStructure extends BaseNeuroEntity {
+  entity_type: 'anatomical_structure';
+  subtype: AnatomicalStructureSubtype;
 
   /** Standard Names & Synonyms */
   name: {
@@ -111,13 +66,12 @@ export interface AnatomicalStructure {
     standard_abbreviations: string[];
   };
 
-  /** Ontological Cross-References */
+  /** Ontological Grounding */
   ontology: {
     ta2_id: string;           // Terminologia Anatomica 2 (e.g., 'TA2:5488')
     fma_id?: string;          // Foundational Model of Anatomy (e.g., 'FMA:275020')
-    uberon_id?: string;       // Uber-anatomy ontology (e.g., 'UBERON:0001954')
-    neuronaes_id?: string;    // NeuroNames ID
-    brodmann_areas: number[]; // Matching Brodmann cytoarchitectonic areas
+    uberon_id?: string;       // Uber-anatomy cross-species ontology (e.g., 'UBERON:0001954')
+    neuronaes_id?: string;    // NeuroNames identifier
   };
 
   /** Hierarchical Taxonomy */
@@ -125,74 +79,57 @@ export interface AnatomicalStructure {
     division: EmbryologicalDivision;
     hemisphere: Hemisphere;
     lobe?: string;
-    subsystem: string;        // e.g., 'basal_ganglia', 'limbic_system', 'tectum'
+    subsystem: string;        // e.g., 'basal_ganglia', 'limbic_system', 'tegmentum'
     parent_id?: string;
     children_ids: string[];
-    layer_peel_index: number; // 0 = Vasculature, 1 = Cortex, ..., 7 = Cranial Nerves
   };
 
-  /** 3D Spatial & Render Properties */
-  spatial: {
-    mesh_node_name: string;   // Exact node name in .glb file
-    centroid_mni: [number, number, number];
-    bounding_box: {
-      min: [number, number, number];
-      max: [number, number, number];
-    };
-    estimated_volume_cm3?: number;
-    default_color_hex: string;
+  /** Spatial Geometry & Registration Metadata */
+  spatial: SpatialDescriptor;
+
+  /** Presentation Layer Visibility Categorization */
+  presentation: {
+    visibility_groups: SemanticVisibilityGroup[];
   };
 
-  /** Anatomical Classification */
-  classification: AnatomicalClassification;
-
-  /** Relational Topography & Boundaries */
+  /** Relational Topography & Explicit Graph Links */
   topography: {
     boundaries: TopographicalBoundaries;
-    adjacent_structure_ids: string[];
-  };
-
-  /** Neural Circuitry & Connectivity */
-  circuitry: {
-    major_afferents: string[];
-    major_efferents: string[];
-    traversing_tract_ids: string[];
+    relationships: EntityRelationship[];
   };
 
   /** Vascular Supply & Drainage */
   vasculature: {
-    arterial_supply: string[];
-    venous_drainage: string[];
+    arterial_supply_ids: string[];
+    venous_drainage_ids: string[];
   };
 
-  /** Functional Neuroanatomy */
+  /** Functional Neuroanatomy & Cognitive Domains */
   functional_neuroanatomy: {
     primary_functions: string[];
-    rdoc_domains: RDoCDomain[];
+    rdoc_associations: RDoCAssociation[];
   };
 
   /** Academic Psychiatry & Clinical Neurobiology */
   psychiatric_relevance: {
-    disorders: PsychiatricCorrelate[];
-    psychopharmacology: PsychopharmacologyMapping[];
-    neuromodulation_targets: NeuromodulationTarget[];
+    associated_disorders: PsychiatricConditionAssociation[];
+    pharmacology_mappings: PsychopharmacologyMapping[];
+    neuromodulation_protocols: NeuromodulationProtocol[];
     clinical_pearls: string[];
   };
 
-  /** Clinical Neurological Examination */
+  /** Neurological Examination & Lesion Deficits */
   neurological_deficits: NeurologicalDeficit[];
 
-  /** Magnetic Resonance & Neuroimaging Notes */
-  imaging: NeuroimagingFeatures;
+  /** Neuroimaging Profile */
+  imaging: ImagingFeature[];
 
-  /** Asset Provenance & Licensing */
-  provenance: {
-    source_dataset: string;
-    source_mesh_id: string;
-    license: string;
-    modification_log: string[];
-  };
+  /** Granular Asset Provenance */
+  provenance: AssetProvenance;
 
-  /** Authoritative Citations */
+  /** Direct Evidence Claims Grounding this Structure */
+  evidence_claims: EvidenceClaim[];
+
+  /** Primary Literature Citations */
   references: Citation[];
 }

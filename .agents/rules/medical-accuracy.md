@@ -3,10 +3,12 @@ trigger: always_on
 description: Enforces medical accuracy, zero AI-hallucinated anatomy, licensing compliance, and WebGL/WebGPU performance standards for the 3D Neuroanatomy Atlas.
 ---
 
-# Medical & Technical Accuracy Directives
+# Medical & Technical Accuracy Directives (Phase 0.1 Remediated)
 
-1. **Zero Hallucination Policy**: Never fabricate anatomical geometry, gyral patterns, structural boundaries, or neural connections. All structures must align with Terminologia Anatomica 2 (TA2/TNA) and validated scientific atlases.
-2. **Scientific Authority Hierarchy**: Snell's Clinical Neuroanatomy (8th Ed.), Duvernoy, Kandel, and Human Connectome Project (Glasser 2016) are the primary structural authorities. DSM-5-TR and Stahl's Essential Psychopharmacology govern all psychiatric clinical correlations.
-3. **Architecture Boundary**: Keep anatomical data (TypeScript/Zod JSON) strictly separate from 3D presentation code (Three.js/TSL) and UI (React 19).
-4. **Performance Standards**: Maintain 60 FPS on desktop and iPad Pro. Use Meshopt compression and KTX2 Basis Universal textures. Zero allocations and zero React state updates in 3D animation loops.
-5. **Licensing Compliance**: Derivative 3D assets from Z-Anatomy remain under CC-BY-SA 4.0 with attribution. Keep NC-encumbered datasets out of redistributable binaries.
+1. **Zero Hallucination Policy**: Never fabricate anatomical geometry, gyral patterns, structural boundaries, or neural connections. All structures must align with Terminologia Anatomica 2 (TA2/TNA) and Foundational Model of Anatomy (FMA).
+2. **Epistemic Rigor**: Association is not causation. Mechanistic hypotheses (e.g., neurogenesis, Grace model) must be explicitly classified as theoretical hypotheses, not established clinical consensus.
+3. **Ontological Separation**: Physical anatomical organs are strictly separated from atlas parcellations (Brodmann, HCP MMP), functional networks (DMN, Salience), and clinical treatments (ECT, TMS, DBS) via the `NeuroEntity` ontology.
+4. **Coordinate Integrity**: Raw mesh coordinates are never assumed to be MNI152. Coordinate frames and registration transforms must be mathematically explicit.
+5. **Asset-Level Provenance & Quarantine**: Track licenses at the individual asset level in `assets.manifest.json`. Strictly quarantine CC-BY-NC-SA research datasets from production bundles. Treat HCP commercial redistribution as `LEGAL_REVIEW_REQUIRED`.
+6. **Empirical Performance Budgets**: Comply with device-class budgets in `PERFORMANCE_BUDGETS.md`. Maximum 150 MB GPU VRAM on iPadOS to prevent Jetsam process termination.
+7. **Runtime Presentation Independence**: Peeling, transparency, and explosion vectors are runtime presentation transforms that never alter canonical resting geometry.

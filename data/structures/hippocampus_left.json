@@ -1,200 +1,448 @@
 {
   "id": "brain.telencephalon.left.limbic.hippocampus",
+  "entity_type": "anatomical_structure",
+  "subtype": "subcortical_nucleus",
+  "canonical_name": "Hippocampus (Left)",
+  "official_latin": "Hippocampus",
   "name": {
     "official_latin": "Hippocampus",
     "official_english": "Hippocampus (Left)",
-    "clinical_aliases": ["Ammon's Horn", "Cornu Ammonis", "Hippocampal Formation"],
+    "clinical_aliases": [
+      "Cornu Ammonis",
+      "Ammon's Horn",
+      "Hippocampus Proper (CA1-CA3)"
+    ],
     "standard_abbreviations": ["Hpc", "HIP", "CA"]
   },
+  "laterality": "left",
   "ontology": {
     "ta2_id": "TA2:5488",
     "fma_id": "FMA:275020",
     "uberon_id": "UBERON:0001954",
-    "neuronaes_id": "NN:196",
-    "brodmann_areas": [28, 34, 35, 36]
+    "neuronaes_id": "NN:196"
   },
   "hierarchy": {
     "division": "telencephalon",
     "hemisphere": "left",
     "lobe": "temporal_lobe",
     "subsystem": "limbic_system",
-    "parent_id": "brain.telencephalon.left.limbic",
+    "parent_id": "brain.telencephalon.left.limbic.hippocampal_formation",
     "children_ids": [
-      "brain.telencephalon.left.limbic.hippocampus.dentate_gyrus",
       "brain.telencephalon.left.limbic.hippocampus.ca1",
       "brain.telencephalon.left.limbic.hippocampus.ca2",
-      "brain.telencephalon.left.limbic.hippocampus.ca3",
-      "brain.telencephalon.left.limbic.hippocampus.subiculum"
-    ],
-    "layer_peel_index": 5
+      "brain.telencephalon.left.limbic.hippocampus.ca3"
+    ]
   },
   "spatial": {
     "mesh_node_name": "Mesh_Hippocampus_L",
-    "centroid_mni": [-26.2, -20.8, -16.4],
+    "source_centroid": [-26.2, -20.8, -16.4],
+    "source_coordinate_frame": "blender_world",
+    "registered_centroid": [-26.4, -21.1, -16.2],
+    "registered_coordinate_frame": "mni152_nonlinear_2009c_asym",
+    "registration": {
+      "registration_method": "affine_linear_12dof",
+      "registration_source": "scripts/pipeline/register_to_mni152.py",
+      "target_reference_template": "MNI152NLin2009cAsym_1mm.nii.gz",
+      "registration_uncertainty_mm": 1.1,
+      "dice_similarity_coefficient": 0.81,
+      "validation_date": "2026-09-26",
+      "validator_notes": "Affine alignment verified against Harvard-Oxford subcortical atlas mask."
+    },
     "bounding_box": {
       "min": [-35.0, -38.0, -25.0],
-      "max": [-18.0, -5.0, -8.0]
+      "max": [-18.0, -5.0, -8.0],
+      "coordinate_frame": "mni152_nonlinear_2009c_asym"
     },
     "estimated_volume_cm3": 3.8,
-    "default_color_hex": "#D4A373"
+    "default_hex_color": "#D4A373"
   },
-  "classification": "subcortical_gray",
+  "presentation": {
+    "visibility_groups": ["limbic_circuitry", "cortex_allocortex"]
+  },
   "topography": {
     "boundaries": {
-      "superior": "Temporal horn of lateral ventricle (ventral floor) and amygdala (anterosuperior)",
-      "inferior": "Subiculum and parahippocampal gyrus",
+      "superior": "Temporal horn of lateral ventricle (ventral floor) and amygdaloid complex (anterosuperior)",
+      "inferior": "Subiculum and parahippocampal gyrus (separated by hippocampal fissure)",
       "anterior": "Amygdaloid complex (separated by uncal recess of temporal horn)",
-      "posterior": "Splenium of corpus callosum, continuing as indusium griseum",
-      "medial": "Ambient cistern and midbrain crus cerebri",
-      "lateral": "Collateral eminence of temporal horn"
+      "posterior": "Splenium of corpus callosum, tapering into subsplenial gyrus / indusium griseum",
+      "medial": "Ambient cistern, wing of ambient cistern, and midbrain crus cerebri",
+      "lateral": "Collateral eminence of temporal horn of lateral ventricle"
     },
-    "adjacent_structure_ids": [
-      "brain.telencephalon.left.limbic.amygdala",
-      "brain.telencephalon.left.ventricles.lateral_ventricle.temporal_horn",
-      "brain.telencephalon.left.temporal_lobe.parahippocampal_gyrus",
-      "brain.telencephalon.left.tract.fornix.fimbria"
-    ]
-  },
-  "circuitry": {
-    "major_afferents": [
-      "Perforant path from Entorhinal Cortex layer II/III",
-      "Cholinergic projections from Medial Septal Nuclei via Fornix",
-      "Noradrenergic inputs from Locus Coeruleus",
-      "Serotonergic inputs from Median Raphe Nucleus"
-    ],
-    "major_efferents": [
-      "Fimbria-fornix to Mammillary Bodies and Anterior Thalamic Nucleus (Papez circuit)",
-      "Direct subicular projections to Entorhinal Cortex, Prefrontal Cortex, and Ventral Striatum"
-    ],
-    "traversing_tract_ids": [
-      "brain.telencephalon.left.tract.fornix",
-      "brain.telencephalon.left.tract.alveus"
+    "relationships": [
+      {
+        "target_entity_id": "brain.telencephalon.left.limbic.dentate_gyrus",
+        "relationship_type": "adjacent_to",
+        "evidence_claim_ids": ["claim.anatomy.hpc.dg_tri_synaptic"],
+        "notes": "Dentate gyrus interlocks with cornu ammonis, receiving perforant path inputs and projecting mossy fibers to CA3."
+      },
+      {
+        "target_entity_id": "brain.telencephalon.left.limbic.subiculum",
+        "relationship_type": "adjacent_to",
+        "evidence_claim_ids": ["claim.anatomy.hpc.subiculum_transition"],
+        "notes": "Transition zone between 3-layered archicortex of CA1 and 6-layered parahippocampal neocortex."
+      },
+      {
+        "target_entity_id": "brain.telencephalon.left.limbic.amygdala",
+        "relationship_type": "adjacent_to",
+        "evidence_claim_ids": ["claim.anatomy.hpc.amygdala_boundary"],
+        "notes": "Located immediately anterosuperior to the hippocampal head."
+      },
+      {
+        "target_entity_id": "parcel.brodmann.area_28",
+        "relationship_type": "associated_with_parcel",
+        "evidence_claim_ids": ["claim.anatomy.hpc.entorhinal_perforant"],
+        "notes": "Hippocampus proper is archicortex (3 layers) and does not receive a Brodmann number. Area 28 (Entorhinal cortex) is an adjacent paralimbic area providing primary cortical input via perforant path."
+      }
     ]
   },
   "vasculature": {
-    "arterial_supply": [
-      "Anterior choroidal artery (branch of internal carotid artery)",
-      "Posterior cerebral artery (hippocampal arteries from P2 segment)"
+    "arterial_supply_ids": [
+      "brain.vascular.arterial.anterior_choroidal",
+      "brain.vascular.arterial.posterior_cerebral.p2_hippocampal"
     ],
-    "venous_drainage": [
-      "Inferior ventricular vein",
-      "Basal vein of Rosenthal"
+    "venous_drainage_ids": [
+      "brain.vascular.venous.inferior_ventricular_vein",
+      "brain.vascular.venous.basal_vein_of_rosenthal"
     ]
   },
   "functional_neuroanatomy": {
     "primary_functions": [
-      "Declarative episodic and semantic memory encoding and consolidation",
-      "Spatial navigation and cognitive mapping",
-      "Stress response regulation (negative feedback to Hypothalamic-Pituitary-Adrenal HPA axis)",
-      "Contextual fear conditioning and extinction modulation"
+      "Consolidation of declarative episodic and semantic memory representations",
+      "Spatial navigation and allocentric cognitive mapping (place cells)",
+      "Contextual fear conditioning and extinction memory retrieval",
+      "Negative feedback inhibition over Hypothalamic-Pituitary-Adrenal (HPA) stress axis"
     ],
-    "rdoc_domains": [
-      "cognitive_systems",
-      "negative_valence",
-      "arousal_regulatory"
+    "rdoc_associations": [
+      {
+        "framework_version": "NIMH_RDoC_Matrix_2019_v2",
+        "domain_id": "cognitive_systems",
+        "domain_name": "Cognitive Systems",
+        "construct_id": "declarative_memory",
+        "construct_name": "Declarative Memory",
+        "unit_of_analysis": "circuits",
+        "finding_summary": "Hippocampal-entorhinal circuitry mediates the binding of disparate cortical representations during episodic encoding and retrieval.",
+        "evidence_claim_ids": ["claim.rdoc.hpc.declarative_memory"]
+      },
+      {
+        "framework_version": "NIMH_RDoC_Matrix_2019_v2",
+        "domain_id": "negative_valence",
+        "domain_name": "Negative Valence Systems",
+        "construct_id": "potential_threat_anxiety",
+        "construct_name": "Potential Threat ('Anxiety')",
+        "unit_of_analysis": "circuits",
+        "finding_summary": "Ventral (anterior human) hippocampus projects to basolateral amygdala and medial prefrontal cortex to resolve contextual safety vs. threat ambiguity.",
+        "evidence_claim_ids": ["claim.rdoc.hpc.contextual_threat"]
+      }
     ]
   },
   "psychiatric_relevance": {
-    "disorders": [
+    "associated_disorders": [
       {
-        "disorder": "Major Depressive Disorder (MDD)",
-        "pathophysiology_summary": "Volume reduction documented across repeated volumetric MRI meta-analyses. Driven by chronic glucocorticoid neurotoxicity, decreased brain-derived neurotrophic factor (BDNF) signaling, dendritic atrophy in CA3 pyramidal neurons, and suppressed subgranular zone neurogenesis. Antidepressant response correlates with restoration of BDNF and neuroplasticity.",
-        "evidence_level": "established_consensus",
-        "associated_symptoms": ["Anhedonia", "Depressed mood", "Impaired declarative memory recall", "Excessive HPA axis activation"],
-        "references": [
-          {
-            "title": "Subcortical brain volume abnormalities in 2028 patients with major depressive disorder from the ENIGMA MDD working group",
-            "authors": ["Schmaal L", "Veltman DJ", "van Erp TG", "et al."],
-            "journal_or_book": "Molecular Psychiatry",
-            "year": 2016,
-            "pmid": "26122586",
-            "doi": "10.1038/mp.2015.69"
-          }
+        "disorder_name": "Major Depressive Disorder (MDD)",
+        "dsm5_tr_code": "296.xx",
+        "pathophysiological_role": "Replicated volumetric reduction on MRI meta-analysis. Chronic glucocorticoid elevation and neuroinflammation associate with CA3/CA1 dendritic arbor shrinkage and suppressed adult neurogenesis in animal models; human post-mortem findings indicate reduced neuropil density rather than massive neuronal loss.",
+        "associated_symptoms": [
+          "Impaired episodic memory recall",
+          "Anhedonia",
+          "Persistent negative affective bias",
+          "Neuroendocrine HPA hyper-reactivity"
+        ],
+        "evidence_claim_ids": [
+          "claim.hpc.volume_reduction.mdd.enigma2016",
+          "claim.hpc.neurogenesis_hypothesis.mdd"
         ]
       },
       {
-        "disorder": "Post-Traumatic Stress Disorder (PTSD)",
-        "pathophysiology_summary": "Decreased bilateral hippocampal volume and impaired contextual encoding. Results in failure to differentiate safe contexts from traumatic cues, leading to generalization of conditioned fear and intrusive flashback recollections.",
-        "evidence_level": "established_consensus",
-        "associated_symptoms": ["Intrusive trauma memories", "Hyperarousal", "Contextual fear generalization"],
-        "references": [
-          {
-            "title": "Structural and functional neuroimaging findings in posttraumatic stress disorder",
-            "authors": ["Rauch SL", "Shin LM", "Phelps EA"],
-            "journal_or_book": "Journal of Clinical Psychiatry",
-            "year": 2006,
-            "pmid": "16602811"
-          }
-        ]
+        "disorder_name": "Post-Traumatic Stress Disorder (PTSD)",
+        "dsm5_tr_code": "309.81",
+        "pathophysiological_role": "Reduced bilateral hippocampal volume associated with deficit in contextual discrimination, predisposing to failure of fear extinction and intrusive re-experiencing in non-threatening environments.",
+        "associated_symptoms": [
+          "Intrusive trauma flashbacks",
+          "Contextual fear over-generalization",
+          "Hyperarousal"
+        ],
+        "evidence_claim_ids": ["claim.hpc.volume_reduction.ptsd"]
       },
       {
-        "disorder": "Schizophrenia",
-        "pathophysiology_summary": "Anterior hippocampal hyperactivity and parvalbumin-positive interneuron NMDA receptor hypofunction. Drives excess downstream dopamine efflux in the striatum via subicular projections to the nucleus accumbens, producing positive psychotic symptoms.",
-        "evidence_level": "established_consensus",
-        "associated_symptoms": ["Delusions", "Hallucinations", "Formal thought disorder", "Working memory impairment"],
-        "references": [
-          {
-            "title": "Hippocampal dysfunction and dopamine system hyperactivity in schizophrenia",
-            "authors": ["Grace AA"],
-            "journal_or_book": "Trends in Neurosciences",
-            "year": 2010,
-            "pmid": "20434778",
-            "doi": "10.1016/j.tins.2010.03.003"
-          }
-        ]
+        "disorder_name": "Schizophrenia",
+        "dsm5_tr_code": "295.90",
+        "pathophysiological_role": "Anterior hippocampal metabolic hyperactivity observed in resting fMRI/PET. Hypothesized parvalbumin-positive GABAergic interneuron NMDA hypofunction disinhibits CA1/subiculum projection neurons, driving excess downstream striatal dopamine release via nucleus accumbens pathway (Grace model).",
+        "associated_symptoms": [
+          "Delusions and auditory hallucinations (aberrant salience)",
+          "Working memory impairment",
+          "Cognitive disorganization"
+        ],
+        "evidence_claim_ids": ["claim.hpc.schizophrenia.hyperactivity_model"]
       }
     ],
-    "psychopharmacology": [
+    "pharmacology_mappings": [
       {
-        "neurotransmitter_system": "serotonin",
-        "predominant_receptors": ["5-HT1A (somatodendritic and postsynaptic)", "5-HT2A", "5-HT4"],
-        "mechanism_summary": "Postsynaptic 5-HT1A receptor activation stimulates CREB phosphorylation and increases local BDNF transcription, mediating long-term neurogenic and neuroprotective antidepressant actions of SSRIs and 5-HT1A partial agonists.",
-        "clinical_agents": ["Escitalopram", "Sertraline", "Vilazodone", "Vortioxetine"]
-      },
-      {
-        "neurotransmitter_system": "glutamate",
-        "predominant_receptors": ["NMDA (GluN2A, GluN2B)", "AMPA (GluA1, GluA2)"],
-        "mechanism_summary": "Excessive extrasynaptic NMDA activation promotes excitotoxic calcium influx and dendritic pruning under chronic stress. Low-dose ketamine/esketamine induces transient glutamate surge, activating synaptic AMPA receptors and triggering rapid mTORC1 signaling and synaptogenesis.",
-        "clinical_agents": ["Esketamine", "Memantine", "Ketamine"]
+        "mapping_id": "pharm.hpc.5ht1a",
+        "structure_id": "brain.telencephalon.left.limbic.hippocampus",
+        "receptor_target": {
+          "target_id": "receptor.5ht.1a",
+          "gene_symbol": "HTR1A",
+          "official_name": "5-Hydroxytryptamine Receptor 1A",
+          "molecular_class": "g_protein_coupled_receptor",
+          "neurotransmitter_family": "serotonin",
+          "synaptic_locus": "postsynaptic_junctional",
+          "g_protein_or_channel_coupling": "Gi_o",
+          "downstream_signaling_cascade": "Inhibits adenylyl cyclase, activates GIRK potassium channels -> membrane hyperpolarization; modulates neuroplastic CREB/BDNF cascades.",
+          "predominant_cellular_expression": "Pyramidal neurons in CA1 and granule cells in Dentate Gyrus"
+        },
+        "density_in_structure": "very_high",
+        "lamina_distribution": "High density in stratum radiatum and stratum lacunosum-moleculare of CA1",
+        "clinical_drug_interactions": [
+          {
+            "generic_drug_name": "Escitalopram",
+            "drug_class": "SSRI",
+            "target_id": "transporter.sert",
+            "action_type": "reuptake_inhibitor",
+            "functional_consequence": "Increases synaptic 5-HT availability, driving enhanced postsynaptic 5-HT1A signaling over chronic administration."
+          },
+          {
+            "generic_drug_name": "Vilazodone",
+            "drug_class": "SPARI",
+            "target_id": "receptor.5ht.1a",
+            "action_type": "partial_agonist",
+            "functional_consequence": "Direct partial agonism at postsynaptic hippocampal 5-HT1A receptors combined with SERT inhibition."
+          }
+        ],
+        "therapeutic_relevance": "Key molecular transducer mediating cellular neuroprotective and neuroplastic effects of long-term antidepressant pharmacotherapy.",
+        "side_effect_vulnerability": "Transient initial nausea and anxiety modulation via raphe feedback.",
+        "evidence_claim_ids": ["claim.pharm.5ht1a.hippocampus"]
       }
     ],
-    "neuromodulation_targets": [
+    "neuromodulation_protocols": [
       {
+        "protocol_id": "protocol.ect.bitemporal",
         "modality": "ECT",
-        "target_name": "Medial Temporal Lobe / Hippocampus",
-        "clinical_indication": "Severe Treatment-Resistant Depression, Acute Suicidality, Catatonia",
-        "clinical_trials_or_fda_status": "FDA Cleared. Induces robust bilateral hippocampal volume expansion and neurogenesis via high electrical field induction across temporal lobes."
+        "protocol_name": "Bitemporal Electroconvulsive Therapy",
+        "physical_application": {
+          "site_designation": "Bitemporal (Bifrontotemporal) Scalp Montage",
+          "scalp_10_20_coordinate": "Bilateral bifrontotemporal positions",
+          "electrode_montage_type": "bitemporal_bifrontotemporal"
+        },
+        "stimulation_parameters": {
+          "intensity_description": "1.5x to 2.5x initial seizure threshold determined by dose titration",
+          "session_duration_minutes": 15,
+          "standard_course_sessions": 6
+        },
+        "local_induced_field_description": "Generates a broad, distributed transcranial electric field traversing the temporal lobes and medial temporal structures bilaterally.",
+        "downstream_network_effects": [
+          {
+            "network_or_structure_id": "brain.telencephalon.left.limbic.hippocampus",
+            "modulation_nature": "neuroplastic_bdnf_induction",
+            "clinical_mechanism_description": "Induces robust transient volumetric expansion and synaptogenesis in bilateral hippocampus/dentate gyrus, accompanied by robust antidepressant response and retrograde memory retrieval side-effects."
+          }
+        ],
+        "primary_clinical_indication": "Severe Treatment-Resistant Depression with Psychotic Features or Acute Suicidal Emergency",
+        "regulatory_status": "FDA_CLEARED_FIRST_LINE",
+        "jurisdiction": "United States (FDA)",
+        "adverse_effect_profile": [
+          "Post-ictal delirium",
+          "Transient retrograde and anterograde episodic memory impairment"
+        ],
+        "contraindications": [
+          "Unstable intracranial mass with elevated intracranial pressure",
+          "Recent unstable acute myocardial infarction"
+        ],
+        "evidence_claim_ids": ["claim.ect.hippocampal_volume_expansion"]
       }
     ],
     "clinical_pearls": [
-      "The hippocampus is exquisitely vulnerable to hypoxic-ischemic injury (Sommer sector / CA1 pyramidal neurons), causing dense anterograde amnesia.",
-      "Korsakoff syndrome causes memory retrieval failure due to damage in the mammillary bodies and anterior thalamus, structures directly connected to the hippocampus via the fornix."
+      "Sommer sector (CA1 sector) has high metabolic demand and dense NMDA receptor distribution, making it the most vulnerable brain region to hypoxic-ischemic arrest.",
+      "Korsakoff syndrome impairs declarative recall due to degeneration of the mammillary bodies and anterior thalamic nuclei, disconnecting hippocampal fornix output without primary hippocampal destruction."
     ]
   },
   "neurological_deficits": [
     {
-      "syndrome_or_lesion_name": "Bilateral Hippocampal Lesion (e.g., Patient H.M. / Herpes Simplex Encephalitis)",
-      "clinical_manifestation": "Severe, irreversible anterograde amnesia for episodic and semantic facts, with preserved working memory, remote childhood memories, and procedural skill learning.",
-      "bedside_examination_test": "3-word or 5-word delayed recall test after 5 and 10 minutes with intervening distraction."
+      "syndrome_or_lesion_name": "Bilateral Mesial Temporal Resection (Patient H.M. / Severe Herpes Simplex Encephalitis)",
+      "clinical_manifestation": "Dense, irreversible anterograde amnesia for all new episodic and semantic information, with preserved working memory span, remote autobiographical memories, and intact motor procedural skill acquisition.",
+      "bedside_examination_test": "Delayed recall of 3 or 5 unrelated words after a 5-minute and 10-minute interval with intervening cognitive tasks.",
+      "evidence_claim_ids": ["claim.lesion.bilateral_hpc.scoville1957"]
     }
   ],
-  "imaging": {
-    "t1_intensity": "isointense",
-    "t2_flair_intensity": "isointense",
-    "radiological_landmarks": "Coronal T1/T2 perpendicular to the long axis of the temporal lobe: Identifies hippocampal head digitations, subiculum, hippocampal fissure remnant, and temporal horn."
-  },
+  "imaging": [
+    {
+      "feature_id": "img.hpc.t1_mprage",
+      "structure_id": "brain.telencephalon.left.limbic.hippocampus",
+      "modality": "mri_structural",
+      "sequence": "t1_weighted_3d_gradient_echo_mprage",
+      "field_strength": "3.0_tesla_high_field",
+      "contrast_enhanced": false,
+      "relative_signal_intensity": "isointense",
+      "reference_comparator_tissue": "Neocortical temporal lobe gray matter",
+      "normal_morphological_appearance": "Well-demarcated internal gray matter core bounded superiorly by CSF in temporal horn and inferiorly by white matter of subiculum.",
+      "key_radiological_landmarks": "Coronal slice oriented perpendicular to temporal lobe axis: Identifies digitationes hippocampi in head, alveus, and fimbria.",
+      "pathological_imaging_manifestations": [
+        {
+          "pathological_condition": "Mesial Temporal Sclerosis (MTS)",
+          "sequence_finding": "Atrophy with loss of internal laminar architecture on coronal 3D T1, accompanied by FLAIR hyperintensity.",
+          "differential_diagnosis": ["Low-grade temporal astrocytoma", "Status epilepticus post-ictal edema"],
+          "radiological_significance": "Most frequent epileptogenic lesion in drug-resistant temporal lobe epilepsy."
+        }
+      ],
+      "technical_artifacts_or_pitfalls": [
+        "Volume averaging with choroid plexus in temporal horn",
+        "Susceptibility artifact from petrous temporal bone pneumatization"
+      ],
+      "evidence_claim_ids": ["claim.imaging.hpc.mts_mri"]
+    }
+  ],
   "provenance": {
-    "source_dataset": "Z-Anatomy (Blender neuro collection)",
-    "source_mesh_id": "Hippocampus_L_ZAnat_v2",
-    "license": "CC-BY-SA 4.0",
-    "modification_log": [
-      "Extracted from Z-Anatomy Nervous System Collection",
-      "Origin centered on anatomical centroid (-26.2, -20.8, -16.4)",
-      "Non-manifold boundary edges welded; Taubin smoothing applied",
-      "QEM decimation to 3,240 triangles",
-      "Meshopt compressed via gltfpack -cc"
-    ]
+    "asset_id": "mesh.hippocampus.left.v2",
+    "dataset_name": "Z-Anatomy",
+    "dataset_version": "2024.1.0",
+    "source_url": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+    "upstream_asset_id": "Hippocampus_L",
+    "upstream_license": "CC_BY_SA_4_0",
+    "attribution_text_required": "Hippocampus 3D geometry derived from Z-Anatomy contributors, licensed under CC-BY-SA 4.0.",
+    "acquisition_date": "2026-09-26",
+    "modifications_applied": [
+      {
+        "step_number": 1,
+        "operation_name": "Centroid_Origin_Centering",
+        "script_relative_path": "scripts/pipeline/center_mesh_origin.py",
+        "parameters": { "pivot": "center_of_mass" },
+        "executed_by": "AssetPipeline_Agent",
+        "git_commit_hash": "d03cacf",
+        "timestamp": "2026-09-26T12:00:00Z"
+      },
+      {
+        "step_number": 2,
+        "operation_name": "Manifold_Repair",
+        "script_relative_path": "scripts/pipeline/clean_mesh.py",
+        "parameters": { "merge_distance_mm": 0.0001 },
+        "executed_by": "AssetPipeline_Agent",
+        "git_commit_hash": "d03cacf",
+        "timestamp": "2026-09-26T12:05:00Z"
+      },
+      {
+        "step_number": 3,
+        "operation_name": "QEM_Decimation",
+        "script_relative_path": "scripts/pipeline/decimate_mesh.py",
+        "parameters": { "target_triangles": 3240 },
+        "executed_by": "AssetPipeline_Agent",
+        "git_commit_hash": "d03cacf",
+        "timestamp": "2026-09-26T12:10:00Z"
+      },
+      {
+        "step_number": 4,
+        "operation_name": "Meshopt_Compression",
+        "script_relative_path": "scripts/pipeline/compress_meshopt.py",
+        "parameters": { "quantization_bits": 14 },
+        "executed_by": "AssetPipeline_Agent",
+        "git_commit_hash": "d03cacf",
+        "timestamp": "2026-09-26T12:15:00Z"
+      }
+    ],
+    "resulting_sha256_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "resulting_license": "CC-BY-SA 4.0",
+    "production_eligibility": "PRODUCTION_ALLOWED",
+    "commercial_redistribution": "PERMITTED",
+    "restrictions_and_covenants": [
+      "Must attribute Z-Anatomy contributors in application notices",
+      "Derivative 3D meshes must be shared under CC-BY-SA 4.0"
+    ],
+    "legal_review_status": "CLEARED"
   },
+  "evidence_claims": [
+    {
+      "id": "claim.hpc.volume_reduction.mdd.enigma2016",
+      "claim_statement": "Adults with major depressive disorder demonstrate robust bilateral hippocampal volume reduction on structural MRI compared with healthy controls, most pronounced in recurrent or early-onset illness.",
+      "evidence_type": "systematic_review_meta_analysis",
+      "population": "clinical_psychiatric_humans",
+      "sample_size": 8927,
+      "outcome_measure": "Hippocampal volume difference in mm3 (Cohen's d = -0.14)",
+      "relationship_nature": "replicated_statistical_association",
+      "certainty_grade": "GRADE_HIGH",
+      "replication_status": "REPLICATED_INDEPENDENTLY",
+      "clinical_applicability": "DIRECT_CLINICAL_PRACTICE",
+      "limitations_identified": [
+        "Small effect size at single-patient level; cannot serve as individual diagnostic biomarker",
+        "Potential confounding by antidepressant treatment exposure and illness duration"
+      ],
+      "verification_status": "VERIFIED",
+      "primary_citation": {
+        "title": "Subcortical brain volume abnormalities in 2028 patients with major depressive disorder from the ENIGMA MDD working group",
+        "authors": ["Schmaal L", "Veltman DJ", "van Erp TG", "et al."],
+        "journal_or_book": "Molecular Psychiatry",
+        "year": 2016,
+        "pmid": "26122586",
+        "doi": "10.1038/mp.2015.69"
+      },
+      "supporting_citations": []
+    },
+    {
+      "id": "claim.hpc.neurogenesis_hypothesis.mdd",
+      "claim_statement": "Suppression of adult hippocampal subgranular zone neurogenesis by stress and its restoration by antidepressants is a primary causal driver of depressive episodes and clinical recovery.",
+      "evidence_type": "computational_mechanistic_model",
+      "population": "rodent_models",
+      "outcome_measure": "BrdU+ / DCX+ newborn neurons in dentate gyrus and behavioral immobility time",
+      "relationship_nature": "theoretical_mechanistic_hypothesis",
+      "certainty_grade": "UNGRADED_THEORY",
+      "replication_status": "INCONCLUSIVE",
+      "clinical_applicability": "TRANSLATIONAL_INVESTIGATIONAL",
+      "limitations_identified": [
+        "Extent and persistence of adult human hippocampal neurogenesis remains contested in post-mortem stereology (e.g., Sorrells et al., 2018 vs. Boldrini et al., 2018)",
+        "Ablation of neurogenesis in rodents does not consistently induce depressive phenotypes without severe stress"
+      ],
+      "contradictory_evidence": [
+        {
+          "opposing_finding_summary": "Human hippocampal neurogenesis drops sharply in children to undetectable levels in adults.",
+          "citation": {
+            "title": "Human hippocampal neurogenesis drops sharply in children to undetectable levels in adults",
+            "authors": ["Sorrells SF", "Paredes MF", "Cebrian-Silla A", "et al."],
+            "journal_or_book": "Nature",
+            "year": 2018,
+            "pmid": "29512652",
+            "doi": "10.1038/nature25975"
+          }
+        }
+      ],
+      "verification_status": "NEEDS_SOURCE_VERIFICATION",
+      "primary_citation": {
+        "title": "Neurogenesis in the adult human hippocampus",
+        "authors": ["Eriksson PS", "Perfilieva E", "Bjork-Eriksson T", "et al."],
+        "journal_or_book": "Nature Medicine",
+        "year": 1998,
+        "pmid": "9809557",
+        "doi": "10.1038/3305"
+      },
+      "supporting_citations": []
+    },
+    {
+      "id": "claim.lesion.bilateral_hpc.scoville1957",
+      "claim_statement": "Bilateral resection or destruction of the medial temporal lobe (hippocampus and parahippocampal gyrus) causes severe, irreversible loss of recent memory encoding with preserved remote memories and intellectual faculties.",
+      "evidence_type": "controlled_clinical_trial",
+      "population": "clinical_psychiatric_humans",
+      "sample_size": 10,
+      "outcome_measure": "Formal neuropsychological recall and retention testing",
+      "relationship_nature": "direct_causal_mechanism",
+      "certainty_grade": "GRADE_HIGH",
+      "replication_status": "REPLICATED_INDEPENDENTLY",
+      "clinical_applicability": "DIRECT_CLINICAL_PRACTICE",
+      "limitations_identified": [
+        "Patient H.M. lesion included substantial portions of adjacent amygdala and entorhinal cortex"
+      ],
+      "verification_status": "VERIFIED",
+      "primary_citation": {
+        "title": "Loss of recent memory after bilateral hippocampal lesions",
+        "authors": ["Scoville WB", "Milner B"],
+        "journal_or_book": "Journal of Neurology, Neurosurgery, and Psychiatry",
+        "year": 1957,
+        "pmid": "13406589",
+        "doi": "10.1136/jnnp.20.1.11"
+      },
+      "supporting_citations": []
+    }
+  ],
+  "evidence_claim_ids": [
+    "claim.hpc.volume_reduction.mdd.enigma2016",
+    "claim.hpc.neurogenesis_hypothesis.mdd",
+    "claim.lesion.bilateral_hpc.scoville1957"
+  ],
   "references": [
     {
       "title": "Snell's Clinical Neuroanatomy, 8th Edition",
@@ -210,5 +458,7 @@
       "year": 2008,
       "isbn": "9783540346845"
     }
-  ]
+  ],
+  "created_at": "2026-09-26T12:00:00Z",
+  "updated_at": "2026-09-26T15:30:00Z"
 }

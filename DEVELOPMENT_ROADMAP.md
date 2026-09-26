@@ -9,10 +9,13 @@
 ## Phase Overview
 
 ```
-Phase 0: Research, Technical Architecture & Schemas (CURRENT)
+Phase 0: Research, Technical Architecture & Schemas [COMPLETE]
    │
    ▼
-Phase 1: 3D Anatomical Asset Pipeline & Geometry Optimization
+Phase 0.1: Architecture Hardening & Scientific Remediation [COMPLETE]
+   │
+   ▼
+Phase 1: 3D Anatomical Asset Pipeline & Geometry Optimization [NEXT]
    │
    ▼
 Phase 2: High-Performance 3D Viewport Engine (Three.js WebGPU/WebGL)
@@ -38,16 +41,36 @@ Phase 8: Grounded AI Tutor & Academic Resident Validation
 
 ---
 
-## Phase 0: Research, Technical Architecture & Schemas *(Current Phase)*
-* **Objective**: Establish the scientific, architectural, legal, and ontological foundation before writing production application code.
+## Phase 0: Research, Technical Architecture & Schemas *(COMPLETED)*
+* **Objective**: Establish the initial scientific, architectural, legal, and ontological foundation.
+* **Deliverables**: Technical evaluation of rendering engines, open dataset licenses, TA2 ID standard, initial markdown blueprints, and custom agent skills.
+
+---
+
+## Phase 0.1: Architecture Hardening & Scientific Remediation *(COMPLETED)*
+* **Objective**: Remediate Phase-0 architectural oversimplifications, harden schemas, decouple physical anatomy from parcels/networks/evidence, and establish asset-level provenance before Phase 1.
 * **Deliverables**:
-  - [x] Complete technical evaluation of rendering engines (Three.js WebGPU/TSL vs WebGL).
-  - [x] Complete evaluation of open anatomical datasets, vertex counts, and legal licenses.
-  - [x] Deterministic anatomical ID standard mapped to TA2, FMA, and UBERON.
-  - [x] Full TypeScript / Zod metadata schema for anatomical structures and psychiatric data.
-  - [x] Authoring of `PROJECT_ARCHITECTURE.md`, `ANATOMICAL_ACCURACY_STANDARD.md`, `SOURCES_AND_LICENSES.md`, `TECH_STACK_DECISION.md`, `DEVELOPMENT_ROADMAP.md`, and `ANTIGRAVITY_RULES.md`.
-  - [x] Creation of workspace directory structure and custom Antigravity agent skills.
-* **Verification Gate**: Explicit user review and sign-off on the foundational architecture.
+  - [x] Full Phase 0.1 Architectural Audit (`PHASE_0_1_AUDIT.md`).
+  - [x] Polymorphic `NeuroEntity` ontology (`src/types/entity.ts`).
+  - [x] Explicit `CoordinateSpace` model & registration metadata (`COORDINATE_SYSTEMS.md`, `src/types/coordinates.ts`).
+  - [x] Asset-level provenance tracking & manifest specification (`assets/ASSET_PROVENANCE_SCHEMA.md`, `src/types/provenance.ts`).
+  - [x] Tri-tier licensing & strict quarantine of NC datasets (`SOURCES_AND_LICENSES.md`).
+  - [x] Structured `EvidenceClaim` model with GRADE certainty levels (`src/types/evidence.ts`).
+  - [x] Versioned hierarchical RDoC framework including 6th sensorimotor domain (`src/types/rdoc.ts`).
+  - [x] Granular psychopharmacology receptor & synaptic locus models (`src/types/pharmacology.ts`).
+  - [x] Multi-circuit neuromodulation models separating montages from network effects (`src/types/neuromodulation.ts`).
+  - [x] Remediated Left Hippocampus exemplar decoupled from BA28 (`data/structures/hippocampus_left.json`).
+  - [x] Contextual neuroimaging features parameterized by pulse sequences (`src/types/imaging.ts`).
+  - [x] Decoupled `VisibilityPreset` and `ExplosionProfile` runtime models (`src/types/presentation.ts`).
+  - [x] Corrected stochastic transparency terminology across all documentation.
+  - [x] Renderer resilience state machine for context loss & WebGPU device recovery (`RENDERER_RESILIENCE.md`).
+  - [x] Empirical performance targets stratified across 7 device classes (`PERFORMANCE_BUDGETS.md`).
+  - [x] Asset streaming & memory lifecycle architecture (`docs/ASSET_STREAMING_ARCHITECTURE.md`).
+  - [x] Semantic batching & label LOD architecture (`docs/BATCHING_AND_LABELING_ARCHITECTURE.md`).
+  - [x] Cortical parcellation & MSM surface mapping architecture (`CORTICAL_PARCELLATION_ARCHITECTURE.md`).
+  - [x] Machine-readable anatomical catalogue specification (`ANATOMICAL_CATALOGUE_SPEC.md`, `src/types/catalogue.ts`).
+  - [x] 15 mandatory directives in `ANTIGRAVITY_RULES.md` and `.agents/rules/medical-accuracy.md`.
+  - [x] Full static TypeScript compilation check (`tsc --noEmit` passing with 0 errors).
 
 ---
 
