@@ -1,0 +1,18 @@
+{
+  "transformation_id": "tx.mesh.hippocampus.left.v1.canonicalization",
+  "input_asset_hash": "8cdbbe55c32006656574f414c8a56265d5f5c73bf206699c67a4feea94a17a21",
+  "output_asset_hash": "c361b544d06ce687f1b8b7510a5699581a9aaf3686d3a0904484b12b820cc613",
+  "tool": "NeuroAtlas3D Canonicalizer v1.0",
+  "parameters": {
+    "operation": "DICOM_LPS_to_RAS_Alignment_and_Centroid_Registration",
+    "coordinate_frame": "blender_world_ras",
+    "units": "mm",
+    "reference_center_offset": [
+      0,
+      -1561.7,
+      70.1
+    ],
+    "normal_computation": "area_weighted_smooth"
+  },
+  "timestamp": "2026-09-26T11:09:28.253Z"
+}

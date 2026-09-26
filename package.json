@@ -5,7 +5,11 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "tsx src/schema_validation.test.ts"
+    "test": "tsx src/schema_validation.test.ts && tsx src/pipeline_regression.test.ts",
+    "test:schema": "tsx src/schema_validation.test.ts",
+    "test:pipeline": "tsx src/pipeline_regression.test.ts",
+    "asset:validate": "tsx scripts/validate_asset.ts",
+    "pipeline:run": "tsx scripts/pipeline/run_pipeline.ts"
   },
   "keywords": [
     "neuroanatomy",
@@ -18,6 +22,7 @@
   "license": "CC-BY-SA-4.0",
   "devDependencies": {
     "@types/node": "^22.10.0",
+    "meshoptimizer": "^1.3.0",
     "tsx": "^4.19.3",
     "typescript": "^5.9.3"
   }

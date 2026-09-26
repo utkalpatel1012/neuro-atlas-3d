@@ -55,76 +55,109 @@ Along with the validation status, every asset declares its `production_eligibili
 
 The production asset manifest (`assets/assets.manifest.json`) is the machine-readable registry generated during the Phase-1 asset pipeline. Its TypeScript schema is defined in [`src/types/provenance.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/provenance.ts).
 
-### Exemplar Manifest Structure (Illustrative)
+### Production Benchmark Manifest Record (`mesh.hippocampus.left.v1`)
 ```json
 {
-  "$schema": "./assets.manifest.schema.json",
   "manifest_version": "1.1.0",
-  "generated_at": "2026-09-26T12:00:00Z",
-  "generator_script": "scripts/pipeline/generate_manifest.py",
+  "generated_at": "2026-09-26T11:08:02.806Z",
+  "generator_script": "scripts/pipeline/update_manifest.ts",
   "total_assets": 1,
-  "production_whitelist": ["mesh.hippocampus.left.v1"],
-  "research_quarantine": ["julich.cyto.ca1.prob_map.v3"],
   "assets": {
     "mesh.hippocampus.left.v1": {
       "asset_id": "mesh.hippocampus.left.v1",
-      "dataset_name": "Z-Anatomy",
-      "dataset_version": "2024.1.0",
-      "source_url": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
-      "upstream_asset_id": "Hippocampus_L",
-      "upstream_license": "CC_BY_SA_4_0",
-      "attribution_text_required": "Hippocampus 3D geometry derived from Z-Anatomy contributors, licensed under CC-BY-SA 4.0.",
+      "dataset_name": "BodyParts3D / SPL-PNL Brain Atlas",
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72714",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan.",
       "acquisition_date": "2026-09-26",
       "modifications_applied": [
         {
           "step_number": 1,
-          "operation_name": "NonManifold_Repair",
-          "script_relative_path": "scripts/pipeline/clean_mesh.py",
-          "parameters": { "merge_distance_mm": 0.0001, "recalculate_normals": true },
-          "executed_by": "AssetPipeline_Agent",
-          "git_commit_hash": "EXAMPLE_PIPELINE_COMMIT",
-          "timestamp": "2026-09-26T12:30:00Z"
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72714.stl",
+            "verified_source_sha256": "8cdbbe55c32006656574f414c8a56265d5f5c73bf206699c67a4feea94a17a21",
+            "source_byte_length": 214084
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
+          "timestamp": "2026-09-26T10:45:00Z"
         },
         {
           "step_number": 2,
-          "operation_name": "Taubin_Smoothing",
-          "script_relative_path": "scripts/pipeline/smooth_mesh.py",
-          "parameters": { "iterations": 15, "pass_band": 0.1 },
-          "executed_by": "AssetPipeline_Agent",
-          "git_commit_hash": "EXAMPLE_PIPELINE_COMMIT",
-          "timestamp": "2026-09-26T12:31:00Z"
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 1.872
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
+          "timestamp": "2026-09-26T10:47:00Z"
         },
         {
           "step_number": 3,
-          "operation_name": "QEM_Decimation",
-          "script_relative_path": "scripts/pipeline/decimate_mesh.py",
-          "parameters": { "target_triangles": 3240, "preserve_boundaries": true },
-          "executed_by": "AssetPipeline_Agent",
-          "git_commit_hash": "EXAMPLE_PIPELINE_COMMIT",
-          "timestamp": "2026-09-26T12:32:00Z"
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "input_space": "DICOM_LPS",
+            "output_space": "THREEJS_RAS",
+            "transform": "x_negated_z_negated",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
+          "timestamp": "2026-09-26T10:50:00Z"
         },
         {
           "step_number": 4,
-          "operation_name": "Meshopt_Quantization",
-          "script_relative_path": "scripts/pipeline/compress_meshopt.py",
-          "parameters": { "position_bits": 14, "normal_bits": 8, "subgroup_optimization": true },
-          "executed_by": "AssetPipeline_Agent",
-          "git_commit_hash": "EXAMPLE_PIPELINE_COMMIT",
-          "timestamp": "2026-09-26T12:33:00Z"
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
+          "timestamp": "2026-09-26T11:04:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 45.05,
+            "lossless_verification": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
+          "timestamp": "2026-09-26T11:07:00Z"
         }
       ],
-      "resulting_sha256_hash": "EXAMPLE_ONLY_NOT_YET_CALCULATED",
-      "resulting_license": "CC-BY-SA 4.0",
+      "resulting_sha256_hash": "c361b544d06ce687f1b8b7510a5699581a9aaf3686d3a0904484b12b820cc613",
+      "resulting_license": "CC-BY-SA 2.1 Japan",
       "production_eligibility": "PRODUCTION_ALLOWED",
       "commercial_redistribution": "PERMITTED",
       "restrictions_and_covenants": [
-        "Must preserve author attribution to Z-Anatomy in application NOTICE file",
-        "Derivative 3D meshes must be shared under identical CC-BY-SA 4.0 terms"
+        "Must preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes must be shared under identical or compatible CC-BY-SA terms"
       ],
       "validation_status": "CLEARED",
-      "legal_review_notes": "Meets all ShareAlike downstream criteria. Codebase remains separate Apache-2.0 work."
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72714 left hippocampus). Free from non-commercial restriction. Formally cleared for production 3D web bundle."
     }
-  }
+  },
+  "production_whitelist": [
+    "mesh.hippocampus.left.v1"
+  ],
+  "research_quarantine": []
 }
 ```
 

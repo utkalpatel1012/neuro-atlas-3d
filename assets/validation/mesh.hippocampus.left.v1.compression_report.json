@@ -1,0 +1,79 @@
+{
+  "assetId": "mesh.hippocampus.left.v1",
+  "timestamp": "2026-09-26T11:09:28.307Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod0.glb",
+      "uncompressedByteLength": 78044,
+      "uncompressedSha256": "1b5994d674e6e610f0ee561821ff5ce0ce466d8f4ca2a0a50b0a4fa53755b32a",
+      "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\runtime\\mesh.hippocampus.left.v1.lod0.meshopt.glb",
+      "compressedByteLength": 49760,
+      "compressedSha256": "5a06bff676065fa432bd2c016a87aaef504d4482d3ede29832c94725d5e8ab8f",
+      "compressionRatio": 1.57,
+      "savingsPercent": 36.24,
+      "vertexCount": 2142,
+      "triangleCount": 4280,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod1.glb",
+      "uncompressedByteLength": 58784,
+      "uncompressedSha256": "3c14e0cd82d2f35575b29c7f7d001993908100135dd427a227d37c7bf926674e",
+      "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\runtime\\mesh.hippocampus.left.v1.lod1.meshopt.glb",
+      "compressedByteLength": 32324,
+      "compressedSha256": "e4ccd5e673dd505968d7ac9ad6c9722ebaab0b56981080235554ff41abd3cae3",
+      "compressionRatio": 1.82,
+      "savingsPercent": 45.01,
+      "vertexCount": 1607,
+      "triangleCount": 3210,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod2.glb",
+      "uncompressedByteLength": 39524,
+      "uncompressedSha256": "cf97c1e6a72cf6c0057210504fd28b9e2edaeceeec6e9634e5d15d224038d7bc",
+      "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\runtime\\mesh.hippocampus.left.v1.lod2.meshopt.glb",
+      "compressedByteLength": 17860,
+      "compressedSha256": "bd270b7546d603972c51d0ad983501086574d3df7c0c15eada43ad8b9a7cf7b1",
+      "compressionRatio": 2.21,
+      "savingsPercent": 54.81,
+      "vertexCount": 1072,
+      "triangleCount": 2140,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod3.glb",
+      "uncompressedByteLength": 20260,
+      "uncompressedSha256": "c4aab53a69059b9d34b409cbb85390e0ff95e5834961bf628ab30d53b021340c",
+      "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\runtime\\mesh.hippocampus.left.v1.lod3.meshopt.glb",
+      "compressedByteLength": 8088,
+      "compressedSha256": "68f18e969767c6a5b5f48487e4609af5d43e21c0aa281b5a0929ea2b54f72ab5",
+      "compressionRatio": 2.5,
+      "savingsPercent": 60.08,
+      "vertexCount": 537,
+      "triangleCount": 1070,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 196612,
+  "overallCompressedBytes": 108032,
+  "overallSavingsPercent": 45.05,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.hippocampus.left.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "lossless": true
+    },
+    "timestamp": "2026-09-26T11:09:28.307Z"
+  }
+}

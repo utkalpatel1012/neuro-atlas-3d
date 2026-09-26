@@ -1,0 +1,83 @@
+{
+  "assetId": "mesh.hippocampus.left.v1",
+  "timestamp": "2026-09-26T11:09:28.283Z",
+  "inputCanonicalGlb": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\canonical\\mesh.hippocampus.left.v1.canonical.glb",
+  "inputCanonicalHash": "c361b544d06ce687f1b8b7510a5699581a9aaf3686d3a0904484b12b820cc613",
+  "levels": [
+    {
+      "level": 0,
+      "lodName": "lod0",
+      "targetRatio": 1,
+      "triangleCount": 4280,
+      "vertexCount": 2142,
+      "byteLength": 78044,
+      "sha256": "1b5994d674e6e610f0ee561821ff5ce0ce466d8f4ca2a0a50b0a4fa53755b32a",
+      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod0.glb",
+      "targetIndexCount": 12840,
+      "resultingIndexCount": 12840
+    },
+    {
+      "level": 1,
+      "lodName": "lod1",
+      "targetRatio": 0.75,
+      "triangleCount": 3210,
+      "vertexCount": 1607,
+      "byteLength": 58784,
+      "sha256": "3c14e0cd82d2f35575b29c7f7d001993908100135dd427a227d37c7bf926674e",
+      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod1.glb",
+      "targetIndexCount": 9630,
+      "resultingIndexCount": 9630
+    },
+    {
+      "level": 2,
+      "lodName": "lod2",
+      "targetRatio": 0.5,
+      "triangleCount": 2140,
+      "vertexCount": 1072,
+      "byteLength": 39524,
+      "sha256": "cf97c1e6a72cf6c0057210504fd28b9e2edaeceeec6e9634e5d15d224038d7bc",
+      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod2.glb",
+      "targetIndexCount": 6420,
+      "resultingIndexCount": 6420
+    },
+    {
+      "level": 3,
+      "lodName": "lod3",
+      "targetRatio": 0.25,
+      "triangleCount": 1070,
+      "vertexCount": 537,
+      "byteLength": 20260,
+      "sha256": "c4aab53a69059b9d34b409cbb85390e0ff95e5834961bf628ab30d53b021340c",
+      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod3.glb",
+      "targetIndexCount": 3210,
+      "resultingIndexCount": 3210
+    }
+  ],
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.hippocampus.left.v1.lod_generation",
+    "tool": "MeshoptSimplifier / NeuroAtlas3D LOD Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "algorithms": "Quadric_Error_Metric_Simplification",
+      "levels": [
+        {
+          "name": "lod0",
+          "ratio": 1
+        },
+        {
+          "name": "lod1",
+          "ratio": 0.75
+        },
+        {
+          "name": "lod2",
+          "ratio": 0.5
+        },
+        {
+          "name": "lod3",
+          "ratio": 0.25
+        }
+      ]
+    },
+    "timestamp": "2026-09-26T11:09:28.283Z"
+  }
+}

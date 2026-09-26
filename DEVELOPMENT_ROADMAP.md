@@ -15,7 +15,13 @@ Phase 0: Research, Technical Architecture & Schemas [COMPLETE]
 Phase 0.1: Architecture Hardening & Scientific Remediation [COMPLETE]
    │
    ▼
-Phase 1: 3D Anatomical Asset Pipeline & Geometry Optimization [NEXT]
+Phase 0.1.1: Final Schema Integrity Pass [COMPLETE]
+   │
+   ▼
+Phase 1.0: Production Anatomical Asset Pipeline Foundation [COMPLETE]
+   │
+   ▼
+Phase 1.1: Multi-Structure Anatomical Scaling (Cortex, Subcortex, Brainstem) [NEXT]
    │
    ▼
 Phase 2: High-Performance 3D Viewport Engine (Three.js WebGPU/WebGL)
@@ -74,30 +80,34 @@ Phase 8: Grounded AI Tutor & Academic Resident Validation
 
 ---
 
-## Phase 1: 3D Anatomical Asset Pipeline & Geometry Optimization
-* **Objective**: Ingest source meshes, clean geometry, enforce anatomical hierarchy, optimize polygon budgets, and export production-ready glTF/GLB assets.
-* **Detailed Steps**:
-  1. Ingest macroscopic brain collections from Z-Anatomy (Blender 4.x / Python scripts):
-     - Telencephalon (Cerebral gyri, Sulci, Basal ganglia).
-     - Diencephalon (Thalamus, Hypothalamus, Epithalamus).
-     - Limbic structures (Hippocampus, Amygdala, Fornix, Mammillary bodies).
-     - Ventricular system (Watertight lateral, 3rd, and 4th ventricular casts).
-     - Complete brainstem (Midbrain, Pons, Medulla) and Cerebellum.
-     - Cranial Nerves I through XII.
-     - Major white-matter tracts (Corpus callosum, Internal capsule, Corona radiata).
-     - Vasculature (Circle of Willis, ACA, MCA, PCA, Vertebrobasilar).
-  2. Geometry Cleanup & Normal Alignment:
-     - Remove non-manifold edges, isolated vertices, and zero-area faces.
-     - Enforce outward-facing face normals; calculate weighted split normals for organic biological contours.
-  3. Pivot & Origin Alignment:
-     - Set local object origin (`(0, 0, 0)`) of every discrete structure to its true anatomical center of mass.
-  4. Hierarchy & Node Naming:
-     - Rename all objects to strictly conform to canonical IDs (`brain.telencephalon.left.frontal_lobe.precentral_gyrus`).
-  5. Decimation & LOD Generation:
-     - Quadric Error Metric (QEM) decimation targeting ~350,000 total triangles across the full brain assembly.
-  6. glTF 2.0 Export & Optimization:
-     - Run `gltfpack -i brain_raw.glb -o brain_web.glb -cc -kn -tc` (Meshopt compression, node name preservation, texture quantization).
-* **Verification Gate**: `gltf-validator` passes with 0 errors; total compressed asset size < 20 MB; uncompressed GPU memory < 150 MB.
+## Phase 1.0: Production Anatomical Asset Pipeline Foundation *(COMPLETED)*
+* **Objective**: Create a reproducible, provenance-safe, scientifically auditable anatomical asset pipeline and prove it on ONE benchmark structure: the Left Hippocampus (`mesh.hippocampus.left.v1`).
+* **Deliverables Completed**:
+  - [x] Strict directory architecture (`assets/raw`, `working`, `derived/canonical`, `derived/lod`, `derived/runtime`, `manifests`, `validation`).
+  - [x] Ingested and verified authoritative benchmark asset: BodyParts3D Release 3.0 / SPL-PNL Brain Atlas (`FMA72714.stl`, 214,084 B, SHA-256: `8cdbbe55c32006656574f414c8a56265d5f5c73bf206699c67a4feea94a17a21`).
+  - [x] Mathematical Geometric QA Standard (`docs/MESH_VALIDATION_STANDARD.md` & `scripts/pipeline/validate_mesh.ts`): verified 0 non-manifold edges, 0 zero-area faces, 0 duplicate faces, and closed watertight manifold.
+  - [x] Coordinate space canonicalization: normalized DICOM LPS whole-body coordinates to standard Three.js / Blender Right-Handed RAS (+X Right, +Y Superior, +Z Anterior, 1 unit = 1 mm) and generated area-weighted outward smooth normals (`scripts/pipeline/canonicalize_mesh.ts`).
+  - [x] Canonical master mesh preserved: `assets/derived/mesh.hippocampus.left.v1/canonical/mesh.hippocampus.left.v1.canonical.glb` (78,036 B, SHA-256: `c361b544d06ce687f1b8b7510a5699581a9aaf3686d3a0904484b12b820cc613`).
+  - [x] Multi-resolution Level-of-Detail (LOD) generator (`scripts/pipeline/generate_lods.ts`): generated LOD0 (4,280 tris), LOD1 (3,210 tris), LOD2 (2,140 tris), and LOD3 (1,070 tris) with QEM error bounds.
+  - [x] Web runtime optimization via `EXT_meshopt_compression` (`scripts/pipeline/optimize_meshopt.ts`): achieved 45.05% overall byte reduction (LOD0: 49.7 KB, LOD1: 32.3 KB, LOD2: 17.8 KB, LOD3: 8.1 KB) with bit-exact round-trip decode verification.
+  - [x] Central production asset manifest updated (`assets/manifests/assets.manifest.json`) registering `mesh.hippocampus.left.v1` in `production_whitelist`.
+  - [x] CLI validation tool implemented (`npm run asset:validate -- hippocampus_left`).
+  - [x] Comprehensive 10-invariant automated regression test suite (`src/pipeline_regression.test.ts`) integrated into `npm test`.
+  - [x] Comprehensive 16-point anatomical audit report published (`assets/validation/hippocampus_left_report.md`).
+
+---
+
+## Phase 1.1: Multi-Structure Anatomical Scaling *(NEXT)*
+* **Objective**: Scale the proven 6-stage asset pipeline to ingest and process the full macroscopic brain collection:
+  - Telencephalon (Cerebral gyri, Sulci, Basal ganglia).
+  - Diencephalon (Thalamus, Hypothalamus, Epithalamus).
+  - Limbic structures (Right Hippocampus, Amygdala bilateral, Fornix, Mammillary bodies).
+  - Ventricular system (Watertight lateral, 3rd, and 4th ventricular casts).
+  - Complete brainstem (Midbrain, Pons, Medulla) and Cerebellum.
+  - Cranial Nerves I through XII.
+  - Major white-matter tracts (Corpus callosum, Internal capsule, Corona radiata).
+  - Vasculature (Circle of Willis, ACA, MCA, PCA, Vertebrobasilar).
+* **Verification Gate**: Batch pipeline processes all structures with 0 non-manifold edges, verified SHA-256 hashes, full LOD hierarchies, and Meshopt runtime compression under the 20 MB total streaming budget.
 
 ---
 

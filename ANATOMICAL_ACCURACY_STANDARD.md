@@ -89,3 +89,23 @@ Every scientific claim in the metadata must be classified according to its speci
   * Translational hypotheses (e.g., neurogenesis model) labeled `NOT_APPLICABLE_NON_CLINICAL` under GRADE and evaluated with narrative certainty summaries.
 
 Claims lacking verified primary literature backing must be flagged with `verification_status: "NEEDS_SOURCE_VERIFICATION"`.
+
+---
+
+## 5. 3D Anatomical Geometry & Mesh Quality Assurance Standard
+
+All 3D anatomical meshes ingested and processed through the asset pipeline (`Phase 1.0+`) must satisfy rigorous mathematical and topological standards defined in [`docs/MESH_VALIDATION_STANDARD.md`](./docs/MESH_VALIDATION_STANDARD.md) and [`docs/ANATOMICAL_ASSET_QA.md`](./docs/ANATOMICAL_ASSET_QA.md):
+
+1. **Topological Manifold Integrity**:
+   * Exactly 0 non-manifold edges (no edge shared by $> 2$ polygons).
+   * Exactly 0 duplicate or coincident faces.
+   * Exactly 0 zero-area or degenerate triangles.
+   * Watertight 2-manifold surface with 0 boundary edges.
+2. **Coordinate Space Canonicalization**:
+   * All meshes must be canonicalized into standard Right-Handed RAS space ($+X$ Right, $+Y$ Superior, $+Z$ Anterior) in millimeter units ($1.0 = 1.0\text{ mm}$).
+   * In RAS coordinates, left-hemisphere structures must have negative $X$ centroids ($\text{Centroid}_X < 0$), and right-hemisphere structures must have positive $X$ centroids ($\text{Centroid}_X > 0$).
+3. **Decoupled Identity & Epistemic Traceability**:
+   * Physical asset IDs (`mesh.<structure>.<laterality>.<version>`) and semantic entity IDs (`brain.<division>.<laterality>.<subdivision>.<structure>`) must remain decoupled.
+   * Every physical asset must record genuine cryptographic SHA-256 digests and upstream provenance in `assets/manifests/assets.manifest.json`.
+4. **Automated Audit Enforcement**:
+   * Every asset must pass automated CI verification (`npm run asset:validate -- <asset_id>`) and the 10-invariant pipeline regression test suite (`src/pipeline_regression.test.ts`) before being cleared for production bundling.

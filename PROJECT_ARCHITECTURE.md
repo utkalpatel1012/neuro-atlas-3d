@@ -1,7 +1,7 @@
 # 3D Neuroanatomy Atlas: Project Architecture Specification
 
-**Document Version**: 2.1.0 (Phase 0.1.1 Remediation Pass)  
-**Status**: APPROVED FOUNDATION & LOCKED  
+**Document Version**: 2.2.0 (Phase 1.0 Operational Asset Pipeline)  
+**Status**: APPROVED FOUNDATION & PRODUCTION BENCHMARK PROVEN  
 **Primary Audience**: Psychiatry Residents, Clinical Neuroscientists, Neuroanatomy Educators, Technical Engineers  
 **Project Root**: `C:\Users\UTKAL PATEL\.gemini\antigravity\scratch\neuro-atlas-3d`  
 
@@ -110,6 +110,17 @@ To prevent conflation of physical anatomy, atlas parcellations, coordinates, and
 * **Textures**: **KTX2 / Basis Universal (`KHR_texture_basisu`)** saving 75% VRAM.
 * **Raycast Acceleration**: `three-mesh-bvh` for sub-millisecond intersection testing.
 * **Batching**: Grouped into semantic batches (Cortex, SubcorticalGray, WhiteMatter, Ventricular, Vascular, CranialNerve) to keep draw calls within empirical budgets.
+
+### 3. Operational Asset Pipeline (Phase 1.0 Proven Standard)
+* **6-Stage Transformation Flow**:
+  1. `ingest_asset.ts`: Ingestion of authoritative raw geometry (`assets/raw/`) with immutable SHA-256 verification.
+  2. `validate_mesh.ts`: Geometric QA enforcing 0 non-manifold edges, 0 zero-area faces, 0 duplicate faces, and watertightness.
+  3. `canonicalize_mesh.ts`: Coordinate standardization from LPS whole-body to Right-Handed RAS (+X Right, +Y Superior, +Z Anterior, 1 mm units) and area-weighted smooth normal generation.
+  4. `generate_lods.ts`: Deterministic QEM surface simplification generating 4-level LOD hierarchy (LOD0: 100%, LOD1: 75%, LOD2: 50%, LOD3: 25%).
+  5. `optimize_meshopt.ts`: `EXT_meshopt_compression` runtime optimization saving ~45% streaming payload with bit-exact round-trip decode verification.
+  6. `update_manifest.ts`: Cryptographic compilation of `assets/manifests/assets.manifest.json` with production whitelist enforcement.
+* **Benchmark Proven Asset**: Left Hippocampus (`mesh.hippocampus.left.v1`), derived from BodyParts3D/SPL-PNL (`FMA72714`).
+* **Validation CLI**: Single-command execution via `npm run asset:validate -- hippocampus_left`.
 
 ---
 
