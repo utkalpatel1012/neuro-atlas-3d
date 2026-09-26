@@ -24,6 +24,7 @@ export class MaterialManager {
   public static readonly DEFAULT_HIPPOCAMPUS_COLOR = 0xD4A373; // Anatomical allocortex / limbic beige
   public static readonly HOVER_EMISSIVE_COLOR = 0x38BDF8;      // Subtle cyan accent
   public static readonly SELECTED_EMISSIVE_COLOR = 0x0EA5E9;   // Distinct medical selection glow
+  public static readonly GROUP_SELECTED_EMISSIVE_COLOR = 0x0284C7; // Group selection glow
   public static readonly GHOST_COLOR = 0x64748B;               // Slate gray ghost for isolated views
 
   /**
@@ -82,6 +83,16 @@ export class MaterialManager {
         if (mat.emissive) mat.emissive.setHex(MaterialManager.SELECTED_EMISSIVE_COLOR);
         mat.emissiveIntensity = 0.40;
         mat.roughness = 0.42;
+        mat.transparent = false;
+        mat.opacity = 1.0;
+        mat.depthWrite = true;
+        mesh.visible = true;
+        break;
+
+      case 'GROUP_SELECTED':
+        if (mat.emissive) mat.emissive.setHex(MaterialManager.GROUP_SELECTED_EMISSIVE_COLOR);
+        mat.emissiveIntensity = 0.28;
+        mat.roughness = 0.48;
         mat.transparent = false;
         mat.opacity = 1.0;
         mat.depthWrite = true;

@@ -80,7 +80,8 @@ export class PerformanceManager {
     camera: THREE.Camera,
     activeLOD: LODLevel,
     residentAssets: number,
-    targetCentroid?: [number, number, number]
+    targetCentroid?: [number, number, number],
+    extra?: Partial<TelemetryMetrics>
   ): void {
     const now = performance.now();
     const frameDuration = now - this.frameStartTime;
@@ -140,7 +141,8 @@ export class PerformanceManager {
       activeLOD,
       residentAssets,
       cameraDistanceMm,
-      pixelRatio: renderer?.getPixelRatio?.() ?? 1.0
+      pixelRatio: renderer?.getPixelRatio?.() ?? 1.0,
+      ...extra
     };
 
     // Throttle listener notifications

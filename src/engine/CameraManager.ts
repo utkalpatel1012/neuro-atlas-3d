@@ -228,6 +228,31 @@ export class CameraManager {
       const newPos = target.clone().add(currentOffset);
       this.startTransition(newPos, target, duration);
     }
+
+    if (!this.controls || duration === 0) {
+      this.camera.position.copy(this.targetPosition);
+      this.camera.lookAt(this.targetLookAt);
+      this.isTransitioning = false;
+    }
+  }
+
+  public focusBoundingBox(box: THREE.Box3, duration = 0.8): void {
+    this.focusOn(box, duration);
+  }
+
+  public focusBoundingSphere(sphere: THREE.Sphere, duration = 0.8): void {
+    const fov = this.camera.fov * (Math.PI / 180);
+    const distance = sphere.radius / Math.tan(fov / 2) * 1.5;
+    const targetPos = this.controls?.target ?? this.defaultTarget;
+    const direction = this.camera.position.clone().sub(targetPos).normalize();
+    const newPos = sphere.center.clone().add(direction.multiplyScalar(Math.max(distance, 40.0)));
+    this.startTransition(newPos, sphere.center.clone(), duration);
+
+    if (!this.controls || duration === 0) {
+      this.camera.position.copy(this.targetPosition);
+      this.camera.lookAt(this.targetLookAt);
+      this.isTransitioning = false;
+    }
   }
 
   private startTransition(toPos: THREE.Vector3, toLookAt: THREE.Vector3, duration: number): void {

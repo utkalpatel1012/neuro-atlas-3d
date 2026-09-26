@@ -90,6 +90,18 @@ export class DebugPanel {
             <span class="stat-label">Distance</span>
             <span class="stat-val" id="stat-distance">${metrics.cameraDistanceMm} mm</span>
           </div>
+          <div class="stat-item">
+            <span class="stat-label">Entities (L/F)</span>
+            <span class="stat-val" id="stat-entities">${metrics.loadedEntities ?? 1} / ${metrics.failedEntities ?? 0}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Visible / Hid</span>
+            <span class="stat-val" id="stat-visibility">${metrics.visibleEntities ?? 1} / ${metrics.hiddenEntities ?? 0}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Resident GPU</span>
+            <span class="stat-val" id="stat-resident">${metrics.residentAssets}</span>
+          </div>
         </div>
 
         <div class="debug-control-group">
@@ -222,6 +234,15 @@ export class DebugPanel {
 
     const distEl = this.element.querySelector('#stat-distance');
     if (distEl) distEl.textContent = `${metrics.cameraDistanceMm} mm`;
+
+    const entEl = this.element.querySelector('#stat-entities');
+    if (entEl) entEl.textContent = `${metrics.loadedEntities ?? 1} / ${metrics.failedEntities ?? 0}`;
+
+    const visEl = this.element.querySelector('#stat-visibility');
+    if (visEl) visEl.textContent = `${metrics.visibleEntities ?? 1} / ${metrics.hiddenEntities ?? 0}`;
+
+    const resEl = this.element.querySelector('#stat-resident');
+    if (resEl) resEl.textContent = metrics.residentAssets.toString();
   }
 
   public dispose(): void {

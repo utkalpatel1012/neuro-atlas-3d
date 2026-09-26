@@ -35,6 +35,13 @@
     "lobe": "temporal_lobe",
     "subsystem": "limbic_system",
     "parent_id": "brain.telencephalon.left.limbic.hippocampal_formation",
+    "groups": [
+      "division.cerebrum",
+      "hemisphere.left",
+      "system.limbic",
+      "system.limbic.left",
+      "region.medial_temporal"
+    ],
     "children_ids": [
       "brain.telencephalon.left.limbic.hippocampus.ca1",
       "brain.telencephalon.left.limbic.hippocampus.ca2",

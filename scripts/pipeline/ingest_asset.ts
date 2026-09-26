@@ -36,6 +36,8 @@ export async function ingestAsset(optionsOrId: IngestionOptions | string): Promi
   if (typeof optionsOrId === 'string') {
     if (optionsOrId === 'mesh.hippocampus.left.v1') {
       options = HIPPOCAMPUS_LEFT_INGESTION_CONFIG;
+    } else if (optionsOrId === 'mesh.hippocampus.right.v1') {
+      options = HIPPOCAMPUS_RIGHT_INGESTION_CONFIG;
     } else {
       const rawDir = path.join(PROJECT_ROOT, 'assets/raw', optionsOrId);
       const ingJson = path.join(rawDir, 'ingestion.json');
@@ -154,9 +156,41 @@ export const HIPPOCAMPUS_LEFT_INGESTION_CONFIG: IngestionOptions = {
   }
 };
 
+// Right Hippocampus Ingestion Configuration (BodyParts3D Release 3.0)
+export const HIPPOCAMPUS_RIGHT_INGESTION_CONFIG: IngestionOptions = {
+  assetId: 'mesh.hippocampus.right.v1',
+  sourceDataset: 'BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)',
+  sourceDatasetVersion: 'Release 3.0 (2011/06/20)',
+  sourceAssetId: 'FMA72713',
+  sourceUrl: 'https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/master/assets/BodyParts3D_data/stl/FMA72713.stl',
+  sourceLicense: 'CC-BY-SA 2.1 Japan / CC BY 4.0 International (Dual compliance)',
+  sourceLicenseVersion: '2.1 JP / 4.0 Intl (DBCLS updated 2025-02-27)',
+  attribution: 'BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-ShareAlike 2.1 Japan. Relicensed under CC Attribution 4.0 International.',
+  originalFilename: 'FMA72713.stl',
+  originalFormat: 'STL_BINARY',
+  sourceCoordinateSpace: 'dicom_lps_whole_body',
+  sourceUnits: 'millimeters (mm)',
+  sourceMetadata: {
+    fma_id: 'FMA72713',
+    fma_name: 'right hippocampus',
+    organ_type: 'central_nervous_system',
+    polygon_reduction_rate: '95%',
+    reference_atlases: [
+      'The Human Central Nervous System 4th edition',
+      'Atlas of the Human Brain, Third Edition',
+      'Gray\'s Anatomy 40th edition',
+      'SPL-PNL Brain Atlas 2008'
+    ]
+  }
+};
+
 // Execute if run directly
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  ingestAsset(HIPPOCAMPUS_LEFT_INGESTION_CONFIG).catch((err) => {
+  const targetConfig = process.argv[2]?.includes('right')
+    ? HIPPOCAMPUS_RIGHT_INGESTION_CONFIG
+    : HIPPOCAMPUS_LEFT_INGESTION_CONFIG;
+
+  ingestAsset(targetConfig).catch((err) => {
     console.error('Ingestion failed:', err);
     process.exit(1);
   });

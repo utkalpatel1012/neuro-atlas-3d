@@ -9,6 +9,7 @@
 import { CameraManager } from '../engine/CameraManager';
 import { VisibilityManager } from '../engine/VisibilityManager';
 import { SelectionManager } from '../engine/SelectionManager';
+import { AnatomicalAssemblyManager } from '../engine/AnatomicalAssemblyManager';
 import { CameraViewPreset } from '../engine/types';
 import * as THREE from 'three';
 
@@ -17,18 +18,21 @@ export class ControlsBar {
   private cameraManager: CameraManager;
   private visibilityManager: VisibilityManager;
   private selectionManager: SelectionManager;
+  private assemblyManager?: AnatomicalAssemblyManager;
   private element: HTMLElement;
 
   constructor(
     container: HTMLElement,
     cameraManager: CameraManager,
     visibilityManager: VisibilityManager,
-    selectionManager: SelectionManager
+    selectionManager: SelectionManager,
+    assemblyManager?: AnatomicalAssemblyManager
   ) {
     this.container = container;
     this.cameraManager = cameraManager;
     this.visibilityManager = visibilityManager;
     this.selectionManager = selectionManager;
+    this.assemblyManager = assemblyManager;
 
     this.element = document.createElement('nav');
     this.element.className = 'neuro-controls-bar';
@@ -55,6 +59,15 @@ export class ControlsBar {
       <div class="controls-divider"></div>
 
       <div class="controls-group">
+        <button id="btn-select-limbic" class="btn btn-secondary" title="Select & Focus Bilateral Limbic System">
+          🧠 Limbic System
+        </button>
+        <button id="btn-focus-lh" class="btn btn-secondary" title="Focus Left Hemisphere">
+          LH
+        </button>
+        <button id="btn-focus-rh" class="btn btn-secondary" title="Focus Right Hemisphere">
+          RH
+        </button>
         <button id="btn-reset-cam" class="btn btn-secondary" title="Reset Camera to Standard View">
           ↺ Reset View
         </button>
@@ -91,6 +104,33 @@ export class ControlsBar {
       });
     });
 
+    const limbicBtn = this.element.querySelector('#btn-select-limbic');
+    limbicBtn?.addEventListener('click', () => {
+      if (this.assemblyManager) {
+        this.assemblyManager.selectGroup('system.limbic');
+        const box = this.assemblyManager.getGroupBoundingBox('system.limbic');
+        this.cameraManager.focusBoundingBox(box);
+      }
+    });
+
+    const lhBtn = this.element.querySelector('#btn-focus-lh');
+    lhBtn?.addEventListener('click', () => {
+      if (this.assemblyManager) {
+        this.assemblyManager.selectGroup('hemisphere.left');
+        const box = this.assemblyManager.getGroupBoundingBox('hemisphere.left');
+        this.cameraManager.focusBoundingBox(box);
+      }
+    });
+
+    const rhBtn = this.element.querySelector('#btn-focus-rh');
+    rhBtn?.addEventListener('click', () => {
+      if (this.assemblyManager) {
+        this.assemblyManager.selectGroup('hemisphere.right');
+        const box = this.assemblyManager.getGroupBoundingBox('hemisphere.right');
+        this.cameraManager.focusBoundingBox(box);
+      }
+    });
+
     const resetBtn = this.element.querySelector('#btn-reset-cam');
     resetBtn?.addEventListener('click', () => {
       const focusPos = this.getFocusTarget();
@@ -101,6 +141,7 @@ export class ControlsBar {
 
     const restoreBtn = this.element.querySelector('#btn-restore-all');
     restoreBtn?.addEventListener('click', () => {
+      this.assemblyManager?.restoreAll();
       this.visibilityManager.restoreAll();
     });
   }

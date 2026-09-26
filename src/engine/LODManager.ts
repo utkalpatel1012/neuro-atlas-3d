@@ -67,6 +67,14 @@ export class LODManager {
     return this.activeLODs.get(entityId) || 'lod0';
   }
 
+  public getEntityLOD(entityId: string): LODLevel {
+    return this.getActiveLOD(entityId);
+  }
+
+  public async setEntityLOD(entityId: string, level: LODLevel): Promise<void> {
+    await this.applyLOD(entityId, level);
+  }
+
   public setDistanceMultiplier(mult: number): void {
     this.distanceMultiplier = Math.max(0.1, Math.min(2.0, mult));
   }

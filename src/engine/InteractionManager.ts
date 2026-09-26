@@ -157,7 +157,17 @@ export class InteractionManager {
     let hitPoint: THREE.Vector3 | undefined = undefined;
 
     for (const hit of intersects) {
-      if (!hit.object.visible) continue;
+      let isVis = true;
+      let obj: THREE.Object3D | null = hit.object;
+      while (obj) {
+        if (!obj.visible) {
+          isVis = false;
+          break;
+        }
+        obj = obj.parent;
+      }
+      if (!isVis) continue;
+
       const entity = this.entityManager.getEntityByMesh(hit.object as THREE.Mesh);
       if (entity) {
         topEntityId = entity.entityId;
@@ -187,7 +197,17 @@ export class InteractionManager {
     let hitPoint: THREE.Vector3 | undefined = undefined;
 
     for (const hit of intersects) {
-      if (!hit.object.visible) continue;
+      let isVis = true;
+      let obj: THREE.Object3D | null = hit.object;
+      while (obj) {
+        if (!obj.visible) {
+          isVis = false;
+          break;
+        }
+        obj = obj.parent;
+      }
+      if (!isVis) continue;
+
       const entity = this.entityManager.getEntityByMesh(hit.object as THREE.Mesh);
       if (entity) {
         selectedId = entity.entityId;

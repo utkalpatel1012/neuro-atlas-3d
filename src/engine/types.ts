@@ -96,15 +96,63 @@ export interface AnatomicalEntityRecord {
   upstreamDataset: string;
   upstreamLicense: string;
   sourceDefinition: string;
+  groups?: string[];
+  status?: 'AVAILABLE' | 'UNAVAILABLE' | 'PENDING_INGESTION';
 }
 
-export type EntityVisualState = 'DEFAULT' | 'HOVER' | 'SELECTED' | 'GHOSTED' | 'HIDDEN';
+export type GroupCategory =
+  | 'division'
+  | 'hemisphere'
+  | 'system'
+  | 'lobe'
+  | 'region'
+  | 'tract_bundle'
+  | 'parcellation';
+
+export interface AnatomicalGroup {
+  groupId: string;
+  name: string;
+  category: GroupCategory;
+  parentGroupId?: string;
+  childGroupIds: string[];
+  memberEntityIds: string[];
+  status: 'AVAILABLE' | 'PARTIALLY_AVAILABLE' | 'UNAVAILABLE';
+  description?: string;
+}
+
+export type AssetLoadingState =
+  | 'NOT_LOADED'
+  | 'LOADING'
+  | 'LOADED'
+  | 'FAILED'
+  | 'UNLOADING'
+  | 'CACHED';
+
+export type VisibilityState = 'VISIBLE' | 'HIDDEN' | 'ISOLATED' | 'ANCESTOR_HIDDEN';
+
+export type EntityVisualState =
+  | 'DEFAULT'
+  | 'HOVER'
+  | 'SELECTED'
+  | 'GROUP_SELECTED'
+  | 'GHOSTED'
+  | 'HIDDEN';
+
+export interface MultiSelectionState {
+  selectedEntityIds: Set<string>;
+  selectedGroupIds: Set<string>;
+  primaryEntityId: string | null;
+  primaryGroupId: string | null;
+}
 
 export interface InteractionState {
   hoveredEntityId: string | null;
   selectedEntityId: string | null;
+  selectedGroupIds: Set<string>;
   isolatedEntityId: string | null;
+  isolatedGroupId: string | null;
   hiddenEntityIds: Set<string>;
+  hiddenGroupIds: Set<string>;
 }
 
 export type CameraViewPreset =
@@ -127,4 +175,11 @@ export interface TelemetryMetrics {
   residentAssets: number;
   cameraDistanceMm: number;
   pixelRatio: number;
+  totalEntities?: number;
+  loadedEntities?: number;
+  failedEntities?: number;
+  visibleEntities?: number;
+  hiddenEntities?: number;
+  selectedEntityName?: string | null;
+  selectedGroupName?: string | null;
 }

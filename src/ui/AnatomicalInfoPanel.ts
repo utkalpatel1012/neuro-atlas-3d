@@ -9,7 +9,8 @@
 import { SelectionManager } from '../engine/SelectionManager';
 import { VisibilityManager } from '../engine/VisibilityManager';
 import { CameraManager } from '../engine/CameraManager';
-import { AnatomicalEntityRecord } from '../engine/types';
+import { AnatomicalAssemblyManager } from '../engine/AnatomicalAssemblyManager';
+import { AnatomicalEntityRecord, AnatomicalGroup } from '../engine/types';
 import * as THREE from 'three';
 
 export class AnatomicalInfoPanel {
@@ -17,20 +18,24 @@ export class AnatomicalInfoPanel {
   private selectionManager: SelectionManager;
   private visibilityManager: VisibilityManager;
   private cameraManager: CameraManager;
+  private assemblyManager?: AnatomicalAssemblyManager;
   private element: HTMLElement;
   private unsubscribeSelection?: () => void;
   private unsubscribeVisibility?: () => void;
+  private unsubscribeAssembly?: () => void;
 
   constructor(
     container: HTMLElement,
     selectionManager: SelectionManager,
     visibilityManager: VisibilityManager,
-    cameraManager: CameraManager
+    cameraManager: CameraManager,
+    assemblyManager?: AnatomicalAssemblyManager
   ) {
     this.container = container;
     this.selectionManager = selectionManager;
     this.visibilityManager = visibilityManager;
     this.cameraManager = cameraManager;
+    this.assemblyManager = assemblyManager;
 
     this.element = document.createElement('aside');
     this.element.className = 'neuro-info-panel';
@@ -45,22 +50,54 @@ export class AnatomicalInfoPanel {
   }
 
   private bindEvents(): void {
-    this.unsubscribeSelection = this.selectionManager.onSelectionChanged(
-      (_id, record) => {
+    if (this.assemblyManager) {
+      this.unsubscribeAssembly = this.assemblyManager.onSelectionChanged((state) => {
+        if (state.primaryEntityId) {
+          const entity = this.assemblyManager!.getEntity(state.primaryEntityId);
+          if (entity) {
+            this.renderRecord(entity);
+            return;
+          }
+        }
+        if (state.primaryGroupId) {
+          const group = this.assemblyManager!.getGroup(state.primaryGroupId);
+          if (group) {
+            this.renderGroup(group);
+            return;
+          }
+        }
+        this.renderEmpty();
+      });
+
+      this.unsubscribeVisibility = this.assemblyManager.onVisibilityChanged(() => {
+        const primaryEntity = this.assemblyManager!.getPrimarySelectedEntity();
+        if (primaryEntity) {
+          this.renderRecord(primaryEntity);
+        } else {
+          const primaryGroup = this.assemblyManager!.getPrimarySelectedGroup();
+          if (primaryGroup) {
+            this.renderGroup(primaryGroup);
+          }
+        }
+      });
+    } else {
+      this.unsubscribeSelection = this.selectionManager.onSelectionChanged(
+        (_id, record) => {
+          if (record) {
+            this.renderRecord(record);
+          } else {
+            this.renderEmpty();
+          }
+        }
+      );
+
+      this.unsubscribeVisibility = this.visibilityManager.onVisibilityChanged(() => {
+        const record = this.selectionManager.getSelectedRecord();
         if (record) {
           this.renderRecord(record);
-        } else {
-          this.renderEmpty();
         }
-      }
-    );
-
-    this.unsubscribeVisibility = this.visibilityManager.onVisibilityChanged(() => {
-      const record = this.selectionManager.getSelectedRecord();
-      if (record) {
-        this.renderRecord(record);
-      }
-    });
+      });
+    }
   }
 
   private renderEmpty(): void {
@@ -97,11 +134,20 @@ export class AnatomicalInfoPanel {
   }
 
   private renderRecord(record: AnatomicalEntityRecord): void {
-    const isIsolated = this.visibilityManager.isIsolated(record.entityId);
+    const isIsolated = this.assemblyManager
+      ? this.assemblyManager.getEntityVisibilityState(record.entityId) === 'ISOLATED'
+      : this.visibilityManager.isIsolated(record.entityId);
     const centroidStr = record.canonicalCentroidMm
       .map((n) => (n >= 0 ? `+${n.toFixed(1)}` : n.toFixed(1)))
       .join(', ');
     const dimStr = record.dimensionsMm.map((n) => n.toFixed(1)).join(' × ');
+
+    const ancestorPath = this.assemblyManager
+      ? this.assemblyManager.getAncestorGroupIds(record.entityId).reverse().map((gid) => {
+          const g = this.assemblyManager!.getGroup(gid);
+          return g ? g.name : gid;
+        }).join(' › ')
+      : '';
 
     this.element.innerHTML = `
       <div class="info-card">
@@ -112,6 +158,7 @@ export class AnatomicalInfoPanel {
           </div>
           <h2 class="info-title">${record.name}</h2>
           <div class="info-latin">${record.officialLatin}</div>
+          ${ancestorPath ? `<div class="info-path" style="font-size: 0.75rem; color: #94A3B8; margin-top: 4px;">${ancestorPath}</div>` : ''}
         </div>
 
         <div class="info-section">
@@ -164,19 +211,92 @@ export class AnatomicalInfoPanel {
     // Wire buttons
     const btnIsolate = this.element.querySelector('#btn-isolate');
     btnIsolate?.addEventListener('click', () => {
-      this.visibilityManager.isolate(record.entityId);
+      if (this.assemblyManager) {
+        this.assemblyManager.isolateEntity(record.entityId);
+      } else {
+        this.visibilityManager.isolate(record.entityId);
+      }
     });
 
     const btnFocus = this.element.querySelector('#btn-focus');
     btnFocus?.addEventListener('click', () => {
-      const target = new THREE.Vector3(...record.canonicalCentroidMm);
-      this.cameraManager.focusOn(target, 120);
+      if (this.assemblyManager) {
+        const box = this.assemblyManager.getEntityBoundingBox(record.entityId);
+        this.cameraManager.focusBoundingBox(box);
+      } else {
+        const target = new THREE.Vector3(...record.canonicalCentroidMm);
+        this.cameraManager.focusOn(target, 120);
+      }
+    });
+  }
+
+  private renderGroup(group: AnatomicalGroup): void {
+    const descendantCount = this.assemblyManager
+      ? this.assemblyManager.getDescendantEntityIds(group.groupId).length
+      : group.memberEntityIds.length;
+
+    this.element.innerHTML = `
+      <div class="info-card">
+        <div class="info-header">
+          <div class="info-top-row">
+            <span class="info-badge info-badge-success">${group.status}</span>
+            <span class="info-lat">${group.category.toUpperCase()}</span>
+          </div>
+          <h2 class="info-title">${group.name}</h2>
+          ${group.description ? `<div class="info-latin">${group.description}</div>` : ''}
+        </div>
+
+        <div class="info-section">
+          <h3 class="section-title">Anatomical Hierarchy</h3>
+          <div class="info-grid">
+            <div class="grid-label">Group ID:</div>
+            <div class="grid-value code-snippet">${group.groupId}</div>
+            <div class="grid-label">Category:</div>
+            <div class="grid-value">${group.category}</div>
+            <div class="grid-label">Structures:</div>
+            <div class="grid-value"><strong>${descendantCount} member structure(s)</strong></div>
+            ${group.parentGroupId ? `
+            <div class="grid-label">Parent Group:</div>
+            <div class="grid-value code-snippet">${group.parentGroupId}</div>
+            ` : ''}
+          </div>
+        </div>
+
+        <div class="info-actions">
+          <button id="btn-isolate-group" class="btn btn-action">
+            🔍 Isolate Group
+          </button>
+          <button id="btn-focus-group" class="btn btn-action">
+            🎯 Focus Group
+          </button>
+          <button id="btn-restore-all-group" class="btn btn-action">
+            ↺ Restore All
+          </button>
+        </div>
+      </div>
+    `;
+
+    this.element.querySelector('#btn-isolate-group')?.addEventListener('click', () => {
+      this.assemblyManager?.isolateGroup(group.groupId);
+    });
+
+    this.element.querySelector('#btn-focus-group')?.addEventListener('click', () => {
+      if (this.assemblyManager) {
+        const box = this.assemblyManager.getGroupBoundingBox(group.groupId);
+        this.cameraManager.focusBoundingBox(box);
+      }
+    });
+
+    this.element.querySelector('#btn-restore-all-group')?.addEventListener('click', () => {
+      this.assemblyManager?.restoreAll();
+      this.visibilityManager.restoreAll();
     });
   }
 
   public dispose(): void {
     if (this.unsubscribeSelection) this.unsubscribeSelection();
     if (this.unsubscribeVisibility) this.unsubscribeVisibility();
+    if (this.unsubscribeAssembly) this.unsubscribeAssembly();
     if (this.element.parentElement) {
       this.element.parentElement.removeChild(this.element);
     }

@@ -1,6 +1,6 @@
 {
   "assetId": "mesh.hippocampus.left.v1",
-  "timestamp": "2026-09-26T11:57:14.800Z",
+  "timestamp": "2026-09-26T13:02:16.716Z",
   "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
   "targetRuntimeDirectory": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\runtime",
   "levels": [
@@ -74,6 +74,6 @@
       "indexMode": "TRIANGLES",
       "lossless": true
     },
-    "timestamp": "2026-09-26T11:57:14.801Z"
+    "timestamp": "2026-09-26T13:02:16.717Z"
   }
 }

@@ -33,60 +33,64 @@ async function bootstrap() {
     // 2. Initialize Engine (GPU renderer, capabilities, shaders)
     await app.initialize('/assets/manifests/assets.manifest.json');
 
-    // 3. Fetch Canonical Structure Metadata
-    let record: AnatomicalEntityRecord;
-    try {
-      const res = await fetch('/data/structures/hippocampus_left.json');
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
+    // 3. Define and Load Bilateral Hippocampus Structures
+    const leftRecord: AnatomicalEntityRecord = {
+      entityId: 'brain.telencephalon.left.limbic.hippocampus',
+      assetId: 'mesh.hippocampus.left.v1',
+      name: 'Left Hippocampus',
+      officialLatin: 'hippocampus sinister',
+      laterality: 'left',
+      canonicalCentroidMm: [-25.07, -13.89, -20.70],
+      dimensionsMm: [19.4, 40.2, 18.6],
+      volumeCm3: 3.18,
+      topologyClass: '2-manifold',
+      validationStatus: 'APPROVED',
+      upstreamDataset: 'DBCLS BodyParts3D Release 3.0',
+      upstreamLicense: 'CC BY 4.0',
+      sourceDefinition: 'FJ3162 (FMA61884)',
+      groups: [
+        'division.cerebrum',
+        'hemisphere.left',
+        'system.limbic',
+        'system.limbic.left',
+        'region.medial_temporal'
+      ]
+    };
 
-      record = {
-        entityId: data.entity_id || 'brain.telencephalon.left.limbic.hippocampus',
-        assetId: 'mesh.hippocampus.left.v1',
-        name: data.names?.canonical_name || 'Left Hippocampus',
-        officialLatin: data.names?.official_latin || 'hippocampus sinister',
-        laterality: data.laterality || 'left',
-        canonicalCentroidMm: data.bounding_box?.centroid_canonical || [-25.2, -20.6, -11.4],
-        dimensionsMm: [
-          data.bounding_box?.dimensions?.x ?? 19.4,
-          data.bounding_box?.dimensions?.y ?? 40.2,
-          data.bounding_box?.dimensions?.z ?? 18.6
-        ],
-        volumeCm3: data.volume_measurements?.canonical_volume_cm3 ?? 3.18,
-        topologyClass: data.topology?.class ?? '2-manifold',
-        validationStatus: data.qa_status?.overall_status ?? 'APPROVED',
-        upstreamDataset: data.provenance?.upstream_source?.dataset ?? 'DBCLS BodyParts3D Release 3.0',
-        upstreamLicense: data.provenance?.upstream_source?.license ?? 'CC BY 4.0',
-        sourceDefinition: data.provenance?.upstream_source?.source_identifier ?? 'FJ3162 (FMA61884)'
-      };
-    } catch (e) {
-      console.warn('[Bootstrap] Falling back to embedded hippocampus record:', e);
-      record = {
-        entityId: 'brain.telencephalon.left.limbic.hippocampus',
-        assetId: 'mesh.hippocampus.left.v1',
-        name: 'Left Hippocampus',
-        officialLatin: 'hippocampus sinister',
-        laterality: 'left',
-        canonicalCentroidMm: [-25.2, -20.6, -11.4],
-        dimensionsMm: [19.4, 40.2, 18.6],
-        volumeCm3: 3.18,
-        topologyClass: '2-manifold',
-        validationStatus: 'APPROVED',
-        upstreamDataset: 'DBCLS BodyParts3D Release 3.0',
-        upstreamLicense: 'Creative Commons Attribution 4.0 International (CC BY 4.0)',
-        sourceDefinition: 'FJ3162 (FMA61884)'
-      };
-    }
+    const rightRecord: AnatomicalEntityRecord = {
+      entityId: 'brain.telencephalon.right.limbic.hippocampus',
+      assetId: 'mesh.hippocampus.right.v1',
+      name: 'Right Hippocampus',
+      officialLatin: 'hippocampus dexter',
+      laterality: 'right',
+      canonicalCentroidMm: [26.38, -13.89, -20.74],
+      dimensionsMm: [18.92, 20.78, 40.49],
+      volumeCm3: 1.85,
+      topologyClass: '2-manifold',
+      validationStatus: 'APPROVED',
+      upstreamDataset: 'DBCLS BodyParts3D Release 3.0',
+      upstreamLicense: 'CC BY 4.0',
+      sourceDefinition: 'FMA72713',
+      groups: [
+        'division.cerebrum',
+        'hemisphere.right',
+        'system.limbic',
+        'system.limbic.right',
+        'region.medial_temporal'
+      ]
+    };
 
-    // 4. Ingest and Render Anatomical Entity
-    await app.loadEntity(record);
+    // Load both structures into the Anatomical Assembly
+    await app.loadEntity(leftRecord);
+    await app.loadEntity(rightRecord);
 
-    // 5. Mount UI Components
+    // 4. Mount UI Components
     new AnatomicalInfoPanel(
       appContainer,
       app.getSelectionManager(),
       app.getVisibilityManager(),
-      app.getCameraManager()
+      app.getCameraManager(),
+      app.getAssemblyManager()
     );
 
     new DebugPanel(
@@ -101,16 +105,19 @@ async function bootstrap() {
       appContainer,
       app.getCameraManager(),
       app.getVisibilityManager(),
-      app.getSelectionManager()
+      app.getSelectionManager(),
+      app.getAssemblyManager()
     );
 
-    // 6. Automatically select structure to showcase provenance & metadata
-    app.getSelectionManager().select(record.entityId);
+    // 5. Select bilateral limbic system by default to showcase assembly hierarchy
+    app.getAssemblyManager().selectGroup('system.limbic');
+    const limbicBox = app.getAssemblyManager().getGroupBoundingBox('system.limbic');
+    app.getCameraManager().focusBoundingBox(limbicBox);
 
-    // 7. Start Render Loop
+    // 6. Start Render Loop
     app.start();
 
-    console.info('[Bootstrap] Neuro Atlas 3D successfully initialized.');
+    console.info('[Bootstrap] Neuro Atlas 3D successfully initialized with bilateral hippocampal assembly.');
   } catch (err) {
     console.error('[Bootstrap] Initialization failed:', err);
     canvasContainer.innerHTML = `

@@ -162,7 +162,8 @@ export async function optimizeMeshopt(assetId: string): Promise<CompressionRepor
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  optimizeMeshopt('mesh.hippocampus.left.v1').catch((err) => {
+  const targetAsset = process.argv[2] || 'mesh.hippocampus.left.v1';
+  optimizeMeshopt(targetAsset).catch((err) => {
     console.error('Meshopt optimization failed:', err);
     process.exit(1);
   });

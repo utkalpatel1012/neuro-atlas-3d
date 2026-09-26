@@ -21,7 +21,14 @@ import { VisibilityManager } from './VisibilityManager';
 import { LODManager } from './LODManager';
 import { PerformanceManager } from './PerformanceManager';
 import { ResourceManager } from './ResourceManager';
-import { AnatomicalEntityRecord, CameraViewPreset, LODMode, PerformanceProfileType } from './types';
+import { AnatomicalAssemblyManager } from './AnatomicalAssemblyManager';
+import {
+  AnatomicalEntityRecord,
+  CameraViewPreset,
+  LODMode,
+  MultiSelectionState,
+  PerformanceProfileType
+} from './types';
 
 export interface AtlasApplicationOptions {
   container: HTMLElement;
@@ -45,6 +52,7 @@ export class AtlasApplication {
   private lodManager: LODManager;
   private performanceManager: PerformanceManager;
   private resourceManager: ResourceManager;
+  private assemblyManager: AnatomicalAssemblyManager;
 
   private isRunning: boolean = false;
   private animationFrameId: number | null = null;
@@ -59,6 +67,7 @@ export class AtlasApplication {
     this.materialManager = new MaterialManager();
     this.assetManager = new AssetManager();
     this.entityManager = new AnatomicalEntityManager();
+    this.assemblyManager = new AnatomicalAssemblyManager();
     this.resourceManager = new ResourceManager();
 
     // Secondary Subsystems
@@ -117,6 +126,15 @@ export class AtlasApplication {
       this.handleSelect(entityId);
     });
 
+    // Wire AnatomicalAssemblyManager -> Visual Materials & Meshes
+    this.assemblyManager.onSelectionChanged((state) => {
+      this.syncVisualSelection(state);
+    });
+
+    this.assemblyManager.onVisibilityChanged(() => {
+      this.syncVisualVisibility();
+    });
+
     // Wire Context Loss / Restored
     this.rendererManager.onContextLost(() => {
       console.warn('[AtlasApplication] GPU context lost! Pausing rendering loop.');
@@ -151,8 +169,9 @@ export class AtlasApplication {
     // Attach to Scene under brainRoot
     this.sceneManager.getBrainRoot().add(mesh);
 
-    // Register with AnatomicalEntityManager
+    // Register with AnatomicalEntityManager and AnatomicalAssemblyManager
     this.entityManager.registerEntity(entityRecord, mesh);
+    this.assemblyManager.registerEntity(entityRecord, mesh);
 
     // Preload other LODs in background for seamless transitions
     this.assetManager.preloadAllLODs(entityRecord.assetId).catch((err) => {
@@ -162,31 +181,77 @@ export class AtlasApplication {
     return mesh;
   }
 
-  private handleHover(entityId: string | null): void {
-    const selectedId = this.selectionManager.getSelectedEntityId();
-    const isolatedId = this.visibilityManager.getIsolatedEntityId();
-
+  private syncVisualSelection(state: MultiSelectionState): void {
     const meshes = this.entityManager.getAllMeshes();
     for (const mesh of meshes) {
       const id = mesh.userData?.neuroAtlas?.entityId;
       if (!id) continue;
 
-      // Do not alter selected or isolated states on hover
-      if (id === selectedId) continue;
-      if (isolatedId && id !== isolatedId) continue;
+      if (!this.assemblyManager.isEntityEffectivelyVisible(id)) {
+        this.materialManager.setEntityState(mesh, id, 'HIDDEN');
+        continue;
+      }
 
-      if (id === entityId) {
-        this.materialManager.setEntityState(mesh, id, 'HOVER');
+      if (id === state.primaryEntityId) {
+        this.materialManager.setEntityState(mesh, id, 'SELECTED');
+      } else if (state.selectedEntityIds.has(id)) {
+        this.materialManager.setEntityState(mesh, id, 'GROUP_SELECTED');
       } else {
-        const isHidden = this.visibilityManager.isHidden(id);
-        if (!isHidden) {
+        this.materialManager.setEntityState(mesh, id, 'DEFAULT');
+      }
+    }
+  }
+
+  private syncVisualVisibility(): void {
+    const meshes = this.entityManager.getAllMeshes();
+    const primaryId = this.assemblyManager.getPrimarySelectedEntity()?.entityId;
+    const selectedIds = this.assemblyManager.getSelectedEntityIds();
+
+    for (const mesh of meshes) {
+      const id = mesh.userData?.neuroAtlas?.entityId;
+      if (!id) continue;
+
+      const isVisible = this.assemblyManager.isEntityEffectivelyVisible(id);
+      mesh.visible = isVisible;
+
+      if (!isVisible) {
+        this.materialManager.setEntityState(mesh, id, 'HIDDEN');
+      } else {
+        if (id === primaryId) {
+          this.materialManager.setEntityState(mesh, id, 'SELECTED');
+        } else if (selectedIds.has(id)) {
+          this.materialManager.setEntityState(mesh, id, 'GROUP_SELECTED');
+        } else {
           this.materialManager.setEntityState(mesh, id, 'DEFAULT');
         }
       }
     }
   }
 
+  private handleHover(entityId: string | null): void {
+    const primaryId = this.assemblyManager.getPrimarySelectedEntity()?.entityId;
+    const selectedIds = this.assemblyManager.getSelectedEntityIds();
+
+    const meshes = this.entityManager.getAllMeshes();
+    for (const mesh of meshes) {
+      const id = mesh.userData?.neuroAtlas?.entityId;
+      if (!id) continue;
+      if (!this.assemblyManager.isEntityEffectivelyVisible(id)) continue;
+
+      // Do not alter selected states on hover
+      if (id === primaryId) continue;
+      if (selectedIds.has(id)) continue;
+
+      if (id === entityId) {
+        this.materialManager.setEntityState(mesh, id, 'HOVER');
+      } else {
+        this.materialManager.setEntityState(mesh, id, 'DEFAULT');
+      }
+    }
+  }
+
   private handleSelect(entityId: string | null): void {
+    this.assemblyManager.selectEntity(entityId);
     this.selectionManager.select(entityId);
   }
 
@@ -240,12 +305,26 @@ export class AtlasApplication {
     const activeLod = firstEntity ? this.lodManager.getActiveLOD(firstEntity.entityId) : 'lod0';
 
     if (renderer) {
+      const allEnts = this.assemblyManager.getAllEntities();
+      const visibleCount = allEnts.filter((e) => this.assemblyManager.isEntityEffectivelyVisible(e.entityId)).length;
+      const primaryEnt = this.assemblyManager.getPrimarySelectedEntity();
+      const primaryGrp = this.assemblyManager.getPrimarySelectedGroup();
+
       this.performanceManager.endFrame(
         renderer,
         camera,
         activeLod,
         this.entityManager.getEntityCount(),
-        centroid
+        centroid,
+        {
+          totalEntities: allEnts.length,
+          loadedEntities: this.entityManager.getEntityCount(),
+          failedEntities: this.assetManager.getFailedCount(),
+          visibleEntities: visibleCount,
+          hiddenEntities: allEnts.length - visibleCount,
+          selectedEntityName: primaryEnt?.name || null,
+          selectedGroupName: primaryGrp?.name || null
+        }
       );
     }
   };
@@ -277,11 +356,47 @@ export class AtlasApplication {
     const selectedId = this.selectionManager.getSelectedEntityId();
     if (selectedId) {
       this.visibilityManager.isolate(selectedId);
+      this.assemblyManager.isolateEntity(selectedId);
     }
   }
 
   public restoreAllVisibility(): void {
     this.visibilityManager.restoreAll();
+    this.assemblyManager.restoreAll();
+  }
+
+  public selectGroup(groupId: string | null): void {
+    this.assemblyManager.selectGroup(groupId);
+  }
+
+  public isolateGroup(groupId: string): void {
+    this.assemblyManager.isolateGroup(groupId);
+  }
+
+  public focusGroup(groupId: string): void {
+    const box = this.assemblyManager.getGroupBoundingBox(groupId);
+    this.cameraManager.focusBoundingBox(box);
+  }
+
+  public focusEntity(entityId: string): void {
+    const box = this.assemblyManager.getEntityBoundingBox(entityId);
+    this.cameraManager.focusBoundingBox(box);
+  }
+
+  public focusSelection(): void {
+    const primaryEntity = this.assemblyManager.getPrimarySelectedEntity();
+    const primaryGroup = this.assemblyManager.getPrimarySelectedGroup();
+    if (primaryEntity) {
+      this.focusEntity(primaryEntity.entityId);
+    } else if (primaryGroup) {
+      this.focusGroup(primaryGroup.groupId);
+    } else {
+      this.resetCamera();
+    }
+  }
+
+  public restoreAll(): void {
+    this.restoreAllVisibility();
   }
 
   public setLODMode(mode: LODMode): Promise<void> {
@@ -302,6 +417,7 @@ export class AtlasApplication {
   public getMaterialManager(): MaterialManager { return this.materialManager; }
   public getAssetManager(): AssetManager { return this.assetManager; }
   public getEntityManager(): AnatomicalEntityManager { return this.entityManager; }
+  public getAssemblyManager(): AnatomicalAssemblyManager { return this.assemblyManager; }
   public getInteractionManager(): InteractionManager { return this.interactionManager; }
   public getSelectionManager(): SelectionManager { return this.selectionManager; }
   public getVisibilityManager(): VisibilityManager { return this.visibilityManager; }
@@ -314,6 +430,7 @@ export class AtlasApplication {
     this.interactionManager.dispose();
     this.selectionManager.dispose();
     this.visibilityManager.dispose();
+    this.assemblyManager.dispose();
     this.lodManager.dispose();
     this.performanceManager.dispose();
     this.materialManager.dispose();

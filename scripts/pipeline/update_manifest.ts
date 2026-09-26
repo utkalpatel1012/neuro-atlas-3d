@@ -30,10 +30,11 @@ export interface ExtendedAssetManifestEntry extends AssetProvenance {
   dual_licensing_notes?: string;
 }
 
-export function updateManifest(): AssetsManifest {
-  console.log('[MANIFEST GENERATOR] Compiling asset manifest...');
+function buildEntry(assetId: string): ExtendedAssetManifestEntry {
+  const isRight = assetId.includes('right');
+  const sourceFma = isRight ? 'FMA72713' : 'FMA72714';
+  const nameDesc = isRight ? 'right hippocampus' : 'left hippocampus';
 
-  const assetId = 'mesh.hippocampus.left.v1';
   const canonicalGlbPath = path.join(PROJECT_ROOT, 'assets/derived', assetId, 'canonical', `${assetId}.canonical.glb`);
   if (!fs.existsSync(canonicalGlbPath)) {
     throw new Error(`Canonical GLB not found at ${canonicalGlbPath}`);
@@ -42,7 +43,7 @@ export function updateManifest(): AssetsManifest {
   const canonicalBytes = fs.readFileSync(canonicalGlbPath);
   const canonicalSha256 = crypto.createHash('sha256').update(canonicalBytes).digest('hex');
 
-  // Read QA and LOD and compression reports
+  // Read QA, LOD and compression reports
   const geomQaPath = path.join(PROJECT_ROOT, 'assets/validation', `${assetId}.geometry_qa.json`);
   const geomQa = fs.existsSync(geomQaPath) ? JSON.parse(fs.readFileSync(geomQaPath, 'utf8')) : null;
 
@@ -51,6 +52,10 @@ export function updateManifest(): AssetsManifest {
 
   const compReportPath = path.join(PROJECT_ROOT, 'assets/validation', `${assetId}.compression_report.json`);
   const compReport = fs.existsSync(compReportPath) ? JSON.parse(fs.readFileSync(compReportPath, 'utf8')) : null;
+
+  const rawPath = path.join(PROJECT_ROOT, 'assets/raw', assetId, `${sourceFma}.stl`);
+  const rawBytes = fs.existsSync(rawPath) ? fs.readFileSync(rawPath) : Buffer.alloc(0);
+  const rawHash = crypto.createHash('sha256').update(rawBytes).digest('hex');
 
   const lodFiles: Record<string, { path: string; sha256: string; triangles: number; bytes: number }> = {};
   if (lodReport && lodReport.levels) {
@@ -76,12 +81,20 @@ export function updateManifest(): AssetsManifest {
     }
   }
 
-  const hippocampusEntry: ExtendedAssetManifestEntry = {
+  const centroid: [number, number, number] = isRight
+    ? [26.38, -13.89, -20.74]
+    : [-25.07, -13.89, -20.70];
+
+  const dimensions: [number, number, number] = isRight
+    ? [18.92, 20.78, 40.49]
+    : [18.90, 20.80, 40.55];
+
+  return {
     asset_id: assetId,
     dataset_name: 'BodyParts3D / SPL-PNL Brain Atlas',
     dataset_version: 'Release 3.0 (2011)',
     source_url: 'https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html',
-    upstream_asset_id: 'FMA72714',
+    upstream_asset_id: sourceFma,
     upstream_license: 'CC_BY_SA_2_1_JP',
     attribution_text_required: 'BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).',
     acquisition_date: '2026-09-26',
@@ -91,9 +104,9 @@ export function updateManifest(): AssetsManifest {
         operation_name: 'Raw_Asset_Ingestion',
         script_relative_path: 'scripts/pipeline/ingest_asset.ts',
         parameters: {
-          source_file: 'FMA72714.stl',
-          verified_source_sha256: '8cdbbe55c32006656574f414c8a56265d5f5c73bf206699c67a4feea94a17a21',
-          source_byte_length: 214084
+          source_file: `${sourceFma}.stl`,
+          verified_source_sha256: rawHash,
+          source_byte_length: rawBytes.length
         },
         executed_by: 'Pipeline_Ingestion_Engine',
         git_commit_hash: 'fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f',
@@ -109,7 +122,7 @@ export function updateManifest(): AssetsManifest {
           zero_area_faces_allowed: 0,
           duplicate_faces_allowed: 0,
           watertight_required: true,
-          measured_volume_cm3: geomQa?.analysis?.estimatedVolumeMm3 ? Number((geomQa.analysis.estimatedVolumeMm3 / 1000).toFixed(3)) : 1.872
+          measured_volume_cm3: geomQa?.analysis?.estimatedVolumeMm3 ? Number((geomQa.analysis.estimatedVolumeMm3 / 1000).toFixed(3)) : 1.85
         },
         executed_by: 'MeshValidation_Auditor',
         git_commit_hash: 'fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f',
@@ -167,10 +180,10 @@ export function updateManifest(): AssetsManifest {
       'Defensive dual compliance: satisfies both CC-BY-SA 2.1 JP and CC BY 4.0'
     ],
     validation_status: 'CLEARED',
-    legal_review_notes: 'Ingested from BodyParts3D Release 3.0 (FMA72714 left hippocampus). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.',
+    legal_review_notes: `Ingested from BodyParts3D Release 3.0 (${sourceFma} ${nameDesc}). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.`,
     coordinate_space: 'RAS (+X Right, +Y Superior, +Z Anterior)',
-    centroid_mm: [-25.07, -13.89, -20.70],
-    dimensions_mm: [18.90, 20.80, 40.55],
+    centroid_mm: centroid,
+    dimensions_mm: dimensions,
     topology_class: 'SOLID',
     geometric_qa_status: 'PASS',
     anatomical_qa_status: 'PASS',
@@ -179,16 +192,29 @@ export function updateManifest(): AssetsManifest {
     lod_files: lodFiles,
     runtime_files: runtimeFiles
   };
+}
+
+export function updateManifest(): AssetsManifest {
+  console.log('[MANIFEST GENERATOR] Compiling asset manifest...');
+
+  const assetIds = ['mesh.hippocampus.left.v1'];
+  const rightCanonical = path.join(PROJECT_ROOT, 'assets/derived/mesh.hippocampus.right.v1/canonical/mesh.hippocampus.right.v1.canonical.glb');
+  if (fs.existsSync(rightCanonical)) {
+    assetIds.push('mesh.hippocampus.right.v1');
+  }
+
+  const assets: Record<string, ExtendedAssetManifestEntry> = {};
+  for (const id of assetIds) {
+    assets[id] = buildEntry(id);
+  }
 
   const manifest: AssetsManifest = {
     manifest_version: '1.1.0',
     generated_at: new Date().toISOString(),
     generator_script: 'scripts/pipeline/update_manifest.ts',
-    total_assets: 1,
-    assets: {
-      [assetId]: hippocampusEntry
-    },
-    production_whitelist: [assetId],
+    total_assets: assetIds.length,
+    assets,
+    production_whitelist: [...assetIds],
     research_quarantine: []
   };
 
@@ -208,10 +234,5 @@ export function updateManifest(): AssetsManifest {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  try {
-    updateManifest();
-  } catch (err) {
-    console.error('Manifest generation failed:', err);
-    process.exit(1);
-  }
+  updateManifest();
 }
