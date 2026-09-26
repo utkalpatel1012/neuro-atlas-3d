@@ -71,15 +71,32 @@ export interface BaseNeuroEntity {
   canonical_name: string;
   provenance: EntityProvenance;
   evidence_claim_ids: string[];
+  representations?: EntityRepresentation[];
   created_at: string;
   updated_at: string;
 }
 
+export type RelationshipSemanticClass =
+  | 'STRUCTURAL_CONTAINMENT'   // Physical anatomical containment (e.g. Cerebrum -> Left Hemisphere -> Hippocampus)
+  | 'FUNCTIONAL_MEMBERSHIP'    // Physiological / functional grouping (e.g. Limbic System -> Hippocampus)
+  | 'CONCEPTUAL_GROUPING'      // Regional or conceptual zone (e.g. Medial Temporal Region -> Hippocampus)
+  | 'NETWORK'                  // Multi-focal distributed co-activation network (e.g. Default Mode Network -> Hubs)
+  | 'PATHWAY'                  // Sequential synaptic projections (e.g. Papez Circuit -> Subiculum -> Mammillary Body)
+  | 'CONNECTIVITY'             // Axonal projection or synaptic transmission
+  | 'TOPOGRAPHICAL'            // Spatial adjacency or boundary relations
+  | 'HOMOLOGY'                 // Contralateral or cross-species homologue
+  | 'LINEAGE'                  // Embryological or processing derivation
+  | 'SPATIAL_REGISTRATION'     // Coordinate transformation alignment
+  | 'CLINICAL_INTERVENTION'    // Therapeutic target or lesion territory
+  | 'EPISTEMIC';               // Scientific evidence support or contradiction
+
 export type AnatomicalRelationshipType =
   | 'part_of'
   | 'contains'
+  | 'located_in'
   | 'adjacent_to'
   | 'continuous_with'
+  | 'homologous_to'
   | 'anterior_to'
   | 'posterior_to'
   | 'superior_to'
@@ -90,13 +107,17 @@ export type AnatomicalRelationshipType =
 export type ConnectivityRelationshipType =
   | 'receives_input_from'
   | 'projects_to'
+  | 'connects_to'
   | 'synapses_with'
   | 'traversed_by';
 
 export type FunctionalNetworkRelationshipType =
   | 'participates_in_network'
+  | 'part_of_network'
   | 'functional_hub_of'
-  | 'component_of_pathway';
+  | 'component_of_pathway'
+  | 'part_of_pathway'
+  | 'member_of';
 
 export type ParcellationRelationshipType =
   | 'associated_with_parcel'
@@ -108,13 +129,17 @@ export type VascularRelationshipType =
 
 export type ClinicalInterventionRelationshipType =
   | 'modulated_by'
+  | 'modulates'
   | 'targets_structure'
+  | 'targets'
   | 'affected_by_lesion';
 
 export type EpistemicRelationshipType =
   | 'supports_claim'
   | 'contradicts_claim'
-  | 'grounded_by_evidence';
+  | 'grounded_by_evidence'
+  | 'derived_from'
+  | 'registered_to';
 
 export type RelationshipType =
   | AnatomicalRelationshipType
@@ -127,14 +152,41 @@ export type RelationshipType =
 
 /**
  * Semantically typed relationship between entities in the neuro-knowledge graph.
+ * Disambiguates physical structural containment from functional or conceptual membership.
  */
 export interface EntityRelationship {
   source_entity_id: string;
   relationship_type: RelationshipType;
+  semantic_class?: RelationshipSemanticClass;
   target_entity_id: string;
   evidence_claim_ids: string[];
   provenance?: EntityProvenance;
   notes?: string;
+}
+
+/**
+ * Permissible modalities for anatomical entity representations.
+ * Enforces the invariant: ONE ENTITY -> MANY REPRESENTATIONS.
+ */
+export type RepresentationType =
+  | 'macroscopic_mesh'
+  | 'microscopic_mesh'
+  | 'mri_surface'
+  | 'volumetric_segmentation'
+  | 'tractography_streamlines'
+  | 'cortical_parcel'
+  | 'functional_activation_map'
+  | 'neuromodulation_target'
+  | 'lesion_mask';
+
+export interface EntityRepresentation {
+  representation_id: string;
+  representation_type: RepresentationType;
+  asset_id: string;
+  description?: string;
+  is_default?: boolean;
+  lod_levels?: string[];
+  metadata?: Record<string, any>;
 }
 
 /**

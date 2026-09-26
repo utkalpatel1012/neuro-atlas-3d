@@ -67,8 +67,12 @@ To ensure total academic transparency, protect human subject research covenants,
   * Under current **CC BY 4.0**: Freely access, acquire, redistribute, and create derivative works without ShareAlike (copyleft) restriction, subject only to proper author attribution.
   * Under historical **CC-BY-SA 2.1 JP**: Derivative 3D meshes must be shared under an identical or compatible ShareAlike license (CC-BY-SA 4.0 is compatible under CC Section 3(b)).
 * **Legal Analysis & Defensive Dual-Compliance Policy**:
+  * In the metadata and manifest schemas, the project strictly distinguishes **`upstream_license`** (the legal license under which the source dataset was obtained) from **`project_distribution_policy`** (the license under which the project distributes derived 3D assets).
   * Whether the 2025/02/27 license update to CC BY 4.0 retroactively releases third-party mirrors or previously downloaded Release 3.0 STL files from the ShareAlike clause is designated as **`LEGAL_REVIEW_REQUIRED`**.
-  * **Defensive Compliance Strategy**: The project adopts defensive dual-compliance. We publish the full attribution mandated by DBCLS under both versions, and release all derivative 3D meshes under CC-BY-SA 4.0. This satisfies the requirements of both CC BY 4.0 (attribution satisfied) and CC-BY-SA 2.1 JP (attribution and ShareAlike satisfied), ensuring 100% legal safety regardless of legal interpretation.
+  * **Defensive Compliance Strategy**: The project adopts defensive dual-compliance:
+    - `upstream_license`: Documented accurately as `CC BY 4.0` (with historical `CC-BY-SA 2.1 JP` noted).
+    - `project_distribution_policy`: Set to `CC-BY-SA-4.0`.
+    - Attribution mandated by DBCLS is fully displayed. This satisfies the requirements of both CC BY 4.0 (attribution satisfied) and CC-BY-SA 2.1 JP (attribution and ShareAlike satisfied), ensuring 100% legal safety regardless of legal interpretation.
   * *Codebase Isolation*: Application engine code (React, Three.js, shaders, UI) is an independent collective work licensed under Apache-2.0.
 * **Operational Tier**: **`PRODUCTION_ALLOWED`**.
 

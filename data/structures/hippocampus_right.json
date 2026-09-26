@@ -46,6 +46,124 @@
       "system.limbic",
       "system.limbic.right",
       "region.medial_temporal"
+    ],
+    "children_ids": []
+  },
+  "spatial": {
+    "mesh_node_name": "Mesh_Hippocampus_R",
+    "source_centroid": [26.38, -13.89, -20.74],
+    "source_coordinate_frame": "blender_world",
+    "stereotaxic_registration": {
+      "registered_centroid": [26.4, -21.1, -16.2],
+      "registered_coordinate_frame": "mni152_nonlinear_2009c_asym",
+      "registration_status": "REGISTRATION_PENDING",
+      "registration": {
+        "registration_method": "affine_linear_12dof",
+        "registration_source": "scripts/pipeline/register_to_mni152.py",
+        "target_reference_template": "MNI152NLin2009cAsym_1mm.nii.gz",
+        "registration_uncertainty_mm": 1.1,
+        "dice_similarity_coefficient": 0.81,
+        "validation_date": "2026-09-26",
+        "validator_notes": "Affine alignment estimate only. Formal non-linear co-registration (ANTs SyN / FLIRT) against MNI152 template is PENDING."
+      }
+    },
+    "bounding_box": {
+      "min": [16.92, -24.28, -40.98],
+      "max": [35.84, -3.50, -0.49],
+      "coordinate_frame": "canonical_atlas_ras"
+    },
+    "estimated_volume_cm3": 1.85,
+    "default_hex_color": "#D4A373",
+    "subfield_representation": "MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED",
+    "subfield_mapping_status": "ANATOMICAL_MAPPING_PENDING",
+    "subfield_mapping_notes": "The ingested 3D asset represents the macroscopic unsegmented right hippocampus (Cornu Ammonis CA1-CA4 + dentate gyrus within one contiguous boundary). Distinct internal subfield parcellation boundaries are not resolved in this macroscopic surface mesh and will be integrated during subsequent subfield segmentation phases."
+  },
+  "representations": [
+    {
+      "id": "rep.hippocampus.right.macroscopic_mesh",
+      "representation_type": "macroscopic_mesh",
+      "level_of_detail": "LOD0-LOD3",
+      "asset_reference": "mesh.hippocampus.right.v1",
+      "coordinate_frame": "canonical_atlas_ras",
+      "is_canonical": true,
+      "metadata": {
+        "format": "glb_meshopt",
+        "topology": "solid_closed_manifold"
+      }
+    }
+  ],
+  "asset_id": "mesh.hippocampus.right.v1",
+  "asset_provenance": {
+    "asset_id": "mesh.hippocampus.right.v1",
+    "dataset_name": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+    "dataset_version": "Release 3.0 (2011/06/20) / Portal update 2025-02-27",
+    "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+    "upstream_asset_id": "FMA72713",
+    "upstream_license": "CC BY 4.0",
+    "upstream_license_history": "BodyParts3D Release 3.0 was originally CC-BY-SA 2.1 JP; DBCLS portal relicensed to CC BY 4.0 on 2025-02-27 without ShareAlike requirement.",
+    "project_distribution_policy": "CC-BY-SA-4.0",
+    "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+    "acquisition_date": "2026-09-26",
+    "resulting_sha256_hash": "2f28ea969a531f9b0ebfdcf70b7931c8e1467406a090e82cbe1adfbdbd470d02",
+    "resulting_license": "CC-BY-SA 4.0",
+    "production_eligibility": "PRODUCTION_ALLOWED",
+    "commercial_redistribution": "PERMITTED",
+    "restrictions_and_covenants": [
+      "Must attribute BodyParts3D / DBCLS in application notices and UI",
+      "Derived 3D meshes distributed under CC-BY-SA 4.0 (satisfies both CC-BY-SA 2.1 JP ShareAlike and CC BY 4.0 Attribution)",
+      "Defensive dual compliance: commercial redistribution permitted without non-commercial restriction"
+    ],
+    "granular_validation": {
+      "stage": "DEVICE_VALIDATED",
+      "device_validation_level": "AUTOMATED_TEST_VALIDATION",
+      "source_verified": true,
+      "provenance_verified": true,
+      "geometry_validated": true,
+      "anatomical_mapping_validated": true,
+      "runtime_ready": true,
+      "device_validated": true,
+      "notes": "Automated headless Node.js tests passed. Physical mobile/desktop hardware validation is PENDING."
+    },
+    "validation_status": "CLEARED",
+    "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72713 right hippocampus). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle."
+  },
+  "presentation": {
+    "visibility_groups": ["limbic_circuitry", "cortex_allocortex"]
+  },
+  "topography": {
+    "boundaries": {
+      "superior": "Temporal horn of right lateral ventricle (ventral floor) and amygdaloid complex (anterosuperior)",
+      "inferior": "Subiculum and parahippocampal gyrus (separated by hippocampal fissure)",
+      "anterior": "Amygdaloid complex (separated by uncal recess of temporal horn)",
+      "posterior": "Splenium of corpus callosum, tapering into subsplenial gyrus / indusium griseum",
+      "medial": "Ambient cistern, wing of ambient cistern, and midbrain crus cerebri",
+      "lateral": "Collateral eminence of temporal horn of lateral ventricle"
+    },
+    "relationships": [
+      {
+        "source_entity_id": "brain.telencephalon.right.limbic.hippocampus",
+        "target_entity_id": "brain.telencephalon.right.limbic.dentate_gyrus",
+        "relationship_type": "adjacent_to",
+        "semantic_class": "TOPOGRAPHICAL",
+        "evidence_claim_ids": ["claim.anatomy.hpc.dg_tri_synaptic"],
+        "notes": "Right dentate gyrus interlocks with right cornu ammonis."
+      },
+      {
+        "source_entity_id": "brain.telencephalon.right.limbic.hippocampus",
+        "target_entity_id": "brain.telencephalon.right.limbic.subiculum",
+        "relationship_type": "adjacent_to",
+        "semantic_class": "TOPOGRAPHICAL",
+        "evidence_claim_ids": ["claim.anatomy.hpc.subiculum_transition"],
+        "notes": "Right subiculum transition zone."
+      },
+      {
+        "source_entity_id": "brain.telencephalon.right.limbic.hippocampus",
+        "target_entity_id": "brain.telencephalon.right.limbic.amygdala",
+        "relationship_type": "adjacent_to",
+        "semantic_class": "TOPOGRAPHICAL",
+        "evidence_claim_ids": ["claim.anatomy.hpc.amygdala_boundary"],
+        "notes": "Located immediately anterosuperior to right hippocampal head."
+      }
     ]
   },
   "bounding_box": {
@@ -70,16 +188,6 @@
     "manifold": true,
     "boundary_edges": 0,
     "non_manifold_edges": 0
-  },
-  "provenance": {
-    "upstream_source": {
-      "dataset": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
-      "release": "Release 3.0 (2011/06/20)",
-      "source_identifier": "FMA72713",
-      "license": "CC-BY-SA 2.1 Japan / CC BY 4.0 International (Dual compliance)",
-      "attribution": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-ShareAlike 2.1 Japan. Relicensed under CC Attribution 4.0 International."
-    },
-    "physical_asset_id": "mesh.hippocampus.right.v1"
   },
   "qa_status": {
     "overall_status": "APPROVED",

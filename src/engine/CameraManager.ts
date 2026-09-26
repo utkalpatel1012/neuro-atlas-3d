@@ -127,6 +127,8 @@ export class CameraManager {
         this.camera.position.copy(this.targetPosition);
         if (this.controls) {
           this.controls.target.copy(this.targetLookAt);
+        } else {
+          this.defaultTarget.copy(this.targetLookAt);
         }
         this.isTransitioning = false;
       }
@@ -232,11 +234,20 @@ export class CameraManager {
     if (!this.controls || duration === 0) {
       this.camera.position.copy(this.targetPosition);
       this.camera.lookAt(this.targetLookAt);
+      if (this.controls) {
+        this.controls.target.copy(this.targetLookAt);
+      } else {
+        this.defaultTarget.copy(this.targetLookAt);
+      }
       this.isTransitioning = false;
     }
   }
 
   public focusBoundingBox(box: THREE.Box3, duration = 0.8): void {
+    this.focusOn(box, duration);
+  }
+
+  public frameSelection(box: THREE.Box3, duration = 0.8): void {
     this.focusOn(box, duration);
   }
 
@@ -251,6 +262,11 @@ export class CameraManager {
     if (!this.controls || duration === 0) {
       this.camera.position.copy(this.targetPosition);
       this.camera.lookAt(this.targetLookAt);
+      if (this.controls) {
+        this.controls.target.copy(this.targetLookAt);
+      } else {
+        this.defaultTarget.copy(this.targetLookAt);
+      }
       this.isTransitioning = false;
     }
   }
@@ -269,6 +285,10 @@ export class CameraManager {
   public onResize(width: number, height: number): void {
     this.camera.aspect = width / Math.max(1, height);
     this.camera.updateProjectionMatrix();
+  }
+
+  public getTarget(): THREE.Vector3 {
+    return (this.controls?.target ?? this.defaultTarget).clone();
   }
 
   public getDistanceToTarget(): number {

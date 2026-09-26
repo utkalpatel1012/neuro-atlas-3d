@@ -82,6 +82,50 @@ export interface LODState {
   triangleCount: number;
 }
 
+export type RepresentationType =
+  | 'macroscopic_mesh'
+  | 'microscopic_mesh'
+  | 'mri_surface'
+  | 'volumetric_segmentation'
+  | 'tractography_streamlines'
+  | 'cortical_parcel'
+  | 'functional_activation_map'
+  | 'neuromodulation_target'
+  | 'lesion_mask';
+
+export interface EntityRepresentation {
+  representationId: string;
+  representationType: RepresentationType;
+  assetId: string;
+  lodLevels?: LODLevel[];
+  isDefault?: boolean;
+  description?: string;
+  metadata?: Record<string, any>;
+}
+
+export type GranularValidationStage =
+  | 'SOURCE_VERIFIED'
+  | 'PROVENANCE_VERIFIED'
+  | 'GEOMETRY_VALIDATED'
+  | 'ANATOMICAL_MAPPING_VALIDATED'
+  | 'RUNTIME_READY'
+  | 'DEVICE_VALIDATED';
+
+export type DeviceValidationLevel =
+  | 'AUTOMATED_TEST_VALIDATION'
+  | 'BROWSER_VALIDATION'
+  | 'PHYSICAL_DEVICE_VALIDATION'
+  | 'DEVICE_VALIDATION_PENDING';
+
+export interface GranularValidationRecord {
+  sourceVerified: boolean;
+  provenanceVerified: boolean;
+  geometryValidated: boolean;
+  anatomicalMappingValidated: boolean;
+  runtimeReady: boolean;
+  deviceValidationLevel: DeviceValidationLevel;
+}
+
 export interface AnatomicalEntityRecord {
   entityId: string;
   assetId: string;
@@ -96,9 +140,21 @@ export interface AnatomicalEntityRecord {
   upstreamDataset: string;
   upstreamLicense: string;
   sourceDefinition: string;
+  coordinateFrame?: string;
   groups?: string[];
+  representations?: EntityRepresentation[];
+  granularValidation?: GranularValidationRecord;
   status?: 'AVAILABLE' | 'UNAVAILABLE' | 'PENDING_INGESTION';
 }
+
+export type GroupSemanticType =
+  | 'STRUCTURAL_CONTAINER'  // Physical anatomical containment (e.g. Cerebrum -> Left Hemisphere)
+  | 'ANATOMICAL_REGION'     // Topographical / regional zone (e.g. Medial Temporal Lobe Region)
+  | 'FUNCTIONAL_SYSTEM'     // Cross-regional functional system (e.g. Limbic System, Visual System)
+  | 'NETWORK'               // Distributed co-activation network (e.g. Default Mode Network)
+  | 'PATHWAY'               // Sequential projection pathway (e.g. Papez Circuit, CSTC Loop)
+  | 'CLINICAL_GROUP'        // Clinical lesion/target group (e.g. Temporal Lobe Epilepsy Focus)
+  | 'VISUALIZATION_GROUP';  // Display-only presentation group
 
 export type GroupCategory =
   | 'division'
@@ -112,6 +168,7 @@ export type GroupCategory =
 export interface AnatomicalGroup {
   groupId: string;
   name: string;
+  semanticType: GroupSemanticType;
   category: GroupCategory;
   parentGroupId?: string;
   childGroupIds: string[];

@@ -11,6 +11,8 @@ import * as THREE from 'three';
 import {
   AnatomicalEntityRecord,
   AnatomicalGroup,
+  EntityRepresentation,
+  GroupSemanticType,
   MultiSelectionState,
   VisibilityState
 } from './types';
@@ -24,6 +26,7 @@ export class AnatomicalAssemblyManager {
   private groups: Map<string, AnatomicalGroup> = new Map();
   private entityToGroups: Map<string, Set<string>> = new Map();
   private entityMeshes: Map<string, THREE.Mesh> = new Map();
+  private entityRepresentations: Map<string, EntityRepresentation[]> = new Map();
 
   // Visibility state
   private hiddenEntityIds: Set<string> = new Set();
@@ -50,10 +53,11 @@ export class AnatomicalAssemblyManager {
    * Initializes standard, data-driven neuroanatomical hierarchy skeleton.
    */
   private initDefaultHierarchy(): void {
-    // 1. Major Divisions
+    // 1. Major Structural Divisions (Physical Containment)
     this.registerGroup({
       groupId: 'division.cerebrum',
       name: 'Cerebrum',
+      semanticType: 'STRUCTURAL_CONTAINER',
       category: 'division',
       childGroupIds: ['hemisphere.left', 'hemisphere.right'],
       memberEntityIds: [],
@@ -64,6 +68,7 @@ export class AnatomicalAssemblyManager {
     this.registerGroup({
       groupId: 'division.cerebellum',
       name: 'Cerebellum',
+      semanticType: 'STRUCTURAL_CONTAINER',
       category: 'division',
       childGroupIds: [],
       memberEntityIds: [],
@@ -74,6 +79,7 @@ export class AnatomicalAssemblyManager {
     this.registerGroup({
       groupId: 'division.brainstem',
       name: 'Brainstem',
+      semanticType: 'STRUCTURAL_CONTAINER',
       category: 'division',
       childGroupIds: [],
       memberEntityIds: [],
@@ -81,13 +87,14 @@ export class AnatomicalAssemblyManager {
       description: 'Midbrain, pons, and medulla oblongata (Asset pending)'
     });
 
-    // 2. Hemispheres
+    // 2. Hemispheres (Physical Structural Containment)
     this.registerGroup({
       groupId: 'hemisphere.left',
       name: 'Left Hemisphere',
+      semanticType: 'STRUCTURAL_CONTAINER',
       category: 'hemisphere',
       parentGroupId: 'division.cerebrum',
-      childGroupIds: ['system.limbic.left'],
+      childGroupIds: [],
       memberEntityIds: [],
       status: 'PARTIALLY_AVAILABLE'
     });
@@ -95,17 +102,19 @@ export class AnatomicalAssemblyManager {
     this.registerGroup({
       groupId: 'hemisphere.right',
       name: 'Right Hemisphere',
+      semanticType: 'STRUCTURAL_CONTAINER',
       category: 'hemisphere',
       parentGroupId: 'division.cerebrum',
-      childGroupIds: ['system.limbic.right'],
+      childGroupIds: [],
       memberEntityIds: [],
       status: 'PARTIALLY_AVAILABLE'
     });
 
-    // 3. Bilateral Functional / Anatomical System
+    // 3. Bilateral Functional / Anatomical System (Functional Membership - NOT structural container)
     this.registerGroup({
       groupId: 'system.limbic',
       name: 'Limbic System (Bilateral)',
+      semanticType: 'FUNCTIONAL_SYSTEM',
       category: 'system',
       childGroupIds: ['system.limbic.left', 'system.limbic.right'],
       memberEntityIds: [],
@@ -113,12 +122,12 @@ export class AnatomicalAssemblyManager {
       description: 'Allocortical and nuclear network subserving memory and emotion'
     });
 
-    // 4. Lateralized Subsystems
+    // 4. Lateralized Subsystems (Functional Subsystems)
     this.registerGroup({
       groupId: 'system.limbic.left',
       name: 'Limbic System (Left)',
+      semanticType: 'FUNCTIONAL_SYSTEM',
       category: 'system',
-      parentGroupId: 'hemisphere.left',
       childGroupIds: [],
       memberEntityIds: [],
       status: 'AVAILABLE'
@@ -127,11 +136,23 @@ export class AnatomicalAssemblyManager {
     this.registerGroup({
       groupId: 'system.limbic.right',
       name: 'Limbic System (Right)',
+      semanticType: 'FUNCTIONAL_SYSTEM',
       category: 'system',
-      parentGroupId: 'hemisphere.right',
       childGroupIds: [],
       memberEntityIds: [],
       status: 'AVAILABLE'
+    });
+
+    // 5. Anatomical Region (Conceptual / Topographical Zone)
+    this.registerGroup({
+      groupId: 'region.medial_temporal',
+      name: 'Medial Temporal Region',
+      semanticType: 'ANATOMICAL_REGION',
+      category: 'region',
+      childGroupIds: [],
+      memberEntityIds: [],
+      status: 'AVAILABLE',
+      description: 'Medial temporal lobe structures including hippocampal formation and parahippocampal gyrus'
     });
   }
 
@@ -166,6 +187,19 @@ export class AnatomicalAssemblyManager {
   public registerEntity(record: AnatomicalEntityRecord, mesh?: THREE.Mesh): void {
     this.entities.set(record.entityId, record);
 
+    // Register representations (enforcing ONE ENTITY -> MANY REPRESENTATIONS)
+    if (record.representations && record.representations.length > 0) {
+      this.entityRepresentations.set(record.entityId, [...record.representations]);
+    } else {
+      this.entityRepresentations.set(record.entityId, [{
+        representationId: `${record.entityId}.default_mesh`,
+        representationType: 'macroscopic_mesh',
+        assetId: record.assetId,
+        isDefault: true,
+        description: 'Default macroscopic surface mesh'
+      }]);
+    }
+
     if (mesh) {
       this.attachMesh(record.entityId, mesh);
     }
@@ -177,6 +211,33 @@ export class AnatomicalAssemblyManager {
     }
 
     this.notifyAssemblyChanged();
+  }
+
+  public addRepresentation(entityId: string, representation: EntityRepresentation): void {
+    let reps = this.entityRepresentations.get(entityId);
+    if (!reps) {
+      reps = [];
+      this.entityRepresentations.set(entityId, reps);
+    }
+    // If only auto-fallback exists, replace it
+    if (reps.length === 1 && reps[0].representationId === `${entityId}.default_mesh`) {
+      reps.length = 0;
+    }
+    const idx = reps.findIndex((r) => r.representationId === representation.representationId);
+    if (idx >= 0) {
+      reps[idx] = representation;
+    } else {
+      reps.push(representation);
+    }
+  }
+
+  public getRepresentations(entityId: string): EntityRepresentation[] {
+    return this.entityRepresentations.get(entityId) || [];
+  }
+
+  public getActiveRepresentation(entityId: string): EntityRepresentation | undefined {
+    const reps = this.getRepresentations(entityId);
+    return reps.find((r) => r.isDefault) || reps[0];
   }
 
   public attachMesh(entityId: string, mesh: THREE.Mesh): void {
@@ -207,9 +268,21 @@ export class AnatomicalAssemblyManager {
     let group = this.groups.get(groupId);
     if (!group) {
       // Auto-create missing group with reasonable defaults
+      const inferredSemanticType: GroupSemanticType =
+        groupId.startsWith('division') || groupId.startsWith('hemisphere')
+          ? 'STRUCTURAL_CONTAINER'
+          : groupId.startsWith('system')
+          ? 'FUNCTIONAL_SYSTEM'
+          : groupId.startsWith('network')
+          ? 'NETWORK'
+          : groupId.startsWith('pathway')
+          ? 'PATHWAY'
+          : 'ANATOMICAL_REGION';
+
       group = {
         groupId,
         name: groupId.split('.').pop()?.replace(/_/g, ' ') || groupId,
+        semanticType: inferredSemanticType,
         category: 'region',
         childGroupIds: [],
         memberEntityIds: [],
@@ -228,6 +301,51 @@ export class AnatomicalAssemblyManager {
       this.entityToGroups.set(entityId, eg);
     }
     eg.add(groupId);
+  }
+
+  /**
+   * Returns ancestor group IDs that represent strict PHYSICAL STRUCTURAL CONTAINMENT.
+   * Disambiguates structural containment (Cerebrum -> Hemisphere) from functional membership.
+   */
+  public getStructuralAncestorGroupIds(entityId: string): string[] {
+    const ancestors = this.getAncestorGroupIds(entityId);
+    return ancestors.filter((gid) => {
+      const g = this.groups.get(gid);
+      return g?.semanticType === 'STRUCTURAL_CONTAINER';
+    });
+  }
+
+  /**
+   * Returns group IDs that represent FUNCTIONAL or CONCEPTUAL membership (e.g. Limbic System, Networks).
+   */
+  public getFunctionalGroupIds(entityId: string): string[] {
+    const ancestors = this.getAncestorGroupIds(entityId);
+    return ancestors.filter((gid) => {
+      const g = this.groups.get(gid);
+      return (
+        g?.semanticType === 'FUNCTIONAL_SYSTEM' ||
+        g?.semanticType === 'NETWORK' ||
+        g?.semanticType === 'PATHWAY'
+      );
+    });
+  }
+
+  /**
+   * Returns group IDs that represent ANATOMICAL REGIONS (e.g. Medial Temporal Region).
+   */
+  public getRegionalGroupIds(entityId: string): string[] {
+    const ancestors = this.getAncestorGroupIds(entityId);
+    return ancestors.filter((gid) => {
+      const g = this.groups.get(gid);
+      return g?.semanticType === 'ANATOMICAL_REGION';
+    });
+  }
+
+  /**
+   * Returns all groups classified by a specific semantic type.
+   */
+  public getGroupsBySemanticType(type: GroupSemanticType): AnatomicalGroup[] {
+    return Array.from(this.groups.values()).filter((g) => g.semanticType === type);
   }
 
   /**

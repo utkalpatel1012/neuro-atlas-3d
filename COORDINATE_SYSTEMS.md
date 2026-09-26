@@ -34,16 +34,24 @@ The atlas supports eight distinct spatial coordinate systems, partitioned into v
 └───────────────────────────────────┴────────────────────────────────────┘
 ```
 
-### A. 3D Graphics & Engine Spaces
+### A. 3D Graphics & Internal Engine Spaces
 1. **`native_mesh`**:
    * *Definition*: The raw, unaligned vertex positions defined in the source 3D asset file before any world transformations.
    * *Units*: Variable (millimeters, Blender units, or normalized bounds).
    * *Orientation*: Arbitrary, dependent on source export settings.
-2. **`blender_world`**:
-   * *Definition*: Standardized 3D graphics coordinate frame in Blender 4.x and Three.js runtime.
-   * *Axis Convention*: **Right-Handed, +Y Up, +Z Forward, +X Right**.
+2. **`canonical_atlas_ras`** *(Internal Engine Canonical Space)*:
+   * *Definition*: The internal standardized coordinate frame used by the Neuro Atlas engine runtime.
    * *Units*: Millimeters ($1.0 \text{ unit} = 1.0 \text{ mm}$).
-   * *Origin*: Geometric center of the cranium / mid-commissural point approximation.
+   * *Axis Convention*: **RAS (Right-Anterior-Superior)**:
+     * $+X$: Right lateral
+     * $+Y$: Anterior (Rostral)
+     * $+Z$: Superior (Dorsal)
+   * *Origin (0,0,0)*: Internal canonical atlas origin (approximating interhemispheric mid-commissural plane).
+   * *Invariant*: `canonical_atlas_ras` is an **internal engine space**. It is NOT automatically identical to external stereotaxic spaces like MNI152. Centroid bilateral symmetry ($X \approx -25\text{ mm}$ vs $+26\text{ mm}$) does NOT prove MNI152 registration.
+3. **`blender_world`**:
+   * *Definition*: Standard 3D DCC graphics coordinate frame in Blender 4.x.
+   * *Axis Convention*: Right-Handed, +Y Up, +Z Forward, +X Right.
+   * *Units*: Millimeters ($1.0 \text{ unit} = 1.0 \text{ mm}$).
 
 ### B. Standard Stereotaxic Reference Spaces
 3. **`mni152_nonlinear_2009c_asym` (ICBM 152 2009c Nonlinear Asymmetric)**:

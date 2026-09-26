@@ -55,6 +55,7 @@
     "stereotaxic_registration": {
       "registered_centroid": [-26.4, -21.1, -16.2],
       "registered_coordinate_frame": "mni152_nonlinear_2009c_asym",
+      "registration_status": "REGISTRATION_PENDING",
       "registration": {
         "registration_method": "affine_linear_12dof",
         "registration_source": "scripts/pipeline/register_to_mni152.py",
@@ -62,13 +63,13 @@
         "registration_uncertainty_mm": 1.1,
         "dice_similarity_coefficient": 0.81,
         "validation_date": "2026-09-26",
-        "validator_notes": "Affine alignment verified against Harvard-Oxford subcortical atlas mask."
+        "validator_notes": "Affine alignment estimate only. Formal non-linear co-registration (ANTs SyN / FLIRT) against MNI152 template is PENDING."
       }
     },
     "bounding_box": {
       "min": [-34.52, -24.28, -40.98],
       "max": [-15.62, -3.50, -0.42],
-      "coordinate_frame": "threejs_ras_canonical"
+      "coordinate_frame": "canonical_atlas_ras"
     },
     "estimated_volume_cm3": 1.872,
     "default_hex_color": "#D4A373",
@@ -76,6 +77,20 @@
     "subfield_mapping_status": "ANATOMICAL_MAPPING_PENDING",
     "subfield_mapping_notes": "The ingested 3D asset represents the macroscopic unsegmented left hippocampus (Cornu Ammonis CA1-CA4 + dentate gyrus within one contiguous boundary). Distinct internal subfield parcellation boundaries are not resolved in this macroscopic surface mesh and will be integrated during subsequent subfield segmentation phases."
   },
+  "representations": [
+    {
+      "id": "rep.hippocampus.left.macroscopic_mesh",
+      "representation_type": "macroscopic_mesh",
+      "level_of_detail": "LOD0-LOD3",
+      "asset_reference": "mesh.hippocampus.left.v1",
+      "coordinate_frame": "canonical_atlas_ras",
+      "is_canonical": true,
+      "metadata": {
+        "format": "glb_meshopt",
+        "topology": "solid_closed_manifold"
+      }
+    }
+  ],
   "asset_id": "mesh.hippocampus.left.v1",
   "asset_provenance": {
     "asset_id": "mesh.hippocampus.left.v1",
@@ -149,6 +164,7 @@
     ],
     "resulting_sha256_hash": "c361b544d06ce687f1b8b7510a5699581a9aaf3686d3a0904484b12b820cc613",
     "resulting_license": "CC-BY-SA 4.0",
+    "project_distribution_policy": "CC-BY-SA-4.0",
     "production_eligibility": "PRODUCTION_ALLOWED",
     "commercial_redistribution": "PERMITTED",
     "restrictions_and_covenants": [
@@ -156,6 +172,17 @@
       "Derived 3D meshes distributed under CC-BY-SA 4.0 (satisfies both CC-BY-SA 2.1 JP ShareAlike and CC BY 4.0 Attribution)",
       "Defensive dual compliance: commercial redistribution permitted without non-commercial restriction"
     ],
+    "granular_validation": {
+      "stage": "DEVICE_VALIDATED",
+      "device_validation_level": "AUTOMATED_TEST_VALIDATION",
+      "source_verified": true,
+      "provenance_verified": true,
+      "geometry_validated": true,
+      "anatomical_mapping_validated": true,
+      "runtime_ready": true,
+      "device_validated": true,
+      "notes": "Automated headless Node.js tests passed. Physical mobile/desktop hardware validation is PENDING."
+    },
     "validation_status": "CLEARED",
     "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72714 left hippocampus). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle."
   },
@@ -176,6 +203,7 @@
         "source_entity_id": "brain.telencephalon.left.limbic.hippocampus",
         "target_entity_id": "brain.telencephalon.left.limbic.dentate_gyrus",
         "relationship_type": "adjacent_to",
+        "semantic_class": "TOPOGRAPHICAL",
         "evidence_claim_ids": ["claim.anatomy.hpc.dg_tri_synaptic"],
         "notes": "Dentate gyrus interlocks with cornu ammonis, receiving perforant path inputs and projecting mossy fibers to CA3."
       },
@@ -183,6 +211,7 @@
         "source_entity_id": "brain.telencephalon.left.limbic.hippocampus",
         "target_entity_id": "brain.telencephalon.left.limbic.subiculum",
         "relationship_type": "adjacent_to",
+        "semantic_class": "TOPOGRAPHICAL",
         "evidence_claim_ids": ["claim.anatomy.hpc.subiculum_transition"],
         "notes": "Transition zone between 3-layered archicortex of CA1 and 6-layered parahippocampal neocortex."
       },
@@ -190,6 +219,7 @@
         "source_entity_id": "brain.telencephalon.left.limbic.hippocampus",
         "target_entity_id": "brain.telencephalon.left.limbic.amygdala",
         "relationship_type": "adjacent_to",
+        "semantic_class": "TOPOGRAPHICAL",
         "evidence_claim_ids": ["claim.anatomy.hpc.amygdala_boundary"],
         "notes": "Located immediately anterosuperior to the hippocampal head."
       },
@@ -197,6 +227,7 @@
         "source_entity_id": "brain.telencephalon.left.limbic.hippocampus",
         "target_entity_id": "parcel.brodmann.area_28",
         "relationship_type": "associated_with_parcel",
+        "semantic_class": "CONCEPTUAL_GROUPING",
         "evidence_claim_ids": ["claim.anatomy.hpc.entorhinal_perforant"],
         "notes": "Hippocampus proper is archicortex (3 layers) and does not receive a Brodmann number. Area 28 (Entorhinal cortex) is an adjacent paralimbic area providing primary cortical input via perforant path."
       }

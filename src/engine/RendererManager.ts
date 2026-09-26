@@ -364,11 +364,21 @@ export class RendererManager {
   }
 
   /**
-   * Sets up context loss and recovery event listeners.
+   * Sets up context loss and recovery event listeners for WebGL, and monitors
+   * GPUDevice.lost promise for WebGPU pipelines.
+   * 
+   * WebGPU Device Loss Lifecycle (Status: PARTIAL / FUTURE IMPLEMENTATION):
+   * 1. DEVICE_HEALTHY: Normal active frame rendering.
+   * 2. DEVICE_LOST: Hardware reset, TDR timeout, or driver crash triggered.
+   * 3. RECOVERY_ATTEMPT: Render loop paused, resources quarantined.
+   * 4. DEVICE_RECREATED: Re-probe GPUAdapter and request new GPUDevice (Future).
+   * 5. RESOURCES_REBOUND: Re-bind buffers and recompile pipelines (Future).
+   * 6. DEVICE_HEALTHY: Rendering resumed.
    */
   private setupContextLossHandling(): void {
     if (!this.canvas || typeof this.canvas.addEventListener !== 'function') return;
 
+    // 1. WebGL Context Loss Handlers (Canvas DOM Events)
     this.canvas.addEventListener('webglcontextlost', (event: Event) => {
       event.preventDefault();
       this.isContextLost = true;
@@ -381,6 +391,25 @@ export class RendererManager {
       console.log('[RENDERER MANAGER] WebGL context restored! Restoring pipeline state.');
       if (this.onContextRestoredCallback) this.onContextRestoredCallback();
     }, false);
+
+    // 2. WebGPU Device Loss Monitoring (GPUDevice Promise API)
+    this.setupWebGPUDeviceLossHandling();
+  }
+
+  private setupWebGPUDeviceLossHandling(): void {
+    try {
+      const gpuDevice = (this.renderer as any)?.backend?.device || (this.renderer as any)?.device;
+      if (gpuDevice && typeof gpuDevice.lost?.then === 'function') {
+        gpuDevice.lost.then((info: any) => {
+          this.isContextLost = true;
+          console.warn(`[RENDERER MANAGER] WebGPU device lost! Reason: ${info.reason}, Message: ${info.message}`);
+          console.warn('[RENDERER MANAGER] WebGPU Device Re-creation: PARTIAL / FUTURE IMPLEMENTATION');
+          if (this.onContextLostCallback) this.onContextLostCallback();
+        });
+      }
+    } catch {
+      // Graceful ignore if WebGPU device inspection not accessible in current runtime
+    }
   }
 
   public onContextLost(cb: () => void): void {
@@ -424,6 +453,10 @@ export class RendererManager {
   }
 
   public isLost(): boolean {
+    return this.isContextLost;
+  }
+
+  public isWebGPULost(): boolean {
     return this.isContextLost;
   }
 

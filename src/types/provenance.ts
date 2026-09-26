@@ -43,6 +43,41 @@ export type AssetValidationStatus =
   | 'CLEARED'      // Formally audited and approved for production web bundle
   | 'RESTRICTED';  // Quarantined, research-only, or third-party license restricted
 
+/**
+ * Granular multi-stage validation states preventing the conflation
+ * of geometric validity with anatomical accuracy or device readiness.
+ */
+export type GranularValidationStage =
+  | 'SOURCE_VERIFIED'               // Upstream source release, authentic file hash, and licensing provenance verified
+  | 'PROVENANCE_VERIFIED'           // Transform pipeline lineage, cryptographic SHA-256 hashes, and license covenants documented
+  | 'GEOMETRY_VALIDATED'            // 2-manifold, watertight (if required), non-degenerate surface geometry verified
+  | 'ANATOMICAL_MAPPING_VALIDATED'  // Stereotaxic laterality, anatomical landmarks, and ontology grounding verified
+  | 'RUNTIME_READY'                 // Meshopt-compressed, multi-resolution LODs generated, BVH acceleration tree built
+  | 'DEVICE_VALIDATED';             // Tested and profiled on actual physical hardware
+
+/**
+ * Explicit device validation verification level.
+ * Prevents automated Node / headless unit tests from being claimed as physical device proof.
+ */
+export type DeviceValidationLevel =
+  | 'AUTOMATED_TEST_VALIDATION'     // Headless execution under Node.js / tsx / Vitest (simulated DOM/WebGL mocks)
+  | 'BROWSER_VALIDATION'            // Interactive execution in modern desktop browser (Chrome, Edge, Firefox, Safari)
+  | 'PHYSICAL_DEVICE_VALIDATION'    // Benchmarked on real physical devices (Apple Silicon, iPadOS, Android, discrete GPU)
+  | 'DEVICE_VALIDATION_PENDING';    // Physical hardware testing has not yet been executed
+
+export interface GranularValidationRecord {
+  stages_completed: GranularValidationStage[];
+  source_verified: boolean;
+  provenance_verified: boolean;
+  geometry_validated: boolean;
+  anatomical_mapping_validated: boolean;
+  runtime_ready: boolean;
+  device_validation_level: DeviceValidationLevel;
+  device_validation_notes?: string;
+  audit_timestamp: string;
+  auditor: string;
+}
+
 export interface TransformationStep {
   step_number: number;
   operation_name: string;       // e.g., 'Taubin_Smoothing', 'QEM_Decimation', 'Meshopt_Compression'
@@ -69,10 +104,12 @@ export interface AssetProvenance {
   modifications_applied: TransformationStep[];
   resulting_sha256_hash: string;         // Cryptographic SHA-256 hash, or 'NOT_YET_GENERATED' for planned/pre-pipeline assets
   resulting_license: string;             // License governing the output asset (e.g., 'CC-BY-SA 4.0')
+  project_distribution_policy?: string;  // Project-chosen distribution policy where applicable
   production_eligibility: ProductionEligibility;
   commercial_redistribution: CommercialPermission;
   restrictions_and_covenants: string[];  // e.g., 'Must not contact or re-identify subjects', 'Must redistribute derivatives under CC-BY-SA'
   validation_status: AssetValidationStatus;
+  granular_validation?: GranularValidationRecord;
   legal_review_notes?: string;
 }
 

@@ -13,12 +13,13 @@
 
 export type VolumetricCoordinateFrame =
   | 'native_mesh'                      // Local untransformed vertex positions from source 3D asset
-  | 'blender_world'                     // Scene world space in Blender 4.x (+Y Up, +Z Forward)
-  | 'mni152_nonlinear_2009c_asym'       // ICBM 152 Nonlinear Asymmetric 2009c (Standard neuroimaging space)
-  | 'mni152_linear_6th_gen'             // Legacy linear MNI template
-  | 'talairach_tournoux'                // Classical stereotaxic atlas space
-  | 'ac_pc_surgical'                    // Anterior Commissure - Posterior Commissure aligned stereotaxic space (DBS)
-  | 'patient_dicom_lps';                // Native scanner physical space (Left-Posterior-Superior)
+  | 'canonical_atlas_ras'              // Canonical Neuro Atlas internal reference frame (Right-Anterior-Superior, 1mm)
+  | 'blender_world'                    // Scene world space in Blender 4.x (+Y Up, +Z Forward)
+  | 'mni152_nonlinear_2009c_asym'      // ICBM 152 Nonlinear Asymmetric 2009c (Standard neuroimaging space)
+  | 'mni152_linear_6th_gen'            // Legacy linear MNI template
+  | 'talairach_tournoux'               // Classical stereotaxic atlas space
+  | 'ac_pc_surgical'                   // Anterior Commissure - Posterior Commissure aligned stereotaxic space (DBS)
+  | 'patient_dicom_lps';               // Native scanner physical space (Left-Posterior-Superior)
 
 export type SurfaceCoordinateFrame =
   | 'hcp_fslr_32k'                      // Human Connectome Project fs_LR surface mesh (32,492 vertices/hemisphere)

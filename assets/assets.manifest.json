@@ -87,6 +87,7 @@
       ],
       "resulting_sha256_hash": "c361b544d06ce687f1b8b7510a5699581a9aaf3686d3a0904484b12b820cc613",
       "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
       "commercial_redistribution": "PERMITTED",
       "restrictions_and_covenants": [
@@ -96,7 +97,7 @@
       ],
       "validation_status": "CLEARED",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72714 left hippocampus). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.",
-      "coordinate_space": "RAS (+X Right, +Y Superior, +Z Anterior)",
+      "coordinate_space": "canonical_atlas_ras (+X Right, +Y Anterior, +Z Superior)",
       "centroid_mm": [
         -25.07,
         -13.89,
@@ -248,6 +249,7 @@
       ],
       "resulting_sha256_hash": "a487b3568583990d371be0af2e2909472e388a4bd23420661f0a15994f37a507",
       "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
       "commercial_redistribution": "PERMITTED",
       "restrictions_and_covenants": [
@@ -257,7 +259,7 @@
       ],
       "validation_status": "CLEARED",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72713 right hippocampus). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.",
-      "coordinate_space": "RAS (+X Right, +Y Superior, +Z Anterior)",
+      "coordinate_space": "canonical_atlas_ras (+X Right, +Y Anterior, +Z Superior)",
       "centroid_mm": [
         26.38,
         -13.89,

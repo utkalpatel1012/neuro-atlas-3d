@@ -119,6 +119,7 @@ async function runTests() {
   const customGroup: AnatomicalGroup = {
     groupId: 'system.limbic.subiculum',
     name: 'Subicular Complex',
+    semanticType: 'FUNCTIONAL_SYSTEM',
     category: 'region',
     parentGroupId: 'system.limbic.left',
     childGroupIds: [],

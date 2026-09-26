@@ -395,6 +395,27 @@ export class AtlasApplication {
     }
   }
 
+  /**
+   * Frames the selection or a specified bounding box smoothly in the viewport.
+   */
+  public frameSelection(box?: THREE.Box3, duration?: number): void {
+    if (box) {
+      this.cameraManager.frameSelection(box, duration);
+      return;
+    }
+    const primaryEntity = this.assemblyManager.getPrimarySelectedEntity();
+    const primaryGroup = this.assemblyManager.getPrimarySelectedGroup();
+    if (primaryEntity) {
+      const b = this.assemblyManager.getEntityBoundingBox(primaryEntity.entityId);
+      this.cameraManager.frameSelection(b, duration);
+    } else if (primaryGroup) {
+      const b = this.assemblyManager.getGroupBoundingBox(primaryGroup.groupId);
+      this.cameraManager.frameSelection(b, duration);
+    } else {
+      this.resetCamera();
+    }
+  }
+
   public restoreAll(): void {
     this.restoreAllVisibility();
   }
