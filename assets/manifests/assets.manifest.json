@@ -1,8 +1,8 @@
 {
   "manifest_version": "1.1.0",
-  "generated_at": "2026-09-26T13:03:10.995Z",
+  "generated_at": "2026-09-26T17:50:43.667Z",
   "generator_script": "scripts/pipeline/update_manifest.ts",
-  "total_assets": 2,
+  "total_assets": 4,
   "assets": {
     "mesh.hippocampus.left.v1": {
       "asset_id": "mesh.hippocampus.left.v1",
@@ -24,8 +24,8 @@
             "source_byte_length": 214084
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
-          "timestamp": "2026-09-26T10:45:00Z"
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:30:00Z"
         },
         {
           "step_number": 2,
@@ -40,8 +40,8 @@
             "measured_volume_cm3": 1.872
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
-          "timestamp": "2026-09-26T10:47:00Z"
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:35:00Z"
         },
         {
           "step_number": 3,
@@ -55,8 +55,8 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
-          "timestamp": "2026-09-26T10:50:00Z"
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:40:00Z"
         },
         {
           "step_number": 4,
@@ -68,8 +68,8 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
-          "timestamp": "2026-09-26T11:04:00Z"
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:45:00Z"
         },
         {
           "step_number": 5,
@@ -81,8 +81,8 @@
             "lossless_verification": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
-          "timestamp": "2026-09-26T11:07:00Z"
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
       "resulting_sha256_hash": "c361b544d06ce687f1b8b7510a5699581a9aaf3686d3a0904484b12b820cc613",
@@ -97,7 +97,7 @@
       ],
       "validation_status": "CLEARED",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72714 left hippocampus). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.",
-      "coordinate_space": "canonical_atlas_ras (+X Right, +Y Anterior, +Z Superior)",
+      "coordinate_space": "canonical_atlas_ras (+X Right, +Y Superior, +Z Anterior)",
       "centroid_mm": [
         -25.07,
         -13.89,
@@ -105,7 +105,7 @@
       ],
       "dimensions_mm": [
         18.9,
-        20.8,
+        20.78,
         40.55
       ],
       "topology_class": "SOLID",
@@ -186,8 +186,8 @@
             "source_byte_length": 222684
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
-          "timestamp": "2026-09-26T10:45:00Z"
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:30:00Z"
         },
         {
           "step_number": 2,
@@ -202,8 +202,8 @@
             "measured_volume_cm3": 1.852
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
-          "timestamp": "2026-09-26T10:47:00Z"
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:35:00Z"
         },
         {
           "step_number": 3,
@@ -217,8 +217,8 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
-          "timestamp": "2026-09-26T10:50:00Z"
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:40:00Z"
         },
         {
           "step_number": 4,
@@ -230,8 +230,8 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
-          "timestamp": "2026-09-26T11:04:00Z"
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:45:00Z"
         },
         {
           "step_number": 5,
@@ -243,8 +243,8 @@
             "lossless_verification": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
-          "timestamp": "2026-09-26T11:07:00Z"
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
       "resulting_sha256_hash": "a487b3568583990d371be0af2e2909472e388a4bd23420661f0a15994f37a507",
@@ -259,7 +259,7 @@
       ],
       "validation_status": "CLEARED",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72713 right hippocampus). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.",
-      "coordinate_space": "canonical_atlas_ras (+X Right, +Y Anterior, +Z Superior)",
+      "coordinate_space": "canonical_atlas_ras (+X Right, +Y Superior, +Z Anterior)",
       "centroid_mm": [
         26.38,
         -13.89,
@@ -327,11 +327,337 @@
           "compression_ratio": 1.43
         }
       }
+    },
+    "mesh.cortex.left.v1": {
+      "asset_id": "mesh.cortex.left.v1",
+      "dataset_name": "BodyParts3D / SPL-PNL Brain Atlas",
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "BodyParts3D_Cortex_Left_Assembly",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "acquisition_date": "2026-09-26",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_cerebral_cortex.ts",
+          "parameters": {
+            "source_file": "mesh.cortex.left.v1.raw.stl",
+            "verified_source_sha256": "a1950fea0df718e7230d88b21b7145fd0bd0f4357d9289e00bcb8ed5f9ba6c13",
+            "source_byte_length": 9911584
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 260.209
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "DICOM_LPS",
+            "target_space": "THREEJS_RAS",
+            "transform": "x_negated_z_negated",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 47.03,
+            "lossless_verification": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "068f6698cdb3b6ae5ed7792c95222215e38e8263a52456541ea0dfaad8ba3bce",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "PERMITTED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 compatible terms",
+        "Defensive dual compliance: satisfies both CC-BY-SA 2.1 JP and CC BY 4.0"
+      ],
+      "validation_status": "CLEARED",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (BodyParts3D_Cortex_Left_Assembly left cerebral cortex). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.",
+      "coordinate_space": "canonical_atlas_ras (+X Right, +Y Superior, +Z Anterior)",
+      "centroid_mm": [
+        -32.5,
+        16.01,
+        -19.47
+      ],
+      "dimensions_mm": [
+        65.19,
+        110.74,
+        170.23
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "PASS",
+      "anatomical_qa_status": "PASS",
+      "dual_licensing_notes": "Dual compliance: Release 3.0 CC-BY-SA 2.1 JP and modern DBCLS portal CC BY 4.0 (verified 2025-02-27). Derivative published under CC-BY-SA 4.0.",
+      "canonical_glb_path": "assets/derived/mesh.cortex.left.v1/canonical/mesh.cortex.left.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.cortex.left.v1/lod/mesh.cortex.left.v1.lod0.glb",
+          "sha256": "676b5707fc6b06e275f0b01a7481c69ed8d38a7d179db195eea868f6e14f89d6",
+          "triangles": 198230,
+          "bytes": 4759268
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.cortex.left.v1/lod/mesh.cortex.left.v1.lod1.glb",
+          "sha256": "9c7c7bb47bd452289ced8a6145d3d49909a1faf165764f5e104ec7f2c5d8dcf1",
+          "triangles": 148672,
+          "bytes": 3569876
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.cortex.left.v1/lod/mesh.cortex.left.v1.lod2.glb",
+          "sha256": "8b0d2efc99ea6fcf1504475059f2b745fec52a506c90cb45834aa9718640b84d",
+          "triangles": 99114,
+          "bytes": 1785796
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.cortex.left.v1/lod/mesh.cortex.left.v1.lod3.glb",
+          "sha256": "1b7362734acc95d4f1528eaf8f11aad2aa6459a4e27a9b53db4a9e2c39a2735d",
+          "triangles": 49556,
+          "bytes": 893752
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.cortex.left.v1/runtime/mesh.cortex.left.v1.lod0.meshopt.glb",
+          "sha256": "ac36bdad2b47ff9cd603e65c3e84cf5ee8183934ae699abf50ddd8aaa5792534",
+          "bytes": 2270724,
+          "compression_ratio": 2.1
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.cortex.left.v1/runtime/mesh.cortex.left.v1.lod1.meshopt.glb",
+          "sha256": "8f009c71d1c1b49b2d2109a7b46e167dc4d576ac20221c0d0522ec65db144afc",
+          "bytes": 1740676,
+          "compression_ratio": 2.05
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.cortex.left.v1/runtime/mesh.cortex.left.v1.lod2.meshopt.glb",
+          "sha256": "b85a6ae4018309f188390f6debf0430fd5cf6d8dd32e3cfbcb5c1cd03588ac5e",
+          "bytes": 1194108,
+          "compression_ratio": 1.5
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.cortex.left.v1/runtime/mesh.cortex.left.v1.lod3.meshopt.glb",
+          "sha256": "9f780d1180b1fa69ccb4fa341efd2b3b038fa9b5b23759bb6a5f7b5d8ac26d59",
+          "bytes": 625476,
+          "compression_ratio": 1.43
+        }
+      }
+    },
+    "mesh.cortex.right.v1": {
+      "asset_id": "mesh.cortex.right.v1",
+      "dataset_name": "BodyParts3D / SPL-PNL Brain Atlas",
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "BodyParts3D_Cortex_Right_Assembly",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "acquisition_date": "2026-09-26",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_cerebral_cortex.ts",
+          "parameters": {
+            "source_file": "mesh.cortex.right.v1.raw.stl",
+            "verified_source_sha256": "5bd9ad3d53eeb4a6750d484ad254c7484ffa6a3e0673782fc41148fa2f327037",
+            "source_byte_length": 9915584
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 260.237
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "DICOM_LPS",
+            "target_space": "THREEJS_RAS",
+            "transform": "x_negated_z_negated",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 47.09,
+            "lossless_verification": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "9672869",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "906e2be097695c6146fee7db47b82998a1ae5d88beda14e3d0044b748ddf9b13",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "PERMITTED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 compatible terms",
+        "Defensive dual compliance: satisfies both CC-BY-SA 2.1 JP and CC BY 4.0"
+      ],
+      "validation_status": "CLEARED",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (BodyParts3D_Cortex_Right_Assembly right cerebral cortex). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.",
+      "coordinate_space": "canonical_atlas_ras (+X Right, +Y Superior, +Z Anterior)",
+      "centroid_mm": [
+        33.78,
+        16,
+        -19.47
+      ],
+      "dimensions_mm": [
+        65.21,
+        110.74,
+        170.23
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "PASS",
+      "anatomical_qa_status": "PASS",
+      "dual_licensing_notes": "Dual compliance: Release 3.0 CC-BY-SA 2.1 JP and modern DBCLS portal CC BY 4.0 (verified 2025-02-27). Derivative published under CC-BY-SA 4.0.",
+      "canonical_glb_path": "assets/derived/mesh.cortex.right.v1/canonical/mesh.cortex.right.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.cortex.right.v1/lod/mesh.cortex.right.v1.lod0.glb",
+          "sha256": "fa57f25c36f0f3aaec88649a53e2f4f1069f9dc33e0d8e265de9de4ba021ae48",
+          "triangles": 198310,
+          "bytes": 4761188
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.cortex.right.v1/lod/mesh.cortex.right.v1.lod1.glb",
+          "sha256": "da652ca711381816751ba5151ac9f5e67f315e2837d70a70ba32e597f0c0855b",
+          "triangles": 148732,
+          "bytes": 3571312
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.cortex.right.v1/lod/mesh.cortex.right.v1.lod2.glb",
+          "sha256": "2590efecd7c13835ff4bc2ee3c34fbcc329b67c412391000bb9677b8927f852b",
+          "triangles": 99154,
+          "bytes": 1786516
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.cortex.right.v1/lod/mesh.cortex.right.v1.lod3.glb",
+          "sha256": "f44719a4970571fff6fbf0b0cb9e4307d7ea273dd9db7e77b1bbb0911bc11523",
+          "triangles": 49576,
+          "bytes": 894112
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.cortex.right.v1/runtime/mesh.cortex.right.v1.lod0.meshopt.glb",
+          "sha256": "a181c3b3e4e3366eeab88a75098ceec555f8a189d367a026eff52a861a388f6c",
+          "bytes": 2269848,
+          "compression_ratio": 2.1
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.cortex.right.v1/runtime/mesh.cortex.right.v1.lod1.meshopt.glb",
+          "sha256": "4ba53a18c5b11a5d4dfee7dcb1d3940f022ef60ece8db078970625fc8295ef07",
+          "bytes": 1739488,
+          "compression_ratio": 2.05
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.cortex.right.v1/runtime/mesh.cortex.right.v1.lod2.meshopt.glb",
+          "sha256": "d6baafa887438fcef181ff78f955e6c5ef2c8d6814e417cde33e33767d8e0dbb",
+          "bytes": 1193428,
+          "compression_ratio": 1.5
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.cortex.right.v1/runtime/mesh.cortex.right.v1.lod3.meshopt.glb",
+          "sha256": "d81bff80e534cbe7ad717c615f07bebeb080ae4fe86a1299c62b1f1f206aba55",
+          "bytes": 624784,
+          "compression_ratio": 1.43
+        }
+      }
     }
   },
   "production_whitelist": [
     "mesh.hippocampus.left.v1",
-    "mesh.hippocampus.right.v1"
+    "mesh.hippocampus.right.v1",
+    "mesh.cortex.left.v1",
+    "mesh.cortex.right.v1"
   ],
   "research_quarantine": []
 }

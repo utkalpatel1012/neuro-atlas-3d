@@ -22,6 +22,7 @@ import { LODManager } from './LODManager';
 import { PerformanceManager } from './PerformanceManager';
 import { ResourceManager } from './ResourceManager';
 import { AnatomicalAssemblyManager } from './AnatomicalAssemblyManager';
+import { LabelManager } from './LabelManager';
 import {
   AnatomicalEntityRecord,
   CameraViewPreset,
@@ -53,6 +54,7 @@ export class AtlasApplication {
   private performanceManager: PerformanceManager;
   private resourceManager: ResourceManager;
   private assemblyManager: AnatomicalAssemblyManager;
+  private labelManager: LabelManager;
 
   private isRunning: boolean = false;
   private animationFrameId: number | null = null;
@@ -68,6 +70,7 @@ export class AtlasApplication {
     this.assetManager = new AssetManager();
     this.entityManager = new AnatomicalEntityManager();
     this.assemblyManager = new AnatomicalAssemblyManager();
+    this.labelManager = new LabelManager();
     this.resourceManager = new ResourceManager();
 
     // Secondary Subsystems
@@ -290,6 +293,16 @@ export class AtlasApplication {
     // 2. Update Continuous LOD
     this.lodManager.update(this.cameraManager.getCamera());
 
+    // 2b. Update 3D Screen-space Labels
+    const canvas = this.rendererManager.getCanvas();
+    if (canvas) {
+      this.labelManager.update(
+        this.cameraManager.getCamera(),
+        canvas.clientWidth || 800,
+        canvas.clientHeight || 600
+      );
+    }
+
     // 3. Render Scene
     const renderer = this.rendererManager.getRenderer();
     const scene = this.sceneManager.getScene();
@@ -443,6 +456,7 @@ export class AtlasApplication {
   public getSelectionManager(): SelectionManager { return this.selectionManager; }
   public getVisibilityManager(): VisibilityManager { return this.visibilityManager; }
   public getLODManager(): LODManager { return this.lodManager; }
+  public getLabelManager(): LabelManager { return this.labelManager; }
   public getPerformanceManager(): PerformanceManager { return this.performanceManager; }
   public getResourceManager(): ResourceManager { return this.resourceManager; }
 
@@ -452,6 +466,7 @@ export class AtlasApplication {
     this.selectionManager.dispose();
     this.visibilityManager.dispose();
     this.assemblyManager.dispose();
+    this.labelManager.clear();
     this.lodManager.dispose();
     this.performanceManager.dispose();
     this.materialManager.dispose();

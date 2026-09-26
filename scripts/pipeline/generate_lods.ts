@@ -107,19 +107,24 @@ function computeGeometricFidelity(
   const lodVol = computeMeshVolume(lodPositions, lodIndices);
   const volumeDevPercent = baseVol > 0 ? Number((((lodVol - baseVol) / baseVol) * 100).toFixed(3)) : 0;
 
-  // Discrete surface deviation: evaluate distance from each base vertex to the closest LOD vertex
+  // Discrete surface deviation: evaluate distance from sampled base vertices to closest LOD vertex
   let maxDev = 0;
   let sumDev = 0;
   const numLodVerts = lodPositions.length / 3;
   const numBaseVerts = basePositions.length / 3;
+  const sampleStep = Math.max(1, Math.floor(numBaseVerts / 1000));
+  let sampleCount = 0;
 
-  for (let i = 0; i < numBaseVerts; i++) {
+  for (let i = 0; i < numBaseVerts; i += sampleStep) {
+    sampleCount++;
     const bx = basePositions[i * 3];
     const by = basePositions[i * 3 + 1];
     const bz = basePositions[i * 3 + 2];
 
     let minDistSq = Infinity;
-    for (let j = 0; j < numLodVerts; j++) {
+    // Probe LOD vertices with an adaptive stride if LOD mesh is also very large
+    const lodStep = Math.max(1, Math.floor(numLodVerts / 5000));
+    for (let j = 0; j < numLodVerts; j += lodStep) {
       const dx = bx - lodPositions[j * 3];
       const dy = by - lodPositions[j * 3 + 1];
       const dz = bz - lodPositions[j * 3 + 2];
@@ -138,7 +143,7 @@ function computeGeometricFidelity(
     volumeDeviationPercent: volumeDevPercent,
     boundingBoxDeviationMm: { min: bbDevMin, max: bbDevMax },
     maxSurfaceDeviationMm: Number(maxDev.toFixed(4)),
-    meanSurfaceDeviationMm: Number((sumDev / numBaseVerts).toFixed(4))
+    meanSurfaceDeviationMm: Number((sumDev / sampleCount).toFixed(4))
   };
 }
 

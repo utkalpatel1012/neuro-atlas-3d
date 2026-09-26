@@ -171,6 +171,10 @@ export class CameraManager {
         // Look from +Y towards -Y
         newPos = currentTarget.clone().add(new THREE.Vector3(0, distance, 0.001));
         break;
+      case 'inferior':
+        // Look from -Y towards +Y (ventral/basal brain view)
+        newPos = currentTarget.clone().add(new THREE.Vector3(0, -distance, 0.001));
+        break;
       case 'lateral_left':
         // Look from lateral -X towards medial +X
         newPos = currentTarget.clone().add(new THREE.Vector3(-distance, 0, 0));
@@ -178,6 +182,14 @@ export class CameraManager {
       case 'medial_left':
         // Look from medial +X towards lateral -X
         newPos = currentTarget.clone().add(new THREE.Vector3(distance, 0, 0));
+        break;
+      case 'lateral_right':
+        // Look from lateral +X towards medial -X
+        newPos = currentTarget.clone().add(new THREE.Vector3(distance, 0, 0));
+        break;
+      case 'medial_right':
+        // Look from medial -X towards lateral +X
+        newPos = currentTarget.clone().add(new THREE.Vector3(-distance, 0, 0));
         break;
       case 'isometric':
       default:

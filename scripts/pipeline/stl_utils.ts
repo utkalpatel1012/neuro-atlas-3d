@@ -39,30 +39,42 @@ export function parseAndAuditSTL(stlBuffer: Buffer): STLMeshAnalysis {
 
   // Map unique vertices using spatial hash
   const vertexMap = new Map<string, number>();
-  const uniquePositions: number[] = [];
-  const indicesList: number[] = [];
+  let uniqueCap = Math.min(numTriangles, 250000);
+  let uniquePositions = new Float32Array(uniqueCap * 3);
+  let uniqueCount = 0;
+  const indices = new Uint32Array(numTriangles * 3);
 
   let zeroAreaFaces = 0;
   let surfaceAreaMm2 = 0;
   let signedVolumeSum = 0;
 
-  // Track edges for manifoldness: key = "minIdx:maxIdx", value = count of sharing triangles
-  const edgeCountMap = new Map<string, number>();
   const faceSet = new Set<string>();
   let duplicateFaces = 0;
+
+  // Track edges using 64-bit integer packing: (min << 32) | max
+  const edgeArray = new BigInt64Array(numTriangles * 3);
 
   let minX = Infinity, minY = Infinity, minZ = Infinity;
   let maxX = -Infinity, maxY = -Infinity, maxZ = -Infinity;
   let sumX = 0, sumY = 0, sumZ = 0;
 
   function getOrAddVertex(x: number, y: number, z: number): number {
-    // Quantize to 0.0001 mm (0.1 micron) for welding exact duplicate vertices
-    const key = `${x.toFixed(4)},${y.toFixed(4)},${z.toFixed(4)}`;
+    const kx = Math.round(x * 10000);
+    const ky = Math.round(y * 10000);
+    const kz = Math.round(z * 10000);
+    const key = `${kx},${ky},${kz}`;
     let idx = vertexMap.get(key);
     if (idx === undefined) {
-      idx = uniquePositions.length / 3;
+      idx = uniqueCount++;
+      if (uniqueCount * 3 > uniquePositions.length) {
+        const next = new Float32Array(uniquePositions.length * 2);
+        next.set(uniquePositions);
+        uniquePositions = next;
+      }
       vertexMap.set(key, idx);
-      uniquePositions.push(x, y, z);
+      uniquePositions[idx * 3] = x;
+      uniquePositions[idx * 3 + 1] = y;
+      uniquePositions[idx * 3 + 2] = z;
 
       if (x < minX) minX = x;
       if (y < minY) minY = y;
@@ -98,7 +110,10 @@ export function parseAndAuditSTL(stlBuffer: Buffer): STLMeshAnalysis {
     const i1 = getOrAddVertex(v1x, v1y, v1z);
     const i2 = getOrAddVertex(v2x, v2y, v2z);
 
-    indicesList.push(i0, i1, i2);
+    const triIdx = i * 3;
+    indices[triIdx] = i0;
+    indices[triIdx + 1] = i1;
+    indices[triIdx + 2] = i2;
 
     // Calculate face area via cross product
     const abx = v1x - v0x, aby = v1y - v0y, abz = v1z - v0z;
@@ -119,30 +134,57 @@ export function parseAndAuditSTL(stlBuffer: Buffer): STLMeshAnalysis {
     const det = v0x * (v1y * v2z - v1z * v2y) - v0y * (v1x * v2z - v1z * v2x) + v0z * (v1x * v2y - v1y * v2x);
     signedVolumeSum += det;
 
-    // Duplicate face detection
-    const sortedFaceKey = [i0, i1, i2].sort((a, b) => a - b).join(':');
+    // Duplicate face detection without array allocations
+    let fa = i0, fb = i1, fc = i2;
+    if (fa > fb) { const t = fa; fa = fb; fb = t; }
+    if (fb > fc) { const t = fb; fb = fc; fc = t; }
+    if (fa > fb) { const t = fa; fa = fb; fb = t; }
+    const sortedFaceKey = `${fa}:${fb}:${fc}`;
     if (faceSet.has(sortedFaceKey)) {
       duplicateFaces++;
     } else {
       faceSet.add(sortedFaceKey);
     }
 
-    // Edges
-    const edges = [
-      i0 < i1 ? `${i0}:${i1}` : `${i1}:${i0}`,
-      i1 < i2 ? `${i1}:${i2}` : `${i2}:${i1}`,
-      i2 < i0 ? `${i2}:${i0}` : `${i0}:${i2}`
-    ];
-    for (const e of edges) {
-      edgeCountMap.set(e, (edgeCountMap.get(e) || 0) + 1);
-    }
+    // Edges packed into 64-bit int: (min << 32) | max
+    const e0min = i0 < i1 ? i0 : i1;
+    const e0max = i0 < i1 ? i1 : i0;
+    edgeArray[triIdx] = (BigInt(e0min) << 32n) | BigInt(e0max);
+
+    const e1min = i1 < i2 ? i1 : i2;
+    const e1max = i1 < i2 ? i2 : i1;
+    edgeArray[triIdx + 1] = (BigInt(e1min) << 32n) | BigInt(e1max);
+
+    const e2min = i2 < i0 ? i2 : i0;
+    const e2max = i2 < i0 ? i0 : i2;
+    edgeArray[triIdx + 2] = (BigInt(e2min) << 32n) | BigInt(e2max);
   }
+
+  // Sort edges to analyze multiplicity in a single linear pass
+  edgeArray.sort();
 
   let nonManifoldEdges = 0;
   let boundaryEdges = 0;
   let manifoldEdges = 0;
 
-  for (const count of edgeCountMap.values()) {
+  if (edgeArray.length > 0) {
+    let curEdge = edgeArray[0];
+    let count = 1;
+    for (let j = 1; j < edgeArray.length; j++) {
+      if (edgeArray[j] === curEdge) {
+        count++;
+      } else {
+        if (count === 2) {
+          manifoldEdges++;
+        } else if (count === 1) {
+          boundaryEdges++;
+        } else {
+          nonManifoldEdges++;
+        }
+        curEdge = edgeArray[j];
+        count = 1;
+      }
+    }
     if (count === 2) {
       manifoldEdges++;
     } else if (count === 1) {
@@ -153,23 +195,22 @@ export function parseAndAuditSTL(stlBuffer: Buffer): STLMeshAnalysis {
   }
 
   const isWatertight = boundaryEdges === 0 && nonManifoldEdges === 0;
-  const numUnique = uniquePositions.length / 3;
+  const numUnique = uniqueCount;
   const centroid: [number, number, number] = [
     sumX / numUnique,
     sumY / numUnique,
     sumZ / numUnique
   ];
 
-  const positions = new Float32Array(uniquePositions);
-  const isUint32 = numUnique > 65535;
-  const indices = isUint32 ? new Uint32Array(indicesList) : new Uint16Array(indicesList);
+  const positions = uniquePositions.slice(0, numUnique * 3);
+  const finalIndices = numUnique <= 65535 ? new Uint16Array(indices) : indices;
 
   return {
     triangleCount: numTriangles,
     rawVertexCount: numTriangles * 3,
     uniqueVertexCount: numUnique,
     positions,
-    indices,
+    indices: finalIndices,
     minBounds: [minX, minY, minZ],
     maxBounds: [maxX, maxY, maxZ],
     centroid,

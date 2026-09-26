@@ -217,8 +217,11 @@ export type CameraViewPreset =
   | 'anterior'
   | 'posterior'
   | 'superior'
+  | 'inferior'
   | 'lateral_left'
-  | 'medial_left';
+  | 'medial_left'
+  | 'lateral_right'
+  | 'medial_right';
 
 export interface TelemetryMetrics {
   fps: number;

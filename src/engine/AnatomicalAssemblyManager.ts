@@ -154,6 +154,85 @@ export class AnatomicalAssemblyManager {
       status: 'AVAILABLE',
       description: 'Medial temporal lobe structures including hippocampal formation and parahippocampal gyrus'
     });
+
+    // 6. Cerebral Cortex Regions (Continuous Physical & Functional Macroanatomy)
+    this.registerGroup({
+      groupId: 'region.cortex',
+      name: 'Cerebral Cortex (Bilateral)',
+      semanticType: 'ANATOMICAL_REGION',
+      category: 'region',
+      childGroupIds: ['region.cortex.left', 'region.cortex.right'],
+      memberEntityIds: [],
+      status: 'AVAILABLE',
+      description: 'Bilateral cerebral cortical mantle and pial surfaces'
+    });
+
+    this.registerGroup({
+      groupId: 'region.cortex.left',
+      name: 'Cerebral Cortex (Left)',
+      semanticType: 'ANATOMICAL_REGION',
+      category: 'region',
+      parentGroupId: 'hemisphere.left',
+      childGroupIds: [],
+      memberEntityIds: [],
+      status: 'AVAILABLE',
+      description: 'Left cerebral cortical mantle'
+    });
+
+    this.registerGroup({
+      groupId: 'region.cortex.right',
+      name: 'Cerebral Cortex (Right)',
+      semanticType: 'ANATOMICAL_REGION',
+      category: 'region',
+      parentGroupId: 'hemisphere.right',
+      childGroupIds: [],
+      memberEntityIds: [],
+      status: 'AVAILABLE',
+      description: 'Right cerebral cortical mantle'
+    });
+
+    // 7. Major Lobes (Semantic Organization - distinct from physical mesh boundary)
+    const lobes: Array<{ id: string; name: string; desc: string }> = [
+      { id: 'frontal', name: 'Frontal Lobe', desc: 'Motor control, executive function, expressive language' },
+      { id: 'parietal', name: 'Parietal Lobe', desc: 'Somatosensation, spatial attention, sensorimotor integration' },
+      { id: 'temporal', name: 'Temporal Lobe', desc: 'Auditory processing, language comprehension, memory' },
+      { id: 'occipital', name: 'Occipital Lobe', desc: 'Primary visual perception and extrastriate visual processing' },
+      { id: 'insula', name: 'Insular Cortex', desc: 'Interoception, salience network, gustatory processing' },
+      { id: 'limbic', name: 'Limbic Lobe', desc: 'Cingulate and parahippocampal gyri encircling corpus callosum' }
+    ];
+
+    for (const l of lobes) {
+      this.registerGroup({
+        groupId: `lobe.${l.id}`,
+        name: `${l.name} (Bilateral)`,
+        semanticType: 'ANATOMICAL_REGION',
+        category: 'lobe',
+        childGroupIds: [`lobe.${l.id}.left`, `lobe.${l.id}.right`],
+        memberEntityIds: [],
+        status: 'AVAILABLE',
+        description: l.desc
+      });
+      this.registerGroup({
+        groupId: `lobe.${l.id}.left`,
+        name: `${l.name} (Left)`,
+        semanticType: 'ANATOMICAL_REGION',
+        category: 'lobe',
+        parentGroupId: 'hemisphere.left',
+        childGroupIds: [],
+        memberEntityIds: [],
+        status: 'AVAILABLE'
+      });
+      this.registerGroup({
+        groupId: `lobe.${l.id}.right`,
+        name: `${l.name} (Right)`,
+        semanticType: 'ANATOMICAL_REGION',
+        category: 'lobe',
+        parentGroupId: 'hemisphere.right',
+        childGroupIds: [],
+        memberEntityIds: [],
+        status: 'AVAILABLE'
+      });
+    }
   }
 
   /**

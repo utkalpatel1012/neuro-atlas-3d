@@ -1,0 +1,79 @@
+{
+  "assetId": "mesh.cortex.right.v1",
+  "timestamp": "2026-09-26T17:37:23.028Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\lod\\mesh.cortex.right.v1.lod0.glb",
+      "uncompressedByteLength": 4761188,
+      "uncompressedSha256": "fa57f25c36f0f3aaec88649a53e2f4f1069f9dc33e0d8e265de9de4ba021ae48",
+      "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\runtime\\mesh.cortex.right.v1.lod0.meshopt.glb",
+      "compressedByteLength": 2269848,
+      "compressedSha256": "a181c3b3e4e3366eeab88a75098ceec555f8a189d367a026eff52a861a388f6c",
+      "compressionRatio": 2.1,
+      "savingsPercent": 52.33,
+      "vertexCount": 99187,
+      "triangleCount": 198310,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\lod\\mesh.cortex.right.v1.lod1.glb",
+      "uncompressedByteLength": 3571312,
+      "uncompressedSha256": "da652ca711381816751ba5151ac9f5e67f315e2837d70a70ba32e597f0c0855b",
+      "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\runtime\\mesh.cortex.right.v1.lod1.meshopt.glb",
+      "compressedByteLength": 1739488,
+      "compressedSha256": "4ba53a18c5b11a5d4dfee7dcb1d3940f022ef60ece8db078970625fc8295ef07",
+      "compressionRatio": 2.05,
+      "savingsPercent": 51.29,
+      "vertexCount": 74398,
+      "triangleCount": 148732,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\lod\\mesh.cortex.right.v1.lod2.glb",
+      "uncompressedByteLength": 1786516,
+      "uncompressedSha256": "2590efecd7c13835ff4bc2ee3c34fbcc329b67c412391000bb9677b8927f852b",
+      "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\runtime\\mesh.cortex.right.v1.lod2.meshopt.glb",
+      "compressedByteLength": 1193428,
+      "compressedSha256": "d6baafa887438fcef181ff78f955e6c5ef2c8d6814e417cde33e33767d8e0dbb",
+      "compressionRatio": 1.5,
+      "savingsPercent": 33.2,
+      "vertexCount": 49609,
+      "triangleCount": 99154,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\lod\\mesh.cortex.right.v1.lod3.glb",
+      "uncompressedByteLength": 894112,
+      "uncompressedSha256": "f44719a4970571fff6fbf0b0cb9e4307d7ea273dd9db7e77b1bbb0911bc11523",
+      "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\runtime\\mesh.cortex.right.v1.lod3.meshopt.glb",
+      "compressedByteLength": 624784,
+      "compressedSha256": "d81bff80e534cbe7ad717c615f07bebeb080ae4fe86a1299c62b1f1f206aba55",
+      "compressionRatio": 1.43,
+      "savingsPercent": 30.12,
+      "vertexCount": 24820,
+      "triangleCount": 49576,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 11013128,
+  "overallCompressedBytes": 5827548,
+  "overallSavingsPercent": 47.09,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.cortex.right.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "lossless": true
+    },
+    "timestamp": "2026-09-26T17:37:23.030Z"
+  }
+}

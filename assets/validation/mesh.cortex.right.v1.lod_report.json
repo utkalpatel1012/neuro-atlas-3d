@@ -1,0 +1,179 @@
+{
+  "assetId": "mesh.cortex.right.v1",
+  "timestamp": "2026-09-26T17:37:05.008Z",
+  "inputCanonicalGlb": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\canonical\\mesh.cortex.right.v1.canonical.glb",
+  "inputCanonicalHash": "906e2be097695c6146fee7db47b82998a1ae5d88beda14e3d0044b748ddf9b13",
+  "levels": [
+    {
+      "level": 0,
+      "lodName": "lod0",
+      "targetRatio": 1,
+      "triangleCount": 198310,
+      "vertexCount": 99187,
+      "byteLength": 4761188,
+      "sha256": "fa57f25c36f0f3aaec88649a53e2f4f1069f9dc33e0d8e265de9de4ba021ae48",
+      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\lod\\mesh.cortex.right.v1.lod0.glb",
+      "targetIndexCount": 594930,
+      "resultingIndexCount": 594930,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 260236.97,
+        "lodVolumeMm3": 260236.97,
+        "volumeDeviationPercent": 0,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 5.7374,
+        "meanSurfaceDeviationMm": 1.5376
+      }
+    },
+    {
+      "level": 1,
+      "lodName": "lod1",
+      "targetRatio": 0.75,
+      "triangleCount": 148732,
+      "vertexCount": 74398,
+      "byteLength": 3571312,
+      "sha256": "da652ca711381816751ba5151ac9f5e67f315e2837d70a70ba32e597f0c0855b",
+      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\lod\\mesh.cortex.right.v1.lod1.glb",
+      "targetIndexCount": 446196,
+      "resultingIndexCount": 446196,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000273,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 260236.97,
+        "lodVolumeMm3": 260027.85,
+        "volumeDeviationPercent": -0.08,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            -0.0199,
+            -0.0047
+          ]
+        },
+        "maxSurfaceDeviationMm": 6.2152,
+        "meanSurfaceDeviationMm": 1.5973
+      }
+    },
+    {
+      "level": 2,
+      "lodName": "lod2",
+      "targetRatio": 0.5,
+      "triangleCount": 99154,
+      "vertexCount": 49609,
+      "byteLength": 1786516,
+      "sha256": "2590efecd7c13835ff4bc2ee3c34fbcc329b67c412391000bb9677b8927f852b",
+      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\lod\\mesh.cortex.right.v1.lod2.glb",
+      "targetIndexCount": 297465,
+      "resultingIndexCount": 297462,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000464,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 260236.97,
+        "lodVolumeMm3": 259515.68,
+        "volumeDeviationPercent": -0.277,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            -0.0199,
+            -0.0047
+          ]
+        },
+        "maxSurfaceDeviationMm": 6.0071,
+        "meanSurfaceDeviationMm": 1.6206
+      }
+    },
+    {
+      "level": 3,
+      "lodName": "lod3",
+      "targetRatio": 0.25,
+      "triangleCount": 49576,
+      "vertexCount": 24820,
+      "byteLength": 894112,
+      "sha256": "f44719a4970571fff6fbf0b0cb9e4307d7ea273dd9db7e77b1bbb0911bc11523",
+      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\lod\\mesh.cortex.right.v1.lod3.glb",
+      "targetIndexCount": 148731,
+      "resultingIndexCount": 148728,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000897,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 260236.97,
+        "lodVolumeMm3": 258177.59,
+        "volumeDeviationPercent": -0.791,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0.05,
+            0.084
+          ],
+          "max": [
+            0,
+            -0.0199,
+            -0.0188
+          ]
+        },
+        "maxSurfaceDeviationMm": 5.1888,
+        "meanSurfaceDeviationMm": 1.4626
+      }
+    }
+  ],
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.cortex.right.v1.lod_generation",
+    "tool": "MeshoptSimplifier / NeuroAtlas3D LOD Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "algorithms": "Quadric_Error_Metric_Simplification",
+      "levels": [
+        {
+          "name": "lod0",
+          "ratio": 1
+        },
+        {
+          "name": "lod1",
+          "ratio": 0.75
+        },
+        {
+          "name": "lod2",
+          "ratio": 0.5
+        },
+        {
+          "name": "lod3",
+          "ratio": 0.25
+        }
+      ]
+    },
+    "timestamp": "2026-09-26T17:37:05.009Z"
+  }
+}

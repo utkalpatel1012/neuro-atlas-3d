@@ -448,6 +448,10 @@ export class RendererManager {
     return this.renderer;
   }
 
+  public getCanvas(): HTMLCanvasElement | undefined {
+    return this.canvas || this.renderer?.domElement;
+  }
+
   public getUnderlyingRenderer(): any {
     return this.renderer;
   }

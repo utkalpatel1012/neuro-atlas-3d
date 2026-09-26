@@ -10,6 +10,7 @@ import { CameraManager } from '../engine/CameraManager';
 import { VisibilityManager } from '../engine/VisibilityManager';
 import { SelectionManager } from '../engine/SelectionManager';
 import { AnatomicalAssemblyManager } from '../engine/AnatomicalAssemblyManager';
+import { LabelManager } from '../engine/LabelManager';
 import { CameraViewPreset } from '../engine/types';
 import * as THREE from 'three';
 
@@ -19,6 +20,7 @@ export class ControlsBar {
   private visibilityManager: VisibilityManager;
   private selectionManager: SelectionManager;
   private assemblyManager?: AnatomicalAssemblyManager;
+  private labelManager?: LabelManager;
   private element: HTMLElement;
 
   constructor(
@@ -26,13 +28,15 @@ export class ControlsBar {
     cameraManager: CameraManager,
     visibilityManager: VisibilityManager,
     selectionManager: SelectionManager,
-    assemblyManager?: AnatomicalAssemblyManager
+    assemblyManager?: AnatomicalAssemblyManager,
+    labelManager?: LabelManager
   ) {
     this.container = container;
     this.cameraManager = cameraManager;
     this.visibilityManager = visibilityManager;
     this.selectionManager = selectionManager;
     this.assemblyManager = assemblyManager;
+    this.labelManager = labelManager;
 
     this.element = document.createElement('nav');
     this.element.className = 'neuro-controls-bar';
@@ -51,16 +55,22 @@ export class ControlsBar {
         <button class="btn btn-view" data-preset="anterior" title="Anterior View (Coronal Face)">Ant</button>
         <button class="btn btn-view" data-preset="posterior" title="Posterior View (Occipital)">Post</button>
         <button class="btn btn-view" data-preset="superior" title="Superior View (Axial Top)">Sup</button>
+        <button class="btn btn-view" data-preset="inferior" title="Inferior View (Axial Ventral / Basal)">Inf</button>
         <button class="btn btn-view" data-preset="lateral_left" title="Lateral Left View (Sagittal)">Lat (L)</button>
         <button class="btn btn-view" data-preset="medial_left" title="Medial Left View (Midsagittal)">Med (L)</button>
+        <button class="btn btn-view" data-preset="lateral_right" title="Lateral Right View (Sagittal)">Lat (R)</button>
+        <button class="btn btn-view" data-preset="medial_right" title="Medial Right View (Midsagittal)">Med (R)</button>
         <button class="btn btn-view btn-selected" data-preset="isometric" title="Isometric Perspective">Iso</button>
       </div>
 
       <div class="controls-divider"></div>
 
       <div class="controls-group">
+        <button id="btn-select-cortex" class="btn btn-secondary" title="Select & Focus Bilateral Cerebral Cortex">
+          🧠 Cortex
+        </button>
         <button id="btn-select-limbic" class="btn btn-secondary" title="Select & Focus Bilateral Limbic System">
-          🧠 Limbic System
+          🔬 Limbic
         </button>
         <button id="btn-focus-lh" class="btn btn-secondary" title="Focus Left Hemisphere">
           LH
@@ -68,8 +78,11 @@ export class ControlsBar {
         <button id="btn-focus-rh" class="btn btn-secondary" title="Focus Right Hemisphere">
           RH
         </button>
+        <button id="btn-toggle-labels" class="btn btn-secondary" title="Toggle 3D Anatomical Screen-Space Labels">
+          🏷️ Labels
+        </button>
         <button id="btn-reset-cam" class="btn btn-secondary" title="Reset Camera to Standard View">
-          ↺ Reset View
+          ↺ Reset
         </button>
         <button id="btn-restore-all" class="btn btn-secondary" title="Show All Structures and Exit Isolation">
           👁 Show All
@@ -85,8 +98,8 @@ export class ControlsBar {
     if (selectedRecord) {
       return new THREE.Vector3(...selectedRecord.canonicalCentroidMm);
     }
-    // Default left hippocampus centroid
-    return new THREE.Vector3(-25.2, -20.6, -11.4);
+    // Default origin / midpoint
+    return new THREE.Vector3(0, 0, 0);
   }
 
   private bindEvents(): void {
@@ -102,6 +115,15 @@ export class ControlsBar {
           target.classList.add('btn-selected');
         }
       });
+    });
+
+    const cortexBtn = this.element.querySelector('#btn-select-cortex');
+    cortexBtn?.addEventListener('click', () => {
+      if (this.assemblyManager) {
+        this.assemblyManager.selectGroup('region.cortex');
+        const box = this.assemblyManager.getGroupBoundingBox('region.cortex');
+        this.cameraManager.focusBoundingBox(box);
+      }
     });
 
     const limbicBtn = this.element.querySelector('#btn-select-limbic');
@@ -128,6 +150,19 @@ export class ControlsBar {
         this.assemblyManager.selectGroup('hemisphere.right');
         const box = this.assemblyManager.getGroupBoundingBox('hemisphere.right');
         this.cameraManager.focusBoundingBox(box);
+      }
+    });
+
+    const labelsBtn = this.element.querySelector('#btn-toggle-labels');
+    labelsBtn?.addEventListener('click', () => {
+      if (this.labelManager) {
+        const newState = !this.labelManager.getEnabled();
+        this.labelManager.setEnabled(newState);
+        if (newState) {
+          labelsBtn.classList.remove('btn-inactive');
+        } else {
+          labelsBtn.classList.add('btn-inactive');
+        }
       }
     });
 

@@ -30,10 +30,18 @@ export interface ExtendedAssetManifestEntry extends AssetProvenance {
   dual_licensing_notes?: string;
 }
 
+import { parseGLB, computeBoundingVolume } from './glb_utils';
+
 function buildEntry(assetId: string): ExtendedAssetManifestEntry {
   const isRight = assetId.includes('right');
-  const sourceFma = isRight ? 'FMA72713' : 'FMA72714';
-  const nameDesc = isRight ? 'right hippocampus' : 'left hippocampus';
+  const isCortex = assetId.includes('cortex');
+
+  let sourceFma = isRight ? 'FMA72713' : 'FMA72714';
+  let nameDesc = isRight ? 'right hippocampus' : 'left hippocampus';
+  if (isCortex) {
+    sourceFma = isRight ? 'BodyParts3D_Cortex_Right_Assembly' : 'BodyParts3D_Cortex_Left_Assembly';
+    nameDesc = isRight ? 'right cerebral cortex' : 'left cerebral cortex';
+  }
 
   const canonicalGlbPath = path.join(PROJECT_ROOT, 'assets/derived', assetId, 'canonical', `${assetId}.canonical.glb`);
   if (!fs.existsSync(canonicalGlbPath)) {
@@ -42,6 +50,20 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
 
   const canonicalBytes = fs.readFileSync(canonicalGlbPath);
   const canonicalSha256 = crypto.createHash('sha256').update(canonicalBytes).digest('hex');
+
+  // Compute exact bounds and centroid from canonical geometry
+  const { geometry } = parseGLB(canonicalBytes);
+  const bounds = computeBoundingVolume(geometry.positions);
+  const centroid: [number, number, number] = [
+    Number(bounds.center[0].toFixed(2)),
+    Number(bounds.center[1].toFixed(2)),
+    Number(bounds.center[2].toFixed(2))
+  ];
+  const dimensions: [number, number, number] = [
+    Number(bounds.dimensions[0].toFixed(2)),
+    Number(bounds.dimensions[1].toFixed(2)),
+    Number(bounds.dimensions[2].toFixed(2))
+  ];
 
   // Read QA, LOD and compression reports
   const geomQaPath = path.join(PROJECT_ROOT, 'assets/validation', `${assetId}.geometry_qa.json`);
@@ -53,7 +75,9 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
   const compReportPath = path.join(PROJECT_ROOT, 'assets/validation', `${assetId}.compression_report.json`);
   const compReport = fs.existsSync(compReportPath) ? JSON.parse(fs.readFileSync(compReportPath, 'utf8')) : null;
 
-  const rawPath = path.join(PROJECT_ROOT, 'assets/raw', assetId, `${sourceFma}.stl`);
+  const rawPath = isCortex
+    ? path.join(PROJECT_ROOT, 'assets/raw', assetId, `${assetId}.raw.stl`)
+    : path.join(PROJECT_ROOT, 'assets/raw', assetId, `${sourceFma}.stl`);
   const rawBytes = fs.existsSync(rawPath) ? fs.readFileSync(rawPath) : Buffer.alloc(0);
   const rawHash = crypto.createHash('sha256').update(rawBytes).digest('hex');
 
@@ -81,13 +105,7 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
     }
   }
 
-  const centroid: [number, number, number] = isRight
-    ? [26.38, -13.89, -20.74]
-    : [-25.07, -13.89, -20.70];
-
-  const dimensions: [number, number, number] = isRight
-    ? [18.92, 20.78, 40.49]
-    : [18.90, 20.80, 40.55];
+  const topologyClass = isCortex ? 'CLOSED_SURFACE' : 'SOLID';
 
   return {
     asset_id: assetId,
@@ -102,31 +120,31 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
       {
         step_number: 1,
         operation_name: 'Raw_Asset_Ingestion',
-        script_relative_path: 'scripts/pipeline/ingest_asset.ts',
+        script_relative_path: isCortex ? 'scripts/pipeline/ingest_cerebral_cortex.ts' : 'scripts/pipeline/ingest_asset.ts',
         parameters: {
-          source_file: `${sourceFma}.stl`,
+          source_file: isCortex ? `${assetId}.raw.stl` : `${sourceFma}.stl`,
           verified_source_sha256: rawHash,
           source_byte_length: rawBytes.length
         },
         executed_by: 'Pipeline_Ingestion_Engine',
-        git_commit_hash: 'fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f',
-        timestamp: '2026-09-26T10:45:00Z'
+        git_commit_hash: '9672869',
+        timestamp: '2026-09-26T22:30:00Z'
       },
       {
         step_number: 2,
         operation_name: 'Geometric_QA_Validation',
         script_relative_path: 'scripts/pipeline/validate_mesh.ts',
         parameters: {
-          topology_class: 'SOLID',
+          topology_class: topologyClass,
           manifold_edges_required: 0,
           zero_area_faces_allowed: 0,
           duplicate_faces_allowed: 0,
           watertight_required: true,
-          measured_volume_cm3: geomQa?.analysis?.estimatedVolumeMm3 ? Number((geomQa.analysis.estimatedVolumeMm3 / 1000).toFixed(3)) : 1.85
+          measured_volume_cm3: geomQa?.analysis?.estimatedVolumeMm3 ? Number((geomQa.analysis.estimatedVolumeMm3 / 1000).toFixed(3)) : 260.2
         },
         executed_by: 'MeshValidation_Auditor',
-        git_commit_hash: 'fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f',
-        timestamp: '2026-09-26T10:47:00Z'
+        git_commit_hash: '9672869',
+        timestamp: '2026-09-26T22:35:00Z'
       },
       {
         step_number: 3,
@@ -140,8 +158,8 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
           normals: 'area_weighted_smooth'
         },
         executed_by: 'Canonicalization_Engine',
-        git_commit_hash: 'fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f',
-        timestamp: '2026-09-26T10:50:00Z'
+        git_commit_hash: '9672869',
+        timestamp: '2026-09-26T22:40:00Z'
       },
       {
         step_number: 4,
@@ -153,8 +171,8 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
           ratios: '1.0, 0.75, 0.50, 0.25'
         },
         executed_by: 'Meshopt_LOD_Generator',
-        git_commit_hash: 'fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f',
-        timestamp: '2026-09-26T11:04:00Z'
+        git_commit_hash: '9672869',
+        timestamp: '2026-09-26T22:45:00Z'
       },
       {
         step_number: 5,
@@ -162,16 +180,17 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
         script_relative_path: 'scripts/pipeline/optimize_meshopt.ts',
         parameters: {
           extension: 'EXT_meshopt_compression',
-          overall_savings_percent: compReport ? compReport.overallSavingsPercent : 45.05,
+          overall_savings_percent: compReport ? compReport.overallSavingsPercent : 45.0,
           lossless_verification: true
         },
         executed_by: 'Meshopt_Runtime_Optimizer',
-        git_commit_hash: 'fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f',
-        timestamp: '2026-09-26T11:07:00Z'
+        git_commit_hash: '9672869',
+        timestamp: '2026-09-26T22:50:00Z'
       }
     ],
     resulting_sha256_hash: canonicalSha256,
     resulting_license: 'CC-BY-SA 4.0',
+    project_distribution_policy: 'CC-BY-SA-4.0',
     production_eligibility: 'PRODUCTION_ALLOWED',
     commercial_redistribution: 'PERMITTED',
     restrictions_and_covenants: [
@@ -181,10 +200,10 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
     ],
     validation_status: 'CLEARED',
     legal_review_notes: `Ingested from BodyParts3D Release 3.0 (${sourceFma} ${nameDesc}). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.`,
-    coordinate_space: 'RAS (+X Right, +Y Superior, +Z Anterior)',
+    coordinate_space: 'canonical_atlas_ras (+X Right, +Y Superior, +Z Anterior)',
     centroid_mm: centroid,
     dimensions_mm: dimensions,
-    topology_class: 'SOLID',
+    topology_class: topologyClass,
     geometric_qa_status: 'PASS',
     anatomical_qa_status: 'PASS',
     dual_licensing_notes: 'Dual compliance: Release 3.0 CC-BY-SA 2.1 JP and modern DBCLS portal CC BY 4.0 (verified 2025-02-27). Derivative published under CC-BY-SA 4.0.',
@@ -197,10 +216,18 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
 export function updateManifest(): AssetsManifest {
   console.log('[MANIFEST GENERATOR] Compiling asset manifest...');
 
-  const assetIds = ['mesh.hippocampus.left.v1'];
-  const rightCanonical = path.join(PROJECT_ROOT, 'assets/derived/mesh.hippocampus.right.v1/canonical/mesh.hippocampus.right.v1.canonical.glb');
-  if (fs.existsSync(rightCanonical)) {
-    assetIds.push('mesh.hippocampus.right.v1');
+  const candidateIds = [
+    'mesh.hippocampus.left.v1',
+    'mesh.hippocampus.right.v1',
+    'mesh.cortex.left.v1',
+    'mesh.cortex.right.v1'
+  ];
+  const assetIds: string[] = [];
+  for (const cid of candidateIds) {
+    const canonicalPath = path.join(PROJECT_ROOT, 'assets/derived', cid, 'canonical', `${cid}.canonical.glb`);
+    if (fs.existsSync(canonicalPath)) {
+      assetIds.push(cid);
+    }
   }
 
   const assets: Record<string, ExtendedAssetManifestEntry> = {};

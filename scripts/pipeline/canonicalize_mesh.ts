@@ -73,8 +73,12 @@ export function canonicalizeMesh(configOrId: CanonicalizationConfig | string): C
   let rawFilename = config.rawFilename;
   if (!rawFilename) {
     if (fs.existsSync(rawDir)) {
-      const stlFiles = fs.readdirSync(rawDir).filter(f => f.endsWith('.stl'));
-      if (stlFiles.length > 0) rawFilename = stlFiles[0];
+      if (fs.existsSync(path.join(rawDir, `${assetId}.raw.stl`))) {
+        rawFilename = `${assetId}.raw.stl`;
+      } else {
+        const stlFiles = fs.readdirSync(rawDir).filter(f => f.endsWith('.stl'));
+        if (stlFiles.length > 0) rawFilename = stlFiles[0];
+      }
     }
   }
   if (!rawFilename) {

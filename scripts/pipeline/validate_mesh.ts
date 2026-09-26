@@ -229,10 +229,14 @@ export function runAnatomicalQA(params: {
  */
 export function validateMesh(
   assetId: string = 'mesh.hippocampus.left.v1',
-  profileId: string = 'solid-subcortical-nucleus'
+  profileId?: string
 ): UnifiedAssetQAReport {
+  const isCortex = assetId.includes('cortex');
+  const defaultProfileId = isCortex ? 'closed-pial-surface' : 'solid-subcortical-nucleus';
+  const effectiveProfileId = profileId || defaultProfileId;
+
   const rawDir = path.join(PROJECT_ROOT, 'assets/raw', assetId);
-  let rawFilename = 'FMA72714.stl';
+  let rawFilename = isCortex ? `${assetId}.raw.stl` : 'FMA72714.stl';
   if (fs.existsSync(rawDir)) {
     const stlFiles = fs.readdirSync(rawDir).filter(f => f.endsWith('.stl'));
     if (stlFiles.length > 0) rawFilename = stlFiles[0];
@@ -244,8 +248,12 @@ export function validateMesh(
   const buffer = fs.readFileSync(filePath);
   const analysis = parseAndAuditSTL(buffer);
 
-  const profile = STANDARD_QA_PROFILES[profileId] || STANDARD_QA_PROFILES['solid-subcortical-nucleus'];
+  const profile = STANDARD_QA_PROFILES[effectiveProfileId] || STANDARD_QA_PROFILES['solid-subcortical-nucleus'];
   console.log(`[QA AUDIT] Applied QA Profile: ${profile.profile_id} (Topology: ${profile.topology_class})`);
+
+  // Expected adult human hemisphere cortical volume range: ~180 - 380 cm3
+  // Adult human hippocampus volume bounds: ~1.5 - 4.8 cm3
+  const expectedVolumeRange: [number, number] = isCortex ? [180.0, 380.0] : [1.5, 4.8];
 
   // Run decoupled QA passes
   const geometricQA = runGeometricQA(assetId, filePath, analysis, profile);
@@ -254,7 +262,7 @@ export function validateMesh(
     dimensionsMm: [analysis.dimensions[0], analysis.dimensions[1], analysis.dimensions[2]],
     volumeMm3: analysis.estimatedVolumeMm3,
     declaredLaterality: assetId.includes('left') ? 'left' : (assetId.includes('right') ? 'right' : 'midline'),
-    expectedVolumeRangeCm3: [1.5, 4.8], // Adult human hippocampus volume bounds
+    expectedVolumeRangeCm3: expectedVolumeRange,
     subfieldRepresentation: 'MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED'
   });
 
