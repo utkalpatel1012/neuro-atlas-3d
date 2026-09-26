@@ -27,10 +27,30 @@ export interface ExtendedAssetManifestEntry extends AssetProvenance {
   topology_class?: string;
   geometric_qa_status?: string;
   anatomical_qa_status?: string;
-  dual_licensing_notes?: string;
+  // Phase 3.1 §19: field formerly named dual_licensing_notes — renamed because
+  // "dual compliance" has no legal basis. Content is exact terms + uncertainty.
+  licensing_posture_notes?: string;
+  // Phase 3.1 (D2/D11): explicit acquisition channel + authority URLs + component linkage.
+  acquisition_channel?: string;
+  source_authority_urls?: string[];
+  source_components?: {
+    component_record_path: string;
+    component_count: number;
+    components: Array<{
+      fma_id: string; name: string; laterality: string; lobe: string;
+      sha256: string; triangle_count: number; source_url: string;
+    }>;
+  };
 }
 
 import { parseGLB, computeBoundingVolume } from './glb_utils';
+
+// Phase 3.1: tolerate both legacy absolute paths and repo-relative paths in reports.
+function toRepoRelative(p: string): string {
+  if (!p) return p;
+  const abs = path.isAbsolute(p) ? p : path.resolve(PROJECT_ROOT, p);
+  return path.relative(PROJECT_ROOT, abs).replace(/\\/g, '/');
+}
 
 function buildEntry(assetId: string): ExtendedAssetManifestEntry {
   const isRight = assetId.includes('right');
@@ -85,7 +105,7 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
   if (lodReport && lodReport.levels) {
     for (const lvl of lodReport.levels) {
       lodFiles[lvl.lodName] = {
-        path: path.relative(PROJECT_ROOT, lvl.filePath).replace(/\\/g, '/'),
+        path: toRepoRelative(lvl.filePath),
         sha256: lvl.sha256,
         triangles: lvl.triangleCount,
         bytes: lvl.byteLength
@@ -97,7 +117,7 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
   if (compReport && compReport.levels) {
     for (const lvl of compReport.levels) {
       runtimeFiles[lvl.lodName] = {
-        path: path.relative(PROJECT_ROOT, lvl.runtimeGlbPath).replace(/\\/g, '/'),
+        path: toRepoRelative(lvl.runtimeGlbPath),
         sha256: lvl.compressedSha256,
         bytes: lvl.compressedByteLength,
         compression_ratio: lvl.compressionRatio
@@ -105,11 +125,46 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
     }
   }
 
-  const topologyClass = isCortex ? 'CLOSED_SURFACE' : 'SOLID';
+  const topologyClass = isCortex ? 'MULTI_SHELL_COMPOSITE' : 'SOLID';
 
-  return {
+  // Phase 3.1 (D2): cortex composites link their per-component authority record.
+  // Components live in assets/raw/<assetId>/ingestion.json (FMA ID, name, lobe,
+  // per-component SHA-256, triangle counts, per-component mirror URLs).
+  const cortexComponents = (() => {
+    if (!isCortex) return undefined;
+    try {
+      const ingestPath = path.join(PROJECT_ROOT, 'assets/raw', assetId, 'ingestion.json');
+      const ingest = JSON.parse(fs.readFileSync(ingestPath, 'utf8'));
+      const comps = (ingest.components || []).map((c: any) => ({
+        fma_id: c.fma_id, name: c.name, laterality: c.laterality, lobe: c.lobe,
+        sha256: c.sha256, triangle_count: c.triangle_count, source_url: c.source_url
+      }));
+      return {
+        component_record_path: path.relative(PROJECT_ROOT, ingestPath).replace(/\\/g, '/'),
+        component_count: comps.length,
+        components: comps
+      };
+    } catch { return undefined; }
+  })();
+
+  // Phase 3.1 (D7): QA statuses are read from the validation report, never hardcoded.
+  const geometricQaStatus: string = geomQa?.geometricQA?.geometricStatus || 'UNKNOWN';
+  const anatomicalQaStatus: string = geomQa?.anatomicalQA?.anatomicalStatus || 'UNKNOWN';
+
+  const entry: ExtendedAssetManifestEntry = {
     asset_id: assetId,
-    dataset_name: 'BodyParts3D / SPL-PNL Brain Atlas',
+    // Phase 3.1 (D11): dataset_name names the SOURCE dataset only. SPL-PNL was a
+    // cross-validation reference, never the source; the 'BodyParts3D / SPL-PNL' blend
+    // was provenance contamination. Acquisition channel (DBCLS portal vs third-party
+    // mirror) is recorded explicitly below.
+    dataset_name: 'BodyParts3D Release 3.0',
+    acquisition_channel: isCortex
+      ? 'Third-party GitHub mirror of DBCLS data (OBJ to STL converted; per-component URLs in component record)'
+      : 'Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)',
+    source_authority_urls: [
+      'https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html',
+      'https://github.com/Kevin-Mattheus-Moerman/BodyParts3D'
+    ],
     dataset_version: 'Release 3.0 (2011)',
     source_url: 'https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html',
     upstream_asset_id: sourceFma,
@@ -152,9 +207,12 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
         script_relative_path: 'scripts/pipeline/canonicalize_mesh.ts',
         parameters: {
           adapter_id: 'bodyparts3d-lps-to-ras',
-          source_space: 'DICOM_LPS',
-          target_space: 'THREEJS_RAS',
-          transform: 'x_negated_z_negated',
+          // Phase 3.1 (D3): exact coded math is Xc=-Xs, Yc=Zs-1561.7, Zc=Ys+70.1
+          // (x-negation + y/z axis swap; determinant +1, no mirroring). The old
+          // 'x_negated_z_negated' label described a different transform and was false.
+          source_space: 'ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)',
+          target_space: 'INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)',
+          transform: 'x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1',
           normals: 'area_weighted_smooth'
         },
         executed_by: 'Canonicalization_Engine',
@@ -181,7 +239,13 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
         parameters: {
           extension: 'EXT_meshopt_compression',
           overall_savings_percent: compReport ? compReport.overallSavingsPercent : 45.0,
-          lossless_verification: true
+          // Phase 3.1 (D6): meshopt encoding is lossless ONLY relative to its LOD
+          // input (round-trip verified, max position delta <= 1e-6 mm). The QEM
+          // simplification that produced the LODs is LOSSY. Never label the
+          // pipeline lossless.
+          meshopt_roundtrip_lossless_vs_lod_input: true,
+          meshopt_roundtrip_max_delta_mm: 1e-6,
+          qem_simplification_lossy: true
         },
         executed_by: 'Meshopt_Runtime_Optimizer',
         git_commit_hash: '9672869',
@@ -195,22 +259,32 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
     commercial_redistribution: 'PERMITTED',
     restrictions_and_covenants: [
       'Preserve attribution to BodyParts3D / LSIDC in application notices and UI',
-      'Derived 3D meshes shared under CC-BY-SA 4.0 compatible terms',
-      'Defensive dual compliance: satisfies both CC-BY-SA 2.1 JP and CC BY 4.0'
+      'Derived 3D meshes shared under CC-BY-SA 4.0 terms',
+      // Phase 3.1 §19: no "dual compliance" terminology (no legal basis for the term).
+      // Exact posture: historical files CC-BY-SA 2.1 JP; portal lists CC BY (2025-02-27);
+      // derivatives distributed CC-BY-SA 4.0. Retroactivity UNRESOLVED.
+      'Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution.'
     ],
     validation_status: 'CLEARED',
-    legal_review_notes: `Ingested from BodyParts3D Release 3.0 (${sourceFma} ${nameDesc}). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.`,
-    coordinate_space: 'canonical_atlas_ras (+X Right, +Y Superior, +Z Anterior)',
+    // Phase 3.1 §19: record exact verified terms + uncertainty. No "dual
+    // compliance", no "formally cleared", no counsel-pretending assertions.
+    legal_review_notes: `Ingested from BodyParts3D Release 3.0 (${sourceFma} ${nameDesc}) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).`,
+    // Phase 3.1 (D3): measured canonical axes. Identifier retained for stability.
+    coordinate_space: 'canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)',
     centroid_mm: centroid,
     dimensions_mm: dimensions,
     topology_class: topologyClass,
-    geometric_qa_status: 'PASS',
-    anatomical_qa_status: 'PASS',
-    dual_licensing_notes: 'Dual compliance: Release 3.0 CC-BY-SA 2.1 JP and modern DBCLS portal CC BY 4.0 (verified 2025-02-27). Derivative published under CC-BY-SA 4.0.',
-    canonical_glb_path: path.relative(PROJECT_ROOT, canonicalGlbPath).replace(/\\/g, '/'),
+    geometric_qa_status: geometricQaStatus,
+    anatomical_qa_status: anatomicalQaStatus,
+    licensing_posture_notes: 'Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.',
+    canonical_glb_path: toRepoRelative(canonicalGlbPath),
     lod_files: lodFiles,
     runtime_files: runtimeFiles
   };
+  if (cortexComponents) {
+    entry.source_components = cortexComponents;
+  }
+  return entry;
 }
 
 export function updateManifest(): AssetsManifest {

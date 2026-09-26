@@ -1,6 +1,10 @@
 # 3D Interactive Neuroanatomy Atlas for Psychiatry
 
-An anatomically accurate, scientifically grounded 3D human brain atlas engineered specifically for the academic and clinical training of psychiatry residents, neuroscientists, and medical trainees.
+An interactive 3D human brain atlas for the academic and clinical training of psychiatry
+residents, neuroscientists, and medical trainees. Scientific posture: TRUTH > APPEARANCE —
+see [`AGENTS.md`](./AGENTS.md), [`PHASE_3_1_SCIENTIFIC_INTEGRITY_REPORT.md`](./PHASE_3_1_SCIENTIFIC_INTEGRITY_REPORT.md)
+and [`docs/KNOWN_ANATOMICAL_LIMITATIONS.md`](./docs/KNOWN_ANATOMICAL_LIMITATIONS.md) before
+quoting any anatomical, performance, or provenance claim from this repo.
 
 ---
 
@@ -65,22 +69,50 @@ The ultimate objective is to bridge:
 
 ## 🛠️ Technology Stack Summary
 
-* **Frontend**: React 19 + TypeScript (Strict Mode) + Vite
-* **3D Engine**: Three.js (r172+) with `WebGPURenderer` (auto-fallback to `WebGLBackend`) & Three Shading Language (TSL)
-* **3D Binding**: Hybrid React Three Fiber (R3F) + Imperative Three.js Core
-* **3D Compression**: glTF 2.0 Binary (`.glb`) with **Meshopt (`EXT_meshopt_compression`)** & **KTX2 / Basis Universal (`KHR_texture_basisu`)**
-* **Acceleration**: `three-mesh-bvh` (<1.5 ms raycasting latency target over 500,000+ polygons)
-* **Testing**: `tsx src/schema_validation.test.ts` (`npm test`) & `tsc --noEmit` (`npm run typecheck`)
-* **State & Search**: Zustand (spatial state) + MiniSearch (client-side fuzzy medical term search)
-* **Persistence & PWA**: Dexie.js (IndexedDB) + Service Worker Cache API for 100% offline usage on iPadOS and desktop
+> Phase 3.1 audit (2026-09-27, Part E): the list below separates what is INSTALLED AND
+> USED from what is DECIDED BUT NOT IMPLEMENTED. Previous versions of this section
+> described the planned stack as current. `package.json` dependencies are ONLY
+> `three` + `three-mesh-bvh` (runtime) and `tsx`/`typescript`/`vite`/`meshoptimizer`/
+> `gh-pages` (dev).
+
+**ACTUAL (implemented, in `package.json` + imported in `src/`):**
+* **Frontend**: Vanilla TypeScript (Strict Mode) + Vite — no React, no R3F in the repo
+* **3D Engine**: Three.js with WebGPU-attempt/WebGL-fallback `RendererManager`, OrbitControls, hand-rolled CSS UI (`src/ui/`)
+* **3D Compression**: glTF 2.0 Binary (`.glb`) with **Meshopt (`EXT_meshopt_compression`)** — encode step round-trip verified vs LOD input (≤1e-6 mm); QEM simplification is lossy
+* **Acceleration**: `three-mesh-bvh` (headless-Node CPU raycast ≈1 ms on 198k tris; NOT a device/GPU measurement)
+* **Testing**: custom assert + `tsx` suites (`npm test`: 7 files) & `tsc --noEmit` (`npm run typecheck`)
+
+**PLANNED ONLY (decided in `TECH_STACK_DECISION.md`, zero code/deps/assets):**
+React 19, React Three Fiber, Zustand, MiniSearch, Dexie.js, PWA/service worker,
+KTX2/Basis textures, `THREE.BatchedMesh` batching, HCP MMP runtime parcels. Do NOT
+install or assume these without a phase plan.
 
 ---
 
 ## ⚖️ Scientific Provenance & Licensing
 
-* **Macroscopic & Subcortical Geometry**: Sourced and optimized from **Z-Anatomy**, licensed under **Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-SA 4.0)**.
-* **Cortical Parcellation**: Sourced from the **Human Connectome Project (HCP) Glasser MMP 1.0** under **HCP Open Access Terms** (Commercial software redistribution designated as `LEGAL_REVIEW_REQUIRED`).
-* **Research Reference Data**: **EBRAINS Julich-Brain** and **BigBrain** are strictly quarantined to `RESEARCH_ONLY` for offline academic validation and barred from client production bundles.
-* **Stereotaxic Space**: Explicitly declared per asset (`mni152_nonlinear_2009c_asym`, `hcp_fslr_32k`, or `blender_world`).
-* **Application Source Code**: Licensed under **Apache-2.0**.
+> Phase 3.1 corrected (2026-09-27). Previous versions of this section named Z-Anatomy
+> as the geometry source and HCP as ingested parcellation data — both false.
+
+* **Production mesh geometry (all 4 assets)**: **BodyParts3D Release 3.0** (DBCLS, Japan),
+acquired as binary STLs via a third-party GitHub mirror (OBJ→STL converted); per-file
+hashes and mirror URLs in `assets/raw/*/ingestion.json`, component breakdown in the
+manifest's `source_components`. Historical files CC-BY-SA 2.1 JP; upstream portal lists
+CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing
+retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED —
+`LEGAL_REVIEW_REQUIRED` before commercial redistribution (Phase 3.1 §19: no
+"dual compliance" terminology — the term has no legal basis).
+* **Cortical representation**: concatenated 14-component multi-shell composites per
+hemisphere (16 disjoint closed shells measured) — NOT continuous pial surfaces; 5
+component identities per side were mislabeled pre-3.1 and are corrected in
+`docs/PHASE_3_CORTEX_SOURCE_COMPONENTS.md`.
+* **Cortical parcellation (HCP MMP 1.0)**: NOT ingested — types + test fixtures only;
+commercial redistribution stays `LEGAL_REVIEW_REQUIRED`.
+* **Research Reference Data**: **EBRAINS Julich-Brain** and **BigBrain** are strictly quarantined to `RESEARCH_ONLY` for offline academic validation and barred from client production bundles (verified: zero restricted bytes in production paths).
+* **Stereotaxic Space**: all production assets live in the INTERNAL canonical space
+(+X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI); every template
+registration is explicitly `REGISTRATION_PENDING` with no metrics.
+* **Code license conflict (UNRESOLVED, see `docs/KNOWN_ANATOMICAL_LIMITATIONS.md`)**:
+`package.json` declares `CC-BY-SA-4.0` while `SOURCES_AND_LICENSES.md` claims Apache-2.0
+for code, and no `LICENSE` file exists. Do not redistribute until resolved.
 * **Medical Disclaimer**: This application is an educational and academic reference atlas for medical training and research, not a certified medical device for primary surgical planning or primary diagnostic decision-making.

@@ -8,7 +8,10 @@
 
 export type TopologyClass =
   | 'SOLID'                  // Closed 3D volumetric structure (e.g. subcortical nucleus, ventricular cast)
-  | 'CLOSED_SURFACE'         // 2-manifold closed outer surface (e.g. full pial surface hemisphere)
+  | 'CLOSED_SURFACE'         // 2-manifold closed outer surface: ONE continuous shell (e.g. FreeSurfer pial hemisphere)
+  | 'MULTI_SHELL_COMPOSITE'  // Concatenation of N>=2 individually-closed shells; edge checks pass per shell
+                             // but the asset is NOT one continuous surface (e.g. multi-component cortical assembly).
+                             // Shell count is measured by connected-component analysis, never assumed.
   | 'OPEN_SURFACE'           // 2-manifold surface with legitimate open boundaries (e.g. cortical patch, hemisected brain)
   | 'SHEET'                  // Thin 2D membranous partition (e.g. septum pellucidum, tentorium cerebelli)
   | 'TUBE'                   // Tubular manifold with open end-orifices (e.g. cerebral aqueduct, blood vessel segments)
@@ -68,7 +71,20 @@ export const STANDARD_QA_PROFILES: Record<string, AssetQAProfile> = {
     max_duplicate_faces: 0,
     max_aspect_ratio: 30.0,
     max_hausdorff_deviation_mm: 1.0,
-    description: 'Closed cortical outer boundary with zero boundary open edges'
+    description: 'ONE continuous closed cortical outer boundary with zero boundary open edges. Must have connectedShellCount === 1; multi-shell concatenations must use composite-cortical-assembly instead.'
+  },
+  'composite-cortical-assembly': {
+    profile_id: 'composite-cortical-assembly',
+    topology_class: 'MULTI_SHELL_COMPOSITE',
+    requires_watertight: true,
+    allows_boundary_edges: false,
+    requires_triangles: true,
+    max_non_manifold_edges: 0,
+    max_zero_area_faces: 0,
+    max_duplicate_faces: 0,
+    max_aspect_ratio: 30.0,
+    max_hausdorff_deviation_mm: 1.0,
+    description: 'Concatenated closed component shells (e.g. multi-gyrus cortical assembly). Edge-based checks pass per shell; they CANNOT prove a single continuous surface. connectedShellCount must be measured and reported; CLOSED_SURFACE claims are prohibited for this class.'
   },
   'open-cortical-sheet': {
     profile_id: 'open-cortical-sheet',

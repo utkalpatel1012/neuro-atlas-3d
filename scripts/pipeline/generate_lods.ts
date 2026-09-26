@@ -274,12 +274,17 @@ export async function generateLODs(assetId: string): Promise<LODGenerationReport
     console.log(`[LOD GENERATION] ${cfg.name.toUpperCase()}: ${simplifiedIndices.length / 3} tris, ${simplifiedPositions.length / 3} verts, ${glbBuffer.length} bytes | Hausdorff max: ${geometricFidelity.maxSurfaceDeviationMm} mm, Vol dev: ${geometricFidelity.volumeDeviationPercent}% | SHA-256: ${sha256}`);
   }
 
+  // Phase 3.1: QEM simplification is LOSSY by construction. LOD0 at ratio 1.0
+  // preserves the input up to simplifier residual; LOD1-3 discard geometry.
+  // Fidelity is measured per level in geometricFidelity — never label any LOD
+  // "lossless". Report paths are repo-relative (no machine-local path leaks).
+  const toRel = (p: string) => path.relative(PROJECT_ROOT, p).replace(/\\/g, '/');
   const report: LODGenerationReport = {
     assetId,
     timestamp: new Date().toISOString(),
-    inputCanonicalGlb: canonicalPath,
+    inputCanonicalGlb: toRel(canonicalPath),
     inputCanonicalHash: canonicalHash,
-    levels,
+    levels: levels.map(l => ({ ...l, filePath: toRel(l.filePath) })),
     transformationRecord: {
       transformation_id: `tx.${assetId}.lod_generation`,
       tool: 'MeshoptSimplifier / NeuroAtlas3D LOD Pipeline',

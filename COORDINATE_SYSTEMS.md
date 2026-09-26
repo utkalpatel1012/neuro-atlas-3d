@@ -42,11 +42,11 @@ The atlas supports eight distinct spatial coordinate systems, partitioned into v
 2. **`canonical_atlas_ras`** *(Internal Engine Canonical Space)*:
    * *Definition*: The internal standardized coordinate frame used by the Neuro Atlas engine runtime.
    * *Units*: Millimeters ($1.0 \text{ unit} = 1.0 \text{ mm}$).
-   * *Axis Convention*: **RAS (Right-Anterior-Superior)**:
+   * *Axis Convention (Phase 3.1 measured — NOT RAS order)*:
      * $+X$: Right lateral
-     * $+Y$: Anterior (Rostral)
-     * $+Z$: Superior (Dorsal)
-   * *Origin (0,0,0)*: Internal canonical atlas origin (approximating interhemispheric mid-commissural plane).
+     * $+Y$: Superior (Dorsal)
+     * $+Z$: POSTERIOR (Occipital) — corrected 2026-09-27; the pre-3.1 "+Y Anterior / +Z Superior" (RAS) description contradicted the coded adapter math and measured component ordering. The identifier `canonical_atlas_ras` is retained for stability; it is a label, not an anatomical claim.
+   * *Origin (0,0,0)*: Internal canonical atlas origin (approximating interhemispheric mid-commissural plane; approximation asserted, method undocumented).
    * *Invariant*: `canonical_atlas_ras` is an **internal engine space**. It is NOT automatically identical to external stereotaxic spaces like MNI152. Centroid bilateral symmetry ($X \approx -25\text{ mm}$ vs $+26\text{ mm}$) does NOT prove MNI152 registration.
 3. **`blender_world`**:
    * *Definition*: Standard 3D DCC graphics coordinate frame in Blender 4.x.
@@ -104,7 +104,10 @@ The atlas supports eight distinct spatial coordinate systems, partitioned into v
 ```
 
 ### Supported Registration Methods & Provenance Tracking
-Every transformed mesh or coordinate in `src/types/coordinates.ts` stores explicit registration metadata:
+Every transformed mesh or coordinate in `src/types/coordinates.ts` stores explicit registration metadata.
+Phase 3.1 note: the TRE ranges below are method-class typical values from the
+literature, NOT measurements from this repo (no registration has been computed here;
+all live records are `not_registered`/PENDING with zero metrics):
 
 | Method ID | Mathematical Basis | Typical Accuracy (TRE) | Application in Atlas |
 | :--- | :--- | :--- | :--- |

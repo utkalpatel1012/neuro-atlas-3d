@@ -56,6 +56,12 @@ Along with the validation status, every asset declares its `production_eligibili
 The production asset manifest (`assets/assets.manifest.json`) is the machine-readable registry generated during the Phase-1 asset pipeline. Its TypeScript schema is defined in [`src/types/provenance.ts`](file:///C:/Users/UTKAL%20PATEL/.gemini/antigravity/scratch/neuro-atlas-3d/src/types/provenance.ts).
 
 ### Production Benchmark Manifest Record (`mesh.hippocampus.left.v1`)
+> Phase 3.1 note: this example predates the 2026-09-27 integrity corrections. The live
+> manifest uses: `dataset_name: "BodyParts3D Release 3.0"` (SPL-PNL was a validation
+> reference, never the source), `transform: "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1"`,
+> scoped meshopt fields (`meshopt_roundtrip_lossless_vs_lod_input`, never bare
+> `lossless_verification`), QA statuses read from validation reports, and cortical
+> topology `MULTI_SHELL_COMPOSITE`. See `PHASE_3_1_SCIENTIFIC_INTEGRITY_REPORT.md`.
 ```json
 {
   "manifest_version": "1.1.0",

@@ -161,6 +161,12 @@ export class LODManager {
     if (!record || !mesh) return;
 
     let targetGeometry = this.assetManager.getCachedGeometry(record.assetId, targetLod);
+    // Phase 3.1 §30: balance the reference this switch adds. A cache MISS calls
+    // loadAsset (+1 ref); the mesh's ongoing use is already covered by the refs
+    // taken at loadEntity/preload time, so release the miss's +1 after the swap.
+    // A cache HIT adds no ref, so nothing is released. Without this, every
+    // miss-switch leaked +1 ref monotonically.
+    const cacheMiss = !targetGeometry;
     if (!targetGeometry) {
       // Async fetch & decode if not yet in cache
       const loaded = await this.assetManager.loadAsset(record.assetId, targetLod);
@@ -171,6 +177,13 @@ export class LODManager {
     mesh.geometry = targetGeometry;
     mesh.userData.activeLOD = targetLod;
     this.activeLODs.set(entityId, targetLod);
+    if (cacheMiss) {
+      // Balance only if other holders exist: unloadAsset at ref<=1 would
+      // dispose ALL cached LODs including the geometry just swapped in.
+      if (this.assetManager.getRefCount(record.assetId) > 1) {
+        this.assetManager.unloadAsset(record.assetId);
+      }
+    }
 
     this.notifyListeners(entityId, targetLod);
   }

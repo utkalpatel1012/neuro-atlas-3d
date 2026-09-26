@@ -109,7 +109,7 @@ export function runGeometricQA(
       name: 'Watertight Surface Check',
       category: 'geometric',
       passed: watertightPass,
-      details: `Watertight: ${analysis.isWatertight} (Boundary open edges: ${analysis.boundaryEdges}, must be 0 for ${profile.topology_class})`
+      details: `Watertight: ${analysis.isWatertight} (Boundary open edges: ${analysis.boundaryEdges}, must be 0 for ${profile.topology_class}). NOTE: edge accounting is per-shell; see connectedShellCount for surface continuity.`
     });
   } else {
     checks.push({
@@ -129,6 +129,29 @@ export function runGeometricQA(
       category: 'geometric',
       passed: hasTris,
       details: `Mesh contains ${analysis.triangleCount} triangles and ${analysis.uniqueVertexCount} unique vertices`
+    });
+  }
+
+  // Check 6: Surface continuity (Phase 3.1). A single continuous surface has exactly
+  // 1 connected shell. Multi-shell composites are valid assets but must never be
+  // classified CLOSED_SURFACE.
+  if (profile.topology_class === 'MULTI_SHELL_COMPOSITE') {
+    const shellsOk = analysis.connectedShellCount >= 2;
+    checks.push({
+      name: 'Multi-Shell Continuity Disclosure Check',
+      category: 'geometric',
+      passed: shellsOk,
+      details: `Measured ${analysis.connectedShellCount} disjoint closed shells: asset is a concatenated composite, NOT one continuous surface. CLOSED_SURFACE classification prohibited.`
+    });
+  } else if (profile.topology_class === 'CLOSED_SURFACE' || profile.topology_class === 'SOLID') {
+    const singleOk = analysis.connectedShellCount === 1;
+    checks.push({
+      name: 'Single-Surface Continuity Check',
+      category: 'geometric',
+      passed: singleOk,
+      details: singleOk
+        ? `Measured 1 connected shell: consistent with ${profile.topology_class}.`
+        : `Measured ${analysis.connectedShellCount} disjoint shells: INCONSISTENT with ${profile.topology_class}; reclassify as MULTI_SHELL_COMPOSITE.`
     });
   }
 
@@ -158,6 +181,9 @@ export function runAnatomicalQA(params: {
   subfieldRepresentation?: 'MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED' | 'DISCRETE_SUBFIELDS_SEGMENTED' | 'NOT_APPLICABLE';
   expectedDimensionsMm?: [number, number, number];
   expectedVolumeRangeCm3?: [number, number];
+  // Phase 3.1 (D7): set true when the asset is a multi-component composite whose
+  // per-component identities/boundaries have not been morphologically verified.
+  compositeIdentitiesUnverified?: boolean;
 }): AnatomicalQAResult {
   const checks: QACheckItem[] = [];
   const subfieldRep = params.subfieldRepresentation || 'MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED';
@@ -204,10 +230,20 @@ export function runAnatomicalQA(params: {
       notApplicable: true,
       details: `Mesh represents macroscopic unsegmented organ body; microscopic subfields CA1-CA4 are not resolved in 3D geometry`
     });
-    // For macroscopic single-mesh unsegmented structures, status is validated at macroscopic level
-    // but subfield mapping remains pending
-    anatomicalStatus = 'ANATOMY_VALIDATED';
-    notes = 'Macroscopic anatomical contours match adult standard; internal subfields unsegmented.';
+    // Phase 3.1 correction (D7): scale/laterality plausibility checks alone do NOT
+    // establish that the mesh represents the claimed anatomy (no contour comparison,
+    // no landmark verification exists). Multi-component composites whose individual
+    // identities/landmarks are unverified stay ANATOMICAL_MAPPING_PENDING.
+    // Single-solid benchmark assets validated in their acceptance phase keep the
+    // historical ANATOMY_VALIDATED status (see KNOWN_ANATOMICAL_LIMITATIONS.md:
+    // that status means scale/laterality plausibility only, not morphological proof).
+    if (params.compositeIdentitiesUnverified === true) {
+      anatomicalStatus = 'ANATOMICAL_MAPPING_PENDING';
+      notes = 'Scale and laterality plausible; individual component identities, sulcal/gyral boundaries, and landmark positions NOT morphologically verified. See Phase 3.1 report.';
+    } else {
+      anatomicalStatus = 'ANATOMY_VALIDATED';
+      notes = 'Macroscopic scale/laterality plausibility only; internal subfields unsegmented. (Historical phase-acceptance status; not a morphological proof.)';
+    }
   } else {
     anatomicalStatus = 'ANATOMY_VALIDATED';
     notes = 'Discrete subfield segmentation verified.';
@@ -232,7 +268,9 @@ export function validateMesh(
   profileId?: string
 ): UnifiedAssetQAReport {
   const isCortex = assetId.includes('cortex');
-  const defaultProfileId = isCortex ? 'closed-pial-surface' : 'solid-subcortical-nucleus';
+  // Phase 3.1 (D1): cortical assemblies are measured multi-shell concatenations,
+  // never single continuous pial surfaces.
+  const defaultProfileId = isCortex ? 'composite-cortical-assembly' : 'solid-subcortical-nucleus';
   const effectiveProfileId = profileId || defaultProfileId;
 
   const rawDir = path.join(PROJECT_ROOT, 'assets/raw', assetId);
@@ -255,15 +293,25 @@ export function validateMesh(
   // Adult human hippocampus volume bounds: ~1.5 - 4.8 cm3
   const expectedVolumeRange: [number, number] = isCortex ? [180.0, 380.0] : [1.5, 4.8];
 
-  // Run decoupled QA passes
-  const geometricQA = runGeometricQA(assetId, filePath, analysis, profile);
+  // Run decoupled QA passes (paths relative to repo root for portability — Phase 3.1)
+  const relFilePath = path.relative(PROJECT_ROOT, filePath).replace(/\\/g, '/');
+
+  // Phase 3.1: validation reports must stay small, portable, and machine-independent.
+  // Bulk vertex/index arrays are excluded everywhere (geometry lives in the hashed
+  // raw/derived assets); only summary statistics are recorded.
+  const { positions: _dropPositions, indices: _dropIndices, ...analysisSummary } = analysis;
+  void _dropPositions; void _dropIndices;
+  const leanAnalysis = analysisSummary as STLMeshAnalysis;
+
+  const geometricQA = runGeometricQA(assetId, relFilePath, leanAnalysis, profile);
   const anatomicalQA = runAnatomicalQA({
     assetId,
     dimensionsMm: [analysis.dimensions[0], analysis.dimensions[1], analysis.dimensions[2]],
     volumeMm3: analysis.estimatedVolumeMm3,
     declaredLaterality: assetId.includes('left') ? 'left' : (assetId.includes('right') ? 'right' : 'midline'),
     expectedVolumeRangeCm3: expectedVolumeRange,
-    subfieldRepresentation: 'MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED'
+    subfieldRepresentation: 'MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED',
+    compositeIdentitiesUnverified: isCortex
   });
 
   const combinedChecks = [...geometricQA.checks, ...anatomicalQA.checks];
@@ -271,11 +319,11 @@ export function validateMesh(
 
   const report: UnifiedAssetQAReport = {
     assetId,
-    sourceFile: filePath,
+    sourceFile: path.relative(PROJECT_ROOT, filePath).replace(/\\/g, '/'),
     timestamp: new Date().toISOString(),
     topologyClass: profile.topology_class,
     profileId: profile.profile_id,
-    analysis,
+    analysis: leanAnalysis,
     geometricQA,
     anatomicalQA,
     overallStatus

@@ -275,8 +275,11 @@ export const regPoint: SpatialCoordinate = {
     registered_coordinate: [12.0, 22.1, -4.8],
     registered_coordinate_frame: 'mni152_nonlinear_2009c_asym',
     registration: {
+      // Phase 3.1: synthetic type-shape fixture ONLY — values below are invented
+      // for union-narrowing tests and assert NO measurement. Live records must use
+      // method 'not_registered' + REGISTRATION_PENDING with zero metrics.
       registration_method: 'affine_linear_12dof',
-      registration_source: 'scripts/pipeline/register_to_mni152.py',
+      registration_source: 'SYNTHETIC_FIXTURE (not a real script, not a measurement)',
       target_reference_template: 'MNI152NLin2009cAsym_1mm.nii.gz',
       registration_uncertainty_mm: 0.85
     }
@@ -386,8 +389,11 @@ export function runValidationSuite(): { passed: boolean; message: string; checks
   if (hippocampus.representation_scope !== 'paired_separate') throw new Error('Missing representation_scope');
   if (!hippocampus.provenance || !hippocampus.provenance.source_authority) throw new Error('Missing EntityProvenance');
   if (!hippocampus.spatial || !hippocampus.spatial.stereotaxic_registration) throw new Error('Missing spatial stereotaxic registration');
-  if (hippocampus.spatial.stereotaxic_registration.registration.registration_method !== 'affine_linear_12dof') {
-    throw new Error('Registration method mismatch');
+  // Phase 3.1 (D4): the exemplar must NOT assert an uncomputed registration method.
+  // 'not_registered' + REGISTRATION_PENDING is the honest state; the old assertion
+  // pinned 'affine_linear_12dof', a fabricated value backed by no computation.
+  if (hippocampus.spatial.stereotaxic_registration.registration.registration_method !== 'not_registered') {
+    throw new Error('Registration method mismatch: exemplar must be not_registered until real registration is computed');
   }
 
   // Also test describeNeuroEntity with the real hippocampus record!

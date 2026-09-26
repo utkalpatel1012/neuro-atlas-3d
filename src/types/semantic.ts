@@ -53,6 +53,10 @@ export interface AnatomicalLandmark {
   priority: number; // 1 (highest - whole brain) to 4 (deep closeup)
   description: string;
   anatomicalSignificance: string;
+  // Phase 3.1 (D7): explicit anchor validation state. An anchor becomes
+  // 'EXPERT_VERIFIED' only after expert review against the actual mesh surface.
+  // Until then it is SCHEMATIC (hand-placed label guide, NOT a measured localization).
+  validationState?: 'SCHEMATIC_UNVALIDATED' | 'EXPERT_VERIFIED';
 }
 
 export interface LandmarkRegistry {
@@ -63,6 +67,18 @@ export interface LandmarkRegistry {
 /**
  * Authoritative Canonical Landmark Registry for Human Cerebral Macroanatomy
  * Grounded in canonical_atlas_ras coordinate space.
+ *
+ * PHASE 3.1 CORRECTION (D7 — read before using worldPositionMm):
+ * Every anchor below is SCHEMATIC_UNVALIDATED: hand-placed label guides with NO
+ * measurement provenance against the mesh surface. They must NOT be presented as
+ * verified sulcal/gyral localizations, and must NOT back clinical claims.
+ * Measured audit 2026-09-27 further showed the anchors were authored under the
+ * false "+Z Anterior" convention: pole anchors (frontal Z=+62, occipital Z=-102)
+ * sit at the OPPOSITE ends of the actual mesh (frontal chunks at low Z, occipital
+ * chunk at high Z), and pre/postcentral relative order is inverted vs the mesh.
+ * Anchors stay byte-identical until expert re-anchoring (Part 4 entry criterion);
+ * moving them by auditor judgment would itself be fabrication. An anchor may set
+ * validationState: 'EXPERT_VERIFIED' only after documented expert-vs-mesh review.
  */
 export const CEREBRAL_LANDMARKS: AnatomicalLandmark[] = [
   // ==========================================
@@ -399,6 +415,12 @@ export const CEREBRAL_LANDMARKS: AnatomicalLandmark[] = [
 
 /**
  * Semantic Lobar Organization
+ *
+ * PHASE 3.1 NOTE: canonicalCentroidMm values are schematic regional guides
+ * (same unvalidated status as landmark anchors above), NOT measured lobar
+ * centroids. FMA/TA2 IDs below are ontology references for the lobe concepts;
+ * several (like cortical FMA IDs) are UNVERIFIED against the FMA — see
+ * docs/KNOWN_ANATOMICAL_LIMITATIONS.md. Do not present these numbers as measurements.
  */
 export const SEMANTIC_LOBES: SemanticLobeDefinition[] = [
   {

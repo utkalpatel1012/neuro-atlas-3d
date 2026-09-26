@@ -1,7 +1,7 @@
 {
   "assetId": "mesh.hippocampus.right.v1",
   "timestamp": "2026-09-26T13:02:02.639Z",
-  "inputCanonicalGlb": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.right.v1\\canonical\\mesh.hippocampus.right.v1.canonical.glb",
+  "inputCanonicalGlb": "assets/derived/mesh.hippocampus.right.v1/canonical/mesh.hippocampus.right.v1.canonical.glb",
   "inputCanonicalHash": "a487b3568583990d371be0af2e2909472e388a4bd23420661f0a15994f37a507",
   "levels": [
     {
@@ -12,7 +12,7 @@
       "vertexCount": 2228,
       "byteLength": 81160,
       "sha256": "b222acadc7cd61d114f65a40d21a25937e14f0e86a08eaf778e87ff1bf14641a",
-      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.right.v1\\lod\\mesh.hippocampus.right.v1.lod0.glb",
+      "filePath": "assets/derived/mesh.hippocampus.right.v1/lod/mesh.hippocampus.right.v1.lod0.glb",
       "targetIndexCount": 13356,
       "resultingIndexCount": 13356,
       "simplificationMetric": {
@@ -48,7 +48,7 @@
       "vertexCount": 1671,
       "byteLength": 61108,
       "sha256": "3d95c7ff406847139ac6e8341b6eecf43197618c854ae536f0f6391fc117ebd6",
-      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.right.v1\\lod\\mesh.hippocampus.right.v1.lod1.glb",
+      "filePath": "assets/derived/mesh.hippocampus.right.v1/lod/mesh.hippocampus.right.v1.lod1.glb",
       "targetIndexCount": 10017,
       "resultingIndexCount": 10014,
       "simplificationMetric": {
@@ -84,7 +84,7 @@
       "vertexCount": 1115,
       "byteLength": 41096,
       "sha256": "1616285f6ddf2d5d2cfe81fe15cfe00e9c7cfaf7dd7cfa464a02d75103d3edf5",
-      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.right.v1\\lod\\mesh.hippocampus.right.v1.lod2.glb",
+      "filePath": "assets/derived/mesh.hippocampus.right.v1/lod/mesh.hippocampus.right.v1.lod2.glb",
       "targetIndexCount": 6678,
       "resultingIndexCount": 6678,
       "simplificationMetric": {
@@ -120,7 +120,7 @@
       "vertexCount": 558,
       "byteLength": 21040,
       "sha256": "54b0809970a5f723ede3eb8a5409522f9d568df56037c77bd8630c5b0ec540ef",
-      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.right.v1\\lod\\mesh.hippocampus.right.v1.lod3.glb",
+      "filePath": "assets/derived/mesh.hippocampus.right.v1/lod/mesh.hippocampus.right.v1.lod3.glb",
       "targetIndexCount": 3339,
       "resultingIndexCount": 3336,
       "simplificationMetric": {
@@ -175,5 +175,6 @@
       ]
     },
     "timestamp": "2026-09-26T13:02:02.641Z"
-  }
+  },
+  "phase_3_1_note": "2026-09-27: paths made repo-relative. QEM simplification is LOSSY; see geometricFidelity per level. No geometry changed."
 }

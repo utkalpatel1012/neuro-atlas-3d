@@ -113,10 +113,11 @@ export async function optimizeMeshopt(assetId: string): Promise<CompressionRepor
 
     metrics.push({
       lodName,
-      uncompressedGlbPath,
+      // Phase 3.1: repo-relative paths — committed artifacts must not leak machine-local paths.
+      uncompressedGlbPath: path.relative(PROJECT_ROOT, uncompressedGlbPath).replace(/\\/g, '/'),
       uncompressedByteLength: uncompressedSize,
       uncompressedSha256,
-      runtimeGlbPath,
+      runtimeGlbPath: path.relative(PROJECT_ROOT, runtimeGlbPath).replace(/\\/g, '/'),
       compressedByteLength: compressedSize,
       compressedSha256,
       compressionRatio,
@@ -126,7 +127,7 @@ export async function optimizeMeshopt(assetId: string): Promise<CompressionRepor
       roundTripVerified: true
     });
 
-    console.log(`[MESHOPT] ${lodName.toUpperCase()}: ${uncompressedSize} -> ${compressedSize} bytes (-${savingsPercent}%, ratio ${compressionRatio}x, verified lossless)`);
+    console.log(`[MESHOPT] ${lodName.toUpperCase()}: ${uncompressedSize} -> ${compressedSize} bytes (-${savingsPercent}%, ratio ${compressionRatio}x, meshopt encode round-trip verified vs LOD input, max delta <= 1e-6 mm; QEM LOD simplification itself is lossy)`);
   }
 
   const overallSavingsPercent = Number((((totalUncompressed - totalCompressed) / totalUncompressed) * 100).toFixed(2));
@@ -135,7 +136,7 @@ export async function optimizeMeshopt(assetId: string): Promise<CompressionRepor
     assetId,
     timestamp: new Date().toISOString(),
     compressionAlgorithm: 'EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)',
-    targetRuntimeDirectory: runtimeDir,
+    targetRuntimeDirectory: path.relative(PROJECT_ROOT, runtimeDir).replace(/\\/g, '/'),
     levels: metrics,
     overallUncompressedBytes: totalUncompressed,
     overallCompressedBytes: totalCompressed,
@@ -148,7 +149,11 @@ export async function optimizeMeshopt(assetId: string): Promise<CompressionRepor
         extension: 'EXT_meshopt_compression',
         attributeMode: 'ATTRIBUTES',
         indexMode: 'TRIANGLES',
-        lossless: true
+        // Phase 3.1 (D6): lossless ONLY vs the supplied LOD input (verified max
+        // position delta <= 1e-6 mm on decode). QEM LOD simplification is lossy.
+        meshopt_roundtrip_lossless_vs_lod_input: true,
+        meshopt_roundtrip_max_delta_mm: 1e-6,
+        qem_simplification_lossy: true
       },
       timestamp: new Date().toISOString()
     }

@@ -3,17 +3,26 @@
  * Standard: AAS-2026-NEURO-V1 (Phase 1.0.1 Hardening)
  * 
  * Provides an explicit, reproducible transformation abstraction from any
- * source coordinate system (DICOM LPS, MNI152, FreeSurfer) to canonical
- * Right-Handed RAS Three.js space (+X Right, +Y Superior, +Z Anterior).
+ * source coordinate system (DICOM LPS, MNI152, FreeSurfer) to the canonical
+ * internal engine space ('canonical_atlas_ras' identifier, retained for stability).
+ *
+ * PHASE 3.1 CORRECTION (D3, measured 2026-09-27): the canonical space actually
+ * embodied by the adapters below is +X Right, +Y Superior, +Z POSTERIOR
+ * (right-handed). It is NOT RAS-ordered (+X Right, +Y Anterior, +Z Superior) and
+ * NOT MNI152. Earlier "+Z Anterior" / "RAS" wording was wrong; every human-readable
+ * definition now states +Z Posterior. The frame ID is unchanged to avoid
+ * invalidating manifests, records, and tests — the ID is a label, not a claim.
  */
 
 export type SourceAxisKey = 'x' | '-x' | 'y' | '-y' | 'z' | '-z';
 
 export interface AxisMapping {
-  // Target canonical axis mapped from source axis
+  // Target canonical axis mapped from source axis.
+  // NOTE (Phase 3.1): canonical axes are +X Right, +Y Superior, +Z POSTERIOR
+  // (NOT RAS order; NOT MNI). Field comments below state the measured directions.
   x: SourceAxisKey; // Canonical +X (Right) mapped from
   y: SourceAxisKey; // Canonical +Y (Superior) mapped from
-  z: SourceAxisKey; // Canonical +Z (Anterior) mapped from
+  z: SourceAxisKey; // Canonical +Z (Posterior) mapped from
 }
 
 export interface SourceCoordinateAdapter {
@@ -23,7 +32,8 @@ export interface SourceCoordinateAdapter {
   source_units: 'mm' | 'm' | 'cm';
   source_origin: string;      // e.g. 'WHOLE_BODY_ABSOLUTE_TABLE_ORIGIN', 'AC_PC_COMMISSURAL', 'MNI_ANTERIOR_COMMISSURE'
   target_canonical_system: 'THREEJS_RAS_CANONICAL';
-  target_orientation: 'RAS';  // +X Right, +Y Superior, +Z Anterior
+  target_orientation: 'RAS';  // HISTORIC LABEL, retained for stability. Measured meaning
+  // (Phase 3.1): +X Right, +Y Superior, +Z POSTERIOR — not RAS order, not MNI.
   target_units: 'mm';
   axis_mapping: AxisMapping;
   translation_mm: [number, number, number]; // [tx, ty, tz] in target space after axis mapping
@@ -129,15 +139,21 @@ export function transformPositions(
 // ============================================================================
 
 /**
- * BodyParts3D Whole-Body DICOM LPS to NeuroAtlas3D Canonical Three.js RAS
- * 
- * Source Orientation: LPS (+X Left, +Y Posterior, +Z Superior, origin at scan table)
- * Target Orientation: RAS (+X Right, +Y Superior, +Z Anterior, origin at AC-PC)
- * 
- * Transformation Equations:
- *   X_ras = -X_lps                    (Right = -Left)
- *   Y_ras =  Z_lps - 1561.7 mm        (Superior = Superior, centered vertically at AC-PC)
- *   Z_ras =  Y_lps + 70.1 mm          (Anterior = Anterior, centered AP at AC)
+ * BodyParts3D Whole-Body source frame to NeuroAtlas3D Canonical internal space
+ *
+ * Source Orientation (ASSERTED, Phase 3.1 D3): treated as LPS
+ * (+X Left, +Y Posterior, +Z Superior, origin at scan table). BodyParts3D defines its
+ * own "universal coordinate system" (Mitsuhashi et al. 2009); DICOM-LPS equivalence
+ * for the mirror STLs is NOT proven by citation. If the source +Y direction were ever
+ * shown to be anterior rather than posterior, the +Z anatomical label below inverts.
+ * Target Orientation (MEASURED, Phase 3.1): +X Right, +Y Superior, +Z Posterior.
+ *
+ * Transformation Equations (exact coded math):
+ *   X_canonical = -X_source             (Right = -Left)
+ *   Y_canonical =  Z_source - 1561.7    (Superior = Superior, vertically centered)
+ *   Z_canonical =  Y_source + 70.1      (Posterior = Posterior under LPS assumption)
+ * Determinant +1: proper rigid rotation, no mirroring. Translation constants center
+ * the data near the origin; their derivation method is undocumented (asserted).
  */
 export const BODYPARTS3D_LPS_TO_RAS_ADAPTER: SourceCoordinateAdapter = {
   adapter_id: 'adapter.bodyparts3d.lps_whole_body_to_ras',
@@ -159,14 +175,13 @@ export const BODYPARTS3D_LPS_TO_RAS_ADAPTER: SourceCoordinateAdapter = {
     registration_method: 'stereotaxic_acpc_origin_centering',
     reference_landmarks: {
       ac_pc_midpoint_source_lps: [0.0, -70.1, 1561.7]
-    },
-    transformation_matrix_4x4: [
+    },    transformation_matrix_4x4: [
       [-1.0,  0.0,  0.0,      0.0],
       [ 0.0,  0.0,  1.0, -1561.70],
       [ 0.0,  1.0,  0.0,    70.10],
       [ 0.0,  0.0,  0.0,      1.0]
     ],
-    notes: 'Transforms whole-body LPS coordinates to standard Three.js RAS coordinates centered at AC-PC'
+    notes: 'Transforms whole-body source coordinates to internal canonical space centered near origin. The AC-PC midpoint landmark above is ASSERTED, not measured from identified commissures (Phase 3.1 D3); origin approximates, not equals, the mid-commissural plane.'
   },
   transformation_version: '1.0.0'
 };

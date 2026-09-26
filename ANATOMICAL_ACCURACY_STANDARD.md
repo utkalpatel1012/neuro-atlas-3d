@@ -102,8 +102,9 @@ All 3D anatomical meshes ingested and processed through the asset pipeline (`Pha
    * Exactly 0 zero-area or degenerate triangles.
    * Watertight 2-manifold surface with 0 boundary edges.
 2. **Coordinate Space Canonicalization**:
-   * All meshes must be canonicalized into standard Right-Handed RAS space ($+X$ Right, $+Y$ Superior, $+Z$ Anterior) in millimeter units ($1.0 = 1.0\text{ mm}$).
-   * In RAS coordinates, left-hemisphere structures must have negative $X$ centroids ($\text{Centroid}_X < 0$), and right-hemisphere structures must have positive $X$ centroids ($\text{Centroid}_X > 0$).
+   * All meshes must be canonicalized into the internal canonical space ($+X$ Right, $+Y$ Superior, $+Z$ POSTERIOR — Phase 3.1 measured; NOT RAS-ordered, NOT MNI; the `canonical_atlas_ras` identifier is retained for stability) in millimeter units ($1.0 = 1.0\text{ mm}$).
+   * In canonical coordinates, left-hemisphere structures must have negative $X$ centroids ($\text{Centroid}_X < 0$), and right-hemisphere structures must have positive $X$ centroids ($\text{Centroid}_X > 0$). Centroid sign is a NECESSARY but NOT SUFFICIENT laterality check — the full source→transform→canonical chain must be verified (Phase 3.1 D5).
+   * Edge-based watertight accounting is per-shell: report measured `connectedShellCount` and never classify a multi-shell composite as `CLOSED_SURFACE` (Phase 3.1 D1/D7).
 3. **Decoupled Identity & Epistemic Traceability**:
    * Physical asset IDs (`mesh.<structure>.<laterality>.<version>`) and semantic entity IDs (`brain.<division>.<laterality>.<subdivision>.<structure>`) must remain decoupled.
    * Every physical asset must record genuine cryptographic SHA-256 digests and upstream provenance in `assets/manifests/assets.manifest.json`.

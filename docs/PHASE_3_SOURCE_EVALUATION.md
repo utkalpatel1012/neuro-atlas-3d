@@ -3,8 +3,20 @@
 **Document Standard**: AAS-2026-NEURO-V1  
 **Phase**: Phase 3 — Cerebral Macroanatomy & Production Asset Pipeline  
 **Authority**: Principal Computational Neuroanatomist & Lead 3D Visualization Engineer  
-**Status**: APPROVED & LOCKED  
-**Date**: 2026-09-26  
+**Status**: APPROVED & LOCKED
+**Date**: 2026-09-26
+
+> **PHASE 3.1 CORRECTION NOTICE (2026-09-27 — evaluation preserved, findings supersede):**
+> (a) §2A "Anatomical Scope" names superior temporal gyrus, cuneus, and lingual gyrus —
+> the ingested files are actually middle temporal, accessory short (insular), and
+> parahippocampal gyri (see `PHASE_3_CORTEX_SOURCE_COMPONENTS.md`); the evaluation was
+> written against the mislabeled list. (b) §2A "Coordinate System" formula
+> ($Y_{RAS}=-Y_{LPS}$) is NOT what the pipeline implements (code: $X_c=-X_s,$
+> $Y_c=Z_s-1561.7,$ $Z_c=Y_s+70.1$); canonical +Z is POSTERIOR. (c) "100% permitted" /
+> "Commercial Restrictions: NONE" overstate legal certainty — retroactivity/scope is
+> `LEGAL_REVIEW_REQUIRED` (dual-compliance posture retained). (d) Population,
+> methodology, and resolution specifics below are literature-asserted, not verified
+> against the mirror files. (e) "DICOM LPS" for the mirror STLs is asserted, unproven.
 
 ---
 
@@ -45,7 +57,7 @@ This document systematically evaluates candidate anatomical datasets across fift
 * **Resolution**: Sub-millimeter anatomical feature fidelity; macroscopic gyral contours captured at $\approx 0.5-1.0\text{ mm}$ detail.
 * **License**: **Creative Commons Attribution 4.0 International (CC BY 4.0)** (Portal official update 2025/02/27; historical Release 3.0 originally CC-BY-SA 2.1 JP).
 * **Attribution Requirements**: "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International."
-* **Derivative-Work Restrictions**: Under current CC BY 4.0, derivatives may be distributed freely without ShareAlike restriction. Under defensive dual compliance, project distributes derived meshes under CC-BY-SA 4.0 to satisfy historical covenants.
+* **Derivative-Work Restrictions**: Historical Release 3.0 files: CC-BY-SA 2.1 JP (ShareAlike applies under that reading). Upstream portal lists CC BY (2025-02-27) (attribution-only under that reading). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED (Phase 3.1 §19; the term "dual compliance" has no legal basis and is banned from live records).
 * **Commercial Restrictions**: **NONE**. Fully permitted for commercial and non-commercial application deployment.
 * **Redistribution Rights**: 100% permitted.
 * **Suitability Verdict**: **PRIMARY SOURCE FOR CEREBRAL MACROANATOMY & GYRAL STRUCTURES (APPROVED)**.

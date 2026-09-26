@@ -93,10 +93,10 @@ The raw STL geometry was audited against the rigorous mathematical standards in 
   * $+X$: Left
   * $+Y$: Posterior
   * $+Z$: Superior (centered at whole-body absolute height $\approx 1545\text{ mm}$)
-* **Target Atlas Coordinate Frame**: Standard Three.js / WebGL / Blender Right-Handed RAS (Right, Anterior, Superior):
+* **Target Atlas Coordinate Frame**: Internal canonical space, Phase 3.1 corrected (right-handed; NOT RAS-ordered, NOT MNI):
   * $+X$: Patient Right (Left hemisphere is negative $X$)
   * $+Y$: Superior (Cranial / Dorsal)
-  * $+Z$: Anterior (Rostral)
+  * $+Z$: POSTERIOR (Occipital) — pre-3.1 text said Anterior, contradicting the equations below
 * **Transformation Applied**:
   $$\begin{aligned}
   X_{\text{RAS}} &= -X_{\text{LPS}} \\

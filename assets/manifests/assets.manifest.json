@@ -1,12 +1,17 @@
 {
   "manifest_version": "1.1.0",
-  "generated_at": "2026-09-26T17:50:43.667Z",
+  "generated_at": "2026-09-26T19:58:14.118Z",
   "generator_script": "scripts/pipeline/update_manifest.ts",
   "total_assets": 4,
   "assets": {
     "mesh.hippocampus.left.v1": {
       "asset_id": "mesh.hippocampus.left.v1",
-      "dataset_name": "BodyParts3D / SPL-PNL Brain Atlas",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
       "dataset_version": "Release 3.0 (2011)",
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72714",
@@ -49,9 +54,9 @@
           "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
           "parameters": {
             "adapter_id": "bodyparts3d-lps-to-ras",
-            "source_space": "DICOM_LPS",
-            "target_space": "THREEJS_RAS",
-            "transform": "x_negated_z_negated",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
@@ -78,7 +83,9 @@
           "parameters": {
             "extension": "EXT_meshopt_compression",
             "overall_savings_percent": 34.19,
-            "lossless_verification": true
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
           "git_commit_hash": "9672869",
@@ -92,12 +99,12 @@
       "commercial_redistribution": "PERMITTED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
-        "Derived 3D meshes shared under CC-BY-SA 4.0 compatible terms",
-        "Defensive dual compliance: satisfies both CC-BY-SA 2.1 JP and CC BY 4.0"
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
-      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72714 left hippocampus). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.",
-      "coordinate_space": "canonical_atlas_ras (+X Right, +Y Superior, +Z Anterior)",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72714 left hippocampus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
         -25.07,
         -13.89,
@@ -109,9 +116,9 @@
         40.55
       ],
       "topology_class": "SOLID",
-      "geometric_qa_status": "PASS",
-      "anatomical_qa_status": "PASS",
-      "dual_licensing_notes": "Dual compliance: Release 3.0 CC-BY-SA 2.1 JP and modern DBCLS portal CC BY 4.0 (verified 2025-02-27). Derivative published under CC-BY-SA 4.0.",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
       "canonical_glb_path": "assets/derived/mesh.hippocampus.left.v1/canonical/mesh.hippocampus.left.v1.canonical.glb",
       "lod_files": {
         "lod0": {
@@ -168,7 +175,12 @@
     },
     "mesh.hippocampus.right.v1": {
       "asset_id": "mesh.hippocampus.right.v1",
-      "dataset_name": "BodyParts3D / SPL-PNL Brain Atlas",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
       "dataset_version": "Release 3.0 (2011)",
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72713",
@@ -211,9 +223,9 @@
           "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
           "parameters": {
             "adapter_id": "bodyparts3d-lps-to-ras",
-            "source_space": "DICOM_LPS",
-            "target_space": "THREEJS_RAS",
-            "transform": "x_negated_z_negated",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
@@ -240,7 +252,9 @@
           "parameters": {
             "extension": "EXT_meshopt_compression",
             "overall_savings_percent": 34.87,
-            "lossless_verification": true
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
           "git_commit_hash": "9672869",
@@ -254,12 +268,12 @@
       "commercial_redistribution": "PERMITTED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
-        "Derived 3D meshes shared under CC-BY-SA 4.0 compatible terms",
-        "Defensive dual compliance: satisfies both CC-BY-SA 2.1 JP and CC BY 4.0"
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
-      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72713 right hippocampus). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.",
-      "coordinate_space": "canonical_atlas_ras (+X Right, +Y Superior, +Z Anterior)",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72713 right hippocampus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
         26.38,
         -13.89,
@@ -271,9 +285,9 @@
         40.49
       ],
       "topology_class": "SOLID",
-      "geometric_qa_status": "PASS",
-      "anatomical_qa_status": "PASS",
-      "dual_licensing_notes": "Dual compliance: Release 3.0 CC-BY-SA 2.1 JP and modern DBCLS portal CC BY 4.0 (verified 2025-02-27). Derivative published under CC-BY-SA 4.0.",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
       "canonical_glb_path": "assets/derived/mesh.hippocampus.right.v1/canonical/mesh.hippocampus.right.v1.canonical.glb",
       "lod_files": {
         "lod0": {
@@ -330,7 +344,12 @@
     },
     "mesh.cortex.left.v1": {
       "asset_id": "mesh.cortex.left.v1",
-      "dataset_name": "BodyParts3D / SPL-PNL Brain Atlas",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (OBJ to STL converted; per-component URLs in component record)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
       "dataset_version": "Release 3.0 (2011)",
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "BodyParts3D_Cortex_Left_Assembly",
@@ -356,7 +375,7 @@
           "operation_name": "Geometric_QA_Validation",
           "script_relative_path": "scripts/pipeline/validate_mesh.ts",
           "parameters": {
-            "topology_class": "CLOSED_SURFACE",
+            "topology_class": "MULTI_SHELL_COMPOSITE",
             "manifold_edges_required": 0,
             "zero_area_faces_allowed": 0,
             "duplicate_faces_allowed": 0,
@@ -373,9 +392,9 @@
           "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
           "parameters": {
             "adapter_id": "bodyparts3d-lps-to-ras",
-            "source_space": "DICOM_LPS",
-            "target_space": "THREEJS_RAS",
-            "transform": "x_negated_z_negated",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
@@ -402,7 +421,9 @@
           "parameters": {
             "extension": "EXT_meshopt_compression",
             "overall_savings_percent": 47.03,
-            "lossless_verification": true
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
           "git_commit_hash": "9672869",
@@ -416,12 +437,12 @@
       "commercial_redistribution": "PERMITTED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
-        "Derived 3D meshes shared under CC-BY-SA 4.0 compatible terms",
-        "Defensive dual compliance: satisfies both CC-BY-SA 2.1 JP and CC BY 4.0"
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
-      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (BodyParts3D_Cortex_Left_Assembly left cerebral cortex). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.",
-      "coordinate_space": "canonical_atlas_ras (+X Right, +Y Superior, +Z Anterior)",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (BodyParts3D_Cortex_Left_Assembly left cerebral cortex) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
         -32.5,
         16.01,
@@ -432,10 +453,10 @@
         110.74,
         170.23
       ],
-      "topology_class": "CLOSED_SURFACE",
-      "geometric_qa_status": "PASS",
-      "anatomical_qa_status": "PASS",
-      "dual_licensing_notes": "Dual compliance: Release 3.0 CC-BY-SA 2.1 JP and modern DBCLS portal CC BY 4.0 (verified 2025-02-27). Derivative published under CC-BY-SA 4.0.",
+      "topology_class": "MULTI_SHELL_COMPOSITE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMICAL_MAPPING_PENDING",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
       "canonical_glb_path": "assets/derived/mesh.cortex.left.v1/canonical/mesh.cortex.left.v1.canonical.glb",
       "lod_files": {
         "lod0": {
@@ -488,11 +509,148 @@
           "bytes": 625476,
           "compression_ratio": 1.43
         }
+      },
+      "source_components": {
+        "component_record_path": "assets/raw/mesh.cortex.left.v1/ingestion.json",
+        "component_count": 14,
+        "components": [
+          {
+            "fma_id": "FMA72654",
+            "name": "Left superior frontal gyrus",
+            "laterality": "left",
+            "lobe": "frontal",
+            "sha256": "54aa6966cf6dee412cd16f2fc9ba4222a47910c59cc7a147dbac87d62689a13d",
+            "triangle_count": 30450,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72654.stl"
+          },
+          {
+            "fma_id": "FMA72656",
+            "name": "Left middle frontal gyrus",
+            "laterality": "left",
+            "lobe": "frontal",
+            "sha256": "e97ef0b0a99f9d5b76d96363555cc27dca101c0f39ec340f38517e106a68d05b",
+            "triangle_count": 15544,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72656.stl"
+          },
+          {
+            "fma_id": "FMA72662",
+            "name": "Left precentral gyrus",
+            "laterality": "left",
+            "lobe": "frontal",
+            "sha256": "533692c92294c4f5ad4158a51ab681cfefb4bd0f729a70df2e983693a1b51b2b",
+            "triangle_count": 18836,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72662.stl"
+          },
+          {
+            "fma_id": "FMA72666",
+            "name": "Left postcentral gyrus",
+            "laterality": "left",
+            "lobe": "parietal",
+            "sha256": "30fd9c050762f100770d42a71c64976cce10c49440f03e991702fe8514ebceb3",
+            "triangle_count": 16858,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72666.stl"
+          },
+          {
+            "fma_id": "FMA72668",
+            "name": "Left supramarginal gyrus",
+            "laterality": "left",
+            "lobe": "parietal",
+            "sha256": "ac0d7b383407477f53f13304de628ec848e8273f41b9ca5895a34697834e6f1b",
+            "triangle_count": 9778,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72668.stl"
+          },
+          {
+            "fma_id": "FMA72670",
+            "name": "Left angular gyrus",
+            "laterality": "left",
+            "lobe": "parietal",
+            "sha256": "206507829901707be007389c3ebdbae07ebb942ec983d4582c3c2b76fef6ae34",
+            "triangle_count": 13164,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72670.stl"
+          },
+          {
+            "fma_id": "FMA72686",
+            "name": "Left middle temporal gyrus",
+            "laterality": "left",
+            "lobe": "temporal",
+            "sha256": "b7e58d0f86e4dd335eabf01b5459526f6a7fe66821b03ccb43d879ba70d56332",
+            "triangle_count": 12918,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72686.stl"
+          },
+          {
+            "fma_id": "FMA72688",
+            "name": "Left inferior temporal gyrus",
+            "laterality": "left",
+            "lobe": "temporal",
+            "sha256": "fe75592f16a8c604c07f17e788e22f34801467f14f4a1e9d1066da3759a7616f",
+            "triangle_count": 13040,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72688.stl"
+          },
+          {
+            "fma_id": "FMA72690",
+            "name": "Left fusiform gyrus",
+            "laterality": "left",
+            "lobe": "temporal",
+            "sha256": "f7573954276f752193fe5b80b2ebab8e717d0e6c2b11f8ccea12c632c8abea3a",
+            "triangle_count": 6148,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72690.stl"
+          },
+          {
+            "fma_id": "FMA72702",
+            "name": "Left accessory short gyrus",
+            "laterality": "left",
+            "lobe": "insula",
+            "sha256": "68aec4cd4cb4a7c28c9f28e2056b64fd202237281012faba38736b03ab951d7a",
+            "triangle_count": 15330,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72702.stl"
+          },
+          {
+            "fma_id": "FMA72706",
+            "name": "Left parahippocampal gyrus",
+            "laterality": "left",
+            "lobe": "limbic",
+            "sha256": "fa2679accd8a5134422e3d06012d30ac7db37cac3dcccba5526b9c9c3c55438b",
+            "triangle_count": 3452,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72706.stl"
+          },
+          {
+            "fma_id": "FMA72976",
+            "name": "Left occipital lobe",
+            "laterality": "left",
+            "lobe": "occipital",
+            "sha256": "8f718a0c60a316c7e6b60fa440909865927de819d2229c2c513f9dee97644a0a",
+            "triangle_count": 18746,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72976.stl"
+          },
+          {
+            "fma_id": "FMA72978",
+            "name": "Left insula",
+            "laterality": "left",
+            "lobe": "insula",
+            "sha256": "8ab8b6fdee006cf8776db3b3c9857dd10aa9d60cd1851c2e7975eb7978c8d57b",
+            "triangle_count": 12242,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72978.stl"
+          },
+          {
+            "fma_id": "FMA72718",
+            "name": "Left cingulate gyrus",
+            "laterality": "left",
+            "lobe": "limbic",
+            "sha256": "e83fc7ef26bafad285d81a236a5651132bd7eb1232f488ebb01f14202bffd927",
+            "triangle_count": 11724,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72718.stl"
+          }
+        ]
       }
     },
     "mesh.cortex.right.v1": {
       "asset_id": "mesh.cortex.right.v1",
-      "dataset_name": "BodyParts3D / SPL-PNL Brain Atlas",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (OBJ to STL converted; per-component URLs in component record)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
       "dataset_version": "Release 3.0 (2011)",
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "BodyParts3D_Cortex_Right_Assembly",
@@ -518,7 +676,7 @@
           "operation_name": "Geometric_QA_Validation",
           "script_relative_path": "scripts/pipeline/validate_mesh.ts",
           "parameters": {
-            "topology_class": "CLOSED_SURFACE",
+            "topology_class": "MULTI_SHELL_COMPOSITE",
             "manifold_edges_required": 0,
             "zero_area_faces_allowed": 0,
             "duplicate_faces_allowed": 0,
@@ -535,9 +693,9 @@
           "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
           "parameters": {
             "adapter_id": "bodyparts3d-lps-to-ras",
-            "source_space": "DICOM_LPS",
-            "target_space": "THREEJS_RAS",
-            "transform": "x_negated_z_negated",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
@@ -564,7 +722,9 @@
           "parameters": {
             "extension": "EXT_meshopt_compression",
             "overall_savings_percent": 47.09,
-            "lossless_verification": true
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
           "git_commit_hash": "9672869",
@@ -578,12 +738,12 @@
       "commercial_redistribution": "PERMITTED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
-        "Derived 3D meshes shared under CC-BY-SA 4.0 compatible terms",
-        "Defensive dual compliance: satisfies both CC-BY-SA 2.1 JP and CC BY 4.0"
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
-      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (BodyParts3D_Cortex_Right_Assembly right cerebral cortex). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.",
-      "coordinate_space": "canonical_atlas_ras (+X Right, +Y Superior, +Z Anterior)",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (BodyParts3D_Cortex_Right_Assembly right cerebral cortex) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
         33.78,
         16,
@@ -594,10 +754,10 @@
         110.74,
         170.23
       ],
-      "topology_class": "CLOSED_SURFACE",
-      "geometric_qa_status": "PASS",
-      "anatomical_qa_status": "PASS",
-      "dual_licensing_notes": "Dual compliance: Release 3.0 CC-BY-SA 2.1 JP and modern DBCLS portal CC BY 4.0 (verified 2025-02-27). Derivative published under CC-BY-SA 4.0.",
+      "topology_class": "MULTI_SHELL_COMPOSITE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMICAL_MAPPING_PENDING",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
       "canonical_glb_path": "assets/derived/mesh.cortex.right.v1/canonical/mesh.cortex.right.v1.canonical.glb",
       "lod_files": {
         "lod0": {
@@ -650,6 +810,138 @@
           "bytes": 624784,
           "compression_ratio": 1.43
         }
+      },
+      "source_components": {
+        "component_record_path": "assets/raw/mesh.cortex.right.v1/ingestion.json",
+        "component_count": 14,
+        "components": [
+          {
+            "fma_id": "FMA72653",
+            "name": "Right superior frontal gyrus",
+            "laterality": "right",
+            "lobe": "frontal",
+            "sha256": "bfdfb291520f28f3243e5b6969449e9d0ce70fcbe7f2e1862629cea21110eb94",
+            "triangle_count": 30448,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72653.stl"
+          },
+          {
+            "fma_id": "FMA72655",
+            "name": "Right middle frontal gyrus",
+            "laterality": "right",
+            "lobe": "frontal",
+            "sha256": "3996b19ea6ddce123eb1c41798cfff26f8af125fa63492a98454c6ea994bf26e",
+            "triangle_count": 15558,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72655.stl"
+          },
+          {
+            "fma_id": "FMA72661",
+            "name": "Right precentral gyrus",
+            "laterality": "right",
+            "lobe": "frontal",
+            "sha256": "136dc5cab4297753d7d26af60990c9e94b78997d6bf6a61d2beea08c726fd497",
+            "triangle_count": 18838,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72661.stl"
+          },
+          {
+            "fma_id": "FMA72665",
+            "name": "Right postcentral gyrus",
+            "laterality": "right",
+            "lobe": "parietal",
+            "sha256": "26aa859a22bed7bb4165f41b456f532ace9de8e7583754f894ec239615558829",
+            "triangle_count": 16862,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72665.stl"
+          },
+          {
+            "fma_id": "FMA72667",
+            "name": "Right supramarginal gyrus",
+            "laterality": "right",
+            "lobe": "parietal",
+            "sha256": "babd989df0c238866ab1ae6c9e94d1fb3ec5b7d457ee25576a31a120831e9f97",
+            "triangle_count": 9782,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72667.stl"
+          },
+          {
+            "fma_id": "FMA72669",
+            "name": "Right angular gyrus",
+            "laterality": "right",
+            "lobe": "parietal",
+            "sha256": "8d269ad9da1d34453e23ac41ce4cf1e94734f48023373b7f2502beaed17cfeb1",
+            "triangle_count": 13172,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72669.stl"
+          },
+          {
+            "fma_id": "FMA72685",
+            "name": "Right middle temporal gyrus",
+            "laterality": "right",
+            "lobe": "temporal",
+            "sha256": "a39ee61dc99086d7d1be44c42157de54e04f9defa85074c63dc43b0bd1ef028f",
+            "triangle_count": 12926,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72685.stl"
+          },
+          {
+            "fma_id": "FMA72687",
+            "name": "Right inferior temporal gyrus",
+            "laterality": "right",
+            "lobe": "temporal",
+            "sha256": "ec04eabe123163d811f4eb4cbca8baf6cfc018ee5994bfe48b04a6b1991ad479",
+            "triangle_count": 13056,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72687.stl"
+          },
+          {
+            "fma_id": "FMA72689",
+            "name": "Right fusiform gyrus",
+            "laterality": "right",
+            "lobe": "temporal",
+            "sha256": "5f7263b7768b54a4ef8b8e31a1d0ef7a7d8f72ccce5011fcbfce66b36a27ad58",
+            "triangle_count": 6150,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72689.stl"
+          },
+          {
+            "fma_id": "FMA72701",
+            "name": "Right accessory short gyrus",
+            "laterality": "right",
+            "lobe": "insula",
+            "sha256": "dae4a0cd8dbeeb27170af29c1f03a7626fa5fbb3c21748c71f07ab67177dafc3",
+            "triangle_count": 15346,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72701.stl"
+          },
+          {
+            "fma_id": "FMA72705",
+            "name": "Right parahippocampal gyrus",
+            "laterality": "right",
+            "lobe": "limbic",
+            "sha256": "fd317edc429ea14f0cc4398198bfb5a6f3a06d1ab9b2b24e5d41a63756899e0a",
+            "triangle_count": 3454,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72705.stl"
+          },
+          {
+            "fma_id": "FMA72975",
+            "name": "Right occipital lobe",
+            "laterality": "right",
+            "lobe": "occipital",
+            "sha256": "1ce0984b5f92adef2278d7adb2d6eada578f20da6d00ce642eb085af60711138",
+            "triangle_count": 18762,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72975.stl"
+          },
+          {
+            "fma_id": "FMA72977",
+            "name": "Right insula",
+            "laterality": "right",
+            "lobe": "insula",
+            "sha256": "2586b9df7a37d40d5082b0fa212856e285c6cbebb0bac3c7cbf1af06678f949a",
+            "triangle_count": 12240,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72977.stl"
+          },
+          {
+            "fma_id": "FMA72717",
+            "name": "Right cingulate gyrus",
+            "laterality": "right",
+            "lobe": "limbic",
+            "sha256": "052c22b760864144c50cc50077a3bdb111d7ed57e5f025ed9c061829b353b5dc",
+            "triangle_count": 11716,
+            "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72717.stl"
+          }
+        ]
       }
     }
   },

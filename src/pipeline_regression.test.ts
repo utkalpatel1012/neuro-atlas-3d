@@ -162,7 +162,7 @@ export function runPipelineRegressionTests(): { passed: boolean; testCount: numb
   if (validateLaterality(true, Math.abs(leftHpcCentroidX))) {
     throw new Error('Laterality check erroneously passed positive X centroid for left structure');
   }
-  results.push(`Check 5 PASSED: Anatomical laterality verified (Centroid X = ${leftHpcCentroidX.toFixed(2)} mm < 0 in RAS).`);
+    results.push(`Check 5 PASSED: Anatomical laterality verified (Centroid X = ${leftHpcCentroidX.toFixed(2)} mm < 0 in canonical internal space).`);
 
   // --------------------------------------------------------------------------
   // Check 6: Invalid geometry fails validation
@@ -211,7 +211,8 @@ export function runPipelineRegressionTests(): { passed: boolean; testCount: numb
   // --------------------------------------------------------------------------
   // Check 8: Presentation transforms do not alter canonical geometry
   // --------------------------------------------------------------------------
-  // Verify canonical vertices are fixed in adult RAS stereotaxic space
+  // Verify canonical vertices are fixed in internal canonical space (Phase 3.1:
+  // +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI)
   const { geometry } = parseGLB(canonicalBytes);
   const v0x = geometry.positions[0];
   const v0y = geometry.positions[1];
@@ -393,7 +394,8 @@ export function runPipelineRegressionTests(): { passed: boolean; testCount: numb
   results.push('Check 14 PASSED: Five disjoint URI namespaces verified (entity, asset, mesh, texture, evidence).');
 
   // --------------------------------------------------------------------------
-  // Check 15: Authoritative Dual Licensing & Defensive Compliance
+  // Check 15: Exact-terms licensing record (Phase 3.1 §19 — no "dual compliance"
+  // terminology: the term has no legal basis. Assert exact terms + unresolved flag.)
   // --------------------------------------------------------------------------
   const extManifestEntry = assetEntry as any;
   if (extManifestEntry.resulting_license !== 'CC-BY-SA 4.0') {
@@ -403,10 +405,17 @@ export function runPipelineRegressionTests(): { passed: boolean; testCount: numb
       !extManifestEntry.attribution_text_required.includes('CC Attribution 4.0 International')) {
     throw new Error('Missing verified DBCLS 2025 CC BY 4.0 attribution in manifest');
   }
-  if (!extManifestEntry.restrictions_and_covenants.some((c: string) => c.includes('dual compliance'))) {
-    throw new Error('Missing defensive dual compliance covenant in manifest');
+  const covenants15: string[] = extManifestEntry.restrictions_and_covenants || [];
+  if (!covenants15.some((c: string) => c.includes('CC-BY-SA 2.1 JP') && c.includes('CC BY (2025-02-27)'))) {
+    throw new Error('Missing exact-terms licensing covenant in manifest');
   }
-  results.push('Check 15 PASSED: Defensive dual compliance verified (satisfies both CC-BY-SA 2.1 JP and modern DBCLS CC BY 4.0).');
+  if (!JSON.stringify(extManifestEntry).includes('LEGAL_REVIEW_REQUIRED')) {
+    throw new Error('Missing LEGAL_REVIEW_REQUIRED flag for retroactivity in manifest');
+  }
+  if (JSON.stringify(extManifestEntry).toLowerCase().includes('dual compliance')) {
+    throw new Error('Banned counsel-pretending term "dual compliance" present in manifest');
+  }
+  results.push('Check 15 PASSED: Exact licensing terms recorded (2.1 JP historical + portal CC BY 2025-02-27); retroactivity UNRESOLVED with LEGAL_REVIEW_REQUIRED; no "dual compliance" term.');
 
   return {
     passed: true,

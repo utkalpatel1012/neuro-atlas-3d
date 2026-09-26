@@ -14,8 +14,8 @@ Medical and neuroscientific digital applications frequently suffer catastrophic 
 ---
 
 ### Invariant 1: Canonical Coordinates are `canonical_atlas_ras` and Strictly Internal
-* **Principle**: The internal reference space of the 3D atlas engine is `canonical_atlas_ras` ($1\text{ unit} = 1.0\text{ mm}$, Right-Anterior-Superior orientation, origin at canonical atlas origin).
-* **Invariant Rule**: Canonical coordinates are an **internal engine coordinate space**. They are NOT automatically MNI152 coordinates. Centroid bilateral symmetry ($X \approx -25\text{ mm}$ vs $+26\text{ mm}$) does NOT prove MNI152 registration. Registration to stereotaxic templates requires empirical spatial normalization and must be marked `PENDING` if not rigorously completed.
+* **Principle**: The internal reference space of the 3D atlas engine is `canonical_atlas_ras` ($1\text{ unit} = 1.0\text{ mm}$; measured axes +X Right, +Y Superior, +Z POSTERIOR — NOT RAS order, NOT MNI; Phase 3.1 D3. The identifier is retained for stability and makes no anatomical claim).
+* **Invariant Rule**: Canonical coordinates are an **internal engine coordinate space**. They are NOT automatically MNI152 coordinates. Centroid bilateral symmetry ($X \approx -25\text{ mm}$ vs $+26\text{ mm}$) does NOT prove MNI152 registration. Registration to stereotaxic templates requires empirical spatial normalization and must be marked `PENDING` (with NULL metrics) if not rigorously completed.
 
 ### Invariant 2: Anatomical Identity ≠ Mesh Asset File
 * **Principle**: A biological anatomical organ (`brain.*`) is a permanent neuroanatomical concept grounded in Terminologia Anatomica 2 (TA2) and FMA. A 3D mesh (`mesh.*`) is a versioned geometric polygon approximation.
@@ -40,7 +40,7 @@ Medical and neuroscientific digital applications frequently suffer catastrophic 
   2. **Three.js Geometry / Material CPU Buffers** (`ResourceManager`)
   3. **GPU VRAM Buffer Allocations** (`RendererManager` / WebGPU / WebGL)
   4. **Active Scene Graph Nodes** (`SceneManager` & `AnatomicalEntityManager`)
-  Every visual disposal must recursively unmount nodes, dispose materials and geometries, release GPU buffer bindings, and invalidate cache references with zero memory leakage.
+  Every visual disposal must recursively unmount nodes, dispose materials and geometries (including BVH `disposeBoundsTree` where present), release GPU buffer bindings, and invalidate cache references. Reference-counted paths (LOD switches) must be balanced and regression-tested. KNOWN GAPS (Phase 3.1 §30, tracked in `KNOWN_ANATOMICAL_LIMITATIONS.md`, must be closed before they can back any "zero leak" claim): per-asset (not per-LOD) refcount granularity with bulk-dispose hazard; orphaned `ResourceManager`; no disposal on scene-remove/unregister paths; `entityRepresentations` map never cleared. "Zero memory leakage" must never be claimed until these close.
 
 ### Invariant 7: Mobile and Desktop Runtime Budgets are Non-Negotiable
 * **Principle**: Interactive neuroanatomy must run smoothly across high-end desktop workstations and constrained mobile tablets/smartphones.
@@ -51,7 +51,7 @@ Medical and neuroscientific digital applications frequently suffer catastrophic 
 
 ### Invariant 8: WebGPU and WebGL Must Both Fail Gracefully
 * **Principle**: Modern browsers may fail to initialize WebGPU due to missing driver support, disabled flags, or hardware blocklists. Furthermore, WebGPU devices can experience device loss (`GPUDevice.lost`).
-* **Invariant Rule**: The engine must initialize WebGPU when available and transparently fall back to WebGL2 / WebGL1. In the event of WebGPU device loss or WebGL context loss, the renderer must catch the event, emit diagnostics, prevent unhandled rejection, and provide a user-facing recovery pathway.
+* **Invariant Rule**: The engine must initialize WebGPU when available and transparently fall back to WebGL2 / WebGL1. On WebGPU device loss or WebGL context loss, the renderer must catch the event, emit diagnostics, prevent unhandled rejection, pause rendering, and attempt the documented recovery pathway. CURRENT STATE (Phase 3.1 §31–32): detection + pause/resume are real; full renderer recreation, resource rebinding, and session-state restore are PARTIAL/FUTURE — claimed nowhere as complete.
 
 ### Invariant 9: Upstream Source Licenses Must Be Separated from Derived Distribution Policy
 * **Principle**: Upstream source repositories may carry distinct licensing terms (e.g. DBCLS BodyParts3D Release 3.0 originally CC-BY-SA 2.1 JP, later updated on portal to CC BY 4.0).
@@ -59,7 +59,7 @@ Medical and neuroscientific digital applications frequently suffer catastrophic 
 
 ### Invariant 10: Registration to Stereotaxic Templates Must Be Explicitly Validated or Marked Pending
 * **Principle**: Approximations and visual similarities must not be misrepresented as clinical or scientific co-registrations.
-* **Invariant Rule**: Registration to stereotaxic templates (MNI152, Talairach, Colin27) must include complete `RegistrationMetadata` (method, source script, target template, registration uncertainty in mm, and Dice coefficient). If spatial normalization has not been empirically verified via ANTs SyN, FLIRT, or equivalent, `registration_status` must be explicitly marked `REGISTRATION_PENDING`.
+* **Invariant Rule**: When a registration is ACTUALLY COMPUTED, the record must include complete `RegistrationMetadata` (method, source script, target template, measured uncertainty in mm, measured Dice). When NO registration was computed — the normal case in this repo — the record MUST use method `not_registered`, status `REGISTRATION_PENDING`, and MUST NOT contain uncertainty/Dice/template values (Phase 3.1 §8: unmeasured metrics are fabrication, even if an older version of this invariant appeared to require the fields unconditionally).
 
 ### Invariant 11: Automated Test Success Does Not Equal Physical Device Validation
 * **Principle**: Headless CI test environments (Node.js, tsx, jsdom) execute JavaScript and synthetic logic; they do not exercise physical GPU rasterizers, mobile thermal throttling, driver idiosyncrasies, or real touch interaction.

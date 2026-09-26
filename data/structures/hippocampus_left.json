@@ -9,7 +9,11 @@
     "Ammon's Horn",
     "Hippocampus Proper (CA1-CA3)"
   ],
-  "abbreviations": ["Hpc", "HIP", "CA"],
+  "abbreviations": [
+    "Hpc",
+    "HIP",
+    "CA"
+  ],
   "laterality": "left",
   "representation_scope": "paired_separate",
   "name": {
@@ -20,7 +24,11 @@
       "Ammon's Horn",
       "Hippocampus Proper (CA1-CA3)"
     ],
-    "standard_abbreviations": ["Hpc", "HIP", "CA"]
+    "standard_abbreviations": [
+      "Hpc",
+      "HIP",
+      "CA"
+    ]
   },
   "ontology": {
     "ta2_id": "TA2:5488",
@@ -50,32 +58,46 @@
   },
   "spatial": {
     "mesh_node_name": "Mesh_Hippocampus_L",
-    "source_centroid": [-26.2, -20.8, -16.4],
-    "source_coordinate_frame": "blender_world",
+    "source_centroid": [
+      25.07,
+      -90.8,
+      1547.81
+    ],
+    "source_coordinate_frame": "asserted_body_parts3d_source (DICOM-LPS equivalence UNPROVEN; see Phase 3.1 D3)",
     "stereotaxic_registration": {
-      "registered_centroid": [-26.4, -21.1, -16.2],
-      "registered_coordinate_frame": "mni152_nonlinear_2009c_asym",
+      "registered_centroid": [
+        -25.07,
+        -13.89,
+        -20.7
+      ],
+      "registered_coordinate_frame": "canonical_atlas_ras",
       "registration_status": "REGISTRATION_PENDING",
       "registration": {
-        "registration_method": "affine_linear_12dof",
-        "registration_source": "scripts/pipeline/register_to_mni152.py",
-        "target_reference_template": "MNI152NLin2009cAsym_1mm.nii.gz",
-        "registration_uncertainty_mm": 1.1,
-        "dice_similarity_coefficient": 0.81,
-        "validation_date": "2026-09-26",
-        "validator_notes": "Affine alignment estimate only. Formal non-linear co-registration (ANTs SyN / FLIRT) against MNI152 template is PENDING."
+        "registration_method": "not_registered",
+        "registration_source": "scripts/pipeline/canonicalize_mesh.ts (rigid adapter only; coordinate conversion, NOT template registration)",
+        "validation_date": "2026-09-27",
+        "validator_notes": "Phase 3.1 (D4): NO MNI registration computed. Earlier affine_linear_12dof / uncertainty 1.1mm / dice 0.81 values were unmeasured and removed; the cited script register_to_mni152.py never existed in this repo."
       }
     },
     "bounding_box": {
-      "min": [-34.52, -24.28, -40.98],
-      "max": [-15.62, -3.50, -0.42],
+      "min": [
+        -34.52,
+        -24.28,
+        -40.98
+      ],
+      "max": [
+        -15.62,
+        -3.5,
+        -0.42
+      ],
       "coordinate_frame": "canonical_atlas_ras"
     },
     "estimated_volume_cm3": 1.872,
     "default_hex_color": "#D4A373",
     "subfield_representation": "MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED",
     "subfield_mapping_status": "ANATOMICAL_MAPPING_PENDING",
-    "subfield_mapping_notes": "The ingested 3D asset represents the macroscopic unsegmented left hippocampus (Cornu Ammonis CA1-CA4 + dentate gyrus within one contiguous boundary). Distinct internal subfield parcellation boundaries are not resolved in this macroscopic surface mesh and will be integrated during subsequent subfield segmentation phases."
+    "subfield_mapping_notes": "The ingested 3D asset represents the macroscopic unsegmented left hippocampus (Cornu Ammonis CA1-CA4 + dentate gyrus within one contiguous boundary). Distinct internal subfield parcellation boundaries are not resolved in this macroscopic surface mesh and will be integrated during subsequent subfield segmentation phases.",
+    "centroid_convention": "bounding-box center (NOT vertex mean)."
   },
   "representations": [
     {
@@ -155,7 +177,9 @@
         "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
         "parameters": {
           "extension": "EXT_meshopt_compression",
-          "lossless_verification": true
+          "meshopt_roundtrip_lossless_vs_lod_input": true,
+          "meshopt_roundtrip_max_delta_mm": 1e-06,
+          "qem_simplification_lossy": true
         },
         "executed_by": "Meshopt_Runtime_Optimizer",
         "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
@@ -169,8 +193,8 @@
     "commercial_redistribution": "PERMITTED",
     "restrictions_and_covenants": [
       "Must attribute BodyParts3D / DBCLS in application notices and UI",
-      "Derived 3D meshes distributed under CC-BY-SA 4.0 (satisfies both CC-BY-SA 2.1 JP ShareAlike and CC BY 4.0 Attribution)",
-      "Defensive dual compliance: commercial redistribution permitted without non-commercial restriction"
+      "Derived 3D meshes distributed under CC-BY-SA 4.0.",
+      "Conservative licensing posture (Phase 3.1 section 19): historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution."
     ],
     "granular_validation": {
       "stage": "DEVICE_VALIDATED",
@@ -184,10 +208,13 @@
       "notes": "Automated headless Node.js tests passed. Physical mobile/desktop hardware validation is PENDING."
     },
     "validation_status": "CLEARED",
-    "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72714 left hippocampus). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle."
+    "legal_review_notes": "Phase 3.1 (D11): BodyParts3D Release 3.0 via third-party mirror. Upstream portal lists CC BY (2025-02-27); historical files CC-BY-SA 2.1 JP. Derivatives distributed CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test)."
   },
   "presentation": {
-    "visibility_groups": ["limbic_circuitry", "cortex_allocortex"]
+    "visibility_groups": [
+      "limbic_circuitry",
+      "cortex_allocortex"
+    ]
   },
   "topography": {
     "boundaries": {
@@ -204,7 +231,9 @@
         "target_entity_id": "brain.telencephalon.left.limbic.dentate_gyrus",
         "relationship_type": "adjacent_to",
         "semantic_class": "TOPOGRAPHICAL",
-        "evidence_claim_ids": ["claim.anatomy.hpc.dg_tri_synaptic"],
+        "evidence_claim_ids": [
+          "claim.anatomy.hpc.dg_tri_synaptic"
+        ],
         "notes": "Dentate gyrus interlocks with cornu ammonis, receiving perforant path inputs and projecting mossy fibers to CA3."
       },
       {
@@ -212,7 +241,9 @@
         "target_entity_id": "brain.telencephalon.left.limbic.subiculum",
         "relationship_type": "adjacent_to",
         "semantic_class": "TOPOGRAPHICAL",
-        "evidence_claim_ids": ["claim.anatomy.hpc.subiculum_transition"],
+        "evidence_claim_ids": [
+          "claim.anatomy.hpc.subiculum_transition"
+        ],
         "notes": "Transition zone between 3-layered archicortex of CA1 and 6-layered parahippocampal neocortex."
       },
       {
@@ -220,7 +251,9 @@
         "target_entity_id": "brain.telencephalon.left.limbic.amygdala",
         "relationship_type": "adjacent_to",
         "semantic_class": "TOPOGRAPHICAL",
-        "evidence_claim_ids": ["claim.anatomy.hpc.amygdala_boundary"],
+        "evidence_claim_ids": [
+          "claim.anatomy.hpc.amygdala_boundary"
+        ],
         "notes": "Located immediately anterosuperior to the hippocampal head."
       },
       {
@@ -228,7 +261,9 @@
         "target_entity_id": "parcel.brodmann.area_28",
         "relationship_type": "associated_with_parcel",
         "semantic_class": "CONCEPTUAL_GROUPING",
-        "evidence_claim_ids": ["claim.anatomy.hpc.entorhinal_perforant"],
+        "evidence_claim_ids": [
+          "claim.anatomy.hpc.entorhinal_perforant"
+        ],
         "notes": "Hippocampus proper is archicortex (3 layers) and does not receive a Brodmann number. Area 28 (Entorhinal cortex) is an adjacent paralimbic area providing primary cortical input via perforant path."
       }
     ]
@@ -259,7 +294,9 @@
         "construct_name": "Declarative Memory",
         "unit_of_analysis": "circuits",
         "finding_summary": "Hippocampal-entorhinal circuitry mediates the binding of disparate cortical representations during episodic encoding and retrieval.",
-        "evidence_claim_ids": ["claim.rdoc.hpc.declarative_memory"]
+        "evidence_claim_ids": [
+          "claim.rdoc.hpc.declarative_memory"
+        ]
       },
       {
         "framework_version": "NIMH_RDoC_Matrix_2019_v2",
@@ -269,7 +306,9 @@
         "construct_name": "Potential Threat ('Anxiety')",
         "unit_of_analysis": "circuits",
         "finding_summary": "Ventral (anterior human) hippocampus projects to basolateral amygdala and medial prefrontal cortex to resolve contextual safety vs. threat ambiguity.",
-        "evidence_claim_ids": ["claim.rdoc.hpc.contextual_threat"]
+        "evidence_claim_ids": [
+          "claim.rdoc.hpc.contextual_threat"
+        ]
       }
     ]
   },
@@ -299,7 +338,9 @@
           "Contextual fear over-generalization",
           "Hyperarousal"
         ],
-        "evidence_claim_ids": ["claim.hpc.volume_reduction.ptsd"]
+        "evidence_claim_ids": [
+          "claim.hpc.volume_reduction.ptsd"
+        ]
       },
       {
         "disorder_name": "Schizophrenia",
@@ -310,7 +351,9 @@
           "Working memory impairment",
           "Cognitive disorganization"
         ],
-        "evidence_claim_ids": ["claim.hpc.schizophrenia.hyperactivity_model"]
+        "evidence_claim_ids": [
+          "claim.hpc.schizophrenia.hyperactivity_model"
+        ]
       }
     ],
     "pharmacology_mappings": [
@@ -348,7 +391,9 @@
         ],
         "therapeutic_relevance": "Key molecular transducer mediating cellular neuroprotective and neuroplastic effects of long-term antidepressant pharmacotherapy.",
         "side_effect_vulnerability": "Transient initial nausea and anxiety modulation via raphe feedback.",
-        "evidence_claim_ids": ["claim.pharm.5ht1a.hippocampus"]
+        "evidence_claim_ids": [
+          "claim.pharm.5ht1a.hippocampus"
+        ]
       }
     ],
     "neuromodulation_protocols": [
@@ -381,7 +426,10 @@
             "regulatory_agency": "US FDA",
             "status_category": "cleared_standard_indication",
             "formal_indication_label": "Severe major depressive episode associated with major depressive disorder or bipolar disorder, catatonia, or severe treatment-resistant depression in patients 13 years of age and older",
-            "cleared_device_examples": ["Mecta SpECTrum 5000Q", "Somatics Thymatron System IV"],
+            "cleared_device_examples": [
+              "Mecta SpECTrum 5000Q",
+              "Somatics Thymatron System IV"
+            ],
             "approval_or_clearance_year": 2018,
             "regulatory_identifier": "FDA Final Rule 83 FR 66103",
             "guideline_reference": "APA Task Force on ECT (2001) / FDA 2018 Special Controls"
@@ -397,7 +445,9 @@
           "Unstable intracranial mass with elevated intracranial pressure",
           "Recent unstable acute myocardial infarction"
         ],
-        "evidence_claim_ids": ["claim.ect.hippocampal_volume_expansion"]
+        "evidence_claim_ids": [
+          "claim.ect.hippocampal_volume_expansion"
+        ]
       }
     ],
     "clinical_pearls": [
@@ -410,7 +460,9 @@
       "syndrome_or_lesion_name": "Bilateral Mesial Temporal Resection (Patient H.M. / Severe Herpes Simplex Encephalitis)",
       "clinical_manifestation": "Dense, irreversible anterograde amnesia for all new episodic and semantic information, with preserved working memory span, remote autobiographical memories, and intact motor procedural skill acquisition.",
       "bedside_examination_test": "Delayed recall of 3 or 5 unrelated words after a 5-minute and 10-minute interval with intervening cognitive tasks.",
-      "evidence_claim_ids": ["claim.lesion.bilateral_hpc.scoville1957"]
+      "evidence_claim_ids": [
+        "claim.lesion.bilateral_hpc.scoville1957"
+      ]
     }
   ],
   "imaging": [
@@ -429,7 +481,10 @@
         {
           "pathological_condition": "Mesial Temporal Sclerosis (MTS)",
           "sequence_finding": "Atrophy with loss of internal laminar architecture on coronal 3D T1, accompanied by FLAIR hyperintensity.",
-          "differential_diagnosis": ["Low-grade temporal astrocytoma", "Status epilepticus post-ictal edema"],
+          "differential_diagnosis": [
+            "Low-grade temporal astrocytoma",
+            "Status epilepticus post-ictal edema"
+          ],
           "radiological_significance": "Most frequent epileptogenic lesion in drug-resistant temporal lobe epilepsy."
         }
       ],
@@ -437,7 +492,9 @@
         "Volume averaging with choroid plexus in temporal horn",
         "Susceptibility artifact from petrous temporal bone pneumatization"
       ],
-      "evidence_claim_ids": ["claim.imaging.hpc.mts_mri"]
+      "evidence_claim_ids": [
+        "claim.imaging.hpc.mts_mri"
+      ]
     }
   ],
   "provenance": {
@@ -474,7 +531,12 @@
       "verification_status": "VERIFIED",
       "primary_citation": {
         "title": "Subcortical brain volume abnormalities in 2028 patients with major depressive disorder from the ENIGMA MDD working group",
-        "authors": ["Schmaal L", "Veltman DJ", "van Erp TG", "et al."],
+        "authors": [
+          "Schmaal L",
+          "Veltman DJ",
+          "van Erp TG",
+          "et al."
+        ],
         "journal_or_book": "Molecular Psychiatry",
         "year": 2016,
         "pmid": "26122586",
@@ -504,7 +566,12 @@
           "opposing_finding_summary": "Human hippocampal neurogenesis drops sharply in children to undetectable levels in adults.",
           "citation": {
             "title": "Human hippocampal neurogenesis drops sharply in children to undetectable levels in adults",
-            "authors": ["Sorrells SF", "Paredes MF", "Cebrian-Silla A", "et al."],
+            "authors": [
+              "Sorrells SF",
+              "Paredes MF",
+              "Cebrian-Silla A",
+              "et al."
+            ],
             "journal_or_book": "Nature",
             "year": 2018,
             "pmid": "29512652",
@@ -515,7 +582,12 @@
       "verification_status": "NEEDS_SOURCE_VERIFICATION",
       "primary_citation": {
         "title": "Neurogenesis in the adult human hippocampus",
-        "authors": ["Eriksson PS", "Perfilieva E", "Bjork-Eriksson T", "et al."],
+        "authors": [
+          "Eriksson PS",
+          "Perfilieva E",
+          "Bjork-Eriksson T",
+          "et al."
+        ],
         "journal_or_book": "Nature Medicine",
         "year": 1998,
         "pmid": "9809557",
@@ -543,7 +615,10 @@
       "verification_status": "VERIFIED",
       "primary_citation": {
         "title": "Loss of recent memory after bilateral hippocampal lesions",
-        "authors": ["Scoville WB", "Milner B"],
+        "authors": [
+          "Scoville WB",
+          "Milner B"
+        ],
         "journal_or_book": "Journal of Neurology, Neurosurgery, and Psychiatry",
         "year": 1957,
         "pmid": "13406589",
@@ -560,19 +635,26 @@
   "references": [
     {
       "title": "Snell's Clinical Neuroanatomy, 8th Edition",
-      "authors": ["Splittgerber R"],
+      "authors": [
+        "Splittgerber R"
+      ],
       "journal_or_book": "Wolters Kluwer",
       "year": 2018,
       "isbn": "9781496346759"
     },
     {
       "title": "The Human Central Nervous System, 4th Edition",
-      "authors": ["Nieuwenhuys R", "Voogd J", "van Huijzen C"],
+      "authors": [
+        "Nieuwenhuys R",
+        "Voogd J",
+        "van Huijzen C"
+      ],
       "journal_or_book": "Springer",
       "year": 2008,
       "isbn": "9783540346845"
     }
   ],
   "created_at": "2026-09-26T12:00:00Z",
-  "updated_at": "2026-09-26T15:30:00Z"
+  "updated_at": "2026-09-26T15:30:00Z",
+  "phase_3_1_metadata_correction": "2026-09-27: removed fabricated registration metrics + phantom script citation; corrected source-frame centroid (measured) and axis/licensing notes. Geometry, hashes, volumes unchanged."
 }

@@ -69,7 +69,9 @@ export class LabelManager {
   }
 
   /**
-   * Initializes landmark labels from the authoritative canonical landmark registry.
+   * Initializes landmark labels from the canonical landmark registry.
+   * Phase 3.1 (D7): registry anchors are SCHEMATIC_UNVALIDATED label guides, not
+   * measured localizations — labels are orientation aids, never anatomical proof.
    */
   public initDefaultLandmarks(): void {
     for (const lm of CEREBRAL_LANDMARKS) {

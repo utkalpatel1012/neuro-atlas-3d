@@ -13,7 +13,7 @@ To build a scientifically rigorous, medically accurate, interactive 3D human bra
 
 Unlike conventional high-level anatomy viewers or stylized 3D brain models, this application bridges macroscopic morphological topography (sulci, gyri, fissures), granular subcortical nuclear complexes (basal ganglia, thalamus, amygdala, hippocampus), cerebellar circuitry, the complete brainstem, ventricles, major white-matter projection/association pathways, and cerebral vasculature directly to psychiatric clinical relevance (DSM-5-TR diagnostic criteria, RDoC functional domains, psychopharmacological receptor mapping, lesion/stroke syndromes, and targeted neuromodulation targets like TMS, DBS, and ECT).
 
-The platform operates client-side at steady frame rates (targeting 60 FPS on desktop and iPad Pro; 30–60 FPS on base iPad) as an offline Progressive Web Application (PWA) with zero tolerance for anatomical hallucination or geometric fabrication.
+The platform is DESIGNED to operate client-side with device-class frame-rate TARGETS (60 FPS desktop/iPad Pro; 30–60 base iPad — all unmeasured, see `docs/PHASE_3_PERFORMANCE_BASELINE.md` Phase 3.1 classification); offline PWA is PLANNED, not implemented (no service worker, no IndexedDB layer in repo). Zero tolerance for anatomical hallucination or geometric fabrication remains the governing rule — and Phase 3.1 found and corrected violations of it.
 
 ---
 
@@ -22,17 +22,17 @@ The platform operates client-side at steady frame rates (targeting 60 FPS on des
 To prevent conflation of physical anatomy, atlas parcellations, coordinates, and clinical hypotheses, the application enforces a strict **11-Tier Layered Architecture**:
 
 ```
-1. SOURCE DATA              Raw scientific geometries (Z-Anatomy, HCP, FreeSurfer)
+1. SOURCE DATA              Raw scientific geometries (BodyParts3D via mirror — ACTUAL; Z-Anatomy/HCP/FreeSurfer: evaluated, not ingested)
       ↓
 2. PROVENANCE               Decoupled EntityProvenance (authority) & AssetProvenance (crypto hash, quarantine)
       ↓
 3. ANATOMICAL ONTOLOGY      8-type NeuroEntity discriminated union (Anatomy, Parcels, Tracts, Networks, Pathways, Targets, Lesions, Claims)
       ↓
-4. COORDINATE SYSTEMS       Coupled stereotaxic frames (Native, World, MNI152, fs_LR 32k, AC-PC, 10-20)
+4. COORDINATE SYSTEMS       Internal canonical space + declared (pending) stereotaxic frames (MNI152, fs_LR 32k, AC-PC, 10-20)
       ↓
-5. CANONICAL GEOMETRY       Resting manifold meshes with weighted normals & center pivots (unaltered by presentation)
+5. CANONICAL GEOMETRY       Resting meshes (incl. multi-shell composites) with weighted normals & center pivots (unaltered by presentation)
       ↓
-6. ATLAS/PARCELLATION       HCP MMP 1.0 & Brodmann areas mapped as GPU vertex attributes
+6. ATLAS/PARCELLATION       PLANNED: HCP MMP 1.0 & Brodmann as GPU vertex attributes (types + fixtures only; zero runtime parcel data — Phase 3.1)
       ↓
 7. EVIDENCE/KNOWLEDGE       Structured EvidenceClaims with domain-appropriate assessment (GRADE, CEBM, Anatomical Consensus)
       ↓
@@ -106,35 +106,36 @@ To prevent conflation of physical anatomy, atlas parcellations, coordinates, and
 * Automated state preservation: Captures selection, camera position, clipping offsets, and visibility presets during WebGL context loss and restores them seamlessly upon context recreation.
 
 ### 2. Geometry & Asset Delivery
-* **Format**: glTF 2.0 Binary (`.glb`) compressed with **Meshopt (`EXT_meshopt_compression`)**.
-* **Textures**: **KTX2 / Basis Universal (`KHR_texture_basisu`)** saving 75% VRAM.
-* **Raycast Acceleration**: `three-mesh-bvh` for sub-millisecond intersection testing.
-* **Batching**: Grouped into semantic batches (Cortex, SubcorticalGray, WhiteMatter, Ventricular, Vascular, CranialNerve) to keep draw calls within empirical budgets.
+* **Format**: glTF 2.0 Binary (`.glb`) compressed with **Meshopt (`EXT_meshopt_compression`)** (encode-step round-trip verified vs LOD input; QEM simplification is lossy — Phase 3.1).
+* **Textures**: **KTX2 / Basis Universal — PLANNED ONLY, zero KTX2 bytes in repo. "Saving 75% VRAM" is an unmeasured projection, not a result.**
+* **Raycast Acceleration**: `three-mesh-bvh` (headless-Node CPU ≈1 ms single-ray on 198k tris, run-varying — NOT sub-millisecond, NOT device-measured).
+* **Batching**: Semantic batches (Cortex, SubcorticalGray, …) are an architecture PLAN; no BatchedMesh multi-draw exists in `src/` (Phase 3.1 audit).
 
 ### 3. Operational Asset Pipeline (Phase 1.0 Proven Standard)
 * **6-Stage Transformation Flow**:
   1. `ingest_asset.ts`: Ingestion of authoritative raw geometry (`assets/raw/`) with immutable SHA-256 verification.
   2. `validate_mesh.ts`: Geometric QA enforcing 0 non-manifold edges, 0 zero-area faces, 0 duplicate faces, and watertightness.
-  3. `canonicalize_mesh.ts`: Coordinate standardization from LPS whole-body to Right-Handed RAS (+X Right, +Y Superior, +Z Anterior, 1 mm units) and area-weighted smooth normal generation.
-  4. `generate_lods.ts`: Deterministic QEM surface simplification generating 4-level LOD hierarchy (LOD0: 100%, LOD1: 75%, LOD2: 50%, LOD3: 25%).
-  5. `optimize_meshopt.ts`: `EXT_meshopt_compression` runtime optimization saving ~45% streaming payload with bit-exact round-trip decode verification.
-  6. `update_manifest.ts`: Cryptographic compilation of `assets/manifests/assets.manifest.json` with production whitelist enforcement.
-* **Benchmark Proven Asset**: Left Hippocampus (`mesh.hippocampus.left.v1`), derived from BodyParts3D/SPL-PNL (`FMA72714`).
+  3. `canonicalize_mesh.ts`: Coordinate standardization from asserted-LPS whole-body to the internal canonical space (+X Right, +Y Superior, +Z POSTERIOR — Phase 3.1 measured; NOT RAS/MNI) and area-weighted smooth normal generation.
+  4. `generate_lods.ts`: Deterministic QEM surface simplification (LOSSY) generating 4-level LOD hierarchy (LOD0: 100%, LOD1: 75%, LOD2: 50%, LOD3: 25%).
+  5. `optimize_meshopt.ts`: `EXT_meshopt_compression` runtime optimization saving ~45% streaming payload with encode-step round-trip verification vs LOD input (≤1e-6 mm).
+* **Benchmark Proven Asset**: Left Hippocampus (`mesh.hippocampus.left.v1`), BodyParts3D Release 3.0 via third-party mirror (`FMA72714`) — SPL-PNL was a validation reference, never the source (Phase 3.1).
 * **Validation CLI**: Single-command execution via `npm run asset:validate -- hippocampus_left`.
 
 ---
 
 ## G. Empirical Performance Targets (`PERFORMANCE_BUDGETS.md`)
 
-* **High-End Desktop (Tier A1)**: 60 FPS sustained, <750k tris, <450 MB VRAM, <75 draw calls.
-* **iPad Pro (Tier B2)**: 60 FPS sustained, <350k tris, <220 MB VRAM, <35 draw calls.
-* **Base iPad (Tier C2)**: 30–60 FPS, <150k tris, **<110 MB VRAM**, <20 draw calls.
+> Phase 3.1: every figure below is an UNMEASURED TARGET (no browser/device harness exists).
+
+* **High-End Desktop (Tier A1)**: 60 FPS target, <750k tris, <450 MB VRAM, <75 draw calls.
+* **iPad Pro (Tier B2)**: 60 FPS target, <350k tris, <220 MB VRAM, <35 draw calls.
+* **Base iPad (Tier C2)**: 30–60 FPS target, <150k tris, **<110 MB VRAM**, <20 draw calls.
 
 ---
 
 ## H. Provenance & Legal Architecture (`SOURCES_AND_LICENSES.md`)
 
-* **Z-Anatomy derivative meshes**: Released under **CC-BY-SA 4.0** with author attribution.
-* **HCP Cortical Parcellations**: Governed by **HCP Open Access Terms**; commercial software distribution treated as **`LEGAL_REVIEW_REQUIRED`**.
+* **BodyParts3D derivative meshes**: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED (Phase 3.1 §19; no "dual compliance" terminology). Z-Anatomy geometry was evaluated, never ingested.
+* **HCP Cortical Parcellations**: NOT ingested (types + fixtures only). Governed by **HCP Open Access Terms**; commercial software distribution treated as **`LEGAL_REVIEW_REQUIRED`**.
 * **EBRAINS Julich-Brain / BigBrain**: Governed by **CC-BY-NC-SA 4.0**; strictly **quarantined to `RESEARCH_ONLY`** for offline verification and barred from client production bundles.
-* **Application Codebase**: Licensed under **Apache-2.0**.
+* **Application Codebase**: LICENSE CONFLICT UNRESOLVED — `package.json` says CC-BY-SA-4.0, this doc previously said Apache-2.0, and no LICENSE file exists (Phase 3.1 D11).

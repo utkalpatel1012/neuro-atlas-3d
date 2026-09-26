@@ -1,7 +1,7 @@
 {
   "assetId": "mesh.cortex.right.v1",
   "timestamp": "2026-09-26T17:37:05.008Z",
-  "inputCanonicalGlb": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\canonical\\mesh.cortex.right.v1.canonical.glb",
+  "inputCanonicalGlb": "assets/derived/mesh.cortex.right.v1/canonical/mesh.cortex.right.v1.canonical.glb",
   "inputCanonicalHash": "906e2be097695c6146fee7db47b82998a1ae5d88beda14e3d0044b748ddf9b13",
   "levels": [
     {
@@ -12,7 +12,7 @@
       "vertexCount": 99187,
       "byteLength": 4761188,
       "sha256": "fa57f25c36f0f3aaec88649a53e2f4f1069f9dc33e0d8e265de9de4ba021ae48",
-      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\lod\\mesh.cortex.right.v1.lod0.glb",
+      "filePath": "assets/derived/mesh.cortex.right.v1/lod/mesh.cortex.right.v1.lod0.glb",
       "targetIndexCount": 594930,
       "resultingIndexCount": 594930,
       "simplificationMetric": {
@@ -48,7 +48,7 @@
       "vertexCount": 74398,
       "byteLength": 3571312,
       "sha256": "da652ca711381816751ba5151ac9f5e67f315e2837d70a70ba32e597f0c0855b",
-      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\lod\\mesh.cortex.right.v1.lod1.glb",
+      "filePath": "assets/derived/mesh.cortex.right.v1/lod/mesh.cortex.right.v1.lod1.glb",
       "targetIndexCount": 446196,
       "resultingIndexCount": 446196,
       "simplificationMetric": {
@@ -84,7 +84,7 @@
       "vertexCount": 49609,
       "byteLength": 1786516,
       "sha256": "2590efecd7c13835ff4bc2ee3c34fbcc329b67c412391000bb9677b8927f852b",
-      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\lod\\mesh.cortex.right.v1.lod2.glb",
+      "filePath": "assets/derived/mesh.cortex.right.v1/lod/mesh.cortex.right.v1.lod2.glb",
       "targetIndexCount": 297465,
       "resultingIndexCount": 297462,
       "simplificationMetric": {
@@ -120,7 +120,7 @@
       "vertexCount": 24820,
       "byteLength": 894112,
       "sha256": "f44719a4970571fff6fbf0b0cb9e4307d7ea273dd9db7e77b1bbb0911bc11523",
-      "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.cortex.right.v1\\lod\\mesh.cortex.right.v1.lod3.glb",
+      "filePath": "assets/derived/mesh.cortex.right.v1/lod/mesh.cortex.right.v1.lod3.glb",
       "targetIndexCount": 148731,
       "resultingIndexCount": 148728,
       "simplificationMetric": {
@@ -175,5 +175,6 @@
       ]
     },
     "timestamp": "2026-09-26T17:37:05.009Z"
-  }
+  },
+  "phase_3_1_note": "2026-09-27: paths made repo-relative. QEM simplification is LOSSY; see geometricFidelity per level. No geometry changed."
 }

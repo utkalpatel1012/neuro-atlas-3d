@@ -4,15 +4,19 @@
  * 
  * Comprehensive automated verification for:
  * 1. Authentic BodyParts3D cortical asset ingestion & SHA-256 provenance
- * 2. Decoupled Geometric QA and Anatomical QA validation
- * 3. Canonical RAS coordinate registration & interhemispheric fissure preservation
- * 4. Multi-LOD simplification schedule & Meshopt runtime compression
+ * 2. Decoupled Geometric QA and Anatomical QA validation (mapping pending, not proven)
+ * 3. Canonical internal-space alignment (+X R, +Y S, +Z Posterior; NOT RAS/MNI) & midline gap
+ * 4. Multi-LOD simplification schedule (QEM = lossy) & Meshopt runtime compression
+ *    (encode step round-trip verified vs LOD input only)
  * 5. Production manifest registration & legal covenants
  * 6. Ontological entity metadata records (cortex_left.json, cortex_right.json)
  * 7. Anatomical assembly hierarchy & semantic lobar organization
  * 8. 3D screen-space LabelManager (priority culling, occlusion, decluttering)
- * 9. BVH spatial indexing on high-poly meshes (>90k verts) & raycasting
+ * 9. BVH spatial indexing on high-poly meshes (>90k verts) & CPU raycasting (headless ms)
  * 10. Clean disposal and resource lifecycle
+ *
+ * Phase 3.1: every assertion below was re-checked against measured geometry.
+ * Headless timings prove function, never device performance.
  */
 
 import * as fs from 'fs';
@@ -80,8 +84,17 @@ async function runTests() {
 
   assert(leftQa.geometricQA.geometricStatus === 'GEOMETRY_VALIDATED', 'Left cortex must pass geometric QA');
   assert(rightQa.geometricQA.geometricStatus === 'GEOMETRY_VALIDATED', 'Right cortex must pass geometric QA');
-  assert(leftQa.anatomicalQA.anatomicalStatus === 'ANATOMY_VALIDATED', 'Left cortex must pass anatomical QA');
-  assert(rightQa.anatomicalQA.anatomicalStatus === 'ANATOMY_VALIDATED', 'Right cortex must pass anatomical QA');
+  // Phase 3.1 (D7): scale/laterality plausibility is NOT morphological proof.
+  // Cortex composites stay ANATOMICAL_MAPPING_PENDING until expert verification.
+  assert(leftQa.anatomicalQA.anatomicalStatus === 'ANATOMICAL_MAPPING_PENDING', 'Left cortex anatomical mapping pending (not validated)');
+  assert(rightQa.anatomicalQA.anatomicalStatus === 'ANATOMICAL_MAPPING_PENDING', 'Right cortex anatomical mapping pending (not validated)');
+
+  // Phase 3.1 (D1): the composite is a measured multi-shell concatenation, never a
+  // single continuous pial surface. QA must disclose the shell count.
+  assert(leftQa.topologyClass === 'MULTI_SHELL_COMPOSITE', 'Left cortex topology class is MULTI_SHELL_COMPOSITE');
+  assert(rightQa.topologyClass === 'MULTI_SHELL_COMPOSITE', 'Right cortex topology class is MULTI_SHELL_COMPOSITE');
+  assert(leftQa.analysis.connectedShellCount >= 14, `Left shell count (${leftQa.analysis.connectedShellCount}) >= 14 components`);
+  assert(rightQa.analysis.connectedShellCount >= 14, `Right shell count (${rightQa.analysis.connectedShellCount}) >= 14 components`);
 
   // Check topological cleanliness
   assert(leftQa.analysis.nonManifoldEdges === 0, 'Left cortex must have 0 non-manifold edges');
@@ -100,31 +113,37 @@ async function runTests() {
   passedChecks += 6;
 
   // --------------------------------------------------------------------------
-  // TEST 3: Coordinate Canonicalization & Interhemispheric Fissure
+  // TEST 3: Canonical internal-space alignment & interhemispheric gap (MEASURED)
+  // Phase 3.1 (D3): the canonical space is internal (+X Right, +Y Superior,
+  // +Z POSTERIOR) — NOT RAS-ordered, NOT MNI. The gap below is DERIVED from
+  // manifest centroid/dimensions (bbox edges), not hardcoded literals.
   // --------------------------------------------------------------------------
-  console.log('\n--- TEST 3: Canonical RAS Registration & Fissure Alignment ---');
+  console.log('\n--- TEST 3: Canonical Alignment & Fissure Gap (measured from manifest) ---');
   const manifestData = JSON.parse(fs.readFileSync(path.join(PROJECT_ROOT, 'assets/manifests/assets.manifest.json'), 'utf8'));
   const leftEntry = manifestData.assets['mesh.cortex.left.v1'];
   const rightEntry = manifestData.assets['mesh.cortex.right.v1'];
 
   assert(leftEntry !== undefined, 'mesh.cortex.left.v1 in manifest');
   assert(rightEntry !== undefined, 'mesh.cortex.right.v1 in manifest');
-  assert(leftEntry.coordinate_space.toLowerCase().includes('ras'), 'Left cortex in RAS space');
-  assert(rightEntry.coordinate_space.toLowerCase().includes('ras'), 'Right cortex in RAS space');
+  assert(leftEntry.coordinate_space.includes('canonical_atlas_ras'), 'Left cortex in canonical internal space');
+  assert(rightEntry.coordinate_space.includes('canonical_atlas_ras'), 'Right cortex in canonical internal space');
+  assert(leftEntry.coordinate_space.includes('NOT MNI152'), 'Canonical space disclaims MNI152');
 
   // Verify centroids reflect laterality
   assert(leftEntry.centroid_mm[0] < 0, `Left centroid X (${leftEntry.centroid_mm[0]}) must be negative`);
   assert(rightEntry.centroid_mm[0] > 0, `Right centroid X (${rightEntry.centroid_mm[0]}) must be positive`);
 
-  // Interhemispheric fissure verification:
-  // Left cortex max X: ~0.098 mm
-  // Right cortex min X: ~1.179 mm
-  const fissureGapMm = 1.179 - 0.098;
-  assert(fissureGapMm > 0.5 && fissureGapMm < 3.0, `Anatomical fissure gap (${fissureGapMm.toFixed(2)} mm) preserved between hemispheres`);
+  // Interhemispheric gap DERIVED from committed manifest geometry:
+  // leftMaxX = centroid + dims/2; rightMinX = centroid - dims/2.
+  const leftMaxX = leftEntry.centroid_mm[0] + leftEntry.dimensions_mm[0] / 2;
+  const rightMinX = rightEntry.centroid_mm[0] - rightEntry.dimensions_mm[0] / 2;
+  const fissureGapMm = rightMinX - leftMaxX;
+  assert(leftMaxX < rightMinX, `Hemispheres must not overlap (leftMaxX=${leftMaxX.toFixed(3)}, rightMinX=${rightMinX.toFixed(3)})`);
+  assert(fissureGapMm > 0.5 && fissureGapMm < 3.0, `Inter-piece midline gap (${fissureGapMm.toFixed(2)} mm) within expected band. NOTE: this is empty space between chunk sets, NOT a validated biological fissure.`);
   console.log(`[PASS] Left Centroid: [${leftEntry.centroid_mm.join(', ')}] mm`);
   console.log(`[PASS] Right Centroid: [${rightEntry.centroid_mm.join(', ')}] mm`);
-  console.log(`[PASS] Interhemispheric fissure gap confirmed: ${fissureGapMm.toFixed(2)} mm`);
-  passedChecks += 5;
+  console.log(`[PASS] Midline gap measured from manifest bounds: ${fissureGapMm.toFixed(2)} mm (inter-piece gap, not validated fissure)`);
+  passedChecks += 6;
 
   // --------------------------------------------------------------------------
   // TEST 4: Multi-LOD Schedule & Meshopt Runtime Compression
@@ -151,7 +170,7 @@ async function runTests() {
   const leftCompReport = JSON.parse(fs.readFileSync(path.join(PROJECT_ROOT, 'assets/validation/mesh.cortex.left.v1.compression_report.json'), 'utf8'));
   assert(leftCompReport.overallSavingsPercent >= 35.0, `Overall compression savings ${leftCompReport.overallSavingsPercent}% >= 35%`);
   console.log(`[PASS] Multi-LOD levels 0-3 verified for both hemispheres.`);
-  console.log(`[PASS] Meshopt compression savings: ${leftCompReport.overallSavingsPercent}% (verified lossless).`);
+  console.log(`[PASS] Meshopt compression savings: ${leftCompReport.overallSavingsPercent}% (encode step round-trip verified vs LOD input; QEM simplification is lossy).`);
   passedChecks += 4;
 
   // --------------------------------------------------------------------------
@@ -208,7 +227,7 @@ async function runTests() {
     canonicalCentroidMm: [-32.50, 16.01, -19.47],
     dimensionsMm: [65.19, 110.74, 170.23],
     volumeCm3: 260.21,
-    topologyClass: 'CLOSED_SURFACE',
+    topologyClass: 'MULTI_SHELL_COMPOSITE',
     validationStatus: 'APPROVED',
     upstreamDataset: 'BodyParts3D Release 3.0',
     upstreamLicense: 'CC BY 4.0',
@@ -225,7 +244,7 @@ async function runTests() {
     canonicalCentroidMm: [33.78, 16.00, -19.47],
     dimensionsMm: [65.21, 110.74, 170.23],
     volumeCm3: 260.24,
-    topologyClass: 'CLOSED_SURFACE',
+    topologyClass: 'MULTI_SHELL_COMPOSITE',
     validationStatus: 'APPROVED',
     upstreamDataset: 'BodyParts3D Release 3.0',
     upstreamLicense: 'CC BY 4.0',
@@ -284,9 +303,11 @@ async function runTests() {
   passedChecks += 4;
 
   // --------------------------------------------------------------------------
-  // TEST 8: BVH Acceleration & Microsecond Raycasting
+  // TEST 8: BVH Acceleration & CPU Raycasting (headless Node.js — NOT GPU/device)
+  // Phase 3.1 (D8): timing is run-varying CPU milliseconds in Node; it validates
+  // BVH function, not device frame rate. Unit is ms, never "microseconds".
   // --------------------------------------------------------------------------
-  console.log('\n--- TEST 8: BVH Acceleration & Raycasting on High-Poly Mesh ---');
+  console.log('\n--- TEST 8: BVH Acceleration & Raycasting on High-Poly Mesh (headless CPU) ---');
   const assetMgr = new AssetManager();
   await assetMgr.loadManifest('assets/manifests/assets.manifest.json');
 

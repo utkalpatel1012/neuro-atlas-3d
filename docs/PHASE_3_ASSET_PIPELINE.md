@@ -10,11 +10,11 @@
 Phase 3 transitions the Neuro Atlas 3D pipeline from a single-structure subcortical nucleus testbed (Left Hippocampus) to large-scale, high-fidelity human cerebral macroanatomy. The asset pipeline must ingest, validate, canonicalize, decimate, and compress high-poly biological cortical surfaces with full scientific provenance and zero manual sculpting or geometric fabrication.
 
 ### Core Architecture Invariants
-1. **Zero Fabrication**: All cortical surfaces originate from authentic human anatomical datasets (DBCLS BodyParts3D Release 3.0 / SPL-PNL Brain Atlas). Procedural approximations, AI blobs, and artistic sculpting are strictly prohibited.
-2. **Decoupled Architecture**: Semantic regions (lobes, gyri, functional systems) are decoupled from physical mesh boundaries. A lobe is not a disconnected 3D mesh shell; it is an ontological grouping over a continuous cortical manifold.
-3. **Rigorous Provenance**: Every raw geometry file is cryptographically pinned via SHA-256 digests, upstream database IDs (FMA), and legal dual-licensing covenants.
-4. **Deterministic Multi-LOD Generation**: 4-level LOD meshes are generated using Meshopt Quadric Error Metric (QEM) simplification with empirical Hausdorff and volume deviation audit trails.
-5. **Lossless Runtime Compression**: Production assets are delivered via `EXT_meshopt_compression` binary GLTF (`.meshopt.glb`), verifying zero bitwise vertex drift through round-trip decoding.
+1. **Zero Fabrication**: All cortical component meshes originate from authentic human anatomical datasets (DBCLS BodyParts3D Release 3.0, acquired via third-party mirror; SPL-PNL was a cross-validation reference, never the source). Procedural approximations, AI blobs, and artistic sculpting are strictly prohibited.
+2. **Decoupled Architecture**: Semantic regions (lobes, gyri, functional systems) are decoupled from physical mesh boundaries. Lobes are ontological groupings; the composite is a multi-shell assembly, NOT a continuous cortical manifold (Phase 3.1 D1).
+3. **Rigorous Provenance**: Every raw geometry file is cryptographically pinned via SHA-256 digests, upstream database IDs (FMA), per-component records, and legal dual-compliance covenants.
+4. **Deterministic Multi-LOD Generation**: 4-level LOD meshes are generated using Meshopt Quadric Error Metric (QEM) simplification — LOSSY by construction — with empirical Hausdorff and volume deviation audit trails.
+5. **Scoped Runtime Compression**: Production assets are delivered via `EXT_meshopt_compression` (`.meshopt.glb`); the encode step is round-trip verified vs its LOD input (max delta ≤ 1e-6 mm). Never "lossless" without that scope; never "bit-exact".
 
 ---
 
@@ -24,17 +24,17 @@ Phase 3 transitions the Neuro Atlas 3D pipeline from a single-structure subcorti
 [Raw Anatomical Ingestion]
    ├── BodyParts3D Release 3.0 (14 bilateral components per hemisphere)
    ├── Cryptographic SHA-256 hashing & byte validation
-   └── Native DICOM LPS coordinate space verification
-              │
-              ▼
+   └── Native source coordinate space (ASSERTED as DICOM LPS; unproven — Phase 3.1 D3)
+               │
+               ▼
 [Decoupled Quality Assurance Audit]
-   ├── Geometric QA: 0 non-manifold edges, 0 zero-area faces, 0 duplicate faces, watertight closed-surface
-   └── Anatomical QA: Human scale check (65 x 110 x 170 mm), volume validation (180 - 380 cm³)
-              │
-              ▼
+   ├── Geometric QA: 0 non-manifold edges, 0 zero-area faces, 0 duplicate faces, per-shell edge watertightness, MEASURED shell count (16/side); topology class MULTI_SHELL_COMPOSITE
+   └── Anatomical QA: Human scale check (65 x 110 x 170 mm), volume plausibility (180 - 380 cm³) → ANATOMICAL_MAPPING_PENDING (scale plausibility only, not morphological proof)
+               │
+               ▼
 [Coordinate Canonicalization & Normals]
-   ├── Transformation: BODYPARTS3D_LPS_TO_RAS_ADAPTER (x' = -x, y' = y, z' = -z)
-   ├── Standard Target: canonical_atlas_ras (+X Right, +Y Superior, +Z Anterior, mm)
+   ├── Transformation: BODYPARTS3D adapter (Xc=-Xs, Yc=Zs-1561.7, Zc=Ys+70.1; det=+1, no mirroring)
+   ├── Standard Target: canonical_atlas_ras = internal space (+X Right, +Y Superior, +Z POSTERIOR; NOT RAS, NOT MNI)
    └── Surface Normals: Area-weighted smooth outward vertex normals
               │
               ▼
@@ -47,7 +47,7 @@ Phase 3 transitions the Neuro Atlas 3D pipeline from a single-structure subcorti
               ▼
 [Runtime Meshopt Compression]
    ├── EXT_meshopt_compression encoding
-   └── Bit-exact roundtrip decode verification (47% file size reduction)
+   └── Encode-step round-trip verification vs LOD input, max delta <= 1e-6 mm (QEM LODs themselves are lossy; ~47% file size reduction)
               │
               ▼
 [Manifest Compilation & Synchronization]
@@ -59,52 +59,48 @@ Phase 3 transitions the Neuro Atlas 3D pipeline from a single-structure subcorti
 
 ## 3. Ingestion Manifest & Cortical Structural Assembly
 
-BodyParts3D models each cerebral hemisphere as 14 authentic anatomical gyrus/lobar sub-structures in native DICOM LPS space. The ingestion engine (`scripts/pipeline/ingest_cerebral_cortex.ts`) downloads each authenticated component, verifies its upstream SHA-256 hash, and welds identical vertices into a continuous pial manifold.
+> Phase 3.1 correction (2026-09-27, D1 + component identities): the original text of
+> this section claimed vertex welding into "a continuous pial manifold" and printed a
+> component table with wrong names AND wrong triangle counts. Both were false.
+> Authoritative record: [`PHASE_3_CORTEX_SOURCE_COMPONENTS.md`](./PHASE_3_CORTEX_SOURCE_COMPONENTS.md).
 
-| Structure Name | Upstream FMA (Left / Right) | Anatomical Region | Raw Triangle Count (L / R) |
-| :--- | :--- | :--- | :--- |
-| Superior Frontal Gyrus | FMA72654 / FMA72653 | Frontal Lobe | 30,450 / 30,450 |
-| Middle Frontal Gyrus | FMA72656 / FMA72655 | Frontal Lobe | 15,544 / 15,544 |
-| Precentral Gyrus | FMA72662 / FMA72661 | Frontal Lobe (Motor) | 16,846 / 16,846 |
-| Postcentral Gyrus | FMA72666 / FMA72665 | Parietal Lobe (Sensory) | 18,296 / 18,296 |
-| Supramarginal Gyrus | FMA72668 / FMA72667 | Parietal Lobe | 10,758 / 10,758 |
-| Angular Gyrus | FMA72670 / FMA72669 | Parietal Lobe | 11,462 / 11,462 |
-| Superior Temporal Gyrus | FMA72686 / FMA72685 | Temporal Lobe | 15,808 / 15,808 |
-| Middle Temporal Gyrus | FMA72688 / FMA72687 | Temporal Lobe | 17,990 / 17,990 |
-| Inferior Temporal Gyrus | FMA72690 / FMA72689 | Temporal Lobe | 14,218 / 14,218 |
-| Lateral Occipital Lobe | FMA72976 / FMA72975 | Occipital Lobe | 16,346 / 16,426 |
-| Cuneus | FMA72702 / FMA72701 | Occipital Lobe (Medial) | 7,868 / 7,868 |
-| Lingual Gyrus | FMA72706 / FMA72705 | Occipital Lobe (Medial) | 9,454 / 9,454 |
-| Insular Cortex | FMA72978 / FMA72977 | Insular Lobe | 6,340 / 6,340 |
-| Parahippocampal Gyrus | FMA72718 / FMA72717 | Limbic / Temporal | 6,850 / 6,850 |
-| **Combined Cortical Hemisphere** | **mesh.cortex.left.v1 / right.v1** | **Whole Cortex** | **198,230 / 198,310** |
+BodyParts3D models each cerebral hemisphere as 14 authentic anatomical gyrus/lobar
+sub-structures in its native whole-body source frame (DICOM-LPS equivalence asserted,
+unproven — see Phase 3.1 D3). The ingestion engine
+(`scripts/pipeline/ingest_cerebral_cortex.ts`) downloads each component, verifies its
+SHA-256, and CONCATENATES the raw triangle buffers into the master raw STL
+(`combineBinarySTLs`: subarray slice + `Buffer.concat`; no vertex welding, no mesh
+union, no hole filling). Measured result: **16 disjoint closed shells per hemisphere**,
+triangle sums conserved exactly (L 198,230 / R 198,310). Five component identities per
+side were mislabeled pre-3.1 (temporal-series shift; cuneus/lingual/parahippocampal
+misassignments) and are corrected in the authority doc above — do NOT use the
+pre-3.1 table (removed).
 
 ---
 
 ## 4. Coordinate Transformation & Canonical Registration
 
 The raw BodyParts3D coordinates reside in whole-body DICOM LPS (Left, Posterior, Superior in millimeters).
-The Neuro Atlas standard coordinate frame is `canonical_atlas_ras`:
+The Neuro Atlas standard coordinate frame is `canonical_atlas_ras` (identifier retained
+for stability; Phase 3.1 measured — NOT RAS-ordered, NOT MNI):
 - **+X**: Right (Lateral Right > 0, Lateral Left < 0)
 - **+Y**: Superior (Cranial > 0, Caudal < 0)
-- **+Z**: Anterior (Rostral > 0, Occipital < 0)
+- **+Z**: POSTERIOR (Occipital > 0, Rostral < 0) — corrected 2026-09-27; the pre-3.1
+"+Z Anterior" label contradicted the coded math and measured component ordering
 - **Scale**: 1.0 unit = 1.0 mm
 
-### Canonical Transformation Adapter
+### Canonical Transformation Adapter (exact coded math — D3)
+
+> Phase 3.1 correction: the matrix printed here pre-3.1 (`diag(-1,1,-1)`, negate X/Z)
+> never existed in code. The real adapter permutes axes with translation:
+
 ```ts
-export const BODYPARTS3D_LPS_TO_RAS_ADAPTER: SourceCoordinateAdapter = {
-  adapter_id: 'adapter.bodyparts3d.lps_whole_body_to_ras',
-  source_coordinate_system: 'DICOM_LPS_WHOLE_BODY',
-  target_canonical_system: 'THREEJS_RAS_CANONICAL',
-  matrix: [
-    -1,  0,  0, 0,
-     0,  1,  0, 0,
-     0,  0, -1, 0,
-     0,  0,  0, 1
-  ],
-  scale: 1.0,
-  unit: 'mm'
-};
+// scripts/pipeline/coordinate_adapter.ts — BODYPARTS3D_LPS_TO_RAS_ADAPTER
+axis_mapping: { x: '-x', y: 'z', z: 'y' },   // Xc=-Xs, Yc=Zs, Zc=Ys
+translation_mm: [0.0, -1561.7, 70.1],        // Yc=Zs-1561.7, Zc=Ys+70.1
+// 4x4: [[-1,0,0,0],[0,0,1,-1561.7],[0,1,0,70.1],[0,0,0,1]], det=+1 (no mirroring)
+// Source frame ASSERTED as DICOM LPS (unproven); translation constants asserted,
+// derivation undocumented; origin approximates (not equals) mid-commissural plane.
 ```
 
 ### Measured Hemisphere Bounds & Centroids (RAS)
@@ -116,7 +112,7 @@ export const BODYPARTS3D_LPS_TO_RAS_ADAPTER: SourceCoordinateAdapter = {
   - Bounding Box: $X \in [+1.18, +66.39]$, $Y \in [-39.37, +71.37]$, $Z \in [-104.58, +65.65]$ mm
   - Centroid: $[+33.78, +16.00, -19.47]$ mm
   - Dimensions: $65.21 \times 110.74 \times 170.23$ mm
-- **Interhemispheric Fissure Gap**: Minimum medial separation across $X = 0$ is $1.18 - 0.10 = 1.08\text{ mm}$, faithfully preserving the biological sagittal cleft accommodating the falx cerebri.
+- **Interhemispheric gap**: minimum medial separation across $X = 0$ is $1.18 - 0.10 = 1.08\text{ mm}$ of EMPTY SPACE between the two chunk sets. Phase 3.1: this is NOT a validated biological fissure and says nothing about the falx cerebri — it is an inter-piece gap.
 
 ---
 

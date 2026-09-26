@@ -1,5 +1,18 @@
 # Phase 3 Completion Report: Cerebral Macroanatomy & Production Asset Pipeline
 
+> **PHASE 3.1 SUPERSEDE NOTICE (2026-09-27, immutable history preserved):** this report
+> is kept byte-identical below, but its scientific claims were audited and several
+> found false. Do NOT quote this document without
+> [`PHASE_3_1_SCIENTIFIC_INTEGRITY_REPORT.md`](./PHASE_3_1_SCIENTIFIC_INTEGRITY_REPORT.md).
+> Corrected in Phase 3.1: (1) "welded/continuous pial surface" → measured 16-shell
+> concatenation; (2) 5 component identities per side mislabeled (see
+> [`docs/PHASE_3_CORTEX_SOURCE_COMPONENTS.md`](./docs/PHASE_3_CORTEX_SOURCE_COMPONENTS.md));
+> (3) canonical +Z is POSTERIOR, not Anterior; the space is not RAS/MNI;
+> (4) "bit-exact lossless" → meshopt-encode-step scope only, QEM is lossy;
+> (5) "microsecond/1.317 ms raycasting" → run-varying headless-CPU milliseconds;
+> (6) midline gap is inter-piece space, not a validated fissure; (7) no MNI metrics
+> were ever computed. Geometry executed and hash-verified; descriptions corrected.
+
 **Standard**: AAS-2026-NEURO-V1  
 **Repository**: `https://github.com/utkalpatel1012/neuro-atlas-3d`  
 **Phase**: Phase 3 — Cerebral Macroanatomy & Production Asset Pipeline  
@@ -84,3 +97,23 @@ PHASE 3 GATE STATUS: PHASE_3_COMPLETE
 ================================================================
 ```
 The asset pipeline, anatomical assembly, and rendering engine are now prepared for deep subcortical nuclei, brainstem, cerebellum, and subsequent parcellation overlays in later phases.
+
+---
+
+## Appendix A — Phase 3.1 Corrections: PREVIOUS CLAIM vs CURRENT VERIFIED STATUS (§39)
+
+History above is preserved verbatim. Each row states what this report claimed, and
+what Phase 3.1 (report: `PHASE_3_1_SCIENTIFIC_INTEGRITY_REPORT.md`) verified.
+
+| # | PREVIOUS CLAIM (this report) | CURRENT VERIFIED STATUS |
+|---|---|---|
+| 1 | "Ingested and welded 14 structures" (§1.2) | Concatenated triangle buffers; 16 disjoint shells/side measured; no welding exists |
+| 2 | "28 authentic anatomical structures" (§2 ledger) | Count correct; 10/28 IDENTITIES were wrong — corrected in `docs/PHASE_3_CORTEX_SOURCE_COMPONENTS.md`; STG/cuneus/lingual absent |
+| 3 | "Continuous pial meshes" (gate table) | INCORRECT — `MULTI_SHELL_COMPOSITE`, test-enforced |
+| 4 | "Anatomical QA … PASSED" on volume band | Scale plausibility only → `ANATOMICAL_MAPPING_PENDING`; morphological §3-equivalent claims retracted |
+| 5 | "Canonical RAS (+X,+Y,+Z)" / "+Z Anterior" (§1.4, gate table) | INCORRECT — measured +Z POSTERIOR; internal space, not RAS/MNI; camera presets realigned |
+| 6 | "1.08 mm midline fissure … biological" (§1.4, §2) | 1.08 mm inter-piece gap, explicitly not biology |
+| 7 | "bit-exact lossless roundtrip" (§1.5, gate table) | Meshopt-encode-step scope only (≤1e-6 mm); QEM lossy |
+| 8 | "Microsecond raycasting … 1.317 ms" (§1.10, gate table) | Run-varying headless-CPU milliseconds; unit was never microseconds |
+| 9 | Component table names/counts (via pipeline doc) | Table was wrong in names AND counts; authority is the components doc |
+| 10 | Ontology links "FMA, TA2, UBERON" (§1.7) | Component FMA IDs verified vs distribution; concept-level TA2/UBERON IDs UNVERIFIED (L5) |

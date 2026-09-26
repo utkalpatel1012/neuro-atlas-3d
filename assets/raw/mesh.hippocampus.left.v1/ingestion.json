@@ -12,11 +12,11 @@
   "current_license_update_date": "2025-02-27",
   "license_verification_date": "2026-09-26",
   "attribution": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-ShareAlike 2.1 Japan.",
-  "current_official_attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International.",
+  "current_official_attribution": "BodyParts3D, \u00c2\u00a9 The Database Center for Life Science licensed under CC Attribution 4.0 International.",
   "derivative_work_requirement": "CC-BY-SA 2.1 JP requires ShareAlike on derivatives; CC BY 4.0 allows derivatives under attribution only without ShareAlike.",
   "redistribution_requirement": "Freely access and redistribute with attribution.",
   "legal_review_status": "LEGAL_REVIEW_REQUIRED_ON_RETROACTIVE_SHAREALIKE_EXTINGUISHMENT",
-  "compliance_strategy": "DEFENSIVE_DUAL_COMPLIANCE (Fulfilling CC BY 4.0 attribution and CC-BY-SA 4.0 derivative sharing)",
+  "compliance_strategy": "CONSERVATIVE_EXACT_TERMS (Phase 3.1 section 19): attribute under CC BY 4.0 terms AND share derivatives under CC-BY-SA 4.0 terms; retroactivity of portal CC BY listing to Release 3.0 files UNRESOLVED - LEGAL_REVIEW_REQUIRED",
   "acquisition_date": "2026-09-26",
   "original_filename": "FMA72714.stl",
   "original_format": "STL_BINARY",
@@ -35,5 +35,6 @@
       "SPL-PNL Brain Atlas 2008"
     ]
   },
-  "ingestion_status": "SOURCE_VERIFIED"
+  "ingestion_status": "SOURCE_VERIFIED",
+  "phase_3_1_metadata_correction": " | compliance_strategy wording corrected 2026-09-27 (no dual-compliance term)."
 }

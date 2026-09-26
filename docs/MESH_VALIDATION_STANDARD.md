@@ -29,8 +29,9 @@ All canonical master meshes (`assets/derived/[asset-id]/canonical/*.glb`) must s
 │ Container Format         │ glTF 2.0 Binary (.glb)                      │
 │ Compression              │ UNCOMPRESSED (Meshopt reserved for runtime) │
 │ Coordinate Handedness    │ Right-Handed                                │
-│ Axis Orientation         │ +Y Up (Superior), +Z Forward (Anterior),    │
-│                          │ +X Right (Lateral)                          │
+│ Axis Orientation         │ +Y Up (Superior), +Z BACKWARD (Posterior),│
+│ (Phase 3.1 measured)     │ +X Right (Lateral). NOT RAS-ordered,      │
+│                          │ NOT MNI.                                  │
 │ Measurement Units        │ Millimeters (1.0 unit = 1.0 mm)             │
 │ True Anatomical Scale    │ 1:1 Real Human Morphology                   │
 │ Vertex Normal Convention │ Weighted Area/Angle Smooth Normals          │

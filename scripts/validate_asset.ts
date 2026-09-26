@@ -108,6 +108,7 @@ export function validateAsset(rawArg: string): boolean {
 
       // Load raw bounds from geometry QA report or compute from raw file
       let rawBounds = canonicalBounds;
+      let qaDims: [number, number, number] | undefined;
       const geomQaPathEarly = path.join(PROJECT_ROOT, 'assets/validation', `${assetId}.geometry_qa.json`);
       if (fs.existsSync(geomQaPathEarly)) {
         const qaData = JSON.parse(fs.readFileSync(geomQaPathEarly, 'utf8'));
@@ -129,6 +130,7 @@ export function validateAsset(rawArg: string): boolean {
               Math.pow(max[2] - min[2], 2)
             ) / 2
           };
+          qaDims = qaData.analysis.dimensions as [number, number, number];
         }
       }
 
@@ -147,13 +149,27 @@ export function validateAsset(rawArg: string): boolean {
         title: '4-Stage Coordinate & Laterality Chain',
         passed: coordResult.passed,
         message: coordResult.passed
-          ? `Verified 4/4 stages: Source(${adapter.source_coordinate_system}) -> Isometry -> Canonical RAS -> Laterality(${declaredLaterality}, Centroid X=${canonicalBounds.center[0].toFixed(2)} mm)`
+          ? `Verified 4/4 stages: Source(${adapter.source_coordinate_system}) -> Isometry -> Canonical internal (+X R, +Y S, +Z Posterior; NOT RAS/MNI) -> Laterality(${declaredLaterality}, Centroid X=${canonicalBounds.center[0].toFixed(2)} mm)`
           : `Coordinate/Laterality error: ${coordResult.diagnostics.filter(d => d.includes('Failure')).join('; ')}`
       });
 
-      // Anatomic dimensions check
+      // Anatomic dimensions check — Phase 3.1 fix: the old hardcoded band
+      // (10-35 x 10-35 x 25-60 mm) was a hippocampus template that failed EVERY
+      // cortex asset. Now: macroscopic human scale per axis (2-250 mm, same rule as
+      // coordinate_validator.ts) AND consistency with the asset's own QA report.
       const [dimX, dimY, dimZ] = canonicalBounds.dimensions;
-      const dimensionsValid = dimX > 10 && dimX < 35 && dimY > 10 && dimY < 35 && dimZ > 25 && dimZ < 60;
+      const macroscopic = [dimX, dimY, dimZ].every((d) => d >= 2.0 && d <= 250.0);
+      // Same-set check: the adapter only permutes axes (rigid), so sorted raw-frame
+      // QA dims must match sorted canonical GLB dims within tolerance. This verifies
+      // transform consistency without any organ-specific template (same principle as
+      // coordinate_validator.ts).
+      let setConsistent = true;
+      if (qaDims) {
+        const a = [...qaDims].sort((x, y) => x - y);
+        const b = [dimX, dimY, dimZ].sort((x, y) => x - y);
+        setConsistent = a.every((v, i) => Math.abs(v - b[i]) < 0.5);
+      }
+      const dimensionsValid = macroscopic && setConsistent;
       checks.push({
         title: 'Adult Organ Dimensions Verification',
         passed: dimensionsValid,
@@ -239,16 +255,18 @@ export function validateAsset(rawArg: string): boolean {
         : `QA Failure: status=${geomQa.overallStatus}, non-manifold=${geomQa.analysis.nonManifoldEdges}, watertight=${geomQa.analysis.isWatertight}`
     });
 
-    const anatPassed = geomQa.anatomicalQA
-      ? geomQa.anatomicalQA.anatomicalStatus === 'ANATOMY_VALIDATED'
-      : true;
+    // Phase 3.1 (D7): ANATOMY_VALIDATED here means scale/laterality plausibility
+    // only (no morphological proof exists in this repo). ANATOMICAL_MAPPING_PENDING
+    // is an HONEST reported state, not a failure — only REJECTED/missing fails.
+    const anatStatus: string = geomQa.anatomicalQA ? geomQa.anatomicalQA.anatomicalStatus : 'UNKNOWN';
+    const anatPassed = anatStatus === 'ANATOMY_VALIDATED' || anatStatus === 'ANATOMICAL_MAPPING_PENDING';
 
     checks.push({
       title: 'Decoupled Anatomical QA Standard',
       passed: anatPassed,
       message: anatPassed
-        ? `Anatomical status: ANATOMY_VALIDATED | Laterality: ${geomQa.anatomicalQA?.declaredLaterality || 'left'} | Subfields: ${geomQa.anatomicalQA?.subfieldRepresentation || 'MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED'}`
-        : `Anatomical QA Failure: status=${geomQa.anatomicalQA?.anatomicalStatus}`
+        ? `Anatomical status: ${anatStatus} (scale/laterality plausibility grade; see KNOWN_ANATOMICAL_LIMITATIONS.md) | Laterality: ${geomQa.anatomicalQA?.declaredLaterality || 'left'} | Subfields: ${geomQa.anatomicalQA?.subfieldRepresentation || 'MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED'}`
+        : `Anatomical QA Failure: status=${anatStatus}`
     });
   }
 

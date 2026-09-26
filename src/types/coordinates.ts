@@ -13,7 +13,11 @@
 
 export type VolumetricCoordinateFrame =
   | 'native_mesh'                      // Local untransformed vertex positions from source 3D asset
-  | 'canonical_atlas_ras'              // Canonical Neuro Atlas internal reference frame (Right-Anterior-Superior, 1mm)
+  // Phase 3.1 (D3, measured): 'canonical_atlas_ras' is a RETAINED IDENTIFIER for the
+  // internal engine space +X Right, +Y Superior, +Z POSTERIOR (right-handed). It is NOT
+  // RAS-ordered (+X R, +Y A, +Z S) and NOT MNI152. The ID is kept to avoid invalidating
+  // manifests/records/tests; the ID itself makes no anatomical claim.
+  | 'canonical_atlas_ras'              // Internal canonical space: +X Right, +Y Superior, +Z Posterior, 1mm (NOT RAS, NOT MNI)
   | 'blender_world'                    // Scene world space in Blender 4.x (+Y Up, +Z Forward)
   | 'mni152_nonlinear_2009c_asym'      // ICBM 152 Nonlinear Asymmetric 2009c (Standard neuroimaging space)
   | 'mni152_linear_6th_gen'            // Legacy linear MNI template
@@ -30,7 +34,10 @@ export type SurfaceCoordinateFrame =
 export type CoordinateFrame = VolumetricCoordinateFrame | SurfaceCoordinateFrame;
 
 export type RegistrationMethod =
-  | 'unregistered_raw'                  // Native unaligned source mesh
+  | 'not_registered'                  // Phase 3.1: NO stereotaxic template registration performed. Use with
+                                      // REGISTRATION_PENDING status and NO uncertainty/dice metrics. Never pair
+                                      // with a target_reference_template.
+  | 'unregistered_raw'                // Native unaligned source mesh
   | 'manual_anatomical_landmarks'       // Co-registered via manual landmark matching (e.g., AC, PC, midsagittal points)
   | 'rigid_body_6dof'                   // Translation and rotation only
   | 'affine_linear_12dof'               // 12-parameter linear affine transformation (FLIRT / NiftyReg)
@@ -41,7 +48,9 @@ export type RegistrationMethod =
 export interface RegistrationMetadata {
   registration_method: RegistrationMethod;
   registration_source: string;          // Script, pipeline version, or literature citation (DOI/PMID)
-  target_reference_template: string;    // e.g., 'MNI152NLin2009cAsym_1mm.nii.gz'
+  // Phase 3.1: optional because unregistered assets (method 'not_registered') MUST
+  // NOT name a template. A present template with unmeasured metrics is fabrication.
+  target_reference_template?: string;   // e.g., 'MNI152NLin2009cAsym_1mm.nii.gz' (only if really registered)
   transformation_matrix_4x4?: number[]; // Column-major 16-element affine matrix if linear
   warp_field_asset_id?: string;         // Asset ID of 3D displacement vector field if non-linear
   registration_uncertainty_mm?: number; // Estimated mean target registration error (TRE) in mm

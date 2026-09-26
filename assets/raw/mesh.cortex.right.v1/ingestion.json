@@ -84,7 +84,7 @@
     },
     {
       "fma_id": "FMA72685",
-      "name": "Right superior temporal gyrus",
+      "name": "Right middle temporal gyrus",
       "laterality": "right",
       "lobe": "temporal",
       "structure_type": "gyrus",
@@ -95,7 +95,7 @@
     },
     {
       "fma_id": "FMA72687",
-      "name": "Right middle temporal gyrus",
+      "name": "Right inferior temporal gyrus",
       "laterality": "right",
       "lobe": "temporal",
       "structure_type": "gyrus",
@@ -106,7 +106,7 @@
     },
     {
       "fma_id": "FMA72689",
-      "name": "Right inferior temporal gyrus",
+      "name": "Right fusiform gyrus",
       "laterality": "right",
       "lobe": "temporal",
       "structure_type": "gyrus",
@@ -117,9 +117,9 @@
     },
     {
       "fma_id": "FMA72701",
-      "name": "Right cuneus",
+      "name": "Right accessory short gyrus",
       "laterality": "right",
-      "lobe": "occipital",
+      "lobe": "insula",
       "structure_type": "gyrus",
       "sha256": "dae4a0cd8dbeeb27170af29c1f03a7626fa5fbb3c21748c71f07ab67177dafc3",
       "triangle_count": 15346,
@@ -128,9 +128,9 @@
     },
     {
       "fma_id": "FMA72705",
-      "name": "Right lingual gyrus",
+      "name": "Right parahippocampal gyrus",
       "laterality": "right",
-      "lobe": "occipital",
+      "lobe": "limbic",
       "structure_type": "gyrus",
       "sha256": "fd317edc429ea14f0cc4398198bfb5a6f3a06d1ab9b2b24e5d41a63756899e0a",
       "triangle_count": 3454,
@@ -139,7 +139,7 @@
     },
     {
       "fma_id": "FMA72975",
-      "name": "Right occipital lobe lateral surface",
+      "name": "Right occipital lobe",
       "laterality": "right",
       "lobe": "occipital",
       "structure_type": "lobe",
@@ -161,7 +161,7 @@
     },
     {
       "fma_id": "FMA72717",
-      "name": "Right parahippocampal gyrus",
+      "name": "Right cingulate gyrus",
       "laterality": "right",
       "lobe": "limbic",
       "structure_type": "gyrus",
@@ -171,5 +171,6 @@
       "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72717.stl"
     }
   ],
-  "ingestion_status": "SOURCE_VERIFIED"
+  "ingestion_status": "SOURCE_VERIFIED",
+  "phase_3_1_metadata_correction": "Component names/lobes corrected 2026-09-27 against authoritative BodyParts3D distribution name list (parts_list_e.txt). Geometry, hashes, triangle counts unchanged. See docs/PHASE_3_CORTEX_SOURCE_COMPONENTS.md."
 }

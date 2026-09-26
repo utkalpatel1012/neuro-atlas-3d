@@ -3,8 +3,9 @@
  * Standard: AAS-2026-NEURO-V1 (Phase 1.0.1 Hardening)
  * 
  * Normalizes raw geometry from arbitrary source coordinate spaces (DICOM LPS, MNI152, FreeSurfer)
- * into standard canonical glTF 2.0 Binary (.glb) format using explicit SourceCoordinateAdapters:
- * - Coordinates: Right-Handed RAS (Right = +X, Superior = +Y, Anterior = +Z)
+ * into the standard internal canonical glTF 2.0 Binary (.glb) format using explicit SourceCoordinateAdapters:
+ * - Coordinates: internal canonical space (+X Right, +Y Superior, +Z POSTERIOR, Phase 3.1 corrected;
+ *   NOT RAS-ordered, NOT MNI — the 'canonical_atlas_ras' identifier is a retained label, not a claim)
  * - Units: Millimeters (1.0 = 1.0 mm)
  * - Weighted smooth vertex normals pointing outward
  * - Uncompressed master geometry

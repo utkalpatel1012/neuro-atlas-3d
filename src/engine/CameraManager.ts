@@ -158,14 +158,18 @@ export class CameraManager {
     const distance = 135.0; // Standard 135 mm observation distance
 
     let newPos: THREE.Vector3;
+    // Phase 3.1 (D3): measured canonical axes are +X Right, +Y Superior,
+    // +Z POSTERIOR. The frontal (anterior) pole sits at LOW Z, the occipital
+    // (posterior) pole at HIGH Z — so the anterior viewpoint is at -Z.
+    // Pre-3.1 code had these two swapped (camera labeled Ant showed occiput).
     switch (preset) {
       case 'anterior':
-        // Look from +Z towards -Z
-        newPos = currentTarget.clone().add(new THREE.Vector3(0, 0, distance));
+        // Look from -Z (frontal end) towards +Z
+        newPos = currentTarget.clone().add(new THREE.Vector3(0, 0, -distance));
         break;
       case 'posterior':
-        // Look from -Z towards +Z
-        newPos = currentTarget.clone().add(new THREE.Vector3(0, 0, -distance));
+        // Look from +Z (occipital end) towards -Z
+        newPos = currentTarget.clone().add(new THREE.Vector3(0, 0, distance));
         break;
       case 'superior':
         // Look from +Y towards -Y
@@ -193,7 +197,8 @@ export class CameraManager {
         break;
       case 'isometric':
       default:
-        // Anterolateral oblique angle
+        // Left-superior-posterior oblique angle (Phase 3.1: +Z is the
+        // occipital/posterior end, so this is a posterolateral oblique)
         newPos = currentTarget.clone().add(new THREE.Vector3(-75, 55, 90));
         break;
     }

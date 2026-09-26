@@ -10,7 +10,7 @@
  * 5. Topology classification & decoupled Geometric/Anatomical QA
  * 6. Multi-resolution LOD fidelity (discrete Hausdorff & volume delta)
  * 7. Lossless EXT_meshopt_compression runtime verification
- * 8. Licensing clearance, defensive dual compliance, and quarantine isolation
+  * 8. Exact-terms licensing record, unresolved-flag, and quarantine isolation
  * 
  * Usage:
  *   npx tsx scripts/audit_phase1.ts
@@ -260,9 +260,11 @@ export function runPhase1Audit(): boolean {
     const compLevels = compReport.levels || [];
     const allLossless = compLevels.length === 4 && compLevels.every((l: any) => l.roundTripVerified === true);
     section5Checks.push({
-      name: 'Lossless Runtime Meshopt Compression',
+      // Phase 3.1 (D6): "lossless" scopes to the meshopt ENCODE step vs its LOD
+      // input only; QEM simplification that produced the LODs is lossy.
+      name: 'Meshopt Runtime Encoding (round-trip verified vs LOD input; QEM lossy)',
       passed: allLossless,
-      details: `Overall savings: ${compReport.overallSavingsPercent}% (LOD0: ${compLevels[0]?.uncompressedByteLength} -> ${compLevels[0]?.compressedByteLength} bytes, verified lossless)`
+      details: `Overall savings: ${compReport.overallSavingsPercent}% (LOD0: ${compLevels[0]?.uncompressedByteLength} -> ${compLevels[0]?.compressedByteLength} bytes, encode round-trip verified, max delta <= 1e-6 mm)`
     });
   } else {
     section5Checks.push({ name: 'LOD & Compression Reports', passed: false, details: 'LOD report or compression report missing' });
@@ -293,12 +295,17 @@ export function runPhase1Audit(): boolean {
       details: `Asset "${targetAsset}" formally whitelisted for production web bundle (quarantine count: 0)`
     });
 
-    const dualCompliance = assetRecord?.restrictions_and_covenants?.some((r: string) => r.includes('dual compliance')) ||
-      (assetRecord as any)?.dual_licensing_notes !== undefined;
+    // Phase 3.1 §19: assert exact-terms licensing record + unresolved flag.
+    // The term "dual compliance" has no legal basis and must not appear.
+    const covenants: string[] = assetRecord?.restrictions_and_covenants || [];
+    const exactTerms = covenants.some((r: string) => r.includes('CC-BY-SA 2.1 JP') && r.includes('CC BY (2025-02-27)'));
+    const reviewFlag = covenants.some((r: string) => r.includes('LEGAL_REVIEW_REQUIRED')) ||
+      JSON.stringify(assetRecord).includes('LEGAL_REVIEW_REQUIRED');
+    const noDualComplianceTerm = !JSON.stringify(assetRecord).toLowerCase().includes('dual compliance');
     section6Checks.push({
-      name: 'Authoritative Dual Licensing Strategy',
-      passed: !!dualCompliance,
-      details: 'Defensive dual compliance documented (Release 3.0 CC-BY-SA 2.1 JP & modern DBCLS portal CC BY 4.0; derivative under CC-BY-SA 4.0)'
+      name: 'Exact-Terms Licensing Record (no counsel-pretending language)',
+      passed: !!exactTerms && !!reviewFlag && !!noDualComplianceTerm,
+      details: 'Historical CC-BY-SA 2.1 JP + portal CC BY (2025-02-27) recorded; retroactivity UNRESOLVED with LEGAL_REVIEW_REQUIRED; "dual compliance" term absent'
     });
   } else {
     section6Checks.push({ name: 'Licensing Verification', passed: false, details: 'Manifest not loaded' });

@@ -31,18 +31,17 @@ The following formats are **strictly prohibited** from the repository and ingest
 
 ## 3. Coordinate Transformation Requirements (`source -> canonical_atlas_ras`)
 All raw vertex coordinates must be transformed into the engine's canonical coordinate space:
-- **Canonical Space Name**: `canonical_atlas_ras`
+- **Canonical Space Name**: `canonical_atlas_ras` (identifier retained for stability)
 - **Units**: Millimeters ($1.0\text{ unit} = 1.0\text{ mm}$).
-- **Orientation**: **RAS (Right-Anterior-Superior)**:
+- **Orientation (Phase 3.1 measured — NOT RAS order, NOT MNI)**:
   - $+X$: Right lateral
-  - $+Y$: Anterior (Rostral)
-  - $+Z$: Superior (Dorsal)
-- **Origin $(0,0,0)$**: Canonical atlas origin (approximating interhemispheric mid-commissural plane).
+  - $+Y$: Superior (Dorsal)
+  - $+Z$: POSTERIOR (Occipital)
+- **Origin $(0,0,0)$**: Canonical atlas origin (approximating interhemispheric mid-commissural plane; asserted, method undocumented).
 - **Transformation Provenance**: The transformation adapter (e.g. `bodyparts3d-lps-to-ras`) must be recorded in `modifications_applied` in the manifest and entity metadata.
 
 ## 4. Orientation & Chirality Verification
-- **LPS to RAS Inversion**: Medical DICOM / BodyParts3D datasets natively in LPS (Left-Posterior-Superior) must undergo inversion:
-  $$X_{\text{RAS}} = -X_{\text{LPS}}, \quad Y_{\text{RAS}} = -Y_{\text{LPS}}, \quad Z_{\text{RAS}} = +Z_{\text{LPS}}$$
+- **Source-to-canonical mapping (exact coded math, Phase 3.1)**: the BodyParts3D adapter computes $X_c=-X_s,\; Y_c=Z_s-1561.7,\; Z_c=Y_s+70.1$ (x-negation + y/z axis swap, determinant +1, no mirroring). The pre-3.1 formula ($Y=-Y_{LPS},\; Z=+Z_{LPS}$) described a different transform that the code never implemented — DO NOT use it as a contract requirement.
 - **Winding Order**: Triangle winding order must be evaluated and corrected after coordinate reflection so that face normals point outwards (Counter-Clockwise in standard right-handed orientation).
 - **Bilateral Centroid Audit**: Left-sided structures must yield negative $X$ centroids ($X < 0$), and right-sided structures must yield positive $X$ centroids ($X > 0$). Any sign violation triggers immediate pipeline abort.
 
@@ -143,7 +142,7 @@ Every asset in `assets/manifests/assets.manifest.json` must declare:
 | Source License | Project Distribution Policy | Production Allowed? | Required Action |
 | :--- | :--- | :--- | :--- |
 | **CC BY 4.0** | CC-BY-SA-4.0 | YES | Preserve attribution notice |
-| **CC-BY-SA 2.1 JP** | CC-BY-SA-4.0 | YES (Defensive Dual) | Preserve attribution; distribute derived mesh under CC-BY-SA 4.0 |
+| **CC-BY-SA 2.1 JP** | CC-BY-SA-4.0 | YES | Preserve attribution; distribute derived mesh under CC-BY-SA 4.0. Retroactivity of portal CC BY listings UNRESOLVED — LEGAL_REVIEW_REQUIRED (Phase 3.1 §19; no "dual compliance" terminology) |
 | **CC-BY-SA 4.0** | CC-BY-SA-4.0 | YES | Preserve attribution; distribute derived mesh under CC-BY-SA 4.0 |
 | **CC0 / Public Domain** | CC-BY-SA-4.0 / Apache-2.0 | YES | Document source |
 | **CC-BY-NC-SA 4.0** | N/A | **NO (Quarantined)** | Quarantined under `RESEARCH_ONLY`. Prohibited in web bundle |

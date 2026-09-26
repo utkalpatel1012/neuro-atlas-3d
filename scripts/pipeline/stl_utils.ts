@@ -21,6 +21,9 @@ export interface STLMeshAnalysis {
   boundaryEdges: number;
   manifoldEdges: number;
   isWatertight: boolean;
+  connectedShellCount: number; // Measured disjoint triangle-connected shells (union-find on deduped
+  // vertex indices). Edge-based watertightness cannot distinguish 1 continuous surface from N
+  // closed shells; this count makes that distinction explicit. Added Phase 3.1.
 }
 
 /**
@@ -196,13 +199,36 @@ export function parseAndAuditSTL(stlBuffer: Buffer): STLMeshAnalysis {
 
   const isWatertight = boundaryEdges === 0 && nonManifoldEdges === 0;
   const numUnique = uniqueCount;
+
+  // Connected-shell analysis: union-find over triangle vertex adjacency.
+  // Uses the FINAL deduplicated index buffer so coincident vertices shared across
+  // concatenated components merge (tolerance: spatial-hash quantization at 1e-4 mm).
+  const shellParent = new Int32Array(numUnique);
+  for (let v = 0; v < numUnique; v++) shellParent[v] = v;
+  function shellFind(a: number): number {
+    let root = a;
+    while (shellParent[root] !== root) root = shellParent[root];
+    while (shellParent[a] !== root) { const nxt = shellParent[a]; shellParent[a] = root; a = nxt; }
+    return root;
+  }
+  const triTotal = indices.length / 3;
+  for (let t = 0; t < triTotal; t++) {
+    const a = indices[t * 3], b = indices[t * 3 + 1], c = indices[t * 3 + 2];
+    const ra = shellFind(a), rb = shellFind(b), rc = shellFind(c);
+    const root = Math.min(ra, rb, rc);
+    shellParent[ra] = root; shellParent[rb] = root; shellParent[rc] = root;
+  }
+  const shellRoots = new Set<number>();
+  for (let v = 0; v < numUnique; v++) shellRoots.add(shellFind(v));
+  const connectedShellCount = shellRoots.size;
+
+  const positions = uniquePositions.slice(0, numUnique * 3);
   const centroid: [number, number, number] = [
     sumX / numUnique,
     sumY / numUnique,
     sumZ / numUnique
   ];
 
-  const positions = uniquePositions.slice(0, numUnique * 3);
   const finalIndices = numUnique <= 65535 ? new Uint16Array(indices) : indices;
 
   return {
@@ -222,6 +248,7 @@ export function parseAndAuditSTL(stlBuffer: Buffer): STLMeshAnalysis {
     nonManifoldEdges,
     boundaryEdges,
     manifoldEdges,
-    isWatertight
+    isWatertight,
+    connectedShellCount
   };
 }

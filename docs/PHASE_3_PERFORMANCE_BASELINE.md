@@ -1,35 +1,41 @@
 # Phase 3 Performance Baseline & Benchmarks
-**Standard**: AAS-2026-NEURO-V1  
-**Target Mesh**: Bilateral Cerebral Cortex (`mesh.cortex.left.v1`, `mesh.cortex.right.v1`) + Bilateral Hippocampus  
-**Combined Triangle Budget**: ~400,000 Triangles (LOD0) to ~100,000 Triangles (LOD3)  
-**Status**: Benchmarked & Verified  
+**Standard**: AAS-2026-NEURO-V1
+**Target Mesh**: Bilateral Cerebral Cortex (`mesh.cortex.left.v1`, `mesh.cortex.right.v1`) + Bilateral Hippocampus
+**Combined Triangle Budget**: ~400,000 Triangles (LOD0) to ~100,000 Triangles (LOD3)
+**Status**: ~~Benchmarked & Verified~~ → **Phase 3.1 reclassified: single-environment spot timings + UNMEASURED targets (see classification per number below). No browser/device measurement exists in this repo.**
+
+> Phase 3.1 (D8) classification key: MEASURED = reproduced by a repo harness;
+> CONSISTENT = compatible with a repo test but from an unrecorded run; ASSERTED = no
+> producing harness in repo; TARGET = budget/goal, never presented as observed.  
 
 ---
 
 ## 1. Executive Summary
 
-Phase 3 introduces the largest 3D geometry loaded into the atlas runtime to date: ~400,000 bilateral cortical triangles and ~200,000 vertices. To ensure smooth 60 FPS interactive manipulation on standard consumer laptops and tablets, this document establishes quantitative performance baselines across:
-1. **Raycasting & Spatial Selection (BVH Acceleration)**
-2. **Memory Footprint & VRAM Allocation**
-3. **Multi-Resolution LOD Transitioning**
-4. **Meshopt Runtime Decompression Overhead**
-5. **Screen-Space 3D Labeling & Annotation Overhead**
+Phase 3 introduces the largest 3D geometry loaded into the atlas runtime to date: ~400,000 bilateral cortical triangles and ~200,000 vertices. Device-class frame-rate figures below are TARGETS (see `PERFORMANCE_BUDGETS.md`); nothing in this document was measured in a browser or on a physical device. Quantitative content covers:
+1. **Raycasting & Spatial Selection (BVH Acceleration)** — headless-Node CPU spot timings only
+2. **Memory Footprint & VRAM Allocation** — arithmetic estimates, never GPU-profiled
+3. **Multi-Resolution LOD Transitioning** — distance schedule implemented; stability claims unmeasured
+4. **Meshopt Runtime Decompression Overhead** — asserted, no harness
+5. **Screen-Space 3D Labeling & Annotation Overhead** — asserted, no harness
 
 ---
 
-## 2. BVH Spatial Indexing & Microsecond Picking Performance
+## 2. BVH Spatial Indexing & Picking Performance (headless Node.js CPU)
 
-Raycasting a raw 198,230-triangle mesh using Three.js's default brute-force raycaster performs an $O(N)$ test against every triangle, causing noticeable 30-80ms hitches during pointer movement (`pointermove`).
+Raycasting a raw 198,230-triangle mesh using Three.js's default brute-force raycaster performs an $O(N)$ test against every triangle.
 
 By integrating `three-mesh-bvh` via `AssetManager.ts` during asset ingestion, an AABB Bounding Volume Hierarchy tree is constructed once at load time.
 
-### Benchmark Results (1,000 Raycasts on Left Cortex LOD0, 198,230 Tris)
-| Raycasting Method | Average Query Time | 95th Percentile | Memory Overhead | Interactive Feel |
-| :--- | :--- | :--- | :--- | :--- |
-| **Default Three.js Raycaster (Naive $O(N)$)** | 34.82 ms | 52.10 ms | 0 MB | Stuttering / Laggy |
-| **BVH-Accelerated (`firstHitOnly: true`)** | **1.317 ms** | **1.840 ms** | ~4.2 MB | **Silky Smooth 60 FPS** |
+### Timings (classifications per Phase 3.1 D8)
+| Raycasting Method | Reported Time | Classification |
+| :--- | :--- | :--- |
+| **Default Three.js Raycaster (Naive $O(N)$)** | 34.82 ms avg / 52.10 ms p95 ("1,000 raycasts") | **ASSERTED** — no 1,000-ray harness exists in repo; single-ray repo tests do not reproduce this row |
+| **BVH-Accelerated (`firstHitOnly: true`)** | **1.317 ms** avg / **1.840 ms** p95 | **CONSISTENT** — repo test measures single-ray CPU times of 0.97–1.32 ms across runs (run-varying); the p95/1,000-ray framing is unrecorded |
 
-**Conclusion**: BVH spatial acceleration delivers a **26x speedup**, keeping raycast time well below the 16.6ms frame budget.
+Unit is MILLISECONDS on headless CPU (1 ms = 1000 µs — never "microsecond"). No GPU,
+browser, or device frame context was measured. "26x speedup" is ASSERTED (depends on
+the unrecorded naive row).
 
 ---
 
@@ -49,11 +55,11 @@ By integrating `three-mesh-bvh` via `AssetManager.ts` during asset ingestion, an
 | **Combined Atlas Bundle** | **All 4 Structures (LOD0-3)** | **22.56 MB** | **11.95 MB** | **-47.03%** |
 
 ### Client-Side GPU VRAM Consumption (Bilateral Cortex + Bilateral Hippocampus)
-- **Position Attribute Buffer** ($198,334 \text{ verts} \times 3 \text{ floats} \times 4 \text{ bytes}$): ~2.38 MB
-- **Normal Attribute Buffer** ($198,334 \text{ verts} \times 3 \text{ floats} \times 4 \text{ bytes}$): ~2.38 MB
-- **Index Element Buffer** ($396,540 \text{ indices} \times 4 \text{ bytes}$): ~1.59 MB
-- **Total VRAM Geometry Allocation (LOD0)**: **~6.35 MB**
-- **Meshopt WASM Decompression Time**: $< 18\text{ ms}$ on initial load (non-blocking).
+- **Position Attribute Buffer** ($198,334 \text{ verts} \times 3 \text{ floats} \times 4 \text{ bytes}$): ~2.38 MB **[ESTIMATED arithmetic, never GPU-measured]**
+- **Normal Attribute Buffer** ($198,334 \text{ verts} \times 3 \text{ floats} \times 4 \text{ bytes}$): ~2.38 MB **[ESTIMATED]**
+- **Index Element Buffer** ($396,540 \text{ indices} \times 4 \text{ bytes}$): ~1.59 MB **[ESTIMATED]**
+- **Total VRAM Geometry Allocation (LOD0)**: **~6.35 MB [ESTIMATED — no GPU profiling exists]**
+- **Meshopt WASM Decompression Time**: $< 18\text{ ms}$ on initial load (non-blocking). **[ASSERTED — no load-timing harness in repo]**
 
 ---
 
@@ -61,7 +67,7 @@ By integrating `three-mesh-bvh` via `AssetManager.ts` during asset ingestion, an
 
 `LODManager.ts` dynamically evaluates observation distance from camera to mesh bounding centers every frame:
 
-| Observation Range | Active LOD | Triangle Count (Bilateral Cortex) | Frame Rate Target | Target Use Case |
+| Observation Range | Active LOD | Triangle Count (Bilateral Cortex) | Frame Rate **[TARGET, unmeasured]** | Target Use Case |
 | :--- | :--- | :--- | :--- | :--- |
 | **$< 100\text{ mm}$** | **LOD0** (100%) | 396,540 tris | 60 FPS | Detailed sulcal exploration, microscopic inspection |
 | **$100 - 180\text{ mm}$** | **LOD1** (75%) | 297,404 tris | 60 FPS | Standard anatomical orbital examination |
@@ -78,9 +84,9 @@ By integrating `three-mesh-bvh` via `AssetManager.ts` during asset ingestion, an
 
 `LabelManager.ts` calculates 3D-to-2D screen projections, frustum culling, distance priority filtering, backface occlusion, and 2D collision resolution for all 20+ cerebral landmarks:
 
-- **Projection & Normal Occlusion Test (24 landmarks)**: $0.12\text{ ms}$ per frame
-- **2D Collision & Decluttering Loop (AABB)**: $0.08\text{ ms}$ per frame
-- **Total Label Engine CPU Cost**: **$< 0.25\text{ ms}$ per frame** ($< 1.5\%$ of 16.6ms budget).
+- **Projection & Normal Occlusion Test (24 landmarks)**: $0.12\text{ ms}$ per frame **[ASSERTED — no per-frame harness]**
+- **2D Collision & Decluttering Loop (AABB)**: $0.08\text{ ms}$ per frame **[ASSERTED]**
+- **Total Label Engine CPU Cost**: **$< 0.25\text{ ms}$ per frame [ASSERTED]**
 
 ---
 
@@ -88,8 +94,8 @@ By integrating `three-mesh-bvh` via `AssetManager.ts` during asset ingestion, an
 
 | Metric | High Profile (Desktop) | Medium Profile (Laptop) | Low Profile (Mobile / Tablet) |
 | :--- | :--- | :--- | :--- |
-| **Target FPS** | 60 FPS | 60 FPS | 30 FPS |
+| **Target FPS [TARGET]** | 60 FPS | 60 FPS | 30 FPS |
 | **Pixel Ratio** | 2.0x | 1.5x | 1.0x |
 | **LOD Multiplier** | 1.0x | 0.8x | 0.6x |
 | **Max Resident Meshes** | 200 | 100 | 50 |
-| **Observed Framerate** | **60 FPS** | **60 FPS** | **45-60 FPS** |
+| **Observed Framerate** | **UNMEASURED [was "60 FPS" — no browser/device harness exists]** | **UNMEASURED [was "60 FPS"]** | **UNMEASURED [was "45-60 FPS"]** |

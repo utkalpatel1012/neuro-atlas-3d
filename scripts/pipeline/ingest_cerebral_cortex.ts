@@ -3,8 +3,14 @@
  * Standard: AAS-2026-NEURO-V1 (Phase 3 Production Pipeline)
  * 
  * Ingests authentic BodyParts3D component STLs for left and right cerebral hemispheres,
- * verifies SHA-256 cryptographic digests, combines components within native LPS space,
+ * verifies SHA-256 cryptographic digests, concatenates components within native source
+ * space (triangle-buffer concatenation: NO vertex welding, NO mesh union, NO hole
+ * filling — the composite is a multi-shell assembly, see Phase 3.1 report),
  * and outputs master raw composite STL files for downstream canonicalization.
+ *
+ * Component identities below follow the authoritative BodyParts3D distribution name
+ * list (parts_list_e.txt, same distribution the STLs ship in), corrected Phase 3.1.
+ * See docs/PHASE_3_CORTEX_SOURCE_COMPONENTS.md for the full per-component record.
  */
 
 import * as fs from 'fs';
@@ -31,14 +37,14 @@ export const LEFT_CORTICAL_COMPONENTS: CorticalComponentDef[] = [
   { fmaId: 'FMA72666', name: 'Left postcentral gyrus', laterality: 'left', lobe: 'parietal', structureType: 'gyrus' },
   { fmaId: 'FMA72668', name: 'Left supramarginal gyrus', laterality: 'left', lobe: 'parietal', structureType: 'gyrus' },
   { fmaId: 'FMA72670', name: 'Left angular gyrus', laterality: 'left', lobe: 'parietal', structureType: 'gyrus' },
-  { fmaId: 'FMA72686', name: 'Left superior temporal gyrus', laterality: 'left', lobe: 'temporal', structureType: 'gyrus' },
-  { fmaId: 'FMA72688', name: 'Left middle temporal gyrus', laterality: 'left', lobe: 'temporal', structureType: 'gyrus' },
-  { fmaId: 'FMA72690', name: 'Left inferior temporal gyrus', laterality: 'left', lobe: 'temporal', structureType: 'gyrus' },
-  { fmaId: 'FMA72702', name: 'Left cuneus', laterality: 'left', lobe: 'occipital', structureType: 'gyrus' },
-  { fmaId: 'FMA72706', name: 'Left lingual gyrus', laterality: 'left', lobe: 'occipital', structureType: 'gyrus' },
-  { fmaId: 'FMA72976', name: 'Left occipital lobe lateral surface', laterality: 'left', lobe: 'occipital', structureType: 'lobe' },
+  { fmaId: 'FMA72686', name: 'Left middle temporal gyrus', laterality: 'left', lobe: 'temporal', structureType: 'gyrus' },
+  { fmaId: 'FMA72688', name: 'Left inferior temporal gyrus', laterality: 'left', lobe: 'temporal', structureType: 'gyrus' },
+  { fmaId: 'FMA72690', name: 'Left fusiform gyrus', laterality: 'left', lobe: 'temporal', structureType: 'gyrus' },
+  { fmaId: 'FMA72702', name: 'Left accessory short gyrus', laterality: 'left', lobe: 'insula', structureType: 'gyrus' },
+  { fmaId: 'FMA72706', name: 'Left parahippocampal gyrus', laterality: 'left', lobe: 'limbic', structureType: 'gyrus' },
+  { fmaId: 'FMA72976', name: 'Left occipital lobe', laterality: 'left', lobe: 'occipital', structureType: 'lobe' },
   { fmaId: 'FMA72978', name: 'Left insula', laterality: 'left', lobe: 'insula', structureType: 'cortex' },
-  { fmaId: 'FMA72718', name: 'Left parahippocampal gyrus', laterality: 'left', lobe: 'limbic', structureType: 'gyrus' }
+  { fmaId: 'FMA72718', name: 'Left cingulate gyrus', laterality: 'left', lobe: 'limbic', structureType: 'gyrus' }
 ];
 
 export const RIGHT_CORTICAL_COMPONENTS: CorticalComponentDef[] = [
@@ -48,14 +54,14 @@ export const RIGHT_CORTICAL_COMPONENTS: CorticalComponentDef[] = [
   { fmaId: 'FMA72665', name: 'Right postcentral gyrus', laterality: 'right', lobe: 'parietal', structureType: 'gyrus' },
   { fmaId: 'FMA72667', name: 'Right supramarginal gyrus', laterality: 'right', lobe: 'parietal', structureType: 'gyrus' },
   { fmaId: 'FMA72669', name: 'Right angular gyrus', laterality: 'right', lobe: 'parietal', structureType: 'gyrus' },
-  { fmaId: 'FMA72685', name: 'Right superior temporal gyrus', laterality: 'right', lobe: 'temporal', structureType: 'gyrus' },
-  { fmaId: 'FMA72687', name: 'Right middle temporal gyrus', laterality: 'right', lobe: 'temporal', structureType: 'gyrus' },
-  { fmaId: 'FMA72689', name: 'Right inferior temporal gyrus', laterality: 'right', lobe: 'temporal', structureType: 'gyrus' },
-  { fmaId: 'FMA72701', name: 'Right cuneus', laterality: 'right', lobe: 'occipital', structureType: 'gyrus' },
-  { fmaId: 'FMA72705', name: 'Right lingual gyrus', laterality: 'right', lobe: 'occipital', structureType: 'gyrus' },
-  { fmaId: 'FMA72975', name: 'Right occipital lobe lateral surface', laterality: 'right', lobe: 'occipital', structureType: 'lobe' },
+  { fmaId: 'FMA72685', name: 'Right middle temporal gyrus', laterality: 'right', lobe: 'temporal', structureType: 'gyrus' },
+  { fmaId: 'FMA72687', name: 'Right inferior temporal gyrus', laterality: 'right', lobe: 'temporal', structureType: 'gyrus' },
+  { fmaId: 'FMA72689', name: 'Right fusiform gyrus', laterality: 'right', lobe: 'temporal', structureType: 'gyrus' },
+  { fmaId: 'FMA72701', name: 'Right accessory short gyrus', laterality: 'right', lobe: 'insula', structureType: 'gyrus' },
+  { fmaId: 'FMA72705', name: 'Right parahippocampal gyrus', laterality: 'right', lobe: 'limbic', structureType: 'gyrus' },
+  { fmaId: 'FMA72975', name: 'Right occipital lobe', laterality: 'right', lobe: 'occipital', structureType: 'lobe' },
   { fmaId: 'FMA72977', name: 'Right insula', laterality: 'right', lobe: 'insula', structureType: 'cortex' },
-  { fmaId: 'FMA72717', name: 'Right parahippocampal gyrus', laterality: 'right', lobe: 'limbic', structureType: 'gyrus' }
+  { fmaId: 'FMA72717', name: 'Right cingulate gyrus', laterality: 'right', lobe: 'limbic', structureType: 'gyrus' }
 ];
 
 export async function fetchComponentSTL(fmaId: string, outputDir: string): Promise<{ filePath: string; sha256: string; byteLength: number; triangleCount: number }> {

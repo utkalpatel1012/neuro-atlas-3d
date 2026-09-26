@@ -2,14 +2,14 @@
   "assetId": "mesh.hippocampus.right.v1",
   "timestamp": "2026-09-26T13:02:35.115Z",
   "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
-  "targetRuntimeDirectory": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.right.v1\\runtime",
+  "targetRuntimeDirectory": "assets/derived/mesh.hippocampus.right.v1/runtime",
   "levels": [
     {
       "lodName": "lod0",
-      "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.right.v1\\lod\\mesh.hippocampus.right.v1.lod0.glb",
+      "uncompressedGlbPath": "assets/derived/mesh.hippocampus.right.v1/lod/mesh.hippocampus.right.v1.lod0.glb",
       "uncompressedByteLength": 81160,
       "uncompressedSha256": "b222acadc7cd61d114f65a40d21a25937e14f0e86a08eaf778e87ff1bf14641a",
-      "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.right.v1\\runtime\\mesh.hippocampus.right.v1.lod0.meshopt.glb",
+      "runtimeGlbPath": "assets/derived/mesh.hippocampus.right.v1/runtime/mesh.hippocampus.right.v1.lod0.meshopt.glb",
       "compressedByteLength": 51228,
       "compressedSha256": "2723b0b7e7c3548a9221a153fcb12d4b6d044adc28c522c105c73f6aa3b6669b",
       "compressionRatio": 1.58,
@@ -20,10 +20,10 @@
     },
     {
       "lodName": "lod1",
-      "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.right.v1\\lod\\mesh.hippocampus.right.v1.lod1.glb",
+      "uncompressedGlbPath": "assets/derived/mesh.hippocampus.right.v1/lod/mesh.hippocampus.right.v1.lod1.glb",
       "uncompressedByteLength": 61108,
       "uncompressedSha256": "3d95c7ff406847139ac6e8341b6eecf43197618c854ae536f0f6391fc117ebd6",
-      "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.right.v1\\runtime\\mesh.hippocampus.right.v1.lod1.meshopt.glb",
+      "runtimeGlbPath": "assets/derived/mesh.hippocampus.right.v1/runtime/mesh.hippocampus.right.v1.lod1.meshopt.glb",
       "compressedByteLength": 39592,
       "compressedSha256": "6e7835963c8cfa8e9912b3ab500541147fd4c728c380e0dac9c042c9d8fbbd10",
       "compressionRatio": 1.54,
@@ -34,10 +34,10 @@
     },
     {
       "lodName": "lod2",
-      "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.right.v1\\lod\\mesh.hippocampus.right.v1.lod2.glb",
+      "uncompressedGlbPath": "assets/derived/mesh.hippocampus.right.v1/lod/mesh.hippocampus.right.v1.lod2.glb",
       "uncompressedByteLength": 41096,
       "uncompressedSha256": "1616285f6ddf2d5d2cfe81fe15cfe00e9c7cfaf7dd7cfa464a02d75103d3edf5",
-      "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.right.v1\\runtime\\mesh.hippocampus.right.v1.lod2.meshopt.glb",
+      "runtimeGlbPath": "assets/derived/mesh.hippocampus.right.v1/runtime/mesh.hippocampus.right.v1.lod2.meshopt.glb",
       "compressedByteLength": 27608,
       "compressedSha256": "a37e09da7d88b7499395d157182bd3e13ea5e891b8121cc9f77ee2f2fa3cc831",
       "compressionRatio": 1.49,
@@ -48,10 +48,10 @@
     },
     {
       "lodName": "lod3",
-      "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.right.v1\\lod\\mesh.hippocampus.right.v1.lod3.glb",
+      "uncompressedGlbPath": "assets/derived/mesh.hippocampus.right.v1/lod/mesh.hippocampus.right.v1.lod3.glb",
       "uncompressedByteLength": 21040,
       "uncompressedSha256": "54b0809970a5f723ede3eb8a5409522f9d568df56037c77bd8630c5b0ec540ef",
-      "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.right.v1\\runtime\\mesh.hippocampus.right.v1.lod3.meshopt.glb",
+      "runtimeGlbPath": "assets/derived/mesh.hippocampus.right.v1/runtime/mesh.hippocampus.right.v1.lod3.meshopt.glb",
       "compressedByteLength": 14700,
       "compressedSha256": "c97238089be5bc415c1f50ea5846649c4e394bee12c18fb04a3f97a5f9f60b3f",
       "compressionRatio": 1.43,
@@ -72,8 +72,11 @@
       "extension": "EXT_meshopt_compression",
       "attributeMode": "ATTRIBUTES",
       "indexMode": "TRIANGLES",
-      "lossless": true
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 1e-06,
+      "qem_simplification_lossy": true
     },
     "timestamp": "2026-09-26T13:02:35.116Z"
-  }
+  },
+  "phase_3_1_note": "2026-09-27: meshopt encode step is lossless ONLY vs its LOD input (round-trip max delta <= 1e-6 mm); QEM LOD simplification is LOSSY. Paths made repo-relative. No geometry changed."
 }

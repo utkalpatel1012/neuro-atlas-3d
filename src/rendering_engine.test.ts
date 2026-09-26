@@ -74,10 +74,12 @@ async function runTests() {
 
   const origin = new THREE.Vector3(0, 0, 0);
   cameraMgr.setPreset('anterior', origin, 0);
-  assert(camera.position.z > origin.z, 'Anterior view positions camera in front (+Z)');
+  // Phase 3.1 (D3): measured canonical +Z is POSTERIOR, so the anterior
+  // (frontal) viewpoint sits at -Z. Pre-3.1 asserted +Z (occiput side).
+  assert(camera.position.z < origin.z, 'Anterior view positions camera at frontal (-Z) side');
 
   cameraMgr.setPreset('posterior', origin, 0);
-  assert(camera.position.z < origin.z, 'Posterior view positions camera in back (-Z)');
+  assert(camera.position.z > origin.z, 'Posterior view positions camera at occipital (+Z) side');
 
   cameraMgr.setPreset('superior', origin, 0);
   assert(camera.position.y > origin.y, 'Superior view positions camera above (+Y)');
@@ -134,8 +136,8 @@ async function runTests() {
     officialLatin: 'hippocampus sinister',
     laterality: 'left',
     canonicalCentroidMm: [-25.2, -20.6, -11.4],
-    dimensionsMm: [19.4, 40.2, 18.6],
-    volumeCm3: 3.18,
+    dimensionsMm: [18.9, 20.78, 40.55],
+    volumeCm3: 1.87,
     topologyClass: '2-manifold',
     validationStatus: 'APPROVED',
     upstreamDataset: 'DBCLS BodyParts3D Release 3.0',
