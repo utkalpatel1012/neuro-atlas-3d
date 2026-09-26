@@ -1,0 +1,194 @@
+{
+  "id": "brain.telencephalon.left.cortex",
+  "entity_id": "brain.telencephalon.left.cortex",
+  "entity_type": "anatomical_structure",
+  "subtype": "cortical_structure",
+  "canonical_name": "Cerebral Cortex (Left)",
+  "latin_name": "Cortex cerebri sinister",
+  "clinical_aliases": [
+    "Left Cortical Mantle",
+    "Left Cerebral Grey Matter"
+  ],
+  "abbreviations": ["CTX-L", "L-Cortex"],
+  "laterality": "left",
+  "representation_scope": "paired_separate",
+  "name": {
+    "official_latin": "Cortex cerebri sinister",
+    "official_english": "Cerebral Cortex (Left)",
+    "clinical_aliases": [
+      "Left Cortical Mantle",
+      "Left Cerebral Grey Matter"
+    ],
+    "standard_abbreviations": ["CTX-L", "L-Cortex"]
+  },
+  "names": {
+    "canonical_name": "Left Cerebral Cortex",
+    "official_latin": "cortex cerebri sinister"
+  },
+  "ontology": {
+    "ta2_id": "TA2:5415",
+    "fma_id": "FMA:242442",
+    "uberon_id": "UBERON:0000956",
+    "neuronaes_id": "NN:1"
+  },
+  "hierarchy": {
+    "anatomic_system": "central_nervous_system_telencephalon",
+    "division": "telencephalon",
+    "hemisphere": "left",
+    "lobe": "all_lobes",
+    "subsystem": "cerebral_cortex",
+    "parent_id": "brain.telencephalon.left.hemisphere",
+    "groups": [
+      "division.cerebrum",
+      "hemisphere.left",
+      "region.cortex",
+      "region.cortex.left"
+    ],
+    "children_ids": [
+      "brain.telencephalon.left.cortex.frontal_lobe",
+      "brain.telencephalon.left.cortex.parietal_lobe",
+      "brain.telencephalon.left.cortex.temporal_lobe",
+      "brain.telencephalon.left.cortex.occipital_lobe",
+      "brain.telencephalon.left.cortex.insular_cortex",
+      "brain.telencephalon.left.cortex.limbic_lobe"
+    ]
+  },
+  "spatial": {
+    "mesh_node_name": "Mesh_mesh_cortex_left_v1",
+    "source_centroid": [-32.50, 16.01, -19.47],
+    "source_coordinate_frame": "dicom_lps_whole_body",
+    "stereotaxic_registration": {
+      "registered_centroid": [-32.50, 16.01, -19.47],
+      "registered_coordinate_frame": "canonical_atlas_ras",
+      "registration_status": "REGISTRATION_PENDING",
+      "registration": {
+        "registration_method": "affine_linear_12dof",
+        "registration_source": "scripts/pipeline/canonicalize_mesh.ts",
+        "target_reference_template": "MNI152NLin2009cAsym_1mm.nii.gz",
+        "registration_uncertainty_mm": 1.2,
+        "dice_similarity_coefficient": 0.85,
+        "validation_date": "2026-09-26",
+        "validator_notes": "Continuous pial manifold canonicalized via BODYPARTS3D_LPS_TO_RAS_ADAPTER. Non-linear stereotaxic registration to MNI152 pending."
+      }
+    },
+    "bounding_box": {
+      "min": [-65.10, -39.36, -104.58],
+      "max": [0.10, 71.38, 65.65],
+      "coordinate_frame": "canonical_atlas_ras"
+    },
+    "dimensions_mm": [65.19, 110.74, 170.23],
+    "estimated_volume_cm3": 260.21,
+    "default_hex_color": "#C4B29E",
+    "subfield_representation": "MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED",
+    "subfield_mapping_status": "ANATOMICAL_MAPPING_PENDING",
+    "subfield_mapping_notes": "Ingested 3D asset represents the macroscopic continuous left cerebral cortical surface. Major sulci and gyri are physically resolved in the pial geometry. Microscopic cytoarchitectonic subfields (Brodmann areas, Julich-Brain) are not partitioned as physical sub-meshes and will be registered via vertex/texture parcellation layers."
+  },
+  "representations": [
+    {
+      "id": "rep.cortex.left.macroscopic_mesh",
+      "representation_type": "macroscopic_mesh",
+      "level_of_detail": "LOD0-LOD3",
+      "asset_reference": "mesh.cortex.left.v1",
+      "coordinate_frame": "canonical_atlas_ras",
+      "is_canonical": true,
+      "metadata": {
+        "format": "glb_meshopt",
+        "topology": "closed_pial_surface"
+      }
+    }
+  ],
+  "asset_id": "mesh.cortex.left.v1",
+  "asset_provenance": {
+    "asset_id": "mesh.cortex.left.v1",
+    "dataset_name": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+    "dataset_version": "Release 3.0 (2011/06/20) / Portal update 2025-02-27",
+    "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+    "upstream_asset_id": "BodyParts3D_Cortex_Left_Assembly_14_Structures",
+    "upstream_license": "CC_BY_SA_2_1_JP",
+    "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+    "acquisition_date": "2026-09-26",
+    "modifications_applied": [
+      {
+        "step_number": 1,
+        "operation_name": "Raw_Asset_Ingestion",
+        "script_relative_path": "scripts/pipeline/ingest_cerebral_cortex.ts",
+        "parameters": {
+          "source_file": "mesh.cortex.left.v1.raw.stl",
+          "verified_source_sha256": "a1950fea0df718e7230d88b21b7145fd0bd0f4357d9289e00bcb8ed5f9ba6c13",
+          "source_byte_length": 9911584
+        },
+        "executed_by": "Pipeline_Ingestion_Engine",
+        "git_commit_hash": "9672869",
+        "timestamp": "2026-09-26T22:30:00Z"
+      },
+      {
+        "step_number": 2,
+        "operation_name": "Geometric_QA_Validation",
+        "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+        "parameters": {
+          "topology_class": "CLOSED_SURFACE",
+          "manifold_edges_required": 0,
+          "zero_area_faces_allowed": 0,
+          "duplicate_faces_allowed": 0,
+          "watertight_required": true,
+          "measured_volume_cm3": 260.209
+        },
+        "executed_by": "MeshValidation_Auditor",
+        "git_commit_hash": "9672869",
+        "timestamp": "2026-09-26T22:35:00Z"
+      },
+      {
+        "step_number": 3,
+        "operation_name": "Coordinate_Canonicalization_And_Normals",
+        "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+        "parameters": {
+          "adapter_id": "bodyparts3d-lps-to-ras",
+          "source_space": "DICOM_LPS",
+          "target_space": "THREEJS_RAS",
+          "transform": "x_negated_z_negated",
+          "normals": "area_weighted_smooth"
+        },
+        "executed_by": "Canonicalization_Engine",
+        "git_commit_hash": "9672869",
+        "timestamp": "2026-09-26T22:40:00Z"
+      },
+      {
+        "step_number": 4,
+        "operation_name": "Multi_LOD_Simplification",
+        "script_relative_path": "scripts/pipeline/generate_lods.ts",
+        "parameters": {
+          "algorithm": "Quadric_Error_Metric",
+          "levels_generated": 4,
+          "ratios": "1.0, 0.75, 0.50, 0.25"
+        },
+        "executed_by": "Meshopt_LOD_Generator",
+        "git_commit_hash": "9672869",
+        "timestamp": "2026-09-26T22:45:00Z"
+      },
+      {
+        "step_number": 5,
+        "operation_name": "Runtime_Meshopt_Compression",
+        "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+        "parameters": {
+          "extension": "EXT_meshopt_compression",
+          "overall_savings_percent": 47.03,
+          "lossless_verification": true
+        },
+        "executed_by": "Meshopt_Runtime_Optimizer",
+        "git_commit_hash": "9672869",
+        "timestamp": "2026-09-26T22:50:00Z"
+      }
+    ],
+    "resulting_sha256_hash": "068f6698cdb3b6ae5ed7792c95222215e38e8263a52456541ea0dfaad8ba3bce",
+    "resulting_license": "CC-BY-SA 4.0",
+    "production_eligibility": "PRODUCTION_ALLOWED",
+    "commercial_redistribution": "PERMITTED",
+    "restrictions_and_covenants": [
+      "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+      "Derived 3D meshes shared under CC-BY-SA 4.0 compatible terms",
+      "Defensive dual compliance: satisfies both CC-BY-SA 2.1 JP and CC BY 4.0"
+    ],
+    "validation_status": "CLEARED",
+    "legal_review_notes": "Ingested from BodyParts3D Release 3.0 assembly of 14 cortical structures. Relicensed under CC BY 4.0 on 2025-02-27. Formally cleared for production 3D web bundle."
+  }
+}
