@@ -1,6 +1,6 @@
 {
   "assetId": "mesh.hippocampus.left.v1",
-  "timestamp": "2026-09-26T11:09:28.283Z",
+  "timestamp": "2026-09-26T11:56:54.415Z",
   "inputCanonicalGlb": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\canonical\\mesh.hippocampus.left.v1.canonical.glb",
   "inputCanonicalHash": "c361b544d06ce687f1b8b7510a5699581a9aaf3686d3a0904484b12b820cc613",
   "levels": [
@@ -14,7 +14,31 @@
       "sha256": "1b5994d674e6e610f0ee561821ff5ce0ce466d8f4ca2a0a50b0a4fa53755b32a",
       "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod0.glb",
       "targetIndexCount": 12840,
-      "resultingIndexCount": 12840
+      "resultingIndexCount": 12840,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 1872.03,
+        "lodVolumeMm3": 1872.03,
+        "volumeDeviationPercent": 0,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0,
+        "meanSurfaceDeviationMm": 0
+      }
     },
     {
       "level": 1,
@@ -23,10 +47,34 @@
       "triangleCount": 3210,
       "vertexCount": 1607,
       "byteLength": 58784,
-      "sha256": "3c14e0cd82d2f35575b29c7f7d001993908100135dd427a227d37c7bf926674e",
+      "sha256": "e81c4b5123d73db67b0703618a6d0b70181ebe606dbfc658e0b9c9b6cf478661",
       "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod1.glb",
       "targetIndexCount": 9630,
-      "resultingIndexCount": 9630
+      "resultingIndexCount": 9630,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000422,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 1872.03,
+        "lodVolumeMm3": 1871.08,
+        "volumeDeviationPercent": -0.051,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.002,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 1.7951,
+        "meanSurfaceDeviationMm": 0.0778
+      }
     },
     {
       "level": 2,
@@ -35,10 +83,34 @@
       "triangleCount": 2140,
       "vertexCount": 1072,
       "byteLength": 39524,
-      "sha256": "cf97c1e6a72cf6c0057210504fd28b9e2edaeceeec6e9634e5d15d224038d7bc",
+      "sha256": "e97319388457f574741b332d8638cf47b7a6d34144d5474a9f21f70e426dac0d",
       "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod2.glb",
       "targetIndexCount": 6420,
-      "resultingIndexCount": 6420
+      "resultingIndexCount": 6420,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000809,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 1872.03,
+        "lodVolumeMm3": 1867.06,
+        "volumeDeviationPercent": -0.265,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.0043,
+            0,
+            0.008
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 2.1718,
+        "meanSurfaceDeviationMm": 0.1903
+      }
     },
     {
       "level": 3,
@@ -47,10 +119,34 @@
       "triangleCount": 1070,
       "vertexCount": 537,
       "byteLength": 20260,
-      "sha256": "c4aab53a69059b9d34b409cbb85390e0ff95e5834961bf628ab30d53b021340c",
+      "sha256": "fec612c0cd304ae2cc6b090f443c6ef5ba81c86aff16baed966a26b671fcf7bf",
       "filePath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod3.glb",
       "targetIndexCount": 3210,
-      "resultingIndexCount": 3210
+      "resultingIndexCount": 3210,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.001611,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 1872.03,
+        "lodVolumeMm3": 1856.36,
+        "volumeDeviationPercent": -0.837,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.0043,
+            0.01,
+            0.024
+          ],
+          "max": [
+            -0.0305,
+            0,
+            -0.0124
+          ]
+        },
+        "maxSurfaceDeviationMm": 2.2646,
+        "meanSurfaceDeviationMm": 0.3859
+      }
     }
   ],
   "transformationRecord": {
@@ -78,6 +174,6 @@
         }
       ]
     },
-    "timestamp": "2026-09-26T11:09:28.283Z"
+    "timestamp": "2026-09-26T11:56:54.416Z"
   }
 }

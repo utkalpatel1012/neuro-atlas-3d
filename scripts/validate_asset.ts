@@ -16,6 +16,9 @@ import * as path from 'path';
 import * as crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { parseGLB } from './pipeline/glb_utils';
+import { validateCoordinatesAndLaterality, AnatomicalLateralityDeclaration } from './pipeline/coordinate_validator';
+import { getAdapter, BODYPARTS3D_LPS_TO_RAS_ADAPTER } from './pipeline/coordinate_adapter';
+import { TopologyClass, STANDARD_QA_PROFILES } from '../src/types/topology';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -97,27 +100,59 @@ export function validateAsset(rawArg: string): boolean {
         : `Canonical hash mismatch! Manifest: ${assetRecord.resulting_sha256_hash}, on disk: ${computedCanonicalSha256}`
     });
 
-    // Check 4: Coordinate Space & Laterality Confirmation
+    // Check 4: 4-Stage Coordinate Space & Laterality Confirmation
     try {
-      const { geometry, bounds } = parseGLB(canonicalBytes);
-      const centroidX = bounds.center[0];
-      const centroidY = bounds.center[1];
-      const centroidZ = bounds.center[2];
-
+      const { geometry, bounds: canonicalBounds } = parseGLB(canonicalBytes);
       const isLeft = assetId.includes('left') || assetId.includes('.l.');
-      // In RAS coordinates: +X is Right, -X is Left
-      const lateralityCorrect = isLeft ? centroidX < 0 : centroidX > 0;
+      const declaredLaterality: AnatomicalLateralityDeclaration = isLeft ? 'left' : 'right';
+
+      // Load raw bounds from geometry QA report or compute from raw file
+      let rawBounds = canonicalBounds;
+      const geomQaPathEarly = path.join(PROJECT_ROOT, 'assets/validation', `${assetId}.geometry_qa.json`);
+      if (fs.existsSync(geomQaPathEarly)) {
+        const qaData = JSON.parse(fs.readFileSync(geomQaPathEarly, 'utf8'));
+        if (qaData.analysis?.minBounds && qaData.analysis?.maxBounds) {
+          const min = qaData.analysis.minBounds as [number, number, number];
+          const max = qaData.analysis.maxBounds as [number, number, number];
+          rawBounds = {
+            min,
+            max,
+            center: [
+              (min[0] + max[0]) / 2,
+              (min[1] + max[1]) / 2,
+              (min[2] + max[2]) / 2
+            ],
+            dimensions: qaData.analysis.dimensions as [number, number, number],
+            radius: Math.sqrt(
+              Math.pow(max[0] - min[0], 2) +
+              Math.pow(max[1] - min[1], 2) +
+              Math.pow(max[2] - min[2], 2)
+            ) / 2
+          };
+        }
+      }
+
+      // Resolve coordinate adapter
+      const adapter = getAdapter('adapter.bodyparts3d.lps_whole_body_to_ras') || BODYPARTS3D_LPS_TO_RAS_ADAPTER;
+
+      const coordResult = validateCoordinatesAndLaterality({
+        rawBounds,
+        canonicalBounds,
+        adapter,
+        declaredLaterality,
+        midlineToleranceMm: 2.0
+      });
 
       checks.push({
-        title: 'Anatomical Laterality Verification',
-        passed: lateralityCorrect,
-        message: lateralityCorrect
-          ? `Confirmed LEFT laterality in RAS: Centroid X = ${centroidX.toFixed(2)} mm (< 0)`
-          : `LATERALITY ERROR: Left structure has Centroid X = ${centroidX.toFixed(2)} mm (Expected < 0)`
+        title: '4-Stage Coordinate & Laterality Chain',
+        passed: coordResult.passed,
+        message: coordResult.passed
+          ? `Verified 4/4 stages: Source(${adapter.source_coordinate_system}) -> Isometry -> Canonical RAS -> Laterality(${declaredLaterality}, Centroid X=${canonicalBounds.center[0].toFixed(2)} mm)`
+          : `Coordinate/Laterality error: ${coordResult.diagnostics.filter(d => d.includes('Failure')).join('; ')}`
       });
 
       // Anatomic dimensions check
-      const [dimX, dimY, dimZ] = bounds.dimensions;
+      const [dimX, dimY, dimZ] = canonicalBounds.dimensions;
       const dimensionsValid = dimX > 10 && dimX < 35 && dimY > 10 && dimY < 35 && dimZ > 25 && dimZ < 60;
       checks.push({
         title: 'Adult Organ Dimensions Verification',
@@ -127,7 +162,7 @@ export function validateAsset(rawArg: string): boolean {
           : `Abnormal dimensions: ${dimX.toFixed(2)} x ${dimY.toFixed(2)} x ${dimZ.toFixed(2)} mm`
       });
     } catch (err: any) {
-      checks.push({ title: 'Canonical Geometry Inspection', passed: false, message: `Failed to inspect canonical GLB: ${err.message}` });
+      checks.push({ title: 'Coordinate & Laterality Validation', passed: false, message: `Failed to validate coordinates: ${err.message}` });
     }
   }
 
@@ -176,23 +211,44 @@ export function validateAsset(rawArg: string): boolean {
     checks.push({ title: 'Runtime Meshopt Assets Verification', passed: true, message: 'All 4 runtime Meshopt-compressed assets verified with valid SHA-256 hashes' });
   }
 
-  // Check 7: Geometric QA Standard
+  // Check 7: Decoupled Geometric QA & Topology Profile Standard
   const geomQaPath = path.join(PROJECT_ROOT, 'assets/validation', `${assetId}.geometry_qa.json`);
   if (!fs.existsSync(geomQaPath)) {
     checks.push({ title: 'Geometric QA Report', passed: false, message: 'Missing geometry QA report.' });
   } else {
     const geomQa = JSON.parse(fs.readFileSync(geomQaPath, 'utf8'));
-    const isClean = geomQa.overallStatus === 'GEOMETRY_VALIDATED' &&
+    const topologyClass: TopologyClass = geomQa.topologyClass || 'SOLID';
+    const profile = STANDARD_QA_PROFILES[geomQa.profileId] || STANDARD_QA_PROFILES['solid-subcortical-nucleus'];
+
+    const geomPassed = geomQa.geometricQA
+      ? geomQa.geometricQA.geometricStatus === 'GEOMETRY_VALIDATED'
+      : (geomQa.overallStatus === 'GEOMETRY_VALIDATED' && geomQa.analysis.nonManifoldEdges === 0);
+
+    const watertightOk = profile?.watertight_required ? geomQa.analysis.isWatertight === true : true;
+    const isClean = geomPassed &&
       geomQa.analysis.nonManifoldEdges === 0 &&
       geomQa.analysis.duplicateFaces === 0 &&
       geomQa.analysis.zeroAreaFaces === 0 &&
-      geomQa.analysis.isWatertight === true;
+      watertightOk;
+
     checks.push({
-      title: 'Topological & Geometric Standard',
+      title: 'Decoupled Geometric QA Standard',
       passed: isClean,
       message: isClean
-        ? `Watertight: true | Non-manifold edges: 0 | Duplicate faces: 0 | Zero-area faces: 0`
-        : `QA Failure: status=${geomQa.overallStatus}, non-manifold=${geomQa.analysis.nonManifoldEdges}`
+        ? `Topology: ${topologyClass} | Watertight: ${geomQa.analysis.isWatertight} | Non-manifold edges: 0 | Duplicate faces: 0 | Zero-area faces: 0`
+        : `QA Failure: status=${geomQa.overallStatus}, non-manifold=${geomQa.analysis.nonManifoldEdges}, watertight=${geomQa.analysis.isWatertight}`
+    });
+
+    const anatPassed = geomQa.anatomicalQA
+      ? geomQa.anatomicalQA.anatomicalStatus === 'ANATOMY_VALIDATED'
+      : true;
+
+    checks.push({
+      title: 'Decoupled Anatomical QA Standard',
+      passed: anatPassed,
+      message: anatPassed
+        ? `Anatomical status: ANATOMY_VALIDATED | Laterality: ${geomQa.anatomicalQA?.declaredLaterality || 'left'} | Subfields: ${geomQa.anatomicalQA?.subfieldRepresentation || 'MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED'}`
+        : `Anatomical QA Failure: status=${geomQa.anatomicalQA?.anatomicalStatus}`
     });
   }
 

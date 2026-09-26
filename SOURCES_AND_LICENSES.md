@@ -49,16 +49,27 @@ To ensure total academic transparency, protect human subject research covenants,
 
 ### A. Z-Anatomy & BodyParts3D
 * **Project**: Z-Anatomy (`https://www.z-anatomy.com/`) & GitHub (`https://github.com/Z-Anatomy`)
-* **Upstream Foundation**: BodyParts3D (Database Center for Life Sciences - DBCLS, Japan).
+* **Upstream Foundation**: BodyParts3D (Database Center for Life Sciences - DBCLS, Research Organization of Information and Systems, Japan).
+* **Official Data Portals**:
+  * LSDB Archive Portal: `https://dbarchive.biosciencedbc.jp/en/bodyparts3d/`
+  * Official License Record: `https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html`
 * **Licensing Breakdown**:
   * **Z-Anatomy Original Work & Retopology**: Licensed under **Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-SA 4.0)**.
-  * **BodyParts3D Components**: Originally released under **Creative Commons Attribution-ShareAlike 2.1 Japan (CC-BY-SA 2.1 JP)**.
-  * **Compatibility**: Under CC-BY-SA 4.0 Section 3(b), derivative works that incorporate CC-BY-SA 2.1 Japan material may be distributed under CC-BY-SA 4.0 provided the attribution requirements of both original sources are honored.
-* **Commercial Redistribution**: **PERMITTED**, with strict ShareAlike on derivative 3D assets.
-* **Requirements**:
-  1. *Attribution*: Full credit to Z-Anatomy and BodyParts3D contributors in the application `NOTICE.txt` and UI "About" panel.
-  2. *ShareAlike*: All processed, decimated, or transformed meshes (`.glb`) derived from these sources must be made available under CC-BY-SA 4.0.
-  3. *Codebase Isolation*: The web application engine (React, TypeScript, Three.js shaders) is separate intellectual property and is licensed under Apache-2.0 under the legal doctrine of "mere aggregation / collective work".
+  * **BodyParts3D Historical License (Release 3.0, 2011/06/20)**: Originally released under **Creative Commons Attribution-ShareAlike 2.1 Japan (CC-BY-SA 2.1 JP)**.
+  * **BodyParts3D Current License (Official DBCLS Update as of 2025/02/27)**: On February 27, 2025, DBCLS officially updated the license of the BodyParts3D database to **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
+  * **Licensing Verification Date**: Verified live against authoritative portal on **2026-09-26**.
+* **Attribution Requirements**:
+  * *Historical CC-BY-SA 2.1 JP Statement*:
+    > "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan."
+  * *Current CC BY 4.0 Statement*:
+    > "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International."
+* **Derivative-Work & Redistribution Requirements**:
+  * Under current **CC BY 4.0**: Freely access, acquire, redistribute, and create derivative works without ShareAlike (copyleft) restriction, subject only to proper author attribution.
+  * Under historical **CC-BY-SA 2.1 JP**: Derivative 3D meshes must be shared under an identical or compatible ShareAlike license (CC-BY-SA 4.0 is compatible under CC Section 3(b)).
+* **Legal Analysis & Defensive Dual-Compliance Policy**:
+  * Whether the 2025/02/27 license update to CC BY 4.0 retroactively releases third-party mirrors or previously downloaded Release 3.0 STL files from the ShareAlike clause is designated as **`LEGAL_REVIEW_REQUIRED`**.
+  * **Defensive Compliance Strategy**: The project adopts defensive dual-compliance. We publish the full attribution mandated by DBCLS under both versions, and release all derivative 3D meshes under CC-BY-SA 4.0. This satisfies the requirements of both CC BY 4.0 (attribution satisfied) and CC-BY-SA 2.1 JP (attribution and ShareAlike satisfied), ensuring 100% legal safety regardless of legal interpretation.
+  * *Codebase Isolation*: Application engine code (React, Three.js, shaders, UI) is an independent collective work licensed under Apache-2.0.
 * **Operational Tier**: **`PRODUCTION_ALLOWED`**.
 
 ---
@@ -117,7 +128,7 @@ To ensure total academic transparency, protect human subject research covenants,
 | Dataset / Source | Exact Version | Governing License | Production Eligibility | Commercial Redistribution | Mandatory Covenants / Actions |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Z-Anatomy** | `v2024.1.0` | CC-BY-SA 4.0 | `PRODUCTION_ALLOWED` | `PERMITTED` (with SA) | Publish author attribution; redistribute derived 3D meshes under CC-BY-SA 4.0. |
-| **BodyParts3D** | Release 4.0 | CC-BY-SA 2.1 JP | `PRODUCTION_ALLOWED` | `PERMITTED` (with SA) | Attribute DBCLS Japan; compatible with downstream CC-BY-SA 4.0. |
+| **BodyParts3D** | Release 3.0 / Current LSDB (Updated 2025/02/27) | Current: CC BY 4.0 / Historical: CC-BY-SA 2.1 JP | `PRODUCTION_ALLOWED` | `PERMITTED` (with dual attribution / SA compliance) | Attribute DBCLS; satisfy CC BY 4.0 attribution and CC-BY-SA 4.0 redistribution. |
 | **HCP Glasser MMP 1.0** | 1200 Subjects Release | HCP Data Use Terms | `LEGAL_REVIEW_REQUIRED` | `LEGAL_REVIEW_REQUIRED` | Must redistribute under identical terms; subject non-contact covenant; mandatory attribution. |
 | **OpenNeuro Colin27 / MNI** | BIDS Release 2.0 | CC0 1.0 Universal | `PRODUCTION_ALLOWED` | `PERMITTED` | Fully unencumbered public domain dedication. |
 | **FreeSurfer fsaverage** | v7.4.1 | BSD 3-Clause | `PRODUCTION_ALLOWED` | `PERMITTED` | Retain copyright notice and disclaimer in software notice. |

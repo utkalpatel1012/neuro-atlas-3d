@@ -1,6 +1,6 @@
 {
   "assetId": "mesh.hippocampus.left.v1",
-  "timestamp": "2026-09-26T11:09:28.307Z",
+  "timestamp": "2026-09-26T11:57:14.800Z",
   "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
   "targetRuntimeDirectory": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\runtime",
   "levels": [
@@ -22,12 +22,12 @@
       "lodName": "lod1",
       "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod1.glb",
       "uncompressedByteLength": 58784,
-      "uncompressedSha256": "3c14e0cd82d2f35575b29c7f7d001993908100135dd427a227d37c7bf926674e",
+      "uncompressedSha256": "e81c4b5123d73db67b0703618a6d0b70181ebe606dbfc658e0b9c9b6cf478661",
       "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\runtime\\mesh.hippocampus.left.v1.lod1.meshopt.glb",
-      "compressedByteLength": 32324,
-      "compressedSha256": "e4ccd5e673dd505968d7ac9ad6c9722ebaab0b56981080235554ff41abd3cae3",
-      "compressionRatio": 1.82,
-      "savingsPercent": 45.01,
+      "compressedByteLength": 38524,
+      "compressedSha256": "7129df888bb5794da975e5bd9449b37abc6d13b4c9b9bf02d9961546acf7d7bc",
+      "compressionRatio": 1.53,
+      "savingsPercent": 34.47,
       "vertexCount": 1607,
       "triangleCount": 3210,
       "roundTripVerified": true
@@ -36,12 +36,12 @@
       "lodName": "lod2",
       "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod2.glb",
       "uncompressedByteLength": 39524,
-      "uncompressedSha256": "cf97c1e6a72cf6c0057210504fd28b9e2edaeceeec6e9634e5d15d224038d7bc",
+      "uncompressedSha256": "e97319388457f574741b332d8638cf47b7a6d34144d5474a9f21f70e426dac0d",
       "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\runtime\\mesh.hippocampus.left.v1.lod2.meshopt.glb",
-      "compressedByteLength": 17860,
-      "compressedSha256": "bd270b7546d603972c51d0ad983501086574d3df7c0c15eada43ad8b9a7cf7b1",
-      "compressionRatio": 2.21,
-      "savingsPercent": 54.81,
+      "compressedByteLength": 26724,
+      "compressedSha256": "41695d3f7ef52ed28d4f13d7fbb754d61a9c0b1d44fe2b47b967e352e0a59d0f",
+      "compressionRatio": 1.48,
+      "savingsPercent": 32.39,
       "vertexCount": 1072,
       "triangleCount": 2140,
       "roundTripVerified": true
@@ -50,20 +50,20 @@
       "lodName": "lod3",
       "uncompressedGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\lod\\mesh.hippocampus.left.v1.lod3.glb",
       "uncompressedByteLength": 20260,
-      "uncompressedSha256": "c4aab53a69059b9d34b409cbb85390e0ff95e5834961bf628ab30d53b021340c",
+      "uncompressedSha256": "fec612c0cd304ae2cc6b090f443c6ef5ba81c86aff16baed966a26b671fcf7bf",
       "runtimeGlbPath": "C:\\Users\\UTKAL PATEL\\.gemini\\antigravity\\scratch\\neuro-atlas-3d\\assets\\derived\\mesh.hippocampus.left.v1\\runtime\\mesh.hippocampus.left.v1.lod3.meshopt.glb",
-      "compressedByteLength": 8088,
-      "compressedSha256": "68f18e969767c6a5b5f48487e4609af5d43e21c0aa281b5a0929ea2b54f72ab5",
-      "compressionRatio": 2.5,
-      "savingsPercent": 60.08,
+      "compressedByteLength": 14376,
+      "compressedSha256": "67b632ff5a6e2bcd051c89199345faf321109923d237e7a68c65df9310a5556c",
+      "compressionRatio": 1.41,
+      "savingsPercent": 29.04,
       "vertexCount": 537,
       "triangleCount": 1070,
       "roundTripVerified": true
     }
   ],
   "overallUncompressedBytes": 196612,
-  "overallCompressedBytes": 108032,
-  "overallSavingsPercent": 45.05,
+  "overallCompressedBytes": 129384,
+  "overallSavingsPercent": 34.19,
   "transformationRecord": {
     "transformation_id": "tx.mesh.hippocampus.left.v1.meshopt_optimization",
     "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
@@ -74,6 +74,6 @@
       "indexMode": "TRIANGLES",
       "lossless": true
     },
-    "timestamp": "2026-09-26T11:09:28.307Z"
+    "timestamp": "2026-09-26T11:57:14.801Z"
   }
 }

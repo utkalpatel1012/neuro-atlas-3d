@@ -14,3 +14,4 @@ export * from './imaging';
 export * from './presentation';
 export * from './catalogue';
 export * from './anatomy';
+export * from './topology';

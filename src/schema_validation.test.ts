@@ -398,10 +398,12 @@ export function runValidationSuite(): { passed: boolean; message: string; checks
   // Verify no fake SHA-256 hash
   if (hippocampus.asset_provenance) {
     if (hippocampus.asset_provenance.resulting_sha256_hash === 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855') {
-      throw new Error('Fake SHA-256 hash still present in exemplar!');
+      throw new Error('Fake empty SHA-256 hash present in exemplar!');
     }
-    if (hippocampus.asset_provenance.resulting_sha256_hash !== 'NOT_YET_GENERATED') {
-      throw new Error('Unprocessed exemplar must declare resulting_sha256_hash as NOT_YET_GENERATED');
+    const hash = hippocampus.asset_provenance.resulting_sha256_hash;
+    const isValidHash = hash === 'NOT_YET_GENERATED' || /^[a-f0-9]{64}$/.test(hash);
+    if (!isValidHash) {
+      throw new Error(`Asset hash must be 'NOT_YET_GENERATED' or valid 64-char SHA-256 hex string, got: ${hash}`);
     }
   }
 

@@ -21,6 +21,9 @@ import * as crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { AssetsManifest, AssetProvenance } from './types/provenance';
 import { parseGLB } from '../scripts/pipeline/glb_utils';
+import { validateAdapter, transformPoint, BODYPARTS3D_LPS_TO_RAS_ADAPTER } from '../scripts/pipeline/coordinate_adapter';
+import { validateCoordinatesAndLaterality } from '../scripts/pipeline/coordinate_validator';
+import { STANDARD_QA_PROFILES } from './types/topology';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -256,6 +259,154 @@ export function runPipelineRegressionTests(): { passed: boolean; testCount: numb
     throw new Error('Permitted CC-BY-SA 2.1 Japan was erroneously rejected');
   }
   results.push('Check 10 PASSED: Research-only/NC datasets strictly barred from production whitelist.');
+
+  // --------------------------------------------------------------------------
+  // Check 11: Generic Coordinate Adapter transformation & orthogonal basis preservation
+  // --------------------------------------------------------------------------
+  const validAdapterResult = validateAdapter(BODYPARTS3D_LPS_TO_RAS_ADAPTER);
+  if (!validAdapterResult.valid) {
+    throw new Error(`Valid adapter failed validation: ${validAdapterResult.errors.join(', ')}`);
+  }
+
+  // Degenerate adapter with non-orthogonal duplicate axis mapping must fail
+  const degenerateAdapter: any = {
+    ...BODYPARTS3D_LPS_TO_RAS_ADAPTER,
+    axis_mapping: { x: 'x', y: 'x', z: 'z' } // Duplicate X mapping!
+  };
+  const degenerateResult = validateAdapter(degenerateAdapter);
+  if (degenerateResult.valid) {
+    throw new Error('Degenerate non-orthogonal axis mapping passed validation');
+  }
+
+  // Exact point transformation math verification
+  const testLpsPoint: [number, number, number] = [20.0, -70.1, 1561.7];
+  const transformedRas = transformPoint(testLpsPoint, BODYPARTS3D_LPS_TO_RAS_ADAPTER);
+  // Expected:
+  // x: -20.0
+  // y: 1561.7 - 1561.7 = 0.0
+  // z: -70.1 + 70.1 = 0.0
+  if (Math.abs(transformedRas[0] - (-20.0)) > 1e-4 || Math.abs(transformedRas[1]) > 1e-4 || Math.abs(transformedRas[2]) > 1e-4) {
+    throw new Error(`Point transformation math incorrect: [${transformedRas.join(', ')}]`);
+  }
+  results.push('Check 11 PASSED: Coordinate adapter verifies orthogonal basis bijection and exact point transformation.');
+
+  // --------------------------------------------------------------------------
+  // Check 12: 4-Stage Laterality logic across all laterality classifications
+  // --------------------------------------------------------------------------
+  const dummyBounds = (minX: number, maxX: number) => ({
+    min: [minX, -20, -20] as [number, number, number],
+    max: [maxX, 20, 20] as [number, number, number],
+    center: [(minX + maxX) / 2, 0, 0] as [number, number, number],
+    dimensions: [maxX - minX, 40, 40] as [number, number, number],
+    radius: 30
+  });
+
+  const identityAdapter = {
+    adapter_id: 'test.identity',
+    source_coordinate_system: 'RAS',
+    source_orientation: 'RAS',
+    source_units: 'mm' as const,
+    source_origin: 'AC_PC',
+    target_canonical_system: 'THREEJS_RAS_CANONICAL' as const,
+    target_orientation: 'RAS' as const,
+    target_units: 'mm' as const,
+    axis_mapping: { x: 'x' as const, y: 'y' as const, z: 'z' as const },
+    translation_mm: [0, 0, 0] as [number, number, number],
+    scale: 1.0,
+    registration_metadata: { registration_method: 'test' },
+    transformation_version: '1.0.0'
+  };
+
+  // Left structure: [-35, -5]
+  const leftRes = validateCoordinatesAndLaterality({
+    rawBounds: dummyBounds(-35, -5),
+    canonicalBounds: dummyBounds(-35, -5),
+    adapter: identityAdapter,
+    declaredLaterality: 'left'
+  });
+  if (!leftRes.passed) throw new Error('Valid left laterality failed check');
+
+  // Left structure declared as right -> must fail
+  const leftAsRight = validateCoordinatesAndLaterality({
+    rawBounds: dummyBounds(-35, -5),
+    canonicalBounds: dummyBounds(-35, -5),
+    adapter: identityAdapter,
+    declaredLaterality: 'right'
+  });
+  if (leftAsRight.passed) throw new Error('Left bounds passed right laterality declaration');
+
+  // Midline structure: [-10, 10]
+  const midlineRes = validateCoordinatesAndLaterality({
+    rawBounds: dummyBounds(-10, 10),
+    canonicalBounds: dummyBounds(-10, 10),
+    adapter: identityAdapter,
+    declaredLaterality: 'midline'
+  });
+  if (!midlineRes.passed) throw new Error('Valid midline laterality failed check');
+
+  // Bilateral structure: [-40, 40]
+  const bilateralRes = validateCoordinatesAndLaterality({
+    rawBounds: dummyBounds(-40, 40),
+    canonicalBounds: dummyBounds(-40, 40),
+    adapter: identityAdapter,
+    declaredLaterality: 'bilateral'
+  });
+  if (!bilateralRes.passed) throw new Error('Valid bilateral laterality failed check');
+
+  results.push('Check 12 PASSED: 4-stage laterality validation tested for left, right, midline, and bilateral classes.');
+
+  // --------------------------------------------------------------------------
+  // Check 13: Topology profiles & decoupled QA validation
+  // --------------------------------------------------------------------------
+  const solidProfile = STANDARD_QA_PROFILES['solid-subcortical-nucleus'];
+  const openProfile = STANDARD_QA_PROFILES['open-cortical-sheet'];
+
+  if (!solidProfile || !solidProfile.requires_watertight) {
+    throw new Error('solid-subcortical-nucleus profile must require watertightness');
+  }
+  if (!openProfile || openProfile.requires_watertight) {
+    throw new Error('open-cortical-sheet profile must NOT require watertightness');
+  }
+  if (!openProfile.allows_boundary_edges) {
+    throw new Error('open-cortical-sheet profile must allow boundary edges');
+  }
+  results.push('Check 13 PASSED: Decoupled topology QA profiles enforce watertightness conditionally per anatomical class.');
+
+  // --------------------------------------------------------------------------
+  // Check 14: Five Disjoint URI Namespaces verification
+  // --------------------------------------------------------------------------
+  const validSchemes = ['entity://', 'asset://', 'mesh://', 'texture://', 'evidence://'];
+  const testUris = [
+    'entity://brain.telencephalon.left.limbic.hippocampus',
+    'asset://mesh.hippocampus.left.v1',
+    'mesh://mesh.hippocampus.left.v1/canonical',
+    'texture://matcap.cortex.pial.v1.ktx2',
+    'evidence://claim.hpc.volume_reduction.mdd.enigma2016'
+  ];
+
+  for (const uri of testUris) {
+    const matched = validSchemes.find(scheme => uri.startsWith(scheme));
+    if (!matched) {
+      throw new Error(`URI "${uri}" does not match any authorized namespace`);
+    }
+  }
+  results.push('Check 14 PASSED: Five disjoint URI namespaces verified (entity, asset, mesh, texture, evidence).');
+
+  // --------------------------------------------------------------------------
+  // Check 15: Authoritative Dual Licensing & Defensive Compliance
+  // --------------------------------------------------------------------------
+  const extManifestEntry = assetEntry as any;
+  if (extManifestEntry.resulting_license !== 'CC-BY-SA 4.0') {
+    throw new Error(`Expected resulting license CC-BY-SA 4.0, got: ${extManifestEntry.resulting_license}`);
+  }
+  if (!extManifestEntry.attribution_text_required.includes('BodyParts3D') ||
+      !extManifestEntry.attribution_text_required.includes('CC Attribution 4.0 International')) {
+    throw new Error('Missing verified DBCLS 2025 CC BY 4.0 attribution in manifest');
+  }
+  if (!extManifestEntry.restrictions_and_covenants.some((c: string) => c.includes('dual compliance'))) {
+    throw new Error('Missing defensive dual compliance covenant in manifest');
+  }
+  results.push('Check 15 PASSED: Defensive dual compliance verified (satisfies both CC-BY-SA 2.1 JP and modern DBCLS CC BY 4.0).');
 
   return {
     passed: true,

@@ -62,6 +62,19 @@ export async function ingestAsset(optionsOrId: IngestionOptions | string): Promi
   if (fs.existsSync(rawFilePath)) {
     console.log(`[INGEST] Local raw file already cached at: ${rawFilePath}`);
     fileBuffer = fs.readFileSync(rawFilePath);
+    const existingHash = crypto.createHash('sha256').update(fileBuffer).digest('hex');
+
+    // Check if ingestion.json already exists with an established hash
+    if (fs.existsSync(ingestionJsonPath)) {
+      const existingIngestion = JSON.parse(fs.readFileSync(ingestionJsonPath, 'utf8'));
+      if (existingIngestion.original_hash && existingIngestion.original_hash !== existingHash) {
+        throw new Error(
+          `[RAW IMMUTABILITY VIOLATION] Raw asset file ${rawFilePath} hash (${existingHash}) does not match recorded ingestion hash (${existingIngestion.original_hash}). Raw assets are strictly immutable!`
+        );
+      }
+      console.log(`[INGEST] Immutable raw asset verified: ${rawFilePath} (SHA-256: ${existingHash})`);
+      return { rawFilePath, ingestionJsonPath, sha256: existingHash };
+    }
   } else if (options.sourceUrl.startsWith('http://') || options.sourceUrl.startsWith('https://')) {
     const response = await fetch(options.sourceUrl);
     if (!response.ok) {
@@ -78,8 +91,10 @@ export async function ingestAsset(optionsOrId: IngestionOptions | string): Promi
   // Calculate cryptographic SHA-256 hash
   const sha256 = crypto.createHash('sha256').update(fileBuffer).digest('hex');
 
-  // Write raw file
-  fs.writeFileSync(rawFilePath, fileBuffer);
+  // Write raw file atomically with exclusive flag 'wx' to enforce immutability
+  if (!fs.existsSync(rawFilePath)) {
+    fs.writeFileSync(rawFilePath, fileBuffer, { flag: 'wx' });
+  }
 
   const acquisitionDate = new Date().toISOString().split('T')[0];
 
@@ -118,9 +133,9 @@ export const HIPPOCAMPUS_LEFT_INGESTION_CONFIG: IngestionOptions = {
   sourceDatasetVersion: 'Release 3.0 (2011/06/20)',
   sourceAssetId: 'FMA72714',
   sourceUrl: 'https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/master/assets/BodyParts3D_data/stl/FMA72714.stl',
-  sourceLicense: 'CC-BY-SA 2.1 Japan',
-  sourceLicenseVersion: '2.1 JP',
-  attribution: 'BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-ShareAlike 2.1 Japan.',
+  sourceLicense: 'CC-BY-SA 2.1 Japan / CC BY 4.0 International (Dual compliance)',
+  sourceLicenseVersion: '2.1 JP / 4.0 Intl (DBCLS updated 2025-02-27)',
+  attribution: 'BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-ShareAlike 2.1 Japan. Relicensed under CC Attribution 4.0 International.',
   originalFilename: 'FMA72714.stl',
   originalFormat: 'STL_BINARY',
   sourceCoordinateSpace: 'dicom_lps_whole_body',

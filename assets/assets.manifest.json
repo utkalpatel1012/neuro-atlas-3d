@@ -1,6 +1,6 @@
 {
   "manifest_version": "1.1.0",
-  "generated_at": "2026-09-26T11:09:28.311Z",
+  "generated_at": "2026-09-26T11:58:01.723Z",
   "generator_script": "scripts/pipeline/update_manifest.ts",
   "total_assets": 1,
   "assets": {
@@ -11,7 +11,7 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72714",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan.",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
       "acquisition_date": "2026-09-26",
       "modifications_applied": [
         {
@@ -32,6 +32,7 @@
           "operation_name": "Geometric_QA_Validation",
           "script_relative_path": "scripts/pipeline/validate_mesh.ts",
           "parameters": {
+            "topology_class": "SOLID",
             "manifold_edges_required": 0,
             "zero_area_faces_allowed": 0,
             "duplicate_faces_allowed": 0,
@@ -47,8 +48,9 @@
           "operation_name": "Coordinate_Canonicalization_And_Normals",
           "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
           "parameters": {
-            "input_space": "DICOM_LPS",
-            "output_space": "THREEJS_RAS",
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "DICOM_LPS",
+            "target_space": "THREEJS_RAS",
             "transform": "x_negated_z_negated",
             "normals": "area_weighted_smooth"
           },
@@ -75,7 +77,7 @@
           "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
           "parameters": {
             "extension": "EXT_meshopt_compression",
-            "overall_savings_percent": 45.05,
+            "overall_savings_percent": 34.19,
             "lossless_verification": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
@@ -84,15 +86,16 @@
         }
       ],
       "resulting_sha256_hash": "c361b544d06ce687f1b8b7510a5699581a9aaf3686d3a0904484b12b820cc613",
-      "resulting_license": "CC-BY-SA 2.1 Japan",
+      "resulting_license": "CC-BY-SA 4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
       "commercial_redistribution": "PERMITTED",
       "restrictions_and_covenants": [
-        "Must preserve attribution to BodyParts3D / LSIDC in application notices and UI",
-        "Derived 3D meshes must be shared under identical or compatible CC-BY-SA terms"
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 compatible terms",
+        "Defensive dual compliance: satisfies both CC-BY-SA 2.1 JP and CC BY 4.0"
       ],
       "validation_status": "CLEARED",
-      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72714 left hippocampus). Free from non-commercial restriction. Formally cleared for production 3D web bundle.",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72714 left hippocampus). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle.",
       "coordinate_space": "RAS (+X Right, +Y Superior, +Z Anterior)",
       "centroid_mm": [
         -25.07,
@@ -104,6 +107,10 @@
         20.8,
         40.55
       ],
+      "topology_class": "SOLID",
+      "geometric_qa_status": "PASS",
+      "anatomical_qa_status": "PASS",
+      "dual_licensing_notes": "Dual compliance: Release 3.0 CC-BY-SA 2.1 JP and modern DBCLS portal CC BY 4.0 (verified 2025-02-27). Derivative published under CC-BY-SA 4.0.",
       "canonical_glb_path": "assets/derived/mesh.hippocampus.left.v1/canonical/mesh.hippocampus.left.v1.canonical.glb",
       "lod_files": {
         "lod0": {
@@ -114,19 +121,19 @@
         },
         "lod1": {
           "path": "assets/derived/mesh.hippocampus.left.v1/lod/mesh.hippocampus.left.v1.lod1.glb",
-          "sha256": "3c14e0cd82d2f35575b29c7f7d001993908100135dd427a227d37c7bf926674e",
+          "sha256": "e81c4b5123d73db67b0703618a6d0b70181ebe606dbfc658e0b9c9b6cf478661",
           "triangles": 3210,
           "bytes": 58784
         },
         "lod2": {
           "path": "assets/derived/mesh.hippocampus.left.v1/lod/mesh.hippocampus.left.v1.lod2.glb",
-          "sha256": "cf97c1e6a72cf6c0057210504fd28b9e2edaeceeec6e9634e5d15d224038d7bc",
+          "sha256": "e97319388457f574741b332d8638cf47b7a6d34144d5474a9f21f70e426dac0d",
           "triangles": 2140,
           "bytes": 39524
         },
         "lod3": {
           "path": "assets/derived/mesh.hippocampus.left.v1/lod/mesh.hippocampus.left.v1.lod3.glb",
-          "sha256": "c4aab53a69059b9d34b409cbb85390e0ff95e5834961bf628ab30d53b021340c",
+          "sha256": "fec612c0cd304ae2cc6b090f443c6ef5ba81c86aff16baed966a26b671fcf7bf",
           "triangles": 1070,
           "bytes": 20260
         }
@@ -140,21 +147,21 @@
         },
         "lod1": {
           "path": "assets/derived/mesh.hippocampus.left.v1/runtime/mesh.hippocampus.left.v1.lod1.meshopt.glb",
-          "sha256": "e4ccd5e673dd505968d7ac9ad6c9722ebaab0b56981080235554ff41abd3cae3",
-          "bytes": 32324,
-          "compression_ratio": 1.82
+          "sha256": "7129df888bb5794da975e5bd9449b37abc6d13b4c9b9bf02d9961546acf7d7bc",
+          "bytes": 38524,
+          "compression_ratio": 1.53
         },
         "lod2": {
           "path": "assets/derived/mesh.hippocampus.left.v1/runtime/mesh.hippocampus.left.v1.lod2.meshopt.glb",
-          "sha256": "bd270b7546d603972c51d0ad983501086574d3df7c0c15eada43ad8b9a7cf7b1",
-          "bytes": 17860,
-          "compression_ratio": 2.21
+          "sha256": "41695d3f7ef52ed28d4f13d7fbb754d61a9c0b1d44fe2b47b967e352e0a59d0f",
+          "bytes": 26724,
+          "compression_ratio": 1.48
         },
         "lod3": {
           "path": "assets/derived/mesh.hippocampus.left.v1/runtime/mesh.hippocampus.left.v1.lod3.meshopt.glb",
-          "sha256": "68f18e969767c6a5b5f48487e4609af5d43e21c0aa281b5a0929ea2b54f72ab5",
-          "bytes": 8088,
-          "compression_ratio": 2.5
+          "sha256": "67b632ff5a6e2bcd051c89199345faf321109923d237e7a68c65df9310a5556c",
+          "bytes": 14376,
+          "compression_ratio": 1.41
         }
       }
     }

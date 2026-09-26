@@ -32,6 +32,7 @@ export type EvidenceType =
   | 'prospective_cohort_study'
   | 'retrospective_case_control'
   | 'cross_sectional_study'
+  | 'case_series_or_case_report'
   | 'observational_registry'
   | 'human_neuroimaging_structural_mri'
   | 'human_neuroimaging_functional_fmri'

@@ -9,6 +9,7 @@
     "test:schema": "tsx src/schema_validation.test.ts",
     "test:pipeline": "tsx src/pipeline_regression.test.ts",
     "asset:validate": "tsx scripts/validate_asset.ts",
+    "audit:phase1": "tsx scripts/audit_phase1.ts",
     "pipeline:run": "tsx scripts/pipeline/run_pipeline.ts"
   },
   "keywords": [

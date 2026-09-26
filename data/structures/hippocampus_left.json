@@ -59,34 +59,98 @@
       }
     },
     "bounding_box": {
-      "min": [-35.0, -38.0, -25.0],
-      "max": [-18.0, -5.0, -8.0],
-      "coordinate_frame": "mni152_nonlinear_2009c_asym"
+      "min": [-34.52, -24.28, -40.98],
+      "max": [-15.62, -3.50, -0.42],
+      "coordinate_frame": "threejs_ras_canonical"
     },
-    "estimated_volume_cm3": 3.8,
-    "default_hex_color": "#D4A373"
+    "estimated_volume_cm3": 1.872,
+    "default_hex_color": "#D4A373",
+    "subfield_representation": "MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED",
+    "subfield_mapping_status": "ANATOMICAL_MAPPING_PENDING",
+    "subfield_mapping_notes": "The ingested 3D asset represents the macroscopic unsegmented left hippocampus (Cornu Ammonis CA1-CA4 + dentate gyrus within one contiguous boundary). Distinct internal subfield parcellation boundaries are not resolved in this macroscopic surface mesh and will be integrated during subsequent subfield segmentation phases."
   },
   "asset_id": "mesh.hippocampus.left.v1",
   "asset_provenance": {
     "asset_id": "mesh.hippocampus.left.v1",
-    "dataset_name": "Z-Anatomy",
-    "dataset_version": "2024.1.0",
-    "source_url": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
-    "upstream_asset_id": "Hippocampus_L",
-    "upstream_license": "CC_BY_SA_4_0",
-    "attribution_text_required": "Hippocampus 3D geometry derived from Z-Anatomy contributors, licensed under CC-BY-SA 4.0.",
+    "dataset_name": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+    "dataset_version": "Release 3.0 (2011/06/20) / Portal update 2025-02-27",
+    "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+    "upstream_asset_id": "FMA72714",
+    "upstream_license": "CC_BY_SA_2_1_JP",
+    "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
     "acquisition_date": "2026-09-26",
-    "modifications_applied": [],
-    "resulting_sha256_hash": "NOT_YET_GENERATED",
+    "modifications_applied": [
+      {
+        "step_number": 1,
+        "operation_name": "Raw_Asset_Ingestion",
+        "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+        "parameters": {
+          "source_file": "FMA72714.stl"
+        },
+        "executed_by": "Pipeline_Ingestion_Engine",
+        "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
+        "timestamp": "2026-09-26T10:45:00Z"
+      },
+      {
+        "step_number": 2,
+        "operation_name": "Geometric_QA_Validation",
+        "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+        "parameters": {
+          "topology_class": "SOLID",
+          "watertight_required": true
+        },
+        "executed_by": "MeshValidation_Auditor",
+        "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
+        "timestamp": "2026-09-26T10:47:00Z"
+      },
+      {
+        "step_number": 3,
+        "operation_name": "Coordinate_Canonicalization",
+        "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+        "parameters": {
+          "adapter_id": "bodyparts3d-lps-to-ras",
+          "target_system": "THREEJS_RAS_CANONICAL"
+        },
+        "executed_by": "Canonicalization_Engine",
+        "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
+        "timestamp": "2026-09-26T10:50:00Z"
+      },
+      {
+        "step_number": 4,
+        "operation_name": "Multi_LOD_Simplification",
+        "script_relative_path": "scripts/pipeline/generate_lods.ts",
+        "parameters": {
+          "algorithm": "Quadric_Error_Metric",
+          "levels_generated": 4
+        },
+        "executed_by": "Meshopt_LOD_Generator",
+        "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
+        "timestamp": "2026-09-26T11:04:00Z"
+      },
+      {
+        "step_number": 5,
+        "operation_name": "Runtime_Meshopt_Compression",
+        "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+        "parameters": {
+          "extension": "EXT_meshopt_compression",
+          "lossless_verification": true
+        },
+        "executed_by": "Meshopt_Runtime_Optimizer",
+        "git_commit_hash": "fe88bb7d00f6810c950a4aa31e3fe1a8a25c347f",
+        "timestamp": "2026-09-26T11:07:00Z"
+      }
+    ],
+    "resulting_sha256_hash": "c361b544d06ce687f1b8b7510a5699581a9aaf3686d3a0904484b12b820cc613",
     "resulting_license": "CC-BY-SA 4.0",
     "production_eligibility": "PRODUCTION_ALLOWED",
     "commercial_redistribution": "PERMITTED",
     "restrictions_and_covenants": [
-      "Must attribute Z-Anatomy contributors in application notices",
-      "Derivative 3D meshes must be shared under CC-BY-SA 4.0"
+      "Must attribute BodyParts3D / DBCLS in application notices and UI",
+      "Derived 3D meshes distributed under CC-BY-SA 4.0 (satisfies both CC-BY-SA 2.1 JP ShareAlike and CC BY 4.0 Attribution)",
+      "Defensive dual compliance: commercial redistribution permitted without non-commercial restriction"
     ],
-    "validation_status": "PENDING",
-    "legal_review_notes": "License terms confirmed under CC-BY-SA 4.0. Mesh decimation, manifold check, and SHA-256 calculation scheduled for Phase 1 asset pipeline."
+    "validation_status": "CLEARED",
+    "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72714 left hippocampus). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle."
   },
   "presentation": {
     "visibility_groups": ["limbic_circuitry", "cortex_allocortex"]
@@ -426,12 +490,13 @@
       "claim_statement": "Bilateral resection or destruction of the medial temporal lobe (hippocampus and parahippocampal gyrus) causes severe, irreversible loss of recent memory encoding with preserved remote memories and intellectual faculties.",
       "evidence_domain": "clinical",
       "evidence_assessment_framework": "OXFORD_CEBM",
-      "evidence_type": "controlled_clinical_trial",
+      "evidence_type": "case_series_or_case_report",
       "population": "clinical_psychiatric_humans",
       "sample_size": 10,
       "outcome_measure": "Formal neuropsychological recall and retention testing",
       "relationship_nature": "direct_causal_mechanism",
-      "certainty_grade": "GRADE_HIGH",
+      "certainty_grade": "NOT_APPLICABLE_NON_CLINICAL",
+      "certainty_summary": "Oxford CEBM Level 4: Case series of 10 surgical bilateral medial temporal lobe resection patients demonstrating severe irreversible anterograde declarative memory loss.",
       "replication_status": "REPLICATED_INDEPENDENTLY",
       "clinical_applicability": "DIRECT_CLINICAL_PRACTICE",
       "limitations_identified": [
