@@ -11,6 +11,7 @@ import { AnatomicalInfoPanel } from './ui/AnatomicalInfoPanel';
 import { DebugPanel } from './ui/DebugPanel';
 import { ControlsBar } from './ui/ControlsBar';
 import { SectionControls } from './ui/SectionControls';
+import { SectionPresentationPanel } from './ui/SectionPresentationPanel';
 import { AnatomicalEntityRecord } from './engine/types';
 
 async function bootstrap() {
@@ -204,6 +205,10 @@ async function bootstrap() {
       app.getClippingAdapter(),
       app.getEntityManager()
     );
+
+    // Phase 4B: presentation aids (orientation, readout, presets, stats).
+    // Educational only; no anatomical claims beyond canonical coordinates.
+    new SectionPresentationPanel(appContainer, app);
 
     // 5. Select bilateral cerebrum by default to showcase macroanatomy
     app.getAssemblyManager().selectGroup('division.cerebrum');

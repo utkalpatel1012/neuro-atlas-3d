@@ -94,3 +94,15 @@ WebGPU path code-identical but device-unverified). Raycasting ignores clipping b
 design (selection may resolve clipped-away geometry). Grazing-incidence rays can
 slip between adjacent triangles despite edge-watertight QA. Plane gizmos and labels
 are orientation aids, never anatomy. No MRI, no parcellation, no psychiatry overlays.
+
+## L15. Section presentation limits (Phase 4B)
+Derived caps/edges are geometric visualization aids, not tissue: flat amber
+surfaces triangulated per closed loop from actual mesh-plane intersections
+(earcut); nested-loop holes are NOT resolved (donut-like sections may overfill);
+open/grazing/disconnected contours fall back to edges or nothing — never a fake
+surface. Caps never carry entity IDs or provenance. Orientation/preset/readout
+UI uses canonical coordinates only (+X R, +Y S, +Z Posterior); preset names
+imply no registration. Presentation + clipping headless-tested only (92 new
+checks); browser/iPad/WebGPU-device proof still pending. Empty views show
+mostly empty space by design (white matter, basal ganglia, thalamus, brainstem,
+cerebellum, ventricles, vasculature, complete cortex NOT yet in atlas).

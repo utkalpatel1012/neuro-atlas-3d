@@ -32,8 +32,23 @@ export interface ProjectedLabel {
   isOccluded: boolean;
   isCulledByDistance: boolean;
   isCulledByCollision: boolean;
+  /** Phase 4B §14-§15: hidden because clipping removed its anchor/geometry. */
+  isCulledBySection: boolean;
   description?: string;
   associatedEntityId?: string;
+}
+
+/**
+ * Phase 4B §14-§16: section-aware label filter.
+ * - isPointCulled: geometric plane predicate (world position).
+ * - isEntityFullyClipped: entity has no retained visible geometry.
+ * - hasActivePlanes: skip all section work when no planes enabled.
+ * Labels never invent anchors; schematic status retained.
+ */
+export interface SectionLabelFilter {
+  isPointCulled(p: THREE.Vector3): boolean;
+  isEntityFullyClipped(entityId: string): boolean;
+  hasActivePlanes(): boolean;
 }
 
 export interface LabelFilterOptions {
@@ -63,6 +78,8 @@ export class LabelManager {
   private tempVec = new THREE.Vector3();
   private tempCamDir = new THREE.Vector3();
   private isEnabled = true;
+  private sectionFilter: SectionLabelFilter | null = null;
+  private entityVisible: ((entityId: string) => boolean) | null = null;
 
   constructor() {
     this.initDefaultLandmarks();
@@ -102,6 +119,7 @@ export class LabelManager {
       isOccluded: false,
       isCulledByDistance: false,
       isCulledByCollision: false,
+      isCulledBySection: false,
       description: lm.description,
       associatedEntityId
     };
@@ -134,6 +152,7 @@ export class LabelManager {
       isOccluded: false,
       isCulledByDistance: false,
       isCulledByCollision: false,
+      isCulledBySection: false,
       associatedEntityId: params.associatedEntityId
     };
     this.labels.set(projected.id, projected);
@@ -141,6 +160,19 @@ export class LabelManager {
 
   public setEnabled(enabled: boolean): void {
     this.isEnabled = enabled;
+  }
+
+  /**
+   * Phase 4B §14-§15: install/remove section-awareness. Null restores legacy.
+   * Entity-visibility provider lets callers hide labels of hidden/isolated-out
+   * entities without the label manager owning visibility state.
+   */
+  public setSectionFilter(filter: SectionLabelFilter | null): void {
+    this.sectionFilter = filter;
+  }
+
+  public setEntityVisibilityProvider(provider: ((entityId: string) => boolean) | null): void {
+    this.entityVisible = provider;
   }
 
   public getEnabled(): boolean {
@@ -203,6 +235,39 @@ export class LabelManager {
         continue;
       }
       label.isCulledByDistance = false;
+
+      // Phase 4B §14-§15: section + visibility culling BEFORE projection so no
+      // label floats over empty areas after its anatomy is clipped away.
+      // Fully-clipped entities hide their labels; partially-visible entities
+      // keep labels only when the anchor itself remains retained (no invented
+      // anchors; schematic status unchanged).
+      label.isCulledBySection = false;
+      if (label.associatedEntityId && this.entityVisible) {
+        try {
+          if (!this.entityVisible(label.associatedEntityId)) {
+            label.isVisible = false;
+            continue;
+          }
+        } catch {
+          // Provider failure: fail open (do not hide on filter error).
+        }
+      }
+      if (this.sectionFilter && this.sectionFilter.hasActivePlanes()) {
+        try {
+          if (label.associatedEntityId && this.sectionFilter.isEntityFullyClipped(label.associatedEntityId)) {
+            label.isCulledBySection = true;
+            label.isVisible = false;
+            continue;
+          }
+          if (this.sectionFilter.isPointCulled(label.worldPosition)) {
+            label.isCulledBySection = true;
+            label.isVisible = false;
+            continue;
+          }
+        } catch {
+          // Filter failure: fail open.
+        }
+      }
 
       // Project 3D point to NDC [-1, 1]
       this.tempVec.copy(label.worldPosition);

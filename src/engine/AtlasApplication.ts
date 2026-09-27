@@ -25,6 +25,8 @@ import { AnatomicalAssemblyManager } from './AnatomicalAssemblyManager';
 import { LabelManager } from './LabelManager';
 import { SectionPlaneSet } from './SectionPlaneSet';
 import { ClippingAdapter } from './ClippingAdapter';
+import { SectionCapsManager } from './SectionCaps';
+import { SectionPresentation, computeSectionStats, SectionStats } from './sectionPresentation';
 import {
   AnatomicalEntityRecord,
   CameraViewPreset,
@@ -59,6 +61,10 @@ export class AtlasApplication {
   private labelManager: LabelManager;
   private sectionPlaneSet: SectionPlaneSet;
   private clippingAdapter: ClippingAdapter;
+  private sectionCaps: SectionCapsManager;
+  private sectionPresentation: SectionPresentation;
+  private planeUnsub: (() => void) | null = null;
+  private lodUnsub: (() => void) | null = null;
 
   private isRunning: boolean = false;
   private animationFrameId: number | null = null;
@@ -80,12 +86,21 @@ export class AtlasApplication {
     this.sectionPlaneSet = new SectionPlaneSet();
     this.clippingAdapter = new ClippingAdapter();
     this.clippingAdapter.bind(this.sectionPlaneSet);
+    // Phase 4B: presentation state + derived section surfaces (caps/edges).
+    // Caps are DERIVED VISUALIZATION — no entity IDs, no anatomical provenance.
+    this.sectionPresentation = new SectionPresentation();
+    this.sectionCaps = new SectionCapsManager();
+    this.sectionCaps.setSharedPlanes(this.clippingAdapter.getSharedPlanes());
+    this.sectionCaps.attachMeshProvider(() => this.collectCapsMeshes());
+    this.planeUnsub = this.sectionPlaneSet.onChange(() => this.refreshSectionDerivatives());
 
     // Secondary Subsystems
     this.selectionManager = new SelectionManager(this.entityManager, this.materialManager);
     this.visibilityManager = new VisibilityManager(this.entityManager, this.materialManager);
     this.lodManager = new LODManager(this.assetManager, this.entityManager);
     this.performanceManager = new PerformanceManager('webgpu', options.initialProfile ?? 'HIGH');
+    // Phase 4B wiring that needs LODManager (after its assignment).
+    this.sectionCaps.attachLODManager(this.lodManager);
 
     // Camera will be created upon container attachment
     this.cameraManager = new CameraManager(
@@ -174,6 +189,26 @@ export class AtlasApplication {
     this.clippingAdapter.applyRendererState(this.rendererManager.getRenderer());
     this.clippingAdapter.setGizmoVisible(false);
     this.sceneManager.getVisualizationRoot().add(this.clippingAdapter.getGizmoGroup());
+    // Phase 4B: derived caps/edges group (visualization aids, never anatomy).
+    this.sceneManager.getVisualizationRoot().add(this.sectionCaps.getGroup());
+    this.sectionCaps.setSharedPlanes(this.clippingAdapter.getSharedPlanes());
+    // Phase 4B §14-§15: labels respect clipping + visibility (no invented anchors).
+    this.labelManager.setSectionFilter({
+      isPointCulled: (p) => this.sectionPlaneSet.isPointCulled([p.x, p.y, p.z]),
+      isEntityFullyClipped: (entityId) => this.isEntityFullyClipped(entityId),
+      hasActivePlanes: () => this.sectionPlaneSet.getEnabledPlanes().length > 0
+    });
+    this.labelManager.setEntityVisibilityProvider((entityId) => {
+      const mesh = this.entityManager.getMesh(entityId);
+      if (!mesh) return false;
+      if (!mesh.visible) return false;
+      return this.assemblyManager.isEntityEffectivelyVisible(entityId);
+    });
+    // Phase 4B §33: LOD switches invalidate derived caps for the re-lodded asset.
+    if (this.lodUnsub) this.lodUnsub();
+    this.lodUnsub = this.lodManager.onLODChanged(() => {
+      this.refreshSectionDerivatives();
+    });
 
     // Configure profile
     this.applyProfile(this.performanceManager.getProfile().id);
@@ -206,6 +241,7 @@ export class AtlasApplication {
       console.warn(`[AtlasApplication] Background LOD preloading for ${entityRecord.assetId}:`, err);
     });
 
+    this.refreshSectionDerivatives();
     return mesh;
   }
 
@@ -473,17 +509,165 @@ export class AtlasApplication {
 
   /**
    * Phase 4A: re-derive GPU clipping state from application plane state.
+   * Phase 4B: also re-derives caps/edges + label section filter (§37).
    * Call after renderer (re)creation and after bulk material replacement.
+   * Application state reconstructs everything; no GPU objects persist as state.
    */
   public resyncClipping(): void {
     this.clippingAdapter.resync(
       this.sectionPlaneSet,
       this.rendererManager.getRenderer()
     );
+    this.sectionCaps.setSharedPlanes(this.clippingAdapter.getSharedPlanes());
+    this.refreshSectionDerivatives();
   }
 
   public getSectionPlaneSet(): SectionPlaneSet { return this.sectionPlaneSet; }
   public getClippingAdapter(): ClippingAdapter { return this.clippingAdapter; }
+  public getSectionCaps(): SectionCapsManager { return this.sectionCaps; }
+  public getSectionPresentation(): SectionPresentation { return this.sectionPresentation; }
+
+  /**
+   * Phase 4B §16-§18: selection still resolves the ORIGINAL entity (no
+   * fragment/section IDs). Picking already filters fully-clipped hits (§8);
+   * this helper reports whether an entity has any retained visible geometry
+   * by testing its bbox corners + centroid (event-driven, not per-frame).
+   */
+  public isEntityFullyClipped(entityId: string): boolean {
+    if (this.sectionPlaneSet.getEnabledPlanes().length === 0) return false;
+    const mesh = this.entityManager.getMesh(entityId);
+    if (!mesh) return true;
+    if (!mesh.visible) return true;
+    mesh.geometry.computeBoundingBox();
+    const bb = mesh.geometry.boundingBox;
+    if (!bb) return false;
+    const world = new THREE.Box3().copy(bb).applyMatrix4(mesh.matrixWorld);
+    const pts: Array<[number, number, number]> = [
+      [world.min.x, world.min.y, world.min.z],
+      [world.max.x, world.min.y, world.min.z],
+      [world.min.x, world.max.y, world.min.z],
+      [world.min.x, world.min.y, world.max.z],
+      [world.max.x, world.max.y, world.min.z],
+      [world.max.x, world.min.y, world.max.z],
+      [world.min.x, world.max.y, world.max.z],
+      [world.max.x, world.max.y, world.max.z]
+    ];
+    const center = new THREE.Vector3();
+    world.getCenter(center);
+    pts.push([center.x, center.y, center.z]);
+    for (const p of pts) {
+      if (!this.sectionPlaneSet.isPointCulled(p)) return false;
+    }
+    return true;
+  }
+
+  /** Phase 4B §27: honest counts of LOADED entities (never biological counts). */
+  public getSectionStats(): SectionStats {
+    const samples = this.entityManager.getAllRecords().map((record) => {
+      const mesh = this.entityManager.getMesh(record.entityId);
+      if (!mesh) {
+        return { entityId: record.entityId, samplePoints: [] as Array<[number, number, number]>, objectVisible: false };
+      }
+      mesh.geometry.computeBoundingBox();
+      const bb = mesh.geometry.boundingBox;
+      if (!bb) {
+        return { entityId: record.entityId, samplePoints: [] as Array<[number, number, number]>, objectVisible: mesh.visible };
+      }
+      const world = new THREE.Box3().copy(bb).applyMatrix4(mesh.matrixWorld);
+      const center = new THREE.Vector3();
+      world.getCenter(center);
+      return {
+        entityId: record.entityId,
+        samplePoints: [
+          [world.min.x, world.min.y, world.min.z] as [number, number, number],
+          [world.max.x, world.max.y, world.max.z] as [number, number, number],
+          [center.x, center.y, center.z] as [number, number, number]
+        ],
+        objectVisible: mesh.visible && this.assemblyManager.isEntityEffectivelyVisible(record.entityId)
+      };
+    });
+    return computeSectionStats(this.sectionPlaneSet, samples);
+  }
+
+  /**
+   * Phase 4B §17: focus the currently VISIBLE portion of an entity.
+   * Scans retained vertices (event-driven on user action only) and frames the
+   * retained bbox. Fully-clipped entities: no-op returning false (caller shows
+   * the neutral empty-section message; never an error, never invented focus).
+   */
+  public focusVisibleSection(entityId: string, duration = 0.8): boolean {
+    const mesh = this.entityManager.getMesh(entityId);
+    if (!mesh) return false;
+    if (this.sectionPlaneSet.getEnabledPlanes().length === 0) {
+      this.focusEntity(entityId);
+      return true;
+    }
+    const pos = mesh.geometry.attributes.position as THREE.BufferAttribute | undefined;
+    if (!pos) {
+      this.focusEntity(entityId);
+      return true;
+    }
+    const box = new THREE.Box3();
+    const v = new THREE.Vector3();
+    let found = false;
+    const stride = Math.max(1, Math.floor(pos.count / 2000)); // bounded scan.
+    for (let i = 0; i < pos.count; i += stride) {
+      v.fromBufferAttribute(pos, i).applyMatrix4(mesh.matrixWorld);
+      if (!this.sectionPlaneSet.isPointCulled([v.x, v.y, v.z])) {
+        box.expandByPoint(v.clone());
+        found = true;
+      }
+    }
+    if (!found) return false;
+    this.cameraManager.focusBoundingBox(box, duration);
+    return true;
+  }
+
+  /** Phase 4B §19/§28-§30: apply a visual mode without touching anatomy. */
+  public applySectionVisualMode(): void {
+    const mode = this.sectionPresentation.getState().visualMode;
+    if (mode === 'SECTION_EDGE') {
+      this.sectionCaps.setVisible(true);
+      // Edges stay visible; caps hidden via presentation flags consumed by UI.
+      // Caps manager holds both; per-mode cap hiding is done by clear-on-EDGE
+      // callers reading presentation state (no geometry mutation here).
+    } else {
+      this.sectionCaps.setVisible(true);
+    }
+    this.refreshSectionDerivatives();
+  }
+
+  private collectCapsMeshes(): Array<{ mesh: THREE.Mesh; assetId: string; lod: string }> {
+    const out: Array<{ mesh: THREE.Mesh; assetId: string; lod: string }> = [];
+    for (const record of this.entityManager.getAllRecords()) {
+      const mesh = this.entityManager.getMesh(record.entityId);
+      if (!mesh || !mesh.visible) continue;
+      if (!this.assemblyManager.isEntityEffectivelyVisible(record.entityId)) continue;
+      const lod = this.lodManager.getActiveLOD(record.entityId);
+      out.push({ mesh, assetId: record.assetId, lod });
+    }
+    return out;
+  }
+
+  /** Event-driven only (§31): plane/LOD/visibility changes — never per frame. */
+  public refreshSectionDerivatives(): void {
+    if (!this.sectionCaps) return;
+    const presentation = this.sectionPresentation.getState();
+    const enabled = this.sectionPlaneSet.getEnabledPlanes();
+    if (!presentation.sectionModeEnabled || enabled.length === 0) {
+      this.sectionCaps.clear();
+      return;
+    }
+    this.sectionCaps.setSharedPlanes(this.clippingAdapter.getSharedPlanes());
+    const planes = enabled.map((p) => ({ id: p.id, math: p.math }));
+    this.sectionCaps.refresh(this.collectCapsMeshes(), planes);
+    // Presentation-driven visibility (no per-frame work):
+    const capsGroup = this.sectionCaps.getGroup();
+    capsGroup.visible =
+      presentation.visualMode !== 'SECTION_EDGE'
+        ? presentation.capsVisible || presentation.edgesVisible
+        : presentation.edgesVisible;
+  }
 
   // Subsystem Getters
   public getRendererManager(): RendererManager { return this.rendererManager; }
@@ -503,13 +687,25 @@ export class AtlasApplication {
 
   public dispose(): void {
     this.stop();
+    if (this.planeUnsub) {
+      this.planeUnsub();
+      this.planeUnsub = null;
+    }
+    if (this.lodUnsub) {
+      this.lodUnsub();
+      this.lodUnsub = null;
+    }
     this.interactionManager.dispose();
     this.selectionManager.dispose();
     this.visibilityManager.dispose();
     this.assemblyManager.dispose();
     this.labelManager.clear();
+    this.labelManager.setSectionFilter(null);
+    this.labelManager.setEntityVisibilityProvider(null);
     this.lodManager.dispose();
     this.performanceManager.dispose();
+    this.sectionCaps.dispose();
+    this.sectionPresentation.dispose();
     this.clippingAdapter.dispose();
     this.materialManager.dispose();
     this.assetManager.dispose();
