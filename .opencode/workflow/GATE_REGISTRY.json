@@ -1,0 +1,16 @@
+{
+  "_comment": "Quality floor gates for every phase. A phase advances only when ALL applicable gates pass.",
+  "repairPolicy": { "maxAutomaticCycles": 5, "exhaustedStatus": "AUTOMATED_REPAIR_EXHAUSTED" },
+  "gates": [
+    { "id": "tests", "kind": "ENGINEERING", "command": "npm.cmd test", "pass": "exit 0, all suites green, no weakened tests (compare suite/check counts to baseline)" },
+    { "id": "typecheck", "kind": "ENGINEERING", "command": "npm.cmd run typecheck", "pass": "exit 0" },
+    { "id": "build", "kind": "ENGINEERING", "command": "npm.cmd run build", "pass": "exit 0, dist artifacts match manifest" },
+    { "id": "asset-validate", "kind": "SCIENTIFIC", "command": "npm.cmd run asset:validate -- <asset>", "pass": "10/10 checks on sampled + new assets" },
+    { "id": "phase-audit", "kind": "SCIENTIFIC", "command": "npm.cmd run audit:phase1", "pass": "ALL SECTIONS PASSED" },
+    { "id": "provenance", "kind": "PROVENANCE", "command": "hash + banned-term scans (in suites)", "pass": "hashes match, no prohibited terminology in live records, licenses exact + uncertainty explicit" },
+    { "id": "reviewers", "kind": "TESTING", "command": "independent subagent reviews in .opencode/reviews/", "pass": "required reviewers PASS, no unresolved critical/major findings" },
+    { "id": "final-certifier", "kind": "DOCUMENTATION", "command": "read-only certifier inspection", "pass": "verdict PASS against registry acceptance criteria" },
+    { "id": "git", "kind": "ENGINEERING", "command": "git status/diff review + push + fetch", "pass": "one focused commit, LOCAL HEAD == REMOTE HEAD, tree clean" },
+    { "id": "deploy", "kind": "ENGINEERING", "command": "npm.cmd run deploy + live checks", "pass": "live manifest count, runtime 200s, correct bundle, buffer==CSSxDPR (production-facing phases)" }
+  ]
+}

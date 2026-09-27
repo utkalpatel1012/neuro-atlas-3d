@@ -1,0 +1,9 @@
+{
+    "lastRun":  "2026-09-27T18:29:13Z",
+    "currentPhase":  "5.2",
+    "pid":  13748,
+    "lastCommit":  "ea7c5736015b623a0feb698df495df9e1922d25d",
+    "lastAction":  "dirty worktree -- refusing to touch user work",
+    "nextAction":  "operator resolves worktree, then Resume",
+    "status":  "STOPPED"
+}

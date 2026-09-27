@@ -1,0 +1,34 @@
+{
+    "project":  "neuro-atlas-3d",
+    "repository":  "https://github.com/utkalpatel1012/neuro-atlas-3d",
+    "currentPhase":  "5.2",
+    "phaseStatus":  "USER_WORKTREE_CHANGES_PRESENT",
+    "startedAt":  "2026-09-27T18:15:41Z",
+    "lastUpdatedAt":  "2026-09-27T18:29:13Z",
+    "attempt":  1,
+    "repairAttempts":  0,
+    "lastKnownCommit":  "ea7c5736015b623a0feb698df495df9e1922d25d",
+    "lastSuccessfulCommit":  "ea7c5736015b623a0feb698df495df9e1922d25d",
+    "workingTreeStatus":  "CLEAN",
+    "testsStatus":  "PASS-15-SUITES",
+    "typecheckStatus":  "PASS",
+    "buildStatus":  "PASS",
+    "assetValidationStatus":  "PASS-4-ASSETS",
+    "reviewStatus":  "NOT-YET-RUN",
+    "scientificStatus":  "PENDING-PHASE-5.2",
+    "licenseStatus":  "LEGAL_REVIEW_REQUIRED-STANDING",
+    "deviceValidationStatus":  "PENDING-ALL",
+    "blockers":  [
+
+                 ],
+    "completedPhases":  [
+                            "3.x",
+                            "4.x",
+                            "5.0",
+                            "5.0.1",
+                            "5.0.2",
+                            "5.1"
+                        ],
+    "nextPhase":  "5.2",
+    "supervisorVersion":  "1.0.0"
+}

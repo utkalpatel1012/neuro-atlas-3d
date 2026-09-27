@@ -16,3 +16,8 @@ Thumbs.db
 # Environment
 .env
 .env.local
+
+# Autonomous supervisor runtime (local-only: locks, execution logs)
+.opencode/workflow/SUPERVISOR.lock
+.opencode/workflow/logs/*.log
+.opencode/workflow/NEXT_PROMPT.md
