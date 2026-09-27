@@ -1,0 +1,139 @@
+{
+  "batch": "phase51-deep-limbic",
+  "generated_at": "2026-09-27T16:08:15.806Z",
+  "generator": "scripts/pipeline/run_gyral_batch.ts",
+  "verdicts": [
+    {
+      "assetId": "mesh.thalamus.left.v1",
+      "structureId": "brain.diencephalon.left.thalamus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 7396,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 247
+    },
+    {
+      "assetId": "mesh.thalamus.right.v1",
+      "structureId": "brain.diencephalon.right.thalamus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 3298,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 119
+    },
+    {
+      "assetId": "mesh.caudate_nucleus.left.v1",
+      "structureId": "brain.basal_ganglia.left.caudate_nucleus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 11160,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 189
+    },
+    {
+      "assetId": "mesh.caudate_nucleus.right.v1",
+      "structureId": "brain.basal_ganglia.right.caudate_nucleus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 11272,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 180
+    },
+    {
+      "assetId": "mesh.putamen.left.v1",
+      "structureId": "brain.basal_ganglia.left.putamen",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 30636,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 323
+    },
+    {
+      "assetId": "mesh.putamen.right.v1",
+      "structureId": "brain.basal_ganglia.right.putamen",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 30670,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 314
+    },
+    {
+      "assetId": "mesh.globus_pallidus.left.v1",
+      "structureId": "brain.basal_ganglia.left.globus_pallidus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 30738,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 317
+    },
+    {
+      "assetId": "mesh.globus_pallidus.right.v1",
+      "structureId": "brain.basal_ganglia.right.globus_pallidus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 23206,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 274
+    },
+    {
+      "assetId": "mesh.amygdala.left.v1",
+      "structureId": "brain.telencephalon.left.limbic.amygdala",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 1736,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 107
+    },
+    {
+      "assetId": "mesh.amygdala.right.v1",
+      "structureId": "brain.telencephalon.right.limbic.amygdala",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 1744,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 106
+    },
+    {
+      "assetId": "mesh.mammillary_body.bilateral.v1",
+      "structureId": "brain.diencephalon.bilateral.hypothalamus.mammillary_body",
+      "profileId": "composite-cortical-assembly",
+      "measuredTriangles": 1666,
+      "measuredShells": 2,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete (2 watertight shells: VALID_WITH_KNOWN_TOPOLOGY_LIMITATION).",
+      "durationMs": 104
+    },
+    {
+      "assetId": "mesh.septum_pellucidum.midline.v1",
+      "structureId": "brain.telencephalon.midline.septum_pellucidum",
+      "profileId": null,
+      "measuredTriangles": 25012,
+      "measuredShells": 2,
+      "measuredBoundaryEdges": 0,
+      "state": "REJECTED",
+      "reason": "Topology defects: non-manifold=2, duplicates=0, zero-area=4.",
+      "durationMs": 45
+    }
+  ]
+}
