@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.cingulate_gyrus.left.v1",
+  "timestamp": "2026-09-27T12:26:50.795Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.cingulate_gyrus.left.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.cingulate_gyrus.left.v1/lod/mesh.cingulate_gyrus.left.v1.lod0.glb",
+      "uncompressedByteLength": 212068,
+      "uncompressedSha256": "77f8778bdc52d3828349bac5d9a54305f80d9edf13b47f3c825c0b4161d858fd",
+      "runtimeGlbPath": "assets/derived/mesh.cingulate_gyrus.left.v1/runtime/mesh.cingulate_gyrus.left.v1.lod0.meshopt.glb",
+      "compressedByteLength": 138296,
+      "compressedSha256": "6376d5a97e390e05669ab806953d04d1ffd123af1e3c2f0525560c71653a050b",
+      "compressionRatio": 1.53,
+      "savingsPercent": 34.79,
+      "vertexCount": 5864,
+      "triangleCount": 11724,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.cingulate_gyrus.left.v1/lod/mesh.cingulate_gyrus.left.v1.lod1.glb",
+      "uncompressedByteLength": 159292,
+      "uncompressedSha256": "ef89ff1e4295c531b90bb6481728f62019c4c56b84f7ee691681aba78380750f",
+      "runtimeGlbPath": "assets/derived/mesh.cingulate_gyrus.left.v1/runtime/mesh.cingulate_gyrus.left.v1.lod1.meshopt.glb",
+      "compressedByteLength": 106188,
+      "compressedSha256": "8fe747a7e8dfd8d0e2de61d2fd5e494ce2ee74f35eb3796450e4e59f60d48fe7",
+      "compressionRatio": 1.5,
+      "savingsPercent": 33.34,
+      "vertexCount": 4398,
+      "triangleCount": 8792,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.cingulate_gyrus.left.v1/lod/mesh.cingulate_gyrus.left.v1.lod2.glb",
+      "uncompressedByteLength": 106552,
+      "uncompressedSha256": "d6f2c3f2ebdf10450cdc878e6b0c008d0056075d5936db3dd70ff6442d2e6029",
+      "runtimeGlbPath": "assets/derived/mesh.cingulate_gyrus.left.v1/runtime/mesh.cingulate_gyrus.left.v1.lod2.meshopt.glb",
+      "compressedByteLength": 73160,
+      "compressedSha256": "a48ac9068a5a8b95b4ede822ac7aefe56ee2699ec363f774c0b6c0ce41a2df74",
+      "compressionRatio": 1.46,
+      "savingsPercent": 31.34,
+      "vertexCount": 2933,
+      "triangleCount": 5862,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.cingulate_gyrus.left.v1/lod/mesh.cingulate_gyrus.left.v1.lod3.glb",
+      "uncompressedByteLength": 53776,
+      "uncompressedSha256": "ccf3dbe85cb10be8b90147ee993f0dee62b917d6286c75bba5c28e636bda1b22",
+      "runtimeGlbPath": "assets/derived/mesh.cingulate_gyrus.left.v1/runtime/mesh.cingulate_gyrus.left.v1.lod3.meshopt.glb",
+      "compressedByteLength": 38684,
+      "compressedSha256": "01eea459dd097ad5c6fadb500c832235de9f8acaf059458e960872237008b603",
+      "compressionRatio": 1.39,
+      "savingsPercent": 28.06,
+      "vertexCount": 1467,
+      "triangleCount": 2930,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 531688,
+  "overallCompressedBytes": 356328,
+  "overallSavingsPercent": 32.98,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.cingulate_gyrus.left.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-27T12:26:50.795Z"
+  }
+}

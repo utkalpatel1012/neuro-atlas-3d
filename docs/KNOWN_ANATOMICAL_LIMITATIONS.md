@@ -107,8 +107,7 @@ checks); browser/iPad/WebGPU-device proof still pending. Empty views show
 mostly empty space by design (white matter, basal ganglia, thalamus, brainstem,
 cerebellum, ventricles, vasculature, complete cortex NOT yet in atlas).
 
-## L16. MRI reference limits (Phase 4C)
-Colin27 1998 T1 is SELECTED as a Type A reference (single-subject average —
+## L16. MRI reference limits (Phase 4C)Colin27 1998 T1 is SELECTED as a Type A reference (single-subject average —
 high detail, no population variance; field strength UNKNOWN; Talairach frame,
 NOT MNI). Canonical registration is UNCOMPUTED (REGISTRATION_PENDING, NULL
 metrics): mesh/MRI overlay is DISABLED by construction and no registration
@@ -133,3 +132,14 @@ TEST_ONLY_SYNTHETIC data (64 checks); the 4C.1 overlay gate now additionally
 requires REGISTRATION_VALIDATED + a valid non-singular non-mirroring matrix,
 so overlay stays GATED_OFF. Uncertainty NULL/NOT_MEASURED; expert review
 EXPERT_REVIEW_PENDING. Affine/nonlinear not implemented (unjustified).
+
+## L18. Phase 5.0 batch limits (Batch 1: 16 gyral assets)
+Batch-1 gyri are BodyParts3D segments, not whole-lobe dissections: inter-piece
+gaps persist (L1 sulci-as-gaps applies); superior frontal pair has 2 watertight
+shells each (recorded composite topology). TA2/UBERON IDs UNVERIFIED on all 16
+records (L5 — FMA distribution IDs only). Records are anatomy-only by design
+(no functional/psychiatric/imaging content). Remaining 12 cortex components,
+deep nuclei, brainstem, cerebellum, ventricles, nerves, vasculature have NO
+geometry (DOCUMENTED placeholders only). Gyral assets overlap the cortex
+composites spatially and load ON DEMAND (default view unchanged) to avoid
+double-rendered anatomy.

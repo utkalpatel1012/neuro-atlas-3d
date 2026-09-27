@@ -13,6 +13,7 @@ import { ControlsBar } from './ui/ControlsBar';
 import { SectionControls } from './ui/SectionControls';
 import { SectionPresentationPanel } from './ui/SectionPresentationPanel';
 import { MriPanel } from './ui/MriPanel';
+import { HierarchyPanel } from './ui/HierarchyPanel';
 import { AnatomicalEntityRecord } from './engine/types';
 
 async function bootstrap() {
@@ -214,6 +215,10 @@ async function bootstrap() {
     // Phase 4C: educational MRI reference (lazy data, gated display;
     // overlay stays disabled until canonical registration is validated).
     new MriPanel(appContainer, app);
+
+    // Phase 5.0: hierarchy browser (DOCUMENTED vs AVAILABLE; on-demand load
+    // through the existing entity pipeline — default loaded set unchanged).
+    new HierarchyPanel(appContainer, app);
 
     // 5. Select bilateral cerebrum by default to showcase macroanatomy
     app.getAssemblyManager().selectGroup('division.cerebrum');

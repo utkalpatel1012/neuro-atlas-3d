@@ -22,7 +22,12 @@ export interface PipelineExecutionSummary {
   timestamp: string;
 }
 
-export async function runFullPipeline(assetId: string = 'mesh.hippocampus.left.v1'): Promise<PipelineExecutionSummary> {
+export async function runFullPipeline(
+  assetId: string = 'mesh.hippocampus.left.v1',
+  // Phase 5.0: optional QA profile override (e.g. 'open-cortical-sheet' for
+  // gyral segments). Defaults preserve legacy behavior exactly.
+  profileId?: string
+): Promise<PipelineExecutionSummary> {
   const startTime = Date.now();
   const stagesCompleted: string[] = [];
 
@@ -38,7 +43,7 @@ export async function runFullPipeline(assetId: string = 'mesh.hippocampus.left.v
 
     // Stage 2: Geometric & Topological QA
     console.log(`\n--- STAGE 2: GEOMETRIC & TOPOLOGICAL QA ---`);
-    const qaReport = await validateMesh(assetId);
+    const qaReport = await validateMesh(assetId, profileId);
     if (qaReport.overallStatus !== 'GEOMETRY_VALIDATED') {
       throw new Error(`Geometric QA failed for ${assetId}: status is ${qaReport.overallStatus}`);
     }
@@ -92,7 +97,8 @@ export async function runFullPipeline(assetId: string = 'mesh.hippocampus.left.v
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const targetAsset = process.argv[2] || 'mesh.hippocampus.left.v1';
-  runFullPipeline(targetAsset).then((summary) => {
+  const targetProfile = process.argv[3] || undefined;
+  runFullPipeline(targetAsset, targetProfile).then((summary) => {
     if (!summary.success) {
       process.exit(1);
     }

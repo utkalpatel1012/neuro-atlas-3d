@@ -247,7 +247,12 @@ async function runTests() {
   // TEST 9: Production/research separation
   // --------------------------------------------------------------------------
   console.log('\n--- TEST 9: Production/Research Separation ---');
-  assert(manifest.total_assets === 4, 'Exactly 4 production assets');
+  // Phase 5.0: production grows 4 → 20 (16 batch gyral assets, same
+  // BodyParts3D license chain). The load-bearing invariant is unchanged:
+  // whitelist-exact membership with zero restricted bytes.
+  assert(manifest.total_assets === 20, 'Exactly 20 production assets (4 legacy + 16 Phase-5 batch)');
+  assert(Array.isArray(manifest.production_whitelist) && manifest.production_whitelist.length === 20, 'Whitelist covers all 20 production assets');
+  assert(manifest.production_whitelist.every((id: string) => manifest.assets[id]), 'Every whitelisted id resolves to a manifest entry');
   assert(Array.isArray(manifest.research_quarantine), 'Quarantine list exists');
   // Claim-aware: free-text MENTIONS of restricted sources (e.g. "Julich-Brain" as a
   // future-parcellation concept in notes) are legitimate prose. What must be absent
@@ -264,14 +269,16 @@ async function runTests() {
     }
   };
   const prodObjects = [manifest,
-    ...['cortex_left', 'cortex_right', 'hippocampus_left', 'hippocampus_right'].map((s) => readJson(`data/structures/${s}.json`))];
+    // Phase 5.0: scan ALL structure records (legacy + batch), not just the
+    // original four — strictly broader than the pre-5.0 check.
+    ...fs.readdirSync(path.resolve(__dirname, '../data/structures')).filter((f: string) => f.endsWith('.json')).map((s: string) => readJson(`data/structures/${s}`))];
   prodObjects.forEach(walk);
   const dataBlob = dataStrings.join(' ');
   for (const token of ['hcp_mmp', 'HCP_MMP', 'julich', 'Julich', 'bigbrain', 'BigBrain']) {
     assert(!dataBlob.includes(token), `Production data-references contain no restricted token: ${token}`);
   }
-  console.log('[PASS] 4-asset whitelist; zero HCP/Julich/BigBrain data-references in production records.');
-  passedChecks += 3;
+  console.log('[PASS] 20-asset whitelist; zero HCP/Julich/BigBrain data-references in production records.');
+  passedChecks += 5;
 
   // --------------------------------------------------------------------------
   // TEST 10: Landmark schematic enforcement (D7)

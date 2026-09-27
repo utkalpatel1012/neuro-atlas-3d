@@ -1,0 +1,142 @@
+{
+  "id": "brain.telencephalon.right.parietal_lobe.postcentral_gyrus",
+  "entity_type": "anatomical_structure",
+  "subtype": "cortical_gyrus",
+  "canonical_name": "Postcentral gyrus (Right)",
+  "latin_name": "Gyrus postcentralis",
+  "clinical_aliases": [],
+  "abbreviations": [],
+  "laterality": "right",
+  "representation_scope": "paired_separate",
+  "name": {
+    "official_latin": "Gyrus postcentralis",
+    "official_english": "Postcentral gyrus (Right)",
+    "clinical_aliases": [],
+    "standard_abbreviations": []
+  },
+  "ontology": {
+    "ta2_id": "UNVERIFIED (lookup pass required; see L5)",
+    "fma_id": "FMA:72665",
+    "uberon_id": "UNVERIFIED (lookup pass required; see L5)",
+    "fma_authority": "BodyParts3D distribution name list (authoritative for files; NOT a live-ontology lookup)"
+  },
+  "hierarchy": {
+    "anatomic_system": "central_nervous_system_telencephalon",
+    "division": "telencephalon",
+    "hemisphere": "right",
+    "lobe": "parietal_lobe",
+    "subsystem": "neocortex",
+    "parent_id": "brain.telencephalon.right.parietal_lobe",
+    "groups": [
+      "division.cerebrum",
+      "hemisphere.right",
+      "lobe.parietal"
+    ],
+    "children_ids": []
+  },
+  "spatial": {
+    "mesh_node_name": "Mesh_mesh_postcentral_gyrus_right_v1",
+    "source_centroid": [
+      -33.15,
+      -67.42,
+      1598.35
+    ],
+    "source_coordinate_frame": "dicom_lps_whole_body",
+    "stereotaxic_registration": {
+      "registered_centroid": [
+        33.15,
+        36.65,
+        2.68
+      ],
+      "registered_coordinate_frame": "canonical_atlas_ras",
+      "registration_status": "REGISTRATION_PENDING",
+      "registration": {
+        "registration_method": "not_registered",
+        "registration_source": "scripts/pipeline/canonicalize_mesh.ts (rigid adapter only; coordinate conversion, NOT template registration)"
+      }
+    },
+    "bounding_box": {
+      "min": [
+        1.54,
+        8.34,
+        -27.4
+      ],
+      "max": [
+        64.76,
+        64.95,
+        32.76
+      ],
+      "coordinate_frame": "canonical_atlas_ras",
+      "derivation": "reconstructed from manifest centroid + dimensions (bbox-center convention)"
+    },
+    "estimated_volume_cm3": 21.855,
+    "default_hex_color": "#C9BFA6",
+    "centroid_convention": "bounding-box center (NOT vertex mean)."
+  },
+  "representations": [
+    {
+      "id": "rep.postcentral_gyrus.right.macroscopic_mesh",
+      "representation_type": "macroscopic_mesh",
+      "level_of_detail": "LOD0-LOD3",
+      "asset_reference": "mesh.postcentral_gyrus.right.v1",
+      "coordinate_frame": "canonical_atlas_ras",
+      "is_canonical": true,
+      "metadata": {
+        "format": "glb_meshopt",
+        "topology": "CLOSED_SURFACE"
+      }
+    }
+  ],
+  "asset_id": "mesh.postcentral_gyrus.right.v1",
+  "asset_provenance": {
+    "asset_id": "mesh.postcentral_gyrus.right.v1",
+    "dataset_name": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+    "dataset_version": "Release 3.0 (2011/06/20)",
+    "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72665.stl",
+    "upstream_asset_id": "FMA72665",
+    "upstream_license": "CC_BY_SA_2_1_JP",
+    "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International.",
+    "acquisition_date": "2026-09-27",
+    "derived_component": {
+      "parent_asset_id": "mesh.cortex.right.v1",
+      "parent_ingestion_record": "assets/raw/mesh.cortex.right.v1/ingestion.json",
+      "input_sha256": "26aa859a22bed7bb4165f41b456f532ace9de8e7583754f894ec239615558829",
+      "operation": "hash-verified byte copy (no geometric modification)",
+      "software": "scripts/pipeline/prepare_gyral_batch.ts",
+      "operator": "Phase 5.0 batch preparation"
+    },
+    "resulting_sha256_hash": "49eea8819438afc1f52a50c1db1a0c7383f35724911251a8385b849ebcf437be",
+    "resulting_license": "CC-BY-SA 4.0",
+    "project_distribution_policy": "CC-BY-SA-4.0",
+    "production_eligibility": "PRODUCTION_ALLOWED",
+    "commercial_redistribution": "PERMITTED",
+    "restrictions_and_covenants": [
+      "Must attribute BodyParts3D / DBCLS in application notices and UI",
+      "Derived 3D meshes distributed under CC-BY-SA 4.0.",
+      "Conservative licensing posture (Phase 3.1 section 19): historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution."
+    ],
+    "validation_status": "CLEARED",
+    "legal_review_notes": "BodyParts3D Release 3.0 component FMA72665 via in-repo derivation from mesh.cortex.right.v1. Same license chain as production cortex composites. Retroactivity UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution."
+  },
+  "topography": {
+    "relationships": [
+      {
+        "source_entity_id": "brain.telencephalon.right.parietal_lobe.postcentral_gyrus",
+        "target_entity_id": "brain.telencephalon.right.parietal_lobe",
+        "relationship_type": "part_of",
+        "semantic_class": "STRUCTURAL_CONTAINMENT",
+        "evidence_claim_ids": [],
+        "notes": "BodyParts3D distribution segment FMA72665 (parietal lobe); containment follows the distribution taxonomy. No functional-connectivity claim."
+      }
+    ]
+  },
+  "geometry_state": "RUNTIME_READY",
+  "created_at": "2026-09-27T12:33:57.292Z",
+  "provenance": {
+    "source_authority": "BodyParts3D distribution name list + docs/PHASE_3_CORTEX_SOURCE_COMPONENTS.md (corrected 2026-09-27)",
+    "dataset_name": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+    "dataset_version": "Release 3.0 (2011/06/20)",
+    "ontology_reference": "FMA:72665 (distribution-verified)",
+    "last_reviewed": "2026-09-27"
+  }
+}

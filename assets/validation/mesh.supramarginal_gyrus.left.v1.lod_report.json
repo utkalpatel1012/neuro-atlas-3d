@@ -1,0 +1,179 @@
+{
+  "assetId": "mesh.supramarginal_gyrus.left.v1",
+  "timestamp": "2026-09-27T12:26:49.333Z",
+  "inputCanonicalGlb": "assets/derived/mesh.supramarginal_gyrus.left.v1/canonical/mesh.supramarginal_gyrus.left.v1.canonical.glb",
+  "inputCanonicalHash": "cea75788f49e626b706194ddde7f175adddb66d7747e302910955bb1dc6beca0",
+  "levels": [
+    {
+      "level": 0,
+      "lodName": "lod0",
+      "targetRatio": 1,
+      "triangleCount": 9778,
+      "vertexCount": 4891,
+      "byteLength": 177048,
+      "sha256": "b337a48eff7dcba2a220443ae045384ca449713a52666b2470ebee4af67d1697",
+      "filePath": "assets/derived/mesh.supramarginal_gyrus.left.v1/lod/mesh.supramarginal_gyrus.left.v1.lod0.glb",
+      "targetIndexCount": 29334,
+      "resultingIndexCount": 29334,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 14850.37,
+        "lodVolumeMm3": 14850.37,
+        "volumeDeviationPercent": 0,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0,
+        "meanSurfaceDeviationMm": 0
+      }
+    },
+    {
+      "level": 1,
+      "lodName": "lod1",
+      "targetRatio": 0.75,
+      "triangleCount": 7332,
+      "vertexCount": 3668,
+      "byteLength": 133016,
+      "sha256": "47f2601af65ffd098e48ede6f6e9c5007d73fad254a1031cebc2988c10a5faf1",
+      "filePath": "assets/derived/mesh.supramarginal_gyrus.left.v1/lod/mesh.supramarginal_gyrus.left.v1.lod1.glb",
+      "targetIndexCount": 21999,
+      "resultingIndexCount": 21996,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.001145,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 14850.37,
+        "lodVolumeMm3": 14840.13,
+        "volumeDeviationPercent": -0.069,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0.0047
+          ],
+          "max": [
+            0,
+            0,
+            -0.0117
+          ]
+        },
+        "maxSurfaceDeviationMm": 1.4051,
+        "meanSurfaceDeviationMm": 0.1184
+      }
+    },
+    {
+      "level": 2,
+      "lodName": "lod2",
+      "targetRatio": 0.5,
+      "triangleCount": 4888,
+      "vertexCount": 2446,
+      "byteLength": 89024,
+      "sha256": "e2de44eda2b44308a60b4e835b508d7951810eb0cc16608cd7761ed130de45b6",
+      "filePath": "assets/derived/mesh.supramarginal_gyrus.left.v1/lod/mesh.supramarginal_gyrus.left.v1.lod2.glb",
+      "targetIndexCount": 14667,
+      "resultingIndexCount": 14664,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.001952,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 14850.37,
+        "lodVolumeMm3": 14805.84,
+        "volumeDeviationPercent": -0.3,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.0047,
+            0,
+            0.0047
+          ],
+          "max": [
+            0,
+            0,
+            -0.0117
+          ]
+        },
+        "maxSurfaceDeviationMm": 2.4283,
+        "meanSurfaceDeviationMm": 0.3017
+      }
+    },
+    {
+      "level": 3,
+      "lodName": "lod3",
+      "targetRatio": 0.25,
+      "triangleCount": 2444,
+      "vertexCount": 1224,
+      "byteLength": 45032,
+      "sha256": "d317622de4e550e1ba12d9a5c791012f43ba438f6654284d6c394f613226a431",
+      "filePath": "assets/derived/mesh.supramarginal_gyrus.left.v1/lod/mesh.supramarginal_gyrus.left.v1.lod3.glb",
+      "targetIndexCount": 7332,
+      "resultingIndexCount": 7332,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.003782,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 14850.37,
+        "lodVolumeMm3": 14727.58,
+        "volumeDeviationPercent": -0.827,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.0515,
+            0,
+            0.0047
+          ],
+          "max": [
+            -0.0329,
+            0,
+            -0.0352
+          ]
+        },
+        "maxSurfaceDeviationMm": 3.23,
+        "meanSurfaceDeviationMm": 0.626
+      }
+    }
+  ],
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.supramarginal_gyrus.left.v1.lod_generation",
+    "tool": "MeshoptSimplifier / NeuroAtlas3D LOD Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "algorithms": "Quadric_Error_Metric_Simplification",
+      "levels": [
+        {
+          "name": "lod0",
+          "ratio": 1
+        },
+        {
+          "name": "lod1",
+          "ratio": 0.75
+        },
+        {
+          "name": "lod2",
+          "ratio": 0.5
+        },
+        {
+          "name": "lod3",
+          "ratio": 0.25
+        }
+      ]
+    },
+    "timestamp": "2026-09-27T12:26:49.333Z"
+  }
+}

@@ -19,6 +19,17 @@ const PROJECT_ROOT = path.resolve(__dirname, '../../');
 
 export interface ExtendedAssetManifestEntry extends AssetProvenance {
   coordinate_space?: string;
+  // Phase 5.0 (§31): stable structure linkage (hierarchy/discovery). Populated
+  // from the asset's ingestion record; absent on pre-5.0 legacy entries.
+  structure_id?: string;
+  // Phase 5.0 (§19): in-repo derivation record passthrough (parent asset,
+  // input hash, operation). Absent on legacy entries.
+  derived_from?: {
+    parent_asset_id: string;
+    parent_ingestion_record: string;
+    input_sha256: string;
+    operation: string;
+  };
   centroid_mm?: [number, number, number];
   dimensions_mm?: [number, number, number];
   canonical_glb_path?: string;
@@ -56,11 +67,22 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
   const isRight = assetId.includes('right');
   const isCortex = assetId.includes('cortex');
 
+  // Phase 5.0: per-asset upstream FMA from its own ingestion record; legacy
+  // hippocampus/cortex defaults preserved exactly when absent.
   let sourceFma = isRight ? 'FMA72713' : 'FMA72714';
   let nameDesc = isRight ? 'right hippocampus' : 'left hippocampus';
+  let ingestionMeta: any = null;
+  try {
+    ingestionMeta = JSON.parse(fs.readFileSync(path.join(PROJECT_ROOT, 'assets/raw', assetId, 'ingestion.json'), 'utf8'));
+    if (typeof ingestionMeta.source_asset_id === 'string' && ingestionMeta.source_asset_id.length > 0) {
+      sourceFma = ingestionMeta.source_asset_id;
+    }
+  } catch { /* legacy fallback below */ }
   if (isCortex) {
     sourceFma = isRight ? 'BodyParts3D_Cortex_Right_Assembly' : 'BodyParts3D_Cortex_Left_Assembly';
     nameDesc = isRight ? 'right cerebral cortex' : 'left cerebral cortex';
+  } else if (ingestionMeta?.source_metadata?.component_name) {
+    nameDesc = String(ingestionMeta.source_metadata.component_name).toLowerCase();
   }
 
   const canonicalGlbPath = path.join(PROJECT_ROOT, 'assets/derived', assetId, 'canonical', `${assetId}.canonical.glb`);
@@ -97,8 +119,7 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
 
   const rawPath = isCortex
     ? path.join(PROJECT_ROOT, 'assets/raw', assetId, `${assetId}.raw.stl`)
-    : path.join(PROJECT_ROOT, 'assets/raw', assetId, `${sourceFma}.stl`);
-  const rawBytes = fs.existsSync(rawPath) ? fs.readFileSync(rawPath) : Buffer.alloc(0);
+    : path.join(PROJECT_ROOT, 'assets/raw', assetId, `${sourceFma}.stl`);  const rawBytes = fs.existsSync(rawPath) ? fs.readFileSync(rawPath) : Buffer.alloc(0);
   const rawHash = crypto.createHash('sha256').update(rawBytes).digest('hex');
 
   const lodFiles: Record<string, { path: string; sha256: string; triangles: number; bytes: number }> = {};
@@ -125,7 +146,12 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
     }
   }
 
-  const topologyClass = isCortex ? 'MULTI_SHELL_COMPOSITE' : 'SOLID';
+  const topologyClass = isCortex
+    ? 'MULTI_SHELL_COMPOSITE'
+    // Phase 5.0: gyral assets inherit the validated QA topology class from
+    // their own geometry report (SOLID / CLOSED_SURFACE / open-sheet class);
+    // legacy hippocampus behavior (SOLID) preserved when the report is absent.
+    : (geomQa?.geometricQA?.topologyClass as string | undefined) || 'SOLID';
 
   // Phase 3.1 (D2): cortex composites link their per-component authority record.
   // Components live in assets/raw/<assetId>/ingestion.json (FMA ID, name, lobe,
@@ -153,6 +179,20 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
 
   const entry: ExtendedAssetManifestEntry = {
     asset_id: assetId,
+    // Phase 5.0 (§31): structure linkage for hierarchy/discovery. Read from
+    // the asset's own ingestion record; absent on legacy entries.
+    ...(ingestionMeta?.structure_id ? { structure_id: String(ingestionMeta.structure_id) } : {}),
+    // Phase 5.0 (§19): derivation passthrough for in-repo component staging.
+    ...(ingestionMeta?.derived_component
+      ? {
+          derived_from: {
+            parent_asset_id: String(ingestionMeta.derived_component.parent_asset_id),
+            parent_ingestion_record: String(ingestionMeta.derived_component.parent_ingestion_record),
+            input_sha256: String(ingestionMeta.derived_component.input_sha256),
+            operation: String(ingestionMeta.derived_component.operation)
+          }
+        }
+      : {}),
     // Phase 3.1 (D11): dataset_name names the SOURCE dataset only. SPL-PNL was a
     // cross-validation reference, never the source; the 'BodyParts3D / SPL-PNL' blend
     // was provenance contamination. Acquisition channel (DBCLS portal vs third-party
@@ -160,7 +200,9 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
     dataset_name: 'BodyParts3D Release 3.0',
     acquisition_channel: isCortex
       ? 'Third-party GitHub mirror of DBCLS data (OBJ to STL converted; per-component URLs in component record)'
-      : 'Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)',
+      : ingestionMeta?.derived_component
+        ? `Third-party GitHub mirror of DBCLS data (in-repo derivation from ${ingestionMeta.derived_component.parent_asset_id} component ${sourceFma}; per-component URL in ingestion record)`
+        : 'Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)',
     source_authority_urls: [
       'https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html',
       'https://github.com/Kevin-Mattheus-Moerman/BodyParts3D'
@@ -290,12 +332,21 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
 export function updateManifest(): AssetsManifest {
   console.log('[MANIFEST GENERATOR] Compiling asset manifest...');
 
-  const candidateIds = [
-    'mesh.hippocampus.left.v1',
-    'mesh.hippocampus.right.v1',
-    'mesh.cortex.left.v1',
-    'mesh.cortex.right.v1'
-  ];
+  // Phase 5.0 (§31): discover candidates from raw ingestion records instead of
+  // a hardcoded list; an asset joins only with a completed canonical GLB
+  // (the pre-5.0 safety property, unchanged).
+  const candidateIds: string[] = [];
+  const rawRoot = path.join(PROJECT_ROOT, 'assets/raw');
+  if (fs.existsSync(rawRoot)) {
+    for (const dirent of fs.readdirSync(rawRoot, { withFileTypes: true })) {
+      if (!dirent.isDirectory()) continue;
+      const ingestPath = path.join(rawRoot, dirent.name, 'ingestion.json');
+      if (fs.existsSync(ingestPath)) {
+        candidateIds.push(dirent.name);
+      }
+    }
+  }
+  candidateIds.sort();
   const assetIds: string[] = [];
   for (const cid of candidateIds) {
     const canonicalPath = path.join(PROJECT_ROOT, 'assets/derived', cid, 'canonical', `${cid}.canonical.glb`);

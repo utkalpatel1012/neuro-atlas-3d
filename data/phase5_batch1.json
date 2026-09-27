@@ -1,0 +1,135 @@
+{
+  "batch": "phase5-batch1-gyral",
+  "generated_at": "2026-09-27T12:26:39.840Z",
+  "generator": "scripts/pipeline/prepare_gyral_batch.ts",
+  "items": [
+    {
+      "assetId": "mesh.superior_frontal_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.frontal_lobe.superior_frontal_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Left superior frontal gyrus (30450 tris), hash-verified.",
+      "sourceHash": "54aa6966cf6dee412cd16f2fc9ba4222a47910c59cc7a147dbac87d62689a13d",
+      "byteLength": 1522584
+    },
+    {
+      "assetId": "mesh.superior_frontal_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.frontal_lobe.superior_frontal_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Right superior frontal gyrus (30448 tris), hash-verified.",
+      "sourceHash": "bfdfb291520f28f3243e5b6969449e9d0ce70fcbe7f2e1862629cea21110eb94",
+      "byteLength": 1522484
+    },
+    {
+      "assetId": "mesh.middle_frontal_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.frontal_lobe.middle_frontal_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Left middle frontal gyrus (15544 tris), hash-verified.",
+      "sourceHash": "e97ef0b0a99f9d5b76d96363555cc27dca101c0f39ec340f38517e106a68d05b",
+      "byteLength": 777284
+    },
+    {
+      "assetId": "mesh.middle_frontal_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.frontal_lobe.middle_frontal_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Right middle frontal gyrus (15558 tris), hash-verified.",
+      "sourceHash": "3996b19ea6ddce123eb1c41798cfff26f8af125fa63492a98454c6ea994bf26e",
+      "byteLength": 777984
+    },
+    {
+      "assetId": "mesh.precentral_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.frontal_lobe.precentral_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Left precentral gyrus (18836 tris), hash-verified.",
+      "sourceHash": "533692c92294c4f5ad4158a51ab681cfefb4bd0f729a70df2e983693a1b51b2b",
+      "byteLength": 941884
+    },
+    {
+      "assetId": "mesh.precentral_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.frontal_lobe.precentral_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Right precentral gyrus (18838 tris), hash-verified.",
+      "sourceHash": "136dc5cab4297753d7d26af60990c9e94b78997d6bf6a61d2beea08c726fd497",
+      "byteLength": 941984
+    },
+    {
+      "assetId": "mesh.postcentral_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.parietal_lobe.postcentral_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Left postcentral gyrus (16858 tris), hash-verified.",
+      "sourceHash": "30fd9c050762f100770d42a71c64976cce10c49440f03e991702fe8514ebceb3",
+      "byteLength": 842984
+    },
+    {
+      "assetId": "mesh.postcentral_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.parietal_lobe.postcentral_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Right postcentral gyrus (16862 tris), hash-verified.",
+      "sourceHash": "26aa859a22bed7bb4165f41b456f532ace9de8e7583754f894ec239615558829",
+      "byteLength": 843184
+    },
+    {
+      "assetId": "mesh.supramarginal_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.parietal_lobe.supramarginal_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Left supramarginal gyrus (9778 tris), hash-verified.",
+      "sourceHash": "ac0d7b383407477f53f13304de628ec848e8273f41b9ca5895a34697834e6f1b",
+      "byteLength": 488984
+    },
+    {
+      "assetId": "mesh.supramarginal_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.parietal_lobe.supramarginal_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Right supramarginal gyrus (9782 tris), hash-verified.",
+      "sourceHash": "babd989df0c238866ab1ae6c9e94d1fb3ec5b7d457ee25576a31a120831e9f97",
+      "byteLength": 489184
+    },
+    {
+      "assetId": "mesh.angular_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.parietal_lobe.angular_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Left angular gyrus (13164 tris), hash-verified.",
+      "sourceHash": "206507829901707be007389c3ebdbae07ebb942ec983d4582c3c2b76fef6ae34",
+      "byteLength": 658284
+    },
+    {
+      "assetId": "mesh.angular_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.parietal_lobe.angular_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Right angular gyrus (13172 tris), hash-verified.",
+      "sourceHash": "8d269ad9da1d34453e23ac41ce4cf1e94734f48023373b7f2502beaed17cfeb1",
+      "byteLength": 658684
+    },
+    {
+      "assetId": "mesh.middle_temporal_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.temporal_lobe.middle_temporal_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Left middle temporal gyrus (12918 tris), hash-verified.",
+      "sourceHash": "b7e58d0f86e4dd335eabf01b5459526f6a7fe66821b03ccb43d879ba70d56332",
+      "byteLength": 645984
+    },
+    {
+      "assetId": "mesh.middle_temporal_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.temporal_lobe.middle_temporal_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Right middle temporal gyrus (12926 tris), hash-verified.",
+      "sourceHash": "a39ee61dc99086d7d1be44c42157de54e04f9defa85074c63dc43b0bd1ef028f",
+      "byteLength": 646384
+    },
+    {
+      "assetId": "mesh.cingulate_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.limbic.cingulate_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Left cingulate gyrus (11724 tris), hash-verified.",
+      "sourceHash": "e83fc7ef26bafad285d81a236a5651132bd7eb1232f488ebb01f14202bffd927",
+      "byteLength": 586284
+    },
+    {
+      "assetId": "mesh.cingulate_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.limbic.cingulate_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "detail": "Staged Right cingulate gyrus (11716 tris), hash-verified.",
+      "sourceHash": "052c22b760864144c50cc50077a3bdb111d7ed57e5f025ed9c061829b353b5dc",
+      "byteLength": 585884
+    }
+  ]
+}
