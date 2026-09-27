@@ -17,6 +17,16 @@ export interface InteractionCallbacks {
   onSelect?: SelectCallback;
 }
 
+/**
+ * Phase 4A clipping filter (§8): lets picking skip surface fragments the GPU
+ * clipping planes remove, without touching BVHs. Supplied by application state
+ * (SectionPlaneSet); null = pre-4A behavior. Event-driven only.
+ */
+export interface ClippingPickFilter {
+  isPointCulled(p: THREE.Vector3): boolean;
+  hasActivePlanes(): boolean;
+}
+
 export class InteractionManager {
   private canvas?: HTMLCanvasElement;
   private camera: THREE.Camera;
@@ -31,6 +41,7 @@ export class InteractionManager {
   private pointerDownPos: { x: number; y: number } = { x: 0, y: 0 };
   private currentHoveredEntityId: string | null = null;
   private enabled = true;
+  private clippingFilter: ClippingPickFilter | null = null;
 
   // Bound event listener references for clean removal
   private boundPointerMove: (e: PointerEvent) => void;
@@ -145,12 +156,26 @@ export class InteractionManager {
   }
 
   /**
+   * Phase 4A (§8): install/remove the clipping pick filter. When planes are
+   * active, single-hit mode is disabled so farther visible fragments can still
+   * resolve (correctness over the firstHitOnly shortcut, only while clipping).
+   */
+  public setClippingFilter(filter: ClippingPickFilter | null): void {
+    this.clippingFilter = filter;
+  }
+
+  private clippingActive(): boolean {
+    return this.clippingFilter !== null && this.clippingFilter.hasActivePlanes();
+  }
+
+  /**
    * Raycasts the scene for pointer hover state.
    */
   public performHoverRaycast(): string | null {
     if (this.pointerNdc.x < -1 || this.pointerNdc.x > 1) return null;
 
     this.raycaster.setFromCamera(this.pointerNdc, this.camera);
+    (this.raycaster as any).firstHitOnly = !this.clippingActive();
     const intersects = this.raycaster.intersectObjects(this.searchRoot.children, true);
 
     let topEntityId: string | null = null;
@@ -167,6 +192,11 @@ export class InteractionManager {
         obj = obj.parent;
       }
       if (!isVis) continue;
+
+      // Phase 4A: skip fragments the GPU clipping planes remove. BVH still
+      // tests original geometry (never rebuilt for clipping); this filter
+      // applies the same half-spaces on the CPU at pick time only.
+      if (this.clippingActive() && this.clippingFilter!.isPointCulled(hit.point)) continue;
 
       const entity = this.entityManager.getEntityByMesh(hit.object as THREE.Mesh);
       if (entity) {
@@ -191,6 +221,7 @@ export class InteractionManager {
    */
   public performSelectRaycast(): string | null {
     this.raycaster.setFromCamera(this.pointerNdc, this.camera);
+    (this.raycaster as any).firstHitOnly = !this.clippingActive();
     const intersects = this.raycaster.intersectObjects(this.searchRoot.children, true);
 
     let selectedId: string | null = null;
@@ -207,6 +238,9 @@ export class InteractionManager {
         obj = obj.parent;
       }
       if (!isVis) continue;
+
+      // Phase 4A: same clipping filter as hover (see above).
+      if (this.clippingActive() && this.clippingFilter!.isPointCulled(hit.point)) continue;
 
       const entity = this.entityManager.getEntityByMesh(hit.object as THREE.Mesh);
       if (entity) {

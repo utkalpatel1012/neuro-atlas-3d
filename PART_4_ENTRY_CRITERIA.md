@@ -60,3 +60,15 @@ independent review (`docs/PHASE_3_2_INDEPENDENT_REVIEW.md`: 2 MAJOR fixed, rest
 documented); runtime constraints (`docs/PHASE_4_RUNTIME_CONSTRAINTS.md`); parcellation
 + psychiatry schema compatibility verified additive-only (no schema change needed).
 Verdict: `PHASE_3_2_ENTRY_CERTIFICATION.md`.
+
+## Phase 4A completion record (certification pass — entry boxes above unchanged)
+
+Phase 4A (mesh-based sectional visualization) implemented and certified:
+sagittal/coronal/axial/oblique GPU clipping, inversion, multi-plane intersection,
+enable/disable/reset, gizmo, minimal UI, LOD persistence, BVH-documented picking
+with fully-clipped exclusion (TEST 7), bounded lifecycle. Evidence:
+docs/PHASE_4_SECTIONAL_VISUALIZATION.md, PHASE_4A_COMPLETION_REPORT.md,
+44 math + 86 clipping checks green. Unrelated Phase 4 requirements (MRI,
+parcellation, psychiatry layers, caps, device validation, L8 license conflict,
+expert review) remain exactly as previously stated — nothing marked complete
+beyond what Phase 4A did.

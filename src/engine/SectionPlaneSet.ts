@@ -224,6 +224,21 @@ export class SectionPlaneSet {
     return true;
   }
 
+  /** Clipping predicate for picking (§8): a point is culled iff ANY enabled
+   * plane culls it (multi-plane = intersection of retained half-spaces).
+   * Pure state logic — no renderer, no BVH rebuild, O(planes). */
+  public isPointCulled(p: Vec3): boolean {
+    for (const record of this.planes.values()) {
+      if (!record.enabled) continue;
+      const n = record.math.normal;
+      const o = record.math.origin;
+      const d = n[0] * (p[0] - o[0]) + n[1] * (p[1] - o[1]) + n[2] * (p[2] - o[2]);
+      const culled = record.math.retainedSide === '+n' ? d < -1e-6 : d > 1e-6;
+      if (culled) return true;
+    }
+    return false;
+  }
+
   public dispose(): void {
     this.listeners.clear();
     this.planes.clear();

@@ -56,10 +56,13 @@ mesh/material, so clipping persists across LOD0–3 (tested). LOD ref-balance fi
 
 ## BVH interaction
 
-Raycasting (three.js + three-mesh-bvh) tests ORIGINAL geometry and ignores GPU
-clipping — pinned by test. Consequence: selection may resolve an entity clipped
-from view. Entity ID, metadata, provenance never change under clipping (tested).
-BVHs are never rebuilt for clipping (no per-frame CPU slicing, ever).
+Raycasting (three.js + three-mesh-bvh) tests ORIGINAL geometry — BVHs are never
+rebuilt for clipping. Picking additionally applies the CPU half-space predicate
+(`SectionPlaneSet.isPointCulled`) per hit, nearest-first: fully-clipped entities
+do NOT resolve (fixed in certification; TEST 7); partially-clipped entities
+resolve via their visible fragments (single-hit shortcut disabled while planes are
+active, restored after). Entity ID, metadata, provenance never change under
+clipping (tested). No per-frame CPU slicing, ever.
 
 ## Performance strategy
 

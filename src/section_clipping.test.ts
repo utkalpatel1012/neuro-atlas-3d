@@ -374,6 +374,87 @@ async function runTests() {
   console.log('[PASS] Multi-plane clipping on real 198k-tri asset; deterministic order.');
   passedChecks += 1;
 
+  // --------------------------------------------------------------------------
+  // TEST 7: Clipping-aware picking (§8) — fully-clipped entities not selected
+  // --------------------------------------------------------------------------
+  console.log('\n--- TEST 7: Clipping-Aware Picking ---');
+  const pickStore = new SectionPlaneSet();
+  // Pure predicate checks (no renderer).
+  pickStore.setConstant('plane.sagittal', 1000);
+  pickStore.setEnabled('plane.sagittal', true);
+  assert(pickStore.isPointCulled([-25.07, -13.89, -20.7]) === true, 'hippocampus centroid culled by X>=1000 plane');
+  passedChecks++;
+  assert(pickStore.isPointCulled([1001, 0, 0]) === false, 'retained-side point not culled');
+  passedChecks++;
+  pickStore.setEnabled('plane.sagittal', false);
+  assert(pickStore.isPointCulled([-25.07, -13.89, -20.7]) === false, 'disabled plane culls nothing');
+  passedChecks++;
+
+  // Integration on a real asset through InteractionManager.
+  const { InteractionManager } = await import('./engine/InteractionManager');
+  const pickAssetMgr = new AssetManager();
+  await pickAssetMgr.loadManifest('assets/manifests/assets.manifest.json');
+  const pickEntityMgr = new AnatomicalEntityManager();
+  const pickLoaded = await pickAssetMgr.loadAsset('mesh.hippocampus.left.v1', 'lod0');
+  const pickRecord: AnatomicalEntityRecord = {
+    entityId: 'brain.telencephalon.left.limbic.hippocampus',
+    assetId: 'mesh.hippocampus.left.v1',
+    name: 'Left Hippocampus',
+    officialLatin: 'hippocampus sinister',
+    laterality: 'left',
+    canonicalCentroidMm: [-25.07, -13.89, -20.7],
+    dimensionsMm: [18.9, 20.78, 40.55],
+    volumeCm3: 1.87,
+    topologyClass: 'SOLID',
+    validationStatus: 'APPROVED',
+    upstreamDataset: 'DBCLS BodyParts3D Release 3.0',
+    upstreamLicense: 'CC BY 4.0',
+    sourceDefinition: 'FMA72714'
+  };
+  pickEntityMgr.registerEntity(pickRecord, pickLoaded.mesh);
+  const pickRoot = new THREE.Group();
+  pickRoot.add(pickLoaded.mesh);
+  pickRoot.updateMatrixWorld(true);
+  const pickCamera = new THREE.PerspectiveCamera(45, 1, 0.1, 2000);
+  pickCamera.position.set(-25.07, -13.89, 379.3);
+  pickCamera.lookAt(new THREE.Vector3(-25.07, -13.89, -20.7));
+  pickCamera.updateMatrixWorld(true);
+  const pickInteraction = new InteractionManager(pickCamera, pickRoot, pickEntityMgr);
+  (pickInteraction as any).pointerNdc.set(0, 0);
+  pickInteraction.setClippingFilter({
+    isPointCulled: (p) => pickStore.isPointCulled([p.x, p.y, p.z]),
+    hasActivePlanes: () => pickStore.getEnabledPlanes().length > 0
+  });
+
+  // No planes enabled: nearest-hit shortcut active, entity resolves.
+  assert(pickInteraction.performHoverRaycast() === pickRecord.entityId, 'unclipped hover resolves entity');
+  passedChecks++;
+  assert(pickInteraction.performSelectRaycast() === pickRecord.entityId, 'unclipped select resolves entity');
+  passedChecks++;
+
+  // Fully culling plane: NOTHING resolves (was: invisible entity selected).
+  pickStore.setConstant('plane.sagittal', 1000);
+  pickStore.setEnabled('plane.sagittal', true);
+  assert(pickInteraction.performHoverRaycast() === null, 'fully-clipped hover resolves null');
+  passedChecks++;
+  assert(pickInteraction.performSelectRaycast() === null, 'fully-clipped select resolves null');
+  passedChecks++;
+
+  // Retaining plane: entity still resolves (partial-visibility path intact).
+  pickStore.setConstant('plane.sagittal', -1000);
+  assert(pickInteraction.performHoverRaycast() === pickRecord.entityId, 'retained hover still resolves');
+  passedChecks++;
+  pickStore.setEnabled('plane.sagittal', false);
+  pickInteraction.setClippingFilter(null);
+  assert(pickInteraction.performHoverRaycast() === pickRecord.entityId, 'filter removal restores legacy behavior');
+  passedChecks++;
+  pickInteraction.dispose();
+  pickStore.dispose();
+  pickEntityMgr.clear();
+  pickAssetMgr.dispose();
+  console.log('[PASS] Fully-clipped entities not pickable; retained entities resolve; filter removable.');
+  passedChecks += 1;
+
   console.log('\n================================================================');
   console.log(`ALL SECTIONAL CLIPPING TESTS PASSED (${passedChecks} checks).`);
   console.log('================================================================\n');

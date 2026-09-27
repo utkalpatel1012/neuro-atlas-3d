@@ -128,6 +128,14 @@ export class AtlasApplication {
       canvas
     );
 
+    // Phase 4A (§8): picking skips GPU-clipped fragments using application plane
+    // state. BVH/geometry untouched; filter is event-driven CPU half-space tests.
+    const planeSet = this.sectionPlaneSet;
+    this.interactionManager.setClippingFilter({
+      isPointCulled: (p) => planeSet.isPointCulled([p.x, p.y, p.z]),
+      hasActivePlanes: () => planeSet.getEnabledPlanes().length > 0
+    });
+
     // Wire Interaction -> Selection / Hover
     this.interactionManager.onHover((entityId) => {
       this.handleHover(entityId);
