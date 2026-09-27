@@ -27,6 +27,20 @@ export interface SectionBookmark {
   isolatedEntityId: string | null;
   hiddenEntityIds: string[];
   labelsEnabled: boolean;
+  /**
+   * Phase 4C §35 (optional, additive): MRI visibility + slice display +
+   * contrast + canonical plane reference. Logical state ONLY — never GPU
+   * textures, volumes, or WebGL/WebGPU objects. Absent in pre-4C bookmarks.
+   */
+  mri?: {
+    volumeId: string | null;
+    visible: boolean;
+    mode: 'MESH_ONLY' | 'MRI_ONLY' | 'SPLIT' | 'OVERLAY';
+    windowWidth: number;
+    windowCenter: number;
+    opacity: number;
+    planeId: string | null;
+  } | null;
 }
 
 function isFiniteVec3(v: unknown): v is [number, number, number] {
@@ -47,6 +61,7 @@ export function createBookmark(params: {
   isolatedEntityId: string | null;
   hiddenEntityIds: string[];
   labelsEnabled: boolean;
+  mri?: SectionBookmark['mri'];
 }): SectionBookmark | null {
   if (!params.id || !params.label) return null;
   if (!params.planes || params.planes.version !== 1 || !Array.isArray(params.planes.planes)) return null;
@@ -54,6 +69,7 @@ export function createBookmark(params: {
   if (params.camera !== null) {
     if (!isFiniteVec3(params.camera.position) || !isFiniteVec3(params.camera.target)) return null;
   }
+  if (params.mri !== undefined && params.mri !== null && !isValidBookmarkMri(params.mri)) return null;
   return {
     version: 1,
     id: params.id,
@@ -64,8 +80,19 @@ export function createBookmark(params: {
     selectedEntityId: params.selectedEntityId,
     isolatedEntityId: params.isolatedEntityId,
     hiddenEntityIds: [...params.hiddenEntityIds],
-    labelsEnabled: params.labelsEnabled
+    labelsEnabled: params.labelsEnabled,
+    mri: params.mri === undefined ? null : params.mri ? { ...params.mri } : null
   };
+}
+
+function isValidBookmarkMri(mri: NonNullable<SectionBookmark['mri']>): boolean {
+  if (mri.volumeId !== null && typeof mri.volumeId !== 'string') return false;
+  if (typeof mri.visible !== 'boolean') return false;
+  if (!['MESH_ONLY', 'MRI_ONLY', 'SPLIT', 'OVERLAY'].includes(mri.mode)) return false;
+  if (!Number.isFinite(mri.windowWidth) || !Number.isFinite(mri.windowCenter)) return false;
+  if (!Number.isFinite(mri.opacity) || mri.opacity < 0 || mri.opacity > 1) return false;
+  if (mri.planeId !== null && typeof mri.planeId !== 'string') return false;
+  return true;
 }
 
 /** Deterministic serialization (fixed field order via construction). */
@@ -80,7 +107,8 @@ export function serializeBookmark(bookmark: SectionBookmark): string {
     selectedEntityId: bookmark.selectedEntityId,
     isolatedEntityId: bookmark.isolatedEntityId,
     hiddenEntityIds: [...bookmark.hiddenEntityIds].sort(),
-    labelsEnabled: bookmark.labelsEnabled
+    labelsEnabled: bookmark.labelsEnabled,
+    mri: bookmark.mri === undefined ? null : bookmark.mri ? { ...bookmark.mri } : null
   };
   return JSON.stringify(ordered);
 }
@@ -96,6 +124,7 @@ export function deserializeBookmark(json: string): SectionBookmark | null {
       if (!isFiniteVec3(data.camera.position) || !isFiniteVec3(data.camera.target)) return null;
     }
     if (!Array.isArray(data.hiddenEntityIds)) return null;
+    if (data.mri !== undefined && data.mri !== null && !isValidBookmarkMri(data.mri)) return null;
     return {
       version: 1,
       id: data.id,
@@ -106,7 +135,8 @@ export function deserializeBookmark(json: string): SectionBookmark | null {
       selectedEntityId: data.selectedEntityId ?? null,
       isolatedEntityId: data.isolatedEntityId ?? null,
       hiddenEntityIds: [...data.hiddenEntityIds],
-      labelsEnabled: data.labelsEnabled === true
+      labelsEnabled: data.labelsEnabled === true,
+      mri: data.mri === undefined ? null : data.mri ? { ...data.mri } : null
     };
   } catch {
     return null;

@@ -1,0 +1,25 @@
+{
+  "_comment": "Phase 4C §47 registration record for volume.mri.colin27_1998.v1. Unavailable values are NULL/NOT_MEASURED — never invented. Status REGISTRATION_PENDING: no registration has been computed in this repo.",
+  "volumeId": "volume.mri.colin27_1998.v1",
+  "sourceSpace": "mri_world (Talairach, sform from colin27_t1_tal_lin.nii header)",
+  "targetSpace": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior — NOT MNI)",
+  "transformType": null,
+  "matrix": null,
+  "matrixConvention": "row-major-4x4-input-to-output",
+  "software": null,
+  "toolVersion": null,
+  "inputHash": "sha256:81a80619f6714c8a101847ce51c47e8e87e06324bad4188200e6aeb127511ace",
+  "outputHash": null,
+  "validationMethod": null,
+  "validationMetrics": {
+    "treMm": null,
+    "similarity": null,
+    "uncertaintyMm": null
+  },
+  "uncertainty": null,
+  "status": "REGISTRATION_PENDING",
+  "expertReview": "EXPERT_REVIEW_PENDING",
+  "date": "2026-09-27",
+  "operator": "Phase 4C integration (record creation only — no computation performed)",
+  "plannedMethod": "rigid 6DOF from commissural/landmark correspondences with TRE measurement; affine only if rigid residuals demand it (nonlinear NOT justified for template-to-internal reference use). Method choice will be recorded here when executed."
+}

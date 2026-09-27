@@ -27,6 +27,8 @@ import { SectionPlaneSet } from './SectionPlaneSet';
 import { ClippingAdapter } from './ClippingAdapter';
 import { SectionCapsManager } from './SectionCaps';
 import { SectionPresentation, computeSectionStats, SectionStats } from './sectionPresentation';
+import { MriManager } from './MriManager';
+import { createColin27_1998Record, MriDisplayMode } from './mriVolume';
 import {
   AnatomicalEntityRecord,
   CameraViewPreset,
@@ -63,6 +65,7 @@ export class AtlasApplication {
   private clippingAdapter: ClippingAdapter;
   private sectionCaps: SectionCapsManager;
   private sectionPresentation: SectionPresentation;
+  private mriManager: MriManager;
   private planeUnsub: (() => void) | null = null;
   private lodUnsub: (() => void) | null = null;
 
@@ -93,6 +96,10 @@ export class AtlasApplication {
     this.sectionCaps.setSharedPlanes(this.clippingAdapter.getSharedPlanes());
     this.sectionCaps.attachMeshProvider(() => this.collectCapsMeshes());
     this.planeUnsub = this.sectionPlaneSet.onChange(() => this.refreshSectionDerivatives());
+    // Phase 4C: MRI reference state (lazy data, gated display — never startup).
+    this.mriManager = new MriManager();
+    this.mriManager.registerVolume(createColin27_1998Record());
+    this.mriManager.setModeApplier((mode) => this.applyMriDisplayMode(mode));
 
     // Secondary Subsystems
     this.selectionManager = new SelectionManager(this.entityManager, this.materialManager);
@@ -192,6 +199,9 @@ export class AtlasApplication {
     // Phase 4B: derived caps/edges group (visualization aids, never anatomy).
     this.sceneManager.getVisualizationRoot().add(this.sectionCaps.getGroup());
     this.sectionCaps.setSharedPlanes(this.clippingAdapter.getSharedPlanes());
+    // Phase 4C: MRI slice group + plane linkage (lazy data, gated display).
+    this.sceneManager.getVisualizationRoot().add(this.mriManager.getGroup());
+    this.mriManager.bindPlaneSet(this.sectionPlaneSet);
     // Phase 4B §14-§15: labels respect clipping + visibility (no invented anchors).
     this.labelManager.setSectionFilter({
       isPointCulled: (p) => this.sectionPlaneSet.isPointCulled([p.x, p.y, p.z]),
@@ -520,12 +530,30 @@ export class AtlasApplication {
     );
     this.sectionCaps.setSharedPlanes(this.clippingAdapter.getSharedPlanes());
     this.refreshSectionDerivatives();
+    // Phase 4C §37: slice textures rebuild from CPU-side display state.
+    this.mriManager.refresh();
   }
 
   public getSectionPlaneSet(): SectionPlaneSet { return this.sectionPlaneSet; }
   public getClippingAdapter(): ClippingAdapter { return this.clippingAdapter; }
   public getSectionCaps(): SectionCapsManager { return this.sectionCaps; }
   public getSectionPresentation(): SectionPresentation { return this.sectionPresentation; }
+  public getMriManager(): MriManager { return this.mriManager; }
+
+  /**
+   * Phase 4C §30–§31: mesh/MRI mode visibility. Mesh and MRI opacity/depth
+   * stay independently controlled; modes never alter anatomy or MRI data.
+   * MRI_ONLY hides the mesh brain root (visualization aids such as gizmos,
+   * caps, and the MRI slice itself stay under independent toggles).
+   */
+  public applyMriDisplayMode(mode: MriDisplayMode): void {
+    const brainRoot = this.sceneManager.getBrainRoot();
+    if (mode === 'MRI_ONLY') {
+      brainRoot.visible = false;
+    } else {
+      brainRoot.visible = true;
+    }
+  }
 
   /**
    * Phase 4B §16-§18: selection still resolves the ORIGINAL entity (no
@@ -706,6 +734,7 @@ export class AtlasApplication {
     this.performanceManager.dispose();
     this.sectionCaps.dispose();
     this.sectionPresentation.dispose();
+    this.mriManager.dispose();
     this.clippingAdapter.dispose();
     this.materialManager.dispose();
     this.assetManager.dispose();

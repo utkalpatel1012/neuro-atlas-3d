@@ -12,6 +12,7 @@ import { DebugPanel } from './ui/DebugPanel';
 import { ControlsBar } from './ui/ControlsBar';
 import { SectionControls } from './ui/SectionControls';
 import { SectionPresentationPanel } from './ui/SectionPresentationPanel';
+import { MriPanel } from './ui/MriPanel';
 import { AnatomicalEntityRecord } from './engine/types';
 
 async function bootstrap() {
@@ -209,6 +210,10 @@ async function bootstrap() {
     // Phase 4B: presentation aids (orientation, readout, presets, stats).
     // Educational only; no anatomical claims beyond canonical coordinates.
     new SectionPresentationPanel(appContainer, app);
+
+    // Phase 4C: educational MRI reference (lazy data, gated display;
+    // overlay stays disabled until canonical registration is validated).
+    new MriPanel(appContainer, app);
 
     // 5. Select bilateral cerebrum by default to showcase macroanatomy
     app.getAssemblyManager().selectGroup('division.cerebrum');

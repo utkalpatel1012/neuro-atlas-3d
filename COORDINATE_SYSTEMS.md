@@ -134,3 +134,22 @@ all live records are `not_registered`/PENDING with zero metrics):
 3. **Disclaimer for Clinical Neuromodulation**:
    * Scalp coordinates (10-20) and stereotaxic coordinates (AC-PC / MNI) displayed in this atlas represent **normative population averages**.
    * They must **never** be used as primary stereotaxic target coordinates for neurosurgical stereotaxy or robotic TMS navigation in individual patients without patient-specific MRI/CT neuronavigation registration.
+
+---
+
+## 5. Phase 4C MRI volumetric contexts (addition — existing frames unchanged)
+
+MRI volumes introduce two contexts DISTINCT from the frames above; they are
+not new stereotaxic standards and this section only names them so transforms
+stay explicit:
+
+1. **Voxel-index space**: integer (i, j, k) grid positions. NOT millimeters;
+never interchangeable with world coordinates (§8).
+2. **MRI-world space**: millimeters in the dataset-declared frame, defined
+SOLELY by the authoritative NIfTI transform (sform > qform > reject). Example:
+Colin27 1998 = Talairach frame (NOT MNI). Orientation is read from file
+metadata, never from index order (§9–§10).
+
+Chain: voxel-index → MRI-world → (verified registration) → `canonical_atlas_ras`.
+Unregistered volumes have NO link to any frame in §2; the canonical engine
+space itself is unchanged by Phase 4C.

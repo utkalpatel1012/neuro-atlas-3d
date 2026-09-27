@@ -106,3 +106,17 @@ imply no registration. Presentation + clipping headless-tested only (92 new
 checks); browser/iPad/WebGPU-device proof still pending. Empty views show
 mostly empty space by design (white matter, basal ganglia, thalamus, brainstem,
 cerebellum, ventricles, vasculature, complete cortex NOT yet in atlas).
+
+## L16. MRI reference limits (Phase 4C)
+Colin27 1998 T1 is SELECTED as a Type A reference (single-subject average —
+high detail, no population variance; field strength UNKNOWN; Talairach frame,
+NOT MNI). Canonical registration is UNCOMPUTED (REGISTRATION_PENDING, NULL
+metrics): mesh/MRI overlay is DISABLED by construction and no registration
+accuracy is claimed. Volume bytes are not in git and never load at startup
+(lazy only). Slice machinery (NIfTI parse, transforms, sampling, gating) is
+headless-tested on synthetics (100 checks) with header-measured Colin27
+vectors; browser/iPad/WebGPU-device display is UNPROVEN
+(MRI_BROWSER_VALIDATION_PENDING, MRI_IPADOS_VALIDATION_PENDING). Intensities
+are data values, never anatomical labels; schematic landmarks gain no
+MRI-grounded status. No HCP/Julich/BigBrain/parcellation/psychiatry/
+diagnostic content was introduced.

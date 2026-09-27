@@ -1,0 +1,44 @@
+{
+  "_comment": "Phase 4C MRI volume registry. Machine-readable index of evaluated reference volumes. Bytes are NEVER committed (see sourceUrl + sha256); runtime fetch is lazy-only. See docs/MRI_SOURCE_SELECTION.md.",
+  "volumes": [
+    {
+      "volumeId": "volume.mri.colin27_1998.v1",
+      "dataset": "Colin27 1998 original (Holmes et al. 1998)",
+      "version": "1998 original, file colin27_t1_tal_lin.nii",
+      "sourceUrl": "http://packages.bic.mni.mcgill.ca/mni-models/colin27/mni_colin27_1998_nifti.zip",
+      "sourcePage": "http://www.bic.mni.mcgill.ca/ServicesAtlases/Colin27",
+      "sha256": "81a80619f6714c8a101847ce51c47e8e87e06324bad4188200e6aeb127511ace",
+      "archiveByteLength": 24250681,
+      "volumeByteLength": 28436900,
+      "license": {
+        "status": "VERIFIED",
+        "summary": "Collins/MNI permissive: use/copy/modify/distribute for any purpose, fee-free, conditional only on reproducing the copyright notice (verbatim snapshot in docs/MRI_SOURCE_SELECTION.md, verified 2026-09-27).",
+        "attributionRequired": true,
+        "productionAllowed": true
+      },
+      "modality": "T1-weighted MRI average (27 scans, single individual CJH)",
+      "fieldStrength": "UNKNOWN",
+      "geometry": {
+        "dims": [181, 217, 181],
+        "spacingMm": [1.0, 1.0, 1.0],
+        "datatype": "float32",
+        "bytesPerVoxel": 4,
+        "transformSource": "sform",
+        "worldCoordinateSystem": "talairach",
+        "measuredFromHeader": true,
+        "measuredDate": "2026-09-27"
+      },
+      "validationStates": [
+        "SOURCE_IDENTIFIED",
+        "LICENSE_VERIFIED",
+        "FORMAT_VALIDATED",
+        "VOXEL_GEOMETRY_VALIDATED",
+        "WORLD_TRANSFORM_VALIDATED"
+      ],
+      "registrationStatus": "REGISTRATION_PENDING",
+      "quarantined": false,
+      "runtimeIncluded": false,
+      "runtimeNote": "Bytes not committed and never fetched at startup. Production overlay DISABLED until canonical registration is genuinely computed and validated (NO VERIFIED TRANSFORM → NO OVERLAY)."
+    }
+  ]
+}
