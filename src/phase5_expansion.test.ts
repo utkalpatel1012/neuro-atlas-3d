@@ -400,6 +400,75 @@ async function runTests() {
   console.log('[PASS] Identity present; ontology cross-references honestly unresolved.');
   passed++;
 
+  // TEST 15: ANATOMY_VALIDATED evidence rule (5.0.2 §5, §16, §18).
+  // ANATOMY_VALIDATED ⟺ source-authoritative identity + GEOMETRY_VALIDATED +
+  // measured scale/laterality plausibility. It NEVER implies expert review
+  // (no EXPERT_VALIDATED claim may exist anywhere in the asset's records).
+  console.log('\n--- TEST 15: ANATOMY_VALIDATED evidence rule ---');
+  for (const assetId of Object.keys(manifest.assets)) {
+    const entry = manifest.assets[assetId];
+    if (entry.anatomical_qa_status !== 'ANATOMY_VALIDATED') continue;
+    const ingest = readJson(`assets/raw/${assetId}/ingestion.json`);
+    assert(typeof ingest.source_asset_id === 'string' && ingest.source_asset_id.length > 0, `${assetId}: source-authoritative identity recorded`);
+    passed++;
+    assert(entry.geometric_qa_status === 'GEOMETRY_VALIDATED', `${assetId}: geometry validated beneath anatomy status`);
+    passed++;
+    assert(entry.centroid_mm.every((v: number) => Number.isFinite(v)), `${assetId}: measured centroid present (scale/laterality basis)`);
+    passed++;
+    const recordBlob = JSON.stringify(ingest) + JSON.stringify(entry);
+    assert(!/EXPERT_VALIDATED/.test(recordBlob), `${assetId}: no expert-review claim inside anatomy validation`);
+    passed++;
+  }
+  // Composites with unverified component mapping stay PENDING (never VALIDATED).
+  for (const assetId of ['mesh.cortex.left.v1', 'mesh.cortex.right.v1']) {
+    assert(manifest.assets[assetId].anatomical_qa_status === 'ANATOMICAL_MAPPING_PENDING', `${assetId}: composite mapping honestly pending`);
+    passed++;
+  }
+  console.log('[PASS] ANATOMY_VALIDATED = source identity + geometry + plausibility; never expert review.');
+  passed++;
+
+  // TEST 16: CLEARED disambiguation (5.0.2 §8, §16).
+  // CLEARED = pipeline QA clearance ONLY. Every CLEARED entry must still show
+  // GEOMETRY_VALIDATED (technical basis) AND explicit LEGAL_REVIEW_REQUIRED
+  // (clearance never erases legal uncertainty).
+  console.log('\n--- TEST 16: CLEARED means technical clearance only ---');
+  for (const assetId of Object.keys(manifest.assets)) {
+    const entry = manifest.assets[assetId];
+    assert(entry.validation_status === 'CLEARED', `${assetId}: validation CLEARED present`);
+    passed++;
+    assert(entry.geometric_qa_status === 'GEOMETRY_VALIDATED', `${assetId}: CLEARED rests on GEOMETRY_VALIDATED`);
+    passed++;
+    assert(/LEGAL_REVIEW_REQUIRED/.test(entry.legal_review_notes || ''), `${assetId}: CLEARED keeps LEGAL_REVIEW_REQUIRED explicit`);
+    passed++;
+  }
+  console.log('[PASS] CLEARED never silent on legal/scientific limits.');
+  passed++;
+
+  // TEST 17: laterality quadruple consistency (5.0.2 §10).
+  // record.laterality × assetId side × manifest centroid sign × ingestion
+  // metadata (where the ingestion record carries a laterality declaration).
+  console.log('\n--- TEST 17: Laterality consistency ---');
+  for (const f of structureFiles) {
+    const r = readJson(`data/structures/${f}`);
+    const side = r.laterality;
+    assert(side === 'left' || side === 'right', `${r.id}: explicit binary laterality`);
+    passed++;
+    assert(r.asset_id.includes(`.${side}.v1`), `${r.id}: asset ID encodes the same side`);
+    passed++;
+    const entry = manifest.assets[r.asset_id];
+    const sign = entry.centroid_mm[0] < 0 ? 'left' : entry.centroid_mm[0] > 0 ? 'right' : 'midline';
+    assert(sign === side, `${r.id}: manifest centroid sign matches (${entry.centroid_mm[0]})`);
+    passed++;
+    const ingest = readJson(`assets/raw/${r.asset_id}/ingestion.json`);
+    const declared = ingest.source_metadata?.component_laterality;
+    if (declared !== undefined) {
+      assert(declared === side, `${r.id}: ingestion metadata laterality matches`);
+      passed++;
+    }
+  }
+  console.log('[PASS] Laterality consistent across record, asset ID, manifest, metadata.');
+  passed++;
+
   console.log('\n================================================================');
   console.log(`ALL PHASE 5.0 EXPANSION TESTS PASSED (${passed} checks).`);
   console.log('================================================================\n');

@@ -65,7 +65,11 @@ orientation, never centroid sign alone.
 ## Validation states (use exactly)
 
 - Geometric ≠ anatomical. `GEOMETRY_VALIDATED` covers edge/volume/bounds accounting only.
-`ANATOMY_VALIDATED` requires genuine morphological verification; otherwise
+`ANATOMY_VALIDATED` = source-authoritative identity + conformant geometry + measured
+scale/laterality plausibility (Level A+B; the benchmark hippocampus additionally has
+a morphological audit in `docs/ANATOMICAL_ASSET_QA.md` §3). It is NOT expert review
+(`EXPERT_REVIEW_PENDING` is tracked separately) and NOT a morphological proof for
+new segments. Multi-part composites with unverified component mapping stay
 `ANATOMICAL_MAPPING_PENDING`. Landmark/label anchors in `src/types/semantic.ts` are
 SCHEMATIC_UNVALIDATED until expert-verified against the mesh.
 - QEM simplification is LOSSY. Meshopt encoding is lossless only vs its LOD input

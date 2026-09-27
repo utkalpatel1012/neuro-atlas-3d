@@ -61,10 +61,12 @@ change); LRU/disposal/LOD-selection systems untouched and reused.
 
 ## Tests
 
-`npm test` 13/13 exit 0 incl. NEW `phase5_expansion.test.ts` (856 checks:
+`npm test` 13/13 exit 0 incl. NEW `phase5_expansion.test.ts` (1069 checks:
 IDs, provenance, licenses, laterality/mirrors, coordinates, hashes,
 geometry, manifest, hierarchy, loading, LODs, clipping/selection/focus/
-isolation/bookmarks, legacy safety, ontology/terminology integrity). Typecheck clean. Build OK. Asset
+isolation/bookmarks, legacy safety, ontology/terminology integrity,
+ANATOMY_VALIDATED evidence rule, CLEARED disambiguation, laterality
+consistency). Typecheck clean. Build OK. Asset
 validation 10/10 × 4 legacy (batch assets covered by pipeline QA + manifest
 hash tests). Audit passes. Phase 3.1 (49), 3.2 (44), 4A (86), 4B (92),
 4C (103), 4D (64) intact.

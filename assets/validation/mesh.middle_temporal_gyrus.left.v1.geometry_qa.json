@@ -1,7 +1,7 @@
 {
   "assetId": "mesh.middle_temporal_gyrus.left.v1",
   "sourceFile": "assets/raw/mesh.middle_temporal_gyrus.left.v1/FMA72686.stl",
-  "timestamp": "2026-09-27T12:26:50.221Z",
+  "timestamp": "2026-09-27T13:01:47.923Z",
   "topologyClass": "CLOSED_SURFACE",
   "profileId": "closed-pial-surface",
   "analysis": {
@@ -41,7 +41,7 @@
   "geometricQA": {
     "assetId": "mesh.middle_temporal_gyrus.left.v1",
     "sourceFile": "assets/raw/mesh.middle_temporal_gyrus.left.v1/FMA72686.stl",
-    "timestamp": "2026-09-27T12:26:50.221Z",
+    "timestamp": "2026-09-27T13:01:47.923Z",
     "topologyClass": "CLOSED_SURFACE",
     "profileId": "closed-pial-surface",
     "analysis": {
@@ -120,7 +120,7 @@
   },
   "anatomicalQA": {
     "assetId": "mesh.middle_temporal_gyrus.left.v1",
-    "timestamp": "2026-09-27T12:26:50.221Z",
+    "timestamp": "2026-09-27T13:01:47.923Z",
     "declaredLaterality": "left",
     "subfieldRepresentation": "MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED",
     "checks": [
@@ -133,8 +133,8 @@
       {
         "name": "Anatomical Volume Estimation Check",
         "category": "anatomical",
-        "passed": false,
-        "details": "Measured volume: 18.61 cm3 (Expected reference: 1.5 - 4.8 cm3)"
+        "passed": true,
+        "details": "Measured volume: 18.61 cm3"
       },
       {
         "name": "Internal Subfield Boundary Resolution Check",

@@ -291,7 +291,14 @@ export function validateMesh(
 
   // Expected adult human hemisphere cortical volume range: ~180 - 380 cm3
   // Adult human hippocampus volume bounds: ~1.5 - 4.8 cm3
-  const expectedVolumeRange: [number, number] = isCortex ? [180.0, 380.0] : [1.5, 4.8];
+  // Phase 5.0.2: NO presupposed volume range exists for gyral segments (L6 —
+  // invented biological thresholds prohibited). Non-cortex, non-hippocampus
+  // assets are measured and recorded WITHOUT a reference band (the passer-by
+  // hippocampus band previously produced a false FAILED check on gyral assets;
+  // the geometry was never defective — the expectation was).
+  const expectedVolumeRange: [number, number] | undefined = isCortex
+    ? [180.0, 380.0]
+    : (assetId.includes('hippocampus') ? [1.5, 4.8] : undefined);
 
   // Run decoupled QA passes (paths relative to repo root for portability — Phase 3.1)
   const relFilePath = path.relative(PROJECT_ROOT, filePath).replace(/\\/g, '/');

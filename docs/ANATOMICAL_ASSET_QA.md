@@ -43,6 +43,14 @@ Therefore, **Geometric QA** and **Anatomical QA** are conducted under completely
 
 ## 2. Anatomical QA Criteria
 
+> Scope note (Phase 5.0.2): the six criteria below are the Phase-1 BENCHMARK
+> procedure (applied to the left hippocampus in §3). The production-asset gate
+> is the D7 rule in `scripts/pipeline/validate_mesh.ts`: source-authoritative
+> identity + conformant geometry + measured scale/laterality plausibility
+> (evidence Levels A+B, see `docs/PHASE_5_VALIDATION_STATE_MATRIX.md`).
+> Expert review is tracked separately (`EXPERT_REVIEW_PENDING`, L13) and is
+> not implied by `ANATOMY_VALIDATED` on production assets.
+
 Every asset must be audited against six explicit anatomical verification criteria before receiving `ANATOMY_VALIDATED` status:
 
 ### 2.1. Structural Identity & Anatomical Scope
