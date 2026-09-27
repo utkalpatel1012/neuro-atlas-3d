@@ -61,7 +61,7 @@ documented); runtime constraints (`docs/PHASE_4_RUNTIME_CONSTRAINTS.md`); parcel
 + psychiatry schema compatibility verified additive-only (no schema change needed).
 Verdict: `PHASE_3_2_ENTRY_CERTIFICATION.md`.
 
-## Phase 4A completion record (certification pass � entry boxes above unchanged)
+## Phase 4A completion record (certification pass � entry boxes above unchanged)
 
 Phase 4A (mesh-based sectional visualization) implemented and certified:
 sagittal/coronal/axial/oblique GPU clipping, inversion, multi-plane intersection,
@@ -70,5 +70,20 @@ with fully-clipped exclusion (TEST 7), bounded lifecycle. Evidence:
 docs/PHASE_4_SECTIONAL_VISUALIZATION.md, PHASE_4A_COMPLETION_REPORT.md,
 44 math + 86 clipping checks green. Unrelated Phase 4 requirements (MRI,
 parcellation, psychiatry layers, caps, device validation, L8 license conflict,
-expert review) remain exactly as previously stated � nothing marked complete
+expert review) remain exactly as previously stated � nothing marked complete
 beyond what Phase 4A did.
+
+## Phase 4B completion record (certification pass � entry boxes above unchanged)
+
+Phase 4B (anatomical section presentation) implemented and certified over the
+intact Phase 4A clipping layer: presentation state, 7 explicit-number presets,
+logical bookmarks, deterministic serialization, data-driven ranges, honest
+stats, orientation/readout aids, section-aware labels/selection/focus/
+isolation, TRUE derived caps/edges (mesh∩plane → contours → earcut; open/
+grazing/disconnected/failure → edge-only/no-cap, never fake), LRU-12
+LOD-keyed cache, explicit disposal, application-state reinit survival.
+Evidence: docs/PHASE_4B_ANATOMICAL_SECTION_PRESENTATION.md,
+PHASE_4B_COMPLETION_REPORT.md, 92 new presentation checks green (10/10 suites).
+Caps are visualization geometry (no entity ID, no provenance) and imply no
+MRI/internal anatomy. Still deferred: MRI, MNI, HCP/Julich/BigBrain runtime,
+psychiatric overlays, AI tutor, new anatomy, device proof, L8, expert review.

@@ -72,16 +72,17 @@ The ultimate objective is to bridge:
 > Phase 3.1 audit (2026-09-27, Part E): the list below separates what is INSTALLED AND
 > USED from what is DECIDED BUT NOT IMPLEMENTED. Previous versions of this section
 > described the planned stack as current. `package.json` dependencies are ONLY
-> `three` + `three-mesh-bvh` (runtime) and `tsx`/`typescript`/`vite`/`meshoptimizer`/
-> `gh-pages` (dev).
+> `three` + `three-mesh-bvh` + `earcut` (runtime) and `tsx`/`typescript`/`vite`/
+> `meshoptimizer`/`gh-pages` (dev). `earcut` triangulates derived section caps
+> only — it never creates anatomy.
 
 **ACTUAL (implemented, in `package.json` + imported in `src/`):**
 * **Frontend**: Vanilla TypeScript (Strict Mode) + Vite — no React, no R3F in the repo
 * **3D Engine**: Three.js with WebGPU-attempt/WebGL-fallback `RendererManager`, OrbitControls, hand-rolled CSS UI (`src/ui/`)
 * **3D Compression**: glTF 2.0 Binary (`.glb`) with **Meshopt (`EXT_meshopt_compression`)** — encode step round-trip verified vs LOD input (≤1e-6 mm); QEM simplification is lossy
 * **Acceleration**: `three-mesh-bvh` (headless-Node CPU raycast ≈1 ms on 198k tris; NOT a device/GPU measurement)
-* **Testing**: custom assert + `tsx` suites (`npm test`: 7 files) & `tsc --noEmit` (`npm run typecheck`)
-* **Sectional visualization (Phase 4A)**: mesh-based clipping — sagittal/coronal/axial/oblique GPU planes, multi-plane intersection, invert/enable/reset, plane gizmo; cut interiors render hollow (`SECTION_CAPS_PENDING`); headless-tested only, no device proof
+* **Testing**: custom assert + `tsx` suites (`npm test`: 10 files) & `tsc --noEmit` (`npm run typecheck`)
+* **Sectional visualization (Phase 4A + 4B)**: mesh-based clipping — sagittal/coronal/axial/oblique GPU planes, multi-plane intersection, invert/enable/reset, plane gizmo; derived section caps/edges from actual mesh–plane intersections (flat diagrammatic surfaces: visualization geometry, NOT tissue, no independent provenance; robust generation falls back to edge-only/no-cap, never fake interiors); caps imply no MRI and no internal anatomy beyond loaded meshes; headless-tested only, no device proof
 
 **PLANNED ONLY (decided in `TECH_STACK_DECISION.md`, zero code/deps/assets):**
 React 19, React Three Fiber, Zustand, MiniSearch, Dexie.js, PWA/service worker,

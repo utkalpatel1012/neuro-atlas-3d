@@ -5,7 +5,7 @@
 Repository: `utkalpatel1012/neuro-atlas-3d`
 Branch: `main`
 Starting commit: `6ac61e6` (Phase 4A certification)
-Final commit: (certification commit, see git log after §46)
+Final commit: `da918a4` (certified Phase 4B implementation HEAD at validation)
 
 ## Scope
 
@@ -126,7 +126,7 @@ explicit focus action). No FPS/VRAM/RAM/load/GPU numbers exist or are claimed.
 `npm test` 10/10 suites: schema, pipeline (15), engine (10), assembly (20),
 consolidation (8), cortex (40), integrity (47), plane-math (44), clipping
 (86), presentation (92 NEW). Typecheck clean. Build OK. Asset validation
-10/10 (hippocampus_left spot-checked; full manifest path unchanged).
+10/10 × 4 assets (both hippocampi + both cortices, full manifest IDs).
 `audit:phase1` passes. No tests removed or weakened. New §41 geometry tests:
 cube intersection, coplanar, near-parallel/grazing, disconnected (2 loops),
 multiple contours, open contours, degenerate, closed-detection,
@@ -168,5 +168,9 @@ Pre-commit: `git status`, `git diff --stat`, `git diff --name-status`
 reviewed — no .stl/.glb, no raw anatomy, no unrelated refactor, no temp
 files, no secrets, no test weakening. One clean commit:
 `feat(phase-4b): add anatomical section presentation layer`.
+Certification finalization: one clean commit
+`chore(phase-4b): finalize certification` (README + 4A-doc pointer +
+entry-criteria record + this report's final hash; no source changes),
+pushed to origin/main with LOCAL HEAD == REMOTE HEAD verified.
 
 **PHASE_4B_COMPLETE — STOP AT PHASE BOUNDARY (no 4C, MRI, HCP, Julich, psychiatry, tutor, or new anatomy).**

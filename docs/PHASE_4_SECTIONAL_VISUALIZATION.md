@@ -3,6 +3,14 @@
 **Status:** implemented, headless-tested, device-UNVERIFIED. No MRI, no parcellation,
 no psychiatry overlays. Cut surfaces render hollow: `SECTION_CAPS_PENDING`.
 
+**Phase 4B update (this document otherwise describes the Phase 4A baseline, preserved
+as history):** derived section caps/edges now exist in `src/engine/SectionCaps.ts`
+— triangulated ONLY from actual mesh–plane intersections, flagged
+`derivedSectionSurface` with NO entity ID and NO anatomical provenance, falling
+back to edge-only/no-cap where contours are open or triangulation fails. Hollow
+remains the honest fallback, not a regression. Caps imply no MRI and no internal
+anatomy. See `docs/PHASE_4B_ANATOMICAL_SECTION_PRESENTATION.md`.
+
 ## Architecture
 
 ```
