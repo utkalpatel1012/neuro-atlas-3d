@@ -114,9 +114,22 @@ NOT MNI). Canonical registration is UNCOMPUTED (REGISTRATION_PENDING, NULL
 metrics): mesh/MRI overlay is DISABLED by construction and no registration
 accuracy is claimed. Volume bytes are not in git and never load at startup
 (lazy only). Slice machinery (NIfTI parse, transforms, sampling, gating) is
-headless-tested on synthetics (100 checks) with header-measured Colin27
+headless-tested on synthetics (103 checks) with header-measured Colin27
 vectors; browser/iPad/WebGPU-device display is UNPROVEN
 (MRI_BROWSER_VALIDATION_PENDING, MRI_IPADOS_VALIDATION_PENDING). Intensities
 are data values, never anatomical labels; schematic landmarks gain no
 MRI-grounded status. No HCP/Julich/BigBrain/parcellation/psychiatry/
 diagnostic content was introduced.
+
+## L17. MRI→canonical registration limits (Phase 4D)
+Production MRI→canonical registration REMAINS PENDING: investigation found
+insufficient genuine cross-modal correspondences (canonical centroids are
+geometry, not fiducials; origin asserted; Colin27 ships no commissural
+coordinates; schematic anchors forbidden as inputs) — so NO transform was
+computed rather than an approximate one labeled verified. The reproducible
+rigid pipeline (provenance-gated landmarks, Horn/Jacobi estimation,
+independent TRE, versioned records) is implemented and proven on
+TEST_ONLY_SYNTHETIC data (64 checks); the 4C.1 overlay gate now additionally
+requires REGISTRATION_VALIDATED + a valid non-singular non-mirroring matrix,
+so overlay stays GATED_OFF. Uncertainty NULL/NOT_MEASURED; expert review
+EXPERT_REVIEW_PENDING. Affine/nonlinear not implemented (unjustified).

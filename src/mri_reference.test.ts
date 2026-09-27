@@ -109,6 +109,9 @@ function syntheticNiftiBytes(nx: number, ny: number, nz: number): Uint8Array {
 }
 
 function registeredCopy(base: MriVolumeRecord, matrix: number[]): MriVolumeRecord {
+  // 4C.1 gate: SPLIT/OVERLAY visibility requires REGISTRATION_VALIDATED plus
+  // a valid matrix — a merely-COMPUTED record must stay hidden (asserted in
+  // TEST 4 of the 4D suite). This synthetic record therefore carries both.
   return {
     ...base,
     volumeId: 'volume.mri.synthetic.v1',
@@ -126,7 +129,7 @@ function registeredCopy(base: MriVolumeRecord, matrix: number[]): MriVolumeRecor
       validationMethod: 'synthetic round-trip (test only)',
       expertReview: 'EXPERT_REVIEW_PENDING'
     },
-    validationStates: [...base.validationStates, 'REGISTERED_TO_CANONICAL'],
+    validationStates: [...base.validationStates, 'REGISTERED_TO_CANONICAL', 'REGISTRATION_VALIDATED'],
     geometry: base.geometry ? {
       ...base.geometry,
       dims: [8, 8, 8] as [number, number, number],
@@ -399,6 +402,22 @@ async function runTests() {
   passed++;
   const budgetLive = manager.getMemoryBudget();
   assert(budgetLive !== null && budgetLive.voxelCount === 512, 'live memory budget from resident data');
+  passed++;
+  // 4C.1 at manager level: computed-but-UNVALIDATED stays hidden with data resident.
+  const unvalidatedReg: MriVolumeRecord = {
+    ...synthReg,
+    volumeId: 'volume.mri.synthetic_unval.v1',
+    validationStates: synthReg.validationStates.filter((s) => s !== 'REGISTRATION_VALIDATED')
+  };
+  manager.registerVolume(unvalidatedReg);
+  assert(manager.ingestVolumeBytes('volume.mri.synthetic_unval.v1', synthBytes).ok === true, 'unvalidated twin ingests (data valid, claim invalid)');
+  passed++;
+  manager.setDisplayVolume('volume.mri.synthetic_unval.v1');
+  manager.setMode('SPLIT');
+  manager.setVisible(true);
+  assert(manager.getGroup().visible === false, 'computed-without-validated stays hidden (4C.1)');
+  passed++;
+  assert(/not validated/.test(manager.getDisabledReason()), 'refusal names the missing validation');
   passed++;
   // PENDING overlay refusal on the real record path (data-gating precedes
   // registration-gating: Colin27 bytes are correctly NOT resident in tests).

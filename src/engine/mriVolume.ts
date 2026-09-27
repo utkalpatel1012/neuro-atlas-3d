@@ -299,17 +299,44 @@ export function canDisplayVolume(record: MriVolumeRecord): { ok: boolean; reason
   return { ok: true, reason: 'Volume geometry and world transform validated.' };
 }
 
-/** Mesh/MRI overlay additionally requires verified registration + license (§39). */
+/**
+ * Mesh/MRI overlay gate (Phase 4C.1 correction, Phase 4D §3, §18).
+ * Overlay requires ALL of: LICENSE VERIFIED + WORLD TRANSFORM VALIDATED +
+ * REGISTERED_TO_CANONICAL + REGISTRATION_VALIDATED + a valid MRI→canonical
+ * matrix. COMPUTATIONALLY_REGISTERED alone never suffices; PENDING never
+ * passes. States stay distinct; refusal reasons are explicit.
+ */
 export function canOverlayWithMesh(record: MriVolumeRecord): { ok: boolean; reason: string } {
   const display = canDisplayVolume(record);
   if (!display.ok) return display;
   if (record.license.status !== 'VERIFIED' || !record.license.productionAllowed) {
     return { ok: false, reason: 'No verified production license: NO PRODUCTION MRI.' };
   }
+  if (record.registration.status === 'REGISTRATION_PENDING') {
+    return { ok: false, reason: 'Canonical registration pending: NO MRI/MESH OVERLAY.' };
+  }
   if (!hasValidationState(record, 'REGISTERED_TO_CANONICAL')) {
     return { ok: false, reason: 'No verified MRI→canonical transform: NO MRI/MESH OVERLAY.' };
   }
-  return { ok: true, reason: 'Overlay permitted: geometry, transform, registration, license verified.' };
+  if (!hasValidationState(record, 'REGISTRATION_VALIDATED')) {
+    return { ok: false, reason: 'Registration computed but not validated: NO MRI/MESH OVERLAY.' };
+  }
+  if (
+    record.registration.status !== 'COMPUTATIONALLY_REGISTERED' ||
+    !isValidMatrix(record.registration.matrix) ||
+    record.registration.inputSpace !== 'mri_world' ||
+    record.registration.outputSpace !== 'canonical'
+  ) {
+    return { ok: false, reason: 'No valid MRI→canonical matrix: NO MRI/MESH OVERLAY.' };
+  }
+  // Singular or mirroring matrices are never overlay-grade (§9): a singular
+  // matrix cannot invert for slice mapping, and a reflection would silently
+  // mirror anatomy. Both refuse here (conversion independently returns NULL).
+  const det = mat4Determinant(record.registration.matrix);
+  if (det === null || !Number.isFinite(det) || det <= 1e-12) {
+    return { ok: false, reason: 'Registration matrix is singular or mirroring: NO MRI/MESH OVERLAY.' };
+  }
+  return { ok: true, reason: 'Overlay permitted: geometry, transform, registration, validation, license verified.' };
 }
 
 /** ProductionBytes may ship only with a verified, non-quarantined license (§5). */

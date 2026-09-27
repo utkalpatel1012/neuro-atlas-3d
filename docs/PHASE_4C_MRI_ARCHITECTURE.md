@@ -1,6 +1,6 @@
 # Phase 4C MRI Architecture (verified reference integration foundation)
 
-**Status:** implemented, headless-tested (100 checks), device-UNVERIFIED.
+**Status:** implemented, headless-tested (103 checks), device-UNVERIFIED.
 Reference volume SELECTED (Colin27 1998 T1); canonical registration
 REGISTRATION_PENDING → production overlay DISABLED by construction. No HCP,
 no Julich/BigBrain runtime, no parcellation, no psychiatry, no diagnostics.

@@ -135,6 +135,9 @@ memory math — synthetics only §41, real-file header vectors as documented
 constants). Typecheck clean. Build OK. Asset validation 10/10 × 4. Audit
 passes. No tests removed or weakened. Phase 3.1 (47), 3.2 (44), 4A (86),
 4B (92) intact.
+Addendum (Phase 4D): the 4C.1 gate correction strengthened manager-level
+expectations (computed-without-validated now refuses); the 4C suite stands at
+103 checks with no weakening — see Phase 4D records.
 
 ## Limitations
 
