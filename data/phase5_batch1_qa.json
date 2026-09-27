@@ -1,0 +1,183 @@
+{
+  "batch": "phase5-batch1-gyral",
+  "generated_at": "2026-09-27T12:26:51.109Z",
+  "generator": "scripts/pipeline/run_gyral_batch.ts",
+  "verdicts": [
+    {
+      "assetId": "mesh.superior_frontal_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.frontal_lobe.superior_frontal_gyrus",
+      "profileId": "composite-cortical-assembly",
+      "measuredTriangles": 30450,
+      "measuredShells": 2,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete (2 watertight shells: VALID_WITH_KNOWN_TOPOLOGY_LIMITATION).",
+      "durationMs": 608
+    },
+    {
+      "assetId": "mesh.superior_frontal_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.frontal_lobe.superior_frontal_gyrus",
+      "profileId": "composite-cortical-assembly",
+      "measuredTriangles": 30448,
+      "measuredShells": 2,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete (2 watertight shells: VALID_WITH_KNOWN_TOPOLOGY_LIMITATION).",
+      "durationMs": 496
+    },
+    {
+      "assetId": "mesh.middle_frontal_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.frontal_lobe.middle_frontal_gyrus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 15544,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 255
+    },
+    {
+      "assetId": "mesh.middle_frontal_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.frontal_lobe.middle_frontal_gyrus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 15558,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 240
+    },
+    {
+      "assetId": "mesh.precentral_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.frontal_lobe.precentral_gyrus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 18836,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 260
+    },
+    {
+      "assetId": "mesh.precentral_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.frontal_lobe.precentral_gyrus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 18838,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 267
+    },
+    {
+      "assetId": "mesh.postcentral_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.parietal_lobe.postcentral_gyrus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 16858,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 268
+    },
+    {
+      "assetId": "mesh.postcentral_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.parietal_lobe.postcentral_gyrus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 16862,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 270
+    },
+    {
+      "assetId": "mesh.supramarginal_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.parietal_lobe.supramarginal_gyrus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 9778,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 203
+    },
+    {
+      "assetId": "mesh.supramarginal_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.parietal_lobe.supramarginal_gyrus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 9782,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 220
+    },
+    {
+      "assetId": "mesh.angular_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.parietal_lobe.angular_gyrus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 13164,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 260
+    },
+    {
+      "assetId": "mesh.angular_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.parietal_lobe.angular_gyrus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 13172,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 257
+    },
+    {
+      "assetId": "mesh.middle_temporal_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.temporal_lobe.middle_temporal_gyrus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 12918,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 262
+    },
+    {
+      "assetId": "mesh.middle_temporal_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.temporal_lobe.middle_temporal_gyrus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 12926,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 242
+    },
+    {
+      "assetId": "mesh.cingulate_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.limbic.cingulate_gyrus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 11724,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 228
+    },
+    {
+      "assetId": "mesh.cingulate_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.limbic.cingulate_gyrus",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 11716,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 232
+    }
+  ]
+}

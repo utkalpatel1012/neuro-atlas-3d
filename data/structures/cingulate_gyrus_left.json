@@ -1,0 +1,142 @@
+{
+  "id": "brain.telencephalon.left.limbic.cingulate_gyrus",
+  "entity_type": "anatomical_structure",
+  "subtype": "cortical_gyrus",
+  "canonical_name": "Cingulate gyrus (Left)",
+  "latin_name": "Gyrus cinguli",
+  "clinical_aliases": [],
+  "abbreviations": [],
+  "laterality": "left",
+  "representation_scope": "paired_separate",
+  "name": {
+    "official_latin": "Gyrus cinguli",
+    "official_english": "Cingulate gyrus (Left)",
+    "clinical_aliases": [],
+    "standard_abbreviations": []
+  },
+  "ontology": {
+    "ta2_id": "UNVERIFIED (lookup pass required; see L5)",
+    "fma_id": "FMA:72718",
+    "uberon_id": "UNVERIFIED (lookup pass required; see L5)",
+    "fma_authority": "BodyParts3D distribution name list (authoritative for files; NOT a live-ontology lookup)"
+  },
+  "hierarchy": {
+    "anatomic_system": "central_nervous_system_telencephalon",
+    "division": "telencephalon",
+    "hemisphere": "left",
+    "lobe": "limbic_lobe",
+    "subsystem": "limbic_system",
+    "parent_id": "brain.telencephalon.left.limbic_lobe",
+    "groups": [
+      "division.cerebrum",
+      "hemisphere.left",
+      "lobe.limbic"
+    ],
+    "children_ids": []
+  },
+  "spatial": {
+    "mesh_node_name": "Mesh_mesh_cingulate_gyrus_left_v1",
+    "source_centroid": [
+      13.31,
+      -95.94,
+      1570.12
+    ],
+    "source_coordinate_frame": "dicom_lps_whole_body",
+    "stereotaxic_registration": {
+      "registered_centroid": [
+        -13.31,
+        8.42,
+        -25.84
+      ],
+      "registered_coordinate_frame": "canonical_atlas_ras",
+      "registration_status": "REGISTRATION_PENDING",
+      "registration": {
+        "registration_method": "not_registered",
+        "registration_source": "scripts/pipeline/canonicalize_mesh.ts (rigid adapter only; coordinate conversion, NOT template registration)"
+      }
+    },
+    "bounding_box": {
+      "min": [
+        -26.72,
+        -23.15,
+        -78.52
+      ],
+      "max": [
+        0.1,
+        39.98,
+        26.83
+      ],
+      "coordinate_frame": "canonical_atlas_ras",
+      "derivation": "reconstructed from manifest centroid + dimensions (bbox-center convention)"
+    },
+    "estimated_volume_cm3": 13.486,
+    "default_hex_color": "#C9BFA6",
+    "centroid_convention": "bounding-box center (NOT vertex mean)."
+  },
+  "representations": [
+    {
+      "id": "rep.cingulate_gyrus.left.macroscopic_mesh",
+      "representation_type": "macroscopic_mesh",
+      "level_of_detail": "LOD0-LOD3",
+      "asset_reference": "mesh.cingulate_gyrus.left.v1",
+      "coordinate_frame": "canonical_atlas_ras",
+      "is_canonical": true,
+      "metadata": {
+        "format": "glb_meshopt",
+        "topology": "CLOSED_SURFACE"
+      }
+    }
+  ],
+  "asset_id": "mesh.cingulate_gyrus.left.v1",
+  "asset_provenance": {
+    "asset_id": "mesh.cingulate_gyrus.left.v1",
+    "dataset_name": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+    "dataset_version": "Release 3.0 (2011/06/20)",
+    "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/main/assets/BodyParts3D_data/stl/FMA72718.stl",
+    "upstream_asset_id": "FMA72718",
+    "upstream_license": "CC_BY_SA_2_1_JP",
+    "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International.",
+    "acquisition_date": "2026-09-27",
+    "derived_component": {
+      "parent_asset_id": "mesh.cortex.left.v1",
+      "parent_ingestion_record": "assets/raw/mesh.cortex.left.v1/ingestion.json",
+      "input_sha256": "e83fc7ef26bafad285d81a236a5651132bd7eb1232f488ebb01f14202bffd927",
+      "operation": "hash-verified byte copy (no geometric modification)",
+      "software": "scripts/pipeline/prepare_gyral_batch.ts",
+      "operator": "Phase 5.0 batch preparation"
+    },
+    "resulting_sha256_hash": "0075e05d1a9d093626a2ae0e52615fba2b91f1602ae2298e87ec7447646f611e",
+    "resulting_license": "CC-BY-SA 4.0",
+    "project_distribution_policy": "CC-BY-SA-4.0",
+    "production_eligibility": "PRODUCTION_ALLOWED",
+    "commercial_redistribution": "PERMITTED",
+    "restrictions_and_covenants": [
+      "Must attribute BodyParts3D / DBCLS in application notices and UI",
+      "Derived 3D meshes distributed under CC-BY-SA 4.0.",
+      "Conservative licensing posture (Phase 3.1 section 19): historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution."
+    ],
+    "validation_status": "CLEARED",
+    "legal_review_notes": "BodyParts3D Release 3.0 component FMA72718 via in-repo derivation from mesh.cortex.left.v1. Same license chain as production cortex composites. Retroactivity UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution."
+  },
+  "topography": {
+    "relationships": [
+      {
+        "source_entity_id": "brain.telencephalon.left.limbic.cingulate_gyrus",
+        "target_entity_id": "brain.telencephalon.left.limbic_lobe",
+        "relationship_type": "part_of",
+        "semantic_class": "STRUCTURAL_CONTAINMENT",
+        "evidence_claim_ids": [],
+        "notes": "BodyParts3D distribution segment FMA72718 (limbic lobe); containment follows the distribution taxonomy. No functional-connectivity claim."
+      }
+    ]
+  },
+  "geometry_state": "RUNTIME_READY",
+  "created_at": "2026-09-27T12:33:57.327Z",
+  "provenance": {
+    "source_authority": "BodyParts3D distribution name list + docs/PHASE_3_CORTEX_SOURCE_COMPONENTS.md (corrected 2026-09-27)",
+    "dataset_name": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+    "dataset_version": "Release 3.0 (2011/06/20)",
+    "ontology_reference": "FMA:72718 (distribution-verified)",
+    "last_reviewed": "2026-09-27"
+  }
+}

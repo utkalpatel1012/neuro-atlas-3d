@@ -10,7 +10,11 @@
     "Ammon's Horn",
     "Hippocampus Proper (CA1-CA3)"
   ],
-  "abbreviations": ["Hpc", "HIP", "CA"],
+  "abbreviations": [
+    "Hpc",
+    "HIP",
+    "CA"
+  ],
   "laterality": "right",
   "representation_scope": "paired_separate",
   "name": {
@@ -21,7 +25,11 @@
       "Ammon's Horn",
       "Hippocampus Proper (CA1-CA3)"
     ],
-    "standard_abbreviations": ["Hpc", "HIP", "CA"]
+    "standard_abbreviations": [
+      "Hpc",
+      "HIP",
+      "CA"
+    ]
   },
   "names": {
     "canonical_name": "Right Hippocampus",
@@ -51,32 +59,46 @@
   },
   "spatial": {
     "mesh_node_name": "Mesh_Hippocampus_R",
-    "source_centroid": [26.38, -13.89, -20.74],
-    "source_coordinate_frame": "blender_world",
+    "source_centroid": [
+      -26.38,
+      -90.84,
+      1547.81
+    ],
+    "source_coordinate_frame": "asserted_body_parts3d_source (DICOM-LPS equivalence UNPROVEN; see Phase 3.1 D3)",
     "stereotaxic_registration": {
-      "registered_centroid": [26.4, -21.1, -16.2],
-      "registered_coordinate_frame": "mni152_nonlinear_2009c_asym",
+      "registered_centroid": [
+        26.38,
+        -13.89,
+        -20.74
+      ],
+      "registered_coordinate_frame": "canonical_atlas_ras",
       "registration_status": "REGISTRATION_PENDING",
       "registration": {
-        "registration_method": "affine_linear_12dof",
-        "registration_source": "scripts/pipeline/register_to_mni152.py",
-        "target_reference_template": "MNI152NLin2009cAsym_1mm.nii.gz",
-        "registration_uncertainty_mm": 1.1,
-        "dice_similarity_coefficient": 0.81,
-        "validation_date": "2026-09-26",
-        "validator_notes": "Affine alignment estimate only. Formal non-linear co-registration (ANTs SyN / FLIRT) against MNI152 template is PENDING."
+        "registration_method": "not_registered",
+        "registration_source": "scripts/pipeline/canonicalize_mesh.ts (rigid adapter only; coordinate conversion, NOT template registration)",
+        "validation_date": "2026-09-27",
+        "validator_notes": "Phase 3.1 (D4): NO MNI registration computed. Earlier affine_linear_12dof / uncertainty 1.1mm / dice 0.81 values were unmeasured and removed; the cited script register_to_mni152.py never existed in this repo."
       }
     },
     "bounding_box": {
-      "min": [16.92, -24.28, -40.98],
-      "max": [35.84, -3.50, -0.49],
+      "min": [
+        16.92,
+        -24.28,
+        -40.98
+      ],
+      "max": [
+        35.84,
+        -3.5,
+        -0.49
+      ],
       "coordinate_frame": "canonical_atlas_ras"
     },
     "estimated_volume_cm3": 1.85,
     "default_hex_color": "#D4A373",
     "subfield_representation": "MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED",
     "subfield_mapping_status": "ANATOMICAL_MAPPING_PENDING",
-    "subfield_mapping_notes": "The ingested 3D asset represents the macroscopic unsegmented right hippocampus (Cornu Ammonis CA1-CA4 + dentate gyrus within one contiguous boundary). Distinct internal subfield parcellation boundaries are not resolved in this macroscopic surface mesh and will be integrated during subsequent subfield segmentation phases."
+    "subfield_mapping_notes": "The ingested 3D asset represents the macroscopic unsegmented right hippocampus (Cornu Ammonis CA1-CA4 + dentate gyrus within one contiguous boundary). Distinct internal subfield parcellation boundaries are not resolved in this macroscopic surface mesh and will be integrated during subsequent subfield segmentation phases.",
+    "centroid_convention": "bounding-box center (NOT vertex mean)."
   },
   "representations": [
     {
@@ -110,8 +132,8 @@
     "commercial_redistribution": "PERMITTED",
     "restrictions_and_covenants": [
       "Must attribute BodyParts3D / DBCLS in application notices and UI",
-      "Derived 3D meshes distributed under CC-BY-SA 4.0 (satisfies both CC-BY-SA 2.1 JP ShareAlike and CC BY 4.0 Attribution)",
-      "Defensive dual compliance: commercial redistribution permitted without non-commercial restriction"
+      "Derived 3D meshes distributed under CC-BY-SA 4.0.",
+      "Conservative licensing posture (Phase 3.1 section 19): historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution."
     ],
     "granular_validation": {
       "stage": "DEVICE_VALIDATED",
@@ -125,10 +147,13 @@
       "notes": "Automated headless Node.js tests passed. Physical mobile/desktop hardware validation is PENDING."
     },
     "validation_status": "CLEARED",
-    "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72713 right hippocampus). Relicensed to CC BY 4.0 on 2025-02-27. Free from non-commercial restriction. Formally cleared for production 3D web bundle."
+    "legal_review_notes": "Phase 3.1 (D11): BodyParts3D Release 3.0 via third-party mirror. Upstream portal lists CC BY (2025-02-27); historical files CC-BY-SA 2.1 JP. Derivatives distributed CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test)."
   },
   "presentation": {
-    "visibility_groups": ["limbic_circuitry", "cortex_allocortex"]
+    "visibility_groups": [
+      "limbic_circuitry",
+      "cortex_allocortex"
+    ]
   },
   "topography": {
     "boundaries": {
@@ -145,7 +170,9 @@
         "target_entity_id": "brain.telencephalon.right.limbic.dentate_gyrus",
         "relationship_type": "adjacent_to",
         "semantic_class": "TOPOGRAPHICAL",
-        "evidence_claim_ids": ["claim.anatomy.hpc.dg_tri_synaptic"],
+        "evidence_claim_ids": [
+          "claim.anatomy.hpc.dg_tri_synaptic"
+        ],
         "notes": "Right dentate gyrus interlocks with right cornu ammonis."
       },
       {
@@ -153,7 +180,9 @@
         "target_entity_id": "brain.telencephalon.right.limbic.subiculum",
         "relationship_type": "adjacent_to",
         "semantic_class": "TOPOGRAPHICAL",
-        "evidence_claim_ids": ["claim.anatomy.hpc.subiculum_transition"],
+        "evidence_claim_ids": [
+          "claim.anatomy.hpc.subiculum_transition"
+        ],
         "notes": "Right subiculum transition zone."
       },
       {
@@ -161,21 +190,35 @@
         "target_entity_id": "brain.telencephalon.right.limbic.amygdala",
         "relationship_type": "adjacent_to",
         "semantic_class": "TOPOGRAPHICAL",
-        "evidence_claim_ids": ["claim.anatomy.hpc.amygdala_boundary"],
+        "evidence_claim_ids": [
+          "claim.anatomy.hpc.amygdala_boundary"
+        ],
         "notes": "Located immediately anterosuperior to right hippocampal head."
       }
     ]
   },
   "bounding_box": {
-    "centroid_canonical": [26.38, -13.89, -20.74],
+    "centroid_canonical": [
+      26.38,
+      -13.89,
+      -20.74
+    ],
     "dimensions": {
       "x": 18.92,
       "y": 20.78,
       "z": 40.49
     },
     "bounds": {
-      "min": [16.92, -24.28, -40.98],
-      "max": [35.84, -3.50, -0.49]
+      "min": [
+        16.92,
+        -24.28,
+        -40.98
+      ],
+      "max": [
+        35.84,
+        -3.5,
+        -0.49
+      ]
     }
   },
   "volume_measurements": {
@@ -193,5 +236,6 @@
     "overall_status": "APPROVED",
     "geometric_qa": "PASS",
     "anatomical_qa": "PASS"
-  }
+  },
+  "phase_3_1_metadata_correction": "2026-09-27: removed fabricated registration metrics + phantom script citation; corrected source-frame centroid (measured) and licensing notes. Geometry, hashes, volumes unchanged."
 }

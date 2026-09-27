@@ -9,7 +9,10 @@
     "Left Cortical Mantle",
     "Left Cerebral Grey Matter"
   ],
-  "abbreviations": ["CTX-L", "L-Cortex"],
+  "abbreviations": [
+    "CTX-L",
+    "L-Cortex"
+  ],
   "laterality": "left",
   "representation_scope": "paired_separate",
   "name": {
@@ -19,7 +22,10 @@
       "Left Cortical Mantle",
       "Left Cerebral Grey Matter"
     ],
-    "standard_abbreviations": ["CTX-L", "L-Cortex"]
+    "standard_abbreviations": [
+      "CTX-L",
+      "L-Cortex"
+    ]
   },
   "names": {
     "canonical_name": "Left Cerebral Cortex",
@@ -55,33 +61,51 @@
   },
   "spatial": {
     "mesh_node_name": "Mesh_mesh_cortex_left_v1",
-    "source_centroid": [-32.50, 16.01, -19.47],
-    "source_coordinate_frame": "dicom_lps_whole_body",
+    "source_centroid": [
+      32.5,
+      -89.57,
+      1577.71
+    ],
+    "source_coordinate_frame": "asserted_body_parts3d_source (DICOM-LPS equivalence UNPROVEN; see Phase 3.1 D3)",
     "stereotaxic_registration": {
-      "registered_centroid": [-32.50, 16.01, -19.47],
+      "registered_centroid": [
+        -32.5,
+        16.01,
+        -19.47
+      ],
       "registered_coordinate_frame": "canonical_atlas_ras",
       "registration_status": "REGISTRATION_PENDING",
       "registration": {
-        "registration_method": "affine_linear_12dof",
-        "registration_source": "scripts/pipeline/canonicalize_mesh.ts",
-        "target_reference_template": "MNI152NLin2009cAsym_1mm.nii.gz",
-        "registration_uncertainty_mm": 1.2,
-        "dice_similarity_coefficient": 0.85,
-        "validation_date": "2026-09-26",
-        "validator_notes": "Continuous pial manifold canonicalized via BODYPARTS3D_LPS_TO_RAS_ADAPTER. Non-linear stereotaxic registration to MNI152 pending."
+        "registration_method": "not_registered",
+        "registration_source": "scripts/pipeline/canonicalize_mesh.ts (rigid adapter BODYPARTS3D_LPS_TO_RAS_ADAPTER: Xc=-Xs, Yc=Zs-1561.7, Zc=Ys+70.1; coordinate conversion only, NOT template registration)",
+        "validation_date": "2026-09-27",
+        "validator_notes": "Phase 3.1 (D4): NO stereotaxic template registration has been computed. Earlier affine_linear_12dof / uncertainty 1.2mm / dice 0.85 values were unmeasured and have been removed. Canonical axes are +X Right, +Y Superior, +Z POSTERIOR (NOT RAS, NOT MNI)."
       }
     },
     "bounding_box": {
-      "min": [-65.10, -39.36, -104.58],
-      "max": [0.10, 71.38, 65.65],
+      "min": [
+        -65.1,
+        -39.36,
+        -104.58
+      ],
+      "max": [
+        0.1,
+        71.38,
+        65.65
+      ],
       "coordinate_frame": "canonical_atlas_ras"
     },
-    "dimensions_mm": [65.19, 110.74, 170.23],
+    "dimensions_mm": [
+      65.19,
+      110.74,
+      170.23
+    ],
     "estimated_volume_cm3": 260.21,
     "default_hex_color": "#C4B29E",
     "subfield_representation": "MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED",
     "subfield_mapping_status": "ANATOMICAL_MAPPING_PENDING",
-    "subfield_mapping_notes": "Ingested 3D asset represents the macroscopic continuous left cerebral cortical surface. Major sulci and gyri are physically resolved in the pial geometry. Microscopic cytoarchitectonic subfields (Brodmann areas, Julich-Brain) are not partitioned as physical sub-meshes and will be registered via vertex/texture parcellation layers."
+    "subfield_mapping_notes": "Phase 3.1 corrected: the asset is a CONCATENATED MULTI-SHELL COMPOSITE of 14 BodyParts3D component chunks (16 disjoint closed shells measured), NOT a continuous pial surface. Individual gyral/sulcal boundaries are chunk seams, not validated anatomy; sulci are NOT resolved as geometry. Corrected component identities (5/side were mislabeled pre-3.1) in docs/PHASE_3_CORTEX_SOURCE_COMPONENTS.md. Microscopic subfields (Brodmann, Julich-Brain) are not physical sub-meshes.",
+    "centroid_convention": "bounding-box center (NOT vertex mean). Applies to source_centroid and registered_centroid."
   },
   "representations": [
     {
@@ -93,7 +117,7 @@
       "is_canonical": true,
       "metadata": {
         "format": "glb_meshopt",
-        "topology": "closed_pial_surface"
+        "topology": "multi_shell_composite_16_disjoint_closed_shells"
       }
     }
   ],
@@ -126,7 +150,7 @@
         "operation_name": "Geometric_QA_Validation",
         "script_relative_path": "scripts/pipeline/validate_mesh.ts",
         "parameters": {
-          "topology_class": "CLOSED_SURFACE",
+          "topology_class": "MULTI_SHELL_COMPOSITE",
           "manifold_edges_required": 0,
           "zero_area_faces_allowed": 0,
           "duplicate_faces_allowed": 0,
@@ -143,9 +167,9 @@
         "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
         "parameters": {
           "adapter_id": "bodyparts3d-lps-to-ras",
-          "source_space": "DICOM_LPS",
-          "target_space": "THREEJS_RAS",
-          "transform": "x_negated_z_negated",
+          "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven)",
+          "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+          "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
           "normals": "area_weighted_smooth"
         },
         "executed_by": "Canonicalization_Engine",
@@ -172,7 +196,9 @@
         "parameters": {
           "extension": "EXT_meshopt_compression",
           "overall_savings_percent": 47.03,
-          "lossless_verification": true
+          "meshopt_roundtrip_lossless_vs_lod_input": true,
+          "meshopt_roundtrip_max_delta_mm": 1e-06,
+          "qem_simplification_lossy": true
         },
         "executed_by": "Meshopt_Runtime_Optimizer",
         "git_commit_hash": "9672869",
@@ -186,9 +212,11 @@
     "restrictions_and_covenants": [
       "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
       "Derived 3D meshes shared under CC-BY-SA 4.0 compatible terms",
-      "Defensive dual compliance: satisfies both CC-BY-SA 2.1 JP and CC BY 4.0"
+      "Conservative licensing posture (Phase 3.1 section 19): historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution."
     ],
     "validation_status": "CLEARED",
-    "legal_review_notes": "Ingested from BodyParts3D Release 3.0 assembly of 14 cortical structures. Relicensed under CC BY 4.0 on 2025-02-27. Formally cleared for production 3D web bundle."
-  }
+    "legal_review_notes": "Phase 3.1 (D11): BodyParts3D Release 3.0 via third-party mirror. Upstream portal lists CC BY (2025-02-27); historical Release 3.0 files CC-BY-SA 2.1 JP. Derivatives distributed CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+    "source_components_record": "assets/raw/mesh.cortex.left.v1/ingestion.json#components (14 components: FMA ID, corrected name, lobe, SHA-256, triangles, per-component mirror URL)"
+  },
+  "phase_3_1_metadata_correction": "2026-09-27: removed fabricated registration metrics; corrected axis description, topology class, transform record, component linkage, subfield notes. Geometry, hashes, volumes unchanged. See PHASE_3_1_SCIENTIFIC_INTEGRITY_REPORT.md."
 }
