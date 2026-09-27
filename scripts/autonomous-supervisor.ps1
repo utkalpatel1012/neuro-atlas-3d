@@ -76,12 +76,23 @@ function Update-Heartbeat($State, [string]$Status, [string]$Action, [string]$Nex
 }
 
 function Get-GitInfo() {
-  $out = @{ branch = ''; status = ''; head = '' }
+  $out = @{ branch = ''; status = ''; head = ''; dirtyFiles = @() }
   try {
     $out.branch = (git rev-parse --abbrev-ref HEAD 2>$null).Trim()
     $out.head = (git rev-parse HEAD 2>$null).Trim()
-    $porcelain = (git status --porcelain 2>$null)
-    $out.status = if ([string]::IsNullOrWhiteSpace($porcelain)) { 'CLEAN' } else { 'DIRTY' }
+    $porcelain = @((git status --porcelain 2>$null))
+    $files = @($porcelain | ForEach-Object { $_.Substring(3).Trim().Trim('"') } | Where-Object { $_ -ne '' })
+    $out.dirtyFiles = $files
+    # Supervisor-owned runtime churn (state/heartbeat/logs) is not user work:
+    # it is expected to change on every run and must not block dispatch.
+    $owned = @('.opencode/workflow/PROJECT_STATE.json', '.opencode/workflow/HEARTBEAT.json')
+    $unowned = @($files | Where-Object {
+      $f = $_
+      -not ($owned -contains $f -or $f.StartsWith('.opencode/workflow/logs/'))
+    })
+    if ($files.Count -eq 0) { $out.status = 'CLEAN' }
+    elseif ($unowned.Count -eq 0) { $out.status = 'SUPERVISOR-STATE-ONLY' }
+    else { $out.status = 'DIRTY' }
   } catch { $out.status = 'GIT-UNAVAILABLE' }
   return $out
 }
@@ -185,13 +196,16 @@ switch ($Mode) {
     Acquire-Lock
     try {
       $git = Get-GitInfo
-      if ($git.status -eq 'DIRTY') {
+      if ($git.status -eq 'DIRTY' -or $git.status -eq 'GIT-UNAVAILABLE') {
         $state.phaseStatus = 'USER_WORKTREE_CHANGES_PRESENT'
         $state.lastUpdatedAt = (Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ')
         Save-Json $StatePath $state
         Update-Heartbeat $state 'STOPPED' 'dirty worktree -- refusing to touch user work' 'operator resolves worktree, then Resume'
         Write-Log 'STOP: uncommitted changes not created by the supervisor. Nothing modified.'
         break
+      }
+      if ($git.status -eq 'SUPERVISOR-STATE-ONLY') {
+        Write-Log 'Worktree holds only supervisor-owned state churn (PROJECT_STATE/HEARTBEAT/logs); proceeding.'
       }
       $promptPath = Write-NextPrompt $state $registry
       if ($state.phaseStatus -eq 'INTERRUPTED') {
