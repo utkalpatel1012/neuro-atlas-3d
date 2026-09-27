@@ -61,10 +61,10 @@ change); LRU/disposal/LOD-selection systems untouched and reused.
 
 ## Tests
 
-`npm test` 13/13 exit 0 incl. NEW `phase5_expansion.test.ts` (807 checks:
+`npm test` 13/13 exit 0 incl. NEW `phase5_expansion.test.ts` (856 checks:
 IDs, provenance, licenses, laterality/mirrors, coordinates, hashes,
 geometry, manifest, hierarchy, loading, LODs, clipping/selection/focus/
-isolation/bookmarks, legacy safety). Typecheck clean. Build OK. Asset
+isolation/bookmarks, legacy safety, ontology/terminology integrity). Typecheck clean. Build OK. Asset
 validation 10/10 × 4 legacy (batch assets covered by pipeline QA + manifest
 hash tests). Audit passes. Phase 3.1 (49), 3.2 (44), 4A (86), 4B (92),
 4C (103), 4D (64) intact.
@@ -74,6 +74,17 @@ hash tests). Audit passes. Phase 3.1 (49), 3.2 (44), 4A (86), 4B (92),
 L18 added (segment gaps, 2-shell pair, UNVERIFIED TA2/UBERON, anatomy-only
 records, DOCUMENTED-only remainder, on-demand overlap policy). L1–L17 stand.
 Existing hippocampus/cortex byte-identical and preserved.
+
+### Anatomically unverified — explicit (5.0.1 clarification, no new findings)
+
+RUNTIME_READY on the 16 batch assets means technical pipeline clearance only
+(provenance complete, license recorded, geometry profile-conformant,
+canonicalized, LODs + manifest hash-linked). It does NOT mean expert
+neuroanatomical validation (none performed — EXPERT_REVIEW_PENDING),
+histological validation, complete ontology validation, clinical validation,
+or legal clearance (LEGAL_REVIEW_REQUIRED stands). Licensing uncertainty from
+Phase 3.1 §19 is preserved verbatim per asset; no "dual compliance" or
+clearance language is used anywhere in active records.
 
 ## Acceptance (§49)
 

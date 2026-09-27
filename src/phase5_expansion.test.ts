@@ -382,6 +382,24 @@ async function runTests() {
   console.log('[PASS] Existing hippocampus/cortex preserved; no silent overwrite.');
   passed++;
 
+  // TEST 14: ontology markers + banned terminology (§9, §15 — 5.0.1 mechanical).
+  console.log('\n--- TEST 14: Ontology + terminology integrity ---');
+  for (const f of structureFiles) {
+    if (f.startsWith('cortex_') || f.startsWith('hippocampus_')) continue;
+    const r = readJson(`data/structures/${f}`);
+    // Anatomical identity (distribution-verified FMA) is present; cross-reference
+    // mappings stay UNVERIFIED until a genuine lookup pass — never inferred.
+    assert(typeof r.ontology?.fma_id === 'string' && /^FMA:\d+$/.test(r.ontology.fma_id), `${r.id}: FMA distribution ID present`);
+    passed++;
+    assert(/UNVERIFIED/.test(r.ontology?.ta2_id || '') && /UNVERIFIED/.test(r.ontology?.uberon_id || ''), `${r.id}: TA2/UBERON remain UNVERIFIED`);
+    passed++;
+    const blob = JSON.stringify(r);
+    assert(!/dual compliance/i.test(blob), `${r.id}: no banned licensing term in structure record`);
+    passed++;
+  }
+  console.log('[PASS] Identity present; ontology cross-references honestly unresolved.');
+  passed++;
+
   console.log('\n================================================================');
   console.log(`ALL PHASE 5.0 EXPANSION TESTS PASSED (${passed} checks).`);
   console.log('================================================================\n');

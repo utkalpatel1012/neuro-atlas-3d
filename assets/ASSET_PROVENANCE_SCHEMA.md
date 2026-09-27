@@ -157,7 +157,7 @@ The production asset manifest (`assets/assets.manifest.json`) is the machine-rea
         "Derived 3D meshes must be shared under identical or compatible CC-BY-SA terms"
       ],
       "validation_status": "CLEARED",
-      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72714 left hippocampus). Free from non-commercial restriction. Formally cleared for production 3D web bundle."
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72714 left hippocampus). No non-commercial restriction in source terms. Production eligibility recorded; LEGAL_REVIEW_REQUIRED before commercial redistribution."
     }
   },
   "production_whitelist": [

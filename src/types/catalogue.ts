@@ -17,7 +17,7 @@ export type StructureValidationState =
   | 'MESH_AVAILABLE'       // 3D mesh cleaned, manifold verified, and pivot centered in Blender
   | 'METADATA_VALIDATED'   // Complete TypeScript/JSON schema record passed automated validation
   | 'ANATOMY_VALIDATED'    // Anatomical accuracy audited and signed off by specialist
-  | 'PRODUCTION_READY';    // Meshopt compressed, BVH tested, cleared in assets.manifest.json
+  | 'PRODUCTION_READY';    // Meshopt compressed, BVH tested, listed in assets.manifest.json
 
 export interface ValidationTransitionEvent {
   previous_state: StructureValidationState;

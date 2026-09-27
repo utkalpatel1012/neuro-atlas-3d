@@ -81,7 +81,7 @@ The ultimate objective is to bridge:
 * **3D Engine**: Three.js with WebGPU-attempt/WebGL-fallback `RendererManager`, OrbitControls, hand-rolled CSS UI (`src/ui/`)
 * **3D Compression**: glTF 2.0 Binary (`.glb`) with **Meshopt (`EXT_meshopt_compression`)** — encode step round-trip verified vs LOD input (≤1e-6 mm); QEM simplification is lossy
 * **Acceleration**: `three-mesh-bvh` (headless-Node CPU raycast ≈1 ms on 198k tris; NOT a device/GPU measurement)
-* **Testing**: custom assert + `tsx` suites (`npm test`: 10 files) & `tsc --noEmit` (`npm run typecheck`)
+* **Testing**: custom assert + `tsx` suites (`npm test`: 13 files) & `tsc --noEmit` (`npm run typecheck`)
 * **Sectional visualization (Phase 4A + 4B)**: mesh-based clipping — sagittal/coronal/axial/oblique GPU planes, multi-plane intersection, invert/enable/reset, plane gizmo; derived section caps/edges from actual mesh–plane intersections (flat diagrammatic surfaces: visualization geometry, NOT tissue, no independent provenance; robust generation falls back to edge-only/no-cap, never fake interiors); caps imply no MRI and no internal anatomy beyond loaded meshes; headless-tested only, no device proof
 
 **PLANNED ONLY (decided in `TECH_STACK_DECISION.md`, zero code/deps/assets):**
@@ -96,7 +96,7 @@ install or assume these without a phase plan.
 > Phase 3.1 corrected (2026-09-27). Previous versions of this section named Z-Anatomy
 > as the geometry source and HCP as ingested parcellation data — both false.
 
-* **Production mesh geometry (all 4 assets)**: **BodyParts3D Release 3.0** (DBCLS, Japan),
+* **Production mesh geometry (20 assets: 4 Phase 1–3 + 16 Phase 5.0 gyral)**: **BodyParts3D Release 3.0** (DBCLS, Japan),
 acquired as binary STLs via a third-party GitHub mirror (OBJ→STL converted); per-file
 hashes and mirror URLs in `assets/raw/*/ingestion.json`, component breakdown in the
 manifest's `source_components`. Historical files CC-BY-SA 2.1 JP; upstream portal lists

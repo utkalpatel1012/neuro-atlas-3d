@@ -37,8 +37,8 @@ Every structure in the catalogue progresses through a strict 7-stage lifecycle:
 [ANATOMY_VALIDATED] 
     │  Academic audit and clinical sign-off by neuroanatomy specialist
     ▼
-[PRODUCTION_READY] 
-    │  Meshopt compressed, BVH tested, cleared in assets.manifest.json
+ [PRODUCTION_READY] 
+     │  Meshopt compressed, BVH tested, listed in assets.manifest.json
     ▼
  (Compiled into Public Production Web Release)
 ```

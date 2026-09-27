@@ -31,6 +31,17 @@ VALID_WITH_KNOWN_TOPOLOGY_LIMITATION / INVALID) → RUNTIME_READY.
 REJECTED (failed validation, reason recorded) and REVIEW_REQUIRED
 (uncertain, reason recorded) are terminal holding states — never silent.
 
+### RUNTIME_READY is NOT anatomically validated (§5.0.1 clarification)
+
+RUNTIME_READY means the asset passed the technical requirements for
+controlled runtime use: provenance complete, license recorded, geometry
+finite and profile-conformant, canonicalized, LODs generated, manifest entry
+hash-linked. It does NOT mean expert neuroanatomical validation,
+histological validation, complete ontology validation (TA2/UBERON stay
+UNVERIFIED until a lookup pass), clinical validation, or legal clearance
+(LEGAL_REVIEW_REQUIRED stands). Technical/runtime, anatomical/scientific,
+and expert statuses are tracked separately and must never be collapsed.
+
 ## Source doctrine (§6–§8)
 
 Authoritative sources only (BodyParts3D Release 3.0 chain first; Z-Anatomy

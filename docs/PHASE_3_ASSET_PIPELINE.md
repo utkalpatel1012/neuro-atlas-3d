@@ -12,7 +12,7 @@ Phase 3 transitions the Neuro Atlas 3D pipeline from a single-structure subcorti
 ### Core Architecture Invariants
 1. **Zero Fabrication**: All cortical component meshes originate from authentic human anatomical datasets (DBCLS BodyParts3D Release 3.0, acquired via third-party mirror; SPL-PNL was a cross-validation reference, never the source). Procedural approximations, AI blobs, and artistic sculpting are strictly prohibited.
 2. **Decoupled Architecture**: Semantic regions (lobes, gyri, functional systems) are decoupled from physical mesh boundaries. Lobes are ontological groupings; the composite is a multi-shell assembly, NOT a continuous cortical manifold (Phase 3.1 D1).
-3. **Rigorous Provenance**: Every raw geometry file is cryptographically pinned via SHA-256 digests, upstream database IDs (FMA), per-component records, and legal dual-compliance covenants.
+3. **Rigorous Provenance**: Every raw geometry file is cryptographically pinned via SHA-256 digests, upstream database IDs (FMA), per-component records, and legal attribution and ShareAlike covenants.
 4. **Deterministic Multi-LOD Generation**: 4-level LOD meshes are generated using Meshopt Quadric Error Metric (QEM) simplification — LOSSY by construction — with empirical Hausdorff and volume deviation audit trails.
 5. **Scoped Runtime Compression**: Production assets are delivered via `EXT_meshopt_compression` (`.meshopt.glb`); the encode step is round-trip verified vs its LOD input (max delta ≤ 1e-6 mm). Never "lossless" without that scope; never "bit-exact".
 

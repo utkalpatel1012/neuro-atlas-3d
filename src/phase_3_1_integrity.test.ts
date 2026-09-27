@@ -184,9 +184,16 @@ async function runTests() {
   }
   // Phase 3.1 §19: the term "dual compliance" has no legal basis — banned repo-wide
   // in live records. Exact terms + LEGAL_REVIEW_REQUIRED flag required instead.
+  // Phase 5.0.1: the scan covers the manifest, ALL structure records, and ALL
+  // raw ingestion records (the term once propagated into staged ingestion
+  // metadata via inheritance — the scan now closes that path mechanically).
   const liveBlob = JSON.stringify(manifest) +
-    ['cortex_left', 'cortex_right', 'hippocampus_left', 'hippocampus_right']
-      .map((s) => JSON.stringify(readJson(`data/structures/${s}.json`))).join(' ');
+    fs.readdirSync(path.resolve(__dirname, '../data/structures')).filter((f: string) => f.endsWith('.json'))
+      .map((s: string) => JSON.stringify(readJson(`data/structures/${s}`))).join(' ') +
+    fs.readdirSync(path.resolve(__dirname, '../assets/raw')).map((d: string) => {
+      const p = path.resolve(__dirname, `../assets/raw/${d}/ingestion.json`);
+      return fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : '';
+    }).join(' ');
   assert(!liveBlob.toLowerCase().includes('dual compliance'),
     'Banned counsel-pretending term "dual compliance" absent from live records');
   assert(liveBlob.includes('LEGAL_REVIEW_REQUIRED'),

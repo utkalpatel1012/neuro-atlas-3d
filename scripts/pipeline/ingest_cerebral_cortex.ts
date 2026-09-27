@@ -163,7 +163,7 @@ export async function ingestCerebralCortexHemisphere(laterality: 'left' | 'right
     source_dataset_version: 'Release 3.0 (2011/06/20)',
     source_asset_id: laterality === 'left' ? 'FMA61830_L' : 'FMA61830_R',
     source_url: 'https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html',
-    source_license: 'CC BY 4.0 / CC-BY-SA 2.1 Japan (Dual compliance)',
+    source_license: 'Historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (verified 2025-02-27). Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.',
     source_license_version: 'CC BY 4.0 (2025-02-27 portal update) / CC-BY-SA 2.1 JP',
     project_distribution_policy: 'CC-BY-SA-4.0',
     attribution: 'BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International.',

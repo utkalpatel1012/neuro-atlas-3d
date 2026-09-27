@@ -137,6 +137,6 @@ export interface AssetsManifest {
   generator_script: string;
   total_assets: number;
   assets: Record<string, AssetProvenance>;
-  production_whitelist: string[];       // Asset IDs formally cleared for production bundling
+  production_whitelist: string[];       // Asset IDs listed for production bundling (technical listing; not legal clearance)
   research_quarantine: string[];        // Asset IDs restricted to research validation
 }

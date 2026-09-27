@@ -274,11 +274,11 @@ export function validateAsset(rawArg: string): boolean {
   const isWhitelisted = manifest.production_whitelist?.includes(assetId);
   const isQuarantined = manifest.research_quarantine?.includes(assetId);
   const isAllowed = assetRecord.production_eligibility === 'PRODUCTION_ALLOWED';
-  const licenseCleared = assetRecord.commercial_redistribution === 'PERMITTED';
-  const productionReady = isWhitelisted && !isQuarantined && isAllowed && licenseCleared;
+  const licensePermitted = assetRecord.commercial_redistribution === 'PERMITTED';
+  const productionReady = isWhitelisted && !isQuarantined && isAllowed && licensePermitted;
 
   checks.push({
-    title: 'Production Whitelist & Licensing Cleared',
+    title: 'Production Whitelist & Licensing Terms Recorded',
     passed: productionReady,
     message: productionReady
       ? `Whitelisted: true | Quarantine: false | Eligibility: PRODUCTION_ALLOWED | License: ${assetRecord.upstream_license}`
@@ -300,7 +300,7 @@ function reportResults(assetId: string, checks: ValidationCheck[]): boolean {
   console.log(`----------------------------------------------------------------`);
   if (allPassed) {
     console.log(`[VALIDATION PASSED] All ${checks.length} checks successfully passed.`);
-    console.log(`Asset ${assetId} is verified and cleared for production atlas use.\n`);
+    console.log(`Asset ${assetId} passed pipeline validation for production atlas use (technical checks only; LEGAL_REVIEW_REQUIRED before commercial redistribution).\n`);
     return true;
   } else {
     console.error(`[VALIDATION FAILED] One or more checks failed for ${assetId}.\n`);
