@@ -1,45 +1,453 @@
 {
   "_comment": "Phase 5.0 anatomical hierarchy catalog. Levels 0-5 per docs/PHASE_5_ANATOMICAL_EXPANSION_PLAN.md. geometry_state DOCUMENTED means identity-known without geometry — a label NEVER implies geometry (§5). AVAILABLE structures have RUNTIME_READY assets in the manifest.",
-  "levels": { "0": "Whole brain", "1": "Major systems/regions", "2": "Major structures", "3": "Substructures", "4": "Fine subdivisions", "5": "Microscopic/cytoarchitectural layers (EXCLUDED from Phase 5)" },
+  "levels": {
+    "0": "Whole brain",
+    "1": "Major systems/regions",
+    "2": "Major structures",
+    "3": "Substructures",
+    "4": "Fine subdivisions",
+    "5": "Microscopic/cytoarchitectural layers (EXCLUDED from Phase 5)"
+  },
   "nodes": [
-    { "id": "brain", "level": 0, "name": "Brain", "geometry_state": "DOCUMENTED", "children": ["brain.telencephalon", "brain.diencephalon", "brain.brainstem", "brain.cerebellum", "brain.ventricular_system"] },
-    { "id": "brain.telencephalon", "level": 1, "name": "Telencephalon (cerebrum)", "geometry_state": "DOCUMENTED", "children": ["brain.telencephalon.left", "brain.telencephalon.right"] },
-    { "id": "brain.telencephalon.left", "level": 2, "name": "Left cerebral hemisphere", "geometry_state": "DOCUMENTED", "children": ["brain.telencephalon.left.frontal_lobe", "brain.telencephalon.left.parietal_lobe", "brain.telencephalon.left.temporal_lobe", "brain.telencephalon.left.limbic_lobe"] },
-    { "id": "brain.telencephalon.right", "level": 2, "name": "Right cerebral hemisphere", "geometry_state": "DOCUMENTED", "children": ["brain.telencephalon.right.frontal_lobe", "brain.telencephalon.right.parietal_lobe", "brain.telencephalon.right.temporal_lobe", "brain.telencephalon.right.limbic_lobe"] },
-    { "id": "brain.telencephalon.left.frontal_lobe", "level": 2, "name": "Left frontal lobe", "geometry_state": "DOCUMENTED", "children": ["brain.telencephalon.left.frontal_lobe.superior_frontal_gyrus", "brain.telencephalon.left.frontal_lobe.middle_frontal_gyrus", "brain.telencephalon.left.frontal_lobe.precentral_gyrus"] },
-    { "id": "brain.telencephalon.right.frontal_lobe", "level": 2, "name": "Right frontal lobe", "geometry_state": "DOCUMENTED", "children": ["brain.telencephalon.right.frontal_lobe.superior_frontal_gyrus", "brain.telencephalon.right.frontal_lobe.middle_frontal_gyrus", "brain.telencephalon.right.frontal_lobe.precentral_gyrus"] },
-    { "id": "brain.telencephalon.left.parietal_lobe", "level": 2, "name": "Left parietal lobe", "geometry_state": "DOCUMENTED", "children": ["brain.telencephalon.left.parietal_lobe.postcentral_gyrus", "brain.telencephalon.left.parietal_lobe.supramarginal_gyrus", "brain.telencephalon.left.parietal_lobe.angular_gyrus"] },
-    { "id": "brain.telencephalon.right.parietal_lobe", "level": 2, "name": "Right parietal lobe", "geometry_state": "DOCUMENTED", "children": ["brain.telencephalon.right.parietal_lobe.postcentral_gyrus", "brain.telencephalon.right.parietal_lobe.supramarginal_gyrus", "brain.telencephalon.right.parietal_lobe.angular_gyrus"] },
-    { "id": "brain.telencephalon.left.temporal_lobe", "level": 2, "name": "Left temporal lobe", "geometry_state": "DOCUMENTED", "children": ["brain.telencephalon.left.temporal_lobe.middle_temporal_gyrus"] },
-    { "id": "brain.telencephalon.right.temporal_lobe", "level": 2, "name": "Right temporal lobe", "geometry_state": "DOCUMENTED", "children": ["brain.telencephalon.right.temporal_lobe.middle_temporal_gyrus"] },
-    { "id": "brain.telencephalon.left.limbic_lobe", "level": 2, "name": "Left limbic lobe", "geometry_state": "DOCUMENTED", "children": ["brain.telencephalon.left.limbic.cingulate_gyrus", "brain.telencephalon.left.limbic.hippocampus"] },
-    { "id": "brain.telencephalon.right.limbic_lobe", "level": 2, "name": "Right limbic lobe", "geometry_state": "DOCUMENTED", "children": ["brain.telencephalon.right.limbic.cingulate_gyrus", "brain.telencephalon.right.limbic.hippocampus"] },
-    { "id": "brain.telencephalon.left.frontal_lobe.superior_frontal_gyrus", "level": 3, "name": "Left superior frontal gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.superior_frontal_gyrus.left.v1", "structure_record": "data/structures/superior_frontal_gyrus_left.json" },
-    { "id": "brain.telencephalon.right.frontal_lobe.superior_frontal_gyrus", "level": 3, "name": "Right superior frontal gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.superior_frontal_gyrus.right.v1", "structure_record": "data/structures/superior_frontal_gyrus_right.json" },
-    { "id": "brain.telencephalon.left.frontal_lobe.middle_frontal_gyrus", "level": 3, "name": "Left middle frontal gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.middle_frontal_gyrus.left.v1", "structure_record": "data/structures/middle_frontal_gyrus_left.json" },
-    { "id": "brain.telencephalon.right.frontal_lobe.middle_frontal_gyrus", "level": 3, "name": "Right middle frontal gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.middle_frontal_gyrus.right.v1", "structure_record": "data/structures/middle_frontal_gyrus_right.json" },
-    { "id": "brain.telencephalon.left.frontal_lobe.precentral_gyrus", "level": 3, "name": "Left precentral gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.precentral_gyrus.left.v1", "structure_record": "data/structures/precentral_gyrus_left.json" },
-    { "id": "brain.telencephalon.right.frontal_lobe.precentral_gyrus", "level": 3, "name": "Right precentral gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.precentral_gyrus.right.v1", "structure_record": "data/structures/precentral_gyrus_right.json" },
-    { "id": "brain.telencephalon.left.parietal_lobe.postcentral_gyrus", "level": 3, "name": "Left postcentral gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.postcentral_gyrus.left.v1", "structure_record": "data/structures/postcentral_gyrus_left.json" },
-    { "id": "brain.telencephalon.right.parietal_lobe.postcentral_gyrus", "level": 3, "name": "Right postcentral gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.postcentral_gyrus.right.v1", "structure_record": "data/structures/postcentral_gyrus_right.json" },
-    { "id": "brain.telencephalon.left.parietal_lobe.supramarginal_gyrus", "level": 3, "name": "Left supramarginal gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.supramarginal_gyrus.left.v1", "structure_record": "data/structures/supramarginal_gyrus_left.json" },
-    { "id": "brain.telencephalon.right.parietal_lobe.supramarginal_gyrus", "level": 3, "name": "Right supramarginal gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.supramarginal_gyrus.right.v1", "structure_record": "data/structures/supramarginal_gyrus_right.json" },
-    { "id": "brain.telencephalon.left.parietal_lobe.angular_gyrus", "level": 3, "name": "Left angular gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.angular_gyrus.left.v1", "structure_record": "data/structures/angular_gyrus_left.json" },
-    { "id": "brain.telencephalon.right.parietal_lobe.angular_gyrus", "level": 3, "name": "Right angular gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.angular_gyrus.right.v1", "structure_record": "data/structures/angular_gyrus_right.json" },
-    { "id": "brain.telencephalon.left.temporal_lobe.middle_temporal_gyrus", "level": 3, "name": "Left middle temporal gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.middle_temporal_gyrus.left.v1", "structure_record": "data/structures/middle_temporal_gyrus_left.json" },
-    { "id": "brain.telencephalon.right.temporal_lobe.middle_temporal_gyrus", "level": 3, "name": "Right middle temporal gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.middle_temporal_gyrus.right.v1", "structure_record": "data/structures/middle_temporal_gyrus_right.json" },
-    { "id": "brain.telencephalon.left.limbic.cingulate_gyrus", "level": 3, "name": "Left cingulate gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.cingulate_gyrus.left.v1", "structure_record": "data/structures/cingulate_gyrus_left.json" },
-    { "id": "brain.telencephalon.right.limbic.cingulate_gyrus", "level": 3, "name": "Right cingulate gyrus", "geometry_state": "AVAILABLE", "asset_id": "mesh.cingulate_gyrus.right.v1", "structure_record": "data/structures/cingulate_gyrus_right.json" },
-    { "id": "brain.telencephalon.left.limbic.hippocampus", "level": 3, "name": "Left hippocampus", "geometry_state": "AVAILABLE", "asset_id": "mesh.hippocampus.left.v1", "structure_record": "data/structures/hippocampus_left.json" },
-    { "id": "brain.telencephalon.right.limbic.hippocampus", "level": 3, "name": "Right hippocampus", "geometry_state": "AVAILABLE", "asset_id": "mesh.hippocampus.right.v1", "structure_record": "data/structures/hippocampus_right.json" },
-    { "id": "brain.diencephalon", "level": 1, "name": "Diencephalon (thalamus, hypothalamus — pipeline targets)", "geometry_state": "DOCUMENTED", "children": [] },
-    { "id": "brain.brainstem", "level": 1, "name": "Brainstem (midbrain, pons, medulla — pipeline targets)", "geometry_state": "DOCUMENTED", "children": [] },
-    { "id": "brain.cerebellum", "level": 1, "name": "Cerebellum (hemispheres, vermis — pipeline targets)", "geometry_state": "DOCUMENTED", "children": [] },
-    { "id": "brain.ventricular_system", "level": 1, "name": "Ventricular system (cavities, not tissue — pipeline targets)", "geometry_state": "DOCUMENTED", "children": [] }
+    {
+      "id": "brain",
+      "level": 0,
+      "name": "Brain",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.telencephalon",
+        "brain.diencephalon",
+        "brain.brainstem",
+        "brain.cerebellum",
+        "brain.ventricular_system",
+        "brain.basal_ganglia"
+      ]
+    },
+    {
+      "id": "brain.telencephalon",
+      "level": 1,
+      "name": "Telencephalon (cerebrum)",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.telencephalon.left",
+        "brain.telencephalon.right"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.left",
+      "level": 2,
+      "name": "Left cerebral hemisphere",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.telencephalon.left.frontal_lobe",
+        "brain.telencephalon.left.parietal_lobe",
+        "brain.telencephalon.left.temporal_lobe",
+        "brain.telencephalon.left.limbic_lobe"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.right",
+      "level": 2,
+      "name": "Right cerebral hemisphere",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.telencephalon.right.frontal_lobe",
+        "brain.telencephalon.right.parietal_lobe",
+        "brain.telencephalon.right.temporal_lobe",
+        "brain.telencephalon.right.limbic_lobe"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.left.frontal_lobe",
+      "level": 2,
+      "name": "Left frontal lobe",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.telencephalon.left.frontal_lobe.superior_frontal_gyrus",
+        "brain.telencephalon.left.frontal_lobe.middle_frontal_gyrus",
+        "brain.telencephalon.left.frontal_lobe.precentral_gyrus"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.right.frontal_lobe",
+      "level": 2,
+      "name": "Right frontal lobe",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.telencephalon.right.frontal_lobe.superior_frontal_gyrus",
+        "brain.telencephalon.right.frontal_lobe.middle_frontal_gyrus",
+        "brain.telencephalon.right.frontal_lobe.precentral_gyrus"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.left.parietal_lobe",
+      "level": 2,
+      "name": "Left parietal lobe",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.telencephalon.left.parietal_lobe.postcentral_gyrus",
+        "brain.telencephalon.left.parietal_lobe.supramarginal_gyrus",
+        "brain.telencephalon.left.parietal_lobe.angular_gyrus"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.right.parietal_lobe",
+      "level": 2,
+      "name": "Right parietal lobe",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.telencephalon.right.parietal_lobe.postcentral_gyrus",
+        "brain.telencephalon.right.parietal_lobe.supramarginal_gyrus",
+        "brain.telencephalon.right.parietal_lobe.angular_gyrus"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.left.temporal_lobe",
+      "level": 2,
+      "name": "Left temporal lobe",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.telencephalon.left.temporal_lobe.middle_temporal_gyrus"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.right.temporal_lobe",
+      "level": 2,
+      "name": "Right temporal lobe",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.telencephalon.right.temporal_lobe.middle_temporal_gyrus"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.left.limbic_lobe",
+      "level": 2,
+      "name": "Left limbic lobe",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.telencephalon.left.limbic.cingulate_gyrus",
+        "brain.telencephalon.left.limbic.hippocampus",
+        "brain.telencephalon.left.limbic.amygdala"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.right.limbic_lobe",
+      "level": 2,
+      "name": "Right limbic lobe",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.telencephalon.right.limbic.cingulate_gyrus",
+        "brain.telencephalon.right.limbic.hippocampus",
+        "brain.telencephalon.right.limbic.amygdala"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.left.frontal_lobe.superior_frontal_gyrus",
+      "level": 3,
+      "name": "Left superior frontal gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.superior_frontal_gyrus.left.v1",
+      "structure_record": "data/structures/superior_frontal_gyrus_left.json"
+    },
+    {
+      "id": "brain.telencephalon.right.frontal_lobe.superior_frontal_gyrus",
+      "level": 3,
+      "name": "Right superior frontal gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.superior_frontal_gyrus.right.v1",
+      "structure_record": "data/structures/superior_frontal_gyrus_right.json"
+    },
+    {
+      "id": "brain.telencephalon.left.frontal_lobe.middle_frontal_gyrus",
+      "level": 3,
+      "name": "Left middle frontal gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.middle_frontal_gyrus.left.v1",
+      "structure_record": "data/structures/middle_frontal_gyrus_left.json"
+    },
+    {
+      "id": "brain.telencephalon.right.frontal_lobe.middle_frontal_gyrus",
+      "level": 3,
+      "name": "Right middle frontal gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.middle_frontal_gyrus.right.v1",
+      "structure_record": "data/structures/middle_frontal_gyrus_right.json"
+    },
+    {
+      "id": "brain.telencephalon.left.frontal_lobe.precentral_gyrus",
+      "level": 3,
+      "name": "Left precentral gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.precentral_gyrus.left.v1",
+      "structure_record": "data/structures/precentral_gyrus_left.json"
+    },
+    {
+      "id": "brain.telencephalon.right.frontal_lobe.precentral_gyrus",
+      "level": 3,
+      "name": "Right precentral gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.precentral_gyrus.right.v1",
+      "structure_record": "data/structures/precentral_gyrus_right.json"
+    },
+    {
+      "id": "brain.telencephalon.left.parietal_lobe.postcentral_gyrus",
+      "level": 3,
+      "name": "Left postcentral gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.postcentral_gyrus.left.v1",
+      "structure_record": "data/structures/postcentral_gyrus_left.json"
+    },
+    {
+      "id": "brain.telencephalon.right.parietal_lobe.postcentral_gyrus",
+      "level": 3,
+      "name": "Right postcentral gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.postcentral_gyrus.right.v1",
+      "structure_record": "data/structures/postcentral_gyrus_right.json"
+    },
+    {
+      "id": "brain.telencephalon.left.parietal_lobe.supramarginal_gyrus",
+      "level": 3,
+      "name": "Left supramarginal gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.supramarginal_gyrus.left.v1",
+      "structure_record": "data/structures/supramarginal_gyrus_left.json"
+    },
+    {
+      "id": "brain.telencephalon.right.parietal_lobe.supramarginal_gyrus",
+      "level": 3,
+      "name": "Right supramarginal gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.supramarginal_gyrus.right.v1",
+      "structure_record": "data/structures/supramarginal_gyrus_right.json"
+    },
+    {
+      "id": "brain.telencephalon.left.parietal_lobe.angular_gyrus",
+      "level": 3,
+      "name": "Left angular gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.angular_gyrus.left.v1",
+      "structure_record": "data/structures/angular_gyrus_left.json"
+    },
+    {
+      "id": "brain.telencephalon.right.parietal_lobe.angular_gyrus",
+      "level": 3,
+      "name": "Right angular gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.angular_gyrus.right.v1",
+      "structure_record": "data/structures/angular_gyrus_right.json"
+    },
+    {
+      "id": "brain.telencephalon.left.temporal_lobe.middle_temporal_gyrus",
+      "level": 3,
+      "name": "Left middle temporal gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.middle_temporal_gyrus.left.v1",
+      "structure_record": "data/structures/middle_temporal_gyrus_left.json"
+    },
+    {
+      "id": "brain.telencephalon.right.temporal_lobe.middle_temporal_gyrus",
+      "level": 3,
+      "name": "Right middle temporal gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.middle_temporal_gyrus.right.v1",
+      "structure_record": "data/structures/middle_temporal_gyrus_right.json"
+    },
+    {
+      "id": "brain.telencephalon.left.limbic.cingulate_gyrus",
+      "level": 3,
+      "name": "Left cingulate gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.cingulate_gyrus.left.v1",
+      "structure_record": "data/structures/cingulate_gyrus_left.json"
+    },
+    {
+      "id": "brain.telencephalon.right.limbic.cingulate_gyrus",
+      "level": 3,
+      "name": "Right cingulate gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.cingulate_gyrus.right.v1",
+      "structure_record": "data/structures/cingulate_gyrus_right.json"
+    },
+    {
+      "id": "brain.telencephalon.left.limbic.hippocampus",
+      "level": 3,
+      "name": "Left hippocampus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.hippocampus.left.v1",
+      "structure_record": "data/structures/hippocampus_left.json"
+    },
+    {
+      "id": "brain.telencephalon.right.limbic.hippocampus",
+      "level": 3,
+      "name": "Right hippocampus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.hippocampus.right.v1",
+      "structure_record": "data/structures/hippocampus_right.json"
+    },
+    {
+      "id": "brain.diencephalon",
+      "level": 1,
+      "name": "Diencephalon (thalamus, hypothalamus — pipeline targets)",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.diencephalon.left.thalamus",
+        "brain.diencephalon.right.thalamus",
+        "brain.diencephalon.hypothalamus"
+      ]
+    },
+    {
+      "id": "brain.brainstem",
+      "level": 1,
+      "name": "Brainstem (midbrain, pons, medulla — pipeline targets)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum",
+      "level": 1,
+      "name": "Cerebellum (hemispheres, vermis — pipeline targets)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.ventricular_system",
+      "level": 1,
+      "name": "Ventricular system (cavities, not tissue — pipeline targets)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.basal_ganglia",
+      "level": 1,
+      "name": "Basal ganglia (caudate, putamen, pallidum — Phase 5.1 batch)",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.basal_ganglia.left.caudate_nucleus",
+        "brain.basal_ganglia.right.caudate_nucleus",
+        "brain.basal_ganglia.left.putamen",
+        "brain.basal_ganglia.right.putamen",
+        "brain.basal_ganglia.left.globus_pallidus",
+        "brain.basal_ganglia.right.globus_pallidus",
+        "brain.basal_ganglia.accumbens"
+      ]
+    },
+    {
+      "id": "brain.diencephalon.hypothalamus",
+      "level": 2,
+      "name": "Hypothalamus (DOCUMENTED — no source geometry)",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.diencephalon.bilateral.hypothalamus.mammillary_body"
+      ]
+    },
+    {
+      "id": "brain.diencephalon.left.thalamus",
+      "level": 3,
+      "name": "Left thalamus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.thalamus.left.v1",
+      "structure_record": "data/structures/thalamus_left.json"
+    },
+    {
+      "id": "brain.diencephalon.right.thalamus",
+      "level": 3,
+      "name": "Right thalamus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.thalamus.right.v1",
+      "structure_record": "data/structures/thalamus_right.json"
+    },
+    {
+      "id": "brain.basal_ganglia.left.caudate_nucleus",
+      "level": 3,
+      "name": "Left caudate nucleus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.caudate_nucleus.left.v1",
+      "structure_record": "data/structures/caudate_nucleus_left.json"
+    },
+    {
+      "id": "brain.basal_ganglia.right.caudate_nucleus",
+      "level": 3,
+      "name": "Right caudate nucleus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.caudate_nucleus.right.v1",
+      "structure_record": "data/structures/caudate_nucleus_right.json"
+    },
+    {
+      "id": "brain.basal_ganglia.left.putamen",
+      "level": 3,
+      "name": "Left putamen",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.putamen.left.v1",
+      "structure_record": "data/structures/putamen_left.json"
+    },
+    {
+      "id": "brain.basal_ganglia.right.putamen",
+      "level": 3,
+      "name": "Right putamen",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.putamen.right.v1",
+      "structure_record": "data/structures/putamen_right.json"
+    },
+    {
+      "id": "brain.basal_ganglia.left.globus_pallidus",
+      "level": 3,
+      "name": "Left globus pallidus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.globus_pallidus.left.v1",
+      "structure_record": "data/structures/globus_pallidus_left.json"
+    },
+    {
+      "id": "brain.basal_ganglia.right.globus_pallidus",
+      "level": 3,
+      "name": "Right globus pallidus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.globus_pallidus.right.v1",
+      "structure_record": "data/structures/globus_pallidus_right.json"
+    },
+    {
+      "id": "brain.telencephalon.left.limbic.amygdala",
+      "level": 3,
+      "name": "Left amygdala",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.amygdala.left.v1",
+      "structure_record": "data/structures/amygdala_left.json"
+    },
+    {
+      "id": "brain.telencephalon.right.limbic.amygdala",
+      "level": 3,
+      "name": "Right amygdala",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.amygdala.right.v1",
+      "structure_record": "data/structures/amygdala_right.json"
+    },
+    {
+      "id": "brain.diencephalon.bilateral.hypothalamus.mammillary_body",
+      "level": 3,
+      "name": "Mammillary body (bilateral)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.mammillary_body.bilateral.v1",
+      "structure_record": "data/structures/mammillary_body_bilateral.json"
+    },
+    {
+      "id": "brain.basal_ganglia.accumbens",
+      "level": 3,
+      "name": "Nucleus accumbens (DOCUMENTED — no source geometry)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    }
   ],
   "relationships": [
-    { "parent": "brain.telencephalon.left.frontal_lobe", "child": "brain.telencephalon.left.frontal_lobe.precentral_gyrus", "type": "CONTAINS" },
-    { "parent": "brain.telencephalon.left.limbic_lobe", "child": "brain.telencephalon.left.limbic.cingulate_gyrus", "type": "CONTAINS" }
+    {
+      "parent": "brain.telencephalon.left.frontal_lobe",
+      "child": "brain.telencephalon.left.frontal_lobe.precentral_gyrus",
+      "type": "CONTAINS"
+    },
+    {
+      "parent": "brain.telencephalon.left.limbic_lobe",
+      "child": "brain.telencephalon.left.limbic.cingulate_gyrus",
+      "type": "CONTAINS"
+    }
   ],
   "_note_relationships": "CONTAINS shown exemplarily; every AVAILABLE structure's data/structures record carries its own part_of relationship. No functional-connectivity claims."
 }

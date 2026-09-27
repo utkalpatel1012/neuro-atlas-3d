@@ -1,0 +1,151 @@
+{
+  "assetId": "mesh.amygdala.right.v1",
+  "sourceFile": "assets/raw/mesh.amygdala.right.v1/FMA72832.stl",
+  "timestamp": "2026-09-27T16:08:15.559Z",
+  "topologyClass": "CLOSED_SURFACE",
+  "profileId": "closed-pial-surface",
+  "analysis": {
+    "triangleCount": 1744,
+    "rawVertexCount": 5232,
+    "uniqueVertexCount": 874,
+    "minBounds": [
+      -32.83300018310547,
+      -116.0780029296875,
+      1539.8900146484375
+    ],
+    "maxBounds": [
+      -16.4862003326416,
+      -98.53690338134766,
+      1552.1800537109375
+    ],
+    "centroid": [
+      -24.662639105074465,
+      -110.03239213083647,
+      1545.9364664527318
+    ],
+    "dimensions": [
+      16.346799850463867,
+      17.541099548339844,
+      12.2900390625
+    ],
+    "surfaceAreaMm2": 657.5234537695286,
+    "estimatedVolumeMm3": 1331.4824835676864,
+    "zeroAreaFaces": 0,
+    "duplicateFaces": 0,
+    "nonManifoldEdges": 0,
+    "boundaryEdges": 0,
+    "manifoldEdges": 2616,
+    "isWatertight": true,
+    "connectedShellCount": 1
+  },
+  "geometricQA": {
+    "assetId": "mesh.amygdala.right.v1",
+    "sourceFile": "assets/raw/mesh.amygdala.right.v1/FMA72832.stl",
+    "timestamp": "2026-09-27T16:08:15.559Z",
+    "topologyClass": "CLOSED_SURFACE",
+    "profileId": "closed-pial-surface",
+    "analysis": {
+      "triangleCount": 1744,
+      "rawVertexCount": 5232,
+      "uniqueVertexCount": 874,
+      "minBounds": [
+        -32.83300018310547,
+        -116.0780029296875,
+        1539.8900146484375
+      ],
+      "maxBounds": [
+        -16.4862003326416,
+        -98.53690338134766,
+        1552.1800537109375
+      ],
+      "centroid": [
+        -24.662639105074465,
+        -110.03239213083647,
+        1545.9364664527318
+      ],
+      "dimensions": [
+        16.346799850463867,
+        17.541099548339844,
+        12.2900390625
+      ],
+      "surfaceAreaMm2": 657.5234537695286,
+      "estimatedVolumeMm3": 1331.4824835676864,
+      "zeroAreaFaces": 0,
+      "duplicateFaces": 0,
+      "nonManifoldEdges": 0,
+      "boundaryEdges": 0,
+      "manifoldEdges": 2616,
+      "isWatertight": true,
+      "connectedShellCount": 1
+    },
+    "checks": [
+      {
+        "name": "Non-Manifold Edges Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 non-manifold edges (Limit: 0)"
+      },
+      {
+        "name": "Duplicate Faces Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 duplicate faces (Limit: 0)"
+      },
+      {
+        "name": "Zero-Area Faces Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 zero-area faces (Limit: 0)"
+      },
+      {
+        "name": "Watertight Surface Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Watertight: true (Boundary open edges: 0, must be 0 for CLOSED_SURFACE). NOTE: edge accounting is per-shell; see connectedShellCount for surface continuity."
+      },
+      {
+        "name": "Triangle Manifold Presence Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Mesh contains 1744 triangles and 874 unique vertices"
+      },
+      {
+        "name": "Single-Surface Continuity Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Measured 1 connected shell: consistent with CLOSED_SURFACE."
+      }
+    ],
+    "geometricStatus": "GEOMETRY_VALIDATED"
+  },
+  "anatomicalQA": {
+    "assetId": "mesh.amygdala.right.v1",
+    "timestamp": "2026-09-27T16:08:15.559Z",
+    "declaredLaterality": "right",
+    "subfieldRepresentation": "MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED",
+    "checks": [
+      {
+        "name": "Adult Human Anatomic Scale Check",
+        "category": "anatomical",
+        "passed": true,
+        "details": "Dimensions: 16.35 x 17.54 x 12.29 mm"
+      },
+      {
+        "name": "Anatomical Volume Estimation Check",
+        "category": "anatomical",
+        "passed": true,
+        "details": "Measured volume: 1.33 cm3"
+      },
+      {
+        "name": "Internal Subfield Boundary Resolution Check",
+        "category": "anatomical",
+        "passed": true,
+        "notApplicable": true,
+        "details": "Mesh represents macroscopic unsegmented organ body; microscopic subfields CA1-CA4 are not resolved in 3D geometry"
+      }
+    ],
+    "anatomicalStatus": "ANATOMY_VALIDATED",
+    "notes": "Macroscopic scale/laterality plausibility only; internal subfields unsegmented. (Historical phase-acceptance status; not a morphological proof.)"
+  },
+  "overallStatus": "GEOMETRY_VALIDATED"
+}

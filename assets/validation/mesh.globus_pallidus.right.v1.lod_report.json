@@ -1,0 +1,179 @@
+{
+  "assetId": "mesh.globus_pallidus.right.v1",
+  "timestamp": "2026-09-27T16:08:15.350Z",
+  "inputCanonicalGlb": "assets/derived/mesh.globus_pallidus.right.v1/canonical/mesh.globus_pallidus.right.v1.canonical.glb",
+  "inputCanonicalHash": "be8e45708c2ffbbe1eda5fc094847168e3c5dd0591a1a68b75c009babb84d0f1",
+  "levels": [
+    {
+      "level": 0,
+      "lodName": "lod0",
+      "targetRatio": 1,
+      "triangleCount": 23206,
+      "vertexCount": 11605,
+      "byteLength": 418752,
+      "sha256": "43a6d17722561b3624dda189046e7c3c01eed4cca859104eafa96a44c6659468",
+      "filePath": "assets/derived/mesh.globus_pallidus.right.v1/lod/mesh.globus_pallidus.right.v1.lod0.glb",
+      "targetIndexCount": 69618,
+      "resultingIndexCount": 69618,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 2125.26,
+        "lodVolumeMm3": 2125.26,
+        "volumeDeviationPercent": 0,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 1.7189,
+        "meanSurfaceDeviationMm": 0.1021
+      }
+    },
+    {
+      "level": 1,
+      "lodName": "lod1",
+      "targetRatio": 0.75,
+      "triangleCount": 17404,
+      "vertexCount": 8704,
+      "byteLength": 314312,
+      "sha256": "0a7b4bacc7cf440c264d3f3b71a67fd8e5fb770bc87089283d6d58fd17c30efb",
+      "filePath": "assets/derived/mesh.globus_pallidus.right.v1/lod/mesh.globus_pallidus.right.v1.lod1.glb",
+      "targetIndexCount": 52212,
+      "resultingIndexCount": 52212,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000075,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 2125.26,
+        "lodVolumeMm3": 2124.99,
+        "volumeDeviationPercent": -0.012,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0.4088,
+        "meanSurfaceDeviationMm": 0.0441
+      }
+    },
+    {
+      "level": 2,
+      "lodName": "lod2",
+      "targetRatio": 0.5,
+      "triangleCount": 11602,
+      "vertexCount": 5803,
+      "byteLength": 209872,
+      "sha256": "93006f9d6a232d2fc0704ca065c5b3e058b979f98a78f0872b63653b33c50b91",
+      "filePath": "assets/derived/mesh.globus_pallidus.right.v1/lod/mesh.globus_pallidus.right.v1.lod2.glb",
+      "targetIndexCount": 34809,
+      "resultingIndexCount": 34806,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000161,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 2125.26,
+        "lodVolumeMm3": 2124.47,
+        "volumeDeviationPercent": -0.037,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0.5907,
+        "meanSurfaceDeviationMm": 0.0953
+      }
+    },
+    {
+      "level": 3,
+      "lodName": "lod3",
+      "targetRatio": 0.25,
+      "triangleCount": 5800,
+      "vertexCount": 2902,
+      "byteLength": 105436,
+      "sha256": "193393bd50890f51d1940666fd933fc956465ddac85f8d5ee23bbc6fd744be1e",
+      "filePath": "assets/derived/mesh.globus_pallidus.right.v1/lod/mesh.globus_pallidus.right.v1.lod3.glb",
+      "targetIndexCount": 17403,
+      "resultingIndexCount": 17400,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000334,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 2125.26,
+        "lodVolumeMm3": 2123.24,
+        "volumeDeviationPercent": -0.095,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.0061,
+            0,
+            0.001
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 1.3629,
+        "meanSurfaceDeviationMm": 0.1821
+      }
+    }
+  ],
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.globus_pallidus.right.v1.lod_generation",
+    "tool": "MeshoptSimplifier / NeuroAtlas3D LOD Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "algorithms": "Quadric_Error_Metric_Simplification",
+      "levels": [
+        {
+          "name": "lod0",
+          "ratio": 1
+        },
+        {
+          "name": "lod1",
+          "ratio": 0.75
+        },
+        {
+          "name": "lod2",
+          "ratio": 0.5
+        },
+        {
+          "name": "lod3",
+          "ratio": 0.25
+        }
+      ]
+    },
+    "timestamp": "2026-09-27T16:08:15.350Z"
+  }
+}

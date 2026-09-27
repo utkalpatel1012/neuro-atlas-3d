@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.mammillary_body.bilateral.v1",
+  "timestamp": "2026-09-27T16:08:15.677Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.mammillary_body.bilateral.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.mammillary_body.bilateral.v1/lod/mesh.mammillary_body.bilateral.v1.lod0.glb",
+      "uncompressedByteLength": 31080,
+      "uncompressedSha256": "db6dc24a2616d69ce75eab8ef086d4a3f19d8b3787e86b36914d54a958047991",
+      "runtimeGlbPath": "assets/derived/mesh.mammillary_body.bilateral.v1/runtime/mesh.mammillary_body.bilateral.v1.lod0.meshopt.glb",
+      "compressedByteLength": 20332,
+      "compressedSha256": "fdb26dc0e79549eb8bbd822b93091e2ddaba2ba32b1c17b51a986dac2da79547",
+      "compressionRatio": 1.53,
+      "savingsPercent": 34.58,
+      "vertexCount": 837,
+      "triangleCount": 1666,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.mammillary_body.bilateral.v1/lod/mesh.mammillary_body.bilateral.v1.lod1.glb",
+      "uncompressedByteLength": 23552,
+      "uncompressedSha256": "1a4bc6815d46ea3a2f8953c9b080ff8b67da198cc543c43866af0477dff867a7",
+      "runtimeGlbPath": "assets/derived/mesh.mammillary_body.bilateral.v1/runtime/mesh.mammillary_body.bilateral.v1.lod1.meshopt.glb",
+      "compressedByteLength": 15816,
+      "compressedSha256": "d7d58adf87b2c8d38d737acc9de55a86e1d58f0e5e0638025e8844b1fc6e61e7",
+      "compressionRatio": 1.49,
+      "savingsPercent": 32.85,
+      "vertexCount": 628,
+      "triangleCount": 1248,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.mammillary_body.bilateral.v1/lod/mesh.mammillary_body.bilateral.v1.lod2.glb",
+      "uncompressedByteLength": 16064,
+      "uncompressedSha256": "1a5781ad637562386a78f312aa8722cf166db15874fe17daed830a90ae4b1792",
+      "runtimeGlbPath": "assets/derived/mesh.mammillary_body.bilateral.v1/runtime/mesh.mammillary_body.bilateral.v1.lod2.meshopt.glb",
+      "compressedByteLength": 11324,
+      "compressedSha256": "53567dcc41da17a0bf648f98ea436da04eb0d220ea6a553a4d7cc37cfb36dbd4",
+      "compressionRatio": 1.42,
+      "savingsPercent": 29.51,
+      "vertexCount": 420,
+      "triangleCount": 832,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.mammillary_body.bilateral.v1/lod/mesh.mammillary_body.bilateral.v1.lod3.glb",
+      "uncompressedByteLength": 8572,
+      "uncompressedSha256": "b669f86cf2a00641cd7490ce16a3077854c93db485faf76175247067047dcf18",
+      "runtimeGlbPath": "assets/derived/mesh.mammillary_body.bilateral.v1/runtime/mesh.mammillary_body.bilateral.v1.lod3.meshopt.glb",
+      "compressedByteLength": 6608,
+      "compressedSha256": "bc44536ccb11cb190b25696a36690f1cce1d97659aaeabc182bef741d958e2f0",
+      "compressionRatio": 1.3,
+      "savingsPercent": 22.91,
+      "vertexCount": 212,
+      "triangleCount": 416,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 79268,
+  "overallCompressedBytes": 54080,
+  "overallSavingsPercent": 31.78,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.mammillary_body.bilateral.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-27T16:08:15.677Z"
+  }
+}

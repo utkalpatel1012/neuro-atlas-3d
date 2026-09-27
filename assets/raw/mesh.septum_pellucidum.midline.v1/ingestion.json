@@ -1,0 +1,32 @@
+{
+  "asset_id": "mesh.septum_pellucidum.midline.v1",
+  "assetId": "mesh.septum_pellucidum.midline.v1",
+  "structure_id": "brain.telencephalon.midline.septum_pellucidum",
+  "source_dataset": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+  "source_dataset_version": "Release 3.0 (2011/06/20)",
+  "source_asset_id": "FMA61844",
+  "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/master/assets/BodyParts3D_data/stl/FMA61844.stl",
+  "source_license": "Historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (verified 2025-02-27). Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution.",
+  "source_license_version": "CC BY 4.0 (2025-02-27 portal update) / CC-BY-SA 2.1 JP",
+  "project_distribution_policy": "CC-BY-SA-4.0",
+  "attribution": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-ShareAlike 2.1 Japan. Relicensed under CC Attribution 4.0 International.",
+  "acquisition_date": "2026-09-27",
+  "original_filename": "FMA61844.stl",
+  "originalFilename": "FMA61844.stl",
+  "original_format": "binary STL (BodyParts3D segment)",
+  "original_hash": "fad509b6f3202fd4ef548ff72562c35f235815e4f9e37600b3e3d56da188ba7d",
+  "source_coordinate_space": "dicom_lps_whole_body",
+  "source_units": "millimeters (mm)",
+  "source_metadata": {
+    "distribution_name": "Septum pellucidum",
+    "distribution_laterality": "midline",
+    "measured_source_centroid_mm": [
+      -0.68,
+      -99.92,
+      1569.6
+    ],
+    "measured_source_triangles": 25012,
+    "laterality_basis": "distribution record + measured source-frame geometry (Xc=-Xs mapping)"
+  },
+  "ingestion_status": "SOURCE_VERIFIED"
+}

@@ -1,0 +1,179 @@
+{
+  "assetId": "mesh.mammillary_body.bilateral.v1",
+  "timestamp": "2026-09-27T16:08:15.674Z",
+  "inputCanonicalGlb": "assets/derived/mesh.mammillary_body.bilateral.v1/canonical/mesh.mammillary_body.bilateral.v1.canonical.glb",
+  "inputCanonicalHash": "c434a115df62c6789d35786dc1534b5b8002556fbaf2a99a382d4d0c81bae5d7",
+  "levels": [
+    {
+      "level": 0,
+      "lodName": "lod0",
+      "targetRatio": 1,
+      "triangleCount": 1666,
+      "vertexCount": 837,
+      "byteLength": 31080,
+      "sha256": "db6dc24a2616d69ce75eab8ef086d4a3f19d8b3787e86b36914d54a958047991",
+      "filePath": "assets/derived/mesh.mammillary_body.bilateral.v1/lod/mesh.mammillary_body.bilateral.v1.lod0.glb",
+      "targetIndexCount": 4998,
+      "resultingIndexCount": 4998,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 87.87,
+        "lodVolumeMm3": 87.87,
+        "volumeDeviationPercent": 0,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0,
+        "meanSurfaceDeviationMm": 0
+      }
+    },
+    {
+      "level": 1,
+      "lodName": "lod1",
+      "targetRatio": 0.75,
+      "triangleCount": 1248,
+      "vertexCount": 628,
+      "byteLength": 23552,
+      "sha256": "1a4bc6815d46ea3a2f8953c9b080ff8b67da198cc543c43866af0477dff867a7",
+      "filePath": "assets/derived/mesh.mammillary_body.bilateral.v1/lod/mesh.mammillary_body.bilateral.v1.lod1.glb",
+      "targetIndexCount": 3747,
+      "resultingIndexCount": 3744,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.003224,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 87.87,
+        "lodVolumeMm3": 87.49,
+        "volumeDeviationPercent": -0.431,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            -0.01,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0.5658,
+        "meanSurfaceDeviationMm": 0.0588
+      }
+    },
+    {
+      "level": 2,
+      "lodName": "lod2",
+      "targetRatio": 0.5,
+      "triangleCount": 832,
+      "vertexCount": 420,
+      "byteLength": 16064,
+      "sha256": "1a5781ad637562386a78f312aa8722cf166db15874fe17daed830a90ae4b1792",
+      "filePath": "assets/derived/mesh.mammillary_body.bilateral.v1/lod/mesh.mammillary_body.bilateral.v1.lod2.glb",
+      "targetIndexCount": 2499,
+      "resultingIndexCount": 2496,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.004842,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 87.87,
+        "lodVolumeMm3": 86.61,
+        "volumeDeviationPercent": -1.434,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.0062,
+            0.03,
+            0
+          ],
+          "max": [
+            0,
+            -0.01,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0.6,
+        "meanSurfaceDeviationMm": 0.1317
+      }
+    },
+    {
+      "level": 3,
+      "lodName": "lod3",
+      "targetRatio": 0.25,
+      "triangleCount": 416,
+      "vertexCount": 212,
+      "byteLength": 8572,
+      "sha256": "b669f86cf2a00641cd7490ce16a3077854c93db485faf76175247067047dcf18",
+      "filePath": "assets/derived/mesh.mammillary_body.bilateral.v1/lod/mesh.mammillary_body.bilateral.v1.lod3.glb",
+      "targetIndexCount": 1248,
+      "resultingIndexCount": 1248,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.009362,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 87.87,
+        "lodVolumeMm3": 84.06,
+        "volumeDeviationPercent": -4.342,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.0391,
+            0.03,
+            0
+          ],
+          "max": [
+            -0.0344,
+            -0.01,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 1.0618,
+        "meanSurfaceDeviationMm": 0.245
+      }
+    }
+  ],
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.mammillary_body.bilateral.v1.lod_generation",
+    "tool": "MeshoptSimplifier / NeuroAtlas3D LOD Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "algorithms": "Quadric_Error_Metric_Simplification",
+      "levels": [
+        {
+          "name": "lod0",
+          "ratio": 1
+        },
+        {
+          "name": "lod1",
+          "ratio": 0.75
+        },
+        {
+          "name": "lod2",
+          "ratio": 0.5
+        },
+        {
+          "name": "lod3",
+          "ratio": 0.25
+        }
+      ]
+    },
+    "timestamp": "2026-09-27T16:08:15.674Z"
+  }
+}

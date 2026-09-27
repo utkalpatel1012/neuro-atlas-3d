@@ -24,11 +24,10 @@ async function bootstrap() {
     throw new Error('Required DOM containers (#canvas-container, #app) not found.');
   }
 
-  // 1. Instantiate Application Engine
+  // 1. Instantiate Application Engine (initial profile: device safe-start).
   const app = new AtlasApplication({
     container: canvasContainer,
     manifestPath: 'assets/manifests/assets.manifest.json',
-    initialProfile: 'HIGH',
     enableGrid: true,
     enableOriginMarker: true
   });
@@ -187,7 +186,8 @@ async function bootstrap() {
       app.getPerformanceManager(),
       app.getLODManager(),
       app.getRendererManager(),
-      app.getSceneManager()
+      app.getSceneManager(),
+      (profile) => app.applyProfile(profile)
     );
 
     new ControlsBar(

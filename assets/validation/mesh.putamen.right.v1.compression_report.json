@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.putamen.right.v1",
+  "timestamp": "2026-09-27T16:08:14.777Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.putamen.right.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.putamen.right.v1/lod/mesh.putamen.right.v1.lod0.glb",
+      "uncompressedByteLength": 553088,
+      "uncompressedSha256": "e1780acb606f303fe92ff32e01804c1600d0a7beb6acbe4d9e54fce6148fd27d",
+      "runtimeGlbPath": "assets/derived/mesh.putamen.right.v1/runtime/mesh.putamen.right.v1.lod0.meshopt.glb",
+      "compressedByteLength": 326952,
+      "compressedSha256": "e2df554b7a7085036ae86df6cc6a5a0b385c5ef658cc1e23aa1736490dc93e92",
+      "compressionRatio": 1.69,
+      "savingsPercent": 40.89,
+      "vertexCount": 15337,
+      "triangleCount": 30670,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.putamen.right.v1/lod/mesh.putamen.right.v1.lod1.glb",
+      "uncompressedByteLength": 415064,
+      "uncompressedSha256": "0b66dbdb1c1a08836af9530cc874a2d5e3526bb7292691846091c1cdf1085f68",
+      "runtimeGlbPath": "assets/derived/mesh.putamen.right.v1/runtime/mesh.putamen.right.v1.lod1.meshopt.glb",
+      "compressedByteLength": 251552,
+      "compressedSha256": "bc8eef595b9f44078e991519bd6111bb32618ac78bb56f2f0a36f8fcf5a26a86",
+      "compressionRatio": 1.65,
+      "savingsPercent": 39.39,
+      "vertexCount": 11503,
+      "triangleCount": 23002,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.putamen.right.v1/lod/mesh.putamen.right.v1.lod2.glb",
+      "uncompressedByteLength": 277036,
+      "uncompressedSha256": "094a471510337142a60351a6cfb00c2711d6ba8f9707a56763c1c4d1004d98ef",
+      "runtimeGlbPath": "assets/derived/mesh.putamen.right.v1/runtime/mesh.putamen.right.v1.lod2.meshopt.glb",
+      "compressedByteLength": 173156,
+      "compressedSha256": "c197101a47749d807915e3d866948c4cf434415a4a408f93e77bd71a0d37bbba",
+      "compressionRatio": 1.6,
+      "savingsPercent": 37.5,
+      "vertexCount": 7669,
+      "triangleCount": 15334,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.putamen.right.v1/lod/mesh.putamen.right.v1.lod3.glb",
+      "uncompressedByteLength": 139008,
+      "uncompressedSha256": "eef095b8fe577b2ce4d29048f8d5a915ef20753049fba2ae46bf6ccd534f88df",
+      "runtimeGlbPath": "assets/derived/mesh.putamen.right.v1/runtime/mesh.putamen.right.v1.lod3.meshopt.glb",
+      "compressedByteLength": 90472,
+      "compressedSha256": "a9a50e47030638e1884ff3e8ce0d8f7879426bdec5d2f841856f9094650edb9a",
+      "compressionRatio": 1.54,
+      "savingsPercent": 34.92,
+      "vertexCount": 3835,
+      "triangleCount": 7666,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 1384196,
+  "overallCompressedBytes": 842132,
+  "overallSavingsPercent": 39.16,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.putamen.right.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-27T16:08:14.777Z"
+  }
+}

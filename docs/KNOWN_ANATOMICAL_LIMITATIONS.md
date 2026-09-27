@@ -67,9 +67,11 @@ No population variance, no female anatomy, no age range.
 Reference counting exists but: per-asset (not per-LOD) key granularity with a
 bulk-dispose hazard in `unloadAsset`; `ResourceManager` has zero production callers;
 LOD-switch leak fixed + regression-tested (TEST 11), but scene-remove/unregister paths
-detach without GPU disposal (leak); `entityRepresentations` map never cleared; BVH
-`disposeBoundsTree` absent on swap/remove paths; no unload backoff/retry. "Zero memory
-leakage" must not be claimed.
+  detach without GPU disposal (leak); `entityRepresentations` map never cleared; BVH
+  `disposeBoundsTree` absent on swap/remove paths; no unload backoff/retry. "Zero memory
+  leakage" must not be claimed. `maxResidentMeshes` ceilings (200/100/50) are declared
+  but unenforced — on-demand loads can exceed them (Phase 5.1 review finding; no
+  eviction implemented yet).
 **Resolve:** per-LOD refkeys + disposal on all detach paths + ownership proof (Phase 4 gate).
 
 ## L12. Deployment caveats (recovery pass §23)
@@ -143,3 +145,13 @@ deep nuclei, brainstem, cerebellum, ventricles, nerves, vasculature have NO
 geometry (DOCUMENTED placeholders only). Gyral assets overlap the cortex
 composites spatially and load ON DEMAND (default view unchanged) to avoid
 double-rendered anatomy.
+
+## L19. Phase 5.1 batch + render limits
+Deep meshes are gross BodyParts3D segments (no thalamic/amygdala nuclei, no
+hypothalamic nuclei, no subfields); septum pellucidum source has
+non-manifold/zero-area defects (REJECTED, DOCUMENTED only); accumbens/
+hypothalamus/ventricles have no mirror STL (DOCUMENTED only); thalamus L/R
+triangle asymmetry is a source property. Render: no physical-device proof
+(headless-DOM verification only); Actions deploy workflow fails at scheduling
+(gh-pages branch is the serving truth); tone mapping differs by backend;
+`maxResidentMeshes` unenforced (see L11).

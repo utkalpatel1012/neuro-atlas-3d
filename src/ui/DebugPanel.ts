@@ -21,19 +21,27 @@ export class DebugPanel {
   private element: HTMLElement;
   private isCollapsed: boolean = false;
   private unsubscribeTelemetry?: () => void;
+  /**
+   * Phase 5.1 (review fix): optional full profile path. When set (wired to
+   * AtlasApplication.applyProfile), profile buttons update renderer DPR,
+   * LOD multiplier, and buffer — not just the telemetry profile.
+   */
+  private onProfileChange: ((profile: PerformanceProfileType) => void) | null = null;
 
   constructor(
     container: HTMLElement,
     performanceManager: PerformanceManager,
     lodManager: LODManager,
     rendererManager: RendererManager,
-    sceneManager: SceneManager
+    sceneManager: SceneManager,
+    onProfileChange?: (profile: PerformanceProfileType) => void
   ) {
     this.container = container;
     this.performanceManager = performanceManager;
     this.lodManager = lodManager;
     this.rendererManager = rendererManager;
     this.sceneManager = sceneManager;
+    if (onProfileChange) this.onProfileChange = onProfileChange;
 
     this.element = document.createElement('div');
     this.element.className = 'neuro-debug-panel';
@@ -175,7 +183,11 @@ export class DebugPanel {
         const target = e.currentTarget as HTMLElement;
         const prof = target.getAttribute('data-profile') as PerformanceProfileType;
         if (prof) {
-          this.performanceManager.setProfile(prof);
+          if (this.onProfileChange) {
+            this.onProfileChange(prof);
+          } else {
+            this.performanceManager.setProfile(prof);
+          }
           profileButtons.forEach((b) => b.classList.remove('btn-selected'));
           target.classList.add('btn-selected');
         }

@@ -1,0 +1,179 @@
+{
+  "assetId": "mesh.putamen.right.v1",
+  "timestamp": "2026-09-27T16:08:14.762Z",
+  "inputCanonicalGlb": "assets/derived/mesh.putamen.right.v1/canonical/mesh.putamen.right.v1.canonical.glb",
+  "inputCanonicalHash": "804c9f32521b6c7267054655d7845ecd6afdfc65f60cfba51a984717695c7276",
+  "levels": [
+    {
+      "level": 0,
+      "lodName": "lod0",
+      "targetRatio": 1,
+      "triangleCount": 30670,
+      "vertexCount": 15337,
+      "byteLength": 553088,
+      "sha256": "e1780acb606f303fe92ff32e01804c1600d0a7beb6acbe4d9e54fce6148fd27d",
+      "filePath": "assets/derived/mesh.putamen.right.v1/lod/mesh.putamen.right.v1.lod0.glb",
+      "targetIndexCount": 92010,
+      "resultingIndexCount": 92010,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 4994.75,
+        "lodVolumeMm3": 4994.75,
+        "volumeDeviationPercent": 0,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0,
+        "meanSurfaceDeviationMm": 0
+      }
+    },
+    {
+      "level": 1,
+      "lodName": "lod1",
+      "targetRatio": 0.75,
+      "triangleCount": 23002,
+      "vertexCount": 11503,
+      "byteLength": 415064,
+      "sha256": "0b66dbdb1c1a08836af9530cc874a2d5e3526bb7292691846091c1cdf1085f68",
+      "filePath": "assets/derived/mesh.putamen.right.v1/lod/mesh.putamen.right.v1.lod1.glb",
+      "targetIndexCount": 69006,
+      "resultingIndexCount": 69006,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000058,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 4994.75,
+        "lodVolumeMm3": 4994.12,
+        "volumeDeviationPercent": -0.013,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 1.1745,
+        "meanSurfaceDeviationMm": 0.1737
+      }
+    },
+    {
+      "level": 2,
+      "lodName": "lod2",
+      "targetRatio": 0.5,
+      "triangleCount": 15334,
+      "vertexCount": 7669,
+      "byteLength": 277036,
+      "sha256": "094a471510337142a60351a6cfb00c2711d6ba8f9707a56763c1c4d1004d98ef",
+      "filePath": "assets/derived/mesh.putamen.right.v1/lod/mesh.putamen.right.v1.lod2.glb",
+      "targetIndexCount": 46005,
+      "resultingIndexCount": 46002,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000152,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 4994.75,
+        "lodVolumeMm3": 4993.25,
+        "volumeDeviationPercent": -0.03,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0.003
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0.7446,
+        "meanSurfaceDeviationMm": 0.1202
+      }
+    },
+    {
+      "level": 3,
+      "lodName": "lod3",
+      "targetRatio": 0.25,
+      "triangleCount": 7666,
+      "vertexCount": 3835,
+      "byteLength": 139008,
+      "sha256": "eef095b8fe577b2ce4d29048f8d5a915ef20753049fba2ae46bf6ccd534f88df",
+      "filePath": "assets/derived/mesh.putamen.right.v1/lod/mesh.putamen.right.v1.lod3.glb",
+      "targetIndexCount": 23001,
+      "resultingIndexCount": 22998,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000344,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 4994.75,
+        "lodVolumeMm3": 4990.35,
+        "volumeDeviationPercent": -0.088,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.0007,
+            0,
+            0.004
+          ],
+          "max": [
+            -0.0045,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 1.6095,
+        "meanSurfaceDeviationMm": 0.238
+      }
+    }
+  ],
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.putamen.right.v1.lod_generation",
+    "tool": "MeshoptSimplifier / NeuroAtlas3D LOD Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "algorithms": "Quadric_Error_Metric_Simplification",
+      "levels": [
+        {
+          "name": "lod0",
+          "ratio": 1
+        },
+        {
+          "name": "lod1",
+          "ratio": 0.75
+        },
+        {
+          "name": "lod2",
+          "ratio": 0.5
+        },
+        {
+          "name": "lod3",
+          "ratio": 0.25
+        }
+      ]
+    },
+    "timestamp": "2026-09-27T16:08:14.762Z"
+  }
+}

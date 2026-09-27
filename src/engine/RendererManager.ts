@@ -24,6 +24,42 @@ export interface RendererManagerOptions {
   onContextRestored?: () => void;
 }
 
+export interface DrawingBufferSize {
+  cssWidth: number;
+  cssHeight: number;
+  appliedDpr: number;
+  bufferWidth: number;
+  bufferHeight: number;
+}
+
+/**
+ * Phase 5.1 §24–§25: bounded DPR policy as a pure, unit-tested calculation.
+ * appliedDpr = clamp(devicePixelRatio, 1, maxPixelRatio); buffer = css × dpr.
+ * Returns NULL for non-finite/non-positive inputs (caller keeps last state).
+ */
+export function computeDrawingBufferSize(
+  cssWidth: number,
+  cssHeight: number,
+  devicePixelRatio: number,
+  maxPixelRatio: number
+): DrawingBufferSize | null {
+  if (
+    !Number.isFinite(cssWidth) || !Number.isFinite(cssHeight) ||
+    !Number.isFinite(devicePixelRatio) || !Number.isFinite(maxPixelRatio)
+  ) {
+    return null;
+  }
+  if (cssWidth <= 0 || cssHeight <= 0 || maxPixelRatio <= 0) return null;
+  const appliedDpr = Math.min(Math.max(1, devicePixelRatio), maxPixelRatio);
+  return {
+    cssWidth: Math.max(1, Math.floor(cssWidth)),
+    cssHeight: Math.max(1, Math.floor(cssHeight)),
+    appliedDpr,
+    bufferWidth: Math.max(1, Math.floor(cssWidth * appliedDpr)),
+    bufferHeight: Math.max(1, Math.floor(cssHeight * appliedDpr))
+  };
+}
+
 export class RendererManager {
   private canvas?: HTMLCanvasElement;
   private renderer: THREE.WebGLRenderer | any; // WebGPURenderer or WebGLRenderer
@@ -356,6 +392,80 @@ export class RendererManager {
   }
 
   /**
+   * Phase 5.1 §23–§25 (blur root cause): size the drawing buffer to the
+   * displayed canvas size. The renderer was previously never sized after
+   * creation, leaving the default 300×150 buffer CSS-stretched — the dominant
+   * blur source. Style is left untouched (CSS is 100%); only the buffer is
+   * set, at the bounded profile DPR. Returns the applied sizes, or NULL when
+   * no canvas/renderer exists (headless) or inputs are invalid.
+   */
+  public resizeToDisplaySize(): DrawingBufferSize | null {
+    if (!this.renderer || !this.canvas) return null;
+    const cssWidth = this.canvas.clientWidth || 800;
+    const cssHeight = this.canvas.clientHeight || 600;
+    const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+    const computed = computeDrawingBufferSize(cssWidth, cssHeight, dpr, this.performanceProfile.maxPixelRatio);
+    if (!computed) return null;
+    this.renderer.setPixelRatio(computed.appliedDpr);
+    this.renderer.setSize(computed.cssWidth, computed.cssHeight, false);
+    return computed;
+  }
+
+  /**
+   * Drawing-buffer dimensions for QA (§49 matrix, §58 baseline). Prefers the
+   * renderer-reported buffer; falls back to canvas attributes; NULL headless.
+   */
+  public getDrawingBufferSize(): { width: number; height: number } | null {
+    if (typeof this.renderer?.getDrawingBufferSize === 'function') {
+      try {
+        const v = new THREE.Vector2();
+        this.renderer.getDrawingBufferSize(v);
+        if (Number.isFinite(v.x) && Number.isFinite(v.y) && v.x > 0 && v.y > 0) {
+          return { width: Math.floor(v.x), height: Math.floor(v.y) };
+        }
+      } catch {
+        // Fall through.
+      }
+    }
+    if (this.canvas && this.canvas.width > 0 && this.canvas.height > 0) {
+      return { width: this.canvas.width, height: this.canvas.height };
+    }
+    return null;
+  }
+
+  private resizeHandler: (() => void) | null = null;
+
+  /**
+   * Phase 5.1 §25: keep buffer matched across window resize / orientation
+   * change. No-op without a window (headless/tests). Listener removed by
+   * stopResizeHandling() / dispose().
+   */
+  public startResizeHandling(onResized?: () => void): void {
+    if (typeof window === 'undefined' || typeof window.addEventListener !== 'function') return;
+    this.stopResizeHandling();
+    this.resizeHandler = () => {
+      this.resizeToDisplaySize();
+      if (onResized) {
+        try {
+          onResized();
+        } catch (err) {
+          console.error('[RendererManager] Resize callback error:', err);
+        }
+      }
+    };
+    window.addEventListener('resize', this.resizeHandler);
+    window.addEventListener('orientationchange', this.resizeHandler);
+  }
+
+  public stopResizeHandling(): void {
+    if (typeof window !== 'undefined' && typeof window.removeEventListener === 'function' && this.resizeHandler) {
+      window.removeEventListener('resize', this.resizeHandler);
+      window.removeEventListener('orientationchange', this.resizeHandler);
+    }
+    this.resizeHandler = null;
+  }
+
+  /**
    * Renders the scene through the active backend.
    */
   public render(scene: THREE.Scene, camera: THREE.Camera): void {
@@ -465,6 +575,7 @@ export class RendererManager {
   }
 
   public dispose(): void {
+    this.stopResizeHandling();
     if (this.renderer) {
       this.renderer.dispose();
     }

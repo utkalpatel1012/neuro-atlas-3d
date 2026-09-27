@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.amygdala.left.v1",
+  "timestamp": "2026-09-27T16:08:15.468Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.amygdala.left.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.amygdala.left.v1/lod/mesh.amygdala.left.v1.lod0.glb",
+      "uncompressedByteLength": 32268,
+      "uncompressedSha256": "bccac48bb683d8c4f6a5efcf5578604d139bc5c3028a372cec6f9af593e6b67c",
+      "runtimeGlbPath": "assets/derived/mesh.amygdala.left.v1/runtime/mesh.amygdala.left.v1.lod0.meshopt.glb",
+      "compressedByteLength": 21156,
+      "compressedSha256": "ff6e941435d1629c049ef88db52f554c50df72405ad2b4f1149f49b3b6c74bc6",
+      "compressionRatio": 1.53,
+      "savingsPercent": 34.44,
+      "vertexCount": 870,
+      "triangleCount": 1736,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.amygdala.left.v1/lod/mesh.amygdala.left.v1.lod1.glb",
+      "uncompressedByteLength": 24452,
+      "uncompressedSha256": "28a3265805fa69ea4d92d7c696e65452427436af7a75b7a373572675e667b4f9",
+      "runtimeGlbPath": "assets/derived/mesh.amygdala.left.v1/runtime/mesh.amygdala.left.v1.lod1.meshopt.glb",
+      "compressedByteLength": 16524,
+      "compressedSha256": "f2869f35aa5c98605e60120debf16d641bcb67dd32ed3765a8038d3a16f33a71",
+      "compressionRatio": 1.48,
+      "savingsPercent": 32.42,
+      "vertexCount": 653,
+      "triangleCount": 1302,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.amygdala.left.v1/lod/mesh.amygdala.left.v1.lod2.glb",
+      "uncompressedByteLength": 16640,
+      "uncompressedSha256": "e6f590d0191209ac2b5c7a5b828b7e468809ba4b5c2a43e5434a8e83488c9bd8",
+      "runtimeGlbPath": "assets/derived/mesh.amygdala.left.v1/runtime/mesh.amygdala.left.v1.lod2.meshopt.glb",
+      "compressedByteLength": 11720,
+      "compressedSha256": "99c2823270047be655baea53208d5eecfdaddbd25200c017039c12d691498e27",
+      "compressionRatio": 1.42,
+      "savingsPercent": 29.57,
+      "vertexCount": 436,
+      "triangleCount": 868,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.amygdala.left.v1/lod/mesh.amygdala.left.v1.lod3.glb",
+      "uncompressedByteLength": 8828,
+      "uncompressedSha256": "fd395db8bab8a44e8e52495ea8bf6c567b7acb66b10842812864cdaf1ac3b7b2",
+      "runtimeGlbPath": "assets/derived/mesh.amygdala.left.v1/runtime/mesh.amygdala.left.v1.lod3.meshopt.glb",
+      "compressedByteLength": 6796,
+      "compressedSha256": "7cd84ff884c40b1edde2f1f524a8b6a151e8b3909aba904cb82b9214ee73e83b",
+      "compressionRatio": 1.3,
+      "savingsPercent": 23.02,
+      "vertexCount": 219,
+      "triangleCount": 434,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 82188,
+  "overallCompressedBytes": 56196,
+  "overallSavingsPercent": 31.63,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.amygdala.left.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-27T16:08:15.468Z"
+  }
+}

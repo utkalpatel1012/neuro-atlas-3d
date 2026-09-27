@@ -87,11 +87,11 @@ attribution, coordinate system, population/reference, scope. If uncertain, do no
 
 ## Commands (only these exist — no lint, no e2e, no framework)
 
-- `npm.cmd test` — full suite (13 `tsx` test files: schema, pipeline, engine,
+- `npm.cmd test` — full suite (15 `tsx` test files: schema, pipeline, engine,
 assembly, consolidation, cortex, phase31, section-math, section, presentation,
-mri, registration, phase5). Focused runs: `test:schema|pipeline|engine|
-assembly|consolidation|cortex|phase31|section-math|section|presentation|mri|
-registration|phase5`.
+mri, registration, phase5, quality51, anatomy51). Focused runs: `test:schema|
+pipeline|engine|assembly|consolidation|cortex|phase31|section-math|section|
+presentation|mri|registration|phase5|quality51|anatomy51`.
 `npm.cmd run typecheck` (`tsc --noEmit`, covers `src/**` only). `npm.cmd run build`
 (Vite; `fs`/`path`-in-`AssetManager` externalization warning is known).
 - `npm.cmd run pipeline:run | asset:validate | audit:phase1` for pipeline-side checks.

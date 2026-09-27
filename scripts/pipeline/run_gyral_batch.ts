@@ -62,10 +62,10 @@ function licenseCoordinatePrecheck(assetId: string): { ok: boolean; reason: stri
   }
 }
 
-export async function runBatch(): Promise<BatchVerdict[]> {
-  const batchPath = path.join(PROJECT_ROOT, 'data/phase5_batch1.json');
+export async function runBatch(ledgerName = 'phase5_batch1.json', qaName = 'phase5_batch1_qa.json', batchLabel = 'phase5-batch1-gyral', generator = 'scripts/pipeline/run_gyral_batch.ts'): Promise<BatchVerdict[]> {
+  const batchPath = path.join(PROJECT_ROOT, 'data', ledgerName);
   if (!fs.existsSync(batchPath)) {
-    throw new Error(`Batch ledger missing: ${batchPath}. Run prepare_gyral_batch.ts first.`);
+    throw new Error(`Batch ledger missing: ${batchPath}. Run the corresponding prepare script first.`);
   }
   const batch = JSON.parse(fs.readFileSync(batchPath, 'utf8'));
   const items = (batch.items || []).filter((i: any) => i.state === 'SOURCE_AVAILABLE');
@@ -144,21 +144,23 @@ export async function runBatch(): Promise<BatchVerdict[]> {
   }
 
   const ledger = {
-    batch: 'phase5-batch1-gyral',
+    batch: batchLabel,
     generated_at: new Date().toISOString(),
-    generator: 'scripts/pipeline/run_gyral_batch.ts',
+    generator,
     verdicts
   };
-  fs.writeFileSync(path.join(PROJECT_ROOT, 'data/phase5_batch1_qa.json'), JSON.stringify(ledger, null, 2), 'utf8');
+  fs.writeFileSync(path.join(PROJECT_ROOT, 'data', qaName), JSON.stringify(ledger, null, 2), 'utf8');
   const ready = verdicts.filter((v) => v.state === 'RUNTIME_READY').length;
   const review = verdicts.filter((v) => v.state === 'REVIEW_REQUIRED').length;
   const rejected = verdicts.filter((v) => v.state === 'REJECTED').length;
-  console.log(`[BATCH DONE] RUNTIME_READY=${ready} REVIEW_REQUIRED=${review} REJECTED=${rejected} → data/phase5_batch1_qa.json`);
+  console.log(`[BATCH DONE] RUNTIME_READY=${ready} REVIEW_REQUIRED=${review} REJECTED=${rejected} → data/${qaName}`);
   return verdicts;
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  runBatch().catch((err) => {
+  const ledgerArg = process.argv[2] || 'phase5_batch1.json';
+  const qaArg = process.argv[3] || 'phase5_batch1_qa.json';
+  runBatch(ledgerArg, qaArg).catch((err) => {
     console.error('[BATCH FATAL]', err);
     process.exit(1);
   });

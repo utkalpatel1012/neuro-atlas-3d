@@ -83,6 +83,10 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
     nameDesc = isRight ? 'right cerebral cortex' : 'left cerebral cortex';
   } else if (ingestionMeta?.source_metadata?.component_name) {
     nameDesc = String(ingestionMeta.source_metadata.component_name).toLowerCase();
+  } else if (ingestionMeta?.source_metadata?.distribution_name) {
+    // Phase 5.1: fresh-download assets carry distribution_name (e.g. "Thalamus
+    // (Left)"). Never fall through to the hippocampus default for them.
+    nameDesc = String(ingestionMeta.source_metadata.distribution_name).toLowerCase();
   }
 
   const canonicalGlbPath = path.join(PROJECT_ROOT, 'assets/derived', assetId, 'canonical', `${assetId}.canonical.glb`);

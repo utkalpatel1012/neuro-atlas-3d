@@ -74,11 +74,11 @@ async function runTests() {
   const assetIds = records.map((r: any) => r.asset_id);
   assert(new Set(assetIds).size === assetIds.length, 'duplicate asset IDs across structure records');
   passed++;
-  assert(structureFiles.length === 20, `20 structure records (4 legacy + 16 batch), got ${structureFiles.length}`);
+  assert(structureFiles.length === 31, `31 structure records (4 legacy + 16 batch + 11 deep/limbic), got ${structureFiles.length}`);
   passed++;
-  assert(Object.keys(manifest.assets).length === 20, `manifest holds 20 assets, got ${Object.keys(manifest.assets).length}`);
+  assert(Object.keys(manifest.assets).length === 31, `manifest holds 31 assets, got ${Object.keys(manifest.assets).length}`);
   passed++;
-  console.log('[PASS] Unique structure/asset IDs; 20 records; 20 manifest assets.');
+  console.log('[PASS] Unique structure/asset IDs; 31 records; 31 manifest assets.');
   passed++;
 
   // TEST 2: provenance completeness (§6, §9, §44).
@@ -104,7 +104,7 @@ async function runTests() {
     assert(entry.project_distribution_policy === 'CC-BY-SA-4.0', `${assetId}: distribution policy explicit`);
     passed++;
   }
-  assert(manifest.production_whitelist.length === 20, 'whitelist covers all 20 production assets');
+  assert(manifest.production_whitelist.length === 31, 'whitelist covers all 31 production assets');
   passed++;
   assert((manifest.research_quarantine || []).length === 0, 'nothing quarantined in production manifest');
   passed++;
@@ -447,18 +447,25 @@ async function runTests() {
   // TEST 17: laterality quadruple consistency (5.0.2 §10).
   // record.laterality × assetId side × manifest centroid sign × ingestion
   // metadata (where the ingestion record carries a laterality declaration).
+  // Allowed: LEFT/RIGHT/BILATERAL/MIDLINE (§10) — bilateral/midline singles
+  // span the midline instead of carrying a mirror sign.
   console.log('\n--- TEST 17: Laterality consistency ---');
   for (const f of structureFiles) {
     const r = readJson(`data/structures/${f}`);
     const side = r.laterality;
-    assert(side === 'left' || side === 'right', `${r.id}: explicit binary laterality`);
-    passed++;
-    assert(r.asset_id.includes(`.${side}.v1`), `${r.id}: asset ID encodes the same side`);
+    assert(['left', 'right', 'bilateral', 'midline'].includes(side), `${r.id}: explicit allowed laterality`);
     passed++;
     const entry = manifest.assets[r.asset_id];
-    const sign = entry.centroid_mm[0] < 0 ? 'left' : entry.centroid_mm[0] > 0 ? 'right' : 'midline';
-    assert(sign === side, `${r.id}: manifest centroid sign matches (${entry.centroid_mm[0]})`);
-    passed++;
+    if (side === 'left' || side === 'right') {
+      assert(r.asset_id.includes(`.${side}.v1`), `${r.id}: asset ID encodes the same side`);
+      passed++;
+      const sign = entry.centroid_mm[0] < 0 ? 'left' : entry.centroid_mm[0] > 0 ? 'right' : 'midline';
+      assert(sign === side, `${r.id}: manifest centroid sign matches (${entry.centroid_mm[0]})`);
+      passed++;
+    } else {
+      assert(Math.abs(entry.centroid_mm[0]) < 10, `${r.id}: ${side} single spans midline (${entry.centroid_mm[0]})`);
+      passed++;
+    }
     const ingest = readJson(`assets/raw/${r.asset_id}/ingestion.json`);
     const declared = ingest.source_metadata?.component_laterality;
     if (declared !== undefined) {

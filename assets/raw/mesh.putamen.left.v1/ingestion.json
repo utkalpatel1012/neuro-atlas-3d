@@ -1,0 +1,32 @@
+{
+  "asset_id": "mesh.putamen.left.v1",
+  "assetId": "mesh.putamen.left.v1",
+  "structure_id": "brain.basal_ganglia.left.putamen",
+  "source_dataset": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+  "source_dataset_version": "Release 3.0 (2011/06/20)",
+  "source_asset_id": "FMA72829",
+  "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/master/assets/BodyParts3D_data/stl/FMA72829.stl",
+  "source_license": "Historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (verified 2025-02-27). Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution.",
+  "source_license_version": "CC BY 4.0 (2025-02-27 portal update) / CC-BY-SA 2.1 JP",
+  "project_distribution_policy": "CC-BY-SA-4.0",
+  "attribution": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-ShareAlike 2.1 Japan. Relicensed under CC Attribution 4.0 International.",
+  "acquisition_date": "2026-09-27",
+  "original_filename": "FMA72829.stl",
+  "originalFilename": "FMA72829.stl",
+  "original_format": "binary STL (BodyParts3D segment)",
+  "original_hash": "8b85165d23e1b12ea53e10f6b48939853058628cb32a4b1cf362ed58d6cbaef0",
+  "source_coordinate_space": "dicom_lps_whole_body",
+  "source_units": "millimeters (mm)",
+  "source_metadata": {
+    "distribution_name": "Putamen (Left)",
+    "distribution_laterality": "left",
+    "measured_source_centroid_mm": [
+      23.84,
+      -105.94,
+      1565.02
+    ],
+    "measured_source_triangles": 30636,
+    "laterality_basis": "distribution record + measured source-frame geometry (Xc=-Xs mapping)"
+  },
+  "ingestion_status": "SOURCE_VERIFIED"
+}

@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.globus_pallidus.left.v1",
+  "timestamp": "2026-09-27T16:08:15.093Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.globus_pallidus.left.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.globus_pallidus.left.v1/lod/mesh.globus_pallidus.left.v1.lod0.glb",
+      "uncompressedByteLength": 554324,
+      "uncompressedSha256": "80c47db6f086674f82fc4eadc42868876935049fa81fc8704878ef9d74be8d01",
+      "runtimeGlbPath": "assets/derived/mesh.globus_pallidus.left.v1/runtime/mesh.globus_pallidus.left.v1.lod0.meshopt.glb",
+      "compressedByteLength": 328564,
+      "compressedSha256": "92c2fdb80182bb14dc1c4497017aee42fb5294c964490ea48a2fdede51c549c8",
+      "compressionRatio": 1.69,
+      "savingsPercent": 40.73,
+      "vertexCount": 15371,
+      "triangleCount": 30738,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.globus_pallidus.left.v1/lod/mesh.globus_pallidus.left.v1.lod1.glb",
+      "uncompressedByteLength": 415976,
+      "uncompressedSha256": "cd211a53cd3c13caea77ebdbfef12377e2ef610abaf67977b5f166e9c6897e90",
+      "runtimeGlbPath": "assets/derived/mesh.globus_pallidus.left.v1/runtime/mesh.globus_pallidus.left.v1.lod1.meshopt.glb",
+      "compressedByteLength": 252140,
+      "compressedSha256": "78c44630449f1dd88483eba772b5e351ef0a7299d135644c3b219e3f58e480aa",
+      "compressionRatio": 1.65,
+      "savingsPercent": 39.39,
+      "vertexCount": 11528,
+      "triangleCount": 23052,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.globus_pallidus.left.v1/lod/mesh.globus_pallidus.left.v1.lod2.glb",
+      "uncompressedByteLength": 277660,
+      "uncompressedSha256": "8553c2b6f6e05aa77186c79a70b730f14c5055bd24be82a0268edafd646aa08b",
+      "runtimeGlbPath": "assets/derived/mesh.globus_pallidus.left.v1/runtime/mesh.globus_pallidus.left.v1.lod2.meshopt.glb",
+      "compressedByteLength": 174032,
+      "compressedSha256": "98328fe979ea360737e97d1f1d69ca5ae2763de77d09a7d67f17eba563a6807e",
+      "compressionRatio": 1.6,
+      "savingsPercent": 37.32,
+      "vertexCount": 7686,
+      "triangleCount": 15368,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.globus_pallidus.left.v1/lod/mesh.globus_pallidus.left.v1.lod3.glb",
+      "uncompressedByteLength": 139348,
+      "uncompressedSha256": "bd24d131cea2f8f58920b6401f8833b0c6a0e92fd78ade98dad88539e0be2652",
+      "runtimeGlbPath": "assets/derived/mesh.globus_pallidus.left.v1/runtime/mesh.globus_pallidus.left.v1.lod3.meshopt.glb",
+      "compressedByteLength": 91764,
+      "compressedSha256": "45fb4e837ea193ba4d4d6dc63e1cff055ed21fe0cbd39301ee977c3fb6d445f0",
+      "compressionRatio": 1.52,
+      "savingsPercent": 34.15,
+      "vertexCount": 3844,
+      "triangleCount": 7684,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 1387308,
+  "overallCompressedBytes": 846500,
+  "overallSavingsPercent": 38.98,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.globus_pallidus.left.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-27T16:08:15.093Z"
+  }
+}

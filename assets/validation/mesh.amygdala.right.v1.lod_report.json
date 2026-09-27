@@ -1,0 +1,179 @@
+{
+  "assetId": "mesh.amygdala.right.v1",
+  "timestamp": "2026-09-27T16:08:15.572Z",
+  "inputCanonicalGlb": "assets/derived/mesh.amygdala.right.v1/canonical/mesh.amygdala.right.v1.canonical.glb",
+  "inputCanonicalHash": "de5145f4d4ac3d62a669f4e665ade399e324a83f6e4ee7f9c358102497e8bce2",
+  "levels": [
+    {
+      "level": 0,
+      "lodName": "lod0",
+      "targetRatio": 1,
+      "triangleCount": 1744,
+      "vertexCount": 874,
+      "byteLength": 32408,
+      "sha256": "df23f5edb26421e154ac3356120442c50b8824e30e895f43efa39dc199c503da",
+      "filePath": "assets/derived/mesh.amygdala.right.v1/lod/mesh.amygdala.right.v1.lod0.glb",
+      "targetIndexCount": 5232,
+      "resultingIndexCount": 5232,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 1331.48,
+        "lodVolumeMm3": 1331.48,
+        "volumeDeviationPercent": 0,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0,
+        "meanSurfaceDeviationMm": 0
+      }
+    },
+    {
+      "level": 1,
+      "lodName": "lod1",
+      "targetRatio": 0.75,
+      "triangleCount": 1308,
+      "vertexCount": 656,
+      "byteLength": 24556,
+      "sha256": "eedac0949435600266db8b7e9ee85b7f007425d80629454b1177dad35ebd2722",
+      "filePath": "assets/derived/mesh.amygdala.right.v1/lod/mesh.amygdala.right.v1.lod1.glb",
+      "targetIndexCount": 3924,
+      "resultingIndexCount": 3924,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.00229,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 1331.48,
+        "lodVolumeMm3": 1328.95,
+        "volumeDeviationPercent": -0.19,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 1.0046,
+        "meanSurfaceDeviationMm": 0.1306
+      }
+    },
+    {
+      "level": 2,
+      "lodName": "lod2",
+      "targetRatio": 0.5,
+      "triangleCount": 872,
+      "vertexCount": 438,
+      "byteLength": 16712,
+      "sha256": "d7e5a7c4df92a9c9afd038e876cd5ed26d596f83f3ae944bd034f9df1db046df",
+      "filePath": "assets/derived/mesh.amygdala.right.v1/lod/mesh.amygdala.right.v1.lod2.glb",
+      "targetIndexCount": 2616,
+      "resultingIndexCount": 2616,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.003649,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 1331.48,
+        "lodVolumeMm3": 1322.24,
+        "volumeDeviationPercent": -0.694,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.008,
+            0,
+            0
+          ],
+          "max": [
+            -0.04,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 1.3922,
+        "meanSurfaceDeviationMm": 0.2983
+      }
+    },
+    {
+      "level": 3,
+      "lodName": "lod3",
+      "targetRatio": 0.25,
+      "triangleCount": 436,
+      "vertexCount": 220,
+      "byteLength": 8864,
+      "sha256": "c7d4e5a9623bc08c5de00cc137dc613cd321ee92d4edf582f999998d7d04106d",
+      "filePath": "assets/derived/mesh.amygdala.right.v1/lod/mesh.amygdala.right.v1.lod3.glb",
+      "targetIndexCount": 1308,
+      "resultingIndexCount": 1308,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.006688,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 1331.48,
+        "lodVolumeMm3": 1308.45,
+        "volumeDeviationPercent": -1.73,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.008,
+            0,
+            0
+          ],
+          "max": [
+            -0.04,
+            -0.0601,
+            -0.0844
+          ]
+        },
+        "maxSurfaceDeviationMm": 2.0741,
+        "meanSurfaceDeviationMm": 0.5519
+      }
+    }
+  ],
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.amygdala.right.v1.lod_generation",
+    "tool": "MeshoptSimplifier / NeuroAtlas3D LOD Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "algorithms": "Quadric_Error_Metric_Simplification",
+      "levels": [
+        {
+          "name": "lod0",
+          "ratio": 1
+        },
+        {
+          "name": "lod1",
+          "ratio": 0.75
+        },
+        {
+          "name": "lod2",
+          "ratio": 0.5
+        },
+        {
+          "name": "lod3",
+          "ratio": 0.25
+        }
+      ]
+    },
+    "timestamp": "2026-09-27T16:08:15.572Z"
+  }
+}

@@ -45,6 +45,31 @@ export interface AtlasApplicationOptions {
   enableOriginMarker?: boolean;
 }
 
+/** Phase 5.1 §37: user-facing quality policy (AUTO default). */
+export type QualityMode = 'AUTO' | 'HIGH' | 'BALANCED' | 'LOW';
+
+/**
+ * Phase 5.1 §50: safe-start profile by device class (engineering target,
+ * not a measurement). Tablets/phones boot MEDIUM (DPR ≤1.5 + AA) instead of
+ * forcing desktop quality; AUTO steps up on sustained headroom. Desktop
+ * boots HIGH. Pure function of explicit inputs — unit-tested.
+ */
+export function initialProfileForDevice(
+  userAgent: string,
+  maxTouchPoints: number,
+  viewportWidthPx: number
+): PerformanceProfileType {
+  const ua = (userAgent || '').toLowerCase();
+  const isTouch = maxTouchPoints > 0;
+  if (/ipad|tablet|(android(?!.*mobile))/i.test(ua) || (isTouch && viewportWidthPx >= 768)) {
+    return 'MEDIUM';
+  }
+  if (/mobile|iphone|ipod|android/i.test(ua)) {
+    return 'MEDIUM';
+  }
+  return 'HIGH';
+}
+
 export class AtlasApplication {
   private container: HTMLElement;
   private rendererManager: RendererManager;
@@ -72,6 +97,10 @@ export class AtlasApplication {
   private isRunning: boolean = false;
   private animationFrameId: number | null = null;
   private clock: THREE.Clock = new THREE.Clock();
+  private qualityMode: QualityMode = 'AUTO';
+  private autoLevel: PerformanceProfileType = 'HIGH';
+  private autoGoodWindows = 0;
+  private autoBadWindows = 0;
 
   constructor(options: AtlasApplicationOptions) {
     this.container = options.container;
@@ -105,7 +134,15 @@ export class AtlasApplication {
     this.selectionManager = new SelectionManager(this.entityManager, this.materialManager);
     this.visibilityManager = new VisibilityManager(this.entityManager, this.materialManager);
     this.lodManager = new LODManager(this.assetManager, this.entityManager);
-    this.performanceManager = new PerformanceManager('webgpu', options.initialProfile ?? 'HIGH');
+    // Phase 5.1 §50: explicit initial profile wins; otherwise safe-start by
+    // device class (tablet/phone → MEDIUM, desktop → HIGH).
+    const nav = typeof navigator !== 'undefined' ? navigator : undefined;
+    const detected = initialProfileForDevice(
+      nav?.userAgent || '',
+      nav?.maxTouchPoints || 0,
+      typeof window !== 'undefined' ? window.innerWidth : 1920
+    );
+    this.performanceManager = new PerformanceManager('webgpu', options.initialProfile ?? detected);
     // Phase 4B wiring that needs LODManager (after its assignment).
     this.sectionCaps.attachLODManager(this.lodManager);
 
@@ -222,6 +259,10 @@ export class AtlasApplication {
 
     // Configure profile
     this.applyProfile(this.performanceManager.getProfile().id);
+    // Phase 5.1 §23–§25: size the drawing buffer to the displayed canvas
+    // (the blur root cause) and keep it matched on resize/orientation change.
+    this.syncViewportSize();
+    this.rendererManager.startResizeHandling(() => this.syncViewportSize());
   }
 
   /**
@@ -410,6 +451,8 @@ export class AtlasApplication {
           selectedGroupName: primaryGrp?.name || null
         }
       );
+      // Phase 5.1 §39: gradual AUTO quality adaptation on fresh metrics.
+      this.updateAutoQuality();
     }
   };
 
@@ -420,6 +463,81 @@ export class AtlasApplication {
     const profile = this.performanceManager.setProfile(profileType);
     this.rendererManager.setPerformanceProfile(profile);
     this.lodManager.setDistanceMultiplier(profile.lodDistanceMultiplier);
+    // Profile changes alter DPR: re-sync the buffer so the new ceiling
+    // applies immediately instead of waiting for the next resize.
+    this.syncViewportSize();
+  }
+
+  /**
+   * Phase 5.1 §37–§40: user-facing quality modes over the existing profiles.
+   * AUTO (default) starts HIGH and steps down/up gradually on sustained
+   * frame-rate evidence — never an abrupt high→blurry jump. Manual modes pin
+   * the profile (HIGH→HIGH, BALANCED→MEDIUM, LOW→LOW). No raw GPU settings
+   * are exposed; all modes respect profile ceilings (bounded memory).
+   */
+  public setQualityMode(mode: QualityMode): boolean {
+    if (mode !== 'AUTO' && mode !== 'HIGH' && mode !== 'BALANCED' && mode !== 'LOW') return false;
+    this.qualityMode = mode;
+    this.autoLevel = 'HIGH';
+    this.autoGoodWindows = 0;
+    this.autoBadWindows = 0;
+    if (mode === 'HIGH') this.applyProfile('HIGH');
+    else if (mode === 'BALANCED') this.applyProfile('MEDIUM');
+    else if (mode === 'LOW') this.applyProfile('LOW');
+    else this.applyProfile('HIGH');
+    return true;
+  }
+
+  public getQualityMode(): QualityMode {
+    return this.qualityMode;
+  }
+
+  /** Gradual AUTO degradation/recovery (§39–§40): sustained evidence only. */
+  private updateAutoQuality(): void {
+    if (this.qualityMode !== 'AUTO') return;
+    const fps = this.performanceManager.getMetrics().fps;
+    if (!Number.isFinite(fps) || fps <= 0) return;
+    if (fps < 20) {
+      this.autoBadWindows++;
+      this.autoGoodWindows = 0;
+    } else if (fps > 55) {
+      this.autoGoodWindows++;
+      this.autoBadWindows = 0;
+    } else {
+      this.autoBadWindows = 0;
+      this.autoGoodWindows = 0;
+    }
+    if (this.autoBadWindows >= 2) {
+      this.autoBadWindows = 0;
+      if (this.autoLevel === 'HIGH') {
+        this.autoLevel = 'MEDIUM';
+        this.applyProfile('MEDIUM');
+      } else if (this.autoLevel === 'MEDIUM') {
+        this.autoLevel = 'LOW';
+        this.applyProfile('LOW');
+      }
+    } else if (this.autoGoodWindows >= 4) {
+      this.autoGoodWindows = 0;
+      if (this.autoLevel === 'LOW') {
+        this.autoLevel = 'MEDIUM';
+        this.applyProfile('MEDIUM');
+      } else if (this.autoLevel === 'MEDIUM') {
+        this.autoLevel = 'HIGH';
+        this.applyProfile('HIGH');
+      }
+    }
+  }
+
+  /**
+   * Phase 5.1 §25: match drawing buffer to displayed size + camera aspect.
+   * Called at init, on resize, and on profile change.
+   */
+  public syncViewportSize(): void {
+    const canvas = this.rendererManager.getCanvas();
+    const w = canvas?.clientWidth || this.container.clientWidth || 800;
+    const h = canvas?.clientHeight || this.container.clientHeight || 600;
+    this.cameraManager.onResize(w, h);
+    this.rendererManager.resizeToDisplaySize();
   }
 
   public setViewPreset(preset: CameraViewPreset): void {
@@ -715,6 +833,7 @@ export class AtlasApplication {
 
   public dispose(): void {
     this.stop();
+    this.rendererManager.stopResizeHandling();
     if (this.planeUnsub) {
       this.planeUnsub();
       this.planeUnsub = null;
