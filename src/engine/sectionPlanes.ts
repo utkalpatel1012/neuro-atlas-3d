@@ -1,5 +1,6 @@
 /**
- * 3D Neuroanatomy Atlas: Section-Plane Mathematics (Phase 3.2, Gate 2)
+ * 3D Neuroanatomy Atlas: Section-Plane Mathematics (Phase 3.2, Gate 2) +
+ * Phase 4A plane model (state-adjacent pure functions; NO renderer here).
  *
  * PURE MATH MODEL ONLY — no renderer, no clipping, no MRI, no UI.
  * Implements docs/SECTION_PLANE_SPECIFICATION.md for unit testing of the
@@ -7,6 +8,8 @@
  *
  * A plane is n.(p - p0) = 0 with normalized n. Retained half-space: d(p) >= -EPS.
  */
+
+import * as THREE from 'three';
 
 export type Vec3 = [number, number, number];
 
@@ -72,6 +75,80 @@ export function isRetained(plane: SectionPlane, p: Vec3, eps = SECTION_EPS_MM): 
 }
 
 export type StandardPlaneKind = 'sagittal' | 'coronal' | 'axial';
+
+/**
+ * Phase 4A plane model — application state shape (renderer-agnostic).
+ * The RELATIONSHIP source-component -> composite -> runtime mesh is untouched:
+ * clipping never creates entities, parcels, or landmarks.
+ */
+export type PlaneKind = StandardPlaneKind | 'oblique';
+
+export interface PlaneRecord {
+  /** Stable id (e.g. 'plane.sagittal'). Never an entity/parcel/landmark id. */
+  id: string;
+  kind: PlaneKind;
+  /** Math model (normalized normal, origin, retained side, provenance). */
+  math: SectionPlane;
+  /** Whether this plane currently clips. */
+  enabled: boolean;
+}
+
+/** Flip the retained half-space (pure). */
+export function invertPlane(math: SectionPlane): SectionPlane {
+  return {
+    normal: [math.normal[0], math.normal[1], math.normal[2]],
+    origin: [math.origin[0], math.origin[1], math.origin[2]],
+    retainedSide: math.retainedSide === '+n' ? '-n' : '+n',
+    originProvenance: math.originProvenance
+  };
+}
+
+/** Move a plane to a new origin (pure). Provenance must describe the new origin. */
+export function movePlane(math: SectionPlane, origin: Vec3, originProvenance: string): SectionPlane | null {
+  if (!isValidPoint(origin)) return null;
+  if (!originProvenance || originProvenance.length === 0) return null;
+  return {
+    normal: [math.normal[0], math.normal[1], math.normal[2]],
+    origin: [origin[0], origin[1], origin[2]],
+    retainedSide: math.retainedSide,
+    originProvenance
+  };
+}
+
+/**
+ * Convert to THREE.Plane for GPU clipping.
+ * three.js discards fragments where normal.dot(p) + constant < 0, i.e. it keeps
+ * normal.p + constant >= 0. Our retained '+n' side is n.(p - p0) >= 0, so
+ * constant = -n.p0. Retained '-n' negates both. Inversion == retainedSide flip.
+ */
+export function toThreePlane(math: SectionPlane): THREE.Plane {
+  const s = math.retainedSide === '+n' ? 1 : -1;
+  const n = new THREE.Vector3(
+    s * math.normal[0],
+    s * math.normal[1],
+    s * math.normal[2]
+  );
+  const constant = -s * dot(math.normal, math.origin);
+  return new THREE.Plane(n, constant);
+}
+
+/** Axis index for standard kinds in CANONICAL axes (sagittal->X, coronal->Z, axial->Y). */
+export function standardAxisIndex(kind: StandardPlaneKind): 0 | 1 | 2 {
+  switch (kind) {
+    case 'sagittal': return 0;
+    case 'coronal': return 2;
+    case 'axial': return 1;
+  }
+}
+
+/** Axis letter for canonical position display (e.g. "X = 12.4 mm"). No region labels. */
+export function standardAxisLetter(kind: StandardPlaneKind): 'X' | 'Y' | 'Z' {
+  switch (kind) {
+    case 'sagittal': return 'X';
+    case 'coronal': return 'Z';
+    case 'axial': return 'Y';
+  }
+}
 
 /**
  * Standard anatomical planes in CANONICAL axes (verified §6):

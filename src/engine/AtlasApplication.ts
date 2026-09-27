@@ -23,6 +23,8 @@ import { PerformanceManager } from './PerformanceManager';
 import { ResourceManager } from './ResourceManager';
 import { AnatomicalAssemblyManager } from './AnatomicalAssemblyManager';
 import { LabelManager } from './LabelManager';
+import { SectionPlaneSet } from './SectionPlaneSet';
+import { ClippingAdapter } from './ClippingAdapter';
 import {
   AnatomicalEntityRecord,
   CameraViewPreset,
@@ -55,6 +57,8 @@ export class AtlasApplication {
   private resourceManager: ResourceManager;
   private assemblyManager: AnatomicalAssemblyManager;
   private labelManager: LabelManager;
+  private sectionPlaneSet: SectionPlaneSet;
+  private clippingAdapter: ClippingAdapter;
 
   private isRunning: boolean = false;
   private animationFrameId: number | null = null;
@@ -72,6 +76,10 @@ export class AtlasApplication {
     this.assemblyManager = new AnatomicalAssemblyManager();
     this.labelManager = new LabelManager();
     this.resourceManager = new ResourceManager();
+    // Phase 4A: plane state lives outside the renderer; the adapter bridges it.
+    this.sectionPlaneSet = new SectionPlaneSet();
+    this.clippingAdapter = new ClippingAdapter();
+    this.clippingAdapter.bind(this.sectionPlaneSet);
 
     // Secondary Subsystems
     this.selectionManager = new SelectionManager(this.entityManager, this.materialManager);
@@ -153,6 +161,12 @@ export class AtlasApplication {
     // Load asset manifest
     await this.assetManager.loadManifest(manifestPath);
 
+    // Phase 4A: renderer clipping flag (guarded; WebGL2 path verified by design,
+    // WebGPU device behavior unverified) + plane gizmo mount (hidden until used).
+    this.clippingAdapter.applyRendererState(this.rendererManager.getRenderer());
+    this.clippingAdapter.setGizmoVisible(false);
+    this.sceneManager.getVisualizationRoot().add(this.clippingAdapter.getGizmoGroup());
+
     // Configure profile
     this.applyProfile(this.performanceManager.getProfile().id);
   }
@@ -168,6 +182,9 @@ export class AtlasApplication {
     // Register material
     const material = this.materialManager.registerEntityMaterial(entityRecord.entityId);
     mesh.material = material;
+
+    // Phase 4A: clipping follows the material, never the entity record.
+    this.clippingAdapter.registerMaterial(entityRecord.entityId, material);
 
     // Attach to Scene under brainRoot
     this.sceneManager.getBrainRoot().add(mesh);
@@ -442,7 +459,23 @@ export class AtlasApplication {
     for (const record of records) {
       await this.loadEntity(record);
     }
+    // Phase 4A: reload creates fresh materials — re-apply plane state to them.
+    this.resyncClipping();
   }
+
+  /**
+   * Phase 4A: re-derive GPU clipping state from application plane state.
+   * Call after renderer (re)creation and after bulk material replacement.
+   */
+  public resyncClipping(): void {
+    this.clippingAdapter.resync(
+      this.sectionPlaneSet,
+      this.rendererManager.getRenderer()
+    );
+  }
+
+  public getSectionPlaneSet(): SectionPlaneSet { return this.sectionPlaneSet; }
+  public getClippingAdapter(): ClippingAdapter { return this.clippingAdapter; }
 
   // Subsystem Getters
   public getRendererManager(): RendererManager { return this.rendererManager; }
@@ -469,6 +502,7 @@ export class AtlasApplication {
     this.labelManager.clear();
     this.lodManager.dispose();
     this.performanceManager.dispose();
+    this.clippingAdapter.dispose();
     this.materialManager.dispose();
     this.assetManager.dispose();
     this.resourceManager.disposeAll();

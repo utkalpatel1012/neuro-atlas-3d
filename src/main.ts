@@ -10,6 +10,7 @@ import { AtlasApplication } from './engine/AtlasApplication';
 import { AnatomicalInfoPanel } from './ui/AnatomicalInfoPanel';
 import { DebugPanel } from './ui/DebugPanel';
 import { ControlsBar } from './ui/ControlsBar';
+import { SectionControls } from './ui/SectionControls';
 import { AnatomicalEntityRecord } from './engine/types';
 
 async function bootstrap() {
@@ -193,6 +194,15 @@ async function bootstrap() {
       app.getSelectionManager(),
       app.getAssemblyManager(),
       app.getLabelManager()
+    );
+
+    // Phase 4A: mesh-based sectional visualization controls (state + adapter
+    // already wired in AtlasApplication; gizmo group mounted at initialize).
+    new SectionControls(
+      appContainer,
+      app.getSectionPlaneSet(),
+      app.getClippingAdapter(),
+      app.getEntityManager()
     );
 
     // 5. Select bilateral cerebrum by default to showcase macroanatomy

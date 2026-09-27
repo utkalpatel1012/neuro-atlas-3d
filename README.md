@@ -81,6 +81,7 @@ The ultimate objective is to bridge:
 * **3D Compression**: glTF 2.0 Binary (`.glb`) with **Meshopt (`EXT_meshopt_compression`)** — encode step round-trip verified vs LOD input (≤1e-6 mm); QEM simplification is lossy
 * **Acceleration**: `three-mesh-bvh` (headless-Node CPU raycast ≈1 ms on 198k tris; NOT a device/GPU measurement)
 * **Testing**: custom assert + `tsx` suites (`npm test`: 7 files) & `tsc --noEmit` (`npm run typecheck`)
+* **Sectional visualization (Phase 4A)**: mesh-based clipping — sagittal/coronal/axial/oblique GPU planes, multi-plane intersection, invert/enable/reset, plane gizmo; cut interiors render hollow (`SECTION_CAPS_PENDING`); headless-tested only, no device proof
 
 **PLANNED ONLY (decided in `TECH_STACK_DECISION.md`, zero code/deps/assets):**
 React 19, React Three Fiber, Zustand, MiniSearch, Dexie.js, PWA/service worker,

@@ -86,3 +86,11 @@ No neuroanatomist expert review has occurred for any mesh, landmark, or boundary
 this repo. Automated/reference comparisons are NOT expert validation.
 **Status: EXPERT_REVIEW_PENDING.** Nothing in the repo claims otherwise (verified);
 keep it that way until a documented review with named reviewer + date + scope occurs.
+
+## L14. Sectional visualization limits (Phase 4A)
+Cut interiors render HOLLOW (`SECTION_CAPS_PENDING`) — no cap geometry exists and
+none is faked. GPU clipping is headless-tested only (no browser/device proof;
+WebGPU path code-identical but device-unverified). Raycasting ignores clipping by
+design (selection may resolve clipped-away geometry). Grazing-incidence rays can
+slip between adjacent triangles despite edge-watertight QA. Plane gizmos and labels
+are orientation aids, never anatomy. No MRI, no parcellation, no psychiatry overlays.
