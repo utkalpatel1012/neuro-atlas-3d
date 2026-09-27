@@ -94,7 +94,10 @@ export class HierarchyPanel {
       status.textContent = `${available} available · ${documented} documented (no geometry)`;
     }
     tree.innerHTML = '';
-    const roots = this.nodes.filter((n) => n.level <= 1);
+    // Roots = nodes at the shallowest level only. (Filtering level <= 1
+    // duplicates subtrees: level-1 nodes already render as children of level 0.)
+    const minLevel = Math.min(...this.nodes.map((n) => n.level));
+    const roots = this.nodes.filter((n) => n.level === minLevel);
     for (const root of roots) {
       tree.appendChild(this.renderNode(root, 0));
     }
