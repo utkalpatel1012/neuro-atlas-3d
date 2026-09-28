@@ -1,6 +1,6 @@
 {
   "assetId": "mesh.mammillary_body.bilateral.v1",
-  "timestamp": "2026-09-27T16:08:15.677Z",
+  "timestamp": "2026-09-27T19:54:56.839Z",
   "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
   "targetRuntimeDirectory": "assets/derived/mesh.mammillary_body.bilateral.v1/runtime",
   "levels": [
@@ -76,6 +76,6 @@
       "meshopt_roundtrip_max_delta_mm": 0.000001,
       "qem_simplification_lossy": true
     },
-    "timestamp": "2026-09-27T16:08:15.677Z"
+    "timestamp": "2026-09-27T19:54:56.839Z"
   }
 }

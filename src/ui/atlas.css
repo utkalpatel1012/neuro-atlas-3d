@@ -61,6 +61,45 @@ body, html {
   cursor: grabbing;
 }
 
+/* Phase 5.2 provenance review MAJOR-2: required BodyParts3D / LSIDC attribution and
+   licence-status disclosure. Anchored bottom-left, which is free (the controls bar is
+   bottom-centre). Deliberately does not touch #app or #canvas-container geometry, so
+   the Phase 5.1 DPR / drawing-buffer / sizing behaviour is unaffected. */
+.atlas-attribution {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 10;
+  max-width: 380px;
+  font-size: 10px;
+  line-height: 1.45;
+  color: #94A3B8;
+}
+
+.atlas-attribution > details {
+  background: rgba(7, 11, 20, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 6px;
+  padding: 6px 8px;
+  backdrop-filter: blur(6px);
+}
+
+.atlas-attribution summary {
+  cursor: pointer;
+  color: #CBD5E1;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+.atlas-attribution p {
+  margin: 6px 0 0;
+}
+
+.atlas-attribution strong {
+  color: #E2E8F0;
+}
+
 /* Header Branding */
 .atlas-header {
   position: absolute;

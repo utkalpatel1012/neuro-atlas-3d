@@ -1,0 +1,179 @@
+{
+  "assetId": "mesh.interventricular_foramen.midline.v1",
+  "timestamp": "2026-09-27T19:55:04.883Z",
+  "inputCanonicalGlb": "assets/derived/mesh.interventricular_foramen.midline.v1/canonical/mesh.interventricular_foramen.midline.v1.canonical.glb",
+  "inputCanonicalHash": "b3e67331a7cd20f1292c34ed1d14f15ca822a7865cd540e235166ef4dc8072ae",
+  "levels": [
+    {
+      "level": 0,
+      "lodName": "lod0",
+      "targetRatio": 1,
+      "triangleCount": 4642,
+      "vertexCount": 2325,
+      "byteLength": 84660,
+      "sha256": "989e4ab728d3d902ce21e82a31513d1049bb7606117429e2853634c6802b6579",
+      "filePath": "assets/derived/mesh.interventricular_foramen.midline.v1/lod/mesh.interventricular_foramen.midline.v1.lod0.glb",
+      "targetIndexCount": 13926,
+      "resultingIndexCount": 13926,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 108.08,
+        "lodVolumeMm3": 108.08,
+        "volumeDeviationPercent": 0,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0,
+        "meanSurfaceDeviationMm": 0
+      }
+    },
+    {
+      "level": 1,
+      "lodName": "lod1",
+      "targetRatio": 0.75,
+      "triangleCount": 3480,
+      "vertexCount": 1744,
+      "byteLength": 63744,
+      "sha256": "0fce37865e7717fd90fc2d4f5941f6d31017e7bc0c8fce780e4df0f2b812df83",
+      "filePath": "assets/derived/mesh.interventricular_foramen.midline.v1/lod/mesh.interventricular_foramen.midline.v1.lod1.glb",
+      "targetIndexCount": 10443,
+      "resultingIndexCount": 10440,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000709,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 108.08,
+        "lodVolumeMm3": 108,
+        "volumeDeviationPercent": -0.068,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0.3907,
+        "meanSurfaceDeviationMm": 0.0292
+      }
+    },
+    {
+      "level": 2,
+      "lodName": "lod2",
+      "targetRatio": 0.5,
+      "triangleCount": 2320,
+      "vertexCount": 1164,
+      "byteLength": 42864,
+      "sha256": "1e2454eac88ed22f8df5a55b6bd618d7e519fd88f24250e8489b3bce560c8807",
+      "filePath": "assets/derived/mesh.interventricular_foramen.midline.v1/lod/mesh.interventricular_foramen.midline.v1.lod2.glb",
+      "targetIndexCount": 6963,
+      "resultingIndexCount": 6960,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.001291,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 108.08,
+        "lodVolumeMm3": 107.73,
+        "volumeDeviationPercent": -0.317,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0.449,
+        "meanSurfaceDeviationMm": 0.0725
+      }
+    },
+    {
+      "level": 3,
+      "lodName": "lod3",
+      "targetRatio": 0.25,
+      "triangleCount": 1160,
+      "vertexCount": 584,
+      "byteLength": 21976,
+      "sha256": "4ee1e6560daf046bed1ad1b9bb7ed7dc395ae3f43566911de7a6b62c431cf228",
+      "filePath": "assets/derived/mesh.interventricular_foramen.midline.v1/lod/mesh.interventricular_foramen.midline.v1.lod3.glb",
+      "targetIndexCount": 3480,
+      "resultingIndexCount": 3480,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.002749,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 108.08,
+        "lodVolumeMm3": 106.41,
+        "volumeDeviationPercent": -1.543,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.0006,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            -0.002
+          ]
+        },
+        "maxSurfaceDeviationMm": 1.3213,
+        "meanSurfaceDeviationMm": 0.154
+      }
+    }
+  ],
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.interventricular_foramen.midline.v1.lod_generation",
+    "tool": "MeshoptSimplifier / NeuroAtlas3D LOD Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "algorithms": "Quadric_Error_Metric_Simplification",
+      "levels": [
+        {
+          "name": "lod0",
+          "ratio": 1
+        },
+        {
+          "name": "lod1",
+          "ratio": 0.75
+        },
+        {
+          "name": "lod2",
+          "ratio": 0.5
+        },
+        {
+          "name": "lod3",
+          "ratio": 0.25
+        }
+      ]
+    },
+    "timestamp": "2026-09-27T19:55:04.884Z"
+  }
+}

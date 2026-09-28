@@ -31,6 +31,9 @@ const PROJECT_ROOT = path.resolve(__dirname, '../../');
 export interface BatchVerdict {
   assetId: string;
   structureId: string;
+  // Phase 5.2 architecture N6: declared, not merely spread in, so the ledger field is
+  // typed. The anatomical category recorded at prep time, used for QA profile choice.
+  anatomicalCategory: string;
   profileId: string | null;
   state: 'RUNTIME_READY' | 'REVIEW_REQUIRED' | 'REJECTED';
   reason: string;
@@ -76,6 +79,11 @@ export async function runBatch(ledgerName = 'phase5_batch1.json', qaName = 'phas
     const base = {
       assetId: item.assetId,
       structureId: item.structureId,
+      // Phase 5.2 architecture M7: the anatomical category is carried in the ledger so
+      // QA profile selection can be category-appropriate. Previously the picker saw only
+      // measured topology, so a CSF aperture and a cortical gyrus could receive the same
+      // "cortical" profile - the 5.4 `wrong-category-validation` hard stop arriving early.
+      anatomicalCategory: (item.category ?? 'UNSPECIFIED') as string,
       profileId: null as string | null,
       measuredTriangles: null as number | null,
       measuredShells: null as number | null,
@@ -115,13 +123,21 @@ export async function runBatch(ledgerName = 'phase5_batch1.json', qaName = 'phas
       }
       let profileId: string;
       let limitationNote = '';
+      // Phase 5.2 architecture M7: profile selection is now driven by measured topology
+      // AND anatomical category. The topology measurement is still authoritative for the
+      // shell/closure decision; the category only prevents a category-inappropriate
+      // template name (e.g. describing a CSF cavity as a pial/cortical surface), which is
+      // the Phase 5.4 `wrong-category-validation` hard stop. For CORTEX the historical
+      // names are preserved exactly, so Phase 5.0/5.1 assets are unaffected.
+      const isCavityCategory = String(item.category ?? '').toUpperCase().includes('VENTRICULAR')
+        || String(item.category ?? '').toUpperCase().includes('CAVITY');
       if (analysis.isWatertight && analysis.connectedShellCount === 1) {
-        profileId = 'closed-pial-surface';
+        profileId = isCavityCategory ? 'closed-cavity-cast' : 'closed-pial-surface';
       } else if (analysis.isWatertight) {
-        profileId = 'composite-cortical-assembly';
+        profileId = isCavityCategory ? 'multi-shell-cavity-cast' : 'composite-cortical-assembly';
         limitationNote = ` (${analysis.connectedShellCount} watertight shells: VALID_WITH_KNOWN_TOPOLOGY_LIMITATION)`;
       } else {
-        profileId = 'open-cortical-sheet';
+        profileId = isCavityCategory ? 'open-cavity-cast' : 'open-cortical-sheet';
         limitationNote = ` (${analysis.boundaryEdges} boundary edges: VALID_WITH_KNOWN_TOPOLOGY_LIMITATION)`;
       }
       console.log(`[BATCH] ${item.assetId}: profile=${profileId}${limitationNote}, tris=${analysis.triangleCount}, shells=${analysis.connectedShellCount}`);
@@ -160,7 +176,9 @@ export async function runBatch(ledgerName = 'phase5_batch1.json', qaName = 'phas
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const ledgerArg = process.argv[2] || 'phase5_batch1.json';
   const qaArg = process.argv[3] || 'phase5_batch1_qa.json';
-  runBatch(ledgerArg, qaArg).catch((err) => {
+  const labelArg = process.argv[4] || 'phase5-batch1-gyral';
+  const generatorArg = process.argv[5] || 'scripts/pipeline/run_gyral_batch.ts';
+  runBatch(ledgerArg, qaArg, labelArg, generatorArg).catch((err) => {
     console.error('[BATCH FATAL]', err);
     process.exit(1);
   });

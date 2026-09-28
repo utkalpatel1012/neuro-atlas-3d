@@ -14,6 +14,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { deepBatchItems } from './prepare_deep_batch';
+import { lateralityFromAssetId } from './asset_id_laterality';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -74,7 +75,17 @@ export function writeDeepRecords(): string[] {
       fs.readFileSync(path.join(PROJECT_ROOT, 'assets/raw', item.assetId, 'ingestion.json'), 'utf8')
     );
     const base = item.assetId.replace(/^mesh\./, '').replace(/\.(left|right|bilateral|midline)\.v1$/, '');
-    const laterality = item.assetId.includes('.left.') ? 'left' : item.assetId.includes('.right.') ? 'right' : item.assetId.includes('.bilateral.') ? 'bilateral' : 'midline';
+    // Phase 5.2 architecture M3: replaced an inline four-way guess (which defaulted to
+    // `midline` for anything it did not recognise) with the project's laterality
+    // single source of truth, which returns null rather than guessing.
+    const derivedLaterality = lateralityFromAssetId(item.assetId);
+    if (derivedLaterality === null) {
+      throw new Error(
+        `Unrecognised laterality in asset id "${item.assetId}". Refusing to guess. ` +
+        `Expected mesh.<base>.<bilateral|left|right|midline>.v1.`
+      );
+    }
+    const laterality = derivedLaterality;
     const record = {
       id: item.structureId,
       entity_type: 'anatomical_structure',
@@ -84,7 +95,7 @@ export function writeDeepRecords(): string[] {
       clinical_aliases: [] as string[],
       abbreviations: [] as string[],
       laterality,
-      representation_scope: laterality === 'left' || laterality === 'right' ? 'paired_separate' : 'midline_single',
+      representation_scope: laterality === 'left' || laterality === 'right' ? 'paired_separate' : laterality === 'bilateral' ? 'paired_combined' : 'single_midline_mesh',
       name: {
         official_latin: item.latinName,
         official_english: item.structureName,
@@ -165,7 +176,10 @@ export function writeDeepRecords(): string[] {
         resulting_license: 'CC-BY-SA 4.0',
         project_distribution_policy: 'CC-BY-SA-4.0',
         production_eligibility: 'PRODUCTION_ALLOWED',
-        commercial_redistribution: 'PERMITTED',
+        // Phase 5.2: was 'PERMITTED', contradicting this record's own LEGAL_REVIEW_REQUIRED
+  // note. The conservative posture is the honest one; AGENTS.md forbids labelling
+  // anything CLEARED while it remains LEGAL_REVIEW_REQUIRED.
+  commercial_redistribution: 'LEGAL_REVIEW_REQUIRED',
         restrictions_and_covenants: [
           'Must attribute BodyParts3D / DBCLS in application notices and UI',
           'Derived 3D meshes distributed under CC-BY-SA 4.0.',

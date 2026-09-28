@@ -11,6 +11,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { parseAndAuditSTL, STLMeshAnalysis } from './stl_utils';
+import { lateralityFromAssetId } from './asset_id_laterality';
 import {
   TopologyClass,
   GeometricQAStatus,
@@ -311,11 +312,22 @@ export function validateMesh(
   const leanAnalysis = analysisSummary as STLMeshAnalysis;
 
   const geometricQA = runGeometricQA(assetId, relFilePath, leanAnalysis, profile);
+  // Laterality comes from the asset id's laterality segment via the shared
+  // helper, so this report can never contradict scripts/validate_asset.ts or the
+  // structure record. A null result means the id carries no laterality segment:
+  // the pipeline stops instead of writing a report that guesses "midline".
+  const assetLaterality = lateralityFromAssetId(assetId);
+  if (assetLaterality === null) {
+    throw new Error(
+      `Asset id "${assetId}" has no left/right/bilateral/midline segment; ` +
+        `declaring a laterality here would be a guess about anatomy.`
+    );
+  }
   const anatomicalQA = runAnatomicalQA({
     assetId,
     dimensionsMm: [analysis.dimensions[0], analysis.dimensions[1], analysis.dimensions[2]],
     volumeMm3: analysis.estimatedVolumeMm3,
-    declaredLaterality: assetId.includes('left') ? 'left' : (assetId.includes('right') ? 'right' : 'midline'),
+    declaredLaterality: assetLaterality,
     expectedVolumeRangeCm3: expectedVolumeRange,
     subfieldRepresentation: 'MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED',
     compositeIdentitiesUnverified: isCortex

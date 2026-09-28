@@ -354,6 +354,38 @@ export function runPipelineRegressionTests(): { passed: boolean; testCount: numb
   });
   if (!bilateralRes.passed) throw new Error('Valid bilateral laterality failed check');
 
+  // Small paired midline structure: the mammillary bodies are a bilateral
+  // source distribution sitting only a few mm either side of X=0. A fixed
+  // 10 mm-per-side floor used to reject this correct asset.
+  const smallPairedRes = validateCoordinatesAndLaterality({
+    rawBounds: dummyBounds(-4.5, 3.3),
+    canonicalBounds: dummyBounds(-4.5, 3.3),
+    adapter: identityAdapter,
+    declaredLaterality: 'bilateral',
+    midlineToleranceMm: 2.0
+  });
+  if (!smallPairedRes.passed) throw new Error('Small paired midline bilateral structure failed check');
+
+  // A one-sided structure mislabelled bilateral must STILL fail (centroid rule).
+  const oneSidedAsBilateral = validateCoordinatesAndLaterality({
+    rawBounds: dummyBounds(-35, 1),
+    canonicalBounds: dummyBounds(-35, 1),
+    adapter: identityAdapter,
+    declaredLaterality: 'bilateral',
+    midlineToleranceMm: 2.0
+  });
+  if (oneSidedAsBilateral.passed) throw new Error('One-sided bounds passed bilateral laterality declaration');
+
+  // A midline-only structure mislabelled bilateral must fail the span test.
+  const midlineOnlyAsBilateral = validateCoordinatesAndLaterality({
+    rawBounds: dummyBounds(-1, 1),
+    canonicalBounds: dummyBounds(-1, 1),
+    adapter: identityAdapter,
+    declaredLaterality: 'bilateral',
+    midlineToleranceMm: 2.0
+  });
+  if (midlineOnlyAsBilateral.passed) throw new Error('Midline-only bounds passed bilateral laterality declaration');
+
   results.push('Check 12 PASSED: 4-stage laterality validation tested for left, right, midline, and bilateral classes.');
 
   // --------------------------------------------------------------------------

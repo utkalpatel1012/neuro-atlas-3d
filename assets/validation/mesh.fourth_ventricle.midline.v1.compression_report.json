@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.fourth_ventricle.midline.v1",
+  "timestamp": "2026-09-27T19:55:02.660Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.fourth_ventricle.midline.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.fourth_ventricle.midline.v1/lod/mesh.fourth_ventricle.midline.v1.lod0.glb",
+      "uncompressedByteLength": 543464,
+      "uncompressedSha256": "1e7de9b36afe27b91536af2f8dfaeb0c2817cd2134995a7e2fbb11b35a64b79c",
+      "runtimeGlbPath": "assets/derived/mesh.fourth_ventricle.midline.v1/runtime/mesh.fourth_ventricle.midline.v1.lod0.meshopt.glb",
+      "compressedByteLength": 341828,
+      "compressedSha256": "bd2b3ecbded5ec0b4f4109519989e35e8cf7e7b0a55f6d1284359c708a430671",
+      "compressionRatio": 1.59,
+      "savingsPercent": 37.1,
+      "vertexCount": 15069,
+      "triangleCount": 30134,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.fourth_ventricle.midline.v1/lod/mesh.fourth_ventricle.midline.v1.lod1.glb",
+      "uncompressedByteLength": 407852,
+      "uncompressedSha256": "6b9d462033fad92eee09bcb82f0a7e0355500e609ab99c974f84d3107972984a",
+      "runtimeGlbPath": "assets/derived/mesh.fourth_ventricle.midline.v1/runtime/mesh.fourth_ventricle.midline.v1.lod1.meshopt.glb",
+      "compressedByteLength": 262224,
+      "compressedSha256": "67d40654f6b1c3281332135ee07302172f227308dfbc43796d24e85fc313f654",
+      "compressionRatio": 1.56,
+      "savingsPercent": 35.71,
+      "vertexCount": 11302,
+      "triangleCount": 22600,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.fourth_ventricle.midline.v1/lod/mesh.fourth_ventricle.midline.v1.lod2.glb",
+      "uncompressedByteLength": 272232,
+      "uncompressedSha256": "05c764e02ba1d7ae502d7fff1d5c55d5c01eb6a1c28d71266ff89b7a8de3fe2f",
+      "runtimeGlbPath": "assets/derived/mesh.fourth_ventricle.midline.v1/runtime/mesh.fourth_ventricle.midline.v1.lod2.meshopt.glb",
+      "compressedByteLength": 180224,
+      "compressedSha256": "6232f207f655dd888e8b33c2612bb06c195213b598df0c3901b2c9dcbed58731",
+      "compressionRatio": 1.51,
+      "savingsPercent": 33.8,
+      "vertexCount": 7535,
+      "triangleCount": 15066,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.fourth_ventricle.midline.v1/lod/mesh.fourth_ventricle.midline.v1.lod3.glb",
+      "uncompressedByteLength": 136620,
+      "uncompressedSha256": "1e9dd54541e6cbb65ee154423949e6e3700e9a25c64c6a4b872a90d43a796509",
+      "runtimeGlbPath": "assets/derived/mesh.fourth_ventricle.midline.v1/runtime/mesh.fourth_ventricle.midline.v1.lod3.meshopt.glb",
+      "compressedByteLength": 95152,
+      "compressedSha256": "785f0dc06f01abdb0f48c410ae821c69ab45bad6b1371ea62d52b561a2f28dd1",
+      "compressionRatio": 1.44,
+      "savingsPercent": 30.35,
+      "vertexCount": 3768,
+      "triangleCount": 7532,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 1360168,
+  "overallCompressedBytes": 879428,
+  "overallSavingsPercent": 35.34,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.fourth_ventricle.midline.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-27T19:55:02.660Z"
+  }
+}

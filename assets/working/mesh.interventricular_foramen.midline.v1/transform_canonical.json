@@ -1,0 +1,64 @@
+{
+  "transformation_id": "tx.mesh.interventricular_foramen.midline.v1.canonicalization",
+  "input_frame": "DICOM_LPS_WHOLE_BODY",
+  "output_frame": "THREEJS_RAS_CANONICAL",
+  "adapter_id": "adapter.bodyparts3d.lps_whole_body_to_ras",
+  "adapter_version": "1.0.0",
+  "input_asset_hash": "cd5e002a238c7c04492777a25d486431a36fa2b41a0aae0a2e6a693f6a1a60d0",
+  "output_asset_hash": "b3e67331a7cd20f1292c34ed1d14f15ca822a7865cd540e235166ef4dc8072ae",
+  "tool": "NeuroAtlas3D Generic Canonicalizer v1.1",
+  "parameters": {
+    "source_orientation": "LPS",
+    "target_orientation": "RAS",
+    "axis_mapping": {
+      "x": "-x",
+      "y": "z",
+      "z": "y"
+    },
+    "translation_mm": [
+      0,
+      -1561.7,
+      70.1
+    ],
+    "scale": 1,
+    "registration_metadata": {
+      "registration_method": "stereotaxic_acpc_origin_centering",
+      "reference_landmarks": {
+        "ac_pc_midpoint_source_lps": [
+          0,
+          -70.1,
+          1561.7
+        ]
+      },
+      "transformation_matrix_4x4": [
+        [
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          -1561.7
+        ],
+        [
+          0,
+          1,
+          0,
+          70.1
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "notes": "Transforms whole-body source coordinates to internal canonical space centered near origin. The AC-PC midpoint landmark above is ASSERTED, not measured from identified commissures (Phase 3.1 D3); origin approximates, not equals, the mid-commissural plane."
+    },
+    "normals": "area_weighted_smooth"
+  },
+  "timestamp": "2026-09-27T19:55:04.844Z"
+}

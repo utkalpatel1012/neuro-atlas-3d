@@ -1,0 +1,29 @@
+{
+  "asset_id": "mesh.third_ventricle.midline.v1",
+  "assetId": "mesh.third_ventricle.midline.v1",
+  "structure_id": "brain.ventricular_system.third_ventricle",
+  "source_dataset": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+  "source_dataset_version": "Release 3.0 (2011/06/20)",
+  "source_asset_id": "FMA78454",
+  "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/master/assets/BodyParts3D_data/stl/FMA78454.stl",
+  "source_license": "Historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (verified 2025-02-27). Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution.",
+  "source_license_version": "CC BY 4.0 (2025-02-27 portal update) / CC-BY-SA 2.1 JP",
+  "project_distribution_policy": "CC-BY-SA-4.0",
+  "attribution": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+  "acquisition_date": "2026-09-27",
+  "original_filename": "FMA78454.stl",
+  "originalFilename": "FMA78454.stl",
+  "original_format": "binary STL (BodyParts3D segment)",
+  "original_hash": "6bbf2d2d4552a08c20217326a1e978745d6425e75f9b92cf6f59826b4d30e53f",
+  "source_coordinate_space": "dicom_lps_whole_body",
+  "source_units": "millimeters (mm)",
+  "source_metadata": {
+    "distribution_name": "Third ventricle",
+    "distribution_laterality": "midline",
+    "asset_category": "VENTRICULAR_SPACE",
+    "measured_source_center_x_mm": -0.67,
+    "measured_source_triangles": 16808,
+    "laterality_basis": "midline-spanning source geometry (bilateral organ or midline cavity)"
+  },
+  "ingestion_status": "SOURCE_VERIFIED"
+}

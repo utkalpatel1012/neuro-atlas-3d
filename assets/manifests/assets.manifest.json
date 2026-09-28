@@ -1,8 +1,8 @@
 {
   "manifest_version": "1.1.0",
-  "generated_at": "2026-09-27T17:37:40.470Z",
+  "generated_at": "2026-09-27T20:57:47.147Z",
   "generator_script": "scripts/pipeline/update_manifest.ts",
-  "total_assets": 31,
+  "total_assets": 36,
   "assets": {
     "mesh.amygdala.left.v1": {
       "asset_id": "mesh.amygdala.left.v1",
@@ -17,8 +17,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72833",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -30,7 +31,7 @@
             "source_byte_length": 86884
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -46,7 +47,7 @@
             "measured_volume_cm3": 1.331
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -61,7 +62,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -74,7 +75,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -89,7 +90,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -97,13 +98,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72833 amygdala (left)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -187,8 +189,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72832",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -200,7 +203,7 @@
             "source_byte_length": 87284
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -216,7 +219,7 @@
             "measured_volume_cm3": 1.331
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -231,7 +234,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -244,7 +247,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -259,7 +262,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -267,13 +270,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72832 amygdala (right)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -363,8 +367,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72670",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -376,7 +381,7 @@
             "source_byte_length": 658284
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -392,7 +397,7 @@
             "measured_volume_cm3": 20.908
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -407,7 +412,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -420,7 +425,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -435,7 +440,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -443,13 +448,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72670 left angular gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -539,8 +545,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72669",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -552,7 +559,7 @@
             "source_byte_length": 658684
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -568,7 +575,7 @@
             "measured_volume_cm3": 20.91
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -583,7 +590,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -596,7 +603,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -611,7 +618,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -619,13 +626,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72669 right angular gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -709,8 +717,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72827",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -722,7 +731,7 @@
             "source_byte_length": 558084
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -738,7 +747,7 @@
             "measured_volume_cm3": 6.251
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -753,7 +762,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -766,7 +775,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -781,7 +790,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -789,13 +798,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72827 caudate nucleus (left)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -879,8 +889,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72826",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -892,7 +903,7 @@
             "source_byte_length": 563684
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -908,7 +919,7 @@
             "measured_volume_cm3": 6.255
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -923,7 +934,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -936,7 +947,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -951,7 +962,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -959,13 +970,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72826 caudate nucleus (right)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -1036,6 +1048,348 @@
         }
       }
     },
+    "mesh.cerebellum.bilateral.v1": {
+      "asset_id": "mesh.cerebellum.bilateral.v1",
+      "structure_id": "brain.cerebellum.cerebellum",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA67944",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-27",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA67944.stl",
+            "verified_source_sha256": "a023ac8cad7440cbb16814782f0d78643c9e81cdf04272971afa11a0100bd6fe",
+            "source_byte_length": 11925384
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "MULTI_SHELL_COMPOSITE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 99.023
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 48.85,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "889a388ea0321fe37551669fd412d012d84ca2142eba834aaf52cfbe6721adc7",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA67944 cerebellum) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        0.66,
+        -38.77,
+        17.58
+      ],
+      "dimensions_mm": [
+        100.55,
+        50.28,
+        53.13
+      ],
+      "topology_class": "MULTI_SHELL_COMPOSITE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.cerebellum.bilateral.v1/canonical/mesh.cerebellum.bilateral.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.cerebellum.bilateral.v1/lod/mesh.cerebellum.bilateral.v1.lod0.glb",
+          "sha256": "103fe0ae5c08f0e2b45a0b2dc08d9d2c6e69a8052481b062cfe698119d3f2bee",
+          "triangles": 238506,
+          "bytes": 5725244
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.cerebellum.bilateral.v1/lod/mesh.cerebellum.bilateral.v1.lod1.glb",
+          "sha256": "3e69a5b7cf63613c0e096a3c72dd0ce0dc2d3f2799c158307f1cbe2f1206472d",
+          "triangles": 178878,
+          "bytes": 4294168
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.cerebellum.bilateral.v1/lod/mesh.cerebellum.bilateral.v1.lod2.glb",
+          "sha256": "e9c3b33995ef74f9fa620bd89fae73079b688836e4f9dd1764e665727c022617",
+          "triangles": 119252,
+          "bytes": 2147628
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.cerebellum.bilateral.v1/lod/mesh.cerebellum.bilateral.v1.lod3.glb",
+          "sha256": "5cd7bb7a1e229e5a607128f13fc163167f52d8ee1a3b28eb18d81e4565452c8f",
+          "triangles": 59626,
+          "bytes": 1074360
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.cerebellum.bilateral.v1/runtime/mesh.cerebellum.bilateral.v1.lod0.meshopt.glb",
+          "sha256": "fe531c80139e103067358ab103781f183596b123a335ff671a96c6d3b53e87ed",
+          "bytes": 2641344,
+          "compression_ratio": 2.17
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.cerebellum.bilateral.v1/runtime/mesh.cerebellum.bilateral.v1.lod1.meshopt.glb",
+          "sha256": "305a51cf2507991720e8d29160eaef1d4cbec9a3dc5d1cac1991ee945677cd47",
+          "bytes": 2022776,
+          "compression_ratio": 2.12
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.cerebellum.bilateral.v1/runtime/mesh.cerebellum.bilateral.v1.lod2.meshopt.glb",
+          "sha256": "e1a1a0e43b3f26717dcb5e7eeb21bc7e14f0a4ee474907b7c51ff85061dac9d7",
+          "bytes": 1384600,
+          "compression_ratio": 1.55
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.cerebellum.bilateral.v1/runtime/mesh.cerebellum.bilateral.v1.lod3.meshopt.glb",
+          "sha256": "c737861eebcc3613f897538fd2959589e27f2cccf434574e6f3b58de752080f9",
+          "bytes": 724776,
+          "compression_ratio": 1.48
+        }
+      }
+    },
+    "mesh.cerebral_aqueduct.midline.v1": {
+      "asset_id": "mesh.cerebral_aqueduct.midline.v1",
+      "structure_id": "brain.ventricular_system.cerebral_aqueduct",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA78467",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-27",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA78467.stl",
+            "verified_source_sha256": "b650c942910747d2720ad70fe3865442b52913e6db98f4f58a20dd885e52a762",
+            "source_byte_length": 112684
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 0.061
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 33.12,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "6c04065b0ce39975a1be68b2e07509ca2449e11ef6e895ae20143d037362a5de",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA78467 cerebral aqueduct) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        0.59,
+        -16.42,
+        -15.7
+      ],
+      "dimensions_mm": [
+        3.03,
+        16.66,
+        6.17
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.cerebral_aqueduct.midline.v1/canonical/mesh.cerebral_aqueduct.midline.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.cerebral_aqueduct.midline.v1/lod/mesh.cerebral_aqueduct.midline.v1.lod0.glb",
+          "sha256": "43b3c70a50b0c587113ccd17d44697141b43ef1cb7ad8a5615ea8ace20474634",
+          "triangles": 2252,
+          "bytes": 41580
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.cerebral_aqueduct.midline.v1/lod/mesh.cerebral_aqueduct.midline.v1.lod1.glb",
+          "sha256": "efdc424763cc400427bd5eb62acd3adbfb6323456563f5a4e6fc51c7b51eea88",
+          "triangles": 1688,
+          "bytes": 31424
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.cerebral_aqueduct.midline.v1/lod/mesh.cerebral_aqueduct.midline.v1.lod2.glb",
+          "sha256": "672a8c0484875faeb8c02035624094235c41abf87f98007d7ab34b2546e5e095",
+          "triangles": 1126,
+          "bytes": 21308
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.cerebral_aqueduct.midline.v1/lod/mesh.cerebral_aqueduct.midline.v1.lod3.glb",
+          "sha256": "988edad237d94970767c89f88c1fcc65f1bde23e1834b1ef1bb2d345eae528c1",
+          "triangles": 562,
+          "bytes": 11156
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.cerebral_aqueduct.midline.v1/runtime/mesh.cerebral_aqueduct.midline.v1.lod0.meshopt.glb",
+          "sha256": "d1c269ee488b13ba4b7556e711c40194f67cb02b749e0a43384452c79b82da98",
+          "bytes": 26884,
+          "compression_ratio": 1.55
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.cerebral_aqueduct.midline.v1/runtime/mesh.cerebral_aqueduct.midline.v1.lod1.meshopt.glb",
+          "sha256": "d9cbcc9193ea170e58adc62469f7ba7a24b12b1644cf4f91a1c35bf45d2f9e37",
+          "bytes": 20700,
+          "compression_ratio": 1.52
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.cerebral_aqueduct.midline.v1/runtime/mesh.cerebral_aqueduct.midline.v1.lod2.meshopt.glb",
+          "sha256": "cbc461b6fa1ef3e7cd97e2558f8a1678976402f7880d5f716e1810901644651a",
+          "bytes": 14620,
+          "compression_ratio": 1.46
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.cerebral_aqueduct.midline.v1/runtime/mesh.cerebral_aqueduct.midline.v1.lod3.meshopt.glb",
+          "sha256": "e182d805936baf498bfe805423d73a7be5808662bc1e9f8738444b30ff8ffe44",
+          "bytes": 8332,
+          "compression_ratio": 1.34
+        }
+      }
+    },
     "mesh.cingulate_gyrus.left.v1": {
       "asset_id": "mesh.cingulate_gyrus.left.v1",
       "structure_id": "brain.telencephalon.left.limbic.cingulate_gyrus",
@@ -1055,8 +1409,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72718",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -1068,7 +1423,7 @@
             "source_byte_length": 586284
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -1084,7 +1439,7 @@
             "measured_volume_cm3": 13.486
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -1099,7 +1454,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -1112,7 +1467,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -1127,7 +1482,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -1135,13 +1490,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72718 left cingulate gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -1231,8 +1587,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72717",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -1244,7 +1601,7 @@
             "source_byte_length": 585884
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -1260,7 +1617,7 @@
             "measured_volume_cm3": 13.492
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -1275,7 +1632,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -1288,7 +1645,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -1303,7 +1660,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -1311,13 +1668,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72717 right cingulate gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -1400,7 +1758,7 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "BodyParts3D_Cortex_Left_Assembly",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
       "modifications_applied": [
         {
@@ -1413,7 +1771,7 @@
             "source_byte_length": 9911584
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -1429,7 +1787,7 @@
             "measured_volume_cm3": 260.209
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -1444,7 +1802,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -1457,7 +1815,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -1472,7 +1830,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -1480,13 +1838,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (BodyParts3D_Cortex_Left_Assembly left cerebral cortex) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -1701,7 +2060,7 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "BodyParts3D_Cortex_Right_Assembly",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
       "modifications_applied": [
         {
@@ -1714,7 +2073,7 @@
             "source_byte_length": 9915584
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -1730,7 +2089,7 @@
             "measured_volume_cm3": 260.237
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -1745,7 +2104,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -1758,7 +2117,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -1773,7 +2132,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -1781,13 +2140,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (BodyParts3D_Cortex_Right_Assembly right cerebral cortex) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -1990,6 +2350,177 @@
         ]
       }
     },
+    "mesh.fourth_ventricle.midline.v1": {
+      "asset_id": "mesh.fourth_ventricle.midline.v1",
+      "structure_id": "brain.ventricular_system.fourth_ventricle",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA78469",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-27",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA78469.stl",
+            "verified_source_sha256": "1fc1da3d6e360dcf88d93dbcdfe11507efa46a64a7d10a82a869d927178706e0",
+            "source_byte_length": 1506784
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 2.12
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 35.34,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "4927bf661d4559f1719ab21bf3887d8d5659dd9a4903d6641779961ee2be711f",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA78469 fourth ventricle) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        0.66,
+        -42.45,
+        -3.86
+      ],
+      "dimensions_mm": [
+        26.7,
+        35.63,
+        22.15
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.fourth_ventricle.midline.v1/canonical/mesh.fourth_ventricle.midline.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.fourth_ventricle.midline.v1/lod/mesh.fourth_ventricle.midline.v1.lod0.glb",
+          "sha256": "1e7de9b36afe27b91536af2f8dfaeb0c2817cd2134995a7e2fbb11b35a64b79c",
+          "triangles": 30134,
+          "bytes": 543464
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.fourth_ventricle.midline.v1/lod/mesh.fourth_ventricle.midline.v1.lod1.glb",
+          "sha256": "6b9d462033fad92eee09bcb82f0a7e0355500e609ab99c974f84d3107972984a",
+          "triangles": 22600,
+          "bytes": 407852
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.fourth_ventricle.midline.v1/lod/mesh.fourth_ventricle.midline.v1.lod2.glb",
+          "sha256": "05c764e02ba1d7ae502d7fff1d5c55d5c01eb6a1c28d71266ff89b7a8de3fe2f",
+          "triangles": 15066,
+          "bytes": 272232
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.fourth_ventricle.midline.v1/lod/mesh.fourth_ventricle.midline.v1.lod3.glb",
+          "sha256": "1e9dd54541e6cbb65ee154423949e6e3700e9a25c64c6a4b872a90d43a796509",
+          "triangles": 7532,
+          "bytes": 136620
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.fourth_ventricle.midline.v1/runtime/mesh.fourth_ventricle.midline.v1.lod0.meshopt.glb",
+          "sha256": "bd2b3ecbded5ec0b4f4109519989e35e8cf7e7b0a55f6d1284359c708a430671",
+          "bytes": 341828,
+          "compression_ratio": 1.59
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.fourth_ventricle.midline.v1/runtime/mesh.fourth_ventricle.midline.v1.lod1.meshopt.glb",
+          "sha256": "67d40654f6b1c3281332135ee07302172f227308dfbc43796d24e85fc313f654",
+          "bytes": 262224,
+          "compression_ratio": 1.56
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.fourth_ventricle.midline.v1/runtime/mesh.fourth_ventricle.midline.v1.lod2.meshopt.glb",
+          "sha256": "6232f207f655dd888e8b33c2612bb06c195213b598df0c3901b2c9dcbed58731",
+          "bytes": 180224,
+          "compression_ratio": 1.51
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.fourth_ventricle.midline.v1/runtime/mesh.fourth_ventricle.midline.v1.lod3.meshopt.glb",
+          "sha256": "785f0dc06f01abdb0f48c410ae821c69ab45bad6b1371ea62d52b561a2f28dd1",
+          "bytes": 95152,
+          "compression_ratio": 1.44
+        }
+      }
+    },
     "mesh.globus_pallidus.left.v1": {
       "asset_id": "mesh.globus_pallidus.left.v1",
       "structure_id": "brain.basal_ganglia.left.globus_pallidus",
@@ -2003,8 +2534,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72831",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -2016,7 +2548,7 @@
             "source_byte_length": 1536984
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -2032,7 +2564,7 @@
             "measured_volume_cm3": 2.126
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -2047,7 +2579,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -2060,7 +2592,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -2075,7 +2607,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -2083,13 +2615,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72831 globus pallidus (left)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -2173,8 +2706,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72830",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -2186,7 +2720,7 @@
             "source_byte_length": 1160384
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -2202,7 +2736,7 @@
             "measured_volume_cm3": 2.125
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -2217,7 +2751,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -2230,7 +2764,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -2245,7 +2779,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -2253,13 +2787,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72830 globus pallidus (right)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -2342,7 +2877,7 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72714",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
       "modifications_applied": [
         {
@@ -2355,7 +2890,7 @@
             "source_byte_length": 214084
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -2371,7 +2906,7 @@
             "measured_volume_cm3": 1.872
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -2386,7 +2921,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -2399,7 +2934,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -2414,7 +2949,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -2422,13 +2957,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72714 left hippocampus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -2511,7 +3047,7 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72713",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
       "modifications_applied": [
         {
@@ -2524,7 +3060,7 @@
             "source_byte_length": 222684
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -2540,7 +3076,7 @@
             "measured_volume_cm3": 1.852
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -2555,7 +3091,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -2568,7 +3104,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -2583,7 +3119,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -2591,13 +3127,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72713 right hippocampus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -2668,6 +3205,177 @@
         }
       }
     },
+    "mesh.interventricular_foramen.midline.v1": {
+      "asset_id": "mesh.interventricular_foramen.midline.v1",
+      "structure_id": "brain.ventricular_system.interventricular_foramen",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA75351",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-27",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA75351.stl",
+            "verified_source_sha256": "cd5e002a238c7c04492777a25d486431a36fa2b41a0aae0a2e6a693f6a1a60d0",
+            "source_byte_length": 232184
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "MULTI_SHELL_COMPOSITE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 0.108
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 36.16,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "b3e67331a7cd20f1292c34ed1d14f15ca822a7865cd540e235166ef4dc8072ae",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA75351 interventricular foramen) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        0.66,
+        5.88,
+        -34.05
+      ],
+      "dimensions_mm": [
+        12.02,
+        10.03,
+        4.95
+      ],
+      "topology_class": "MULTI_SHELL_COMPOSITE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.interventricular_foramen.midline.v1/canonical/mesh.interventricular_foramen.midline.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.interventricular_foramen.midline.v1/lod/mesh.interventricular_foramen.midline.v1.lod0.glb",
+          "sha256": "989e4ab728d3d902ce21e82a31513d1049bb7606117429e2853634c6802b6579",
+          "triangles": 4642,
+          "bytes": 84660
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.interventricular_foramen.midline.v1/lod/mesh.interventricular_foramen.midline.v1.lod1.glb",
+          "sha256": "0fce37865e7717fd90fc2d4f5941f6d31017e7bc0c8fce780e4df0f2b812df83",
+          "triangles": 3480,
+          "bytes": 63744
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.interventricular_foramen.midline.v1/lod/mesh.interventricular_foramen.midline.v1.lod2.glb",
+          "sha256": "1e2454eac88ed22f8df5a55b6bd618d7e519fd88f24250e8489b3bce560c8807",
+          "triangles": 2320,
+          "bytes": 42864
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.interventricular_foramen.midline.v1/lod/mesh.interventricular_foramen.midline.v1.lod3.glb",
+          "sha256": "4ee1e6560daf046bed1ad1b9bb7ed7dc395ae3f43566911de7a6b62c431cf228",
+          "triangles": 1160,
+          "bytes": 21976
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.interventricular_foramen.midline.v1/runtime/mesh.interventricular_foramen.midline.v1.lod0.meshopt.glb",
+          "sha256": "203da3c910a5726654dbb4ae0a2fe5c748e6f570442aa7ea66f8a3f0d876e326",
+          "bytes": 52436,
+          "compression_ratio": 1.61
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.interventricular_foramen.midline.v1/runtime/mesh.interventricular_foramen.midline.v1.lod1.meshopt.glb",
+          "sha256": "f0931c3a8b88d653f699e0c5f65caf02446600159f6c8ff4405da967d50273b5",
+          "bytes": 40456,
+          "compression_ratio": 1.58
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.interventricular_foramen.midline.v1/runtime/mesh.interventricular_foramen.midline.v1.lod2.meshopt.glb",
+          "sha256": "dda5bc6f915990e31ff5d6be4972635348c17e1b78916cd2cfa5010754b187b6",
+          "bytes": 28024,
+          "compression_ratio": 1.53
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.interventricular_foramen.midline.v1/runtime/mesh.interventricular_foramen.midline.v1.lod3.meshopt.glb",
+          "sha256": "f8e2cdcd46e61717d7062cfa968fad94af73b569af1331446fc08fe81404d3d2",
+          "bytes": 15220,
+          "compression_ratio": 1.44
+        }
+      }
+    },
     "mesh.mammillary_body.bilateral.v1": {
       "asset_id": "mesh.mammillary_body.bilateral.v1",
       "structure_id": "brain.diencephalon.bilateral.hypothalamus.mammillary_body",
@@ -2681,8 +3389,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA74877",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -2694,7 +3403,7 @@
             "source_byte_length": 83384
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -2710,7 +3419,7 @@
             "measured_volume_cm3": 0.088
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -2725,7 +3434,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -2738,7 +3447,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -2753,7 +3462,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -2761,13 +3470,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA74877 mammillary body) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -2857,8 +3567,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72656",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -2870,7 +3581,7 @@
             "source_byte_length": 777284
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -2886,7 +3597,7 @@
             "measured_volume_cm3": 18.784
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -2901,7 +3612,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -2914,7 +3625,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -2929,7 +3640,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -2937,13 +3648,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72656 left middle frontal gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -3033,8 +3745,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72655",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -3046,7 +3759,7 @@
             "source_byte_length": 777984
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -3062,7 +3775,7 @@
             "measured_volume_cm3": 18.787
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -3077,7 +3790,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -3090,7 +3803,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -3105,7 +3818,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -3113,13 +3826,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72655 right middle frontal gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -3209,8 +3923,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72686",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -3222,7 +3937,7 @@
             "source_byte_length": 645984
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -3238,7 +3953,7 @@
             "measured_volume_cm3": 18.607
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -3253,7 +3968,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -3266,7 +3981,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -3281,7 +3996,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -3289,13 +4004,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72686 left middle temporal gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -3385,8 +4101,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72685",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -3398,7 +4115,7 @@
             "source_byte_length": 646384
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -3414,7 +4131,7 @@
             "measured_volume_cm3": 18.612
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -3429,7 +4146,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -3442,7 +4159,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -3457,7 +4174,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -3465,13 +4182,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72685 right middle temporal gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -3561,8 +4279,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72666",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -3574,7 +4293,7 @@
             "source_byte_length": 842984
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -3590,7 +4309,7 @@
             "measured_volume_cm3": 21.852
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -3605,7 +4324,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -3618,7 +4337,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -3633,7 +4352,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -3641,13 +4360,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72666 left postcentral gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -3737,8 +4457,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72665",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -3750,7 +4471,7 @@
             "source_byte_length": 843184
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -3766,7 +4487,7 @@
             "measured_volume_cm3": 21.855
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -3781,7 +4502,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -3794,7 +4515,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -3809,7 +4530,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -3817,13 +4538,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72665 right postcentral gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -3913,8 +4635,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72662",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -3926,7 +4649,7 @@
             "source_byte_length": 941884
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -3942,7 +4665,7 @@
             "measured_volume_cm3": 20.725
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -3957,7 +4680,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -3970,7 +4693,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -3985,7 +4708,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -3993,13 +4716,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72662 left precentral gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -4089,8 +4813,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72661",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -4102,7 +4827,7 @@
             "source_byte_length": 941984
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -4118,7 +4843,7 @@
             "measured_volume_cm3": 20.723
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -4133,7 +4858,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -4146,7 +4871,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -4161,7 +4886,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -4169,13 +4894,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72661 right precentral gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -4259,8 +4985,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72829",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -4272,7 +4999,7 @@
             "source_byte_length": 1531884
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -4288,7 +5015,7 @@
             "measured_volume_cm3": 4.996
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -4303,7 +5030,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -4316,7 +5043,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -4331,7 +5058,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -4339,13 +5066,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72829 putamen (left)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -4429,8 +5157,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72828",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -4442,7 +5171,7 @@
             "source_byte_length": 1533584
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -4458,7 +5187,7 @@
             "measured_volume_cm3": 4.995
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -4473,7 +5202,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -4486,7 +5215,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -4501,7 +5230,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -4509,13 +5238,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72828 putamen (right)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -4605,8 +5335,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72654",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -4618,7 +5349,7 @@
             "source_byte_length": 1522584
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -4634,7 +5365,7 @@
             "measured_volume_cm3": 39.237
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -4649,7 +5380,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -4662,7 +5393,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -4677,7 +5408,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -4685,13 +5416,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72654 left superior frontal gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -4781,8 +5513,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72653",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -4794,7 +5527,7 @@
             "source_byte_length": 1522484
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -4810,7 +5543,7 @@
             "measured_volume_cm3": 39.24
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -4825,7 +5558,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -4838,7 +5571,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -4853,7 +5586,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -4861,13 +5594,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72653 right superior frontal gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -4957,8 +5691,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72668",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -4970,7 +5705,7 @@
             "source_byte_length": 488984
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -4986,7 +5721,7 @@
             "measured_volume_cm3": 14.85
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -5001,7 +5736,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -5014,7 +5749,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -5029,7 +5764,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -5037,13 +5772,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72668 left supramarginal gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -5133,8 +5869,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA72667",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -5146,7 +5883,7 @@
             "source_byte_length": 489184
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -5162,7 +5899,7 @@
             "measured_volume_cm3": 14.848
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -5177,7 +5914,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -5190,7 +5927,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -5205,7 +5942,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -5213,13 +5950,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72667 right supramarginal gyrus) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -5303,8 +6041,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA258716",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -5316,7 +6055,7 @@
             "source_byte_length": 369884
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -5332,7 +6071,7 @@
             "measured_volume_cm3": 7.425
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -5347,7 +6086,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -5360,7 +6099,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -5375,7 +6114,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -5383,13 +6122,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA258716 thalamus (left)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -5473,8 +6213,9 @@
       "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
       "upstream_asset_id": "FMA258714",
       "upstream_license": "CC_BY_SA_2_1_JP",
-      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
       "acquisition_date": "2026-09-26",
+      "acquisition_date_conflict": "UNRESOLVED: manifest published 2026-09-26, ingestion.json records 2026-09-27",
       "modifications_applied": [
         {
           "step_number": 1,
@@ -5486,7 +6227,7 @@
             "source_byte_length": 164984
           },
           "executed_by": "Pipeline_Ingestion_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
           "timestamp": "2026-09-26T22:30:00Z"
         },
         {
@@ -5502,7 +6243,7 @@
             "measured_volume_cm3": 7.412
           },
           "executed_by": "MeshValidation_Auditor",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
           "timestamp": "2026-09-26T22:35:00Z"
         },
         {
@@ -5517,7 +6258,7 @@
             "normals": "area_weighted_smooth"
           },
           "executed_by": "Canonicalization_Engine",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:40:00Z"
         },
         {
@@ -5530,7 +6271,7 @@
             "ratios": "1.0, 0.75, 0.50, 0.25"
           },
           "executed_by": "Meshopt_LOD_Generator",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:45:00Z"
         },
         {
@@ -5545,7 +6286,7 @@
             "qem_simplification_lossy": true
           },
           "executed_by": "Meshopt_Runtime_Optimizer",
-          "git_commit_hash": "9672869",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
           "timestamp": "2026-09-26T22:50:00Z"
         }
       ],
@@ -5553,13 +6294,14 @@
       "resulting_license": "CC-BY-SA 4.0",
       "project_distribution_policy": "CC-BY-SA-4.0",
       "production_eligibility": "PRODUCTION_ALLOWED",
-      "commercial_redistribution": "PERMITTED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
       "restrictions_and_covenants": [
         "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
         "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
         "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
       ],
       "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
       "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA258714 thalamus (right)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
       "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
       "centroid_mm": [
@@ -5629,6 +6371,177 @@
           "compression_ratio": 1.36
         }
       }
+    },
+    "mesh.third_ventricle.midline.v1": {
+      "asset_id": "mesh.third_ventricle.midline.v1",
+      "structure_id": "brain.ventricular_system.third_ventricle",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA78454",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-27",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA78454.stl",
+            "verified_source_sha256": "6bbf2d2d4552a08c20217326a1e978745d6425e75f9b92cf6f59826b4d30e53f",
+            "source_byte_length": 840484
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "ceef0b5a8ddadf8679b20cfd0e090fcf332c8cbd",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 1.961
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "b6e2f005a012aab134bdf308c830d499a8bdc762",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 36.67,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "801189c5623c22b98b256d95d5f93e872e4a72830bc76b4538d903ab2ad90ef0",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA78454 third ventricle) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        0.67,
+        -5.5,
+        -24.67
+      ],
+      "dimensions_mm": [
+        7.35,
+        21.83,
+        37.85
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.third_ventricle.midline.v1/canonical/mesh.third_ventricle.midline.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.third_ventricle.midline.v1/lod/mesh.third_ventricle.midline.v1.lod0.glb",
+          "sha256": "b8bce6607160034ff2b86351129aad8327beebcb668b98fa15995ea2e37996ee",
+          "triangles": 16808,
+          "bytes": 303540
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.third_ventricle.midline.v1/lod/mesh.third_ventricle.midline.v1.lod1.glb",
+          "sha256": "3b58c077c73fdfd5af9e9cf2e142933ca8b5d6ecf43372f1e0bbd193b2a63494",
+          "triangles": 12606,
+          "bytes": 227900
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.third_ventricle.midline.v1/lod/mesh.third_ventricle.midline.v1.lod2.glb",
+          "sha256": "cd8e184ebcada0046843d16e0e0a35b4aa66c8bac3433b6119a29dc94eb5af63",
+          "triangles": 8404,
+          "bytes": 152264
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.third_ventricle.midline.v1/lod/mesh.third_ventricle.midline.v1.lod3.glb",
+          "sha256": "d1f6c25a5429d20ffe2345e14aa516412565732d1138ca1c39145955741a6046",
+          "triangles": 4202,
+          "bytes": 76628
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.third_ventricle.midline.v1/runtime/mesh.third_ventricle.midline.v1.lod0.meshopt.glb",
+          "sha256": "c903533127308457f293afa2f1951f30b039dbc660515bce119269066ea6f90b",
+          "bytes": 186636,
+          "compression_ratio": 1.63
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.third_ventricle.midline.v1/runtime/mesh.third_ventricle.midline.v1.lod1.meshopt.glb",
+          "sha256": "0348ef00c84d123b4d44e981712ee185df0491bc04c83a8714f727fba6e47ce0",
+          "bytes": 143324,
+          "compression_ratio": 1.59
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.third_ventricle.midline.v1/runtime/mesh.third_ventricle.midline.v1.lod2.meshopt.glb",
+          "sha256": "9ad303d2e28cf231b7db6f3002902f54391089362a65730ef507e0e425b9c29d",
+          "bytes": 98648,
+          "compression_ratio": 1.54
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.third_ventricle.midline.v1/runtime/mesh.third_ventricle.midline.v1.lod3.meshopt.glb",
+          "sha256": "8b4dbc5c713734e086c0e421f740c7dfbcf04f582f9d334daa53442ee382a4a5",
+          "bytes": 52912,
+          "compression_ratio": 1.45
+        }
+      }
     }
   },
   "production_whitelist": [
@@ -5638,14 +6551,18 @@
     "mesh.angular_gyrus.right.v1",
     "mesh.caudate_nucleus.left.v1",
     "mesh.caudate_nucleus.right.v1",
+    "mesh.cerebellum.bilateral.v1",
+    "mesh.cerebral_aqueduct.midline.v1",
     "mesh.cingulate_gyrus.left.v1",
     "mesh.cingulate_gyrus.right.v1",
     "mesh.cortex.left.v1",
     "mesh.cortex.right.v1",
+    "mesh.fourth_ventricle.midline.v1",
     "mesh.globus_pallidus.left.v1",
     "mesh.globus_pallidus.right.v1",
     "mesh.hippocampus.left.v1",
     "mesh.hippocampus.right.v1",
+    "mesh.interventricular_foramen.midline.v1",
     "mesh.mammillary_body.bilateral.v1",
     "mesh.middle_frontal_gyrus.left.v1",
     "mesh.middle_frontal_gyrus.right.v1",
@@ -5662,7 +6579,8 @@
     "mesh.supramarginal_gyrus.left.v1",
     "mesh.supramarginal_gyrus.right.v1",
     "mesh.thalamus.left.v1",
-    "mesh.thalamus.right.v1"
+    "mesh.thalamus.right.v1",
+    "mesh.third_ventricle.midline.v1"
   ],
   "research_quarantine": []
 }

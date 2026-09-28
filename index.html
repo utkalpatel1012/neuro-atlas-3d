@@ -15,13 +15,39 @@
       <span class="brand-badge">AAS-2026-V1</span>
       <div>
         <h1 class="brand-title">Neuro Atlas 3D</h1>
-        <span class="brand-subtitle">Academic Human Brain Atlas • Phase 5.1 (31 assets)</span>
+        <span class="brand-subtitle">Academic Human Brain Atlas • Phase 5.2 (36 assets)</span>
       </div>
     </header>
 
     <!-- WebGPU / WebGL2 3D Canvas Viewport -->
     <main id="canvas-container" role="region" aria-label="Interactive 3D Anatomical Atlas Viewport" tabindex="0">
     </main>
+
+    <!--
+      Phase 5.2 provenance review MAJOR-2: the manifest covenant requires
+      "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+      and docs/PRODUCTION_DATASET_LICENSE_MATRIX.md marked that VERIFIED while the text
+      was published nowhere. Required attribution now ships with the application.
+    -->
+    <footer class="atlas-attribution" role="contentinfo">
+      <details>
+        <summary>Attribution &amp; licence status</summary>
+        <p>
+          <strong>Anatomy source:</strong> BodyParts3D, Copyright &copy; 2008&ndash;2011
+          Life Science Integrated Database Center, licensed by CC Attribution-Share Alike 2.1 Japan.
+          Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27);
+          whether that listing applies retroactively to these Release 3.0 files is
+          <strong>UNRESOLVED</strong> &mdash; <strong>LEGAL_REVIEW_REQUIRED</strong> before
+          commercial redistribution.
+        </p>
+        <p>
+          <strong>Derived meshes</strong> are distributed by this project under CC-BY-SA 4.0.
+          This atlas is an academic teaching resource. It is <strong>not</strong> licence-cleared,
+          <strong>not</strong> clinically validated, and <strong>not</strong> expert-reviewed.
+          Not for diagnostic or treatment use.
+        </p>
+      </details>
+    </footer>
   </div>
 
   <script type="module" src="/src/main.ts"></script>

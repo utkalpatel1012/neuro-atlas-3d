@@ -151,13 +151,33 @@ export function validateCoordinatesAndLaterality(params: {
       break;
 
     case 'bilateral':
-      // Bilateral structures encompass both hemispheres (e.g. bilateral cortex, whole ventricular system)
-      const spansBothHemispheres = minX < -10.0 && maxX > 10.0;
-      stage4Pass = spansBothHemispheres;
+      // Bilateral structures encompass both hemispheres (e.g. bilateral cortex,
+      // whole ventricular system). The former gate demanded >10 mm of extent on
+      // each side, which is anatomically wrong for small paired midline
+      // structures: the mammillary bodies are a genuinely bilateral source
+      // distribution (BodyParts3D FMA74877, laterality=bilateral) whose two
+      // bodies sit only a few mm either side of X=0 (measured -4.57..+3.25 mm).
+      // A fixed 10 mm floor therefore rejected a correct bilateral asset.
+      //
+      // Scope of this gate, stated honestly: it verifies laterality
+      // CONSISTENCY with the declared asset id — geometry on both sides of the
+      // midline plus a midline-centred bounding box. It does NOT prove the mesh
+      // is a paired organ: a midline commissure that spans both hemispheres would
+      // also satisfy it, and distinguishing the two needs component segmentation
+      // that does not exist here. This is the same class of limitation as
+      // ANATOMY_VALIDATED meaning scale/laterality plausibility only (see
+      // KNOWN_ANATOMICAL_LIMITATIONS.md). A one-sided structure still fails here,
+      // on the span clause.
+      //
+      // Note: centerX is the bounding-box centre from the parsed bounds, not a
+      // vertex centroid — hence "bounds centre" in the diagnostics.
+      const spansBothHemispheres = minX < -midlineTolerance && maxX > midlineTolerance;
+      const bilateralCentreOnMidline = Math.abs(centerX) <= midlineTolerance;
+      stage4Pass = spansBothHemispheres && bilateralCentreOnMidline;
       if (!stage4Pass) {
-        diagnostics.push(`Stage 4 Failure: Bilateral structure must span both hemispheres (got X range [${minX.toFixed(2)}, ${maxX.toFixed(2)}])`);
+        diagnostics.push(`Stage 4 Failure: Declared BILATERAL structure must have geometry on both sides of the midline (X range [${minX.toFixed(2)}, ${maxX.toFixed(2)}] vs tolerance ±${midlineTolerance} mm) and a midline-centred bounding box (got ${centerX.toFixed(2)} mm)`);
       } else {
-        diagnostics.push(`Stage 4 Pass: Confirmed BILATERAL structure spanning both hemispheres`);
+        diagnostics.push(`Stage 4 Pass: Laterality consistent with BILATERAL declaration — geometry both sides of midline, bounds centre on midline (X range [${minX.toFixed(2)}, ${maxX.toFixed(2)}], centre X = ${centerX.toFixed(2)} mm). Consistency only; not proof of a paired organ.`);
       }
       break;
   }

@@ -186,7 +186,10 @@ export function writeRecords(): string[] {
         resulting_license: 'CC-BY-SA 4.0',
         project_distribution_policy: 'CC-BY-SA-4.0',
         production_eligibility: 'PRODUCTION_ALLOWED',
-        commercial_redistribution: 'PERMITTED',
+        // Phase 5.2: was 'PERMITTED', contradicting this record's own LEGAL_REVIEW_REQUIRED
+  // note. The conservative posture is the honest one; AGENTS.md forbids labelling
+  // anything CLEARED while it remains LEGAL_REVIEW_REQUIRED.
+  commercial_redistribution: 'LEGAL_REVIEW_REQUIRED',
         restrictions_and_covenants: [
           'Must attribute BodyParts3D / DBCLS in application notices and UI',
           'Derived 3D meshes distributed under CC-BY-SA 4.0.',

@@ -10,6 +10,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as crypto from 'crypto';
+import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { AssetsManifest, AssetProvenance } from '../../src/types/provenance';
 
@@ -61,6 +62,56 @@ function toRepoRelative(p: string): string {
   if (!p) return p;
   const abs = path.isAbsolute(p) ? p : path.resolve(PROJECT_ROOT, p);
   return path.relative(PROJECT_ROOT, abs).replace(/\\/g, '/');
+}
+
+// Phase 5.2 CRITICAL-1 repair: acquisition_date is provenance, not build metadata.
+// A previous revision derived it from `fs.statSync(...).birthtime` when the asset's
+// ingestion record lacked the field, which silently rewrote 27 already-certified
+// legacy entries (2026-09-26 -> the working copy's checkout date) and violated this
+// phase's own `legacy-identical` evidence gate. Filesystem timestamps are never a
+// provenance source. Precedence is now strictly:
+//   1. the asset's own ingestion record (recorded at acquisition time), else
+//   2. the value already published in the committed manifest (preserved verbatim), else
+//   3. NOT_RECORDED - an explicit, honest gap rather than an invented date.
+function readExistingAcquisitionDates(): Map<string, string> {
+  const prior = new Map<string, string>();
+  const manifestPath = path.join(PROJECT_ROOT, 'assets/manifests/assets.manifest.json');
+  if (!fs.existsSync(manifestPath)) return prior;
+  try {
+    const parsed = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    // `assets` is a keyed object, not an array. Iterating it with for...of throws,
+    // which the catch below would silently swallow into an EMPTY prior map - and an
+    // empty map makes every asset fall through to the next source. Use Object.values.
+    const collection = Array.isArray(parsed.assets) ? parsed.assets : Object.values(parsed.assets ?? {});
+    for (const entry of collection) {
+      if (entry && typeof entry.acquisition_date === 'string' && entry.acquisition_date.length > 0) {
+        prior.set(entry.asset_id, entry.acquisition_date);
+      }
+    }
+  } catch {
+    // A manifest that cannot be parsed is reported by the caller's own write path.
+  }
+  return prior;
+}
+
+const PRIOR_ACQUISITION_DATES = readExistingAcquisitionDates();
+
+// Phase 5.2 provenance review MAJOR-4: lineage steps previously recorded a single
+// hardcoded commit ('9672869', a Phase 2.1.1 commit) for every step of every asset,
+// so the lineage could not identify the code that actually produced the bytes. The
+// commit that last touched a given script is resolved at write time instead.
+function resolveScriptCommit(scriptRelativePath: string): string {
+  try {
+    const out = execFileSync('git', ['log', '-1', '--format=%H', '--', scriptRelativePath], {
+      cwd: PROJECT_ROOT,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore']
+    }).trim();
+    if (out.length > 0) return out;
+  } catch {
+    // Fall through to the explicit unknown marker below.
+  }
+  return 'UNRESOLVED_NO_GIT_HISTORY';
 }
 
 function buildEntry(assetId: string): ExtendedAssetManifestEntry {
@@ -215,8 +266,37 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
     source_url: 'https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html',
     upstream_asset_id: sourceFma,
     upstream_license: 'CC_BY_SA_2_1_JP',
-    attribution_text_required: 'BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).',
-    acquisition_date: '2026-09-26',
+    // Phase 5.2 provenance review MAJOR-3: this field is the exact text that must be
+    // published to users, so it must not state a licensing conclusion the project
+    // records as unresolved. It previously read "Relicensed under CC Attribution 4.0
+    // International", asserting as settled fact the very retroactivity question that
+    // `legal_review_notes` below marks UNRESOLVED.
+    attribution_text_required: 'BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.',
+    // Recorded provenance, never a hardcoded literal and never a filesystem timestamp
+    // (see readExistingAcquisitionDates above).
+    //
+    // Precedence is deliberately PUBLISHED-FIRST. Phase 5.2's own evidence gate requires
+    // `legacy-identical`: a phase may not silently rewrite the provenance of assets that
+    // were already certified. The previously published value therefore wins.
+    //
+    // KNOWN DISCREPANCY (open, not silently resolved): for 27 pre-5.2 assets the
+    // published manifest value (2026-09-26) disagrees with the asset's own
+    // `assets/raw/<id>/ingestion.json` (2026-09-27). The published 2026-09-26 was itself
+    // produced by the birthtime fallback this repair removes, so it is not trustworthy
+    // either. Deciding which is authoritative is a provenance judgement, not a mechanical
+    // one, so both values are preserved and the conflict is documented in
+    // docs/KNOWN_ANATOMICAL_LIMITATIONS.md rather than decided here.
+    acquisition_date: String(
+      PRIOR_ACQUISITION_DATES.get(assetId) || ingestionMeta?.acquisition_date || 'NOT_RECORDED'
+    ),
+    // Phase 5.2: where the published date and the source ingestion record disagree, the
+    // conflict is surfaced explicitly instead of being resolved by overwrite.
+    acquisition_date_conflict:
+      PRIOR_ACQUISITION_DATES.get(assetId) &&
+      ingestionMeta?.acquisition_date &&
+      PRIOR_ACQUISITION_DATES.get(assetId) !== ingestionMeta.acquisition_date
+        ? `UNRESOLVED: manifest published ${PRIOR_ACQUISITION_DATES.get(assetId)}, ingestion.json records ${ingestionMeta.acquisition_date}`
+        : undefined,
     modifications_applied: [
       {
         step_number: 1,
@@ -228,7 +308,9 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
           source_byte_length: rawBytes.length
         },
         executed_by: 'Pipeline_Ingestion_Engine',
-        git_commit_hash: '9672869',
+        git_commit_hash: resolveScriptCommit(
+          isCortex ? 'scripts/pipeline/ingest_cerebral_cortex.ts' : 'scripts/pipeline/ingest_asset.ts'
+        ),
         timestamp: '2026-09-26T22:30:00Z'
       },
       {
@@ -244,7 +326,7 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
           measured_volume_cm3: geomQa?.analysis?.estimatedVolumeMm3 ? Number((geomQa.analysis.estimatedVolumeMm3 / 1000).toFixed(3)) : 260.2
         },
         executed_by: 'MeshValidation_Auditor',
-        git_commit_hash: '9672869',
+        git_commit_hash: resolveScriptCommit('scripts/pipeline/validate_mesh.ts'),
         timestamp: '2026-09-26T22:35:00Z'
       },
       {
@@ -262,7 +344,7 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
           normals: 'area_weighted_smooth'
         },
         executed_by: 'Canonicalization_Engine',
-        git_commit_hash: '9672869',
+        git_commit_hash: resolveScriptCommit('scripts/pipeline/canonicalize_mesh.ts'),
         timestamp: '2026-09-26T22:40:00Z'
       },
       {
@@ -275,7 +357,7 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
           ratios: '1.0, 0.75, 0.50, 0.25'
         },
         executed_by: 'Meshopt_LOD_Generator',
-        git_commit_hash: '9672869',
+        git_commit_hash: resolveScriptCommit('scripts/pipeline/generate_lods.ts'),
         timestamp: '2026-09-26T22:45:00Z'
       },
       {
@@ -294,7 +376,7 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
           qem_simplification_lossy: true
         },
         executed_by: 'Meshopt_Runtime_Optimizer',
-        git_commit_hash: '9672869',
+        git_commit_hash: resolveScriptCommit('scripts/pipeline/optimize_meshopt.ts'),
         timestamp: '2026-09-26T22:50:00Z'
       }
     ],
@@ -302,7 +384,11 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
     resulting_license: 'CC-BY-SA 4.0',
     project_distribution_policy: 'CC-BY-SA-4.0',
     production_eligibility: 'PRODUCTION_ALLOWED',
-    commercial_redistribution: 'PERMITTED',
+    // Phase 5.2 provenance review: this previously read 'PERMITTED' in the same
+    // record whose covenant states "LEGAL_REVIEW_REQUIRED before commercial
+    // redistribution" - a self-contradiction. The conservative, honest value is
+    // LEGAL_REVIEW_REQUIRED until counsel rules on retroactivity.
+    commercial_redistribution: 'LEGAL_REVIEW_REQUIRED',
     restrictions_and_covenants: [
       'Preserve attribution to BodyParts3D / LSIDC in application notices and UI',
       'Derived 3D meshes shared under CC-BY-SA 4.0 terms',
@@ -312,6 +398,12 @@ function buildEntry(assetId: string): ExtendedAssetManifestEntry {
       'Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution.'
     ],
     validation_status: 'CLEARED',
+    // Phase 5.2 provenance review: AGENTS.md requires that no expert validation is
+    // claimed without a documented expert review. The pipeline can attest technical QA
+    // only, so this is stated explicitly on every entry rather than left implicit -
+    // otherwise a reader could mistake `validation_status: CLEARED` for anatomical or
+    // clinical sign-off. No expert review of this atlas has taken place.
+    expert_review_status: 'EXPERT_REVIEW_PENDING',
     // Phase 3.1 §19: record exact verified terms + uncertainty. No "dual
     // compliance", no "formally cleared", no counsel-pretending assertions.
     legal_review_notes: `Ingested from BodyParts3D Release 3.0 (${sourceFma} ${nameDesc}) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).`,

@@ -32,12 +32,23 @@ export type AnatomicalStructureSubtype =
   | 'gyrus'
   | 'sulcus'
   | 'fissure'
+  // Phase 5.2 architecture M5: these four were already in active use by committed
+  // structure records (cortical_gyrus x16, deep_gray_structure x11, cortical_structure
+  // x2, ventricular_space x4) but were absent from this union, so `tsc` could not
+  // catch the drift. The union is aligned to the data rather than the data being
+  // flattened to fit a stale contract. `ventricular_space` is retained as the more
+  // precise value: a ventricle is a CSF cavity, not neural tissue.
+  | 'cortical_structure'
+  | 'cortical_gyrus'
+  | 'deep_gray_structure'
+  | 'ventricular_space'
   | 'subcortical_nucleus'
   | 'thalamic_nucleus'
   | 'hypothalamic_nucleus'
   | 'brainstem_structure'
   | 'cerebellar_structure'
   | 'ventricular_structure'
+  | 'white_matter_structure'
   | 'cerebral_artery'
   | 'cerebral_vein'
   | 'dural_sinus'
@@ -54,11 +65,19 @@ export type CorticalParcelAtlas =
 
 export type Laterality = 'left' | 'right' | 'bilateral' | 'midline' | 'unpaired';
 
-export type RepresentationScope =
-  | 'paired_separate'      // Distinct bilateral pairs with individual 3D meshes (e.g., Left/Right Hippocampus)
-  | 'single_midline_mesh'  // Unpaired or fused midline 3D asset (e.g., Corpus Callosum, Basilar Artery)
-  | 'distributed_network'  // Multi-focal distributed non-contiguous geometry (e.g., Default Mode Network)
-  | 'abstract_semantic';   // Conceptual/functional entity with no intrinsic physical mesh (e.g., Evidence Claims)
+/**
+ * Runtime mirror of the RepresentationScope union, so validators and tests can
+ * check membership without keeping a second hand-written list in sync.
+ */
+export const REPRESENTATION_SCOPES = [
+  'paired_separate',     // Distinct bilateral pairs with individual 3D meshes (e.g., Left/Right Hippocampus)
+  'paired_combined',     // A bilateral structure shipped as one fused mesh (e.g., whole Cerebellum, Mammillary Body)
+  'single_midline_mesh', // Unpaired or fused midline 3D asset (e.g., Corpus Callosum, Basilar Artery)
+  'distributed_network', // Multi-focal distributed non-contiguous geometry (e.g., Default Mode Network)
+  'abstract_semantic'    // Conceptual/functional entity with no intrinsic physical mesh (e.g., Evidence Claims)
+] as const;
+
+export type RepresentationScope = typeof REPRESENTATION_SCOPES[number];
 
 /**
  * Universal minimal base interface shared by all entities in the neuroanatomy graph.
@@ -177,6 +196,10 @@ export type RepresentationType =
   | 'cortical_parcel'
   | 'functional_activation_map'
   | 'neuromodulation_target'
+  // Phase 5.2 architecture M5: a ventricular CSF space is the cast of a cavity, not a
+  // tissue mesh. Used by the four Phase 5.2 ventricular records; keeping it distinct
+  // from `macroscopic_mesh` is what stops a cavity being read as neural tissue.
+  | 'cavity_cast'
   | 'lesion_mask';
 
 export interface EntityRepresentation {

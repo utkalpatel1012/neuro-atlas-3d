@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.cerebellum.bilateral.v1",
+  "timestamp": "2026-09-27T19:54:59.913Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.cerebellum.bilateral.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.cerebellum.bilateral.v1/lod/mesh.cerebellum.bilateral.v1.lod0.glb",
+      "uncompressedByteLength": 5725244,
+      "uncompressedSha256": "103fe0ae5c08f0e2b45a0b2dc08d9d2c6e69a8052481b062cfe698119d3f2bee",
+      "runtimeGlbPath": "assets/derived/mesh.cerebellum.bilateral.v1/runtime/mesh.cerebellum.bilateral.v1.lod0.meshopt.glb",
+      "compressedByteLength": 2641344,
+      "compressedSha256": "fe531c80139e103067358ab103781f183596b123a335ff671a96c6d3b53e87ed",
+      "compressionRatio": 2.17,
+      "savingsPercent": 53.86,
+      "vertexCount": 119257,
+      "triangleCount": 238506,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.cerebellum.bilateral.v1/lod/mesh.cerebellum.bilateral.v1.lod1.glb",
+      "uncompressedByteLength": 4294168,
+      "uncompressedSha256": "3e69a5b7cf63613c0e096a3c72dd0ce0dc2d3f2799c158307f1cbe2f1206472d",
+      "runtimeGlbPath": "assets/derived/mesh.cerebellum.bilateral.v1/runtime/mesh.cerebellum.bilateral.v1.lod1.meshopt.glb",
+      "compressedByteLength": 2022776,
+      "compressedSha256": "305a51cf2507991720e8d29160eaef1d4cbec9a3dc5d1cac1991ee945677cd47",
+      "compressionRatio": 2.12,
+      "savingsPercent": 52.89,
+      "vertexCount": 89443,
+      "triangleCount": 178878,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.cerebellum.bilateral.v1/lod/mesh.cerebellum.bilateral.v1.lod2.glb",
+      "uncompressedByteLength": 2147628,
+      "uncompressedSha256": "e9c3b33995ef74f9fa620bd89fae73079b688836e4f9dd1764e665727c022617",
+      "runtimeGlbPath": "assets/derived/mesh.cerebellum.bilateral.v1/runtime/mesh.cerebellum.bilateral.v1.lod2.meshopt.glb",
+      "compressedByteLength": 1384600,
+      "compressedSha256": "e1a1a0e43b3f26717dcb5e7eeb21bc7e14f0a4ee474907b7c51ff85061dac9d7",
+      "compressionRatio": 1.55,
+      "savingsPercent": 35.53,
+      "vertexCount": 59630,
+      "triangleCount": 119252,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.cerebellum.bilateral.v1/lod/mesh.cerebellum.bilateral.v1.lod3.glb",
+      "uncompressedByteLength": 1074360,
+      "uncompressedSha256": "5cd7bb7a1e229e5a607128f13fc163167f52d8ee1a3b28eb18d81e4565452c8f",
+      "runtimeGlbPath": "assets/derived/mesh.cerebellum.bilateral.v1/runtime/mesh.cerebellum.bilateral.v1.lod3.meshopt.glb",
+      "compressedByteLength": 724776,
+      "compressedSha256": "c737861eebcc3613f897538fd2959589e27f2cccf434574e6f3b58de752080f9",
+      "compressionRatio": 1.48,
+      "savingsPercent": 32.54,
+      "vertexCount": 29817,
+      "triangleCount": 59626,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 13241400,
+  "overallCompressedBytes": 6773496,
+  "overallSavingsPercent": 48.85,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.cerebellum.bilateral.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-27T19:54:59.913Z"
+  }
+}

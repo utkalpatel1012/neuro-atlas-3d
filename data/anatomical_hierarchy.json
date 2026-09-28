@@ -299,23 +299,40 @@
     {
       "id": "brain.brainstem",
       "level": 1,
-      "name": "Brainstem (midbrain, pons, medulla — pipeline targets)",
+      "name": "Brainstem (midbrain, pons, medulla — NOT represented; pons/medulla source segments rejected for non-manifold geometry, midbrain absent from source)",
       "geometry_state": "DOCUMENTED",
-      "children": []
+      "children": [
+        "brain.brainstem.midbrain",
+        "brain.brainstem.pons",
+        "brain.brainstem.medulla_oblongata"
+      ]
     },
     {
       "id": "brain.cerebellum",
       "level": 1,
-      "name": "Cerebellum (hemispheres, vermis — pipeline targets)",
+      "name": "Cerebellum (gross whole segment; vermis and hemispheres NOT separately represented, deep nuclei not represented)",
       "geometry_state": "DOCUMENTED",
-      "children": []
+      "children": [
+        "brain.cerebellum.vermis",
+        "brain.cerebellum.hemisphere",
+        "brain.cerebellum.deep_nuclei",
+        "brain.cerebellum.cerebellum"
+      ]
     },
     {
       "id": "brain.ventricular_system",
       "level": 1,
-      "name": "Ventricular system (cavities, not tissue — pipeline targets)",
+      "name": "Ventricular system (CSF cavities, not neural tissue; lateral ventricles NOT represented)",
       "geometry_state": "DOCUMENTED",
-      "children": []
+      "children": [
+        "brain.ventricular_system.third_ventricle",
+        "brain.ventricular_system.fourth_ventricle",
+        "brain.ventricular_system.cerebral_aqueduct",
+        "brain.ventricular_system.interventricular_foramen",
+        "brain.ventricular_system.lateral_ventricle",
+        "brain.ventricular_system.foramen_luschka",
+        "brain.ventricular_system.foramen_magendie"
+      ]
     },
     {
       "id": "brain.basal_ganglia",
@@ -433,6 +450,142 @@
       "id": "brain.basal_ganglia.accumbens",
       "level": 3,
       "name": "Nucleus accumbens (DOCUMENTED — no source geometry)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.brainstem.midbrain",
+      "level": 2,
+      "name": "Midbrain (DOCUMENTED — FMA61993 has no mirror STL)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum.vermis",
+      "level": 3,
+      "name": "Cerebellar vermis (DOCUMENTED — inseparable in gross source segment)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum.hemisphere",
+      "level": 3,
+      "name": "Cerebellar hemisphere (DOCUMENTED — gross source segment is the whole cerebellum, not split)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum.deep_nuclei",
+      "level": 3,
+      "name": "Deep cerebellar nuclei — dentate, fastigial, emboliform, globose (DOCUMENTED — no source; not fabricated)",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.cerebellum.deep_nuclei.dentate_nucleus",
+        "brain.cerebellum.deep_nuclei.fastigial_nucleus",
+        "brain.cerebellum.deep_nuclei.emboliform_nucleus",
+        "brain.cerebellum.deep_nuclei.globose_nucleus"
+      ]
+    },
+    {
+      "id": "brain.cerebellum.deep_nuclei.dentate_nucleus",
+      "level": 4,
+      "name": "Dentate nucleus (DOCUMENTED — no source)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum.deep_nuclei.fastigial_nucleus",
+      "level": 4,
+      "name": "Fastigial nucleus (DOCUMENTED — no source)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum.deep_nuclei.emboliform_nucleus",
+      "level": 4,
+      "name": "Emboliform nucleus (DOCUMENTED — no source)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum.deep_nuclei.globose_nucleus",
+      "level": 4,
+      "name": "Globose nucleus (DOCUMENTED — no source)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum.cerebellum",
+      "level": 3,
+      "name": "Cerebellum",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.cerebellum.bilateral.v1",
+      "structure_record": "data/structures/cerebellum_bilateral.json"
+    },
+    {
+      "id": "brain.ventricular_system.third_ventricle",
+      "level": 3,
+      "name": "Third ventricle",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.third_ventricle.midline.v1",
+      "structure_record": "data/structures/third_ventricle_midline.json"
+    },
+    {
+      "id": "brain.ventricular_system.fourth_ventricle",
+      "level": 3,
+      "name": "Fourth ventricle",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.fourth_ventricle.midline.v1",
+      "structure_record": "data/structures/fourth_ventricle_midline.json"
+    },
+    {
+      "id": "brain.ventricular_system.cerebral_aqueduct",
+      "level": 3,
+      "name": "Cerebral aqueduct",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.cerebral_aqueduct.midline.v1",
+      "structure_record": "data/structures/cerebral_aqueduct_midline.json"
+    },
+    {
+      "id": "brain.ventricular_system.interventricular_foramen",
+      "level": 3,
+      "name": "Interventricular foramen",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.interventricular_foramen.midline.v1",
+      "structure_record": "data/structures/interventricular_foramen_midline.json"
+    },
+    {
+      "id": "brain.brainstem.pons",
+      "level": 2,
+      "name": "Pons (DOCUMENTED — source segment failed topology QA)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.brainstem.medulla_oblongata",
+      "level": 2,
+      "name": "Medulla oblongata (DOCUMENTED — source segment failed topology QA)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.ventricular_system.lateral_ventricle",
+      "level": 3,
+      "name": "Lateral ventricle (DOCUMENTED — no source in this batch; cavities, not tissue)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.ventricular_system.foramen_luschka",
+      "level": 3,
+      "name": "Foramen of Luschka (DOCUMENTED — no source in this batch; aperture of the 4th ventricle)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.ventricular_system.foramen_magendie",
+      "level": 3,
+      "name": "Foramen of Magendie (DOCUMENTED — no source in this batch; aperture of the 4th ventricle)",
       "geometry_state": "DOCUMENTED",
       "children": []
     }

@@ -1,0 +1,50 @@
+{
+    "_comment":  "Phase 5.2 CRITICAL-2 repair: pinned expected SHA-256 for every Phase 5.2 mirror download. prepare_posterior_batch.ts compares staged bytes against this file and REJECTS on mismatch, so a swapped or re-converted mirror artifact cannot be ingested silently. These values are transcribed from assets/raw/*/ingestion.json original_hash, each independently recomputed from the immutable raw bytes and cross-checked against the canonical GLB hash chain in assets/manifests/assets.manifest.json. They attest the CONVERTED bytes served by the third-party OBJ-to-STL mirror, not DBCLS-original objects; the mirror is itself an unverified-conversion intermediary (see docs/PRODUCTION_DATASET_LICENSE_MATRIX.md).",
+    "provenance_authority":  "assets/raw/\u003casset_id\u003e/ingestion.json original_hash + assets/manifests/assets.manifest.json verified_source_sha256/modifications_applied[0].parameters.verified_source_sha256",
+    "residual_risk":  "MIRROR_CONVERSION_UNVERIFIED - the third-party mirror converts DBCLS OBJ to STL; these hashes pin WHICH converted bytes were ingested, not equivalence to a DBCLS-original release artifact. Comparison against an official DBCLS-published checksum is NOT AVAILABLE.",
+    "recorded_at":  "2026-09-27",
+    "sources":  [
+                    {
+                        "fma_id":  "FMA67944",
+                        "asset_id":  "mesh.cerebellum.bilateral.v1",
+                        "byte_length":  11925384,
+                        "sha256":  "a023ac8cad7440cbb16814782f0d78643c9e81cdf04272971afa11a0100bd6fe"
+                    },
+                    {
+                        "fma_id":  "FMA78467",
+                        "asset_id":  "mesh.cerebral_aqueduct.midline.v1",
+                        "byte_length":  112684,
+                        "sha256":  "b650c942910747d2720ad70fe3865442b52913e6db98f4f58a20dd885e52a762"
+                    },
+                    {
+                        "fma_id":  "FMA78469",
+                        "asset_id":  "mesh.fourth_ventricle.midline.v1",
+                        "byte_length":  1506784,
+                        "sha256":  "1fc1da3d6e360dcf88d93dbcdfe11507efa46a64a7d10a82a869d927178706e0"
+                    },
+                    {
+                        "fma_id":  "FMA75351",
+                        "asset_id":  "mesh.interventricular_foramen.midline.v1",
+                        "byte_length":  232184,
+                        "sha256":  "cd5e002a238c7c04492777a25d486431a36fa2b41a0aae0a2e6a693f6a1a60d0"
+                    },
+                    {
+                        "fma_id":  "FMA62004",
+                        "asset_id":  "mesh.medulla_oblongata.bilateral.v1",
+                        "byte_length":  2638084,
+                        "sha256":  "9c3b3ed2c81667526e14ba3cd5f427c4611f596eb38df6939d2154324dd6bb07"
+                    },
+                    {
+                        "fma_id":  "FMA67943",
+                        "asset_id":  "mesh.pons.bilateral.v1",
+                        "byte_length":  4503684,
+                        "sha256":  "464721a0893b05d7e830b327725cbd71c92d5fba6016c218bdbc4057f519e867"
+                    },
+                    {
+                        "fma_id":  "FMA78454",
+                        "asset_id":  "mesh.third_ventricle.midline.v1",
+                        "byte_length":  840484,
+                        "sha256":  "6bbf2d2d4552a08c20217326a1e978745d6425e75f9b92cf6f59826b4d30e53f"
+                    }
+                ]
+}

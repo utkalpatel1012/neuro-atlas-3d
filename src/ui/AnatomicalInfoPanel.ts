@@ -192,6 +192,13 @@ export class AnatomicalInfoPanel {
             <div class="grid-value">${record.upstreamDataset}</div>
             <div class="grid-label">License:</div>
             <div class="grid-value">${record.upstreamLicense}</div>
+            <div class="grid-label">License status:</div>
+            <div class="grid-value">
+              UNRESOLVED &mdash; LEGAL_REVIEW_REQUIRED before commercial redistribution.
+              Upstream files are CC-BY-SA 2.1 JP; the DBCLS portal lists CC BY (observed 2025-02-27).
+              Whether that listing applies retroactively to these Release 3.0 files is not
+              established. This atlas is <strong>not</strong> licence-cleared.
+            </div>
             <div class="grid-label">Source ID:</div>
             <div class="grid-value">${record.sourceDefinition}</div>
           </div>

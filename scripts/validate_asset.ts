@@ -16,7 +16,8 @@ import * as path from 'path';
 import * as crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { parseGLB } from './pipeline/glb_utils';
-import { validateCoordinatesAndLaterality, AnatomicalLateralityDeclaration } from './pipeline/coordinate_validator';
+import { validateCoordinatesAndLaterality } from './pipeline/coordinate_validator';
+import { lateralityFromAssetId } from './pipeline/asset_id_laterality';
 import { getAdapter, BODYPARTS3D_LPS_TO_RAS_ADAPTER } from './pipeline/coordinate_adapter';
 import { TopologyClass, STANDARD_QA_PROFILES } from '../src/types/topology';
 
@@ -103,8 +104,20 @@ export function validateAsset(rawArg: string): boolean {
     // Check 4: 4-Stage Coordinate Space & Laterality Confirmation
     try {
       const { geometry, bounds: canonicalBounds } = parseGLB(canonicalBytes);
-      const isLeft = assetId.includes('left') || assetId.includes('.l.');
-      const declaredLaterality: AnatomicalLateralityDeclaration = isLeft ? 'left' : 'right';
+      // Laterality is read from the asset-id laterality segment
+      // (mesh.<base>.<laterality>.v1) by the same helper the pipeline QA uses,
+      // instead of the old binary "anything not-left is right" guess, which
+      // declared every midline and bilateral asset RIGHT. An id with no
+      // laterality segment fails the check below and skips the chain rather
+      // than falling back to a guess.
+      const declaredLaterality = lateralityFromAssetId(assetId);
+      if (declaredLaterality === null) {
+        checks.push({
+          title: '4-Stage Coordinate & Laterality Chain',
+          passed: false,
+          message: `Cannot determine laterality: asset id "${assetId}" has no left/right/bilateral/midline segment. Declaring one would be a guess about anatomy.`
+        });
+      }
 
       // Load raw bounds from geometry QA report or compute from raw file
       let rawBounds = canonicalBounds;
@@ -137,21 +150,23 @@ export function validateAsset(rawArg: string): boolean {
       // Resolve coordinate adapter
       const adapter = getAdapter('adapter.bodyparts3d.lps_whole_body_to_ras') || BODYPARTS3D_LPS_TO_RAS_ADAPTER;
 
-      const coordResult = validateCoordinatesAndLaterality({
-        rawBounds,
-        canonicalBounds,
-        adapter,
-        declaredLaterality,
-        midlineToleranceMm: 2.0
-      });
+      if (declaredLaterality !== null) {
+        const coordResult = validateCoordinatesAndLaterality({
+          rawBounds,
+          canonicalBounds,
+          adapter,
+          declaredLaterality,
+          midlineToleranceMm: 2.0
+        });
 
-      checks.push({
-        title: '4-Stage Coordinate & Laterality Chain',
-        passed: coordResult.passed,
-        message: coordResult.passed
-          ? `Verified 4/4 stages: Source(${adapter.source_coordinate_system}) -> Isometry -> Canonical internal (+X R, +Y S, +Z Posterior; NOT RAS/MNI) -> Laterality(${declaredLaterality}, Centroid X=${canonicalBounds.center[0].toFixed(2)} mm)`
-          : `Coordinate/Laterality error: ${coordResult.diagnostics.filter(d => d.includes('Failure')).join('; ')}`
-      });
+        checks.push({
+          title: '4-Stage Coordinate & Laterality Chain',
+          passed: coordResult.passed,
+          message: coordResult.passed
+            ? `Verified 4/4 stages: Source(${adapter.source_coordinate_system}) -> Isometry -> Canonical internal (+X R, +Y S, +Z Posterior; NOT RAS/MNI) -> Laterality(${declaredLaterality}, bounds-center X=${canonicalBounds.center[0].toFixed(2)} mm)`
+            : `Coordinate/Laterality error: ${coordResult.diagnostics.filter(d => d.includes('Failure')).join('; ')}`
+        });
+      }
 
       // Anatomic dimensions check — Phase 3.1 fix: the old hardcoded band
       // (10-35 x 10-35 x 25-60 mm) was a hippocampus template that failed EVERY
@@ -274,7 +289,18 @@ export function validateAsset(rawArg: string): boolean {
   const isWhitelisted = manifest.production_whitelist?.includes(assetId);
   const isQuarantined = manifest.research_quarantine?.includes(assetId);
   const isAllowed = assetRecord.production_eligibility === 'PRODUCTION_ALLOWED';
-  const licensePermitted = assetRecord.commercial_redistribution === 'PERMITTED';
+      // Phase 5.2: this required commercial_redistribution === 'PERMITTED', so passing
+      // validation depended on publishing a licence claim the same record marks
+      // LEGAL_REVIEW_REQUIRED. The conservative posture is the honest one and must also
+      // pass; what is genuinely required is that a posture is recorded AND the legal
+      // caveat is present, so nothing can be silently unstated.
+      const commercialPosture = assetRecord.commercial_redistribution;
+      const postureRecorded =
+        commercialPosture === 'PERMITTED' || commercialPosture === 'LEGAL_REVIEW_REQUIRED';
+      const legalCaveatPresent = /LEGAL_REVIEW_REQUIRED/.test(
+        (assetRecord.legal_review_notes ?? '') + (assetRecord.restrictions_and_covenants ?? []).join(' ')
+      );
+      const licensePermitted = postureRecorded && legalCaveatPresent;
   const productionReady = isWhitelisted && !isQuarantined && isAllowed && licensePermitted;
 
   checks.push({

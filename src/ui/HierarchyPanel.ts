@@ -162,7 +162,12 @@ export class HierarchyPanel {
       topologyClass: record.representations?.[0]?.metadata?.topology || 'UNKNOWN',
       validationStatus: 'APPROVED',
       upstreamDataset: record.asset_provenance?.dataset_name || 'BodyParts3D Release 3.0',
-      upstreamLicense: 'CC BY 4.0',
+      // Phase 5.2 provenance review MAJOR-1: this used to be a hardcoded 'CC BY 4.0'
+      // literal. The manifest records the upstream files as CC_BY_SA_2_1_JP and marks
+      // portal-listing retroactivity UNRESOLVED / LEGAL_REVIEW_REQUIRED, so showing
+      // users "CC BY 4.0" resolved, in the UI, the exact question the project
+      // deliberately leaves open. Report what the record actually says.
+      upstreamLicense: record.asset_provenance?.upstream_license || 'UNRECORDED',
       sourceDefinition: record.ontology?.fma_id || '',
       groups: record.hierarchy?.groups || []
     };

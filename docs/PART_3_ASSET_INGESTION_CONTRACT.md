@@ -113,7 +113,7 @@ Every entity JSON record in `data/structures/<entity_name>.json` must provide:
 - `canonical_name`: Standard English anatomical name with laterality.
 - `latin_name`: Terminologia Anatomica official Latin name.
 - `laterality`: `'left' | 'right' | 'bilateral' | 'midline'`.
-- `representation_scope`: `'paired_separate' | 'paired_combined' | 'unpaired_midline'`.
+- `representation_scope`: `'paired_separate' | 'paired_combined' | 'single_midline_mesh' | 'distributed_network' | 'abstract_semantic'` (the `RepresentationScope` union in `src/types/entity.ts`; `paired_combined` = one bilateral structure shipped as a single fused mesh, e.g. whole Cerebellum, Mammillary Body).
 - `ontology`: `ta2_id`, `fma_id`, `uberon_id`.
 - `hierarchy`: `division`, `hemisphere`, `subsystem`, `parent_id`, `groups`, `children_ids`.
 - `spatial`: `coordinate_frame: "canonical_atlas_ras"`, `bounding_box`, `estimated_volume_cm3`.

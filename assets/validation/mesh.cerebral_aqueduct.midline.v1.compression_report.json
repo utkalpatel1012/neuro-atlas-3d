@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.cerebral_aqueduct.midline.v1",
+  "timestamp": "2026-09-27T19:55:03.751Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.cerebral_aqueduct.midline.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.cerebral_aqueduct.midline.v1/lod/mesh.cerebral_aqueduct.midline.v1.lod0.glb",
+      "uncompressedByteLength": 41580,
+      "uncompressedSha256": "43b3c70a50b0c587113ccd17d44697141b43ef1cb7ad8a5615ea8ace20474634",
+      "runtimeGlbPath": "assets/derived/mesh.cerebral_aqueduct.midline.v1/runtime/mesh.cerebral_aqueduct.midline.v1.lod0.meshopt.glb",
+      "compressedByteLength": 26884,
+      "compressedSha256": "d1c269ee488b13ba4b7556e711c40194f67cb02b749e0a43384452c79b82da98",
+      "compressionRatio": 1.55,
+      "savingsPercent": 35.34,
+      "vertexCount": 1128,
+      "triangleCount": 2252,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.cerebral_aqueduct.midline.v1/lod/mesh.cerebral_aqueduct.midline.v1.lod1.glb",
+      "uncompressedByteLength": 31424,
+      "uncompressedSha256": "efdc424763cc400427bd5eb62acd3adbfb6323456563f5a4e6fc51c7b51eea88",
+      "runtimeGlbPath": "assets/derived/mesh.cerebral_aqueduct.midline.v1/runtime/mesh.cerebral_aqueduct.midline.v1.lod1.meshopt.glb",
+      "compressedByteLength": 20700,
+      "compressedSha256": "d9cbcc9193ea170e58adc62469f7ba7a24b12b1644cf4f91a1c35bf45d2f9e37",
+      "compressionRatio": 1.52,
+      "savingsPercent": 34.13,
+      "vertexCount": 846,
+      "triangleCount": 1688,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.cerebral_aqueduct.midline.v1/lod/mesh.cerebral_aqueduct.midline.v1.lod2.glb",
+      "uncompressedByteLength": 21308,
+      "uncompressedSha256": "672a8c0484875faeb8c02035624094235c41abf87f98007d7ab34b2546e5e095",
+      "runtimeGlbPath": "assets/derived/mesh.cerebral_aqueduct.midline.v1/runtime/mesh.cerebral_aqueduct.midline.v1.lod2.meshopt.glb",
+      "compressedByteLength": 14620,
+      "compressedSha256": "cbc461b6fa1ef3e7cd97e2558f8a1678976402f7880d5f716e1810901644651a",
+      "compressionRatio": 1.46,
+      "savingsPercent": 31.39,
+      "vertexCount": 565,
+      "triangleCount": 1126,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.cerebral_aqueduct.midline.v1/lod/mesh.cerebral_aqueduct.midline.v1.lod3.glb",
+      "uncompressedByteLength": 11156,
+      "uncompressedSha256": "988edad237d94970767c89f88c1fcc65f1bde23e1834b1ef1bb2d345eae528c1",
+      "runtimeGlbPath": "assets/derived/mesh.cerebral_aqueduct.midline.v1/runtime/mesh.cerebral_aqueduct.midline.v1.lod3.meshopt.glb",
+      "compressedByteLength": 8332,
+      "compressedSha256": "e182d805936baf498bfe805423d73a7be5808662bc1e9f8738444b30ff8ffe44",
+      "compressionRatio": 1.34,
+      "savingsPercent": 25.31,
+      "vertexCount": 283,
+      "triangleCount": 562,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 105468,
+  "overallCompressedBytes": 70536,
+  "overallSavingsPercent": 33.12,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.cerebral_aqueduct.midline.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-27T19:55:03.751Z"
+  }
+}

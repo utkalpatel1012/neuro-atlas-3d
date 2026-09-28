@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.interventricular_foramen.midline.v1",
+  "timestamp": "2026-09-27T19:55:04.894Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.interventricular_foramen.midline.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.interventricular_foramen.midline.v1/lod/mesh.interventricular_foramen.midline.v1.lod0.glb",
+      "uncompressedByteLength": 84660,
+      "uncompressedSha256": "989e4ab728d3d902ce21e82a31513d1049bb7606117429e2853634c6802b6579",
+      "runtimeGlbPath": "assets/derived/mesh.interventricular_foramen.midline.v1/runtime/mesh.interventricular_foramen.midline.v1.lod0.meshopt.glb",
+      "compressedByteLength": 52436,
+      "compressedSha256": "203da3c910a5726654dbb4ae0a2fe5c748e6f570442aa7ea66f8a3f0d876e326",
+      "compressionRatio": 1.61,
+      "savingsPercent": 38.06,
+      "vertexCount": 2325,
+      "triangleCount": 4642,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.interventricular_foramen.midline.v1/lod/mesh.interventricular_foramen.midline.v1.lod1.glb",
+      "uncompressedByteLength": 63744,
+      "uncompressedSha256": "0fce37865e7717fd90fc2d4f5941f6d31017e7bc0c8fce780e4df0f2b812df83",
+      "runtimeGlbPath": "assets/derived/mesh.interventricular_foramen.midline.v1/runtime/mesh.interventricular_foramen.midline.v1.lod1.meshopt.glb",
+      "compressedByteLength": 40456,
+      "compressedSha256": "f0931c3a8b88d653f699e0c5f65caf02446600159f6c8ff4405da967d50273b5",
+      "compressionRatio": 1.58,
+      "savingsPercent": 36.53,
+      "vertexCount": 1744,
+      "triangleCount": 3480,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.interventricular_foramen.midline.v1/lod/mesh.interventricular_foramen.midline.v1.lod2.glb",
+      "uncompressedByteLength": 42864,
+      "uncompressedSha256": "1e2454eac88ed22f8df5a55b6bd618d7e519fd88f24250e8489b3bce560c8807",
+      "runtimeGlbPath": "assets/derived/mesh.interventricular_foramen.midline.v1/runtime/mesh.interventricular_foramen.midline.v1.lod2.meshopt.glb",
+      "compressedByteLength": 28024,
+      "compressedSha256": "dda5bc6f915990e31ff5d6be4972635348c17e1b78916cd2cfa5010754b187b6",
+      "compressionRatio": 1.53,
+      "savingsPercent": 34.62,
+      "vertexCount": 1164,
+      "triangleCount": 2320,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.interventricular_foramen.midline.v1/lod/mesh.interventricular_foramen.midline.v1.lod3.glb",
+      "uncompressedByteLength": 21976,
+      "uncompressedSha256": "4ee1e6560daf046bed1ad1b9bb7ed7dc395ae3f43566911de7a6b62c431cf228",
+      "runtimeGlbPath": "assets/derived/mesh.interventricular_foramen.midline.v1/runtime/mesh.interventricular_foramen.midline.v1.lod3.meshopt.glb",
+      "compressedByteLength": 15220,
+      "compressedSha256": "f8e2cdcd46e61717d7062cfa968fad94af73b569af1331446fc08fe81404d3d2",
+      "compressionRatio": 1.44,
+      "savingsPercent": 30.74,
+      "vertexCount": 584,
+      "triangleCount": 1160,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 213244,
+  "overallCompressedBytes": 136136,
+  "overallSavingsPercent": 36.16,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.interventricular_foramen.midline.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-27T19:55:04.894Z"
+  }
+}

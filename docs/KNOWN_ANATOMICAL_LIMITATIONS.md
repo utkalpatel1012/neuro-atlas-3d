@@ -106,8 +106,9 @@ surface. Caps never carry entity IDs or provenance. Orientation/preset/readout
 UI uses canonical coordinates only (+X R, +Y S, +Z Posterior); preset names
 imply no registration. Presentation + clipping headless-tested only (92 new
 checks); browser/iPad/WebGPU-device proof still pending. Empty views show
-mostly empty space by design (white matter, basal ganglia, thalamus, brainstem,
-cerebellum, ventricles, vasculature, complete cortex NOT yet in atlas).
+mostly empty space by design (white matter, brainstem, vasculature, and the
+complete cortex NOT yet in atlas; basal ganglia, thalamus, cerebellum and
+ventricles arrived in Phases 5.0/5.1/5.2 and load on demand).
 
 ## L16. MRI reference limits (Phase 4C)Colin27 1998 T1 is SELECTED as a Type A reference (single-subject average —
 high detail, no population variance; field strength UNKNOWN; Talairach frame,
@@ -141,17 +142,58 @@ gaps persist (L1 sulci-as-gaps applies); superior frontal pair has 2 watertight
 shells each (recorded composite topology). TA2/UBERON IDs UNVERIFIED on all 16
 records (L5 — FMA distribution IDs only). Records are anatomy-only by design
 (no functional/psychiatric/imaging content). Remaining 12 cortex components,
-deep nuclei, brainstem, cerebellum, ventricles, nerves, vasculature have NO
-geometry (DOCUMENTED placeholders only). Gyral assets overlap the cortex
-composites spatially and load ON DEMAND (default view unchanged) to avoid
-double-rendered anatomy.
+nerves and vasculature have NO geometry (DOCUMENTED placeholders only); the
+deep nuclei (L19), cerebellum and ventricles (L20) arrived in Phases 5.1/5.2.
+Gyral assets overlap the cortex composites spatially and load ON DEMAND
+(default view unchanged) to avoid double-rendered anatomy.
 
 ## L19. Phase 5.1 batch + render limits
 Deep meshes are gross BodyParts3D segments (no thalamic/amygdala nuclei, no
 hypothalamic nuclei, no subfields); septum pellucidum source has
 non-manifold/zero-area defects (REJECTED, DOCUMENTED only); accumbens/
-hypothalamus/ventricles have no mirror STL (DOCUMENTED only); thalamus L/R
-triangle asymmetry is a source property. Render: no physical-device proof
-(headless-DOM verification only); Actions deploy workflow fails at scheduling
-(gh-pages branch is the serving truth); tone mapping differs by backend;
-`maxResidentMeshes` unenforced (see L11).
+hypothalamus/ventricles had no mirror STL at the time of the 5.1 batch
+(accumbens and hypothalamus remain DOCUMENTED; the third/fourth ventricles,
+cerebral aqueduct and interventricular foramen shipped in Phase 5.2 — see L20);
+thalamus L/R triangle asymmetry is a source property. Render: no
+physical-device proof (headless-DOM verification only); Actions deploy workflow
+fails at scheduling (gh-pages branch is the serving truth); tone mapping
+differs by backend; `maxResidentMeshes` unenforced (see L11).
+
+## L20. Phase 5.2 posterior fossa + ventricles
+Cerebellum is one gross fused segment: no vermis split, no hemispheric split,
+no lobules, no deep cerebellar nuclei (dentate/fastigial/emboliform/globose) —
+all DOCUMENTED nodes, no geometry. Ventricular pieces are CSF cavities
+(`ventricular_space` / `cavity_cast`), never neural tissue. Pons and medulla
+source segments were REJECTED for non-manifold edges (10 and 2) and are NOT in
+the atlas, so the brainstem is still absent as a whole; midbrain has no mirror
+STL. Lateral ventricles and the Luschka/Magendie apertures remain DOCUMENTED.
+Ventricle cavity cast = space enclosed by the surrounding brain, so its surface
+is a boundary of the cavity, not a tissue boundary. Laterality gates verify
+CONSISTENCY with the declared asset id (geometry both sides of the midline,
+midline-centred bounding box); they do not prove a mesh is a paired organ rather
+than a midline commissure. TA2/UBERON UNVERIFIED on all 5 new records (L5).
+
+## L21 - Acquisition-date provenance conflict (27 pre-5.2 assets) - OPEN, HUMAN REVIEW
+
+Phase 5.2 review found that the asset manifest generator derived `acquisition_date`
+from the *filesystem birth time* of `assets/raw/<assetId>` whenever an ingestion
+record lacked the field. That rewrote 27 already-certified legacy entries.
+
+The birthtime fallback has been removed. The previously published value is now
+preserved verbatim (Phase 5.2 `legacy-identical` gate), and the generator emits an
+explicit `acquisition_date_conflict` field wherever the published manifest value and
+the asset's own `assets/raw/<id>/ingestion.json` disagree. **27 assets are currently
+flagged.**
+
+This conflict is **not resolved here, deliberately**:
+
+- the published `2026-09-26` was itself produced by the birthtime fallback, so it is
+  not trustworthy either;
+- `assets/raw/<id>/ingestion.json` records `2026-09-27`, which is plausibly the true
+  acquisition day, but those records were themselves written by scripts using
+  `new Date()` at run time and were never independently attested;
+- choosing between them is a provenance judgement, not a mechanical one.
+
+Affected: all 5.0 cortical-gyrus, 5.1 deep/limbic, and mammillary-body assets.
+Each carries `acquisition_date_conflict` in `assets/manifests/assets.manifest.json`.
+Resolving this requires a human decision on which record is authoritative.

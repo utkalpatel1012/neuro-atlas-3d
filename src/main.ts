@@ -49,7 +49,7 @@ async function bootstrap() {
       topologyClass: '2-manifold',
       validationStatus: 'APPROVED',
       upstreamDataset: 'DBCLS BodyParts3D Release 3.0',
-      upstreamLicense: 'CC BY 4.0',
+      upstreamLicense: 'CC_BY_SA_2_1_JP',
       sourceDefinition: 'FJ3162 (FMA61884)',
       groups: [
         'division.cerebrum',
@@ -72,7 +72,7 @@ async function bootstrap() {
       topologyClass: '2-manifold',
       validationStatus: 'APPROVED',
       upstreamDataset: 'DBCLS BodyParts3D Release 3.0',
-      upstreamLicense: 'CC BY 4.0',
+      upstreamLicense: 'CC_BY_SA_2_1_JP',
       sourceDefinition: 'FMA72713',
       groups: [
         'division.cerebrum',
@@ -95,7 +95,7 @@ async function bootstrap() {
       topologyClass: 'MULTI_SHELL_COMPOSITE',
       validationStatus: 'APPROVED',
       upstreamDataset: 'DBCLS BodyParts3D Release 3.0',
-      upstreamLicense: 'CC BY 4.0',
+      upstreamLicense: 'CC_BY_SA_2_1_JP',
       sourceDefinition: 'BodyParts3D_Cortex_Left_Assembly_14_Structures',
       groups: [
         'division.cerebrum',
@@ -117,7 +117,7 @@ async function bootstrap() {
       topologyClass: 'MULTI_SHELL_COMPOSITE',
       validationStatus: 'APPROVED',
       upstreamDataset: 'DBCLS BodyParts3D Release 3.0',
-      upstreamLicense: 'CC BY 4.0',
+      upstreamLicense: 'CC_BY_SA_2_1_JP',
       sourceDefinition: 'BodyParts3D_Cortex_Right_Assembly_14_Structures',
       groups: [
         'division.cerebrum',

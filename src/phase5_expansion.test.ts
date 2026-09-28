@@ -74,11 +74,11 @@ async function runTests() {
   const assetIds = records.map((r: any) => r.asset_id);
   assert(new Set(assetIds).size === assetIds.length, 'duplicate asset IDs across structure records');
   passed++;
-  assert(structureFiles.length === 31, `31 structure records (4 legacy + 16 batch + 11 deep/limbic), got ${structureFiles.length}`);
+  assert(structureFiles.length === 36, `36 structure records (4 legacy + 16 batch + 11 deep/limbic + 5 posterior), got ${structureFiles.length}`);
   passed++;
-  assert(Object.keys(manifest.assets).length === 31, `manifest holds 31 assets, got ${Object.keys(manifest.assets).length}`);
+  assert(Object.keys(manifest.assets).length === 36, `manifest holds 36 assets, got ${Object.keys(manifest.assets).length}`);
   passed++;
-  console.log('[PASS] Unique structure/asset IDs; 31 records; 31 manifest assets.');
+  console.log('[PASS] Unique structure/asset IDs; 36 records; 36 manifest assets.');
   passed++;
 
   // TEST 2: provenance completeness (§6, §9, §44).
@@ -104,7 +104,7 @@ async function runTests() {
     assert(entry.project_distribution_policy === 'CC-BY-SA-4.0', `${assetId}: distribution policy explicit`);
     passed++;
   }
-  assert(manifest.production_whitelist.length === 31, 'whitelist covers all 31 production assets');
+  assert(manifest.production_whitelist.length === 36, 'whitelist covers all 36 production assets');
   passed++;
   assert((manifest.research_quarantine || []).length === 0, 'nothing quarantined in production manifest');
   passed++;

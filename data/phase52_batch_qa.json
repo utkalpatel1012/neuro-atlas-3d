@@ -1,0 +1,84 @@
+{
+  "batch": "phase52-posterior-ventricular",
+  "generated_at": "2026-09-27T19:30:26.443Z",
+  "generator": "scripts/pipeline/run_gyral_batch.ts",
+  "verdicts": [
+    {
+      "assetId": "mesh.pons.bilateral.v1",
+      "structureId": "brain.brainstem.pons",
+      "profileId": null,
+      "measuredTriangles": 90072,
+      "measuredShells": 4,
+      "measuredBoundaryEdges": 0,
+      "state": "REJECTED",
+      "reason": "Topology defects: non-manifold=10, duplicates=1, zero-area=0.",
+      "durationMs": 213
+    },
+    {
+      "assetId": "mesh.medulla_oblongata.bilateral.v1",
+      "structureId": "brain.brainstem.medulla_oblongata",
+      "profileId": null,
+      "measuredTriangles": 52760,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "REJECTED",
+      "reason": "Topology defects: non-manifold=2, duplicates=0, zero-area=0.",
+      "durationMs": 115
+    },
+    {
+      "assetId": "mesh.cerebellum.bilateral.v1",
+      "structureId": "brain.cerebellum.cerebellum",
+      "profileId": "composite-cortical-assembly",
+      "measuredTriangles": 238506,
+      "measuredShells": 2,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete (2 watertight shells: VALID_WITH_KNOWN_TOPOLOGY_LIMITATION).",
+      "durationMs": 2469
+    },
+    {
+      "assetId": "mesh.third_ventricle.midline.v1",
+      "structureId": "brain.ventricular_system.third_ventricle",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 16808,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 299
+    },
+    {
+      "assetId": "mesh.fourth_ventricle.midline.v1",
+      "structureId": "brain.ventricular_system.fourth_ventricle",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 30134,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 403
+    },
+    {
+      "assetId": "mesh.cerebral_aqueduct.midline.v1",
+      "structureId": "brain.ventricular_system.cerebral_aqueduct",
+      "profileId": "closed-pial-surface",
+      "measuredTriangles": 2252,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 159
+    },
+    {
+      "assetId": "mesh.interventricular_foramen.midline.v1",
+      "structureId": "brain.ventricular_system.interventricular_foramen",
+      "profileId": "composite-cortical-assembly",
+      "measuredTriangles": 4642,
+      "measuredShells": 2,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete (2 watertight shells: VALID_WITH_KNOWN_TOPOLOGY_LIMITATION).",
+      "durationMs": 222
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "assetId": "mesh.cerebellum.bilateral.v1",
+  "timestamp": "2026-09-27T19:54:59.794Z",
+  "inputCanonicalGlb": "assets/derived/mesh.cerebellum.bilateral.v1/canonical/mesh.cerebellum.bilateral.v1.canonical.glb",
+  "inputCanonicalHash": "889a388ea0321fe37551669fd412d012d84ca2142eba834aaf52cfbe6721adc7",
+  "levels": [
+    {
+      "level": 0,
+      "lodName": "lod0",
+      "targetRatio": 1,
+      "triangleCount": 238506,
+      "vertexCount": 119257,
+      "byteLength": 5725244,
+      "sha256": "103fe0ae5c08f0e2b45a0b2dc08d9d2c6e69a8052481b062cfe698119d3f2bee",
+      "filePath": "assets/derived/mesh.cerebellum.bilateral.v1/lod/mesh.cerebellum.bilateral.v1.lod0.glb",
+      "targetIndexCount": 715518,
+      "resultingIndexCount": 715518,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 99022.83,
+        "lodVolumeMm3": 99022.83,
+        "volumeDeviationPercent": 0,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 3.8833,
+        "meanSurfaceDeviationMm": 0.632
+      }
+    },
+    {
+      "level": 1,
+      "lodName": "lod1",
+      "targetRatio": 0.75,
+      "triangleCount": 178878,
+      "vertexCount": 89443,
+      "byteLength": 4294168,
+      "sha256": "3e69a5b7cf63613c0e096a3c72dd0ce0dc2d3f2799c158307f1cbe2f1206472d",
+      "filePath": "assets/derived/mesh.cerebellum.bilateral.v1/lod/mesh.cerebellum.bilateral.v1.lod1.glb",
+      "targetIndexCount": 536637,
+      "resultingIndexCount": 536634,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000067,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 99022.83,
+        "lodVolumeMm3": 99011.96,
+        "volumeDeviationPercent": -0.011,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.0016,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 3.6237,
+        "meanSurfaceDeviationMm": 0.6389
+      }
+    },
+    {
+      "level": 2,
+      "lodName": "lod2",
+      "targetRatio": 0.5,
+      "triangleCount": 119252,
+      "vertexCount": 59630,
+      "byteLength": 2147628,
+      "sha256": "e9c3b33995ef74f9fa620bd89fae73079b688836e4f9dd1764e665727c022617",
+      "filePath": "assets/derived/mesh.cerebellum.bilateral.v1/lod/mesh.cerebellum.bilateral.v1.lod2.glb",
+      "targetIndexCount": 357759,
+      "resultingIndexCount": 357756,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000133,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 99022.83,
+        "lodVolumeMm3": 98992.97,
+        "volumeDeviationPercent": -0.03,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.0016,
+            0,
+            0
+          ],
+          "max": [
+            -0.0046,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 2.2144,
+        "meanSurfaceDeviationMm": 0.6483
+      }
+    },
+    {
+      "level": 3,
+      "lodName": "lod3",
+      "targetRatio": 0.25,
+      "triangleCount": 59626,
+      "vertexCount": 29817,
+      "byteLength": 1074360,
+      "sha256": "5cd7bb7a1e229e5a607128f13fc163167f52d8ee1a3b28eb18d81e4565452c8f",
+      "filePath": "assets/derived/mesh.cerebellum.bilateral.v1/lod/mesh.cerebellum.bilateral.v1.lod3.glb",
+      "targetIndexCount": 178878,
+      "resultingIndexCount": 178878,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000273,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 99022.83,
+        "lodVolumeMm3": 98942.88,
+        "volumeDeviationPercent": -0.081,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.0078,
+            0.01,
+            0
+          ],
+          "max": [
+            -0.0046,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 2.8238,
+        "meanSurfaceDeviationMm": 0.6262
+      }
+    }
+  ],
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.cerebellum.bilateral.v1.lod_generation",
+    "tool": "MeshoptSimplifier / NeuroAtlas3D LOD Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "algorithms": "Quadric_Error_Metric_Simplification",
+      "levels": [
+        {
+          "name": "lod0",
+          "ratio": 1
+        },
+        {
+          "name": "lod1",
+          "ratio": 0.75
+        },
+        {
+          "name": "lod2",
+          "ratio": 0.5
+        },
+        {
+          "name": "lod3",
+          "ratio": 0.25
+        }
+      ]
+    },
+    "timestamp": "2026-09-27T19:54:59.795Z"
+  }
+}

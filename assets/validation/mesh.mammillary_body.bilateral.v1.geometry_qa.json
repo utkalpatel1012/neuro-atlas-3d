@@ -1,7 +1,7 @@
 {
   "assetId": "mesh.mammillary_body.bilateral.v1",
   "sourceFile": "assets/raw/mesh.mammillary_body.bilateral.v1/FMA74877.stl",
-  "timestamp": "2026-09-27T16:08:15.663Z",
+  "timestamp": "2026-09-27T19:54:56.786Z",
   "topologyClass": "MULTI_SHELL_COMPOSITE",
   "profileId": "composite-cortical-assembly",
   "analysis": {
@@ -41,7 +41,7 @@
   "geometricQA": {
     "assetId": "mesh.mammillary_body.bilateral.v1",
     "sourceFile": "assets/raw/mesh.mammillary_body.bilateral.v1/FMA74877.stl",
-    "timestamp": "2026-09-27T16:08:15.663Z",
+    "timestamp": "2026-09-27T19:54:56.784Z",
     "topologyClass": "MULTI_SHELL_COMPOSITE",
     "profileId": "composite-cortical-assembly",
     "analysis": {
@@ -120,8 +120,8 @@
   },
   "anatomicalQA": {
     "assetId": "mesh.mammillary_body.bilateral.v1",
-    "timestamp": "2026-09-27T16:08:15.663Z",
-    "declaredLaterality": "midline",
+    "timestamp": "2026-09-27T19:54:56.786Z",
+    "declaredLaterality": "bilateral",
     "subfieldRepresentation": "MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED",
     "checks": [
       {

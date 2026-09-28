@@ -72,8 +72,24 @@ export class AnatomicalAssemblyManager {
       category: 'division',
       childGroupIds: [],
       memberEntityIds: [],
-      status: 'UNAVAILABLE',
-      description: 'Cerebellar hemispheres and vermis (Asset pending)'
+      // Phase 5.2 neuroanatomy review: the previous description read "Cerebellar
+      // hemispheres and vermis (Asset pending)", which was wrong twice over - the gross
+      // cerebellum DOES now ship, and naming hemispheres + vermis as the pending asset
+      // re-asserted exactly the hemispheres/vermis split the data layer correctly
+      // refuses to fabricate. The source provides one fused segment.
+      status: 'AVAILABLE',
+      description: 'Cerebellum (gross, whole segment). Vermis and hemispheres are not separately represented in the source; deep cerebellar nuclei are not represented.'
+    });
+
+    this.registerGroup({
+      groupId: 'division.ventricular_system',
+      name: 'Ventricular system',
+      semanticType: 'STRUCTURAL_CONTAINER',
+      category: 'division',
+      childGroupIds: [],
+      memberEntityIds: [],
+      status: 'AVAILABLE',
+      description: 'Ventricular system (CSF spaces). Cavities, not neural tissue. Lateral ventricles are not yet represented.'
     });
 
     this.registerGroup({

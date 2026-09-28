@@ -76,6 +76,10 @@ export interface PrepVerdict {
   structureId: string;
   state: 'SOURCE_AVAILABLE' | 'PREP_FAILED';
   detail: string;
+  // Phase 5.2 architecture N4: carried through the ledger so run_gyral_batch.ts can
+  // select a category-appropriate QA profile. Cortical batches legitimately report
+  // 'CORTEX', which preserves the historical cortical profile names exactly.
+  category: string;
   sourceHash?: string;
   byteLength?: number;
 }
@@ -155,6 +159,7 @@ export function prepareBatch(): PrepVerdict[] {
         assetId: item.assetId,
         structureId: item.structureId,
         state: 'SOURCE_AVAILABLE',
+        category: (item.category ?? 'CORTEX'),
         detail: `Staged ${component.name} (${component.triangle_count} tris), hash-verified.`,
         sourceHash: measuredHash,
         byteLength: fs.statSync(stagedFile).size
@@ -164,6 +169,7 @@ export function prepareBatch(): PrepVerdict[] {
         assetId: item.assetId,
         structureId: item.structureId,
         state: 'PREP_FAILED',
+        category: (item.category ?? 'CORTEX'),
         detail: `Preparation failed: ${(err as Error).message}`
       });
     }

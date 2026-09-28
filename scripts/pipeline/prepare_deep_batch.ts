@@ -20,7 +20,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '../../');
-const STAGE_DIR = 'C:/Projects/_audit_tmp';
+// Phase 5.2 architecture M1: was hardcoded to one contributor's machine. Override with
+// AUDIT_STAGE_DIR; default retained for continuity with prior runs.
+const STAGE_DIR = process.env.AUDIT_STAGE_DIR || 'C:/Projects/_audit_tmp';
 
 export interface DeepBatchItem {
   structureName: string;
@@ -82,6 +84,9 @@ export interface DeepPrepVerdict {
   structureId: string;
   state: 'SOURCE_AVAILABLE' | 'PREP_FAILED';
   detail: string;
+  // Phase 5.2 architecture N4: carried through the ledger so run_gyral_batch.ts can
+  // select a category-appropriate QA profile instead of defaulting to cortical names.
+  category: string;
 }
 
 export function prepareDeepBatch(): DeepPrepVerdict[] {
@@ -120,7 +125,7 @@ export function prepareDeepBatch(): DeepPrepVerdict[] {
         source_license: 'Historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (verified 2025-02-27). Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution.',
         source_license_version: 'CC BY 4.0 (2025-02-27 portal update) / CC-BY-SA 2.1 JP',
         project_distribution_policy: 'CC-BY-SA-4.0',
-        attribution: 'BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-ShareAlike 2.1 Japan. Relicensed under CC Attribution 4.0 International.',
+        attribution: 'BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.',
         acquisition_date: new Date().toISOString().split('T')[0],
         original_filename: `${item.fmaId}.stl`,
         originalFilename: `${item.fmaId}.stl`,
@@ -138,9 +143,9 @@ export function prepareDeepBatch(): DeepPrepVerdict[] {
         ingestion_status: 'SOURCE_VERIFIED'
       };
       fs.writeFileSync(path.join(rawDir, 'ingestion.json'), JSON.stringify(ingestion, null, 2), 'utf8');
-      verdicts.push({ assetId: item.assetId, structureId: item.structureId, state: 'SOURCE_AVAILABLE', detail: `Staged ${item.fmaId} (${geo.tris} tris), hash + laterality verified.` });
+      verdicts.push({ assetId: item.assetId, structureId: item.structureId, category: item.category ?? 'DEEP_GRAY', state: 'SOURCE_AVAILABLE', detail: `Staged ${item.fmaId} (${geo.tris} tris), hash + laterality verified.` });
     } catch (err) {
-      verdicts.push({ assetId: item.assetId, structureId: item.structureId, state: 'PREP_FAILED', detail: `Preparation failed: ${(err as Error).message}` });
+      verdicts.push({ assetId: item.assetId, structureId: item.structureId, category: item.category ?? 'DEEP_GRAY', state: 'PREP_FAILED', detail: `Preparation failed: ${(err as Error).message}` });
     }
   }
   fs.writeFileSync(

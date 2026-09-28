@@ -1,0 +1,134 @@
+{
+  "id": "brain.ventricular_system.interventricular_foramen",
+  "entity_type": "anatomical_structure",
+  "subtype": "ventricular_space",
+  "canonical_name": "Interventricular foramen (midline)",
+  "latin_name": "Foramen interventriculare",
+  "clinical_aliases": [],
+  "abbreviations": [],
+  "laterality": "midline",
+  "representation_scope": "single_midline_mesh",
+  "cavity_note": "Cerebrospinal-fluid space, NOT neural tissue. Rendered and described as a cavity.",
+  "name": {
+    "official_latin": "Foramen interventriculare",
+    "official_english": "Interventricular foramen",
+    "clinical_aliases": [],
+    "standard_abbreviations": []
+  },
+  "ontology": {
+    "ta2_id": "UNVERIFIED (lookup pass required; see L5)",
+    "fma_id": "FMA:75351",
+    "uberon_id": "UNVERIFIED (lookup pass required; see L5)",
+    "fma_authority": "BodyParts3D distribution parts_list_e.txt (authoritative for files; NOT a live-ontology lookup)"
+  },
+  "hierarchy": {
+    "anatomic_system": "central_nervous_system",
+    "division": "ventricular_system",
+    "hemisphere": "midline",
+    "lobe": null,
+    "subsystem": "ventricular_system",
+    "parent_id": "brain.ventricular_system",
+    "groups": [
+      "division.ventricular_system",
+      "region.ventricles"
+    ],
+    "children_ids": []
+  },
+  "spatial": {
+    "mesh_node_name": "Mesh_mesh_interventricular_foramen_midline_v1",
+    "source_centroid": [
+      -0.66,
+      -104.15,
+      1567.58
+    ],
+    "source_coordinate_frame": "dicom_lps_whole_body",
+    "stereotaxic_registration": {
+      "registered_centroid": [
+        0.66,
+        5.88,
+        -34.05
+      ],
+      "registered_coordinate_frame": "canonical_atlas_ras",
+      "registration_status": "REGISTRATION_PENDING",
+      "registration": {
+        "registration_method": "not_registered",
+        "registration_source": "scripts/pipeline/canonicalize_mesh.ts (rigid adapter only; coordinate conversion, NOT template registration)"
+      }
+    },
+    "bounding_box": {
+      "min": [
+        -5.35,
+        0.87,
+        -36.52
+      ],
+      "max": [
+        6.67,
+        10.89,
+        -31.57
+      ],
+      "coordinate_frame": "canonical_atlas_ras",
+      "derivation": "reconstructed from manifest centroid + dimensions (bbox-center convention)"
+    },
+    "estimated_volume_cm3": 0.108,
+    "default_hex_color": "#7FB3D5",
+    "centroid_convention": "bounding-box center (NOT vertex mean)."
+  },
+  "representations": [
+    {
+      "id": "rep.interventricular_foramen.macroscopic_mesh",
+      "representation_type": "cavity_cast",
+      "level_of_detail": "LOD0-LOD3",
+      "asset_reference": "mesh.interventricular_foramen.midline.v1",
+      "coordinate_frame": "canonical_atlas_ras",
+      "is_canonical": true,
+      "metadata": {
+        "format": "glb_meshopt",
+        "topology": "MULTI_SHELL_COMPOSITE"
+      }
+    }
+  ],
+  "asset_id": "mesh.interventricular_foramen.midline.v1",
+  "asset_provenance": {
+    "asset_id": "mesh.interventricular_foramen.midline.v1",
+    "dataset_name": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+    "dataset_version": "Release 3.0 (2011/06/20)",
+    "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/master/assets/BodyParts3D_data/stl/FMA75351.stl",
+    "upstream_asset_id": "FMA75351",
+    "upstream_license": "CC_BY_SA_2_1_JP",
+    "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+    "acquisition_date": "2026-09-27",
+    "resulting_sha256_hash": "b3e67331a7cd20f1292c34ed1d14f15ca822a7865cd540e235166ef4dc8072ae",
+    "resulting_license": "CC-BY-SA 4.0",
+    "project_distribution_policy": "CC-BY-SA-4.0",
+    "production_eligibility": "PRODUCTION_ALLOWED",
+    "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+    "restrictions_and_covenants": [
+      "Must attribute BodyParts3D / DBCLS in application notices and UI",
+      "Derived 3D meshes distributed under CC-BY-SA 4.0.",
+      "Conservative licensing posture (Phase 3.1 section 19): historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution."
+    ],
+    "validation_status": "CLEARED",
+    "legal_review_notes": "BodyParts3D Release 3.0 component FMA75351 via fresh mirror download (Phase 5.2). Same license chain as production assets. Retroactivity UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution."
+  },
+  "topography": {
+    "relationships": [
+      {
+        "source_entity_id": "brain.ventricular_system.interventricular_foramen",
+        "target_entity_id": "brain.ventricular_system",
+        "relationship_type": "part_of",
+        "semantic_class": "STRUCTURAL_CONTAINMENT",
+        "evidence_claim_ids": [],
+        "notes": "BodyParts3D distribution segment FMA75351; containment follows the distribution taxonomy. No functional-connectivity claim. Cavity, not tissue."
+      }
+    ]
+  },
+  "geometry_state": "RUNTIME_READY",
+  "created_at": "2026-09-27T19:31:20.126Z",
+  "provenance": {
+    "source_authority": "BodyParts3D distribution parts_list_e.txt (authoritative for files)",
+    "dataset_name": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+    "dataset_version": "Release 3.0 (2011/06/20)",
+    "ontology_reference": "FMA:75351 (distribution-verified)",
+    "last_reviewed": "2026-09-27"
+  }
+}

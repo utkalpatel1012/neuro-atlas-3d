@@ -100,7 +100,16 @@ export interface AssetProvenance {
   upstream_asset_id: string;             // Upstream node name or file path in source distribution
   upstream_license: UpstreamLicenseType;
   attribution_text_required: string;     // Exact citation text that must be published in NOTICE / About panel
-  acquisition_date: string;              // ISO date format (YYYY-MM-DD)
+  acquisition_date: string;              // ISO date (YYYY-MM-DD), or the explicit sentinel 'NOT_RECORDED'. Never synthesised from a filesystem timestamp.
+  // Phase 5.2: present only when the published acquisition_date disagrees with the
+  // asset's own assets/raw/<id>/ingestion.json. The conflict is surfaced, not silently
+  // resolved, because choosing between two unverified metadata sources is a provenance
+  // judgement rather than a mechanical one. See docs/KNOWN_ANATOMICAL_LIMITATIONS.md L21.
+  acquisition_date_conflict?: string;
+  // Phase 5.2: AGENTS.md forbids claiming expert validation without a documented expert
+  // review. The pipeline can attest technical QA only, so the absence of expert review is
+  // stated explicitly rather than left implicit behind `validation_status: CLEARED`.
+  expert_review_status?: 'EXPERT_REVIEW_PENDING' | 'EXPERT_VALIDATED';
   modifications_applied: TransformationStep[];
   resulting_sha256_hash: string;         // Cryptographic SHA-256 hash, or 'NOT_YET_GENERATED' for planned/pre-pipeline assets
   resulting_license: string;             // License governing the output asset (e.g., 'CC-BY-SA 4.0')
