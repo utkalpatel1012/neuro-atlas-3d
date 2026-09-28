@@ -1,0 +1,56 @@
+{
+  "batch": "phase52-posterior-ventricular",
+  "generated_at": "2026-09-28T08:41:40.522Z",
+  "generator": "scripts/pipeline/prepare_posterior_batch.ts",
+  "items": [
+    {
+      "assetId": "mesh.pons.bilateral.v1",
+      "structureId": "brain.brainstem.pons",
+      "state": "SOURCE_AVAILABLE",
+      "category": "BRAINSTEM",
+      "detail": "Staged FMA67943 (90072 tris), SHA-256 matches committed pin in data/phase52_source_hashes.json; midline-span measured. Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.medulla_oblongata.bilateral.v1",
+      "structureId": "brain.brainstem.medulla_oblongata",
+      "state": "SOURCE_AVAILABLE",
+      "category": "BRAINSTEM",
+      "detail": "Staged FMA62004 (52760 tris), SHA-256 matches committed pin in data/phase52_source_hashes.json; midline-span measured. Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.cerebellum.bilateral.v1",
+      "structureId": "brain.cerebellum.cerebellum",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CEREBELLUM",
+      "detail": "Staged FMA67944 (238506 tris), SHA-256 matches committed pin in data/phase52_source_hashes.json; midline-span measured. Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.third_ventricle.midline.v1",
+      "structureId": "brain.ventricular_system.third_ventricle",
+      "state": "SOURCE_AVAILABLE",
+      "category": "VENTRICULAR_SPACE",
+      "detail": "Staged FMA78454 (16808 tris), SHA-256 matches committed pin in data/phase52_source_hashes.json; midline-span measured. Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.fourth_ventricle.midline.v1",
+      "structureId": "brain.ventricular_system.fourth_ventricle",
+      "state": "SOURCE_AVAILABLE",
+      "category": "VENTRICULAR_SPACE",
+      "detail": "Staged FMA78469 (30134 tris), SHA-256 matches committed pin in data/phase52_source_hashes.json; midline-span measured. Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.cerebral_aqueduct.midline.v1",
+      "structureId": "brain.ventricular_system.cerebral_aqueduct",
+      "state": "SOURCE_AVAILABLE",
+      "category": "VENTRICULAR_SPACE",
+      "detail": "Staged FMA78467 (2252 tris), SHA-256 matches committed pin in data/phase52_source_hashes.json; midline-span measured. Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.interventricular_foramen.midline.v1",
+      "structureId": "brain.ventricular_system.interventricular_foramen",
+      "state": "SOURCE_AVAILABLE",
+      "category": "VENTRICULAR_SPACE",
+      "detail": "Staged FMA75351 (4642 tris), SHA-256 matches committed pin in data/phase52_source_hashes.json; midline-span measured. Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    }
+  ]
+}

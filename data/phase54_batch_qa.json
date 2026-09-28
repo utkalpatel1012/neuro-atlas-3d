@@ -1,0 +1,43 @@
+{
+  "batch": "phase54-nerve-cranial",
+  "generated_at": "2026-09-28T11:02:24.111Z",
+  "generator": "scripts/pipeline/prepare_nerve_batch.ts",
+  "verdicts": [
+    {
+      "assetId": "mesh.optic_nerve.right.v1",
+      "structureId": "brain.cranial_nerves.optic_nerve_right",
+      "anatomicalCategory": "CRANIAL_NERVE",
+      "profileId": "solid-subcortical-nucleus",
+      "measuredTriangles": 10310,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 10954
+    },
+    {
+      "assetId": "mesh.optic_nerve.left.v1",
+      "structureId": "brain.cranial_nerves.optic_nerve_left",
+      "anatomicalCategory": "CRANIAL_NERVE",
+      "profileId": "solid-subcortical-nucleus",
+      "measuredTriangles": 10302,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 10837
+    },
+    {
+      "assetId": "mesh.optic_chiasm.midline.v1",
+      "structureId": "brain.cranial_nerves.optic_chiasm",
+      "anatomicalCategory": "CRANIAL_NERVE",
+      "profileId": "solid-subcortical-nucleus",
+      "measuredTriangles": 7752,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 11096
+    }
+  ]
+}

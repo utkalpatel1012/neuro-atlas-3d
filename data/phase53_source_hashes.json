@@ -1,0 +1,68 @@
+{
+    "_comment":  "Phase 5.3 pinned expected SHA-256 for every Phase 5.3 mirror download. prepare_tract_batch.ts compares staged bytes against this file and REJECTS on mismatch, so a swapped or re-converted mirror artifact cannot be ingested silently. These values are computed directly from the staged mirror bytes in C:/Projects/_audit_tmp/phase53_<FMA>.stl and cross-checked after staging against assets/raw/<asset_id>/ingestion.json original_hash. They attest the CONVERTED bytes served by the third-party OBJ-to-STL mirror, not DBCLS-original objects; the mirror is itself an unverified-conversion intermediary (see docs/PRODUCTION_DATASET_LICENSE_MATRIX.md).",
+    "provenance_authority":  "C:/Projects/_audit_tmp/phase53_<FMA>.stl staged bytes, recomputed after staging from assets/raw/<asset_id>/<FMA>.stl ingestion.json original_hash",
+    "residual_risk":  "MIRROR_CONVERSION_UNVERIFIED - the third-party mirror converts DBCLS OBJ to STL; these hashes pin WHICH converted bytes were ingested, not equivalence to a DBCLS-original release artifact. Comparison against an official DBCLS-published checksum is NOT AVAILABLE.",
+    "recorded_at":  "2026-09-28",
+    "sources":  [
+                    {
+                        "fma_id":  "FMA86464",
+                        "asset_id":  "mesh.corpus_callosum.midline.v1",
+                        "byte_length":  6627684,
+                        "sha256":  "81abbbe732159738890a03907d28084d5facd9c132e09a473a4d9128ffa9e4c8"
+                    },
+                    {
+                        "fma_id":  "FMA72908",
+                        "asset_id":  "mesh.internal_capsule_anterior_limb.right.v1",
+                        "byte_length":  2436184,
+                        "sha256":  "5affafa6e817b3879f61aef14d23174e567b02f256c87eb6ea7c00b8c4b4904a"
+                    },
+                    {
+                        "fma_id":  "FMA72909",
+                        "asset_id":  "mesh.internal_capsule_anterior_limb.left.v1",
+                        "byte_length":  2435684,
+                        "sha256":  "49c59151e342f7335274e65b9697200d96ebfbc431fcc2110a7435581acfcbe7"
+                    },
+                    {
+                        "fma_id":  "FMA72924",
+                        "asset_id":  "mesh.fornix.right.v1",
+                        "byte_length":  1465084,
+                        "sha256":  "a52c3b7a772e63baecfe1e9767518ea0b81335827c42b69e026dec9d489e8215"
+                    },
+                    {
+                        "fma_id":  "FMA72925",
+                        "asset_id":  "mesh.fornix.left.v1",
+                        "byte_length":  1468684,
+                        "sha256":  "80869ce2f13e426d38e732c6ebfd3c30e67143b3515c6420bb24d9b5e6c0f594"
+                    },
+                    {
+                        "fma_id":  "FMA61970",
+                        "asset_id":  "mesh.fornix_commissure.midline.v1",
+                        "byte_length":  2308284,
+                        "sha256":  "94502280939abfa245d9a5bbd1a7c62b54bfd2a5213ea516816417705abf2467"
+                    },
+                    {
+                        "fma_id":  "FMA61961",
+                        "asset_id":  "mesh.anterior_commissure.midline.v1",
+                        "byte_length":  184584,
+                        "sha256":  "ceb8a676040b644e93681209f0b24a2581dff73a65527222adc80073f38a3dc4"
+                    },
+                    {
+                        "fma_id":  "FMA62072",
+                        "asset_id":  "mesh.posterior_commissure.midline.v1",
+                        "byte_length":  189384,
+                        "sha256":  "6bb179395b1b4222796c2b52b6c9763cf28facf96edbee9553eec17d88f92dc5"
+                    },
+                    {
+                        "fma_id":  "FMA62382",
+                        "asset_id":  "mesh.optic_tract.right.v1",
+                        "byte_length":  505584,
+                        "sha256":  "d0e96f05fdcba0d06e7ef4a690ed62a720efa1157fc471213b483e135027a164"
+                    },
+                    {
+                        "fma_id":  "FMA67936",
+                        "asset_id":  "mesh.optic_tract.left.v1",
+                        "byte_length":  506184,
+                        "sha256":  "acee34ecaed0aae14807950b0072c860cce7975ab4bdc5953b628db5c18c77cb"
+                    }
+                ]
+}

@@ -1,0 +1,26 @@
+{
+    "_comment":  "Phase 5.4 pinned expected SHA-256 for every Phase 5.4 mirror download. prepare_nerve_batch.ts compares staged bytes against this file and REJECTS on mismatch, so a swapped or re-converted mirror artifact cannot be ingested silently. These values are computed directly from the staged mirror bytes in C:/Projects/_audit_tmp/phase54_<FMA>.stl and cross-checked after staging against assets/raw/<asset_id>/ingestion.json original_hash. They attest the CONVERTED bytes served by the third-party OBJ-to-STL mirror, not DBCLS-original objects; the mirror is itself an unverified-conversion intermediary (see docs/PRODUCTION_DATASET_LICENSE_MATRIX.md).",
+    "provenance_authority":  "C:/Projects/_audit_tmp/phase54_<FMA>.stl staged bytes, recomputed after staging from assets/raw/<asset_id>/<FMA>.stl ingestion.json original_hash",
+    "residual_risk":  "MIRROR_CONVERSION_UNVERIFIED - the third-party mirror converts DBCLS OBJ to STL; these hashes pin WHICH converted bytes were ingested, not equivalence to a DBCLS-original release artifact. Comparison against an official DBCLS-published checksum is NOT AVAILABLE.",
+    "recorded_at":  "2026-09-28",
+    "sources":  [
+                    {
+                        "fma_id":  "FMA50875",
+                        "asset_id":  "mesh.optic_nerve.right.v1",
+                        "byte_length":  515584,
+                        "sha256":  "e9f65589fc60b5193e4cf381742e790abcde510b691463ddacf3f6e522e163b7"
+                    },
+                    {
+                        "fma_id":  "FMA50878",
+                        "asset_id":  "mesh.optic_nerve.left.v1",
+                        "byte_length":  515184,
+                        "sha256":  "6b8e244b2a7280ece5df8d4194b6a4dd2cf66dedd90371922f24ac4b0d114006"
+                    },
+                    {
+                        "fma_id":  "FMA62045",
+                        "asset_id":  "mesh.optic_chiasm.midline.v1",
+                        "byte_length":  387684,
+                        "sha256":  "aa1949a04dbbd42e15cc5b63a2849ba8120c8819be1f15f766d53f86e09ad67b"
+                    }
+                ]
+}

@@ -1,0 +1,127 @@
+{
+  "batch": "phase53-tract-white-matter",
+  "generated_at": "2026-09-28T08:55:47.140Z",
+  "generator": "scripts/pipeline/prepare_tract_batch.ts",
+  "verdicts": [
+    {
+      "assetId": "mesh.corpus_callosum.midline.v1",
+      "structureId": "brain.white_matter.corpus_callosum",
+      "anatomicalCategory": "WHITE_MATTER",
+      "profileId": "solid-subcortical-nucleus",
+      "measuredTriangles": 132552,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 9418
+    },
+    {
+      "assetId": "mesh.internal_capsule_anterior_limb.right.v1",
+      "structureId": "brain.white_matter.internal_capsule_anterior_limb_right",
+      "anatomicalCategory": "WHITE_MATTER",
+      "profileId": "solid-subcortical-nucleus",
+      "measuredTriangles": 48722,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 9205
+    },
+    {
+      "assetId": "mesh.internal_capsule_anterior_limb.left.v1",
+      "structureId": "brain.white_matter.internal_capsule_anterior_limb_left",
+      "anatomicalCategory": "WHITE_MATTER",
+      "profileId": "solid-subcortical-nucleus",
+      "measuredTriangles": 48712,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 9363
+    },
+    {
+      "assetId": "mesh.fornix.right.v1",
+      "structureId": "brain.white_matter.fornix_right",
+      "anatomicalCategory": "WHITE_MATTER",
+      "profileId": "solid-subcortical-nucleus",
+      "measuredTriangles": 29300,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 9152
+    },
+    {
+      "assetId": "mesh.fornix.left.v1",
+      "structureId": "brain.white_matter.fornix_left",
+      "anatomicalCategory": "WHITE_MATTER",
+      "profileId": "solid-subcortical-nucleus",
+      "measuredTriangles": 29372,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 9986
+    },
+    {
+      "assetId": "mesh.fornix_commissure.midline.v1",
+      "structureId": "brain.white_matter.fornix_commissure",
+      "anatomicalCategory": "WHITE_MATTER",
+      "profileId": "solid-subcortical-nucleus",
+      "measuredTriangles": 46164,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 9839
+    },
+    {
+      "assetId": "mesh.anterior_commissure.midline.v1",
+      "structureId": "brain.white_matter.anterior_commissure",
+      "anatomicalCategory": "WHITE_MATTER",
+      "profileId": "solid-subcortical-nucleus",
+      "measuredTriangles": 3690,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 10448
+    },
+    {
+      "assetId": "mesh.posterior_commissure.midline.v1",
+      "structureId": "brain.white_matter.posterior_commissure",
+      "anatomicalCategory": "WHITE_MATTER",
+      "profileId": "solid-subcortical-nucleus",
+      "measuredTriangles": 3786,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 10471
+    },
+    {
+      "assetId": "mesh.optic_tract.right.v1",
+      "structureId": "brain.white_matter.optic_tract_right",
+      "anatomicalCategory": "WHITE_MATTER",
+      "profileId": "solid-subcortical-nucleus",
+      "measuredTriangles": 10110,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 11496
+    },
+    {
+      "assetId": "mesh.optic_tract.left.v1",
+      "structureId": "brain.white_matter.optic_tract_left",
+      "anatomicalCategory": "WHITE_MATTER",
+      "profileId": "solid-subcortical-nucleus",
+      "measuredTriangles": 10122,
+      "measuredShells": 1,
+      "measuredBoundaryEdges": 0,
+      "state": "RUNTIME_READY",
+      "reason": "6-stage pipeline complete.",
+      "durationMs": 11669
+    }
+  ]
+}

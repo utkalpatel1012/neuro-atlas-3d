@@ -129,7 +129,7 @@
     "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
     "upstream_asset_id": "BodyParts3D_Cortex_Right_Assembly_14_Structures",
     "upstream_license": "CC_BY_SA_2_1_JP",
-    "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Relicensed under CC Attribution 4.0 International (verified 2025-02-27 DBCLS).",
+    "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
     "acquisition_date": "2026-09-26",
     "modifications_applied": [
       {
@@ -208,7 +208,7 @@
     "resulting_sha256_hash": "906e2be097695c6146fee7db47b82998a1ae5d88beda14e3d0044b748ddf9b13",
     "resulting_license": "CC-BY-SA 4.0",
     "production_eligibility": "PRODUCTION_ALLOWED",
-    "commercial_redistribution": "PERMITTED",
+    "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
     "restrictions_and_covenants": [
       "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
       "Derived 3D meshes shared under CC-BY-SA 4.0 compatible terms",

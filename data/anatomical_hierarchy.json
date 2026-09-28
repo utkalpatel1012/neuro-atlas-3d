@@ -20,7 +20,10 @@
         "brain.brainstem",
         "brain.cerebellum",
         "brain.ventricular_system",
-        "brain.basal_ganglia"
+        "brain.basal_ganglia",
+        "brain.white_matter",
+        "brain.cranial_nerves",
+        "brain.vasculature"
       ]
     },
     {
@@ -299,23 +302,40 @@
     {
       "id": "brain.brainstem",
       "level": 1,
-      "name": "Brainstem (midbrain, pons, medulla — pipeline targets)",
+      "name": "Brainstem (midbrain, pons, medulla — NOT represented; pons/medulla source segments rejected for non-manifold geometry, midbrain absent from source)",
       "geometry_state": "DOCUMENTED",
-      "children": []
+      "children": [
+        "brain.brainstem.midbrain",
+        "brain.brainstem.pons",
+        "brain.brainstem.medulla_oblongata"
+      ]
     },
     {
       "id": "brain.cerebellum",
       "level": 1,
-      "name": "Cerebellum (hemispheres, vermis — pipeline targets)",
+      "name": "Cerebellum (gross whole segment; vermis and hemispheres NOT separately represented, deep nuclei not represented)",
       "geometry_state": "DOCUMENTED",
-      "children": []
+      "children": [
+        "brain.cerebellum.vermis",
+        "brain.cerebellum.hemisphere",
+        "brain.cerebellum.deep_nuclei",
+        "brain.cerebellum.cerebellum"
+      ]
     },
     {
       "id": "brain.ventricular_system",
       "level": 1,
-      "name": "Ventricular system (cavities, not tissue — pipeline targets)",
+      "name": "Ventricular system (CSF cavities, not neural tissue; lateral ventricles NOT represented)",
       "geometry_state": "DOCUMENTED",
-      "children": []
+      "children": [
+        "brain.ventricular_system.third_ventricle",
+        "brain.ventricular_system.fourth_ventricle",
+        "brain.ventricular_system.cerebral_aqueduct",
+        "brain.ventricular_system.interventricular_foramen",
+        "brain.ventricular_system.lateral_ventricle",
+        "brain.ventricular_system.foramen_luschka",
+        "brain.ventricular_system.foramen_magendie"
+      ]
     },
     {
       "id": "brain.basal_ganglia",
@@ -433,6 +453,483 @@
       "id": "brain.basal_ganglia.accumbens",
       "level": 3,
       "name": "Nucleus accumbens (DOCUMENTED — no source geometry)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.brainstem.midbrain",
+      "level": 2,
+      "name": "Midbrain (DOCUMENTED — FMA61993 has no mirror STL)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum.vermis",
+      "level": 3,
+      "name": "Cerebellar vermis (DOCUMENTED — inseparable in gross source segment)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum.hemisphere",
+      "level": 3,
+      "name": "Cerebellar hemisphere (DOCUMENTED — gross source segment is the whole cerebellum, not split)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum.deep_nuclei",
+      "level": 3,
+      "name": "Deep cerebellar nuclei — dentate, fastigial, emboliform, globose (DOCUMENTED — no source; not fabricated)",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.cerebellum.deep_nuclei.dentate_nucleus",
+        "brain.cerebellum.deep_nuclei.fastigial_nucleus",
+        "brain.cerebellum.deep_nuclei.emboliform_nucleus",
+        "brain.cerebellum.deep_nuclei.globose_nucleus"
+      ]
+    },
+    {
+      "id": "brain.cerebellum.deep_nuclei.dentate_nucleus",
+      "level": 4,
+      "name": "Dentate nucleus (DOCUMENTED — no source)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum.deep_nuclei.fastigial_nucleus",
+      "level": 4,
+      "name": "Fastigial nucleus (DOCUMENTED — no source)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum.deep_nuclei.emboliform_nucleus",
+      "level": 4,
+      "name": "Emboliform nucleus (DOCUMENTED — no source)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum.deep_nuclei.globose_nucleus",
+      "level": 4,
+      "name": "Globose nucleus (DOCUMENTED — no source)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cerebellum.cerebellum",
+      "level": 3,
+      "name": "Cerebellum",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.cerebellum.bilateral.v1",
+      "structure_record": "data/structures/cerebellum_bilateral.json"
+    },
+    {
+      "id": "brain.ventricular_system.third_ventricle",
+      "level": 3,
+      "name": "Third ventricle",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.third_ventricle.midline.v1",
+      "structure_record": "data/structures/third_ventricle_midline.json"
+    },
+    {
+      "id": "brain.ventricular_system.fourth_ventricle",
+      "level": 3,
+      "name": "Fourth ventricle",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.fourth_ventricle.midline.v1",
+      "structure_record": "data/structures/fourth_ventricle_midline.json"
+    },
+    {
+      "id": "brain.ventricular_system.cerebral_aqueduct",
+      "level": 3,
+      "name": "Cerebral aqueduct",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.cerebral_aqueduct.midline.v1",
+      "structure_record": "data/structures/cerebral_aqueduct_midline.json"
+    },
+    {
+      "id": "brain.ventricular_system.interventricular_foramen",
+      "level": 3,
+      "name": "Interventricular foramen",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.interventricular_foramen.midline.v1",
+      "structure_record": "data/structures/interventricular_foramen_midline.json"
+    },
+    {
+      "id": "brain.brainstem.pons",
+      "level": 2,
+      "name": "Pons (DOCUMENTED — source segment failed topology QA)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.brainstem.medulla_oblongata",
+      "level": 2,
+      "name": "Medulla oblongata (DOCUMENTED — source segment failed topology QA)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.ventricular_system.lateral_ventricle",
+      "level": 3,
+      "name": "Lateral ventricle (DOCUMENTED — no source in this batch; cavities, not tissue)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.ventricular_system.foramen_luschka",
+      "level": 3,
+      "name": "Foramen of Luschka (DOCUMENTED — no source in this batch; aperture of the 4th ventricle)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.ventricular_system.foramen_magendie",
+      "level": 3,
+      "name": "Foramen of Magendie (DOCUMENTED — no source in this batch; aperture of the 4th ventricle)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter",
+      "level": 1,
+      "name": "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.white_matter.corpus_callosum",
+        "brain.white_matter.internal_capsule_anterior_limb_right",
+        "brain.white_matter.internal_capsule_anterior_limb_left",
+        "brain.white_matter.fornix_right",
+        "brain.white_matter.fornix_left",
+        "brain.white_matter.fornix_commissure",
+        "brain.white_matter.anterior_commissure",
+        "brain.white_matter.posterior_commissure",
+        "brain.white_matter.optic_tract_right",
+        "brain.white_matter.optic_tract_left",
+        "brain.white_matter.internal_capsule",
+        "brain.white_matter.fornix_whole",
+        "brain.white_matter.optic_tract_whole",
+        "brain.white_matter.corona_radiata",
+        "brain.white_matter.superior_longitudinal_fasciculus",
+        "brain.white_matter.uncinate_fasciculus",
+        "brain.white_matter.inferior_longitudinal_fasciculus",
+        "brain.white_matter.cingulum"
+      ]
+    },
+    {
+      "id": "brain.white_matter.corpus_callosum",
+      "level": 2,
+      "name": "Corpus callosum (whole commissure in one segment; no regional subdivision)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.corpus_callosum.midline.v1",
+      "structure_record": "data/structures/corpus_callosum_midline.json"
+    },
+    {
+      "id": "brain.white_matter.internal_capsule_anterior_limb_right",
+      "level": 2,
+      "name": "Anterior limb of internal capsule (right)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.internal_capsule_anterior_limb.right.v1",
+      "structure_record": "data/structures/internal_capsule_anterior_limb_right.json"
+    },
+    {
+      "id": "brain.white_matter.internal_capsule_anterior_limb_left",
+      "level": 2,
+      "name": "Anterior limb of internal capsule (left)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.internal_capsule_anterior_limb.left.v1",
+      "structure_record": "data/structures/internal_capsule_anterior_limb_left.json"
+    },
+    {
+      "id": "brain.white_matter.fornix_right",
+      "level": 2,
+      "name": "Fornix (right; crus/body/column NOT subdivided)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.fornix.right.v1",
+      "structure_record": "data/structures/fornix_right.json"
+    },
+    {
+      "id": "brain.white_matter.fornix_left",
+      "level": 2,
+      "name": "Fornix (left; crus/body/column NOT subdivided)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.fornix.left.v1",
+      "structure_record": "data/structures/fornix_left.json"
+    },
+    {
+      "id": "brain.white_matter.fornix_commissure",
+      "level": 2,
+      "name": "Commissure of fornix (hippocampal commissure)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.fornix_commissure.midline.v1",
+      "structure_record": "data/structures/fornix_commissure_midline.json"
+    },
+    {
+      "id": "brain.white_matter.anterior_commissure",
+      "level": 2,
+      "name": "Anterior commissure",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.anterior_commissure.midline.v1",
+      "structure_record": "data/structures/anterior_commissure_midline.json"
+    },
+    {
+      "id": "brain.white_matter.posterior_commissure",
+      "level": 2,
+      "name": "Posterior commissure",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.posterior_commissure.midline.v1",
+      "structure_record": "data/structures/posterior_commissure_midline.json"
+    },
+    {
+      "id": "brain.white_matter.optic_tract_right",
+      "level": 2,
+      "name": "Optic tract (right)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.optic_tract.right.v1",
+      "structure_record": "data/structures/optic_tract_right.json"
+    },
+    {
+      "id": "brain.white_matter.optic_tract_left",
+      "level": 2,
+      "name": "Optic tract (left)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.optic_tract.left.v1",
+      "structure_record": "data/structures/optic_tract_left.json"
+    },
+    {
+      "id": "brain.white_matter.internal_capsule",
+      "level": 2,
+      "name": "Internal capsule as a whole (DOCUMENTED — FMA61950 listed, no mirror STL; only the paired anterior-limb segments are servable)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter.fornix_whole",
+      "level": 2,
+      "name": "Fornix as a whole (DOCUMENTED — FMA61965 listed, no mirror STL; only the lateralised segments are servable)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter.optic_tract_whole",
+      "level": 2,
+      "name": "Optic tract as a whole (DOCUMENTED — FMA62046 listed, no mirror STL; only the lateralised segments are servable)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter.corona_radiata",
+      "level": 2,
+      "name": "Corona radiata (DOCUMENTED — absent from the distribution entirely)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter.superior_longitudinal_fasciculus",
+      "level": 2,
+      "name": "Superior longitudinal fasciculus incl. arcuate (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter.uncinate_fasciculus",
+      "level": 2,
+      "name": "Uncinate fasciculus (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter.inferior_longitudinal_fasciculus",
+      "level": 2,
+      "name": "Inferior longitudinal fasciculus (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter.cingulum",
+      "level": 2,
+      "name": "Cingulum bundle (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves",
+      "level": 1,
+      "name": "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.cranial_nerves.optic_nerve_right",
+        "brain.cranial_nerves.optic_nerve_left",
+        "brain.cranial_nerves.optic_chiasm",
+        "brain.cranial_nerves.optic_nerve_whole",
+        "brain.cranial_nerves.olfactory",
+        "brain.cranial_nerves.oculomotor",
+        "brain.cranial_nerves.trochlear",
+        "brain.cranial_nerves.trigeminal",
+        "brain.cranial_nerves.abducens",
+        "brain.cranial_nerves.facial",
+        "brain.cranial_nerves.vestibulocochlear",
+        "brain.cranial_nerves.glossopharyngeal",
+        "brain.cranial_nerves.vagus",
+        "brain.cranial_nerves.accessory",
+        "brain.cranial_nerves.hypoglossal"
+      ]
+    },
+    {
+      "id": "brain.vasculature",
+      "level": 1,
+      "name": "Cerebral vasculature (DOCUMENTED — no vessels are present in the distribution; none fabricated)",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.vasculature.circle_of_willis",
+        "brain.vasculature.anterior_cerebral_artery",
+        "brain.vasculature.middle_cerebral_artery",
+        "brain.vasculature.posterior_cerebral_artery",
+        "brain.vasculature.vertebrobasilar_system"
+      ]
+    },
+    {
+      "id": "brain.cranial_nerves.optic_nerve_right",
+      "level": 2,
+      "name": "Optic nerve (right)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.optic_nerve.right.v1",
+      "structure_record": "data/structures/optic_nerve_right.json"
+    },
+    {
+      "id": "brain.cranial_nerves.optic_nerve_left",
+      "level": 2,
+      "name": "Optic nerve (left)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.optic_nerve.left.v1",
+      "structure_record": "data/structures/optic_nerve_left.json"
+    },
+    {
+      "id": "brain.cranial_nerves.optic_chiasm",
+      "level": 2,
+      "name": "Optic chiasm",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.optic_chiasm.midline.v1",
+      "structure_record": "data/structures/optic_chiasm_midline.json"
+    },
+    {
+      "id": "brain.cranial_nerves.optic_nerve_whole",
+      "level": 2,
+      "name": "Optic nerve, whole (CN II) (DOCUMENTED — distribution lists FMA50863 but serves no mirror STL; only the paired segments and chiasm ship — no whole-nerve geometry fabricated)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.olfactory",
+      "level": 2,
+      "name": "Olfactory nerve (CN I) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.oculomotor",
+      "level": 2,
+      "name": "Oculomotor nerve (CN III) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.trochlear",
+      "level": 2,
+      "name": "Trochlear nerve (CN IV) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.trigeminal",
+      "level": 2,
+      "name": "Trigeminal nerve (CN V) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.abducens",
+      "level": 2,
+      "name": "Abducens nerve (CN VI) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.facial",
+      "level": 2,
+      "name": "Facial nerve (CN VII) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.vestibulocochlear",
+      "level": 2,
+      "name": "Vestibulocochlear nerve (CN VIII) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.glossopharyngeal",
+      "level": 2,
+      "name": "Glossopharyngeal nerve (CN IX) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.vagus",
+      "level": 2,
+      "name": "Vagus nerve (CN X) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.accessory",
+      "level": 2,
+      "name": "Accessory nerve (CN XI) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.hypoglossal",
+      "level": 2,
+      "name": "Hypoglossal nerve (CN XII) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.vasculature.circle_of_willis",
+      "level": 2,
+      "name": "Circle of Willis (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.vasculature.anterior_cerebral_artery",
+      "level": 2,
+      "name": "Anterior cerebral artery (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.vasculature.middle_cerebral_artery",
+      "level": 2,
+      "name": "Middle cerebral artery (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.vasculature.posterior_cerebral_artery",
+      "level": 2,
+      "name": "Posterior cerebral artery (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.vasculature.vertebrobasilar_system",
+      "level": 2,
+      "name": "Vertebrobasilar system (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
       "geometry_state": "DOCUMENTED",
       "children": []
     }

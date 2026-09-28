@@ -1,77 +1,89 @@
 {
   "batch": "phase51-deep-limbic",
-  "generated_at": "2026-09-27T16:07:55.184Z",
+  "generated_at": "2026-09-28T08:41:39.872Z",
   "generator": "scripts/pipeline/prepare_deep_batch.ts",
   "items": [
     {
       "assetId": "mesh.thalamus.left.v1",
       "structureId": "brain.diencephalon.left.thalamus",
+      "category": "DEEP_GRAY",
       "state": "SOURCE_AVAILABLE",
       "detail": "Staged FMA258716 (7396 tris), hash + laterality verified."
     },
     {
       "assetId": "mesh.thalamus.right.v1",
       "structureId": "brain.diencephalon.right.thalamus",
+      "category": "DEEP_GRAY",
       "state": "SOURCE_AVAILABLE",
       "detail": "Staged FMA258714 (3298 tris), hash + laterality verified."
     },
     {
       "assetId": "mesh.caudate_nucleus.left.v1",
       "structureId": "brain.basal_ganglia.left.caudate_nucleus",
+      "category": "DEEP_GRAY",
       "state": "SOURCE_AVAILABLE",
       "detail": "Staged FMA72827 (11160 tris), hash + laterality verified."
     },
     {
       "assetId": "mesh.caudate_nucleus.right.v1",
       "structureId": "brain.basal_ganglia.right.caudate_nucleus",
+      "category": "DEEP_GRAY",
       "state": "SOURCE_AVAILABLE",
       "detail": "Staged FMA72826 (11272 tris), hash + laterality verified."
     },
     {
       "assetId": "mesh.putamen.left.v1",
       "structureId": "brain.basal_ganglia.left.putamen",
+      "category": "DEEP_GRAY",
       "state": "SOURCE_AVAILABLE",
       "detail": "Staged FMA72829 (30636 tris), hash + laterality verified."
     },
     {
       "assetId": "mesh.putamen.right.v1",
       "structureId": "brain.basal_ganglia.right.putamen",
+      "category": "DEEP_GRAY",
       "state": "SOURCE_AVAILABLE",
       "detail": "Staged FMA72828 (30670 tris), hash + laterality verified."
     },
     {
       "assetId": "mesh.globus_pallidus.left.v1",
       "structureId": "brain.basal_ganglia.left.globus_pallidus",
+      "category": "DEEP_GRAY",
       "state": "SOURCE_AVAILABLE",
       "detail": "Staged FMA72831 (30738 tris), hash + laterality verified."
     },
     {
       "assetId": "mesh.globus_pallidus.right.v1",
       "structureId": "brain.basal_ganglia.right.globus_pallidus",
+      "category": "DEEP_GRAY",
       "state": "SOURCE_AVAILABLE",
       "detail": "Staged FMA72830 (23206 tris), hash + laterality verified."
     },
     {
       "assetId": "mesh.amygdala.left.v1",
       "structureId": "brain.telencephalon.left.limbic.amygdala",
+      "category": "DEEP_GRAY",
       "state": "SOURCE_AVAILABLE",
       "detail": "Staged FMA72833 (1736 tris), hash + laterality verified."
     },
     {
       "assetId": "mesh.amygdala.right.v1",
       "structureId": "brain.telencephalon.right.limbic.amygdala",
+      "category": "DEEP_GRAY",
       "state": "SOURCE_AVAILABLE",
       "detail": "Staged FMA72832 (1744 tris), hash + laterality verified."
     },
     {
       "assetId": "mesh.mammillary_body.bilateral.v1",
       "structureId": "brain.diencephalon.bilateral.hypothalamus.mammillary_body",
+      "category": "DEEP_GRAY",
       "state": "SOURCE_AVAILABLE",
       "detail": "Staged FMA74877 (1666 tris), hash + laterality verified."
     },
     {
       "assetId": "mesh.septum_pellucidum.midline.v1",
       "structureId": "brain.telencephalon.midline.septum_pellucidum",
+      "category": "DEEP_GRAY",
       "state": "SOURCE_AVAILABLE",
       "detail": "Staged FMA61844 (25012 tris), hash + laterality verified."
     }
