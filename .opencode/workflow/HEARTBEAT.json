@@ -2,8 +2,8 @@
     "lastRun":  "2026-09-27T20:23:15Z",
     "currentPhase":  "5.2",
     "pid":  null,
-    "lastCommit":  "71cbcf771901e78a9e9af5b5d04f754dfb7e2672",
-    "lastAction":  "Round-2 repairs applied: C1/C2 closed, licensing surface fixed (UI reads record, attribution footer shipped, relicensing-as-fact removed from all records), 2 self-inflicted gate regressions found by reviewers and fixed, TEST 10 regression guards added (312 checks)",
-    "nextAction":  "Re-run the 4 independent Phase 5.2 reviewers against round-2 repairs, then final certifier; write completion report; commit on autonomous/phase-5.2 (not yet pushed)",
+    "lastCommit":  "e5c89b2",
+    "lastAction":  "Phase 5.2 CERTIFIED (final-certifier PASS); committed e5c89b2 on autonomous/phase-5.2; main untouched; NOT pushed",
+    "nextAction":  "Push autonomous/phase-5.2 after human confirm; consolidate M2 batch-script fork; human decision on L21; then Phase 5.3",
     "status":  "IN_PROGRESS"
 }
