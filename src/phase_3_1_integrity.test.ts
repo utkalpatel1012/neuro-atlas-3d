@@ -257,10 +257,11 @@ async function runTests() {
   // Phase 5.0: production grows 4 → 20 (16 batch gyral assets, same
   // BodyParts3D license chain). Phase 5.1: 20 → 31 (11 deep/limbic assets,
   // same chain). Phase 5.2: 31 → 36 (5 posterior/ventricular assets, same
-  // chain). The load-bearing invariant is unchanged:
+  // chain). Phase 5.3: 36 → 46 (10 white-matter assets, same chain).
+  // The load-bearing invariant is unchanged:
   // whitelist-exact membership with zero restricted bytes.
-  assert(manifest.total_assets === 36, 'Exactly 36 production assets (4 legacy + 16 Phase-5 batch + 11 Phase-5.1 deep/limbic + 5 Phase-5.2 posterior)');
-  assert(Array.isArray(manifest.production_whitelist) && manifest.production_whitelist.length === 36, 'Whitelist covers all 36 production assets');
+  assert(manifest.total_assets === 46, 'Exactly 46 production assets (4 legacy + 16 Phase-5 batch + 11 Phase-5.1 deep/limbic + 5 Phase-5.2 posterior + 10 Phase-5.3 white-matter)');
+  assert(Array.isArray(manifest.production_whitelist) && manifest.production_whitelist.length === 46, 'Whitelist covers all 46 production assets');
   assert(manifest.production_whitelist.every((id: string) => manifest.assets[id]), 'Every whitelisted id resolves to a manifest entry');
   assert(Array.isArray(manifest.research_quarantine), 'Quarantine list exists');
   // Claim-aware: free-text MENTIONS of restricted sources (e.g. "Julich-Brain" as a
@@ -286,7 +287,7 @@ async function runTests() {
   for (const token of ['hcp_mmp', 'HCP_MMP', 'julich', 'Julich', 'bigbrain', 'BigBrain']) {
     assert(!dataBlob.includes(token), `Production data-references contain no restricted token: ${token}`);
   }
-  console.log('[PASS] 36-asset whitelist; zero HCP/Julich/BigBrain data-references in production records.');
+  console.log('[PASS] 46-asset whitelist; zero HCP/Julich/BigBrain data-references in production records.');
   passedChecks += 5;
 
   // --------------------------------------------------------------------------

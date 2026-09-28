@@ -63,10 +63,11 @@ async function runTests() {
 
   const manifest = readJson('assets/manifests/assets.manifest.json');
   // Global count advanced 31 → 36 in Phase 5.2 (5 posterior/ventricular
-  // assets appended, same provenance chain). This suite's own load-bearing
-  // assertions — the 11 deep/limbic assets, their hashes, hierarchy and
-  // topology — are unchanged below.
-  assert(Object.keys(manifest.assets).length === 36, `manifest holds 36 assets, got ${Object.keys(manifest.assets).length}`);
+  // assets appended, same provenance chain) and 36 → 46 in Phase 5.3
+  // (10 white-matter assets appended, same provenance chain). This suite's
+  // own load-bearing assertions — the 11 deep/limbic assets, their hashes,
+  // hierarchy and topology — are unchanged below.
+  assert(Object.keys(manifest.assets).length === 46, `manifest holds 46 assets, got ${Object.keys(manifest.assets).length}`);
   passed++;
 
   // TEST 1: source identity + unique IDs (§56).

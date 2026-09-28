@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.internal_capsule_anterior_limb.left.v1",
+  "timestamp": "2026-09-28T08:54:25.209Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.internal_capsule_anterior_limb.left.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.left.v1/lod/mesh.internal_capsule_anterior_limb.left.v1.lod0.glb",
+      "uncompressedByteLength": 877892,
+      "uncompressedSha256": "97ce41ece7d2f0e4e0f778867de82330aa4860c9905c20d2e14d209e47291b4a",
+      "runtimeGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.left.v1/runtime/mesh.internal_capsule_anterior_limb.left.v1.lod0.meshopt.glb",
+      "compressedByteLength": 526584,
+      "compressedSha256": "518d2ee855c740c6326c744e49995baabfc67ad3b711d2cefe4cf947902c695d",
+      "compressionRatio": 1.67,
+      "savingsPercent": 40.02,
+      "vertexCount": 24358,
+      "triangleCount": 48712,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.left.v1/lod/mesh.internal_capsule_anterior_limb.left.v1.lod1.glb",
+      "uncompressedByteLength": 658688,
+      "uncompressedSha256": "32d2f1d8dcc8004356b30a20b657705203436a667b517dec383d325e8c828128",
+      "runtimeGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.left.v1/runtime/mesh.internal_capsule_anterior_limb.left.v1.lod1.meshopt.glb",
+      "compressedByteLength": 404152,
+      "compressedSha256": "dffb095159375e419a5e8c323bf47510b5d5fdc7c2cb99524f5d6850484640d1",
+      "compressionRatio": 1.63,
+      "savingsPercent": 38.64,
+      "vertexCount": 18269,
+      "triangleCount": 36534,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.left.v1/lod/mesh.internal_capsule_anterior_limb.left.v1.lod2.glb",
+      "uncompressedByteLength": 439480,
+      "uncompressedSha256": "6e868d353e9191d2770956ff5d6bb277c15b2dd873c24bb09d03ffb41c9bc5b0",
+      "runtimeGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.left.v1/runtime/mesh.internal_capsule_anterior_limb.left.v1.lod2.meshopt.glb",
+      "compressedByteLength": 278292,
+      "compressedSha256": "c4bf2027d9e54e74d75780c8812e366b803c1432a0a88138b82d45f86453587b",
+      "compressionRatio": 1.58,
+      "savingsPercent": 36.68,
+      "vertexCount": 12180,
+      "triangleCount": 24356,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.left.v1/lod/mesh.internal_capsule_anterior_limb.left.v1.lod3.glb",
+      "uncompressedByteLength": 220272,
+      "uncompressedSha256": "41ab62782ea1877e5f307732b8be8ab198e822e5ca0696b205f277e27cdfb38d",
+      "runtimeGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.left.v1/runtime/mesh.internal_capsule_anterior_limb.left.v1.lod3.meshopt.glb",
+      "compressedByteLength": 146828,
+      "compressedSha256": "9047677c5f7bb5f55aafa1702be51298999557ec82e1028077e98d0837ddad0d",
+      "compressionRatio": 1.5,
+      "savingsPercent": 33.34,
+      "vertexCount": 6091,
+      "triangleCount": 12178,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 2196332,
+  "overallCompressedBytes": 1355856,
+  "overallSavingsPercent": 38.27,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.internal_capsule_anterior_limb.left.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-28T08:54:25.209Z"
+  }
+}

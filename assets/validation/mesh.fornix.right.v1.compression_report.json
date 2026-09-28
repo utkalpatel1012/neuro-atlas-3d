@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.fornix.right.v1",
+  "timestamp": "2026-09-28T08:54:34.431Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.fornix.right.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.fornix.right.v1/lod/mesh.fornix.right.v1.lod0.glb",
+      "uncompressedByteLength": 528428,
+      "uncompressedSha256": "07f26a60321f0a4fcfe2eace40b844df4aea60985f8444aaa46a9e8e45fb4d8d",
+      "runtimeGlbPath": "assets/derived/mesh.fornix.right.v1/runtime/mesh.fornix.right.v1.lod0.meshopt.glb",
+      "compressedByteLength": 320960,
+      "compressedSha256": "b4daa18b0a2932b216159c74df70ae0640cd471f17c1d68e09f0b87f06d667a9",
+      "compressionRatio": 1.65,
+      "savingsPercent": 39.26,
+      "vertexCount": 14652,
+      "triangleCount": 29300,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.fornix.right.v1/lod/mesh.fornix.right.v1.lod1.glb",
+      "uncompressedByteLength": 396560,
+      "uncompressedSha256": "3397def20b5248fa8a2a48bfc3fe29d544143aa9fba8b3592efdf45f4351e3c5",
+      "runtimeGlbPath": "assets/derived/mesh.fornix.right.v1/runtime/mesh.fornix.right.v1.lod1.meshopt.glb",
+      "compressedByteLength": 246188,
+      "compressedSha256": "081a661c36f7d50e6d8b369e8071c2ee04050733a9e2211414b5f1b53b8f2130",
+      "compressionRatio": 1.61,
+      "savingsPercent": 37.92,
+      "vertexCount": 10989,
+      "triangleCount": 21974,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.fornix.right.v1/lod/mesh.fornix.right.v1.lod2.glb",
+      "uncompressedByteLength": 264720,
+      "uncompressedSha256": "7dcdf4995288530592672b6b7c787014ee131ecd3ff36653a8c9fd5c5f5c6ed2",
+      "runtimeGlbPath": "assets/derived/mesh.fornix.right.v1/runtime/mesh.fornix.right.v1.lod2.meshopt.glb",
+      "compressedByteLength": 169328,
+      "compressedSha256": "394086326e4ce21a38ca39ec71bd448319816c7db7252395df7ed7027d9df04d",
+      "compressionRatio": 1.56,
+      "savingsPercent": 36.04,
+      "vertexCount": 7327,
+      "triangleCount": 14650,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.fornix.right.v1/lod/mesh.fornix.right.v1.lod3.glb",
+      "uncompressedByteLength": 132852,
+      "uncompressedSha256": "7df6a0093fc4bc4bf24e6ec7b3dd839fdfac9e1fe9dd807dbae1397a07bc017a",
+      "runtimeGlbPath": "assets/derived/mesh.fornix.right.v1/runtime/mesh.fornix.right.v1.lod3.meshopt.glb",
+      "compressedByteLength": 88448,
+      "compressedSha256": "b14959d87a9f523a12ad85594369e05c18d54aac3cfcc8896a8976cf5165d7e2",
+      "compressionRatio": 1.5,
+      "savingsPercent": 33.42,
+      "vertexCount": 3664,
+      "triangleCount": 7324,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 1322560,
+  "overallCompressedBytes": 824924,
+  "overallSavingsPercent": 37.63,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.fornix.right.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-28T08:54:34.431Z"
+  }
+}

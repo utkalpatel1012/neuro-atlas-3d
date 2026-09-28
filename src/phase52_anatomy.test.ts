@@ -59,7 +59,11 @@ async function runTests() {
   let passed = 0;
 
   const manifest = readJson('assets/manifests/assets.manifest.json');
-  assert(Object.keys(manifest.assets).length === 36, `manifest holds 36 assets, got ${Object.keys(manifest.assets).length}`);
+  // Global count advanced 36 → 46 in Phase 5.3 (10 white-matter assets
+  // appended, same provenance chain). This suite's own load-bearing
+  // assertions — the 5 posterior/ventricular assets, rejections, cavity
+  // distinction, provenance guards — are unchanged below.
+  assert(Object.keys(manifest.assets).length === 46, `manifest holds 46 assets, got ${Object.keys(manifest.assets).length}`);
   passed++;
 
   // TEST 1: identity + IDs + ontology honesty.
@@ -502,9 +506,12 @@ async function runTests() {
   // place. This asserts the layers agree and that the record layer is covered, which the
   // round-1 MAJOR-3 guard did not do (it only read the manifest and the scripts).
   console.log('\n--- TEST 11: Licensing posture consistency across layers ---');
+  // Global record count advanced 36 → 46 in Phase 5.3 (10 white-matter
+  // records appended under the same conservative posture). The consistency
+  // invariant itself is unchanged.
   const recordFiles = fs.readdirSync(path.join(PROJECT_ROOT, 'data/structures'))
     .filter((f) => f.endsWith('.json'));
-  assert(recordFiles.length === 36, `all 36 structure records present (got ${recordFiles.length})`);
+  assert(recordFiles.length === 46, `all 46 structure records present (got ${recordFiles.length})`);
   passed++;
   for (const f of recordFiles) {
     const rec = readJson(`data/structures/${f}`);

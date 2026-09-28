@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.fornix_commissure.midline.v1",
+  "timestamp": "2026-09-28T08:54:53.678Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.fornix_commissure.midline.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.fornix_commissure.midline.v1/lod/mesh.fornix_commissure.midline.v1.lod0.glb",
+      "uncompressedByteLength": 832008,
+      "uncompressedSha256": "77d10fbb5465e39e45382e103be392c9f84bc2b3d37b8b27513ecb9ead7dfeb0",
+      "runtimeGlbPath": "assets/derived/mesh.fornix_commissure.midline.v1/runtime/mesh.fornix_commissure.midline.v1.lod0.meshopt.glb",
+      "compressedByteLength": 542336,
+      "compressedSha256": "1c1612ccf9bc07ea3ce0bfccf0986f4d734bf3804d1a46b1c7d1ec78ddc8bceb",
+      "compressionRatio": 1.53,
+      "savingsPercent": 34.82,
+      "vertexCount": 23084,
+      "triangleCount": 46164,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.fornix_commissure.midline.v1/lod/mesh.fornix_commissure.midline.v1.lod1.glb",
+      "uncompressedByteLength": 624248,
+      "uncompressedSha256": "4cb4515ba4e8f635c585b1aaaea45d577149979e0d4e00910d821240e8b6e898",
+      "runtimeGlbPath": "assets/derived/mesh.fornix_commissure.midline.v1/runtime/mesh.fornix_commissure.midline.v1.lod1.meshopt.glb",
+      "compressedByteLength": 418904,
+      "compressedSha256": "f9c286753ac88409ad2d659323145cd99ab3cafe9ec73d1e3724f33f1e40b9e1",
+      "compressionRatio": 1.49,
+      "savingsPercent": 32.89,
+      "vertexCount": 17313,
+      "triangleCount": 34622,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.fornix_commissure.midline.v1/lod/mesh.fornix_commissure.midline.v1.lod2.glb",
+      "uncompressedByteLength": 416528,
+      "uncompressedSha256": "b25e7e808d0fdeedeb8c60e0dc9665128072a7bebf267c2037f9d4218412558c",
+      "runtimeGlbPath": "assets/derived/mesh.fornix_commissure.midline.v1/runtime/mesh.fornix_commissure.midline.v1.lod2.meshopt.glb",
+      "compressedByteLength": 291580,
+      "compressedSha256": "cba03905a51293fef6a5e67b371b635ad8a8a0ecae1b3a62f1394bb67839ffd8",
+      "compressionRatio": 1.43,
+      "savingsPercent": 30,
+      "vertexCount": 11543,
+      "triangleCount": 23082,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.fornix_commissure.midline.v1/lod/mesh.fornix_commissure.midline.v1.lod3.glb",
+      "uncompressedByteLength": 208764,
+      "uncompressedSha256": "e805983da4e8dff49e8dcb81ac8a4d7457448b91b5b21b76c352289dc0b826b7",
+      "runtimeGlbPath": "assets/derived/mesh.fornix_commissure.midline.v1/runtime/mesh.fornix_commissure.midline.v1.lod3.meshopt.glb",
+      "compressedByteLength": 155680,
+      "compressedSha256": "97344f69d56dbf172174157e022180238b5ae61b4fa84accd7eb702cd538c9b5",
+      "compressionRatio": 1.34,
+      "savingsPercent": 25.43,
+      "vertexCount": 5772,
+      "triangleCount": 11540,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 2081548,
+  "overallCompressedBytes": 1408500,
+  "overallSavingsPercent": 32.33,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.fornix_commissure.midline.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-28T08:54:53.678Z"
+  }
+}

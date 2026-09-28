@@ -1,0 +1,77 @@
+{
+  "batch": "phase53-tract-white-matter",
+  "generated_at": "2026-09-28T08:54:02.283Z",
+  "generator": "scripts/pipeline/prepare_tract_batch.ts",
+  "items": [
+    {
+      "assetId": "mesh.corpus_callosum.midline.v1",
+      "structureId": "brain.white_matter.corpus_callosum",
+      "state": "SOURCE_AVAILABLE",
+      "category": "WHITE_MATTER",
+      "detail": "Staged FMA86464 (132552 tris), SHA-256 matches committed pin in data/phase53_source_hashes.json; midline-geometry measured (X -25.1..23.8). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.internal_capsule_anterior_limb.right.v1",
+      "structureId": "brain.white_matter.internal_capsule_anterior_limb_right",
+      "state": "SOURCE_AVAILABLE",
+      "category": "WHITE_MATTER",
+      "detail": "Staged FMA72908 (48722 tris), SHA-256 matches committed pin in data/phase53_source_hashes.json; right-geometry measured (X -29.4..-7.7). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.internal_capsule_anterior_limb.left.v1",
+      "structureId": "brain.white_matter.internal_capsule_anterior_limb_left",
+      "state": "SOURCE_AVAILABLE",
+      "category": "WHITE_MATTER",
+      "detail": "Staged FMA72909 (48712 tris), SHA-256 matches committed pin in data/phase53_source_hashes.json; left-geometry measured (X 6.4..28.0). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.fornix.right.v1",
+      "structureId": "brain.white_matter.fornix_right",
+      "state": "SOURCE_AVAILABLE",
+      "category": "WHITE_MATTER",
+      "detail": "Staged FMA72924 (29300 tris), SHA-256 matches committed pin in data/phase53_source_hashes.json; right-geometry measured (X -30.3..-0.7). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.fornix.left.v1",
+      "structureId": "brain.white_matter.fornix_left",
+      "state": "SOURCE_AVAILABLE",
+      "category": "WHITE_MATTER",
+      "detail": "Staged FMA72925 (29372 tris), SHA-256 matches committed pin in data/phase53_source_hashes.json; left-geometry measured (X -0.7..29.0). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.fornix_commissure.midline.v1",
+      "structureId": "brain.white_matter.fornix_commissure",
+      "state": "SOURCE_AVAILABLE",
+      "category": "WHITE_MATTER",
+      "detail": "Staged FMA61970 (46164 tris), SHA-256 matches committed pin in data/phase53_source_hashes.json; midline-geometry measured (X -23.8..22.5). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.anterior_commissure.midline.v1",
+      "structureId": "brain.white_matter.anterior_commissure",
+      "state": "SOURCE_AVAILABLE",
+      "category": "WHITE_MATTER",
+      "detail": "Staged FMA61961 (3690 tris), SHA-256 matches committed pin in data/phase53_source_hashes.json; midline-geometry measured (X -12.2..10.9). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.posterior_commissure.midline.v1",
+      "structureId": "brain.white_matter.posterior_commissure",
+      "state": "SOURCE_AVAILABLE",
+      "category": "WHITE_MATTER",
+      "detail": "Staged FMA62072 (3786 tris), SHA-256 matches committed pin in data/phase53_source_hashes.json; midline-geometry measured (X -8.0..6.6). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.optic_tract.right.v1",
+      "structureId": "brain.white_matter.optic_tract_right",
+      "state": "SOURCE_AVAILABLE",
+      "category": "WHITE_MATTER",
+      "detail": "Staged FMA62382 (10110 tris), SHA-256 matches committed pin in data/phase53_source_hashes.json; right-geometry measured (X -24.6..-1.2). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.optic_tract.left.v1",
+      "structureId": "brain.white_matter.optic_tract_left",
+      "state": "SOURCE_AVAILABLE",
+      "category": "WHITE_MATTER",
+      "detail": "Staged FMA67936 (10122 tris), SHA-256 matches committed pin in data/phase53_source_hashes.json; left-geometry measured (X -0.1..23.3). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "asset_id": "mesh.optic_tract.right.v1",
+  "assetId": "mesh.optic_tract.right.v1",
+  "structure_id": "brain.white_matter.optic_tract_right",
+  "source_dataset": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+  "source_dataset_version": "Release 3.0 (2011/06/20)",
+  "source_asset_id": "FMA62382",
+  "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/master/assets/BodyParts3D_data/stl/FMA62382.stl",
+  "source_license": "Historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (verified 2025-02-27). Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution.",
+  "source_license_version": "CC BY 4.0 (2025-02-27 portal update) / CC-BY-SA 2.1 JP",
+  "project_distribution_policy": "CC-BY-SA-4.0",
+  "attribution": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+  "acquisition_date": "2026-09-28",
+  "original_filename": "FMA62382.stl",
+  "originalFilename": "FMA62382.stl",
+  "original_format": "binary STL (BodyParts3D segment)",
+  "original_hash": "d0e96f05fdcba0d06e7ef4a690ed62a720efa1157fc471213b483e135027a164",
+  "source_coordinate_space": "dicom_lps_whole_body",
+  "source_units": "millimeters (mm)",
+  "source_metadata": {
+    "distribution_name": "Optic tract (right)",
+    "distribution_laterality": "right",
+    "asset_category": "WHITE_MATTER",
+    "measured_source_center_x_mm": -12.93,
+    "measured_source_triangles": 10110,
+    "laterality_basis": "paired-segment source geometry: bbox center on the declared side in the asserted source frame (DICOM LPS, +X Left), bulk of span declared-side"
+  },
+  "ingestion_status": "SOURCE_VERIFIED"
+}

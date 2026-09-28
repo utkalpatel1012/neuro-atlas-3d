@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.corpus_callosum.midline.v1",
+  "timestamp": "2026-09-28T08:54:07.404Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.corpus_callosum.midline.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.corpus_callosum.midline.v1/lod/mesh.corpus_callosum.midline.v1.lod0.glb",
+      "uncompressedByteLength": 3182300,
+      "uncompressedSha256": "a530177cf45f5c5aca037d689cb31b6ea3794138dd673e60e028233c8de24279",
+      "runtimeGlbPath": "assets/derived/mesh.corpus_callosum.midline.v1/runtime/mesh.corpus_callosum.midline.v1.lod0.meshopt.glb",
+      "compressedByteLength": 1491456,
+      "compressedSha256": "242e84895b8ffe7a5ea1fa6fe4a9c3e05e88caae058140e5d901a47214416c1d",
+      "compressionRatio": 2.13,
+      "savingsPercent": 53.13,
+      "vertexCount": 66278,
+      "triangleCount": 132552,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.corpus_callosum.midline.v1/lod/mesh.corpus_callosum.midline.v1.lod1.glb",
+      "uncompressedByteLength": 1790504,
+      "uncompressedSha256": "1dcea6278c0922a7b85e1c2ed07db210049dab2e9e0e19e35e54fc588ea486b6",
+      "runtimeGlbPath": "assets/derived/mesh.corpus_callosum.midline.v1/runtime/mesh.corpus_callosum.midline.v1.lod1.meshopt.glb",
+      "compressedByteLength": 1139896,
+      "compressedSha256": "838856b9f0e97a6de56f607a9266d001d9732c6230bfaf395c86a5f667b6d836",
+      "compressionRatio": 1.57,
+      "savingsPercent": 36.34,
+      "vertexCount": 49709,
+      "triangleCount": 99414,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.corpus_callosum.midline.v1/lod/mesh.corpus_callosum.midline.v1.lod2.glb",
+      "uncompressedByteLength": 1194020,
+      "uncompressedSha256": "c3bac0e4a203e457231fa329de4cd90cdc2ddb2bfbdf67e088e0381faae9492e",
+      "runtimeGlbPath": "assets/derived/mesh.corpus_callosum.midline.v1/runtime/mesh.corpus_callosum.midline.v1.lod2.meshopt.glb",
+      "compressedByteLength": 781804,
+      "compressedSha256": "6bde68f4452a1bdf76fa78241ea4837ae4377b1f5ff0a0edacab07349cfc6067",
+      "compressionRatio": 1.53,
+      "savingsPercent": 34.52,
+      "vertexCount": 33140,
+      "triangleCount": 66276,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.corpus_callosum.midline.v1/lod/mesh.corpus_callosum.midline.v1.lod3.glb",
+      "uncompressedByteLength": 597496,
+      "uncompressedSha256": "3806c55ac29dc850c048be188cac612452427da13d654f3ccb1c753209c12d23",
+      "runtimeGlbPath": "assets/derived/mesh.corpus_callosum.midline.v1/runtime/mesh.corpus_callosum.midline.v1.lod3.meshopt.glb",
+      "compressedByteLength": 412224,
+      "compressedSha256": "44d17dfe9b9a971ae52f1914a5b070cd416e37e6519264637e47b43b6bb350c0",
+      "compressionRatio": 1.45,
+      "savingsPercent": 31.01,
+      "vertexCount": 16570,
+      "triangleCount": 33136,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 6764320,
+  "overallCompressedBytes": 3825380,
+  "overallSavingsPercent": 43.45,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.corpus_callosum.midline.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-28T08:54:07.404Z"
+  }
+}

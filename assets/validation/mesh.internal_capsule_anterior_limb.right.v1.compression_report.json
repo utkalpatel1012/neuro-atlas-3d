@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.internal_capsule_anterior_limb.right.v1",
+  "timestamp": "2026-09-28T08:54:16.049Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.internal_capsule_anterior_limb.right.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.right.v1/lod/mesh.internal_capsule_anterior_limb.right.v1.lod0.glb",
+      "uncompressedByteLength": 878072,
+      "uncompressedSha256": "2e00e134d2f8343e4f4489a4d5e77704b087d1ca53d7577d43a125c24f607d47",
+      "runtimeGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.right.v1/runtime/mesh.internal_capsule_anterior_limb.right.v1.lod0.meshopt.glb",
+      "compressedByteLength": 528280,
+      "compressedSha256": "f646307f27e54c53811e661bc4cdaa7dd6ceff66a90e222ae0f7e7ce65f935fc",
+      "compressionRatio": 1.66,
+      "savingsPercent": 39.84,
+      "vertexCount": 24363,
+      "triangleCount": 48722,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.right.v1/lod/mesh.internal_capsule_anterior_limb.right.v1.lod1.glb",
+      "uncompressedByteLength": 658796,
+      "uncompressedSha256": "f82f06103aa5706f4024c2eb6b5e0245a44397d78113210939e4c0ac04e25578",
+      "runtimeGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.right.v1/runtime/mesh.internal_capsule_anterior_limb.right.v1.lod1.meshopt.glb",
+      "compressedByteLength": 406060,
+      "compressedSha256": "38919449d7391705081bd2b7f78b98b4d5f36925156561f0e8ce8c28c8765107",
+      "compressionRatio": 1.62,
+      "savingsPercent": 38.36,
+      "vertexCount": 18272,
+      "triangleCount": 36540,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.right.v1/lod/mesh.internal_capsule_anterior_limb.right.v1.lod2.glb",
+      "uncompressedByteLength": 439552,
+      "uncompressedSha256": "47b0f18cc212df2246be6a7e8121843f389e4a9b858e9ce51134cf458cdbca8d",
+      "runtimeGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.right.v1/runtime/mesh.internal_capsule_anterior_limb.right.v1.lod2.meshopt.glb",
+      "compressedByteLength": 279672,
+      "compressedSha256": "882448f8ee34d127b30eece7d04fa9a053dbec02152b127d76fb6de3e81ccdbd",
+      "compressionRatio": 1.57,
+      "savingsPercent": 36.37,
+      "vertexCount": 12182,
+      "triangleCount": 24360,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.right.v1/lod/mesh.internal_capsule_anterior_limb.right.v1.lod3.glb",
+      "uncompressedByteLength": 220308,
+      "uncompressedSha256": "a4f00e4b5b79594d960398ef1f994611b29c9e510b61ba56a1d45de09a50205a",
+      "runtimeGlbPath": "assets/derived/mesh.internal_capsule_anterior_limb.right.v1/runtime/mesh.internal_capsule_anterior_limb.right.v1.lod3.meshopt.glb",
+      "compressedByteLength": 146976,
+      "compressedSha256": "0e300dee16619f3cc94b56e0d57f2c9a920de2522da7c71ce94fdbb828eae33e",
+      "compressionRatio": 1.5,
+      "savingsPercent": 33.29,
+      "vertexCount": 6092,
+      "triangleCount": 12180,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 2196728,
+  "overallCompressedBytes": 1360988,
+  "overallSavingsPercent": 38.04,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.internal_capsule_anterior_limb.right.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-28T08:54:16.049Z"
+  }
+}

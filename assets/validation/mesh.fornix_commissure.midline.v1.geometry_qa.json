@@ -1,0 +1,151 @@
+{
+  "assetId": "mesh.fornix_commissure.midline.v1",
+  "sourceFile": "assets/raw/mesh.fornix_commissure.midline.v1/FMA61970.stl",
+  "timestamp": "2026-09-28T08:54:53.419Z",
+  "topologyClass": "SOLID",
+  "profileId": "solid-subcortical-nucleus",
+  "analysis": {
+    "triangleCount": 46164,
+    "rawVertexCount": 138492,
+    "uniqueVertexCount": 23084,
+    "minBounds": [
+      -23.805500030517578,
+      -97.51129913330078,
+      1553.77001953125
+    ],
+    "maxBounds": [
+      22.484500885009766,
+      -68.29499816894531,
+      1572.93994140625
+    ],
+    "centroid": [
+      -0.1457351366090631,
+      -75.96404579181106,
+      1562.6919364605303
+    ],
+    "dimensions": [
+      46.290000915527344,
+      29.21630096435547,
+      19.169921875
+    ],
+    "surfaceAreaMm2": 1175.7945995880602,
+    "estimatedVolumeMm3": 881.8147717499145,
+    "zeroAreaFaces": 0,
+    "duplicateFaces": 0,
+    "nonManifoldEdges": 0,
+    "boundaryEdges": 0,
+    "manifoldEdges": 69246,
+    "isWatertight": true,
+    "connectedShellCount": 1
+  },
+  "geometricQA": {
+    "assetId": "mesh.fornix_commissure.midline.v1",
+    "sourceFile": "assets/raw/mesh.fornix_commissure.midline.v1/FMA61970.stl",
+    "timestamp": "2026-09-28T08:54:53.419Z",
+    "topologyClass": "SOLID",
+    "profileId": "solid-subcortical-nucleus",
+    "analysis": {
+      "triangleCount": 46164,
+      "rawVertexCount": 138492,
+      "uniqueVertexCount": 23084,
+      "minBounds": [
+        -23.805500030517578,
+        -97.51129913330078,
+        1553.77001953125
+      ],
+      "maxBounds": [
+        22.484500885009766,
+        -68.29499816894531,
+        1572.93994140625
+      ],
+      "centroid": [
+        -0.1457351366090631,
+        -75.96404579181106,
+        1562.6919364605303
+      ],
+      "dimensions": [
+        46.290000915527344,
+        29.21630096435547,
+        19.169921875
+      ],
+      "surfaceAreaMm2": 1175.7945995880602,
+      "estimatedVolumeMm3": 881.8147717499145,
+      "zeroAreaFaces": 0,
+      "duplicateFaces": 0,
+      "nonManifoldEdges": 0,
+      "boundaryEdges": 0,
+      "manifoldEdges": 69246,
+      "isWatertight": true,
+      "connectedShellCount": 1
+    },
+    "checks": [
+      {
+        "name": "Non-Manifold Edges Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 non-manifold edges (Limit: 0)"
+      },
+      {
+        "name": "Duplicate Faces Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 duplicate faces (Limit: 0)"
+      },
+      {
+        "name": "Zero-Area Faces Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 zero-area faces (Limit: 0)"
+      },
+      {
+        "name": "Watertight Surface Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Watertight: true (Boundary open edges: 0, must be 0 for SOLID). NOTE: edge accounting is per-shell; see connectedShellCount for surface continuity."
+      },
+      {
+        "name": "Triangle Manifold Presence Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Mesh contains 46164 triangles and 23084 unique vertices"
+      },
+      {
+        "name": "Single-Surface Continuity Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Measured 1 connected shell: consistent with SOLID."
+      }
+    ],
+    "geometricStatus": "GEOMETRY_VALIDATED"
+  },
+  "anatomicalQA": {
+    "assetId": "mesh.fornix_commissure.midline.v1",
+    "timestamp": "2026-09-28T08:54:53.419Z",
+    "declaredLaterality": "midline",
+    "subfieldRepresentation": "MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED",
+    "checks": [
+      {
+        "name": "Adult Human Anatomic Scale Check",
+        "category": "anatomical",
+        "passed": true,
+        "details": "Dimensions: 46.29 x 29.22 x 19.17 mm"
+      },
+      {
+        "name": "Anatomical Volume Estimation Check",
+        "category": "anatomical",
+        "passed": true,
+        "details": "Measured volume: 0.88 cm3"
+      },
+      {
+        "name": "Internal Subfield Boundary Resolution Check",
+        "category": "anatomical",
+        "passed": true,
+        "notApplicable": true,
+        "details": "Mesh represents macroscopic unsegmented organ body; microscopic subfields CA1-CA4 are not resolved in 3D geometry"
+      }
+    ],
+    "anatomicalStatus": "ANATOMY_VALIDATED",
+    "notes": "Macroscopic scale/laterality plausibility only; internal subfields unsegmented. (Historical phase-acceptance status; not a morphological proof.)"
+  },
+  "overallStatus": "GEOMETRY_VALIDATED"
+}

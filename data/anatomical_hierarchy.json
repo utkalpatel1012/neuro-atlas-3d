@@ -20,7 +20,8 @@
         "brain.brainstem",
         "brain.cerebellum",
         "brain.ventricular_system",
-        "brain.basal_ganglia"
+        "brain.basal_ganglia",
+        "brain.white_matter"
       ]
     },
     {
@@ -586,6 +587,168 @@
       "id": "brain.ventricular_system.foramen_magendie",
       "level": 3,
       "name": "Foramen of Magendie (DOCUMENTED — no source in this batch; aperture of the 4th ventricle)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter",
+      "level": 1,
+      "name": "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.white_matter.corpus_callosum",
+        "brain.white_matter.internal_capsule_anterior_limb_right",
+        "brain.white_matter.internal_capsule_anterior_limb_left",
+        "brain.white_matter.fornix_right",
+        "brain.white_matter.fornix_left",
+        "brain.white_matter.fornix_commissure",
+        "brain.white_matter.anterior_commissure",
+        "brain.white_matter.posterior_commissure",
+        "brain.white_matter.optic_tract_right",
+        "brain.white_matter.optic_tract_left",
+        "brain.white_matter.internal_capsule",
+        "brain.white_matter.fornix_whole",
+        "brain.white_matter.optic_tract_whole",
+        "brain.white_matter.corona_radiata",
+        "brain.white_matter.superior_longitudinal_fasciculus",
+        "brain.white_matter.uncinate_fasciculus",
+        "brain.white_matter.inferior_longitudinal_fasciculus",
+        "brain.white_matter.cingulum"
+      ]
+    },
+    {
+      "id": "brain.white_matter.corpus_callosum",
+      "level": 2,
+      "name": "Corpus callosum (whole commissure in one segment; no regional subdivision)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.corpus_callosum.midline.v1",
+      "structure_record": "data/structures/corpus_callosum_midline.json"
+    },
+    {
+      "id": "brain.white_matter.internal_capsule_anterior_limb_right",
+      "level": 2,
+      "name": "Anterior limb of internal capsule (right)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.internal_capsule_anterior_limb.right.v1",
+      "structure_record": "data/structures/internal_capsule_anterior_limb_right.json"
+    },
+    {
+      "id": "brain.white_matter.internal_capsule_anterior_limb_left",
+      "level": 2,
+      "name": "Anterior limb of internal capsule (left)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.internal_capsule_anterior_limb.left.v1",
+      "structure_record": "data/structures/internal_capsule_anterior_limb_left.json"
+    },
+    {
+      "id": "brain.white_matter.fornix_right",
+      "level": 2,
+      "name": "Fornix (right; crus/body/column NOT subdivided)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.fornix.right.v1",
+      "structure_record": "data/structures/fornix_right.json"
+    },
+    {
+      "id": "brain.white_matter.fornix_left",
+      "level": 2,
+      "name": "Fornix (left; crus/body/column NOT subdivided)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.fornix.left.v1",
+      "structure_record": "data/structures/fornix_left.json"
+    },
+    {
+      "id": "brain.white_matter.fornix_commissure",
+      "level": 2,
+      "name": "Commissure of fornix (hippocampal commissure)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.fornix_commissure.midline.v1",
+      "structure_record": "data/structures/fornix_commissure_midline.json"
+    },
+    {
+      "id": "brain.white_matter.anterior_commissure",
+      "level": 2,
+      "name": "Anterior commissure",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.anterior_commissure.midline.v1",
+      "structure_record": "data/structures/anterior_commissure_midline.json"
+    },
+    {
+      "id": "brain.white_matter.posterior_commissure",
+      "level": 2,
+      "name": "Posterior commissure",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.posterior_commissure.midline.v1",
+      "structure_record": "data/structures/posterior_commissure_midline.json"
+    },
+    {
+      "id": "brain.white_matter.optic_tract_right",
+      "level": 2,
+      "name": "Optic tract (right)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.optic_tract.right.v1",
+      "structure_record": "data/structures/optic_tract_right.json"
+    },
+    {
+      "id": "brain.white_matter.optic_tract_left",
+      "level": 2,
+      "name": "Optic tract (left)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.optic_tract.left.v1",
+      "structure_record": "data/structures/optic_tract_left.json"
+    },
+    {
+      "id": "brain.white_matter.internal_capsule",
+      "level": 2,
+      "name": "Internal capsule as a whole (DOCUMENTED — FMA61950 listed, no mirror STL; only the paired anterior-limb segments are servable)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter.fornix_whole",
+      "level": 2,
+      "name": "Fornix as a whole (DOCUMENTED — FMA61965 listed, no mirror STL; only the lateralised segments are servable)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter.optic_tract_whole",
+      "level": 2,
+      "name": "Optic tract as a whole (DOCUMENTED — FMA62046 listed, no mirror STL; only the lateralised segments are servable)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter.corona_radiata",
+      "level": 2,
+      "name": "Corona radiata (DOCUMENTED — absent from the distribution entirely)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter.superior_longitudinal_fasciculus",
+      "level": 2,
+      "name": "Superior longitudinal fasciculus incl. arcuate (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter.uncinate_fasciculus",
+      "level": 2,
+      "name": "Uncinate fasciculus (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter.inferior_longitudinal_fasciculus",
+      "level": 2,
+      "name": "Inferior longitudinal fasciculus (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.white_matter.cingulum",
+      "level": 2,
+      "name": "Cingulum bundle (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)",
       "geometry_state": "DOCUMENTED",
       "children": []
     }

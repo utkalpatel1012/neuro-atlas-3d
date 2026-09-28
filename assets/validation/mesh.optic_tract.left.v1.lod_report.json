@@ -1,0 +1,179 @@
+{
+  "assetId": "mesh.optic_tract.left.v1",
+  "timestamp": "2026-09-28T08:55:35.606Z",
+  "inputCanonicalGlb": "assets/derived/mesh.optic_tract.left.v1/canonical/mesh.optic_tract.left.v1.canonical.glb",
+  "inputCanonicalHash": "d58a257ed060ecbd99334dadfe4ff9f16f36db9ce5543ed180ff1e28e693bfc0",
+  "levels": [
+    {
+      "level": 0,
+      "lodName": "lod0",
+      "targetRatio": 1,
+      "triangleCount": 10122,
+      "vertexCount": 5063,
+      "byteLength": 183228,
+      "sha256": "a03e9d7b9a70d9ee60ea03adb61f2837eca1fd788e462a0d50ff7576c3334a64",
+      "filePath": "assets/derived/mesh.optic_tract.left.v1/lod/mesh.optic_tract.left.v1.lod0.glb",
+      "targetIndexCount": 30366,
+      "resultingIndexCount": 30366,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 667.99,
+        "lodVolumeMm3": 667.99,
+        "volumeDeviationPercent": 0,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0,
+        "meanSurfaceDeviationMm": 0
+      }
+    },
+    {
+      "level": 1,
+      "lodName": "lod1",
+      "targetRatio": 0.75,
+      "triangleCount": 7590,
+      "vertexCount": 3797,
+      "byteLength": 137652,
+      "sha256": "4ebe7b84e872572013ccef1cd11305f16924e99ea0ddc5a4bdad67089762c3c9",
+      "filePath": "assets/derived/mesh.optic_tract.left.v1/lod/mesh.optic_tract.left.v1.lod1.glb",
+      "targetIndexCount": 22773,
+      "resultingIndexCount": 22770,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000211,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 667.99,
+        "lodVolumeMm3": 667.72,
+        "volumeDeviationPercent": -0.04,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0.6024,
+        "meanSurfaceDeviationMm": 0.0489
+      }
+    },
+    {
+      "level": 2,
+      "lodName": "lod2",
+      "targetRatio": 0.5,
+      "triangleCount": 5060,
+      "vertexCount": 2532,
+      "byteLength": 92112,
+      "sha256": "086e3d4e4f74d99d7ef449582987ca997d0c5eddf2034b31d66cfed157bd850a",
+      "filePath": "assets/derived/mesh.optic_tract.left.v1/lod/mesh.optic_tract.left.v1.lod2.glb",
+      "targetIndexCount": 15183,
+      "resultingIndexCount": 15180,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000422,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 667.99,
+        "lodVolumeMm3": 666.6,
+        "volumeDeviationPercent": -0.209,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            -0.0013
+          ]
+        },
+        "maxSurfaceDeviationMm": 0.8058,
+        "meanSurfaceDeviationMm": 0.1136
+      }
+    },
+    {
+      "level": 3,
+      "lodName": "lod3",
+      "targetRatio": 0.25,
+      "triangleCount": 2530,
+      "vertexCount": 1267,
+      "byteLength": 46572,
+      "sha256": "737cdda3603798606cd18d00c37e71231bd5b792a8a29e1216184746950ccece",
+      "filePath": "assets/derived/mesh.optic_tract.left.v1/lod/mesh.optic_tract.left.v1.lod3.glb",
+      "targetIndexCount": 7590,
+      "resultingIndexCount": 7590,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000924,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 667.99,
+        "lodVolumeMm3": 662.9,
+        "volumeDeviationPercent": -0.762,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            -0.0167
+          ]
+        },
+        "maxSurfaceDeviationMm": 1.3397,
+        "meanSurfaceDeviationMm": 0.2152
+      }
+    }
+  ],
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.optic_tract.left.v1.lod_generation",
+    "tool": "MeshoptSimplifier / NeuroAtlas3D LOD Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "algorithms": "Quadric_Error_Metric_Simplification",
+      "levels": [
+        {
+          "name": "lod0",
+          "ratio": 1
+        },
+        {
+          "name": "lod1",
+          "ratio": 0.75
+        },
+        {
+          "name": "lod2",
+          "ratio": 0.5
+        },
+        {
+          "name": "lod3",
+          "ratio": 0.25
+        }
+      ]
+    },
+    "timestamp": "2026-09-28T08:55:35.607Z"
+  }
+}
