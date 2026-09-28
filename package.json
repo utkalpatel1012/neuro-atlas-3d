@@ -28,6 +28,12 @@
     "asset:validate": "tsx scripts/validate_asset.ts",
     "audit:phase1": "tsx scripts/audit_phase1.ts",
     "pipeline:run": "tsx scripts/pipeline/run_pipeline.ts",
+    "pipeline:gyral": "tsx scripts/pipeline/prepare_gyral_batch.ts",
+    "pipeline:gyral:records": "tsx scripts/pipeline/write_structure_records.ts",
+    "pipeline:deep": "tsx scripts/pipeline/prepare_deep_batch.ts",
+    "pipeline:deep:records": "tsx scripts/pipeline/write_deep_records.ts",
+    "pipeline:posterior": "tsx scripts/pipeline/prepare_posterior_batch.ts",
+    "pipeline:posterior:records": "tsx scripts/pipeline/write_posterior_records.ts",
     "deploy": "gh-pages -d dist"
   },
   "keywords": [

@@ -9,17 +9,28 @@
  * (ingestAsset schema + derivation block). Emits `data/phase5_batch1.json`
  * with per-asset SOURCE_AVAILABLE states for the batch runner.
  *
+ * Thin wrapper over the shared staging core (`batch_staging.ts`): this file
+ * owns the gyral item table + spec only. Behaviour is unchanged.
+ *
  * Usage: `npx tsx scripts/pipeline/prepare_gyral_batch.ts` (repo-root CWD).
  */
 
 import * as fs from 'fs';
 import * as path from 'path';
-import * as crypto from 'crypto';
 import { fileURLToPath } from 'url';
+import {
+  prepareBatch as runStagingBatch,
+  sha256File,
+  stageCopyImmutable,
+  todayDate,
+  type PrepVerdict
+} from './batch_staging';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '../../');
+
+export type { PrepVerdict };
 
 export interface GyralBatchItem {
   structureName: string;
@@ -29,6 +40,10 @@ export interface GyralBatchItem {
   laterality: 'left' | 'right';
   fmaId: string;
   parentCortexAssetId: string;
+  // Architecture N4: carried through the ledger so run_gyral_batch.ts can
+  // select a category-appropriate QA profile. Absent here, so the spec
+  // defaults cortical batches to 'CORTEX' (historical profile names intact).
+  category?: string;
 }
 
 const STRUCTURES: Array<{
@@ -67,28 +82,15 @@ export function batchItems(): GyralBatchItem[] {
   return items;
 }
 
-function sha256File(p: string): string {
-  return crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
-}
-
-export interface PrepVerdict {
-  assetId: string;
-  structureId: string;
-  state: 'SOURCE_AVAILABLE' | 'PREP_FAILED';
-  detail: string;
-  // Phase 5.2 architecture N4: carried through the ledger so run_gyral_batch.ts can
-  // select a category-appropriate QA profile. Cortical batches legitimately report
-  // 'CORTEX', which preserves the historical cortical profile names exactly.
-  category: string;
-  sourceHash?: string;
-  byteLength?: number;
-}
-
 export function prepareBatch(): PrepVerdict[] {
-  const verdicts: PrepVerdict[] = [];
-  for (const item of batchItems()) {
-    try {
-      const parentIngestPath = path.join(PROJECT_ROOT, 'assets/raw', item.parentCortexAssetId, 'ingestion.json');
+  return runStagingBatch({
+    items: batchItems(),
+    projectRoot: PROJECT_ROOT,
+    batchName: 'phase5-batch1-gyral',
+    generator: 'scripts/pipeline/prepare_gyral_batch.ts',
+    ledgerRelativePath: 'data/phase5_batch1.json',
+    prepareOne: (item, ctx) => {
+      const parentIngestPath = path.join(ctx.projectRoot, 'assets/raw', item.parentCortexAssetId, 'ingestion.json');
       if (!fs.existsSync(parentIngestPath)) {
         throw new Error(`Parent ingestion record missing: ${parentIngestPath}`);
       }
@@ -97,7 +99,7 @@ export function prepareBatch(): PrepVerdict[] {
       if (!component) {
         throw new Error(`Component ${item.fmaId} not in parent ingestion record (provenance authority).`);
       }
-      const sourceStl = path.join(PROJECT_ROOT, 'assets/raw', item.parentCortexAssetId, 'components', `${item.fmaId}.stl`);
+      const sourceStl = path.join(ctx.projectRoot, 'assets/raw', item.parentCortexAssetId, 'components', `${item.fmaId}.stl`);
       if (!fs.existsSync(sourceStl)) {
         throw new Error(`Component bytes missing: ${sourceStl}`);
       }
@@ -105,17 +107,8 @@ export function prepareBatch(): PrepVerdict[] {
       if (measuredHash !== component.sha256) {
         throw new Error(`Source hash mismatch for ${item.fmaId}: measured ${measuredHash} vs recorded ${component.sha256}.`);
       }
-      const rawDir = path.join(PROJECT_ROOT, 'assets/raw', item.assetId);
-      fs.mkdirSync(rawDir, { recursive: true });
-      const stagedFile = path.join(rawDir, `${item.fmaId}.stl`);
-      if (fs.existsSync(stagedFile)) {
-        const stagedHash = sha256File(stagedFile);
-        if (stagedHash !== measuredHash) {
-          throw new Error(`Staged file exists with different hash (immutability): ${stagedFile}`);
-        }
-      } else {
-        fs.copyFileSync(sourceStl, stagedFile);
-      }
+      const rawDir = path.join(ctx.projectRoot, 'assets/raw', item.assetId);
+      const stagedFile = stageCopyImmutable(rawDir, `${item.fmaId}.stl`, sourceStl, measuredHash);
       const ingestion = {
         asset_id: item.assetId,
         // ingestAsset.ts reads camelCase options; cortex convention is
@@ -131,7 +124,7 @@ export function prepareBatch(): PrepVerdict[] {
         source_license_version: parentIngest.source_license_version,
         project_distribution_policy: 'CC-BY-SA-4.0',
         attribution: parentIngest.attribution,
-        acquisition_date: new Date().toISOString().split('T')[0],
+        acquisition_date: todayDate(),
         original_filename: `${item.fmaId}.stl`,
         originalFilename: `${item.fmaId}.stl`,
         original_format: 'binary STL (BodyParts3D segment)',
@@ -146,7 +139,7 @@ export function prepareBatch(): PrepVerdict[] {
         },
         derived_component: {
           parent_asset_id: item.parentCortexAssetId,
-          parent_ingestion_record: path.relative(PROJECT_ROOT, parentIngestPath).replace(/\\/g, '/'),
+          parent_ingestion_record: path.relative(ctx.projectRoot, parentIngestPath).replace(/\\/g, '/'),
           input_sha256: measuredHash,
           operation: 'hash-verified byte copy (no geometric modification)',
           software: 'scripts/pipeline/prepare_gyral_batch.ts',
@@ -154,39 +147,31 @@ export function prepareBatch(): PrepVerdict[] {
         },
         ingestion_status: 'SOURCE_VERIFIED'
       };
-      fs.writeFileSync(path.join(rawDir, 'ingestion.json'), JSON.stringify(ingestion, null, 2), 'utf8');
-      verdicts.push({
-        assetId: item.assetId,
-        structureId: item.structureId,
-        state: 'SOURCE_AVAILABLE',
-        category: (item.category ?? 'CORTEX'),
+      return {
+        rawDir,
+        ingestion,
         detail: `Staged ${component.name} (${component.triangle_count} tris), hash-verified.`,
         sourceHash: measuredHash,
         byteLength: fs.statSync(stagedFile).size
-      });
-    } catch (err) {
-      verdicts.push({
-        assetId: item.assetId,
-        structureId: item.structureId,
-        state: 'PREP_FAILED',
-        category: (item.category ?? 'CORTEX'),
-        detail: `Preparation failed: ${(err as Error).message}`
-      });
-    }
-  }
-  const batchRecord = {
-    batch: 'phase5-batch1-gyral',
-    generated_at: new Date().toISOString(),
-    generator: 'scripts/pipeline/prepare_gyral_batch.ts',
-    items: verdicts
-  };
-  fs.writeFileSync(path.join(PROJECT_ROOT, 'data/phase5_batch1.json'), JSON.stringify(batchRecord, null, 2), 'utf8');
-  const ok = verdicts.filter((v) => v.state === 'SOURCE_AVAILABLE').length;
-  console.log(`[BATCH PREP] ${ok}/${verdicts.length} assets SOURCE_AVAILABLE → data/phase5_batch1.json`);
-  for (const v of verdicts.filter((v) => v.state !== 'SOURCE_AVAILABLE')) {
-    console.error(`[BATCH PREP] ${v.assetId}: ${v.detail}`);
-  }
-  return verdicts;
+      };
+    },
+    successVerdict: (item, result) => ({
+      assetId: item.assetId,
+      structureId: item.structureId,
+      state: 'SOURCE_AVAILABLE',
+      category: (item.category ?? 'CORTEX'),
+      detail: result.detail,
+      sourceHash: result.sourceHash,
+      byteLength: result.byteLength
+    }),
+    failureVerdict: (item, message) => ({
+      assetId: item.assetId,
+      structureId: item.structureId,
+      state: 'PREP_FAILED',
+      category: (item.category ?? 'CORTEX'),
+      detail: message
+    })
+  });
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

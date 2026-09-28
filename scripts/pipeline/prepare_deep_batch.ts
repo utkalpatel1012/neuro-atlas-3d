@@ -9,20 +9,29 @@
  * meshes classify BILATERAL/MIDLINE) — never from filenames alone (§20).
  * Emits `data/phase51_batch.json` for the batch runner.
  *
+ * Thin wrapper over the shared staging core (`batch_staging.ts`): this file
+ * owns the deep item table + spec only. Behaviour is unchanged.
+ *
  * Usage: `npx tsx scripts/pipeline/prepare_deep_batch.ts` (repo-root CWD).
  */
 
 import * as fs from 'fs';
 import * as path from 'path';
-import * as crypto from 'crypto';
 import { fileURLToPath } from 'url';
+import {
+  prepareBatch,
+  sha256Bytes,
+  measureSourceBbox,
+  stageCopyImmutable,
+  todayDate,
+  type PrepVerdict
+} from './batch_staging';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '../../');
-// Phase 5.2 architecture M1: was hardcoded to one contributor's machine. Override with
-// AUDIT_STAGE_DIR; default retained for continuity with prior runs.
-const STAGE_DIR = process.env.AUDIT_STAGE_DIR || 'C:/Projects/_audit_tmp';
+
+export type DeepPrepVerdict = PrepVerdict;
 
 export interface DeepBatchItem {
   structureName: string;
@@ -34,6 +43,10 @@ export interface DeepBatchItem {
   groups: string[];
   latinName: string;
   subsystem: string;
+  // Architecture N4: carried through the ledger so run_gyral_batch.ts can
+  // select a category-appropriate QA profile instead of defaulting to
+  // cortical names. Absent here, so the spec defaults to 'DEEP_GRAY'.
+  category?: string;
 }
 
 const ITEMS: DeepBatchItem[] = [
@@ -51,52 +64,22 @@ const ITEMS: DeepBatchItem[] = [
   { structureName: 'Septum pellucidum', structureId: 'brain.telencephalon.midline.septum_pellucidum', assetId: 'mesh.septum_pellucidum.midline.v1', fmaId: 'FMA61844', expectedLaterality: 'midline', parentId: 'brain.telencephalon', groups: ['division.cerebrum', 'region.septal'], latinName: 'Septum pellucidum', subsystem: 'telencephalon' }
 ];
 
-function sourceBBoxCenter(stlPath: string): { center: [number, number, number]; minX: number; maxX: number; tris: number } {
-  const buf = fs.readFileSync(stlPath);
-  const tris = buf.readUInt32LE(80);
-  let minX = Infinity;
-  let maxX = -Infinity;
-  let minY = Infinity;
-  let maxY = -Infinity;
-  let minZ = Infinity;
-  let maxZ = -Infinity;
-  for (let t = 0; t < tris; t++) {
-    const base = 84 + t * 50;
-    for (let v = 0; v < 3; v++) {
-      const x = buf.readFloatLE(base + 12 + v * 12);
-      const y = buf.readFloatLE(base + 16 + v * 12);
-      const z = buf.readFloatLE(base + 20 + v * 12);
-      if (![x, y, z].every(Number.isFinite)) throw new Error(`Non-finite vertex in ${stlPath}.`);
-      minX = Math.min(minX, x);
-      maxX = Math.max(maxX, x);
-      minY = Math.min(minY, y);
-      maxY = Math.max(maxY, y);
-      minZ = Math.min(minZ, z);
-      maxZ = Math.max(maxZ, z);
-    }
-  }
-  const r = (v: number): number => Number(v.toFixed(2));
-  return { center: [r((minX + maxX) / 2), r((minY + maxY) / 2), r((minZ + maxZ) / 2)], minX, maxX, tris };
-}
-
-export interface DeepPrepVerdict {
-  assetId: string;
-  structureId: string;
-  state: 'SOURCE_AVAILABLE' | 'PREP_FAILED';
-  detail: string;
-  // Phase 5.2 architecture N4: carried through the ledger so run_gyral_batch.ts can
-  // select a category-appropriate QA profile instead of defaulting to cortical names.
-  category: string;
-}
-
 export function prepareDeepBatch(): DeepPrepVerdict[] {
-  const verdicts: DeepPrepVerdict[] = [];
-  for (const item of ITEMS) {
-    try {
-      const staged = path.join(STAGE_DIR, `phase51_${item.fmaId}.stl`);
+  return prepareBatch({
+    items: ITEMS,
+    projectRoot: PROJECT_ROOT,
+    batchName: 'phase51-deep-limbic',
+    generator: 'scripts/pipeline/prepare_deep_batch.ts',
+    ledgerRelativePath: 'data/phase51_batch.json',
+    // Architecture M1: was hardcoded to one contributor's machine. Override
+    // with AUDIT_STAGE_DIR; default retained for continuity with prior runs.
+    stageDirEnvName: 'AUDIT_STAGE_DIR',
+    stageDirDefault: 'C:/Projects/_audit_tmp',
+    prepareOne: (item, ctx) => {
+      const staged = path.join(ctx.stageDir, `phase51_${item.fmaId}.stl`);
       if (!fs.existsSync(staged)) throw new Error(`Staged download missing: ${staged}`);
-      const hash = crypto.createHash('sha256').update(fs.readFileSync(staged)).digest('hex');
-      const geo = sourceBBoxCenter(staged);
+      const hash = sha256Bytes(fs.readFileSync(staged));
+      const geo = measureSourceBbox(staged);
       // Laterality from MEASURED source geometry (Xc=-Xs ⇒ source +X is canonical LEFT).
       const spansMidline = geo.minX < 0 && geo.maxX > 0;
       const measured: 'left' | 'right' | 'midline-span' =
@@ -105,15 +88,8 @@ export function prepareDeepBatch(): DeepPrepVerdict[] {
       if (measured !== expected) {
         throw new Error(`Laterality mismatch: distribution=${item.expectedLaterality}, measured source geometry=${measured} (center X=${geo.center[0]}). STOP — no guessing.`);
       }
-      const rawDir = path.join(PROJECT_ROOT, 'assets/raw', item.assetId);
-      fs.mkdirSync(rawDir, { recursive: true });
-      const dest = path.join(rawDir, `${item.fmaId}.stl`);
-      if (fs.existsSync(dest)) {
-        const existing = crypto.createHash('sha256').update(fs.readFileSync(dest)).digest('hex');
-        if (existing !== hash) throw new Error(`Staged file exists with different hash (immutability): ${dest}`);
-      } else {
-        fs.copyFileSync(staged, dest);
-      }
+      const rawDir = path.join(ctx.projectRoot, 'assets/raw', item.assetId);
+      stageCopyImmutable(rawDir, `${item.fmaId}.stl`, staged, hash);
       const ingestion = {
         asset_id: item.assetId,
         assetId: item.assetId,
@@ -126,7 +102,7 @@ export function prepareDeepBatch(): DeepPrepVerdict[] {
         source_license_version: 'CC BY 4.0 (2025-02-27 portal update) / CC-BY-SA 2.1 JP',
         project_distribution_policy: 'CC-BY-SA-4.0',
         attribution: 'BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.',
-        acquisition_date: new Date().toISOString().split('T')[0],
+        acquisition_date: todayDate(),
         original_filename: `${item.fmaId}.stl`,
         originalFilename: `${item.fmaId}.stl`,
         original_format: 'binary STL (BodyParts3D segment)',
@@ -142,21 +118,27 @@ export function prepareDeepBatch(): DeepPrepVerdict[] {
         },
         ingestion_status: 'SOURCE_VERIFIED'
       };
-      fs.writeFileSync(path.join(rawDir, 'ingestion.json'), JSON.stringify(ingestion, null, 2), 'utf8');
-      verdicts.push({ assetId: item.assetId, structureId: item.structureId, category: item.category ?? 'DEEP_GRAY', state: 'SOURCE_AVAILABLE', detail: `Staged ${item.fmaId} (${geo.tris} tris), hash + laterality verified.` });
-    } catch (err) {
-      verdicts.push({ assetId: item.assetId, structureId: item.structureId, category: item.category ?? 'DEEP_GRAY', state: 'PREP_FAILED', detail: `Preparation failed: ${(err as Error).message}` });
-    }
-  }
-  fs.writeFileSync(
-    path.join(PROJECT_ROOT, 'data/phase51_batch.json'),
-    JSON.stringify({ batch: 'phase51-deep-limbic', generated_at: new Date().toISOString(), generator: 'scripts/pipeline/prepare_deep_batch.ts', items: verdicts }, null, 2),
-    'utf8'
-  );
-  const ok = verdicts.filter((v) => v.state === 'SOURCE_AVAILABLE').length;
-  console.log(`[BATCH PREP] ${ok}/${verdicts.length} assets SOURCE_AVAILABLE → data/phase51_batch.json`);
-  for (const v of verdicts.filter((v) => v.state !== 'SOURCE_AVAILABLE')) console.error(`[BATCH PREP] ${v.assetId}: ${v.detail}`);
-  return verdicts;
+      return {
+        rawDir,
+        ingestion,
+        detail: `Staged ${item.fmaId} (${geo.tris} tris), hash + laterality verified.`
+      };
+    },
+    successVerdict: (item, result) => ({
+      assetId: item.assetId,
+      structureId: item.structureId,
+      category: item.category ?? 'DEEP_GRAY',
+      state: 'SOURCE_AVAILABLE',
+      detail: result.detail
+    }),
+    failureVerdict: (item, message) => ({
+      assetId: item.assetId,
+      structureId: item.structureId,
+      category: item.category ?? 'DEEP_GRAY',
+      state: 'PREP_FAILED',
+      detail: message
+    })
+  });
 }
 
 export function deepBatchItems(): DeepBatchItem[] {

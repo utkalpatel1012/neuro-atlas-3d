@@ -9,13 +9,26 @@
  * sections (§45–§47). Ontology: FMA distribution ID only; TA2/UBERON marked
  * UNVERIFIED (L5 — never asserted without a lookup pass).
  *
+ * Thin wrapper over the shared record core (`batch_records.ts`): this file
+ * owns the gyral field template only. Behaviour is unchanged.
+ *
  * Usage: `npx tsx scripts/pipeline/write_structure_records.ts` (repo-root CWD).
  */
 
-import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { batchItems } from './prepare_gyral_batch';
+import {
+  writeRecords as writeBatchRecords,
+  qaVolumeCm3,
+  nameBlock,
+  ontologyBlock,
+  spatialBlock,
+  representationBlock,
+  assetProvenanceBlock,
+  topographyBlock,
+  provenanceBlock
+} from './batch_records';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,200 +45,88 @@ const LATIN: Record<string, string> = {
   cingulate_gyrus: 'Gyrus cinguli'
 };
 
-/** Measured source-frame bbox center from raw STL vertices (mm, source units). */
-function sourceCentroidMm(stlPath: string): [number, number, number] {
-  const buf = fs.readFileSync(stlPath);
-  const tris = buf.readUInt32LE(80);
-  let minX = Infinity;
-  let minY = Infinity;
-  let minZ = Infinity;
-  let maxX = -Infinity;
-  let maxY = -Infinity;
-  let maxZ = -Infinity;
-  for (let t = 0; t < tris; t++) {
-    const base = 84 + t * 50;
-    for (let v = 0; v < 3; v++) {
-      const x = buf.readFloatLE(base + 12 + v * 12);
-      const y = buf.readFloatLE(base + 16 + v * 12);
-      const z = buf.readFloatLE(base + 20 + v * 12);
-      if (![x, y, z].every(Number.isFinite)) {
-        throw new Error(`Non-finite vertex in ${stlPath} triangle ${t}.`);
-      }
-      minX = Math.min(minX, x);
-      maxX = Math.max(maxX, x);
-      minY = Math.min(minY, y);
-      maxY = Math.max(maxY, y);
-      minZ = Math.min(minZ, z);
-      maxZ = Math.max(maxZ, z);
-    }
-  }
-  const r = (v: number): number => Number(v.toFixed(2));
-  return [r((minX + maxX) / 2), r((minY + maxY) / 2), r((minZ + maxZ) / 2)];
-}
-
-function qaVolumeCm3(assetId: string): number | null {
-  try {
-    const qa = JSON.parse(
-      fs.readFileSync(path.join(PROJECT_ROOT, 'assets/validation', `${assetId}.geometry_qa.json`), 'utf8')
-    );
-    const mm3 = qa?.analysis?.estimatedVolumeMm3;
-    return typeof mm3 === 'number' && Number.isFinite(mm3) ? Number((mm3 / 1000).toFixed(3)) : null;
-  } catch {
-    return null;
-  }
-}
-
 export function writeRecords(): string[] {
-  const manifest = JSON.parse(
-    fs.readFileSync(path.join(PROJECT_ROOT, 'assets/manifests/assets.manifest.json'), 'utf8')
-  );
-  const written: string[] = [];
-  for (const item of batchItems()) {
-    const entry = manifest.assets?.[item.assetId];
-    if (!entry) {
-      throw new Error(`Manifest entry missing for ${item.assetId}: run the batch pipeline first.`);
-    }
-    const ingest = JSON.parse(
-      fs.readFileSync(path.join(PROJECT_ROOT, 'assets/raw', item.assetId, 'ingestion.json'), 'utf8')
-    );
-    const base = item.assetId.replace(/^mesh\./, '').replace(/\.(left|right)\.v1$/, '');
-    // Parent is the lobe hierarchy node (e.g. brain.telencephalon.left.parietal_lobe).
-    const parentId = `brain.telencephalon.${item.laterality}.${item.lobe}_lobe`;
-    const shortName = item.structureName.replace(/ \((Left|Right)\)$/, '');
-    const record = {
-      id: item.structureId,
-      entity_type: 'anatomical_structure',
-      subtype: 'cortical_gyrus',
-      canonical_name: item.structureName,
-      latin_name: LATIN[base] || shortName,
-      clinical_aliases: [] as string[],
-      abbreviations: [] as string[],
-      laterality: item.laterality,
-      representation_scope: 'paired_separate',
-      name: {
-        official_latin: LATIN[base] || shortName,
-        official_english: item.structureName,
+  return writeBatchRecords({
+    projectRoot: PROJECT_ROOT,
+    items: batchItems(),
+    qaLedgerRelativePath: null,
+    assetIdOf: (item) => item.assetId,
+    missingEntryMessage: (assetId) => `Manifest entry missing for ${assetId}: run the batch pipeline first.`,
+    successLog: (count) => `[STRUCTURES] Wrote ${count} records → data/structures/`,
+    buildRecord: (item, ctx) => {
+      const entry = ctx.entry;
+      const ingest = ctx.ingest;
+      const base = item.assetId.replace(/^mesh\./, '').replace(/\.(left|right)\.v1$/, '');
+      // Parent is the lobe hierarchy node (e.g. brain.telencephalon.left.parietal_lobe).
+      const parentId = `brain.telencephalon.${item.laterality}.${item.lobe}_lobe`;
+      const shortName = item.structureName.replace(/ \((Left|Right)\)$/, '');
+      const record = {
+        id: item.structureId,
+        entity_type: 'anatomical_structure',
+        subtype: 'cortical_gyrus',
+        canonical_name: item.structureName,
+        latin_name: LATIN[base] || shortName,
         clinical_aliases: [] as string[],
-        standard_abbreviations: [] as string[]
-      },
-      ontology: {
-        ta2_id: 'UNVERIFIED (lookup pass required; see L5)',
-        fma_id: `FMA:${item.fmaId.replace(/^FMA/, '')}`,
-        uberon_id: 'UNVERIFIED (lookup pass required; see L5)',
-        fma_authority: 'BodyParts3D distribution name list (authoritative for files; NOT a live-ontology lookup)'
-      },
-      hierarchy: {
-        anatomic_system: 'central_nervous_system_telencephalon',
-        division: 'telencephalon',
-        hemisphere: item.laterality,
-        lobe: `${item.lobe}_lobe`,
-        subsystem: item.lobe === 'limbic' ? 'limbic_system' : 'neocortex',
-        parent_id: parentId,
-        groups: ['division.cerebrum', `hemisphere.${item.laterality}`, `lobe.${item.lobe}`],
-        children_ids: [] as string[]
-      },
-      spatial: {
-        mesh_node_name: `Mesh_${item.assetId.replace(/\./g, '_')}`,
-        source_centroid: sourceCentroidMm(
-          path.join(PROJECT_ROOT, 'assets/raw', item.assetId, `${item.fmaId}.stl`)
+        abbreviations: [] as string[],
+        laterality: item.laterality,
+        representation_scope: 'paired_separate',
+        name: nameBlock(LATIN[base] || shortName, item.structureName),
+        ontology: ontologyBlock(
+          item.fmaId,
+          'BodyParts3D distribution name list (authoritative for files; NOT a live-ontology lookup)'
         ),
-        source_coordinate_frame: ingest.source_coordinate_space,
-        stereotaxic_registration: {
-          registered_centroid: entry.centroid_mm,
-          registered_coordinate_frame: 'canonical_atlas_ras',
-          registration_status: 'REGISTRATION_PENDING',
-          registration: {
-            registration_method: 'not_registered',
-            registration_source: 'scripts/pipeline/canonicalize_mesh.ts (rigid adapter only; coordinate conversion, NOT template registration)'
-          }
+        hierarchy: {
+          anatomic_system: 'central_nervous_system_telencephalon',
+          division: 'telencephalon',
+          hemisphere: item.laterality,
+          lobe: `${item.lobe}_lobe`,
+          subsystem: item.lobe === 'limbic' ? 'limbic_system' : 'neocortex',
+          parent_id: parentId,
+          groups: ['division.cerebrum', `hemisphere.${item.laterality}`, `lobe.${item.lobe}`],
+          children_ids: [] as string[]
         },
-        bounding_box: {
-          min: [
-            Number((entry.centroid_mm[0] - entry.dimensions_mm[0] / 2).toFixed(2)),
-            Number((entry.centroid_mm[1] - entry.dimensions_mm[1] / 2).toFixed(2)),
-            Number((entry.centroid_mm[2] - entry.dimensions_mm[2] / 2).toFixed(2))
-          ],
-          max: [
-            Number((entry.centroid_mm[0] + entry.dimensions_mm[0] / 2).toFixed(2)),
-            Number((entry.centroid_mm[1] + entry.dimensions_mm[1] / 2).toFixed(2)),
-            Number((entry.centroid_mm[2] + entry.dimensions_mm[2] / 2).toFixed(2))
-          ],
-          coordinate_frame: 'canonical_atlas_ras',
-          derivation: 'reconstructed from manifest centroid + dimensions (bbox-center convention)'
-        },
-        estimated_volume_cm3: qaVolumeCm3(item.assetId),
-        default_hex_color: '#C9BFA6',
-        centroid_convention: 'bounding-box center (NOT vertex mean).'
-      },
-      representations: [
-        {
-          id: `rep.${base}.${item.laterality}.macroscopic_mesh`,
-          representation_type: 'macroscopic_mesh',
-          level_of_detail: 'LOD0-LOD3',
-          asset_reference: item.assetId,
-          coordinate_frame: 'canonical_atlas_ras',
-          is_canonical: true,
-          metadata: {
-            format: 'glb_meshopt',
+        spatial: spatialBlock({
+          meshNodeName: `Mesh_${item.assetId.replace(/\./g, '_')}`,
+          stlPath: path.join(ctx.projectRoot, 'assets/raw', item.assetId, `${item.fmaId}.stl`),
+          sourceCoordinateSpace: ingest.source_coordinate_space,
+          entry,
+          volumeCm3: qaVolumeCm3(ctx.projectRoot, item.assetId),
+          hexColor: '#C9BFA6'
+        }),
+        representations: [
+          representationBlock({
+            id: `rep.${base}.${item.laterality}.macroscopic_mesh`,
+            representationType: 'macroscopic_mesh',
+            assetId: item.assetId,
             topology: entry.topology_class
-          }
-        }
-      ],
-      asset_id: item.assetId,
-      asset_provenance: {
-        asset_id: item.assetId,
-        dataset_name: ingest.source_dataset,
-        dataset_version: ingest.source_dataset_version,
-        source_url: ingest.source_url,
-        upstream_asset_id: item.fmaId,
-        upstream_license: 'CC_BY_SA_2_1_JP',
-        attribution_text_required: ingest.attribution,
-        acquisition_date: ingest.acquisition_date,
-        derived_component: ingest.derived_component,
-        resulting_sha256_hash: entry.resulting_sha256_hash,
-        resulting_license: 'CC-BY-SA 4.0',
-        project_distribution_policy: 'CC-BY-SA-4.0',
-        production_eligibility: 'PRODUCTION_ALLOWED',
-        // Phase 5.2: was 'PERMITTED', contradicting this record's own LEGAL_REVIEW_REQUIRED
-  // note. The conservative posture is the honest one; AGENTS.md forbids labelling
-  // anything CLEARED while it remains LEGAL_REVIEW_REQUIRED.
-  commercial_redistribution: 'LEGAL_REVIEW_REQUIRED',
-        restrictions_and_covenants: [
-          'Must attribute BodyParts3D / DBCLS in application notices and UI',
-          'Derived 3D meshes distributed under CC-BY-SA 4.0.',
-          'Conservative licensing posture (Phase 3.1 section 19): historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution.'
+          })
         ],
-        validation_status: 'CLEARED',
-        legal_review_notes: `BodyParts3D Release 3.0 component ${item.fmaId} via in-repo derivation from ${ingest.derived_component.parent_asset_id}. Same license chain as production cortex composites. Retroactivity UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution.`
-      },
-      topography: {
-        relationships: [
-          {
-            source_entity_id: item.structureId,
-            target_entity_id: parentId,
-            relationship_type: 'part_of',
-            semantic_class: 'STRUCTURAL_CONTAINMENT',
-            evidence_claim_ids: [] as string[],
-            notes: `BodyParts3D distribution segment ${item.fmaId} (${item.lobe} lobe); containment follows the distribution taxonomy. No functional-connectivity claim.`
-          }
-        ]
-      },
-      geometry_state: 'RUNTIME_READY',
-      created_at: new Date().toISOString(),
-      provenance: {
-        source_authority: 'BodyParts3D distribution name list + docs/PHASE_3_CORTEX_SOURCE_COMPONENTS.md (corrected 2026-09-27)',
-        dataset_name: ingest.source_dataset,
-        dataset_version: ingest.source_dataset_version,
-        ontology_reference: `FMA:${item.fmaId.replace(/^FMA/, '')} (distribution-verified)`,
-        last_reviewed: new Date().toISOString().split('T')[0]
-      }
-    };
-    const outPath = path.join(PROJECT_ROOT, 'data/structures', `${base}_${item.laterality}.json`);
-    fs.writeFileSync(outPath, JSON.stringify(record, null, 2), 'utf8');
-    written.push(outPath);
-  }
-  console.log(`[STRUCTURES] Wrote ${written.length} records → data/structures/`);
-  return written;
+        asset_id: item.assetId,
+        asset_provenance: assetProvenanceBlock({
+          assetId: item.assetId,
+          ingest,
+          fmaId: item.fmaId,
+          resultingSha256: entry.resulting_sha256_hash,
+          derivedComponent: ingest.derived_component,
+          legalReviewNotes: `BodyParts3D Release 3.0 component ${item.fmaId} via in-repo derivation from ${ingest.derived_component.parent_asset_id}. Same license chain as production cortex composites. Retroactivity UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution.`
+        }),
+        topography: topographyBlock(
+          item.structureId,
+          parentId,
+          `BodyParts3D distribution segment ${item.fmaId} (${item.lobe} lobe); containment follows the distribution taxonomy. No functional-connectivity claim.`
+        ),
+        geometry_state: 'RUNTIME_READY',
+        created_at: new Date().toISOString(),
+        provenance: provenanceBlock({
+          authority: 'BodyParts3D distribution name list + docs/PHASE_3_CORTEX_SOURCE_COMPONENTS.md (corrected 2026-09-27)',
+          dataset: ingest.source_dataset,
+          version: ingest.source_dataset_version,
+          fmaId: item.fmaId
+        })
+      };
+      return { outRelativePath: `data/structures/${base}_${item.laterality}.json`, record };
+    }
+  });
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
