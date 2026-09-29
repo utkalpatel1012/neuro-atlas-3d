@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "tsx src/schema_validation.test.ts && tsx src/pipeline_regression.test.ts && tsx src/rendering_engine.test.ts && tsx src/anatomical_assembly.test.ts && tsx src/architecture_consolidation.test.ts && tsx src/cerebral_cortex.test.ts && tsx src/phase_3_1_integrity.test.ts && tsx src/section_planes.test.ts && tsx src/section_clipping.test.ts && tsx src/section_presentation.test.ts && tsx src/mri_reference.test.ts && tsx src/mri_registration.test.ts && tsx src/phase5_expansion.test.ts && tsx src/phase51_quality.test.ts && tsx src/phase51_anatomy.test.ts && tsx src/phase52_anatomy.test.ts && tsx src/phase53_anatomy.test.ts",
+    "test": "tsx src/schema_validation.test.ts && tsx src/pipeline_regression.test.ts && tsx src/rendering_engine.test.ts && tsx src/anatomical_assembly.test.ts && tsx src/architecture_consolidation.test.ts && tsx src/cerebral_cortex.test.ts && tsx src/phase_3_1_integrity.test.ts && tsx src/section_planes.test.ts && tsx src/section_clipping.test.ts && tsx src/section_presentation.test.ts && tsx src/mri_reference.test.ts && tsx src/mri_registration.test.ts && tsx src/phase5_expansion.test.ts && tsx src/phase51_quality.test.ts && tsx src/phase51_anatomy.test.ts && tsx src/phase52_anatomy.test.ts && tsx src/phase53_anatomy.test.ts && tsx src/phase54_anatomy.test.ts",
     "test:schema": "tsx src/schema_validation.test.ts",
     "test:pipeline": "tsx src/pipeline_regression.test.ts",
     "test:engine": "tsx src/rendering_engine.test.ts",
@@ -26,6 +26,7 @@
     "test:anatomy51": "tsx src/phase51_anatomy.test.ts",
     "test:anatomy52": "tsx src/phase52_anatomy.test.ts",
     "test:anatomy53": "tsx src/phase53_anatomy.test.ts",
+    "test:anatomy54": "tsx src/phase54_anatomy.test.ts",
     "asset:validate": "tsx scripts/validate_asset.ts",
     "audit:phase1": "tsx scripts/audit_phase1.ts",
     "pipeline:run": "tsx scripts/pipeline/run_pipeline.ts",
@@ -37,6 +38,8 @@
     "pipeline:posterior:records": "tsx scripts/pipeline/write_posterior_records.ts",
     "pipeline:tract": "tsx scripts/pipeline/prepare_tract_batch.ts",
     "pipeline:tract:records": "tsx scripts/pipeline/write_tract_records.ts",
+    "pipeline:nerve": "tsx scripts/pipeline/prepare_nerve_batch.ts",
+    "pipeline:nerve:records": "tsx scripts/pipeline/write_nerve_records.ts",
     "deploy": "gh-pages -d dist"
   },
   "keywords": [

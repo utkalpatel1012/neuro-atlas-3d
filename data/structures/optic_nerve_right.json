@@ -1,0 +1,135 @@
+{
+  "id": "brain.cranial_nerves.optic_nerve_right",
+  "entity_type": "anatomical_structure",
+  "subtype": "cranial_nerve",
+  "canonical_name": "Optic nerve (right)",
+  "latin_name": "Nervus opticus",
+  "clinical_aliases": [],
+  "abbreviations": [],
+  "laterality": "right",
+  "representation_scope": "paired_separate",
+  "anatomy_only_scope": "Anatomy only: cranial-nerve substrate (CRANIAL_NERVE). No vessel or Circle-of-Willis membership, no functional-network membership, no RDoC association, no circuit or pathway claim, no visual-function or conduction claim, no receptor or pharmacology mapping, no psychiatric claim is made or implied. BodyParts3D is a segmentation atlas, not tractography: no streamlines were generated.",
+  "expert_review_status": "EXPERT_REVIEW_PENDING",
+  "name": {
+    "official_latin": "Nervus opticus",
+    "official_english": "Optic nerve (right)",
+    "clinical_aliases": [],
+    "standard_abbreviations": []
+  },
+  "ontology": {
+    "ta2_id": "UNVERIFIED (lookup pass required; see L5)",
+    "fma_id": "FMA:50875",
+    "uberon_id": "UNVERIFIED (lookup pass required; see L5)",
+    "fma_authority": "BodyParts3D distribution parts_list_e.txt (authoritative for files; NOT a live-ontology lookup)"
+  },
+  "hierarchy": {
+    "anatomic_system": "central_nervous_system",
+    "division": "cranial_nerves",
+    "hemisphere": "right",
+    "lobe": null,
+    "subsystem": "cranial_nerves",
+    "parent_id": "brain.cranial_nerves",
+    "groups": [
+      "division.cranial_nerves",
+      "region.optic_nerve"
+    ],
+    "children_ids": []
+  },
+  "spatial": {
+    "mesh_node_name": "Mesh_mesh_optic_nerve_right_v1",
+    "source_centroid": [
+      -16.36,
+      -134.24,
+      1539.33
+    ],
+    "source_coordinate_frame": "dicom_lps_whole_body",
+    "stereotaxic_registration": {
+      "registered_centroid": [
+        16.36,
+        -22.37,
+        -64.14
+      ],
+      "registered_coordinate_frame": "canonical_atlas_ras",
+      "registration_status": "REGISTRATION_PENDING",
+      "registration": {
+        "registration_method": "not_registered",
+        "registration_source": "scripts/pipeline/canonicalize_mesh.ts (rigid adapter only; coordinate conversion, NOT template registration)"
+      }
+    },
+    "bounding_box": {
+      "min": [
+        1.25,
+        -32.8,
+        -87.55
+      ],
+      "max": [
+        31.47,
+        -11.94,
+        -40.73
+      ],
+      "coordinate_frame": "canonical_atlas_ras",
+      "derivation": "reconstructed from manifest centroid + dimensions (bbox-center convention)"
+    },
+    "estimated_volume_cm3": 0.62,
+    "default_hex_color": "#E8D9A8",
+    "centroid_convention": "bounding-box center (NOT vertex mean)."
+  },
+  "representations": [
+    {
+      "id": "rep.optic_nerve.macroscopic_mesh",
+      "representation_type": "macroscopic_mesh",
+      "level_of_detail": "LOD0-LOD3",
+      "asset_reference": "mesh.optic_nerve.right.v1",
+      "coordinate_frame": "canonical_atlas_ras",
+      "is_canonical": true,
+      "metadata": {
+        "format": "glb_meshopt",
+        "topology": "SOLID"
+      }
+    }
+  ],
+  "asset_id": "mesh.optic_nerve.right.v1",
+  "asset_provenance": {
+    "asset_id": "mesh.optic_nerve.right.v1",
+    "dataset_name": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+    "dataset_version": "Release 3.0 (2011/06/20)",
+    "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/master/assets/BodyParts3D_data/stl/FMA50875.stl",
+    "upstream_asset_id": "FMA50875",
+    "upstream_license": "CC_BY_SA_2_1_JP",
+    "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+    "acquisition_date": "2026-09-28",
+    "resulting_sha256_hash": "3e6902d379a2dc0ee955eb8f5ab672007cf917a2efdb3306daa0190e3d93b616",
+    "resulting_license": "CC-BY-SA 4.0",
+    "project_distribution_policy": "CC-BY-SA-4.0",
+    "production_eligibility": "PRODUCTION_ALLOWED",
+    "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+    "restrictions_and_covenants": [
+      "Must attribute BodyParts3D / DBCLS in application notices and UI",
+      "Derived 3D meshes distributed under CC-BY-SA 4.0.",
+      "Conservative licensing posture (Phase 3.1 section 19): historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution."
+    ],
+    "validation_status": "CLEARED",
+    "legal_review_notes": "BodyParts3D Release 3.0 component FMA50875 via fresh mirror download (Phase 5.4). Same license chain as production assets. Retroactivity UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution."
+  },
+  "topography": {
+    "relationships": [
+      {
+        "source_entity_id": "brain.cranial_nerves.optic_nerve_right",
+        "target_entity_id": "brain.cranial_nerves",
+        "relationship_type": "part_of",
+        "semantic_class": "STRUCTURAL_CONTAINMENT",
+        "evidence_claim_ids": [],
+        "notes": "BodyParts3D distribution segment FMA50875; containment follows the distribution taxonomy. Cranial-nerve substrate only: paired segments plus chiasm, no whole-nerve subdivision fabricated, no functional-connectivity claim."
+      }
+    ]
+  },
+  "geometry_state": "RUNTIME_READY",
+  "created_at": "2026-09-28T11:04:15.688Z",
+  "provenance": {
+    "source_authority": "BodyParts3D distribution parts_list_e.txt (authoritative for files)",
+    "dataset_name": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+    "dataset_version": "Release 3.0 (2011/06/20)",
+    "ontology_reference": "FMA:50875 (distribution-verified)",
+    "last_reviewed": "2026-09-28"
+  }
+}

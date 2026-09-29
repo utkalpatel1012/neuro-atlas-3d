@@ -1,0 +1,64 @@
+{
+  "transformation_id": "tx.mesh.optic_chiasm.midline.v1.canonicalization",
+  "input_frame": "DICOM_LPS_WHOLE_BODY",
+  "output_frame": "THREEJS_RAS_CANONICAL",
+  "adapter_id": "adapter.bodyparts3d.lps_whole_body_to_ras",
+  "adapter_version": "1.0.0",
+  "input_asset_hash": "aa1949a04dbbd42e15cc5b63a2849ba8120c8819be1f15f766d53f86e09ad67b",
+  "output_asset_hash": "5862c9f2c9ad6a3cf33399be8a563a4b1683cb71de81655c6704cba726584fde",
+  "tool": "NeuroAtlas3D Generic Canonicalizer v1.1",
+  "parameters": {
+    "source_orientation": "LPS",
+    "target_orientation": "RAS",
+    "axis_mapping": {
+      "x": "-x",
+      "y": "z",
+      "z": "y"
+    },
+    "translation_mm": [
+      0,
+      -1561.7,
+      70.1
+    ],
+    "scale": 1,
+    "registration_metadata": {
+      "registration_method": "stereotaxic_acpc_origin_centering",
+      "reference_landmarks": {
+        "ac_pc_midpoint_source_lps": [
+          0,
+          -70.1,
+          1561.7
+        ]
+      },
+      "transformation_matrix_4x4": [
+        [
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          -1561.7
+        ],
+        [
+          0,
+          1,
+          0,
+          70.1
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "notes": "Transforms whole-body source coordinates to internal canonical space centered near origin. The AC-PC midpoint landmark above is ASSERTED, not measured from identified commissures (Phase 3.1 D3); origin approximates, not equals, the mid-commissural plane."
+    },
+    "normals": "area_weighted_smooth"
+  },
+  "timestamp": "2026-09-28T11:02:13.069Z"
+}

@@ -1,0 +1,179 @@
+{
+  "assetId": "mesh.optic_nerve.right.v1",
+  "timestamp": "2026-09-28T11:01:51.381Z",
+  "inputCanonicalGlb": "assets/derived/mesh.optic_nerve.right.v1/canonical/mesh.optic_nerve.right.v1.canonical.glb",
+  "inputCanonicalHash": "3e6902d379a2dc0ee955eb8f5ab672007cf917a2efdb3306daa0190e3d93b616",
+  "levels": [
+    {
+      "level": 0,
+      "lodName": "lod0",
+      "targetRatio": 1,
+      "triangleCount": 10310,
+      "vertexCount": 5157,
+      "byteLength": 186608,
+      "sha256": "ef6283a469b3bc868b677419212c783bef5e66b82c99ecfa829390337eb2fe0b",
+      "filePath": "assets/derived/mesh.optic_nerve.right.v1/lod/mesh.optic_nerve.right.v1.lod0.glb",
+      "targetIndexCount": 30930,
+      "resultingIndexCount": 30930,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 620.41,
+        "lodVolumeMm3": 620.41,
+        "volumeDeviationPercent": 0,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0,
+        "meanSurfaceDeviationMm": 0
+      }
+    },
+    {
+      "level": 1,
+      "lodName": "lod1",
+      "targetRatio": 0.75,
+      "triangleCount": 7732,
+      "vertexCount": 3868,
+      "byteLength": 140204,
+      "sha256": "ab065c94d2b5904d714d9c479ac875559cc4644ef176611e3c8370571290a7b8",
+      "filePath": "assets/derived/mesh.optic_nerve.right.v1/lod/mesh.optic_nerve.right.v1.lod1.glb",
+      "targetIndexCount": 23196,
+      "resultingIndexCount": 23196,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000101,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 620.41,
+        "lodVolumeMm3": 620.16,
+        "volumeDeviationPercent": -0.041,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0.5934,
+        "meanSurfaceDeviationMm": 0.0425
+      }
+    },
+    {
+      "level": 2,
+      "lodName": "lod2",
+      "targetRatio": 0.5,
+      "triangleCount": 5154,
+      "vertexCount": 2579,
+      "byteLength": 93800,
+      "sha256": "a33f0cbce67839c086cabbbf82b92a4a63e8c5c5648a767682035302af78b429",
+      "filePath": "assets/derived/mesh.optic_nerve.right.v1/lod/mesh.optic_nerve.right.v1.lod2.glb",
+      "targetIndexCount": 15465,
+      "resultingIndexCount": 15462,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000211,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 620.41,
+        "lodVolumeMm3": 619.59,
+        "volumeDeviationPercent": -0.133,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            -0.0047,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0.7052,
+        "meanSurfaceDeviationMm": 0.1041
+      }
+    },
+    {
+      "level": 3,
+      "lodName": "lod3",
+      "targetRatio": 0.25,
+      "triangleCount": 2576,
+      "vertexCount": 1290,
+      "byteLength": 47396,
+      "sha256": "6ea1812c5a3ddb1a614afc00f0a2bc814a048b3630cb7c9dd01f37457c189474",
+      "filePath": "assets/derived/mesh.optic_nerve.right.v1/lod/mesh.optic_nerve.right.v1.lod3.glb",
+      "targetIndexCount": 7731,
+      "resultingIndexCount": 7728,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000479,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 620.41,
+        "lodVolumeMm3": 617.7,
+        "volumeDeviationPercent": -0.437,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            -0.0093,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 1.0748,
+        "meanSurfaceDeviationMm": 0.2183
+      }
+    }
+  ],
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.optic_nerve.right.v1.lod_generation",
+    "tool": "MeshoptSimplifier / NeuroAtlas3D LOD Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "algorithms": "Quadric_Error_Metric_Simplification",
+      "levels": [
+        {
+          "name": "lod0",
+          "ratio": 1
+        },
+        {
+          "name": "lod1",
+          "ratio": 0.75
+        },
+        {
+          "name": "lod2",
+          "ratio": 0.5
+        },
+        {
+          "name": "lod3",
+          "ratio": 0.25
+        }
+      ]
+    },
+    "timestamp": "2026-09-28T11:01:51.381Z"
+  }
+}

@@ -1,15 +1,15 @@
 /**
- * 3D Neuroanatomy Atlas: Phase 5.3 White-Matter Tests
+ * 3D Neuroanatomy Atlas: Phase 5.4 Cranial-Nerve Tests
  * Standard: AAS-2026-NEURO-V1
  *
- * Covers the 5.3 batch (corpus callosum + paired anterior-limb capsule
- * segments + paired fornix segments + fornix/anterior/posterior commissures +
- * paired optic tracts = 10 RUNTIME_READY, 0 rejected) against REAL outputs:
- * identity, IDs, laterality vs measured geometry, white-matter-vs-network
- * separation, provenance, license, transforms, topology, LOD, manifest,
- * hierarchy, loading, clipping, selection, isolation, focus, bookmarks.
- * White-matter segments are SOLID substrate, never functional networks,
- * circuits, or tractography streamlines.
+ * Covers the 5.4 batch (paired optic-nerve segments + midline optic chiasm =
+ * 3 RUNTIME_READY, 0 rejected) against REAL outputs: identity, IDs,
+ * laterality vs measured geometry, nerve-vs-vessel-vs-network separation,
+ * provenance, license, transforms, topology, LOD, manifest, hierarchy,
+ * loading, clipping, selection, isolation, focus, bookmarks. Cranial-nerve
+ * segments are SOLID cord-like substrate, never vessels, never functional
+ * networks or circuits, never visual-function or conduction claims, and never
+ * tractography streamlines.
  */
 
 import * as fs from 'fs';
@@ -46,25 +46,21 @@ function readJson(rel: string): any {
 }
 
 const BATCH: Array<{ base: string; laterality: string; fma: string; record: string }> = [
-  { base: 'corpus_callosum', laterality: 'midline', fma: 'FMA86464', record: 'corpus_callosum_midline.json' },
-  { base: 'internal_capsule_anterior_limb', laterality: 'right', fma: 'FMA72908', record: 'internal_capsule_anterior_limb_right.json' },
-  { base: 'internal_capsule_anterior_limb', laterality: 'left', fma: 'FMA72909', record: 'internal_capsule_anterior_limb_left.json' },
-  { base: 'fornix', laterality: 'right', fma: 'FMA72924', record: 'fornix_right.json' },
-  { base: 'fornix', laterality: 'left', fma: 'FMA72925', record: 'fornix_left.json' },
-  { base: 'fornix_commissure', laterality: 'midline', fma: 'FMA61970', record: 'fornix_commissure_midline.json' },
-  { base: 'anterior_commissure', laterality: 'midline', fma: 'FMA61961', record: 'anterior_commissure_midline.json' },
-  { base: 'posterior_commissure', laterality: 'midline', fma: 'FMA62072', record: 'posterior_commissure_midline.json' },
-  { base: 'optic_tract', laterality: 'right', fma: 'FMA62382', record: 'optic_tract_right.json' },
-  { base: 'optic_tract', laterality: 'left', fma: 'FMA67936', record: 'optic_tract_left.json' }
+  { base: 'optic_nerve', laterality: 'right', fma: 'FMA50875', record: 'optic_nerve_right.json' },
+  { base: 'optic_nerve', laterality: 'left', fma: 'FMA50878', record: 'optic_nerve_left.json' },
+  { base: 'optic_chiasm', laterality: 'midline', fma: 'FMA62045', record: 'optic_chiasm_midline.json' }
 ];
 
 const assetIdOf = (b: { base: string; laterality: string }): string => `mesh.${b.base}.${b.laterality}.v1`;
 
-// Knowledge-layer vocabulary that must never describe substrate anatomy. The
-// Phase 5.3 registry hard stop is functional-conflation: WHITE_MATTER_STRUCTURE
-// ≠ FUNCTIONAL_NETWORK ≠ PSYCHIATRIC_CIRCUIT. Explicit denial sentences inside
-// the record's own guard fields are allowed; everything else is scanned.
-const KNOWLEDGE_VOCAB = /dsm|rdoc|receptor|dopamine|serotonin|glutamate|gaba|dbs|rtms|tms|depression|schizophrenia|bipolar|antipsychotic|antidepressant|pharmacolog|functional|connectivity|network|circuit|tractography|streamline|resting.state|default.mode|neuromodulation/i;
+// Knowledge-layer, vascular-identity, and physiological vocabulary that must
+// never describe substrate anatomy. The Phase 5.4 registry hard stops are
+// functional-conflation and wrong-category-validation: CRANIAL_NERVE ≠
+// VASCULATURE ≠ FUNCTIONAL_NETWORK ≠ PSYCHIATRIC_CIRCUIT, and nerves are NOT
+// tractography. Explicit denial sentences inside the record's own guard
+// fields are allowed; everything else is scanned. (`vision` carries a word
+// boundary so the structural field name `division` never trips the scan.)
+const KNOWLEDGE_VOCAB = /dsm|rdoc|receptor|dopamine|serotonin|glutamate|gaba|dbs|rtms|tms|depression|schizophrenia|bipolar|antipsychotic|antidepressant|pharmacolog|functional|connectivity|network|circuit|tractography|streamline|resting.state|default.mode|neuromodulation|artery|arterial|vein|venous|vascular|willis|aneurysm|perfusion|stroke|hemorrhage|\bvision\b|visual|acuity|sight|blindness|conduction|myelin|action.potential/i;
 
 function scannableRecordText(rec: any): string {
   const copy = { ...rec };
@@ -80,15 +76,11 @@ function scannableRecordText(rec: any): string {
 
 async function runTests() {
   console.log('================================================================');
-  console.log('NEURO ATLAS 3D: PHASE 5.3 WHITE-MATTER TEST SUITE');
+  console.log('NEURO ATLAS 3D: PHASE 5.4 CRANIAL-NERVE TEST SUITE');
   console.log('================================================================\n');
   let passed = 0;
 
   const manifest = readJson('assets/manifests/assets.manifest.json');
-  // Global count advanced 46 → 49 in Phase 5.4 (3 cranial-nerve assets
-  // appended, same provenance chain). This suite's own load-bearing
-  // assertions — the 10 white-matter assets, their hashes, hierarchy and
-  // topology — are unchanged below.
   assert(Object.keys(manifest.assets).length === 49, `manifest holds 49 assets, got ${Object.keys(manifest.assets).length}`);
   passed++;
 
@@ -149,24 +141,26 @@ async function runTests() {
   console.log('[PASS] Declared laterality matches measured canonical geometry.');
   passed++;
 
-  // TEST 3: white-matter-vs-network separation (registry hard stop).
-  console.log('\n--- TEST 3: White-matter separation ---');
+  // TEST 3: nerve-vs-vessel-vs-network separation (registry hard stops).
+  console.log('\n--- TEST 3: Nerve separation ---');
   for (const b of BATCH) {
     const rec = readJson(`data/structures/${b.record}`);
-    assert(rec.subtype === 'white_matter_structure', `${rec.id}: subtype white_matter_structure (substrate, not network)`);
+    assert(rec.subtype === 'cranial_nerve', `${rec.id}: subtype cranial_nerve (substrate, not vessel or network)`);
     passed++;
-    assert(rec.representations?.[0]?.representation_type === 'macroscopic_mesh', `${rec.id}: representation is a solid mesh, not streamlines or a cast`);
+    assert(rec.representations?.[0]?.representation_type === 'macroscopic_mesh', `${rec.id}: representation is a solid mesh, not streamlines, a cast, or a vessel`);
+    passed++;
+    assert(!/tractography_streamlines|cavity_cast/.test(rec.representations?.[0]?.representation_type ?? ''), `${rec.id}: never a streamline or cavity representation`);
     passed++;
     assert(rec.functional_neuroanatomy === undefined && rec.psychiatric_relevance === undefined, `${rec.id}: no functional/psychiatric sections`);
     passed++;
-    assert(typeof rec.anatomy_only_scope === 'string' && /WHITE_MATTER_STRUCTURE/.test(rec.anatomy_only_scope), `${rec.id}: explicit anatomy-only guard present`);
+    assert(typeof rec.anatomy_only_scope === 'string' && /CRANIAL_NERVE/.test(rec.anatomy_only_scope), `${rec.id}: explicit anatomy-only guard present`);
     passed++;
-    assert(!KNOWLEDGE_VOCAB.test(scannableRecordText(rec)), `${rec.id}: no knowledge-layer vocabulary outside the explicit denial`);
+    assert(!KNOWLEDGE_VOCAB.test(scannableRecordText(rec)), `${rec.id}: no knowledge/vascular/physiology vocabulary outside the explicit denial`);
     passed++;
     assert(rec.expert_review_status === 'EXPERT_REVIEW_PENDING', `${rec.id}: no expert review claimed`);
     passed++;
   }
-  console.log('[PASS] Substrate only: no network/circuit/RDoC/receptor/psychiatry claims.');
+  console.log('[PASS] Substrate only: no vessel/RDoC/network/circuit/vision/conduction/psychiatry claims.');
   passed++;
 
   // TEST 4: provenance + license + hashes.
@@ -218,16 +212,15 @@ async function runTests() {
   console.log('[PASS] Canonical space; measured SOLID topology; LODs shipped.');
   passed++;
 
-  // TEST 6: hierarchy honesty (AVAILABLE vs DOCUMENTED; nothing subdivided).
+  // TEST 6: hierarchy honesty (AVAILABLE vs DOCUMENTED; nothing fabricated).
   console.log('\n--- TEST 6: Hierarchy ---');
   const hierarchy = readJson('data/anatomical_hierarchy.json');
-  // Global hierarchy count advanced 85 → 107 in Phase 5.4 (2 branch + 3
-  // AVAILABLE + 17 DOCUMENTED cranial-nerve/vasculature nodes appended; the
-  // 10 white-matter AVAILABLE and 8 DOCUMENTED gap nodes below are unchanged).
   assert(hierarchy.nodes.length === 107, `hierarchy holds 107 nodes, got ${hierarchy.nodes.length}`);
   passed++;
   const nodeIds = hierarchy.nodes.map((n: any) => n.id);
-  assert(nodeIds.includes('brain.white_matter'), 'white-matter branch present');
+  assert(nodeIds.includes('brain.cranial_nerves'), 'cranial-nerve branch present');
+  passed++;
+  assert(nodeIds.includes('brain.vasculature'), 'vasculature branch present');
   passed++;
   for (const b of BATCH) {
     const rec = readJson(`data/structures/${b.record}`);
@@ -239,16 +232,25 @@ async function runTests() {
     assert(nodeIds.includes(rec.hierarchy.parent_id), `${rec.id}: parent resolves`);
     passed++;
   }
-  // DOCUMENTED gaps stay DOCUMENTED: association tracts without source geometry.
+  // DOCUMENTED gaps stay DOCUMENTED: absent nerves and vessels.
   for (const docId of [
-    'brain.white_matter.corona_radiata',
-    'brain.white_matter.superior_longitudinal_fasciculus',
-    'brain.white_matter.uncinate_fasciculus',
-    'brain.white_matter.inferior_longitudinal_fasciculus',
-    'brain.white_matter.cingulum',
-    'brain.white_matter.internal_capsule',
-    'brain.white_matter.fornix_whole',
-    'brain.white_matter.optic_tract_whole'
+    'brain.cranial_nerves.optic_nerve_whole',
+    'brain.cranial_nerves.olfactory',
+    'brain.cranial_nerves.oculomotor',
+    'brain.cranial_nerves.trochlear',
+    'brain.cranial_nerves.trigeminal',
+    'brain.cranial_nerves.abducens',
+    'brain.cranial_nerves.facial',
+    'brain.cranial_nerves.vestibulocochlear',
+    'brain.cranial_nerves.glossopharyngeal',
+    'brain.cranial_nerves.vagus',
+    'brain.cranial_nerves.accessory',
+    'brain.cranial_nerves.hypoglossal',
+    'brain.vasculature.circle_of_willis',
+    'brain.vasculature.anterior_cerebral_artery',
+    'brain.vasculature.middle_cerebral_artery',
+    'brain.vasculature.posterior_cerebral_artery',
+    'brain.vasculature.vertebrobasilar_system'
   ]) {
     const node = hierarchy.nodes.find((n: any) => n.id === docId);
     assert(node, `${docId}: DOCUMENTED gap is reified as a hierarchy node`);
@@ -261,38 +263,44 @@ async function runTests() {
     assert(isChildOfSomeNode, `${docId}: listed in a parent's children array (reachable, not orphaned)`);
     passed++;
   }
-  // No fabricated subdivision: neither the corpus callosum nor the fornix may
-  // appear split into regions/parts, and no capsule limb beyond the sourced
-  // anterior limb may appear.
+  // No fabricated tiny branches or subdivisions: no vessel sub-branches, no
+  // intra-nerve segments, no chiasmal subregions may appear anywhere.
   const hierarchyText = fs.readFileSync(path.join(PROJECT_ROOT, 'data/anatomical_hierarchy.json'), 'utf8');
-  for (const invented of ['genu', 'splenium', 'rostrum', 'truncus', 'fornix_body', 'fornix_column', 'fornix_crus', 'posterior_limb', 'retrolenticular', 'sublenticular']) {
-    assert(!new RegExp(`"${invented}|\\.${invented}[_."]`).test(hierarchyText), `no fabricated '${invented}' subdivision node`);
+  for (const invented of ['ophthalmic', 'lenticulostriate', 'm1_segment', 'm2_segment', 'a1_segment', 'p1_segment', 'communicating_artery', 'vertebral_artery', 'carotid', 'basilar_tip', 'intraorbital', 'intracanalicular', 'intracranial_segment', 'chiasm_central', 'chiasm_lateral']) {
+    assert(!new RegExp(`"${invented}|\\.${invented}[_."]`).test(hierarchyText), `no fabricated '${invented}' branch node`);
     passed++;
   }
-  const ccNodes = nodeIds.filter((id: string) => /corpus_callosum/.test(id));
-  assert(ccNodes.length === 1, `corpus callosum is exactly one node (got ${ccNodes.length})`);
+  const nerveNodes = nodeIds.filter((id: string) => /cranial_nerves\.optic_nerve/.test(id));
+  assert(nerveNodes.length === 3, `optic nerve is exactly two AVAILABLE segments + one DOCUMENTED whole (got ${nerveNodes.length})`);
   passed++;
-  console.log('[PASS] Hierarchy honest; commissures unsplit; gaps DOCUMENTED.');
+  const wholeNode = hierarchy.nodes.find((n: any) => n.id === 'brain.cranial_nerves.optic_nerve_whole');
+  assert(wholeNode.geometry_state === 'DOCUMENTED' && !wholeNode.asset_id, 'whole optic nerve stays DOCUMENTED (no STL served)');
+  passed++;
+  console.log('[PASS] Hierarchy honest; nerves unsplit; vessels and absent nerves DOCUMENTED.');
   passed++;
 
-  // TEST 7: verdicts + pins (10 RUNTIME_READY, 0 rejected, hash-gated).
+  // TEST 7: verdicts + pins (3 RUNTIME_READY, 0 rejected, hash-gated).
   console.log('\n--- TEST 7: Batch verdicts + pinned hashes ---');
-  const qa = readJson('data/phase53_batch_qa.json');
+  const qa = readJson('data/phase54_batch_qa.json');
   const ready = qa.verdicts.filter((v: any) => v.state === 'RUNTIME_READY');
-  assert(qa.verdicts.length === 10 && ready.length === 10, `10/10 RUNTIME_READY (got ${ready.length}/10)`);
+  assert(qa.verdicts.length === 3 && ready.length === 3, `3/3 RUNTIME_READY (got ${ready.length}/3)`);
   passed++;
-  assert(qa.verdicts.every((v: any) => v.profileId === 'solid-subcortical-nucleus'), 'every 5.3 verdict uses the white-matter SOLID profile');
+  assert(qa.verdicts.filter((v: any) => v.state === 'REJECTED').length === 0, 'no silent rejections: every staged source shipped or would carry a reason');
+  passed++;
+  assert(qa.verdicts.every((v: any) => v.profileId === 'solid-subcortical-nucleus'), 'every 5.4 verdict uses the nerve SOLID profile');
   passed++;
   for (const v of qa.verdicts) {
     assert(!/pial|composite-cortical|open-cortical|cavity|sheet|cast/i.test(v.profileId ?? ''), `${v.assetId}: no cortical/cavity profile name`);
+    passed++;
+    assert(!/streamline|tractography/i.test(v.profileId ?? ''), `${v.assetId}: never a streamline profile (nerves are NOT tractography)`);
     passed++;
     assert(v.measuredTriangles > 0 && v.measuredShells === 1 && v.measuredBoundaryEdges === 0, `${v.assetId}: measured single-shell watertight solid`);
     passed++;
     assert(manifest.production_whitelist.includes(v.assetId), `${v.assetId}: whitelisted`);
     passed++;
   }
-  const pins = readJson('data/phase53_source_hashes.json');
-  assert(Array.isArray(pins.sources) && pins.sources.length === 10, '10 pinned source hashes committed');
+  const pins = readJson('data/phase54_source_hashes.json');
+  assert(Array.isArray(pins.sources) && pins.sources.length === 3, '3 pinned source hashes committed');
   passed++;
   for (const s of pins.sources) {
     const stl = path.join(PROJECT_ROOT, 'assets/raw', s.asset_id, `${s.fma_id}.stl`);
@@ -304,7 +312,7 @@ async function runTests() {
   }
   assert(/MIRROR_CONVERSION_UNVERIFIED/.test(pins.residual_risk), 'residual mirror-conversion risk recorded, not silently closed');
   passed++;
-  const prepSrc = fs.readFileSync(path.join(PROJECT_ROOT, 'scripts/pipeline/prepare_tract_batch.ts'), 'utf8');
+  const prepSrc = fs.readFileSync(path.join(PROJECT_ROOT, 'scripts/pipeline/prepare_nerve_batch.ts'), 'utf8');
   assert(/SOURCE INTEGRITY FAILURE/.test(prepSrc) && /loadPinnedSourceHashes/.test(prepSrc), 'staging script rejects on pin mismatch rather than self-comparing');
   passed++;
   console.log('[PASS] Batch fully ready; pins gate every source; residual risk open.');
@@ -323,25 +331,25 @@ async function runTests() {
   const planeSet = new SectionPlaneSet();
   const adapter = new ClippingAdapter();
   adapter.bind(planeSet);
-  const entry = manifest.assets['mesh.corpus_callosum.midline.v1'];
+  const entry = manifest.assets['mesh.optic_nerve.right.v1'];
   const record: AnatomicalEntityRecord = {
-    entityId: 'brain.white_matter.corpus_callosum',
-    assetId: 'mesh.corpus_callosum.midline.v1',
-    name: 'Corpus callosum',
-    officialLatin: 'Corpus callosum',
-    laterality: 'midline',
+    entityId: 'brain.cranial_nerves.optic_nerve_right',
+    assetId: 'mesh.optic_nerve.right.v1',
+    name: 'Optic nerve (right)',
+    officialLatin: 'Nervus opticus',
+    laterality: 'right',
     canonicalCentroidMm: entry.centroid_mm,
     dimensionsMm: entry.dimensions_mm,
-    volumeCm3: 21,
+    volumeCm3: 0.62,
     topologyClass: entry.topology_class,
     validationStatus: 'APPROVED',
     upstreamDataset: 'DBCLS BodyParts3D Release 3.0',
     upstreamLicense: 'CC_BY_SA_2_1_JP',
-    sourceDefinition: 'FMA86464',
-    groups: ['division.white_matter', 'region.commissures']
+    sourceDefinition: 'FMA50875',
+    groups: ['division.cranial_nerves', 'region.optic_nerve']
   };
   const loaded = await mgr3.loadAsset(record.assetId, 'lod0');
-  assert(loaded.triangleCount > 0, `corpus callosum loads (${loaded.triangleCount} tris)`);
+  assert(loaded.triangleCount > 0, `optic nerve loads (${loaded.triangleCount} tris)`);
   passed++;
   const material = materialMgr.registerEntityMaterial(record.entityId);
   loaded.mesh.material = material;
@@ -353,21 +361,21 @@ async function runTests() {
     const axis = kind === 'sagittal' ? 0 : kind === 'coronal' ? 2 : 1;
     planeSet.setConstant(`plane.${kind}`, record.canonicalCentroidMm[axis]);
     planeSet.setEnabled(`plane.${kind}`, true);
-    assert(adapter.getActivePlaneCount() === 1, `corpus callosum carries ${kind} clip`);
+    assert(adapter.getActivePlaneCount() === 1, `optic nerve carries ${kind} clip`);
     passed++;
   }
   assembly.selectEntity(record.entityId);
   selectionMgr.select(record.entityId);
-  assert(selectionMgr.getSelectedEntityId() === record.entityId, 'corpus callosum selectable');
+  assert(selectionMgr.getSelectedEntityId() === record.entityId, 'optic nerve selectable');
   passed++;
   cameraMgr.focusBoundingBox(assembly.getEntityBoundingBox(record.entityId), 0);
   visibilityMgr.isolate(record.entityId);
-  assert(visibilityMgr.isIsolated(record.entityId) === true, 'corpus callosum isolatable');
+  assert(visibilityMgr.isIsolated(record.entityId) === true, 'optic nerve isolatable');
   passed++;
   visibilityMgr.restoreAll();
   const bm = createBookmark({
-    id: 'bookmark.phase53.1',
-    label: 'Phase 5.3 check',
+    id: 'bookmark.phase54.1',
+    label: 'Phase 5.4 check',
     planes: planeSet.serialize(),
     presentation: { version: 1, sectionModeEnabled: true, activePlaneId: 'plane.axial', gizmoVisible: false, cutEdgeVisible: true, interiorMode: 'TRUE_CAP_WHERE_VALID', labelsEnabled: true, orientationVisible: true, readoutVisible: true, crosshairVisible: false, visualMode: 'NORMAL_SECTION', capsVisible: true, edgesVisible: true },
     camera: null,
@@ -376,7 +384,7 @@ async function runTests() {
     hiddenEntityIds: [],
     labelsEnabled: true
   });
-  assert(bm !== null && deserializeBookmark(serializeBookmark(bm!))?.selectedEntityId === record.entityId, 'corpus callosum bookmark round-trips');
+  assert(bm !== null && deserializeBookmark(serializeBookmark(bm!))?.selectedEntityId === record.entityId, 'optic nerve bookmark round-trips');
   passed++;
   adapter.dispose();
   planeSet.dispose();
@@ -386,8 +394,8 @@ async function runTests() {
   console.log('[PASS] Loading, 3-plane clipping, selection, focus, isolation, bookmarks.');
   passed++;
 
-  // TEST 9: Phase 5.2 invariant regression guards.
-  console.log('\n--- TEST 9: Phase 5.2 invariants hold ---');
+  // TEST 9: Phase 5.3 invariant regression guards.
+  console.log('\n--- TEST 9: Phase 5.3 invariants hold ---');
   const entries: any[] = Object.values(manifest.assets);
   const byDate: Record<string, number> = {};
   for (const e of entries) byDate[e.acquisition_date] = (byDate[e.acquisition_date] ?? 0) + 1;
@@ -395,14 +403,9 @@ async function runTests() {
   passed++;
   assert((byDate['2026-09-27'] ?? 0) === 5, `all 5 Phase 5.2 assets retain 2026-09-27 (got ${byDate['2026-09-27'] ?? 0})`);
   passed++;
-  // Phase 5.4 shares the genuine 2026-09-28 run date: 10 Phase 5.3 + 3 Phase
-  // 5.4 assets. The per-phase attribution below is unchanged.
-  assert((byDate['2026-09-28'] ?? 0) === 13, `exactly the 10 new 5.3 + 3 new 5.4 assets are dated 2026-09-28 (got ${byDate['2026-09-28'] ?? 0})`);
+  assert((byDate['2026-09-28'] ?? 0) === 13, `only the 10 Phase 5.3 + 3 Phase 5.4 assets are dated 2026-09-28 (got ${byDate['2026-09-28'] ?? 0})`);
   passed++;
   const recordFiles = fs.readdirSync(path.join(PROJECT_ROOT, 'data/structures')).filter((f) => f.endsWith('.json'));
-  // Global record count advanced 46 → 49 in Phase 5.4 (3 cranial-nerve
-  // records appended under the same conservative posture). The per-record
-  // invariants below are unchanged.
   assert(recordFiles.length === 49, `all 49 structure records present (got ${recordFiles.length})`);
   passed++;
   for (const f of recordFiles) {
@@ -422,7 +425,14 @@ async function runTests() {
     );
     passed++;
   }
-  // 5.2 anatomy spot-checks: cerebellum stays tissue, third ventricle stays cavity.
+  // 5.3 anatomy spot-checks: commissures stay white matter, cerebellum stays
+  // tissue, third ventricle stays cavity.
+  const cc = readJson('data/structures/corpus_callosum_midline.json');
+  assert(cc.subtype === 'white_matter_structure', 'corpus callosum still white matter (5.3 invariant)');
+  passed++;
+  const ot = readJson('data/structures/optic_tract_right.json');
+  assert(ot.subtype === 'white_matter_structure', 'optic tract still white matter (5.3 invariant)');
+  passed++;
   const cereb = readJson('data/structures/cerebellum_bilateral.json');
   assert(cereb.subtype !== 'ventricular_space' && cereb.cavity_note === undefined, 'cerebellum still tissue (5.2 invariant)');
   passed++;
@@ -437,26 +447,28 @@ async function runTests() {
   );
   passed++;
   // M5: the ontology union covers the subtype committed records actually use.
+  // `cranial_nerve` already existed in the union and is preferred over any new
+  // member (no union change was needed for 5.4).
   const entitySrc = fs.readFileSync(path.join(PROJECT_ROOT, 'src/types/entity.ts'), 'utf8');
-  assert(/'white_matter_structure'/.test(entitySrc), 'M5: AnatomicalStructureSubtype includes white_matter_structure');
+  assert(/'cranial_nerve'/.test(entitySrc), 'M5: AnatomicalStructureSubtype includes cranial_nerve');
   passed++;
   assert(/'macroscopic_mesh'/.test(entitySrc), 'M5: RepresentationType includes macroscopic_mesh');
   passed++;
-  // N4: the anatomical category reaches the 5.3 batch ledger.
-  const tractLedger = readJson('data/phase53_batch.json');
-  for (const it of tractLedger.items) {
-    assert(it.category === 'WHITE_MATTER', `N4: ledger carries WHITE_MATTER for ${it.assetId}`);
+  // N4: the anatomical category reaches the 5.4 batch ledger.
+  const nerveLedger = readJson('data/phase54_batch.json');
+  for (const it of nerveLedger.items) {
+    assert(it.category === 'CRANIAL_NERVE', `N4: ledger carries CRANIAL_NERVE for ${it.assetId}`);
     passed++;
   }
-  console.log('[PASS] Phase 5.2 invariants preserved; 5.3 ledger honest.');
+  console.log('[PASS] Phase 5.3 invariants preserved; 5.4 ledger honest.');
   passed++;
 
   console.log('\n================================================================');
-  console.log(`ALL PHASE 5.3 ANATOMY TESTS PASSED (${passed} checks).`);
+  console.log(`ALL PHASE 5.4 ANATOMY TESTS PASSED (${passed} checks).`);
   console.log('================================================================\n');
 }
 
 runTests().catch((err) => {
-  console.error('\n[FATAL] Phase 5.3 anatomy test execution failed:\n', err);
+  console.error('\n[FATAL] Phase 5.4 anatomy test execution failed:\n', err);
   process.exit(1);
 });

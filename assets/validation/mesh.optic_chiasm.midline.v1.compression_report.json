@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.optic_chiasm.midline.v1",
+  "timestamp": "2026-09-28T11:02:13.112Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.optic_chiasm.midline.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.optic_chiasm.midline.v1/lod/mesh.optic_chiasm.midline.v1.lod0.glb",
+      "uncompressedByteLength": 140524,
+      "uncompressedSha256": "6fe6eaf11c5c631c9efa2a8caab4ca2341c7b977dffeb629ea0eadead41a4b12",
+      "runtimeGlbPath": "assets/derived/mesh.optic_chiasm.midline.v1/runtime/mesh.optic_chiasm.midline.v1.lod0.meshopt.glb",
+      "compressedByteLength": 85488,
+      "compressedSha256": "ad1cececb013a54181de761174f4af50350e2c734fbabb8111e1904d92a26ccf",
+      "compressionRatio": 1.64,
+      "savingsPercent": 39.16,
+      "vertexCount": 3876,
+      "triangleCount": 7752,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.optic_chiasm.midline.v1/lod/mesh.optic_chiasm.midline.v1.lod1.glb",
+      "uncompressedByteLength": 105640,
+      "uncompressedSha256": "9f63fb2d397623c6fd30bf0f2d9205160a1e67d0ceacc3e0777cff820a657b62",
+      "runtimeGlbPath": "assets/derived/mesh.optic_chiasm.midline.v1/runtime/mesh.optic_chiasm.midline.v1.lod1.meshopt.glb",
+      "compressedByteLength": 65940,
+      "compressedSha256": "0c4e51265a0f159a1bbc1ee746d1955ef912be7a5b67fbc03f5e056c43a8a2d5",
+      "compressionRatio": 1.6,
+      "savingsPercent": 37.58,
+      "vertexCount": 2907,
+      "triangleCount": 5814,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.optic_chiasm.midline.v1/lod/mesh.optic_chiasm.midline.v1.lod2.glb",
+      "uncompressedByteLength": 70756,
+      "uncompressedSha256": "2ceae470eb051451970066f71dfa4a6b72b2ec2662e71168511befd97fb285d3",
+      "runtimeGlbPath": "assets/derived/mesh.optic_chiasm.midline.v1/runtime/mesh.optic_chiasm.midline.v1.lod2.meshopt.glb",
+      "compressedByteLength": 45756,
+      "compressedSha256": "224237ec59ad4d60987e74db9af8a84dcd38e681fe48d5fe562c1e86a8b115a0",
+      "compressionRatio": 1.55,
+      "savingsPercent": 35.33,
+      "vertexCount": 1938,
+      "triangleCount": 3876,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.optic_chiasm.midline.v1/lod/mesh.optic_chiasm.midline.v1.lod3.glb",
+      "uncompressedByteLength": 35868,
+      "uncompressedSha256": "a2d358bd9c97d4f7e84c3e6735edf960e0805b6f515bd575ef8a919231ca8e69",
+      "runtimeGlbPath": "assets/derived/mesh.optic_chiasm.midline.v1/runtime/mesh.optic_chiasm.midline.v1.lod3.meshopt.glb",
+      "compressedByteLength": 24496,
+      "compressedSha256": "5df54fe95fb570ae92047c3c4bf4d944e068ae885287be8b428e67f79231a433",
+      "compressionRatio": 1.46,
+      "savingsPercent": 31.71,
+      "vertexCount": 969,
+      "triangleCount": 1938,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 352788,
+  "overallCompressedBytes": 221680,
+  "overallSavingsPercent": 37.16,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.optic_chiasm.midline.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-28T11:02:13.112Z"
+  }
+}

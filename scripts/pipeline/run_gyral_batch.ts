@@ -139,14 +139,26 @@ export async function runBatch(ledgerName = 'phase5_batch1.json', qaName = 'phas
       // topological (watertight / non-manifold / zero-area / duplicate /
       // aspect-ratio) with no membrane or tissue semantics.
       const isWhiteMatterCategory = String(item.category ?? '').toUpperCase().includes('WHITE_MATTER');
+      // Phase 5.4 (minimal shared fix): cranial-nerve segments and gross
+      // vascular tubes are solid cord-like structures, not cortical sheets,
+      // cavities, or tractography streamlines. Like white matter they must
+      // never receive a cortical or cavity profile name (the Phase 5.4
+      // `wrong-category-validation` hard stop), so nerve/vascular geometry
+      // selects the same SOLID profile. Its enforced criteria are purely
+      // topological (watertight / non-manifold / zero-area / duplicate /
+      // aspect-ratio) with no membrane, tissue, nucleus, or vessel-wall
+      // semantics.
+      const upperCategory = String(item.category ?? '').toUpperCase();
+      const isNerveVascularCategory = upperCategory.includes('CRANIAL_NERVE') || upperCategory.includes('VASCULAR');
+      const solidCategory = isWhiteMatterCategory || isNerveVascularCategory;
       const solidProfileId = 'solid-subcortical-nucleus';
       if (analysis.isWatertight && analysis.connectedShellCount === 1) {
-        profileId = isCavityCategory ? 'closed-cavity-cast' : isWhiteMatterCategory ? solidProfileId : 'closed-pial-surface';
+        profileId = isCavityCategory ? 'closed-cavity-cast' : solidCategory ? solidProfileId : 'closed-pial-surface';
       } else if (analysis.isWatertight) {
-        profileId = isCavityCategory ? 'multi-shell-cavity-cast' : isWhiteMatterCategory ? solidProfileId : 'composite-cortical-assembly';
+        profileId = isCavityCategory ? 'multi-shell-cavity-cast' : solidCategory ? solidProfileId : 'composite-cortical-assembly';
         limitationNote = ` (${analysis.connectedShellCount} watertight shells: VALID_WITH_KNOWN_TOPOLOGY_LIMITATION)`;
       } else {
-        profileId = isCavityCategory ? 'open-cavity-cast' : isWhiteMatterCategory ? solidProfileId : 'open-cortical-sheet';
+        profileId = isCavityCategory ? 'open-cavity-cast' : solidCategory ? solidProfileId : 'open-cortical-sheet';
         limitationNote = ` (${analysis.boundaryEdges} boundary edges: VALID_WITH_KNOWN_TOPOLOGY_LIMITATION)`;
       }
       console.log(`[BATCH] ${item.assetId}: profile=${profileId}${limitationNote}, tris=${analysis.triangleCount}, shells=${analysis.connectedShellCount}`);

@@ -21,7 +21,9 @@
         "brain.cerebellum",
         "brain.ventricular_system",
         "brain.basal_ganglia",
-        "brain.white_matter"
+        "brain.white_matter",
+        "brain.cranial_nerves",
+        "brain.vasculature"
       ]
     },
     {
@@ -749,6 +751,185 @@
       "id": "brain.white_matter.cingulum",
       "level": 2,
       "name": "Cingulum bundle (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves",
+      "level": 1,
+      "name": "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.cranial_nerves.optic_nerve_right",
+        "brain.cranial_nerves.optic_nerve_left",
+        "brain.cranial_nerves.optic_chiasm",
+        "brain.cranial_nerves.optic_nerve_whole",
+        "brain.cranial_nerves.olfactory",
+        "brain.cranial_nerves.oculomotor",
+        "brain.cranial_nerves.trochlear",
+        "brain.cranial_nerves.trigeminal",
+        "brain.cranial_nerves.abducens",
+        "brain.cranial_nerves.facial",
+        "brain.cranial_nerves.vestibulocochlear",
+        "brain.cranial_nerves.glossopharyngeal",
+        "brain.cranial_nerves.vagus",
+        "brain.cranial_nerves.accessory",
+        "brain.cranial_nerves.hypoglossal"
+      ]
+    },
+    {
+      "id": "brain.vasculature",
+      "level": 1,
+      "name": "Cerebral vasculature (DOCUMENTED — no vessels are present in the distribution; none fabricated)",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.vasculature.circle_of_willis",
+        "brain.vasculature.anterior_cerebral_artery",
+        "brain.vasculature.middle_cerebral_artery",
+        "brain.vasculature.posterior_cerebral_artery",
+        "brain.vasculature.vertebrobasilar_system"
+      ]
+    },
+    {
+      "id": "brain.cranial_nerves.optic_nerve_right",
+      "level": 2,
+      "name": "Optic nerve (right)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.optic_nerve.right.v1",
+      "structure_record": "data/structures/optic_nerve_right.json"
+    },
+    {
+      "id": "brain.cranial_nerves.optic_nerve_left",
+      "level": 2,
+      "name": "Optic nerve (left)",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.optic_nerve.left.v1",
+      "structure_record": "data/structures/optic_nerve_left.json"
+    },
+    {
+      "id": "brain.cranial_nerves.optic_chiasm",
+      "level": 2,
+      "name": "Optic chiasm",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.optic_chiasm.midline.v1",
+      "structure_record": "data/structures/optic_chiasm_midline.json"
+    },
+    {
+      "id": "brain.cranial_nerves.optic_nerve_whole",
+      "level": 2,
+      "name": "Optic nerve, whole (CN II) (DOCUMENTED — distribution lists FMA50863 but serves no mirror STL; only the paired segments and chiasm ship — no whole-nerve geometry fabricated)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.olfactory",
+      "level": 2,
+      "name": "Olfactory nerve (CN I) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.oculomotor",
+      "level": 2,
+      "name": "Oculomotor nerve (CN III) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.trochlear",
+      "level": 2,
+      "name": "Trochlear nerve (CN IV) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.trigeminal",
+      "level": 2,
+      "name": "Trigeminal nerve (CN V) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.abducens",
+      "level": 2,
+      "name": "Abducens nerve (CN VI) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.facial",
+      "level": 2,
+      "name": "Facial nerve (CN VII) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.vestibulocochlear",
+      "level": 2,
+      "name": "Vestibulocochlear nerve (CN VIII) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.glossopharyngeal",
+      "level": 2,
+      "name": "Glossopharyngeal nerve (CN IX) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.vagus",
+      "level": 2,
+      "name": "Vagus nerve (CN X) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.accessory",
+      "level": 2,
+      "name": "Accessory nerve (CN XI) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.cranial_nerves.hypoglossal",
+      "level": 2,
+      "name": "Hypoglossal nerve (CN XII) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.vasculature.circle_of_willis",
+      "level": 2,
+      "name": "Circle of Willis (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.vasculature.anterior_cerebral_artery",
+      "level": 2,
+      "name": "Anterior cerebral artery (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.vasculature.middle_cerebral_artery",
+      "level": 2,
+      "name": "Middle cerebral artery (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.vasculature.posterior_cerebral_artery",
+      "level": 2,
+      "name": "Posterior cerebral artery (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
+      "geometry_state": "DOCUMENTED",
+      "children": []
+    },
+    {
+      "id": "brain.vasculature.vertebrobasilar_system",
+      "level": 2,
+      "name": "Vertebrobasilar system (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
       "geometry_state": "DOCUMENTED",
       "children": []
     }

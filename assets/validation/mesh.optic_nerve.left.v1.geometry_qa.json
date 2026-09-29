@@ -1,0 +1,151 @@
+{
+  "assetId": "mesh.optic_nerve.left.v1",
+  "sourceFile": "assets/raw/mesh.optic_nerve.left.v1/FMA50878.stl",
+  "timestamp": "2026-09-28T11:02:02.223Z",
+  "topologyClass": "SOLID",
+  "profileId": "solid-subcortical-nucleus",
+  "analysis": {
+    "triangleCount": 10302,
+    "rawVertexCount": 30906,
+    "uniqueVertexCount": 5153,
+    "minBounds": [
+      -0.05913899838924408,
+      -157.64599609375,
+      1528.8900146484375
+    ],
+    "maxBounds": [
+      30.153400421142578,
+      -110.83300018310547,
+      1549.760009765625
+    ],
+    "centroid": [
+      16.180537345528226,
+      -134.27198555352456,
+      1536.929285778991
+    ],
+    "dimensions": [
+      30.212539419531822,
+      46.81299591064453,
+      20.8699951171875
+    ],
+    "surfaceAreaMm2": 693.7270858073372,
+    "estimatedVolumeMm3": 620.2226632912929,
+    "zeroAreaFaces": 0,
+    "duplicateFaces": 0,
+    "nonManifoldEdges": 0,
+    "boundaryEdges": 0,
+    "manifoldEdges": 15453,
+    "isWatertight": true,
+    "connectedShellCount": 1
+  },
+  "geometricQA": {
+    "assetId": "mesh.optic_nerve.left.v1",
+    "sourceFile": "assets/raw/mesh.optic_nerve.left.v1/FMA50878.stl",
+    "timestamp": "2026-09-28T11:02:02.223Z",
+    "topologyClass": "SOLID",
+    "profileId": "solid-subcortical-nucleus",
+    "analysis": {
+      "triangleCount": 10302,
+      "rawVertexCount": 30906,
+      "uniqueVertexCount": 5153,
+      "minBounds": [
+        -0.05913899838924408,
+        -157.64599609375,
+        1528.8900146484375
+      ],
+      "maxBounds": [
+        30.153400421142578,
+        -110.83300018310547,
+        1549.760009765625
+      ],
+      "centroid": [
+        16.180537345528226,
+        -134.27198555352456,
+        1536.929285778991
+      ],
+      "dimensions": [
+        30.212539419531822,
+        46.81299591064453,
+        20.8699951171875
+      ],
+      "surfaceAreaMm2": 693.7270858073372,
+      "estimatedVolumeMm3": 620.2226632912929,
+      "zeroAreaFaces": 0,
+      "duplicateFaces": 0,
+      "nonManifoldEdges": 0,
+      "boundaryEdges": 0,
+      "manifoldEdges": 15453,
+      "isWatertight": true,
+      "connectedShellCount": 1
+    },
+    "checks": [
+      {
+        "name": "Non-Manifold Edges Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 non-manifold edges (Limit: 0)"
+      },
+      {
+        "name": "Duplicate Faces Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 duplicate faces (Limit: 0)"
+      },
+      {
+        "name": "Zero-Area Faces Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 zero-area faces (Limit: 0)"
+      },
+      {
+        "name": "Watertight Surface Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Watertight: true (Boundary open edges: 0, must be 0 for SOLID). NOTE: edge accounting is per-shell; see connectedShellCount for surface continuity."
+      },
+      {
+        "name": "Triangle Manifold Presence Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Mesh contains 10302 triangles and 5153 unique vertices"
+      },
+      {
+        "name": "Single-Surface Continuity Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Measured 1 connected shell: consistent with SOLID."
+      }
+    ],
+    "geometricStatus": "GEOMETRY_VALIDATED"
+  },
+  "anatomicalQA": {
+    "assetId": "mesh.optic_nerve.left.v1",
+    "timestamp": "2026-09-28T11:02:02.223Z",
+    "declaredLaterality": "left",
+    "subfieldRepresentation": "MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED",
+    "checks": [
+      {
+        "name": "Adult Human Anatomic Scale Check",
+        "category": "anatomical",
+        "passed": true,
+        "details": "Dimensions: 30.21 x 46.81 x 20.87 mm"
+      },
+      {
+        "name": "Anatomical Volume Estimation Check",
+        "category": "anatomical",
+        "passed": true,
+        "details": "Measured volume: 0.62 cm3"
+      },
+      {
+        "name": "Internal Subfield Boundary Resolution Check",
+        "category": "anatomical",
+        "passed": true,
+        "notApplicable": true,
+        "details": "Mesh represents macroscopic unsegmented organ body; microscopic subfields CA1-CA4 are not resolved in 3D geometry"
+      }
+    ],
+    "anatomicalStatus": "ANATOMY_VALIDATED",
+    "notes": "Macroscopic scale/laterality plausibility only; internal subfields unsegmented. (Historical phase-acceptance status; not a morphological proof.)"
+  },
+  "overallStatus": "GEOMETRY_VALIDATED"
+}

@@ -75,13 +75,14 @@ async function runTests() {
   assert(new Set(assetIds).size === assetIds.length, 'duplicate asset IDs across structure records');
   passed++;
   // Global counts advanced 36 → 46 in Phase 5.3 (10 white-matter assets
-  // appended, same BodyParts3D provenance chain). Load-bearing invariants —
+  // appended, same BodyParts3D provenance chain) and 46 → 49 in Phase 5.4
+  // (3 cranial-nerve assets appended, same chain). Load-bearing invariants —
   // uniqueness, provenance completeness, licensing — are unchanged below.
-  assert(structureFiles.length === 46, `46 structure records (4 legacy + 16 batch + 11 deep/limbic + 5 posterior + 10 white-matter), got ${structureFiles.length}`);
+  assert(structureFiles.length === 49, `49 structure records (4 legacy + 16 batch + 11 deep/limbic + 5 posterior + 10 white-matter + 3 cranial-nerve), got ${structureFiles.length}`);
   passed++;
-  assert(Object.keys(manifest.assets).length === 46, `manifest holds 46 assets, got ${Object.keys(manifest.assets).length}`);
+  assert(Object.keys(manifest.assets).length === 49, `manifest holds 49 assets, got ${Object.keys(manifest.assets).length}`);
   passed++;
-  console.log('[PASS] Unique structure/asset IDs; 46 records; 46 manifest assets.');
+  console.log('[PASS] Unique structure/asset IDs; 49 records; 49 manifest assets.');
   passed++;
 
   // TEST 2: provenance completeness (§6, §9, §44).
@@ -107,7 +108,7 @@ async function runTests() {
     assert(entry.project_distribution_policy === 'CC-BY-SA-4.0', `${assetId}: distribution policy explicit`);
     passed++;
   }
-  assert(manifest.production_whitelist.length === 46, 'whitelist covers all 46 production assets');
+  assert(manifest.production_whitelist.length === 49, 'whitelist covers all 49 production assets');
   passed++;
   assert((manifest.research_quarantine || []).length === 0, 'nothing quarantined in production manifest');
   passed++;

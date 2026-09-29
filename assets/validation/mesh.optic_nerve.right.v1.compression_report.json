@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.optic_nerve.right.v1",
+  "timestamp": "2026-09-28T11:01:51.400Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.optic_nerve.right.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.optic_nerve.right.v1/lod/mesh.optic_nerve.right.v1.lod0.glb",
+      "uncompressedByteLength": 186608,
+      "uncompressedSha256": "ef6283a469b3bc868b677419212c783bef5e66b82c99ecfa829390337eb2fe0b",
+      "runtimeGlbPath": "assets/derived/mesh.optic_nerve.right.v1/runtime/mesh.optic_nerve.right.v1.lod0.meshopt.glb",
+      "compressedByteLength": 113212,
+      "compressedSha256": "56d50a600c626144c4f8cdf0688a945337268f7691d7b9c849927950ae640780",
+      "compressionRatio": 1.65,
+      "savingsPercent": 39.33,
+      "vertexCount": 5157,
+      "triangleCount": 10310,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.optic_nerve.right.v1/lod/mesh.optic_nerve.right.v1.lod1.glb",
+      "uncompressedByteLength": 140204,
+      "uncompressedSha256": "ab065c94d2b5904d714d9c479ac875559cc4644ef176611e3c8370571290a7b8",
+      "runtimeGlbPath": "assets/derived/mesh.optic_nerve.right.v1/runtime/mesh.optic_nerve.right.v1.lod1.meshopt.glb",
+      "compressedByteLength": 87164,
+      "compressedSha256": "2f91b2298089a34db116f1d936eb2206760d84a8116813a0010c96ced67c7ecc",
+      "compressionRatio": 1.61,
+      "savingsPercent": 37.83,
+      "vertexCount": 3868,
+      "triangleCount": 7732,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.optic_nerve.right.v1/lod/mesh.optic_nerve.right.v1.lod2.glb",
+      "uncompressedByteLength": 93800,
+      "uncompressedSha256": "a33f0cbce67839c086cabbbf82b92a4a63e8c5c5648a767682035302af78b429",
+      "runtimeGlbPath": "assets/derived/mesh.optic_nerve.right.v1/runtime/mesh.optic_nerve.right.v1.lod2.meshopt.glb",
+      "compressedByteLength": 60276,
+      "compressedSha256": "7e89730b4f90b0a6d830fe771fbb4e6dfda99e916be0de76ef797af53a345fa0",
+      "compressionRatio": 1.56,
+      "savingsPercent": 35.74,
+      "vertexCount": 2579,
+      "triangleCount": 5154,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.optic_nerve.right.v1/lod/mesh.optic_nerve.right.v1.lod3.glb",
+      "uncompressedByteLength": 47396,
+      "uncompressedSha256": "6ea1812c5a3ddb1a614afc00f0a2bc814a048b3630cb7c9dd01f37457c189474",
+      "runtimeGlbPath": "assets/derived/mesh.optic_nerve.right.v1/runtime/mesh.optic_nerve.right.v1.lod3.meshopt.glb",
+      "compressedByteLength": 31716,
+      "compressedSha256": "051962cf108ac29150aa3e3b639d33a332fb66bd603394744b5473e935abcca1",
+      "compressionRatio": 1.49,
+      "savingsPercent": 33.08,
+      "vertexCount": 1290,
+      "triangleCount": 2576,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 468008,
+  "overallCompressedBytes": 292368,
+  "overallSavingsPercent": 37.53,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.optic_nerve.right.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-28T11:01:51.400Z"
+  }
+}

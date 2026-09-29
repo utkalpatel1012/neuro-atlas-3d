@@ -1,0 +1,28 @@
+{
+  "batch": "phase54-nerve-cranial",
+  "generated_at": "2026-09-28T11:01:41.410Z",
+  "generator": "scripts/pipeline/prepare_nerve_batch.ts",
+  "items": [
+    {
+      "assetId": "mesh.optic_nerve.right.v1",
+      "structureId": "brain.cranial_nerves.optic_nerve_right",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CRANIAL_NERVE",
+      "detail": "Staged FMA50875 (10310 tris), SHA-256 matches committed pin in data/phase54_source_hashes.json; right-geometry measured (X -31.5..-1.2). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.optic_nerve.left.v1",
+      "structureId": "brain.cranial_nerves.optic_nerve_left",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CRANIAL_NERVE",
+      "detail": "Staged FMA50878 (10302 tris), SHA-256 matches committed pin in data/phase54_source_hashes.json; left-geometry measured (X -0.1..30.2). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.optic_chiasm.midline.v1",
+      "structureId": "brain.cranial_nerves.optic_chiasm",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CRANIAL_NERVE",
+      "detail": "Staged FMA62045 (7752 tris), SHA-256 matches committed pin in data/phase54_source_hashes.json; midline-geometry measured (X -7.6..6.3). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    }
+  ]
+}
