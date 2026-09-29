@@ -12,6 +12,14 @@ import { CameraManager } from '../engine/CameraManager';
 import { AnatomicalAssemblyManager } from '../engine/AnatomicalAssemblyManager';
 import { AnatomicalEntityRecord, AnatomicalGroup } from '../engine/types';
 import * as THREE from 'three';
+import {
+  KnowledgeRecord,
+  knowledgeFileFor,
+} from '../search/knowledgeIndex';
+import {
+  renderDocumentedDetailHtml,
+  renderKnowledgeSectionHtml,
+} from '../search/knowledgeDetail';
 
 export class AnatomicalInfoPanel {
   private container: HTMLElement;
@@ -23,6 +31,9 @@ export class AnatomicalInfoPanel {
   private unsubscribeSelection?: () => void;
   private unsubscribeVisibility?: () => void;
   private unsubscribeAssembly?: () => void;
+  // Phase 6: cited knowledge records keyed by hierarchy structure id.
+  private knowledgeCache = new Map<string, KnowledgeRecord | null>();
+  private knowledgeRequest = 0;
 
   constructor(
     container: HTMLElement,
@@ -212,6 +223,8 @@ export class AnatomicalInfoPanel {
             🎯 Focus Camera
           </button>
         </div>
+
+        <div id="knowledge-slot"><p class="info-instructions">Loading cited anatomical knowledge…</p></div>
       </div>
     `;
 
@@ -235,6 +248,72 @@ export class AnatomicalInfoPanel {
         this.cameraManager.focusOn(target, 120);
       }
     });
+
+    // Phase 6: append the typed knowledge section (claim + source + evidence
+    // per line, plus recorded gaps). Existing card above is unchanged.
+    void this.fillKnowledgeSlot(record.entityId);
+  }
+
+  private async loadKnowledge(structureId: string): Promise<KnowledgeRecord | null> {
+    if (this.knowledgeCache.has(structureId)) {
+      return this.knowledgeCache.get(structureId) ?? null;
+    }
+    try {
+      const res = await fetch(knowledgeFileFor(structureId));
+      if (!res.ok) {
+        this.knowledgeCache.set(structureId, null);
+        return null;
+      }
+      const record = (await res.json()) as KnowledgeRecord;
+      this.knowledgeCache.set(structureId, record);
+      return record;
+    } catch {
+      this.knowledgeCache.set(structureId, null);
+      return null;
+    }
+  }
+
+  private async fillKnowledgeSlot(entityId: string): Promise<void> {
+    const token = ++this.knowledgeRequest;
+    const record = await this.loadKnowledge(entityId);
+    if (token !== this.knowledgeRequest) return;
+    const slot = this.element.querySelector('#knowledge-slot');
+    if (!slot) return;
+    slot.innerHTML = record
+      ? renderKnowledgeSectionHtml(record)
+      : '<p class="info-instructions">No cited knowledge record indexed for this structure.</p>';
+  }
+
+  /**
+   * Phase 6 search wiring: show the knowledge detail for any indexed
+   * structure, including DOCUMENTED (geometry-free) nodes — rendered as what
+   * is known vs what is not meshed, with no 3D selection or camera move.
+   */
+  public async showKnowledge(structureId: string): Promise<void> {
+    const token = ++this.knowledgeRequest;
+    this.element.innerHTML = `
+      <div class="info-card info-empty">
+        <p class="info-instructions">Loading cited anatomical knowledge…</p>
+      </div>`;
+    const record = await this.loadKnowledge(structureId);
+    if (token !== this.knowledgeRequest) return;
+    if (!record) {
+      this.element.innerHTML = `
+        <div class="info-card info-empty">
+          <h2 class="info-title">No knowledge record</h2>
+          <p class="info-instructions">No cited knowledge record is indexed for ${structureId}.</p>
+        </div>`;
+      return;
+    }
+    this.element.innerHTML =
+      record.geometry_state === 'DOCUMENTED'
+        ? renderDocumentedDetailHtml(record)
+        : `<div class="info-card">
+             <div class="info-header">
+               <h2 class="info-title">${record.display_name}</h2>
+             </div>
+             ${renderKnowledgeSectionHtml(record)}
+           </div>`;
   }
 
   private renderGroup(group: AnatomicalGroup): void {

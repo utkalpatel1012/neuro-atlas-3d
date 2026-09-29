@@ -1,7 +1,7 @@
 {
     "project":  "neuro-atlas-3d",
     "repository":  "https://github.com/utkalpatel1012/neuro-atlas-3d",
-    "currentPhase":  "5.5",
+    "currentPhase":  "6",
     "phaseStatus":  "IN-PROGRESS-SCOPE-RESEARCH",
     "startedAt":  "2026-09-27T18:15:41Z",
     "lastUpdatedAt":  "2026-09-28T01:00:00Z",
@@ -31,6 +31,6 @@
                             "5.0.2",
                             "5.1", "5.2", "5.3", "5.4"
                         ],
-    "nextPhase":  "5.5",
+    "nextPhase":  "6",
     "supervisorVersion":  "1.0.0"
 }

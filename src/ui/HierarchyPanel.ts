@@ -272,4 +272,22 @@ export class HierarchyPanel {
       this.element.parentElement.removeChild(this.element);
     }
   }
+
+  /**
+   * Phase 6 search wiring: load one AVAILABLE structure by hierarchy node id
+   * through the same CLEARED-gated on-demand path as manual loads (no second
+   * systems). DOCUMENTED nodes and non-CLEARED assets are refused — search
+   * precision requires never resolving to an unsupported structure.
+   */
+  public async loadAvailableByEntityId(entityId: string): Promise<void> {
+    await this.ready;
+    const node = this.nodes.find((n) => n.id === entityId);
+    if (!node) throw new Error(`Unknown hierarchy node: ${entityId}.`);
+    if (this.app.getEntityManager().hasEntity(node.id)) return;
+    if (!this.isLoadable(node)) {
+      throw new Error(`Refusing ${entityId}: not AVAILABLE with a CLEARED manifest asset.`);
+    }
+    await this.loadNode(node);
+    this.render();
+  }
 }

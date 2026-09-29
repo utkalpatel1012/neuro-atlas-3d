@@ -586,3 +586,15 @@ body, html {
   font-size: 0.75rem;
   padding: 5px 10px;
 }
+
+/* Phase 6: knowledge search + cited detail (appended, no existing rules touched). */
+.neuro-search-panel { margin: 8px 0; }
+#knowledge-search-input { min-width: 260px; padding: 5px 10px; font-size: 0.8rem; }
+#knowledge-search-results { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
+.btn-search-result { text-align: left; font-size: 0.78rem; }
+.knowledge-section { border-top: 1px solid var(--border-subtle); margin-top: 10px; padding-top: 8px; }
+.knowledge-subtitle { font-size: 0.8rem; margin: 8px 0 4px; }
+.knowledge-claims, .knowledge-gaps { list-style: disc; padding-left: 18px; font-size: 0.78rem; }
+.knowledge-claim { margin-bottom: 6px; }
+.knowledge-claim-type { font-weight: 700; font-size: 0.72rem; }
+.knowledge-claim-source, .knowledge-claim-citation, .knowledge-claim-type-hint { color: var(--text-muted); font-size: 0.72rem; }

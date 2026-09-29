@@ -14,6 +14,7 @@ import { SectionControls } from './ui/SectionControls';
 import { SectionPresentationPanel } from './ui/SectionPresentationPanel';
 import { MriPanel } from './ui/MriPanel';
 import { HierarchyPanel } from './ui/HierarchyPanel';
+import { SearchPanel } from './ui/SearchPanel';
 import { AnatomicalEntityRecord } from './engine/types';
 
 async function bootstrap() {
@@ -173,7 +174,7 @@ async function bootstrap() {
     });
 
     // 4. Mount UI Components
-    new AnatomicalInfoPanel(
+    const infoPanel = new AnatomicalInfoPanel(
       appContainer,
       app.getSelectionManager(),
       app.getVisibilityManager(),
@@ -219,6 +220,10 @@ async function bootstrap() {
     // Phase 5.0: hierarchy browser (DOCUMENTED vs AVAILABLE; on-demand load
     // through the existing entity pipeline).
     const hierarchyPanel = new HierarchyPanel(appContainer, app);
+
+    // Phase 6: knowledge search (query → ranked results → existing
+    // selection/focus pipeline → cited detail in the info panel).
+    new SearchPanel(appContainer, app, infoPanel, hierarchyPanel);
 
     // 5. Select bilateral cerebrum by default to showcase macroanatomy
     app.getAssemblyManager().selectGroup('division.cerebrum');

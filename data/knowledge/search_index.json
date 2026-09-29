@@ -1,0 +1,2456 @@
+{
+  "phase": "6",
+  "generated_by": "scripts/knowledge/build_knowledge.ts",
+  "entry_count": 137,
+  "entries": [
+    {
+      "knowledge_id": "knowledge.brain",
+      "structure_id": "brain",
+      "display_name": "Brain",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.basal_ganglia",
+      "structure_id": "brain.basal_ganglia",
+      "display_name": "Basal ganglia (caudate, putamen, pallidum — Phase 5.1 batch)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Basal ganglia (caudate, putamen, pallidum — Phase 5.1 batch)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.basal_ganglia.accumbens",
+      "structure_id": "brain.basal_ganglia.accumbens",
+      "display_name": "Nucleus accumbens (DOCUMENTED — no source geometry)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Basal ganglia (caudate, putamen, pallidum — Phase 5.1 batch)",
+        "Nucleus accumbens (DOCUMENTED — no source geometry)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.basal_ganglia.left.caudate_nucleus",
+      "structure_id": "brain.basal_ganglia.left.caudate_nucleus",
+      "display_name": "Caudate nucleus (Left)",
+      "latin_name": "Nucleus caudatus",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Basal ganglia (caudate, putamen, pallidum — Phase 5.1 batch)",
+        "Left caudate nucleus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/caudate_nucleus_left.json",
+      "asset_id": "mesh.caudate_nucleus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.basal_ganglia.left.globus_pallidus",
+      "structure_id": "brain.basal_ganglia.left.globus_pallidus",
+      "display_name": "Globus pallidus (Left)",
+      "latin_name": "Globus pallidus",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Basal ganglia (caudate, putamen, pallidum — Phase 5.1 batch)",
+        "Left globus pallidus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/globus_pallidus_left.json",
+      "asset_id": "mesh.globus_pallidus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.basal_ganglia.left.putamen",
+      "structure_id": "brain.basal_ganglia.left.putamen",
+      "display_name": "Putamen (Left)",
+      "latin_name": "Putamen",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Basal ganglia (caudate, putamen, pallidum — Phase 5.1 batch)",
+        "Left putamen"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/putamen_left.json",
+      "asset_id": "mesh.putamen.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.basal_ganglia.right.caudate_nucleus",
+      "structure_id": "brain.basal_ganglia.right.caudate_nucleus",
+      "display_name": "Caudate nucleus (Right)",
+      "latin_name": "Nucleus caudatus",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Basal ganglia (caudate, putamen, pallidum — Phase 5.1 batch)",
+        "Right caudate nucleus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/caudate_nucleus_right.json",
+      "asset_id": "mesh.caudate_nucleus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.basal_ganglia.right.globus_pallidus",
+      "structure_id": "brain.basal_ganglia.right.globus_pallidus",
+      "display_name": "Globus pallidus (Right)",
+      "latin_name": "Globus pallidus",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Basal ganglia (caudate, putamen, pallidum — Phase 5.1 batch)",
+        "Right globus pallidus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/globus_pallidus_right.json",
+      "asset_id": "mesh.globus_pallidus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.basal_ganglia.right.putamen",
+      "structure_id": "brain.basal_ganglia.right.putamen",
+      "display_name": "Putamen (Right)",
+      "latin_name": "Putamen",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Basal ganglia (caudate, putamen, pallidum — Phase 5.1 batch)",
+        "Right putamen"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/putamen_right.json",
+      "asset_id": "mesh.putamen.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.brainstem",
+      "structure_id": "brain.brainstem",
+      "display_name": "Brainstem (midbrain, pons, medulla — NOT represented; pons/medulla source segments rejected for non-manifold geometry, midbrain absent from source)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Brainstem (midbrain, pons, medulla — NOT represented; pons/medulla source segments rejected for non-manifold geometry, midbrain absent from source)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.brainstem.medulla_oblongata",
+      "structure_id": "brain.brainstem.medulla_oblongata",
+      "display_name": "Medulla oblongata (DOCUMENTED — source segment failed topology QA)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Brainstem (midbrain, pons, medulla — NOT represented; pons/medulla source segments rejected for non-manifold geometry, midbrain absent from source)",
+        "Medulla oblongata (DOCUMENTED — source segment failed topology QA)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.brainstem.midbrain",
+      "structure_id": "brain.brainstem.midbrain",
+      "display_name": "Midbrain (DOCUMENTED — FMA61993 has no mirror STL)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Brainstem (midbrain, pons, medulla — NOT represented; pons/medulla source segments rejected for non-manifold geometry, midbrain absent from source)",
+        "Midbrain (DOCUMENTED — FMA61993 has no mirror STL)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.brainstem.pons",
+      "structure_id": "brain.brainstem.pons",
+      "display_name": "Pons (DOCUMENTED — source segment failed topology QA)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Brainstem (midbrain, pons, medulla — NOT represented; pons/medulla source segments rejected for non-manifold geometry, midbrain absent from source)",
+        "Pons (DOCUMENTED — source segment failed topology QA)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cerebellum",
+      "structure_id": "brain.cerebellum",
+      "display_name": "Cerebellum (gross whole segment; vermis and hemispheres NOT separately represented, deep nuclei not represented)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebellum (gross whole segment; vermis and hemispheres NOT separately represented, deep nuclei not represented)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cerebellum.cerebellum",
+      "structure_id": "brain.cerebellum.cerebellum",
+      "display_name": "Cerebellum",
+      "latin_name": "Cerebellum",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebellum (gross whole segment; vermis and hemispheres NOT separately represented, deep nuclei not represented)",
+        "Cerebellum"
+      ],
+      "laterality": "bilateral",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/cerebellum_bilateral.json",
+      "asset_id": "mesh.cerebellum.bilateral.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.cerebellum.deep_nuclei",
+      "structure_id": "brain.cerebellum.deep_nuclei",
+      "display_name": "Deep cerebellar nuclei — dentate, fastigial, emboliform, globose (DOCUMENTED — no source; not fabricated)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebellum (gross whole segment; vermis and hemispheres NOT separately represented, deep nuclei not represented)",
+        "Deep cerebellar nuclei — dentate, fastigial, emboliform, globose (DOCUMENTED — no source; not fabricated)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cerebellum.deep_nuclei.dentate_nucleus",
+      "structure_id": "brain.cerebellum.deep_nuclei.dentate_nucleus",
+      "display_name": "Dentate nucleus (DOCUMENTED — no source)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebellum (gross whole segment; vermis and hemispheres NOT separately represented, deep nuclei not represented)",
+        "Deep cerebellar nuclei — dentate, fastigial, emboliform, globose (DOCUMENTED — no source; not fabricated)",
+        "Dentate nucleus (DOCUMENTED — no source)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cerebellum.deep_nuclei.emboliform_nucleus",
+      "structure_id": "brain.cerebellum.deep_nuclei.emboliform_nucleus",
+      "display_name": "Emboliform nucleus (DOCUMENTED — no source)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebellum (gross whole segment; vermis and hemispheres NOT separately represented, deep nuclei not represented)",
+        "Deep cerebellar nuclei — dentate, fastigial, emboliform, globose (DOCUMENTED — no source; not fabricated)",
+        "Emboliform nucleus (DOCUMENTED — no source)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cerebellum.deep_nuclei.fastigial_nucleus",
+      "structure_id": "brain.cerebellum.deep_nuclei.fastigial_nucleus",
+      "display_name": "Fastigial nucleus (DOCUMENTED — no source)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebellum (gross whole segment; vermis and hemispheres NOT separately represented, deep nuclei not represented)",
+        "Deep cerebellar nuclei — dentate, fastigial, emboliform, globose (DOCUMENTED — no source; not fabricated)",
+        "Fastigial nucleus (DOCUMENTED — no source)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cerebellum.deep_nuclei.globose_nucleus",
+      "structure_id": "brain.cerebellum.deep_nuclei.globose_nucleus",
+      "display_name": "Globose nucleus (DOCUMENTED — no source)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebellum (gross whole segment; vermis and hemispheres NOT separately represented, deep nuclei not represented)",
+        "Deep cerebellar nuclei — dentate, fastigial, emboliform, globose (DOCUMENTED — no source; not fabricated)",
+        "Globose nucleus (DOCUMENTED — no source)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cerebellum.hemisphere",
+      "structure_id": "brain.cerebellum.hemisphere",
+      "display_name": "Cerebellar hemisphere (DOCUMENTED — gross source segment is the whole cerebellum, not split)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebellum (gross whole segment; vermis and hemispheres NOT separately represented, deep nuclei not represented)",
+        "Cerebellar hemisphere (DOCUMENTED — gross source segment is the whole cerebellum, not split)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cerebellum.vermis",
+      "structure_id": "brain.cerebellum.vermis",
+      "display_name": "Cerebellar vermis (DOCUMENTED — inseparable in gross source segment)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebellum (gross whole segment; vermis and hemispheres NOT separately represented, deep nuclei not represented)",
+        "Cerebellar vermis (DOCUMENTED — inseparable in gross source segment)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves",
+      "structure_id": "brain.cranial_nerves",
+      "display_name": "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.abducens",
+      "structure_id": "brain.cranial_nerves.abducens",
+      "display_name": "Abducens nerve (CN VI) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Abducens nerve (CN VI) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.accessory",
+      "structure_id": "brain.cranial_nerves.accessory",
+      "display_name": "Accessory nerve (CN XI) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Accessory nerve (CN XI) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.facial",
+      "structure_id": "brain.cranial_nerves.facial",
+      "display_name": "Facial nerve (CN VII) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Facial nerve (CN VII) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.glossopharyngeal",
+      "structure_id": "brain.cranial_nerves.glossopharyngeal",
+      "display_name": "Glossopharyngeal nerve (CN IX) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Glossopharyngeal nerve (CN IX) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.hypoglossal",
+      "structure_id": "brain.cranial_nerves.hypoglossal",
+      "display_name": "Hypoglossal nerve (CN XII) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Hypoglossal nerve (CN XII) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.oculomotor",
+      "structure_id": "brain.cranial_nerves.oculomotor",
+      "display_name": "Oculomotor nerve (CN III) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Oculomotor nerve (CN III) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.olfactory",
+      "structure_id": "brain.cranial_nerves.olfactory",
+      "display_name": "Olfactory nerve (CN I) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Olfactory nerve (CN I) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.optic_chiasm",
+      "structure_id": "brain.cranial_nerves.optic_chiasm",
+      "display_name": "Optic chiasm",
+      "latin_name": "Chiasma opticum",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Optic chiasm"
+      ],
+      "laterality": "midline",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/optic_chiasm_midline.json",
+      "asset_id": "mesh.optic_chiasm.midline.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.optic_nerve_left",
+      "structure_id": "brain.cranial_nerves.optic_nerve_left",
+      "display_name": "Optic nerve (left)",
+      "latin_name": "Nervus opticus",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Optic nerve (left)"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/optic_nerve_left.json",
+      "asset_id": "mesh.optic_nerve.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.optic_nerve_right",
+      "structure_id": "brain.cranial_nerves.optic_nerve_right",
+      "display_name": "Optic nerve (right)",
+      "latin_name": "Nervus opticus",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Optic nerve (right)"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/optic_nerve_right.json",
+      "asset_id": "mesh.optic_nerve.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.optic_nerve_whole",
+      "structure_id": "brain.cranial_nerves.optic_nerve_whole",
+      "display_name": "Optic nerve, whole (CN II) (DOCUMENTED — distribution lists FMA50863 but serves no mirror STL; only the paired segments and chiasm ship — no whole-nerve geometry fabricated)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Optic nerve, whole (CN II) (DOCUMENTED — distribution lists FMA50863 but serves no mirror STL; only the paired segments and chiasm ship — no whole-nerve geometry fabricated)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.trigeminal",
+      "structure_id": "brain.cranial_nerves.trigeminal",
+      "display_name": "Trigeminal nerve (CN V) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Trigeminal nerve (CN V) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.trochlear",
+      "structure_id": "brain.cranial_nerves.trochlear",
+      "display_name": "Trochlear nerve (CN IV) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Trochlear nerve (CN IV) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.vagus",
+      "structure_id": "brain.cranial_nerves.vagus",
+      "display_name": "Vagus nerve (CN X) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Vagus nerve (CN X) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.cranial_nerves.vestibulocochlear",
+      "structure_id": "brain.cranial_nerves.vestibulocochlear",
+      "display_name": "Vestibulocochlear nerve (CN VIII) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cranial nerves (CN I-XII; only the CN II segments and chiasm are AVAILABLE — all other nerves are DOCUMENTED, never fabricated)",
+        "Vestibulocochlear nerve (CN VIII) (DOCUMENTED — absent from the BodyParts3D distribution; cranial nerves other than the CN II segments and chiasm cannot be represented without fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.diencephalon",
+      "structure_id": "brain.diencephalon",
+      "display_name": "Diencephalon (thalamus, hypothalamus — pipeline targets)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Diencephalon (thalamus, hypothalamus — pipeline targets)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.diencephalon.bilateral.hypothalamus.mammillary_body",
+      "structure_id": "brain.diencephalon.bilateral.hypothalamus.mammillary_body",
+      "display_name": "Mammillary body",
+      "latin_name": "Corpus mammillare",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Diencephalon (thalamus, hypothalamus — pipeline targets)",
+        "Hypothalamus (DOCUMENTED — no source geometry)",
+        "Mammillary body (bilateral)"
+      ],
+      "laterality": "bilateral",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/mammillary_body_bilateral.json",
+      "asset_id": "mesh.mammillary_body.bilateral.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.diencephalon.hypothalamus",
+      "structure_id": "brain.diencephalon.hypothalamus",
+      "display_name": "Hypothalamus (DOCUMENTED — no source geometry)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Diencephalon (thalamus, hypothalamus — pipeline targets)",
+        "Hypothalamus (DOCUMENTED — no source geometry)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.diencephalon.left.thalamus",
+      "structure_id": "brain.diencephalon.left.thalamus",
+      "display_name": "Thalamus (Left)",
+      "latin_name": "Thalamus",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Diencephalon (thalamus, hypothalamus — pipeline targets)",
+        "Left thalamus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/thalamus_left.json",
+      "asset_id": "mesh.thalamus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.diencephalon.right.thalamus",
+      "structure_id": "brain.diencephalon.right.thalamus",
+      "display_name": "Thalamus (Right)",
+      "latin_name": "Thalamus",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Diencephalon (thalamus, hypothalamus — pipeline targets)",
+        "Right thalamus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/thalamus_right.json",
+      "asset_id": "mesh.thalamus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon",
+      "structure_id": "brain.telencephalon",
+      "display_name": "Telencephalon (cerebrum)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.circular_sulcus_insulae",
+      "structure_id": "brain.telencephalon.circular_sulcus_insulae",
+      "display_name": "Circular sulcus of insula (DOCUMENTED - absent from the distribution as a separate segment; peri-insular boundary not fabricated)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left insular lobe",
+        "Circular sulcus of insula (DOCUMENTED - absent from the distribution as a separate segment; peri-insular boundary not fabricated)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.cuneus",
+      "structure_id": "brain.telencephalon.cuneus",
+      "display_name": "Cuneus (DOCUMENTED - absent from the BodyParts3D distribution as a separate segment; the occipital lobe ships whole, not subdivided)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left occipital lobe",
+        "Cuneus (DOCUMENTED - absent from the BodyParts3D distribution as a separate segment; the occipital lobe ships whole, not subdivided)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.inferior_frontal_gyrus",
+      "structure_id": "brain.telencephalon.inferior_frontal_gyrus",
+      "display_name": "Inferior frontal gyrus (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left frontal lobe",
+        "Inferior frontal gyrus (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.inferior_parietal_lobule_whole",
+      "structure_id": "brain.telencephalon.inferior_parietal_lobule_whole",
+      "display_name": "Inferior parietal lobule as a whole (DOCUMENTED - only its supramarginal and angular parts are AVAILABLE as separate segments; no whole-lobule mesh synthesized)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left parietal lobe",
+        "Inferior parietal lobule as a whole (DOCUMENTED - only its supramarginal and angular parts are AVAILABLE as separate segments; no whole-lobule mesh synthesized)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left",
+      "structure_id": "brain.telencephalon.left",
+      "display_name": "Left cerebral hemisphere",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere"
+      ],
+      "laterality": "left",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.cortex",
+      "structure_id": "brain.telencephalon.left.cortex",
+      "display_name": "Cerebral Cortex (Left)",
+      "latin_name": "Cortex cerebri sinister",
+      "clinical_aliases": [
+        "Left Cortical Mantle",
+        "Left Cerebral Grey Matter"
+      ],
+      "abbreviations": [
+        "CTX-L",
+        "L-Cortex"
+      ],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Cerebral Cortex (Left)"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/cortex_left.json",
+      "asset_id": "mesh.cortex.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.frontal_lobe",
+      "structure_id": "brain.telencephalon.left.frontal_lobe",
+      "display_name": "Left frontal lobe",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left frontal lobe"
+      ],
+      "laterality": "left",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.frontal_lobe.middle_frontal_gyrus",
+      "structure_id": "brain.telencephalon.left.frontal_lobe.middle_frontal_gyrus",
+      "display_name": "Middle frontal gyrus (Left)",
+      "latin_name": "Gyrus frontalis medius",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left frontal lobe",
+        "Left middle frontal gyrus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/middle_frontal_gyrus_left.json",
+      "asset_id": "mesh.middle_frontal_gyrus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.frontal_lobe.precentral_gyrus",
+      "structure_id": "brain.telencephalon.left.frontal_lobe.precentral_gyrus",
+      "display_name": "Precentral gyrus (Left)",
+      "latin_name": "Gyrus precentralis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left frontal lobe",
+        "Left precentral gyrus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/precentral_gyrus_left.json",
+      "asset_id": "mesh.precentral_gyrus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.frontal_lobe.superior_frontal_gyrus",
+      "structure_id": "brain.telencephalon.left.frontal_lobe.superior_frontal_gyrus",
+      "display_name": "Superior frontal gyrus (Left)",
+      "latin_name": "Gyrus frontalis superior",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left frontal lobe",
+        "Left superior frontal gyrus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/superior_frontal_gyrus_left.json",
+      "asset_id": "mesh.superior_frontal_gyrus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.insular_lobe",
+      "structure_id": "brain.telencephalon.left.insular_lobe",
+      "display_name": "Left insular lobe",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left insular lobe"
+      ],
+      "laterality": "left",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.insular_lobe.insula",
+      "structure_id": "brain.telencephalon.left.insular_lobe.insula",
+      "display_name": "Insula (left)",
+      "latin_name": "Insula",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left insular lobe",
+        "Left insula"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/insula_left.json",
+      "asset_id": "mesh.insula.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.limbic_lobe",
+      "structure_id": "brain.telencephalon.left.limbic_lobe",
+      "display_name": "Left limbic lobe",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left limbic lobe"
+      ],
+      "laterality": "left",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.limbic.amygdala",
+      "structure_id": "brain.telencephalon.left.limbic.amygdala",
+      "display_name": "Amygdala (Left)",
+      "latin_name": "Corpus amygdaloideum",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left limbic lobe",
+        "Left amygdala"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/amygdala_left.json",
+      "asset_id": "mesh.amygdala.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.limbic.cingulate_gyrus",
+      "structure_id": "brain.telencephalon.left.limbic.cingulate_gyrus",
+      "display_name": "Cingulate gyrus (Left)",
+      "latin_name": "Gyrus cinguli",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left limbic lobe",
+        "Left cingulate gyrus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/cingulate_gyrus_left.json",
+      "asset_id": "mesh.cingulate_gyrus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.limbic.hippocampus",
+      "structure_id": "brain.telencephalon.left.limbic.hippocampus",
+      "display_name": "Hippocampus (Left)",
+      "latin_name": "Hippocampus",
+      "clinical_aliases": [
+        "Cornu Ammonis",
+        "Ammon's Horn",
+        "Hippocampus Proper (CA1-CA3)"
+      ],
+      "abbreviations": [
+        "Hpc",
+        "HIP",
+        "CA"
+      ],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left limbic lobe",
+        "Left hippocampus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/hippocampus_left.json",
+      "asset_id": "mesh.hippocampus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.limbic.parahippocampal_gyrus",
+      "structure_id": "brain.telencephalon.left.limbic.parahippocampal_gyrus",
+      "display_name": "Parahippocampal gyrus (left)",
+      "latin_name": "Gyrus parahippocampalis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left limbic lobe",
+        "Left parahippocampal gyrus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/parahippocampal_gyrus_left.json",
+      "asset_id": "mesh.parahippocampal_gyrus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.occipital_lobe",
+      "structure_id": "brain.telencephalon.left.occipital_lobe",
+      "display_name": "Occipital lobe (left)",
+      "latin_name": "Lobus occipitalis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left occipital lobe"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/occipital_lobe_left.json",
+      "asset_id": "mesh.occipital_lobe.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.parietal_lobe",
+      "structure_id": "brain.telencephalon.left.parietal_lobe",
+      "display_name": "Left parietal lobe",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left parietal lobe"
+      ],
+      "laterality": "left",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.parietal_lobe.angular_gyrus",
+      "structure_id": "brain.telencephalon.left.parietal_lobe.angular_gyrus",
+      "display_name": "Angular gyrus (Left)",
+      "latin_name": "Gyrus angularis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left parietal lobe",
+        "Left angular gyrus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/angular_gyrus_left.json",
+      "asset_id": "mesh.angular_gyrus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.parietal_lobe.postcentral_gyrus",
+      "structure_id": "brain.telencephalon.left.parietal_lobe.postcentral_gyrus",
+      "display_name": "Postcentral gyrus (Left)",
+      "latin_name": "Gyrus postcentralis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left parietal lobe",
+        "Left postcentral gyrus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/postcentral_gyrus_left.json",
+      "asset_id": "mesh.postcentral_gyrus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.parietal_lobe.supramarginal_gyrus",
+      "structure_id": "brain.telencephalon.left.parietal_lobe.supramarginal_gyrus",
+      "display_name": "Supramarginal gyrus (Left)",
+      "latin_name": "Gyrus supramarginalis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left parietal lobe",
+        "Left supramarginal gyrus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/supramarginal_gyrus_left.json",
+      "asset_id": "mesh.supramarginal_gyrus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.temporal_lobe",
+      "structure_id": "brain.telencephalon.left.temporal_lobe",
+      "display_name": "Left temporal lobe",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left temporal lobe"
+      ],
+      "laterality": "left",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.temporal_lobe.fusiform_gyrus",
+      "structure_id": "brain.telencephalon.left.temporal_lobe.fusiform_gyrus",
+      "display_name": "Fusiform gyrus (left)",
+      "latin_name": "Gyrus fusiformis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left temporal lobe",
+        "Left fusiform gyrus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/fusiform_gyrus_left.json",
+      "asset_id": "mesh.fusiform_gyrus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.temporal_lobe.inferior_temporal_gyrus",
+      "structure_id": "brain.telencephalon.left.temporal_lobe.inferior_temporal_gyrus",
+      "display_name": "Inferior temporal gyrus (left)",
+      "latin_name": "Gyrus temporalis inferior",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left temporal lobe",
+        "Left inferior temporal gyrus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/inferior_temporal_gyrus_left.json",
+      "asset_id": "mesh.inferior_temporal_gyrus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.temporal_lobe.middle_temporal_gyrus",
+      "structure_id": "brain.telencephalon.left.temporal_lobe.middle_temporal_gyrus",
+      "display_name": "Middle temporal gyrus (Left)",
+      "latin_name": "Gyrus temporalis medius",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left temporal lobe",
+        "Left middle temporal gyrus"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/middle_temporal_gyrus_left.json",
+      "asset_id": "mesh.middle_temporal_gyrus.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.temporal_lobe.superior_temporal_gyrus_anterior",
+      "structure_id": "brain.telencephalon.left.temporal_lobe.superior_temporal_gyrus_anterior",
+      "display_name": "Superior temporal gyrus, anterior part (left)",
+      "latin_name": "Gyrus temporalis superior (pars anterior)",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left temporal lobe",
+        "Left superior temporal gyrus, anterior part"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/superior_temporal_gyrus_anterior_left.json",
+      "asset_id": "mesh.superior_temporal_gyrus_anterior.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.left.temporal_lobe.superior_temporal_gyrus_posterior",
+      "structure_id": "brain.telencephalon.left.temporal_lobe.superior_temporal_gyrus_posterior",
+      "display_name": "Superior temporal gyrus, posterior part (left)",
+      "latin_name": "Gyrus temporalis superior (pars posterior)",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left temporal lobe",
+        "Left superior temporal gyrus, posterior part"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/superior_temporal_gyrus_posterior_left.json",
+      "asset_id": "mesh.superior_temporal_gyrus_posterior.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.lingual_gyrus",
+      "structure_id": "brain.telencephalon.lingual_gyrus",
+      "display_name": "Lingual gyrus (DOCUMENTED - absent from the BodyParts3D distribution as a separate segment; the occipital lobe ships whole, not subdivided)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left occipital lobe",
+        "Lingual gyrus (DOCUMENTED - absent from the BodyParts3D distribution as a separate segment; the occipital lobe ships whole, not subdivided)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.longitudinal_fissure",
+      "structure_id": "brain.telencephalon.longitudinal_fissure",
+      "display_name": "Longitudinal cerebral fissure as a separate segment (DOCUMENTED - absent from the distribution; not fabricated)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Longitudinal cerebral fissure as a separate segment (DOCUMENTED - absent from the distribution; not fabricated)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.major_sulci",
+      "structure_id": "brain.telencephalon.major_sulci",
+      "display_name": "Major sulci as separate segments (DOCUMENTED - central and lateral sulci absent from the distribution as segments; sulcal boundaries not fabricated)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Major sulci as separate segments (DOCUMENTED - central and lateral sulci absent from the distribution as segments; sulcal boundaries not fabricated)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.medial_frontal_gyrus",
+      "structure_id": "brain.telencephalon.medial_frontal_gyrus",
+      "display_name": "Medial frontal gyrus (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left frontal lobe",
+        "Medial frontal gyrus (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.orbitofrontal_gyri",
+      "structure_id": "brain.telencephalon.orbitofrontal_gyri",
+      "display_name": "Orbitofrontal gyri (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left frontal lobe",
+        "Orbitofrontal gyri (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.precuneus_bp",
+      "structure_id": "brain.telencephalon.precuneus_bp",
+      "display_name": "Precuneus / superior parietal BP48/49/50 (DOCUMENTED - listed under non-standard BP identifiers, source identity uncertain; NOT imported - uncertain-source-identity hard stop)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left parietal lobe",
+        "Precuneus / superior parietal BP48/49/50 (DOCUMENTED - listed under non-standard BP identifiers, source identity uncertain; NOT imported - uncertain-source-identity hard stop)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right",
+      "structure_id": "brain.telencephalon.right",
+      "display_name": "Right cerebral hemisphere",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere"
+      ],
+      "laterality": "right",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.cortex",
+      "structure_id": "brain.telencephalon.right.cortex",
+      "display_name": "Cerebral Cortex (Right)",
+      "latin_name": "Cortex cerebri dexter",
+      "clinical_aliases": [
+        "Right Cortical Mantle",
+        "Right Cerebral Grey Matter"
+      ],
+      "abbreviations": [
+        "CTX-R",
+        "R-Cortex"
+      ],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Cerebral Cortex (Right)"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/cortex_right.json",
+      "asset_id": "mesh.cortex.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.frontal_lobe",
+      "structure_id": "brain.telencephalon.right.frontal_lobe",
+      "display_name": "Right frontal lobe",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right frontal lobe"
+      ],
+      "laterality": "right",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.frontal_lobe.middle_frontal_gyrus",
+      "structure_id": "brain.telencephalon.right.frontal_lobe.middle_frontal_gyrus",
+      "display_name": "Middle frontal gyrus (Right)",
+      "latin_name": "Gyrus frontalis medius",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right frontal lobe",
+        "Right middle frontal gyrus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/middle_frontal_gyrus_right.json",
+      "asset_id": "mesh.middle_frontal_gyrus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.frontal_lobe.precentral_gyrus",
+      "structure_id": "brain.telencephalon.right.frontal_lobe.precentral_gyrus",
+      "display_name": "Precentral gyrus (Right)",
+      "latin_name": "Gyrus precentralis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right frontal lobe",
+        "Right precentral gyrus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/precentral_gyrus_right.json",
+      "asset_id": "mesh.precentral_gyrus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.frontal_lobe.superior_frontal_gyrus",
+      "structure_id": "brain.telencephalon.right.frontal_lobe.superior_frontal_gyrus",
+      "display_name": "Superior frontal gyrus (Right)",
+      "latin_name": "Gyrus frontalis superior",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right frontal lobe",
+        "Right superior frontal gyrus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/superior_frontal_gyrus_right.json",
+      "asset_id": "mesh.superior_frontal_gyrus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.insular_lobe",
+      "structure_id": "brain.telencephalon.right.insular_lobe",
+      "display_name": "Right insular lobe",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right insular lobe"
+      ],
+      "laterality": "right",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.insular_lobe.insula",
+      "structure_id": "brain.telencephalon.right.insular_lobe.insula",
+      "display_name": "Insula (right)",
+      "latin_name": "Insula",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right insular lobe",
+        "Right insula"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/insula_right.json",
+      "asset_id": "mesh.insula.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.limbic_lobe",
+      "structure_id": "brain.telencephalon.right.limbic_lobe",
+      "display_name": "Right limbic lobe",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right limbic lobe"
+      ],
+      "laterality": "right",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.limbic.amygdala",
+      "structure_id": "brain.telencephalon.right.limbic.amygdala",
+      "display_name": "Amygdala (Right)",
+      "latin_name": "Corpus amygdaloideum",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right limbic lobe",
+        "Right amygdala"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/amygdala_right.json",
+      "asset_id": "mesh.amygdala.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.limbic.cingulate_gyrus",
+      "structure_id": "brain.telencephalon.right.limbic.cingulate_gyrus",
+      "display_name": "Cingulate gyrus (Right)",
+      "latin_name": "Gyrus cinguli",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right limbic lobe",
+        "Right cingulate gyrus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/cingulate_gyrus_right.json",
+      "asset_id": "mesh.cingulate_gyrus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.limbic.hippocampus",
+      "structure_id": "brain.telencephalon.right.limbic.hippocampus",
+      "display_name": "Hippocampus (Right)",
+      "latin_name": "Hippocampus",
+      "clinical_aliases": [
+        "Cornu Ammonis",
+        "Ammon's Horn",
+        "Hippocampus Proper (CA1-CA3)"
+      ],
+      "abbreviations": [
+        "Hpc",
+        "HIP",
+        "CA"
+      ],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right limbic lobe",
+        "Right hippocampus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/hippocampus_right.json",
+      "asset_id": "mesh.hippocampus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.limbic.parahippocampal_gyrus",
+      "structure_id": "brain.telencephalon.right.limbic.parahippocampal_gyrus",
+      "display_name": "Parahippocampal gyrus (right)",
+      "latin_name": "Gyrus parahippocampalis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right limbic lobe",
+        "Right parahippocampal gyrus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/parahippocampal_gyrus_right.json",
+      "asset_id": "mesh.parahippocampal_gyrus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.occipital_lobe",
+      "structure_id": "brain.telencephalon.right.occipital_lobe",
+      "display_name": "Occipital lobe (right)",
+      "latin_name": "Lobus occipitalis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right occipital lobe"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/occipital_lobe_right.json",
+      "asset_id": "mesh.occipital_lobe.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.parietal_lobe",
+      "structure_id": "brain.telencephalon.right.parietal_lobe",
+      "display_name": "Right parietal lobe",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right parietal lobe"
+      ],
+      "laterality": "right",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.parietal_lobe.angular_gyrus",
+      "structure_id": "brain.telencephalon.right.parietal_lobe.angular_gyrus",
+      "display_name": "Angular gyrus (Right)",
+      "latin_name": "Gyrus angularis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right parietal lobe",
+        "Right angular gyrus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/angular_gyrus_right.json",
+      "asset_id": "mesh.angular_gyrus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.parietal_lobe.postcentral_gyrus",
+      "structure_id": "brain.telencephalon.right.parietal_lobe.postcentral_gyrus",
+      "display_name": "Postcentral gyrus (Right)",
+      "latin_name": "Gyrus postcentralis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right parietal lobe",
+        "Right postcentral gyrus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/postcentral_gyrus_right.json",
+      "asset_id": "mesh.postcentral_gyrus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.parietal_lobe.supramarginal_gyrus",
+      "structure_id": "brain.telencephalon.right.parietal_lobe.supramarginal_gyrus",
+      "display_name": "Supramarginal gyrus (Right)",
+      "latin_name": "Gyrus supramarginalis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right parietal lobe",
+        "Right supramarginal gyrus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/supramarginal_gyrus_right.json",
+      "asset_id": "mesh.supramarginal_gyrus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.temporal_lobe",
+      "structure_id": "brain.telencephalon.right.temporal_lobe",
+      "display_name": "Right temporal lobe",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right temporal lobe"
+      ],
+      "laterality": "right",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.temporal_lobe.fusiform_gyrus",
+      "structure_id": "brain.telencephalon.right.temporal_lobe.fusiform_gyrus",
+      "display_name": "Fusiform gyrus (right)",
+      "latin_name": "Gyrus fusiformis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right temporal lobe",
+        "Right fusiform gyrus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/fusiform_gyrus_right.json",
+      "asset_id": "mesh.fusiform_gyrus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.temporal_lobe.inferior_temporal_gyrus",
+      "structure_id": "brain.telencephalon.right.temporal_lobe.inferior_temporal_gyrus",
+      "display_name": "Inferior temporal gyrus (right)",
+      "latin_name": "Gyrus temporalis inferior",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right temporal lobe",
+        "Right inferior temporal gyrus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/inferior_temporal_gyrus_right.json",
+      "asset_id": "mesh.inferior_temporal_gyrus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.temporal_lobe.middle_temporal_gyrus",
+      "structure_id": "brain.telencephalon.right.temporal_lobe.middle_temporal_gyrus",
+      "display_name": "Middle temporal gyrus (Right)",
+      "latin_name": "Gyrus temporalis medius",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right temporal lobe",
+        "Right middle temporal gyrus"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/middle_temporal_gyrus_right.json",
+      "asset_id": "mesh.middle_temporal_gyrus.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.temporal_lobe.superior_temporal_gyrus_anterior",
+      "structure_id": "brain.telencephalon.right.temporal_lobe.superior_temporal_gyrus_anterior",
+      "display_name": "Superior temporal gyrus, anterior part (right)",
+      "latin_name": "Gyrus temporalis superior (pars anterior)",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right temporal lobe",
+        "Right superior temporal gyrus, anterior part"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/superior_temporal_gyrus_anterior_right.json",
+      "asset_id": "mesh.superior_temporal_gyrus_anterior.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.right.temporal_lobe.superior_temporal_gyrus_posterior",
+      "structure_id": "brain.telencephalon.right.temporal_lobe.superior_temporal_gyrus_posterior",
+      "display_name": "Superior temporal gyrus, posterior part (right)",
+      "latin_name": "Gyrus temporalis superior (pars posterior)",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Right cerebral hemisphere",
+        "Right temporal lobe",
+        "Right superior temporal gyrus, posterior part"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/superior_temporal_gyrus_posterior_right.json",
+      "asset_id": "mesh.superior_temporal_gyrus_posterior.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.superior_parietal_lobule",
+      "structure_id": "brain.telencephalon.superior_parietal_lobule",
+      "display_name": "Superior parietal lobule (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left parietal lobe",
+        "Superior parietal lobule (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.telencephalon.superior_temporal_gyrus_whole",
+      "structure_id": "brain.telencephalon.superior_temporal_gyrus_whole",
+      "display_name": "Superior temporal gyrus as a whole (DOCUMENTED - only the anterior and posterior parts are AVAILABLE as separate segments; no whole-gyrus mesh synthesized)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Telencephalon (cerebrum)",
+        "Left cerebral hemisphere",
+        "Left temporal lobe",
+        "Superior temporal gyrus as a whole (DOCUMENTED - only the anterior and posterior parts are AVAILABLE as separate segments; no whole-gyrus mesh synthesized)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.vasculature",
+      "structure_id": "brain.vasculature",
+      "display_name": "Cerebral vasculature (DOCUMENTED — no vessels are present in the distribution; none fabricated)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebral vasculature (DOCUMENTED — no vessels are present in the distribution; none fabricated)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.vasculature.anterior_cerebral_artery",
+      "structure_id": "brain.vasculature.anterior_cerebral_artery",
+      "display_name": "Anterior cerebral artery (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebral vasculature (DOCUMENTED — no vessels are present in the distribution; none fabricated)",
+        "Anterior cerebral artery (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.vasculature.circle_of_willis",
+      "structure_id": "brain.vasculature.circle_of_willis",
+      "display_name": "Circle of Willis (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebral vasculature (DOCUMENTED — no vessels are present in the distribution; none fabricated)",
+        "Circle of Willis (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.vasculature.middle_cerebral_artery",
+      "structure_id": "brain.vasculature.middle_cerebral_artery",
+      "display_name": "Middle cerebral artery (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebral vasculature (DOCUMENTED — no vessels are present in the distribution; none fabricated)",
+        "Middle cerebral artery (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.vasculature.posterior_cerebral_artery",
+      "structure_id": "brain.vasculature.posterior_cerebral_artery",
+      "display_name": "Posterior cerebral artery (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebral vasculature (DOCUMENTED — no vessels are present in the distribution; none fabricated)",
+        "Posterior cerebral artery (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.vasculature.vertebrobasilar_system",
+      "structure_id": "brain.vasculature.vertebrobasilar_system",
+      "display_name": "Vertebrobasilar system (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Cerebral vasculature (DOCUMENTED — no vessels are present in the distribution; none fabricated)",
+        "Vertebrobasilar system (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.ventricular_system",
+      "structure_id": "brain.ventricular_system",
+      "display_name": "Ventricular system (CSF cavities, not neural tissue; lateral ventricles NOT represented)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Ventricular system (CSF cavities, not neural tissue; lateral ventricles NOT represented)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.ventricular_system.cerebral_aqueduct",
+      "structure_id": "brain.ventricular_system.cerebral_aqueduct",
+      "display_name": "Cerebral aqueduct",
+      "latin_name": "Aqueductus cerebri",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Ventricular system (CSF cavities, not neural tissue; lateral ventricles NOT represented)",
+        "Cerebral aqueduct"
+      ],
+      "laterality": "midline",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/cerebral_aqueduct_midline.json",
+      "asset_id": "mesh.cerebral_aqueduct.midline.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.ventricular_system.foramen_luschka",
+      "structure_id": "brain.ventricular_system.foramen_luschka",
+      "display_name": "Foramen of Luschka (DOCUMENTED — no source in this batch; aperture of the 4th ventricle)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Ventricular system (CSF cavities, not neural tissue; lateral ventricles NOT represented)",
+        "Foramen of Luschka (DOCUMENTED — no source in this batch; aperture of the 4th ventricle)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.ventricular_system.foramen_magendie",
+      "structure_id": "brain.ventricular_system.foramen_magendie",
+      "display_name": "Foramen of Magendie (DOCUMENTED — no source in this batch; aperture of the 4th ventricle)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Ventricular system (CSF cavities, not neural tissue; lateral ventricles NOT represented)",
+        "Foramen of Magendie (DOCUMENTED — no source in this batch; aperture of the 4th ventricle)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.ventricular_system.fourth_ventricle",
+      "structure_id": "brain.ventricular_system.fourth_ventricle",
+      "display_name": "Fourth ventricle",
+      "latin_name": "Ventriculus quartus",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Ventricular system (CSF cavities, not neural tissue; lateral ventricles NOT represented)",
+        "Fourth ventricle"
+      ],
+      "laterality": "midline",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/fourth_ventricle_midline.json",
+      "asset_id": "mesh.fourth_ventricle.midline.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.ventricular_system.interventricular_foramen",
+      "structure_id": "brain.ventricular_system.interventricular_foramen",
+      "display_name": "Interventricular foramen",
+      "latin_name": "Foramen interventriculare",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Ventricular system (CSF cavities, not neural tissue; lateral ventricles NOT represented)",
+        "Interventricular foramen"
+      ],
+      "laterality": "midline",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/interventricular_foramen_midline.json",
+      "asset_id": "mesh.interventricular_foramen.midline.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.ventricular_system.lateral_ventricle",
+      "structure_id": "brain.ventricular_system.lateral_ventricle",
+      "display_name": "Lateral ventricle (DOCUMENTED — no source in this batch; cavities, not tissue)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Ventricular system (CSF cavities, not neural tissue; lateral ventricles NOT represented)",
+        "Lateral ventricle (DOCUMENTED — no source in this batch; cavities, not tissue)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.ventricular_system.third_ventricle",
+      "structure_id": "brain.ventricular_system.third_ventricle",
+      "display_name": "Third ventricle",
+      "latin_name": "Ventriculus tertius",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "Ventricular system (CSF cavities, not neural tissue; lateral ventricles NOT represented)",
+        "Third ventricle"
+      ],
+      "laterality": "midline",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/third_ventricle_midline.json",
+      "asset_id": "mesh.third_ventricle.midline.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter",
+      "structure_id": "brain.white_matter",
+      "display_name": "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.anterior_commissure",
+      "structure_id": "brain.white_matter.anterior_commissure",
+      "display_name": "Anterior commissure",
+      "latin_name": "Commissura anterior",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Anterior commissure"
+      ],
+      "laterality": "midline",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/anterior_commissure_midline.json",
+      "asset_id": "mesh.anterior_commissure.midline.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.cingulum",
+      "structure_id": "brain.white_matter.cingulum",
+      "display_name": "Cingulum bundle (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Cingulum bundle (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.corona_radiata",
+      "structure_id": "brain.white_matter.corona_radiata",
+      "display_name": "Corona radiata (DOCUMENTED — absent from the distribution entirely)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Corona radiata (DOCUMENTED — absent from the distribution entirely)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.corpus_callosum",
+      "structure_id": "brain.white_matter.corpus_callosum",
+      "display_name": "Corpus callosum",
+      "latin_name": "Corpus callosum",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Corpus callosum (whole commissure in one segment; no regional subdivision)"
+      ],
+      "laterality": "midline",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/corpus_callosum_midline.json",
+      "asset_id": "mesh.corpus_callosum.midline.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.fornix_commissure",
+      "structure_id": "brain.white_matter.fornix_commissure",
+      "display_name": "Commissure of fornix",
+      "latin_name": "Commissura fornicis",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Commissure of fornix (hippocampal commissure)"
+      ],
+      "laterality": "midline",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/fornix_commissure_midline.json",
+      "asset_id": "mesh.fornix_commissure.midline.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.fornix_left",
+      "structure_id": "brain.white_matter.fornix_left",
+      "display_name": "Fornix (left)",
+      "latin_name": "Fornix",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Fornix (left; crus/body/column NOT subdivided)"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/fornix_left.json",
+      "asset_id": "mesh.fornix.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.fornix_right",
+      "structure_id": "brain.white_matter.fornix_right",
+      "display_name": "Fornix (right)",
+      "latin_name": "Fornix",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Fornix (right; crus/body/column NOT subdivided)"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/fornix_right.json",
+      "asset_id": "mesh.fornix.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.fornix_whole",
+      "structure_id": "brain.white_matter.fornix_whole",
+      "display_name": "Fornix as a whole (DOCUMENTED — FMA61965 listed, no mirror STL; only the lateralised segments are servable)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Fornix as a whole (DOCUMENTED — FMA61965 listed, no mirror STL; only the lateralised segments are servable)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.inferior_longitudinal_fasciculus",
+      "structure_id": "brain.white_matter.inferior_longitudinal_fasciculus",
+      "display_name": "Inferior longitudinal fasciculus (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Inferior longitudinal fasciculus (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.internal_capsule",
+      "structure_id": "brain.white_matter.internal_capsule",
+      "display_name": "Internal capsule as a whole (DOCUMENTED — FMA61950 listed, no mirror STL; only the paired anterior-limb segments are servable)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Internal capsule as a whole (DOCUMENTED — FMA61950 listed, no mirror STL; only the paired anterior-limb segments are servable)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.internal_capsule_anterior_limb_left",
+      "structure_id": "brain.white_matter.internal_capsule_anterior_limb_left",
+      "display_name": "Anterior limb of internal capsule (left)",
+      "latin_name": "Crus anterius capsulae internae",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Anterior limb of internal capsule (left)"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/internal_capsule_anterior_limb_left.json",
+      "asset_id": "mesh.internal_capsule_anterior_limb.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.internal_capsule_anterior_limb_right",
+      "structure_id": "brain.white_matter.internal_capsule_anterior_limb_right",
+      "display_name": "Anterior limb of internal capsule (right)",
+      "latin_name": "Crus anterius capsulae internae",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Anterior limb of internal capsule (right)"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/internal_capsule_anterior_limb_right.json",
+      "asset_id": "mesh.internal_capsule_anterior_limb.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.optic_tract_left",
+      "structure_id": "brain.white_matter.optic_tract_left",
+      "display_name": "Optic tract (left)",
+      "latin_name": "Tractus opticus",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Optic tract (left)"
+      ],
+      "laterality": "left",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/optic_tract_left.json",
+      "asset_id": "mesh.optic_tract.left.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.optic_tract_right",
+      "structure_id": "brain.white_matter.optic_tract_right",
+      "display_name": "Optic tract (right)",
+      "latin_name": "Tractus opticus",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Optic tract (right)"
+      ],
+      "laterality": "right",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/optic_tract_right.json",
+      "asset_id": "mesh.optic_tract.right.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.optic_tract_whole",
+      "structure_id": "brain.white_matter.optic_tract_whole",
+      "display_name": "Optic tract as a whole (DOCUMENTED — FMA62046 listed, no mirror STL; only the lateralised segments are servable)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Optic tract as a whole (DOCUMENTED — FMA62046 listed, no mirror STL; only the lateralised segments are servable)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.posterior_commissure",
+      "structure_id": "brain.white_matter.posterior_commissure",
+      "display_name": "Posterior commissure",
+      "latin_name": "Commissura posterior",
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Posterior commissure"
+      ],
+      "laterality": "midline",
+      "geometry_state": "AVAILABLE",
+      "structure_record": "data/structures/posterior_commissure_midline.json",
+      "asset_id": "mesh.posterior_commissure.midline.v1"
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.superior_longitudinal_fasciculus",
+      "structure_id": "brain.white_matter.superior_longitudinal_fasciculus",
+      "display_name": "Superior longitudinal fasciculus incl. arcuate (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Superior longitudinal fasciculus incl. arcuate (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    },
+    {
+      "knowledge_id": "knowledge.brain.white_matter.uncinate_fasciculus",
+      "structure_id": "brain.white_matter.uncinate_fasciculus",
+      "display_name": "Uncinate fasciculus (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)",
+      "latin_name": null,
+      "clinical_aliases": [],
+      "abbreviations": [],
+      "hierarchy_path": [
+        "Brain",
+        "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+        "Uncinate fasciculus (DOCUMENTED — absent from the distribution; association tracts cannot be represented without streamline fabrication, which is prohibited)"
+      ],
+      "laterality": "unspecified",
+      "geometry_state": "DOCUMENTED",
+      "structure_record": null,
+      "asset_id": null
+    }
+  ]
+}
