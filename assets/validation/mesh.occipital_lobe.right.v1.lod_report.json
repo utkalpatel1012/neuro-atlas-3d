@@ -1,0 +1,179 @@
+{
+  "assetId": "mesh.occipital_lobe.right.v1",
+  "timestamp": "2026-09-29T15:59:21.686Z",
+  "inputCanonicalGlb": "assets/derived/mesh.occipital_lobe.right.v1/canonical/mesh.occipital_lobe.right.v1.canonical.glb",
+  "inputCanonicalHash": "e722310895e99861e95a6ef64e1f53fafba0a2e6c184a46be89c2f153b781ff8",
+  "levels": [
+    {
+      "level": 0,
+      "lodName": "lod0",
+      "targetRatio": 1,
+      "triangleCount": 18762,
+      "vertexCount": 9383,
+      "byteLength": 338752,
+      "sha256": "d8641fd5e4e6c409bbee7909b1d5ca5fd048fa85426de90aaffe5e2d5af6c280",
+      "filePath": "assets/derived/mesh.occipital_lobe.right.v1/lod/mesh.occipital_lobe.right.v1.lod0.glb",
+      "targetIndexCount": 56286,
+      "resultingIndexCount": 56286,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 32697.46,
+        "lodVolumeMm3": 32697.46,
+        "volumeDeviationPercent": 0,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0,
+        "meanSurfaceDeviationMm": 0
+      }
+    },
+    {
+      "level": 1,
+      "lodName": "lod1",
+      "targetRatio": 0.75,
+      "triangleCount": 14070,
+      "vertexCount": 7037,
+      "byteLength": 254292,
+      "sha256": "3fb9723a8b6d4febd357e712ced42d8fb2e858361a46f6c4346419b3588d53a2",
+      "filePath": "assets/derived/mesh.occipital_lobe.right.v1/lod/mesh.occipital_lobe.right.v1.lod1.glb",
+      "targetIndexCount": 42213,
+      "resultingIndexCount": 42210,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000863,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 32697.46,
+        "lodVolumeMm3": 32676.08,
+        "volumeDeviationPercent": -0.065,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 2.1296,
+        "meanSurfaceDeviationMm": 0.1406
+      }
+    },
+    {
+      "level": 2,
+      "lodName": "lod2",
+      "targetRatio": 0.5,
+      "triangleCount": 9380,
+      "vertexCount": 4692,
+      "byteLength": 169872,
+      "sha256": "8411914aff864e868bfd615b93b842d578e5ed6d8d4959c048d800ffdac8b8ae",
+      "filePath": "assets/derived/mesh.occipital_lobe.right.v1/lod/mesh.occipital_lobe.right.v1.lod2.glb",
+      "targetIndexCount": 28143,
+      "resultingIndexCount": 28140,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.001464,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 32697.46,
+        "lodVolumeMm3": 32622.53,
+        "volumeDeviationPercent": -0.229,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            -0.0188
+          ]
+        },
+        "maxSurfaceDeviationMm": 2.4031,
+        "meanSurfaceDeviationMm": 0.3324
+      }
+    },
+    {
+      "level": 3,
+      "lodName": "lod3",
+      "targetRatio": 0.25,
+      "triangleCount": 4690,
+      "vertexCount": 2347,
+      "byteLength": 85452,
+      "sha256": "914905d46c8a4a41dbdd2471eb38fab0760e5b16f70803d25561459e74134937",
+      "filePath": "assets/derived/mesh.occipital_lobe.right.v1/lod/mesh.occipital_lobe.right.v1.lod3.glb",
+      "targetIndexCount": 14070,
+      "resultingIndexCount": 14070,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.002752,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 32697.46,
+        "lodVolumeMm3": 32476.19,
+        "volumeDeviationPercent": -0.677,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0.0599,
+            0.0234
+          ],
+          "max": [
+            0,
+            0,
+            -0.0281
+          ]
+        },
+        "maxSurfaceDeviationMm": 3.3473,
+        "meanSurfaceDeviationMm": 0.6659
+      }
+    }
+  ],
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.occipital_lobe.right.v1.lod_generation",
+    "tool": "MeshoptSimplifier / NeuroAtlas3D LOD Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "algorithms": "Quadric_Error_Metric_Simplification",
+      "levels": [
+        {
+          "name": "lod0",
+          "ratio": 1
+        },
+        {
+          "name": "lod1",
+          "ratio": 0.75
+        },
+        {
+          "name": "lod2",
+          "ratio": 0.5
+        },
+        {
+          "name": "lod3",
+          "ratio": 0.25
+        }
+      ]
+    },
+    "timestamp": "2026-09-29T15:59:21.686Z"
+  }
+}

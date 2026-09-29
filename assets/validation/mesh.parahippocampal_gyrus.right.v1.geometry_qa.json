@@ -1,0 +1,151 @@
+{
+  "assetId": "mesh.parahippocampal_gyrus.right.v1",
+  "sourceFile": "assets/raw/mesh.parahippocampal_gyrus.right.v1/FMA72705.stl",
+  "timestamp": "2026-09-29T15:57:25.452Z",
+  "topologyClass": "CLOSED_SURFACE",
+  "profileId": "closed-pial-surface",
+  "analysis": {
+    "triangleCount": 3454,
+    "rawVertexCount": 10362,
+    "uniqueVertexCount": 1729,
+    "minBounds": [
+      -29.571800231933594,
+      -109.61599731445312,
+      1530.1700439453125
+    ],
+    "maxBounds": [
+      -9.603090286254883,
+      -62.6890983581543,
+      1551.1199951171875
+    ],
+    "centroid": [
+      -18.720255450750102,
+      -87.47894102883104,
+      1540.0016890747
+    ],
+    "dimensions": [
+      19.96870994567871,
+      46.92689895629883,
+      20.949951171875
+    ],
+    "surfaceAreaMm2": 2073.6020944341594,
+    "estimatedVolumeMm3": 3177.25709273549,
+    "zeroAreaFaces": 0,
+    "duplicateFaces": 0,
+    "nonManifoldEdges": 0,
+    "boundaryEdges": 0,
+    "manifoldEdges": 5181,
+    "isWatertight": true,
+    "connectedShellCount": 1
+  },
+  "geometricQA": {
+    "assetId": "mesh.parahippocampal_gyrus.right.v1",
+    "sourceFile": "assets/raw/mesh.parahippocampal_gyrus.right.v1/FMA72705.stl",
+    "timestamp": "2026-09-29T15:57:25.452Z",
+    "topologyClass": "CLOSED_SURFACE",
+    "profileId": "closed-pial-surface",
+    "analysis": {
+      "triangleCount": 3454,
+      "rawVertexCount": 10362,
+      "uniqueVertexCount": 1729,
+      "minBounds": [
+        -29.571800231933594,
+        -109.61599731445312,
+        1530.1700439453125
+      ],
+      "maxBounds": [
+        -9.603090286254883,
+        -62.6890983581543,
+        1551.1199951171875
+      ],
+      "centroid": [
+        -18.720255450750102,
+        -87.47894102883104,
+        1540.0016890747
+      ],
+      "dimensions": [
+        19.96870994567871,
+        46.92689895629883,
+        20.949951171875
+      ],
+      "surfaceAreaMm2": 2073.6020944341594,
+      "estimatedVolumeMm3": 3177.25709273549,
+      "zeroAreaFaces": 0,
+      "duplicateFaces": 0,
+      "nonManifoldEdges": 0,
+      "boundaryEdges": 0,
+      "manifoldEdges": 5181,
+      "isWatertight": true,
+      "connectedShellCount": 1
+    },
+    "checks": [
+      {
+        "name": "Non-Manifold Edges Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 non-manifold edges (Limit: 0)"
+      },
+      {
+        "name": "Duplicate Faces Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 duplicate faces (Limit: 0)"
+      },
+      {
+        "name": "Zero-Area Faces Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 zero-area faces (Limit: 0)"
+      },
+      {
+        "name": "Watertight Surface Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Watertight: true (Boundary open edges: 0, must be 0 for CLOSED_SURFACE). NOTE: edge accounting is per-shell; see connectedShellCount for surface continuity."
+      },
+      {
+        "name": "Triangle Manifold Presence Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Mesh contains 3454 triangles and 1729 unique vertices"
+      },
+      {
+        "name": "Single-Surface Continuity Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Measured 1 connected shell: consistent with CLOSED_SURFACE."
+      }
+    ],
+    "geometricStatus": "GEOMETRY_VALIDATED"
+  },
+  "anatomicalQA": {
+    "assetId": "mesh.parahippocampal_gyrus.right.v1",
+    "timestamp": "2026-09-29T15:57:25.452Z",
+    "declaredLaterality": "right",
+    "subfieldRepresentation": "MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED",
+    "checks": [
+      {
+        "name": "Adult Human Anatomic Scale Check",
+        "category": "anatomical",
+        "passed": true,
+        "details": "Dimensions: 19.97 x 46.93 x 20.95 mm"
+      },
+      {
+        "name": "Anatomical Volume Estimation Check",
+        "category": "anatomical",
+        "passed": true,
+        "details": "Measured volume: 3.18 cm3"
+      },
+      {
+        "name": "Internal Subfield Boundary Resolution Check",
+        "category": "anatomical",
+        "passed": true,
+        "notApplicable": true,
+        "details": "Mesh represents macroscopic unsegmented organ body; microscopic subfields CA1-CA4 are not resolved in 3D geometry"
+      }
+    ],
+    "anatomicalStatus": "ANATOMY_VALIDATED",
+    "notes": "Macroscopic scale/laterality plausibility only; internal subfields unsegmented. (Historical phase-acceptance status; not a morphological proof.)"
+  },
+  "overallStatus": "GEOMETRY_VALIDATED"
+}

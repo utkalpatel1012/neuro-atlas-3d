@@ -1,0 +1,64 @@
+{
+  "transformation_id": "tx.mesh.parahippocampal_gyrus.right.v1.canonicalization",
+  "input_frame": "DICOM_LPS_WHOLE_BODY",
+  "output_frame": "THREEJS_RAS_CANONICAL",
+  "adapter_id": "adapter.bodyparts3d.lps_whole_body_to_ras",
+  "adapter_version": "1.0.0",
+  "input_asset_hash": "fd317edc429ea14f0cc4398198bfb5a6f3a06d1ab9b2b24e5d41a63756899e0a",
+  "output_asset_hash": "ab1654bd858881f5d6d60aceba27c17806b2dbe8f56f264c43257e675b8feda0",
+  "tool": "NeuroAtlas3D Generic Canonicalizer v1.1",
+  "parameters": {
+    "source_orientation": "LPS",
+    "target_orientation": "RAS",
+    "axis_mapping": {
+      "x": "-x",
+      "y": "z",
+      "z": "y"
+    },
+    "translation_mm": [
+      0,
+      -1561.7,
+      70.1
+    ],
+    "scale": 1,
+    "registration_metadata": {
+      "registration_method": "stereotaxic_acpc_origin_centering",
+      "reference_landmarks": {
+        "ac_pc_midpoint_source_lps": [
+          0,
+          -70.1,
+          1561.7
+        ]
+      },
+      "transformation_matrix_4x4": [
+        [
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          -1561.7
+        ],
+        [
+          0,
+          1,
+          0,
+          70.1
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "notes": "Transforms whole-body source coordinates to internal canonical space centered near origin. The AC-PC midpoint landmark above is ASSERTED, not measured from identified commissures (Phase 3.1 D3); origin approximates, not equals, the mid-commissural plane."
+    },
+    "normals": "area_weighted_smooth"
+  },
+  "timestamp": "2026-09-29T15:57:25.468Z"
+}

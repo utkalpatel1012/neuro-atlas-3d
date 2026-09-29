@@ -1,0 +1,136 @@
+{
+  "id": "brain.telencephalon.right.limbic.parahippocampal_gyrus",
+  "entity_type": "anatomical_structure",
+  "subtype": "cortical_gyrus",
+  "canonical_name": "Parahippocampal gyrus (right)",
+  "latin_name": "Gyrus parahippocampalis",
+  "clinical_aliases": [],
+  "abbreviations": [],
+  "laterality": "right",
+  "representation_scope": "paired_separate",
+  "anatomy_only_scope": "Anatomy only: cortical surface-derived segment. This mesh is one DISCONNECTED distribution segment; it does not form a continuous pial surface with any other segment — gaps are not bridged, seams are not smoothed, and no joined or single-continuous-surface claim is made or implied. No atlas parcellation (no Brodmann area, no HCP MMP parcel, no parcel boundary) was mapped onto this mesh and none is claimed. No functional-network membership, no RDoC association, no circuit or pathway claim, no receptor or pharmacology mapping, no psychiatric claim is made or implied.",
+  "expert_review_status": "EXPERT_REVIEW_PENDING",
+  "name": {
+    "official_latin": "Gyrus parahippocampalis",
+    "official_english": "Parahippocampal gyrus (right)",
+    "clinical_aliases": [],
+    "standard_abbreviations": []
+  },
+  "ontology": {
+    "ta2_id": "UNVERIFIED (lookup pass required; see L5)",
+    "fma_id": "FMA:72705",
+    "uberon_id": "UNVERIFIED (lookup pass required; see L5)",
+    "fma_authority": "BodyParts3D distribution parts_list_e.txt (authoritative for files; NOT a live-ontology lookup)"
+  },
+  "hierarchy": {
+    "anatomic_system": "central_nervous_system_telencephalon",
+    "division": "telencephalon",
+    "hemisphere": "right",
+    "lobe": "limbic_lobe",
+    "subsystem": "limbic_system",
+    "parent_id": "brain.telencephalon.right.limbic_lobe",
+    "groups": [
+      "division.cerebrum",
+      "hemisphere.right",
+      "lobe.limbic"
+    ],
+    "children_ids": []
+  },
+  "spatial": {
+    "mesh_node_name": "Mesh_mesh_parahippocampal_gyrus_right_v1",
+    "source_centroid": [
+      -19.59,
+      -86.15,
+      1540.65
+    ],
+    "source_coordinate_frame": "dicom_lps_whole_body",
+    "stereotaxic_registration": {
+      "registered_centroid": [
+        19.59,
+        -21.05,
+        -16.05
+      ],
+      "registered_coordinate_frame": "canonical_atlas_ras",
+      "registration_status": "REGISTRATION_PENDING",
+      "registration": {
+        "registration_method": "not_registered",
+        "registration_source": "scripts/pipeline/canonicalize_mesh.ts (rigid adapter only; coordinate conversion, NOT template registration)"
+      }
+    },
+    "bounding_box": {
+      "min": [
+        9.61,
+        -31.52,
+        -39.52
+      ],
+      "max": [
+        29.57,
+        -10.58,
+        7.41
+      ],
+      "coordinate_frame": "canonical_atlas_ras",
+      "derivation": "reconstructed from manifest centroid + dimensions (bbox-center convention)"
+    },
+    "estimated_volume_cm3": 3.177,
+    "default_hex_color": "#C9BFA6",
+    "centroid_convention": "bounding-box center (NOT vertex mean)."
+  },
+  "representations": [
+    {
+      "id": "rep.parahippocampal_gyrus.macroscopic_mesh",
+      "representation_type": "macroscopic_mesh",
+      "level_of_detail": "LOD0-LOD3",
+      "asset_reference": "mesh.parahippocampal_gyrus.right.v1",
+      "coordinate_frame": "canonical_atlas_ras",
+      "is_canonical": true,
+      "metadata": {
+        "format": "glb_meshopt",
+        "topology": "CLOSED_SURFACE"
+      }
+    }
+  ],
+  "asset_id": "mesh.parahippocampal_gyrus.right.v1",
+  "asset_provenance": {
+    "asset_id": "mesh.parahippocampal_gyrus.right.v1",
+    "dataset_name": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+    "dataset_version": "Release 3.0 (2011/06/20)",
+    "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/master/assets/BodyParts3D_data/stl/FMA72705.stl",
+    "upstream_asset_id": "FMA72705",
+    "upstream_license": "CC_BY_SA_2_1_JP",
+    "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+    "acquisition_date": "2026-09-29",
+    "resulting_sha256_hash": "ab1654bd858881f5d6d60aceba27c17806b2dbe8f56f264c43257e675b8feda0",
+    "resulting_license": "CC-BY-SA 4.0",
+    "project_distribution_policy": "CC-BY-SA-4.0",
+    "production_eligibility": "PRODUCTION_ALLOWED",
+    "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+    "restrictions_and_covenants": [
+      "Must attribute BodyParts3D / DBCLS in application notices and UI",
+      "Derived 3D meshes distributed under CC-BY-SA 4.0.",
+      "Conservative licensing posture (Phase 3.1 section 19): historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution."
+    ],
+    "validation_status": "CLEARED",
+    "legal_review_notes": "BodyParts3D Release 3.0 component FMA72705 via fresh mirror download (Phase 5.5). Same license chain as production assets. Retroactivity UNRESOLVED - LEGAL_REVIEW_REQUIRED before commercial redistribution."
+  },
+  "topography": {
+    "relationships": [
+      {
+        "source_entity_id": "brain.telencephalon.right.limbic.parahippocampal_gyrus",
+        "target_entity_id": "brain.telencephalon.right.limbic_lobe",
+        "relationship_type": "part_of",
+        "semantic_class": "STRUCTURAL_CONTAINMENT",
+        "evidence_claim_ids": [],
+        "notes": "BodyParts3D distribution segment FMA72705; containment follows the distribution taxonomy. DISCONNECTED segment: no continuous-surface or pial-continuity claim; no atlas-parcel mapping (surface vs parcel distinction preserved)."
+      }
+    ]
+  },
+  "geometry_state": "RUNTIME_READY",
+  "created_at": "2026-09-29T16:00:06.950Z",
+  "provenance": {
+    "source_authority": "BodyParts3D distribution parts_list_e.txt (authoritative for files)",
+    "dataset_name": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+    "dataset_version": "Release 3.0 (2011/06/20)",
+    "ontology_reference": "FMA:72705 (distribution-verified)",
+    "last_reviewed": "2026-09-29"
+  }
+}

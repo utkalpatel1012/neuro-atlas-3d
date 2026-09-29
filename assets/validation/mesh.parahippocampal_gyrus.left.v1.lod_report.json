@@ -1,0 +1,179 @@
+{
+  "assetId": "mesh.parahippocampal_gyrus.left.v1",
+  "timestamp": "2026-09-29T15:57:38.811Z",
+  "inputCanonicalGlb": "assets/derived/mesh.parahippocampal_gyrus.left.v1/canonical/mesh.parahippocampal_gyrus.left.v1.canonical.glb",
+  "inputCanonicalHash": "d07c9683509c6111bcc5cddf8fd0b15dd5b1939622bd6cb7484682e4ed7ba7e0",
+  "levels": [
+    {
+      "level": 0,
+      "lodName": "lod0",
+      "targetRatio": 1,
+      "triangleCount": 3452,
+      "vertexCount": 1728,
+      "byteLength": 63184,
+      "sha256": "7af4fc5a5a42fb2d857580d5e1b79a8fe0ae973aad486d89d895883041c59012",
+      "filePath": "assets/derived/mesh.parahippocampal_gyrus.left.v1/lod/mesh.parahippocampal_gyrus.left.v1.lod0.glb",
+      "targetIndexCount": 10356,
+      "resultingIndexCount": 10356,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 3178.6,
+        "lodVolumeMm3": 3178.6,
+        "volumeDeviationPercent": 0,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0,
+        "meanSurfaceDeviationMm": 0
+      }
+    },
+    {
+      "level": 1,
+      "lodName": "lod1",
+      "targetRatio": 0.75,
+      "triangleCount": 2588,
+      "vertexCount": 1296,
+      "byteLength": 47628,
+      "sha256": "0c34c61c4b626b804da6a56107a18aa7baafddc040fd7aaa6034dbf2b9cb7242",
+      "filePath": "assets/derived/mesh.parahippocampal_gyrus.left.v1/lod/mesh.parahippocampal_gyrus.left.v1.lod1.glb",
+      "targetIndexCount": 7767,
+      "resultingIndexCount": 7764,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.001103,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 3178.6,
+        "lodVolumeMm3": 3174.9,
+        "volumeDeviationPercent": -0.117,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0.047
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 1.4852,
+        "meanSurfaceDeviationMm": 0.1319
+      }
+    },
+    {
+      "level": 2,
+      "lodName": "lod2",
+      "targetRatio": 0.5,
+      "triangleCount": 1726,
+      "vertexCount": 865,
+      "byteLength": 32112,
+      "sha256": "547f8ff4972791881da23c4e0b4ad8f23637d229f3a34eb1cc00ce6c07d7389d",
+      "filePath": "assets/derived/mesh.parahippocampal_gyrus.left.v1/lod/mesh.parahippocampal_gyrus.left.v1.lod2.glb",
+      "targetIndexCount": 5178,
+      "resultingIndexCount": 5178,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.001882,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 3178.6,
+        "lodVolumeMm3": 3165.8,
+        "volumeDeviationPercent": -0.403,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0.0499,
+            0.047
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 2.2287,
+        "meanSurfaceDeviationMm": 0.3137
+      }
+    },
+    {
+      "level": 3,
+      "lodName": "lod3",
+      "targetRatio": 0.25,
+      "triangleCount": 862,
+      "vertexCount": 433,
+      "byteLength": 16556,
+      "sha256": "c2c18a3950178c05e532f71db2c190f2387768bffc51247380b79d64ff111ff8",
+      "filePath": "assets/derived/mesh.parahippocampal_gyrus.left.v1/lod/mesh.parahippocampal_gyrus.left.v1.lod3.glb",
+      "targetIndexCount": 2589,
+      "resultingIndexCount": 2586,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.003433,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 3178.6,
+        "lodVolumeMm3": 3141.05,
+        "volumeDeviationPercent": -1.181,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0.0468,
+            0.0499,
+            0.052
+          ],
+          "max": [
+            0,
+            0,
+            -0.0141
+          ]
+        },
+        "maxSurfaceDeviationMm": 2.98,
+        "meanSurfaceDeviationMm": 0.6177
+      }
+    }
+  ],
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.parahippocampal_gyrus.left.v1.lod_generation",
+    "tool": "MeshoptSimplifier / NeuroAtlas3D LOD Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "algorithms": "Quadric_Error_Metric_Simplification",
+      "levels": [
+        {
+          "name": "lod0",
+          "ratio": 1
+        },
+        {
+          "name": "lod1",
+          "ratio": 0.75
+        },
+        {
+          "name": "lod2",
+          "ratio": 0.5
+        },
+        {
+          "name": "lod3",
+          "ratio": 0.25
+        }
+      ]
+    },
+    "timestamp": "2026-09-29T15:57:38.811Z"
+  }
+}

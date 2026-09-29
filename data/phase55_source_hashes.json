@@ -1,0 +1,92 @@
+{
+    "_comment":  "Phase 5.5 pinned expected SHA-256 for every Phase 5.5 mirror download. prepare_cortical55_batch.ts compares staged bytes against this file and REJECTS on mismatch, so a swapped or re-converted mirror artifact cannot be ingested silently. These values are computed directly from the staged mirror bytes in C:/Projects/_audit_tmp/phase55_<FMA>.stl and cross-checked after staging against assets/raw/<asset_id>/ingestion.json original_hash. They attest the CONVERTED bytes served by the third-party OBJ-to-STL mirror, not DBCLS-original objects; the mirror is itself an unverified-conversion intermediary (see docs/PRODUCTION_DATASET_LICENSE_MATRIX.md). BP48/49/50 (superior parietal / precuneus, non-standard BP identifiers, uncertain source identity) are NOT pinned and NOT attempted - uncertain-source-identity hard stop, DOCUMENTED only.",
+    "provenance_authority":  "C:/Projects/_audit_tmp/phase55_<FMA>.stl staged bytes, recomputed after staging from assets/raw/<asset_id>/<FMA>.stl ingestion.json original_hash",
+    "residual_risk":  "MIRROR_CONVERSION_UNVERIFIED - the third-party mirror converts DBCLS OBJ to STL; these hashes pin WHICH converted bytes were ingested, not equivalence to a DBCLS-original release artifact. Comparison against an official DBCLS-published checksum is NOT AVAILABLE.",
+    "recorded_at":  "2026-09-29",
+    "sources":  [
+                    {
+                        "fma_id":  "FMA72687",
+                        "asset_id":  "mesh.inferior_temporal_gyrus.right.v1",
+                        "byte_length":  652884,
+                        "sha256":  "ec04eabe123163d811f4eb4cbca8baf6cfc018ee5994bfe48b04a6b1991ad479"
+                    },
+                    {
+                        "fma_id":  "FMA72688",
+                        "asset_id":  "mesh.inferior_temporal_gyrus.left.v1",
+                        "byte_length":  652084,
+                        "sha256":  "fe75592f16a8c604c07f17e788e22f34801467f14f4a1e9d1066da3759a7616f"
+                    },
+                    {
+                        "fma_id":  "FMA72689",
+                        "asset_id":  "mesh.fusiform_gyrus.right.v1",
+                        "byte_length":  307584,
+                        "sha256":  "5f7263b7768b54a4ef8b8e31a1d0ef7a7d8f72ccce5011fcbfce66b36a27ad58"
+                    },
+                    {
+                        "fma_id":  "FMA72690",
+                        "asset_id":  "mesh.fusiform_gyrus.left.v1",
+                        "byte_length":  307484,
+                        "sha256":  "f7573954276f752193fe5b80b2ebab8e717d0e6c2b11f8ccea12c632c8abea3a"
+                    },
+                    {
+                        "fma_id":  "FMA72705",
+                        "asset_id":  "mesh.parahippocampal_gyrus.right.v1",
+                        "byte_length":  172784,
+                        "sha256":  "fd317edc429ea14f0cc4398198bfb5a6f3a06d1ab9b2b24e5d41a63756899e0a"
+                    },
+                    {
+                        "fma_id":  "FMA72706",
+                        "asset_id":  "mesh.parahippocampal_gyrus.left.v1",
+                        "byte_length":  172684,
+                        "sha256":  "fa2679accd8a5134422e3d06012d30ac7db37cac3dcccba5526b9c9c3c55438b"
+                    },
+                    {
+                        "fma_id":  "FMA72800",
+                        "asset_id":  "mesh.superior_temporal_gyrus_anterior.right.v1",
+                        "byte_length":  417484,
+                        "sha256":  "19cde3a87977e5e3ba6c4a7f5570686108354193ce1e57c4b2607461ef6444cf"
+                    },
+                    {
+                        "fma_id":  "FMA72801",
+                        "asset_id":  "mesh.superior_temporal_gyrus_anterior.left.v1",
+                        "byte_length":  416984,
+                        "sha256":  "72022c802774b46f1ed6b3ae4afc705649d0a0a55a4eb50eef01ba40cb1278cb"
+                    },
+                    {
+                        "fma_id":  "FMA72804",
+                        "asset_id":  "mesh.superior_temporal_gyrus_posterior.right.v1",
+                        "byte_length":  523684,
+                        "sha256":  "812a311901ebf3947d8bf37341b91e9ce25560c14cb65834ea4a1e707310af51"
+                    },
+                    {
+                        "fma_id":  "FMA72805",
+                        "asset_id":  "mesh.superior_temporal_gyrus_posterior.left.v1",
+                        "byte_length":  523684,
+                        "sha256":  "8ee112c9d3387d6dcceacca5c13b27792466a55ecad95766c0cdee541a7e8210"
+                    },
+                    {
+                        "fma_id":  "FMA72977",
+                        "asset_id":  "mesh.insula.right.v1",
+                        "byte_length":  612084,
+                        "sha256":  "2586b9df7a37d40d5082b0fa212856e285c6cbebb0bac3c7cbf1af06678f949a"
+                    },
+                    {
+                        "fma_id":  "FMA72978",
+                        "asset_id":  "mesh.insula.left.v1",
+                        "byte_length":  612184,
+                        "sha256":  "8ab8b6fdee006cf8776db3b3c9857dd10aa9d60cd1851c2e7975eb7978c8d57b"
+                    },
+                    {
+                        "fma_id":  "FMA72975",
+                        "asset_id":  "mesh.occipital_lobe.right.v1",
+                        "byte_length":  938184,
+                        "sha256":  "1ce0984b5f92adef2278d7adb2d6eada578f20da6d00ce642eb085af60711138"
+                    },
+                    {
+                        "fma_id":  "FMA72976",
+                        "asset_id":  "mesh.occipital_lobe.left.v1",
+                        "byte_length":  937384,
+                        "sha256":  "8f718a0c60a316c7e6b60fa440909865927de819d2229c2c513f9dee97644a0a"
+                    }
+                ]
+}

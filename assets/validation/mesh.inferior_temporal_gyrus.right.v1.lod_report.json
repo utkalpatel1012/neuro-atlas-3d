@@ -1,0 +1,179 @@
+{
+  "assetId": "mesh.inferior_temporal_gyrus.right.v1",
+  "timestamp": "2026-09-29T15:56:34.141Z",
+  "inputCanonicalGlb": "assets/derived/mesh.inferior_temporal_gyrus.right.v1/canonical/mesh.inferior_temporal_gyrus.right.v1.canonical.glb",
+  "inputCanonicalHash": "449c8009ec9e130a0b8e48d347cb40fc8d33f967158a3c9bb904dba77aa6e915",
+  "levels": [
+    {
+      "level": 0,
+      "lodName": "lod0",
+      "targetRatio": 1,
+      "triangleCount": 13056,
+      "vertexCount": 6530,
+      "byteLength": 236060,
+      "sha256": "0de98d0e50b4743f0e7babdbb946d0d01222157cc06d1d71590126dcb29f2224",
+      "filePath": "assets/derived/mesh.inferior_temporal_gyrus.right.v1/lod/mesh.inferior_temporal_gyrus.right.v1.lod0.glb",
+      "targetIndexCount": 39168,
+      "resultingIndexCount": 39168,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 18509.01,
+        "lodVolumeMm3": 18509.01,
+        "volumeDeviationPercent": 0,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 0,
+        "meanSurfaceDeviationMm": 0
+      }
+    },
+    {
+      "level": 1,
+      "lodName": "lod1",
+      "targetRatio": 0.75,
+      "triangleCount": 9792,
+      "vertexCount": 4898,
+      "byteLength": 177308,
+      "sha256": "3cf507bbb576dc8dabe703e18f4f055c6b764628029a83f54531777640b6a97a",
+      "filePath": "assets/derived/mesh.inferior_temporal_gyrus.right.v1/lod/mesh.inferior_temporal_gyrus.right.v1.lod1.glb",
+      "targetIndexCount": 29376,
+      "resultingIndexCount": 29376,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000559,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 18509.01,
+        "lodVolumeMm3": 18493.79,
+        "volumeDeviationPercent": -0.082,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        },
+        "maxSurfaceDeviationMm": 1.9313,
+        "meanSurfaceDeviationMm": 0.1269
+      }
+    },
+    {
+      "level": 2,
+      "lodName": "lod2",
+      "targetRatio": 0.5,
+      "triangleCount": 6528,
+      "vertexCount": 3266,
+      "byteLength": 118556,
+      "sha256": "5b13ccd144c32046e39f1c1592c06fa7762cfedf47f6c4dfa956e3955dea048c",
+      "filePath": "assets/derived/mesh.inferior_temporal_gyrus.right.v1/lod/mesh.inferior_temporal_gyrus.right.v1.lod2.glb",
+      "targetIndexCount": 19584,
+      "resultingIndexCount": 19584,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.000954,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 18509.01,
+        "lodVolumeMm3": 18443.15,
+        "volumeDeviationPercent": -0.356,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            -0.03,
+            -0.0328
+          ]
+        },
+        "maxSurfaceDeviationMm": 2.0411,
+        "meanSurfaceDeviationMm": 0.3243
+      }
+    },
+    {
+      "level": 3,
+      "lodName": "lod3",
+      "targetRatio": 0.25,
+      "triangleCount": 3264,
+      "vertexCount": 1634,
+      "byteLength": 59804,
+      "sha256": "3eff5c77d137f0737cff93c4fe582a53047e212104b4e4e218a536235bc26760",
+      "filePath": "assets/derived/mesh.inferior_temporal_gyrus.right.v1/lod/mesh.inferior_temporal_gyrus.right.v1.lod3.glb",
+      "targetIndexCount": 9792,
+      "resultingIndexCount": 9792,
+      "simplificationMetric": {
+        "algorithm": "Meshopt Quadric Error Metric (QEM)",
+        "meshoptResultError": 0.001758,
+        "description": "QEM quadric residual error relative to bounding sphere diameter (not clinical accuracy percentage)"
+      },
+      "geometricFidelity": {
+        "baseVolumeMm3": 18509.01,
+        "lodVolumeMm3": 18342.44,
+        "volumeDeviationPercent": -0.9,
+        "boundingBoxDeviationMm": {
+          "min": [
+            0,
+            0.05,
+            0
+          ],
+          "max": [
+            0,
+            -0.03,
+            -0.0328
+          ]
+        },
+        "maxSurfaceDeviationMm": 2.609,
+        "meanSurfaceDeviationMm": 0.6377
+      }
+    }
+  ],
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.inferior_temporal_gyrus.right.v1.lod_generation",
+    "tool": "MeshoptSimplifier / NeuroAtlas3D LOD Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "algorithms": "Quadric_Error_Metric_Simplification",
+      "levels": [
+        {
+          "name": "lod0",
+          "ratio": 1
+        },
+        {
+          "name": "lod1",
+          "ratio": 0.75
+        },
+        {
+          "name": "lod2",
+          "ratio": 0.5
+        },
+        {
+          "name": "lod3",
+          "ratio": 0.25
+        }
+      ]
+    },
+    "timestamp": "2026-09-29T15:56:34.141Z"
+  }
+}

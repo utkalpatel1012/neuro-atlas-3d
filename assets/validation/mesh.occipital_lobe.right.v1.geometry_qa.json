@@ -1,0 +1,151 @@
+{
+  "assetId": "mesh.occipital_lobe.right.v1",
+  "sourceFile": "assets/raw/mesh.occipital_lobe.right.v1/FMA72975.stl",
+  "timestamp": "2026-09-29T15:59:21.541Z",
+  "topologyClass": "CLOSED_SURFACE",
+  "profileId": "closed-pial-surface",
+  "analysis": {
+    "triangleCount": 18762,
+    "rawVertexCount": 56286,
+    "uniqueVertexCount": 9383,
+    "minBounds": [
+      -42.562801361083984,
+      -64.4884033203125,
+      1526.1800537109375
+    ],
+    "maxBounds": [
+      -1.2096500396728516,
+      -4.450900077819824,
+      1577.5999755859375
+    ],
+    "centroid": [
+      -17.923247776826308,
+      -28.94538227551072,
+      1547.9125085005587
+    ],
+    "dimensions": [
+      41.35315132141113,
+      60.037503242492676,
+      51.419921875
+    ],
+    "surfaceAreaMm2": 11388.916524124232,
+    "estimatedVolumeMm3": 32697.462673352915,
+    "zeroAreaFaces": 0,
+    "duplicateFaces": 0,
+    "nonManifoldEdges": 0,
+    "boundaryEdges": 0,
+    "manifoldEdges": 28143,
+    "isWatertight": true,
+    "connectedShellCount": 1
+  },
+  "geometricQA": {
+    "assetId": "mesh.occipital_lobe.right.v1",
+    "sourceFile": "assets/raw/mesh.occipital_lobe.right.v1/FMA72975.stl",
+    "timestamp": "2026-09-29T15:59:21.541Z",
+    "topologyClass": "CLOSED_SURFACE",
+    "profileId": "closed-pial-surface",
+    "analysis": {
+      "triangleCount": 18762,
+      "rawVertexCount": 56286,
+      "uniqueVertexCount": 9383,
+      "minBounds": [
+        -42.562801361083984,
+        -64.4884033203125,
+        1526.1800537109375
+      ],
+      "maxBounds": [
+        -1.2096500396728516,
+        -4.450900077819824,
+        1577.5999755859375
+      ],
+      "centroid": [
+        -17.923247776826308,
+        -28.94538227551072,
+        1547.9125085005587
+      ],
+      "dimensions": [
+        41.35315132141113,
+        60.037503242492676,
+        51.419921875
+      ],
+      "surfaceAreaMm2": 11388.916524124232,
+      "estimatedVolumeMm3": 32697.462673352915,
+      "zeroAreaFaces": 0,
+      "duplicateFaces": 0,
+      "nonManifoldEdges": 0,
+      "boundaryEdges": 0,
+      "manifoldEdges": 28143,
+      "isWatertight": true,
+      "connectedShellCount": 1
+    },
+    "checks": [
+      {
+        "name": "Non-Manifold Edges Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 non-manifold edges (Limit: 0)"
+      },
+      {
+        "name": "Duplicate Faces Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 duplicate faces (Limit: 0)"
+      },
+      {
+        "name": "Zero-Area Faces Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 zero-area faces (Limit: 0)"
+      },
+      {
+        "name": "Watertight Surface Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Watertight: true (Boundary open edges: 0, must be 0 for CLOSED_SURFACE). NOTE: edge accounting is per-shell; see connectedShellCount for surface continuity."
+      },
+      {
+        "name": "Triangle Manifold Presence Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Mesh contains 18762 triangles and 9383 unique vertices"
+      },
+      {
+        "name": "Single-Surface Continuity Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Measured 1 connected shell: consistent with CLOSED_SURFACE."
+      }
+    ],
+    "geometricStatus": "GEOMETRY_VALIDATED"
+  },
+  "anatomicalQA": {
+    "assetId": "mesh.occipital_lobe.right.v1",
+    "timestamp": "2026-09-29T15:59:21.541Z",
+    "declaredLaterality": "right",
+    "subfieldRepresentation": "MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED",
+    "checks": [
+      {
+        "name": "Adult Human Anatomic Scale Check",
+        "category": "anatomical",
+        "passed": true,
+        "details": "Dimensions: 41.35 x 60.04 x 51.42 mm"
+      },
+      {
+        "name": "Anatomical Volume Estimation Check",
+        "category": "anatomical",
+        "passed": true,
+        "details": "Measured volume: 32.70 cm3"
+      },
+      {
+        "name": "Internal Subfield Boundary Resolution Check",
+        "category": "anatomical",
+        "passed": true,
+        "notApplicable": true,
+        "details": "Mesh represents macroscopic unsegmented organ body; microscopic subfields CA1-CA4 are not resolved in 3D geometry"
+      }
+    ],
+    "anatomicalStatus": "ANATOMY_VALIDATED",
+    "notes": "Macroscopic scale/laterality plausibility only; internal subfields unsegmented. (Historical phase-acceptance status; not a morphological proof.)"
+  },
+  "overallStatus": "GEOMETRY_VALIDATED"
+}

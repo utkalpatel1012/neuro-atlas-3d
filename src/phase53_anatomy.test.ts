@@ -86,10 +86,11 @@ async function runTests() {
 
   const manifest = readJson('assets/manifests/assets.manifest.json');
   // Global count advanced 46 → 49 in Phase 5.4 (3 cranial-nerve assets
-  // appended, same provenance chain). This suite's own load-bearing
+  // appended, same provenance chain). Phase 5.5: 49 → 63 (14
+  // cortical-completion assets appended, same chain). This suite's own load-bearing
   // assertions — the 10 white-matter assets, their hashes, hierarchy and
   // topology — are unchanged below.
-  assert(Object.keys(manifest.assets).length === 49, `manifest holds 49 assets, got ${Object.keys(manifest.assets).length}`);
+  assert(Object.keys(manifest.assets).length === 63, `manifest holds 63 assets, got ${Object.keys(manifest.assets).length}`);
   passed++;
 
   // TEST 1: identity + IDs + ontology honesty.
@@ -224,7 +225,8 @@ async function runTests() {
   // Global hierarchy count advanced 85 → 107 in Phase 5.4 (2 branch + 3
   // AVAILABLE + 17 DOCUMENTED cranial-nerve/vasculature nodes appended; the
   // 10 white-matter AVAILABLE and 8 DOCUMENTED gap nodes below are unchanged).
-  assert(hierarchy.nodes.length === 107, `hierarchy holds 107 nodes, got ${hierarchy.nodes.length}`);
+  // Phase 5.5: 107 → 135 (14 AVAILABLE + 2 insular branches + 12 DOCUMENTED gaps).
+  assert(hierarchy.nodes.length === 135, `hierarchy holds 135 nodes, got ${hierarchy.nodes.length}`);
   passed++;
   const nodeIds = hierarchy.nodes.map((n: any) => n.id);
   assert(nodeIds.includes('brain.white_matter'), 'white-matter branch present');
@@ -401,9 +403,10 @@ async function runTests() {
   passed++;
   const recordFiles = fs.readdirSync(path.join(PROJECT_ROOT, 'data/structures')).filter((f) => f.endsWith('.json'));
   // Global record count advanced 46 → 49 in Phase 5.4 (3 cranial-nerve
-  // records appended under the same conservative posture). The per-record
+  // records appended under the same conservative posture). Phase 5.5:
+  // 49 → 63 (14 cortical-completion records, same posture). The per-record
   // invariants below are unchanged.
-  assert(recordFiles.length === 49, `all 49 structure records present (got ${recordFiles.length})`);
+  assert(recordFiles.length === 63, `all 63 structure records present (got ${recordFiles.length})`);
   passed++;
   for (const f of recordFiles) {
     const rec = readJson(`data/structures/${f}`);

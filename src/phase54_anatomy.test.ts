@@ -81,7 +81,10 @@ async function runTests() {
   let passed = 0;
 
   const manifest = readJson('assets/manifests/assets.manifest.json');
-  assert(Object.keys(manifest.assets).length === 49, `manifest holds 49 assets, got ${Object.keys(manifest.assets).length}`);
+  // Phase 5.5: global count 49 → 63 (14 cortical-completion assets appended,
+  // same BodyParts3D provenance chain). This suite's own load-bearing
+  // assertions — the 3 cranial-nerve assets below — are unchanged.
+  assert(Object.keys(manifest.assets).length === 63, `manifest holds 63 assets, got ${Object.keys(manifest.assets).length}`);
   passed++;
 
   // TEST 1: identity + IDs + ontology honesty.
@@ -215,7 +218,9 @@ async function runTests() {
   // TEST 6: hierarchy honesty (AVAILABLE vs DOCUMENTED; nothing fabricated).
   console.log('\n--- TEST 6: Hierarchy ---');
   const hierarchy = readJson('data/anatomical_hierarchy.json');
-  assert(hierarchy.nodes.length === 107, `hierarchy holds 107 nodes, got ${hierarchy.nodes.length}`);
+  // Phase 5.5: global hierarchy 107 → 135 (14 AVAILABLE + 2 insular branches
+  // + 12 DOCUMENTED gaps). This suite's nerve/vasculature assertions are unchanged.
+  assert(hierarchy.nodes.length === 135, `hierarchy holds 135 nodes, got ${hierarchy.nodes.length}`);
   passed++;
   const nodeIds = hierarchy.nodes.map((n: any) => n.id);
   assert(nodeIds.includes('brain.cranial_nerves'), 'cranial-nerve branch present');
@@ -406,7 +411,8 @@ async function runTests() {
   assert((byDate['2026-09-28'] ?? 0) === 13, `only the 10 Phase 5.3 + 3 Phase 5.4 assets are dated 2026-09-28 (got ${byDate['2026-09-28'] ?? 0})`);
   passed++;
   const recordFiles = fs.readdirSync(path.join(PROJECT_ROOT, 'data/structures')).filter((f) => f.endsWith('.json'));
-  assert(recordFiles.length === 49, `all 49 structure records present (got ${recordFiles.length})`);
+  // Phase 5.5: global records 49 → 63 (14 cortical-completion records, same posture).
+  assert(recordFiles.length === 63, `all 63 structure records present (got ${recordFiles.length})`);
   passed++;
   for (const f of recordFiles) {
     const rec = readJson(`data/structures/${f}`);

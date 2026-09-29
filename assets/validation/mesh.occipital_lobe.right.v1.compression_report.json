@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.occipital_lobe.right.v1",
+  "timestamp": "2026-09-29T15:59:21.704Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.occipital_lobe.right.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.occipital_lobe.right.v1/lod/mesh.occipital_lobe.right.v1.lod0.glb",
+      "uncompressedByteLength": 338752,
+      "uncompressedSha256": "d8641fd5e4e6c409bbee7909b1d5ca5fd048fa85426de90aaffe5e2d5af6c280",
+      "runtimeGlbPath": "assets/derived/mesh.occipital_lobe.right.v1/runtime/mesh.occipital_lobe.right.v1.lod0.meshopt.glb",
+      "compressedByteLength": 216816,
+      "compressedSha256": "c84a2704e92160f5b1a0384f91501a66a01ed69aca7fa0085559d5571bc1de32",
+      "compressionRatio": 1.56,
+      "savingsPercent": 36,
+      "vertexCount": 9383,
+      "triangleCount": 18762,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.occipital_lobe.right.v1/lod/mesh.occipital_lobe.right.v1.lod1.glb",
+      "uncompressedByteLength": 254292,
+      "uncompressedSha256": "3fb9723a8b6d4febd357e712ced42d8fb2e858361a46f6c4346419b3588d53a2",
+      "runtimeGlbPath": "assets/derived/mesh.occipital_lobe.right.v1/runtime/mesh.occipital_lobe.right.v1.lod1.meshopt.glb",
+      "compressedByteLength": 166660,
+      "compressedSha256": "f486cac2fb869133657ec2c2c710836f367296d5f262c1efe7b82707cc6f9283",
+      "compressionRatio": 1.53,
+      "savingsPercent": 34.46,
+      "vertexCount": 7037,
+      "triangleCount": 14070,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.occipital_lobe.right.v1/lod/mesh.occipital_lobe.right.v1.lod2.glb",
+      "uncompressedByteLength": 169872,
+      "uncompressedSha256": "8411914aff864e868bfd615b93b842d578e5ed6d8d4959c048d800ffdac8b8ae",
+      "runtimeGlbPath": "assets/derived/mesh.occipital_lobe.right.v1/runtime/mesh.occipital_lobe.right.v1.lod2.meshopt.glb",
+      "compressedByteLength": 114880,
+      "compressedSha256": "38192360d817045c800086fd67099beb566d1aeeaa751baff847365881819993",
+      "compressionRatio": 1.48,
+      "savingsPercent": 32.37,
+      "vertexCount": 4692,
+      "triangleCount": 9380,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.occipital_lobe.right.v1/lod/mesh.occipital_lobe.right.v1.lod3.glb",
+      "uncompressedByteLength": 85452,
+      "uncompressedSha256": "914905d46c8a4a41dbdd2471eb38fab0760e5b16f70803d25561459e74134937",
+      "runtimeGlbPath": "assets/derived/mesh.occipital_lobe.right.v1/runtime/mesh.occipital_lobe.right.v1.lod3.meshopt.glb",
+      "compressedByteLength": 61172,
+      "compressedSha256": "40d916c7f058c51ec3ad27a221d52e57c7103e23a441157398b93bc5ec4dc924",
+      "compressionRatio": 1.4,
+      "savingsPercent": 28.41,
+      "vertexCount": 2347,
+      "triangleCount": 4690,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 848368,
+  "overallCompressedBytes": 559528,
+  "overallSavingsPercent": 34.05,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.occipital_lobe.right.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-29T15:59:21.704Z"
+  }
+}

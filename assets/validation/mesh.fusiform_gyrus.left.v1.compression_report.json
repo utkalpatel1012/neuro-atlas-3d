@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.fusiform_gyrus.left.v1",
+  "timestamp": "2026-09-29T15:57:12.035Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.fusiform_gyrus.left.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.fusiform_gyrus.left.v1/lod/mesh.fusiform_gyrus.left.v1.lod0.glb",
+      "uncompressedByteLength": 111696,
+      "uncompressedSha256": "9ed7a5d3deb56d94d2d5c8ed79b9d7d973f05e38943804e2006daf69f2f220a5",
+      "runtimeGlbPath": "assets/derived/mesh.fusiform_gyrus.left.v1/runtime/mesh.fusiform_gyrus.left.v1.lod0.meshopt.glb",
+      "compressedByteLength": 72444,
+      "compressedSha256": "d763649a7e50b414c90976287fb167972ff628e1e778648e31849bf0aaa232c1",
+      "compressionRatio": 1.54,
+      "savingsPercent": 35.14,
+      "vertexCount": 3076,
+      "triangleCount": 6148,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.fusiform_gyrus.left.v1/lod/mesh.fusiform_gyrus.left.v1.lod1.glb",
+      "uncompressedByteLength": 84012,
+      "uncompressedSha256": "5716ef546a259a5ea5452fc1cb736f6e688ac2ab831e1dc68e8c066c5fedd4ce",
+      "runtimeGlbPath": "assets/derived/mesh.fusiform_gyrus.left.v1/runtime/mesh.fusiform_gyrus.left.v1.lod1.meshopt.glb",
+      "compressedByteLength": 55932,
+      "compressedSha256": "428695df8597aa032e5c8ed887a550703d7419844f1c533366a4f35b649ea97d",
+      "compressionRatio": 1.5,
+      "savingsPercent": 33.42,
+      "vertexCount": 2307,
+      "triangleCount": 4610,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.fusiform_gyrus.left.v1/lod/mesh.fusiform_gyrus.left.v1.lod2.glb",
+      "uncompressedByteLength": 56364,
+      "uncompressedSha256": "f28ad74af86fb3b6a7a8bfbef7067328fe6a91f400c7012d42b1cabcd09e02d9",
+      "runtimeGlbPath": "assets/derived/mesh.fusiform_gyrus.left.v1/runtime/mesh.fusiform_gyrus.left.v1.lod2.meshopt.glb",
+      "compressedByteLength": 38912,
+      "compressedSha256": "17a4c45be607da0d08a6e36c5a96c91a3296274a2729b06ca7696bba85a68794",
+      "compressionRatio": 1.45,
+      "savingsPercent": 30.96,
+      "vertexCount": 1539,
+      "triangleCount": 3074,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.fusiform_gyrus.left.v1/lod/mesh.fusiform_gyrus.left.v1.lod3.glb",
+      "uncompressedByteLength": 28672,
+      "uncompressedSha256": "b6da594f6eaa795904398f3a2c2ed0539d96a6773b085bbd33802f69a680d3e3",
+      "runtimeGlbPath": "assets/derived/mesh.fusiform_gyrus.left.v1/runtime/mesh.fusiform_gyrus.left.v1.lod3.meshopt.glb",
+      "compressedByteLength": 20584,
+      "compressedSha256": "3864bc94bf213679d44d0b2169fa603d041ae945b34da74457922883702a1bce",
+      "compressionRatio": 1.39,
+      "savingsPercent": 28.21,
+      "vertexCount": 770,
+      "triangleCount": 1536,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 280744,
+  "overallCompressedBytes": 187872,
+  "overallSavingsPercent": 33.08,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.fusiform_gyrus.left.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-29T15:57:12.035Z"
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "assetId": "mesh.insula.left.v1",
+  "sourceFile": "assets/raw/mesh.insula.left.v1/FMA72978.stl",
+  "timestamp": "2026-09-29T15:59:06.059Z",
+  "topologyClass": "CLOSED_SURFACE",
+  "profileId": "closed-pial-surface",
+  "analysis": {
+    "triangleCount": 12242,
+    "rawVertexCount": 36726,
+    "uniqueVertexCount": 6123,
+    "minBounds": [
+      23.501800537109375,
+      -130.02200317382812,
+      1552.719970703125
+    ],
+    "maxBounds": [
+      41.81119918823242,
+      -81.07869720458984,
+      1585.449951171875
+    ],
+    "centroid": [
+      33.4898941317902,
+      -108.57207000323727,
+      1570.1448940916932
+    ],
+    "dimensions": [
+      18.309398651123047,
+      48.94330596923828,
+      32.72998046875
+    ],
+    "surfaceAreaMm2": 3385.0134112121036,
+    "estimatedVolumeMm3": 9562.40154068576,
+    "zeroAreaFaces": 0,
+    "duplicateFaces": 0,
+    "nonManifoldEdges": 0,
+    "boundaryEdges": 0,
+    "manifoldEdges": 18363,
+    "isWatertight": true,
+    "connectedShellCount": 1
+  },
+  "geometricQA": {
+    "assetId": "mesh.insula.left.v1",
+    "sourceFile": "assets/raw/mesh.insula.left.v1/FMA72978.stl",
+    "timestamp": "2026-09-29T15:59:06.059Z",
+    "topologyClass": "CLOSED_SURFACE",
+    "profileId": "closed-pial-surface",
+    "analysis": {
+      "triangleCount": 12242,
+      "rawVertexCount": 36726,
+      "uniqueVertexCount": 6123,
+      "minBounds": [
+        23.501800537109375,
+        -130.02200317382812,
+        1552.719970703125
+      ],
+      "maxBounds": [
+        41.81119918823242,
+        -81.07869720458984,
+        1585.449951171875
+      ],
+      "centroid": [
+        33.4898941317902,
+        -108.57207000323727,
+        1570.1448940916932
+      ],
+      "dimensions": [
+        18.309398651123047,
+        48.94330596923828,
+        32.72998046875
+      ],
+      "surfaceAreaMm2": 3385.0134112121036,
+      "estimatedVolumeMm3": 9562.40154068576,
+      "zeroAreaFaces": 0,
+      "duplicateFaces": 0,
+      "nonManifoldEdges": 0,
+      "boundaryEdges": 0,
+      "manifoldEdges": 18363,
+      "isWatertight": true,
+      "connectedShellCount": 1
+    },
+    "checks": [
+      {
+        "name": "Non-Manifold Edges Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 non-manifold edges (Limit: 0)"
+      },
+      {
+        "name": "Duplicate Faces Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 duplicate faces (Limit: 0)"
+      },
+      {
+        "name": "Zero-Area Faces Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Found 0 zero-area faces (Limit: 0)"
+      },
+      {
+        "name": "Watertight Surface Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Watertight: true (Boundary open edges: 0, must be 0 for CLOSED_SURFACE). NOTE: edge accounting is per-shell; see connectedShellCount for surface continuity."
+      },
+      {
+        "name": "Triangle Manifold Presence Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Mesh contains 12242 triangles and 6123 unique vertices"
+      },
+      {
+        "name": "Single-Surface Continuity Check",
+        "category": "geometric",
+        "passed": true,
+        "details": "Measured 1 connected shell: consistent with CLOSED_SURFACE."
+      }
+    ],
+    "geometricStatus": "GEOMETRY_VALIDATED"
+  },
+  "anatomicalQA": {
+    "assetId": "mesh.insula.left.v1",
+    "timestamp": "2026-09-29T15:59:06.059Z",
+    "declaredLaterality": "left",
+    "subfieldRepresentation": "MACROSCOPIC_HOMOGENEOUS_UNSEGMENTED",
+    "checks": [
+      {
+        "name": "Adult Human Anatomic Scale Check",
+        "category": "anatomical",
+        "passed": true,
+        "details": "Dimensions: 18.31 x 48.94 x 32.73 mm"
+      },
+      {
+        "name": "Anatomical Volume Estimation Check",
+        "category": "anatomical",
+        "passed": true,
+        "details": "Measured volume: 9.56 cm3"
+      },
+      {
+        "name": "Internal Subfield Boundary Resolution Check",
+        "category": "anatomical",
+        "passed": true,
+        "notApplicable": true,
+        "details": "Mesh represents macroscopic unsegmented organ body; microscopic subfields CA1-CA4 are not resolved in 3D geometry"
+      }
+    ],
+    "anatomicalStatus": "ANATOMY_VALIDATED",
+    "notes": "Macroscopic scale/laterality plausibility only; internal subfields unsegmented. (Historical phase-acceptance status; not a morphological proof.)"
+  },
+  "overallStatus": "GEOMETRY_VALIDATED"
+}

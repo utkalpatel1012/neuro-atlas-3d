@@ -66,9 +66,10 @@ async function runTests() {
   // assets appended, same provenance chain), 36 → 46 in Phase 5.3
   // (10 white-matter assets appended, same provenance chain), and 46 → 49
   // in Phase 5.4 (3 cranial-nerve assets appended, same provenance chain).
+  // Phase 5.5: 49 → 63 (14 cortical-completion assets, same chain).
   // This suite's own load-bearing assertions — the 11 deep/limbic assets,
   // their hashes, hierarchy and topology — are unchanged below.
-  assert(Object.keys(manifest.assets).length === 49, `manifest holds 49 assets, got ${Object.keys(manifest.assets).length}`);
+  assert(Object.keys(manifest.assets).length === 63, `manifest holds 63 assets, got ${Object.keys(manifest.assets).length}`);
   passed++;
 
   // TEST 1: source identity + unique IDs (§56).

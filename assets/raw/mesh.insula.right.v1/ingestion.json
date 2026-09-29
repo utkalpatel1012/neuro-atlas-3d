@@ -1,0 +1,31 @@
+{
+  "asset_id": "mesh.insula.right.v1",
+  "assetId": "mesh.insula.right.v1",
+  "structure_id": "brain.telencephalon.right.insular_lobe.insula",
+  "source_dataset": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan)",
+  "source_dataset_version": "Release 3.0 (2011/06/20)",
+  "source_asset_id": "FMA72977",
+  "source_url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/master/assets/BodyParts3D_data/stl/FMA72977.stl",
+  "source_license": "Historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (verified 2025-02-27). Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution.",
+  "source_license_version": "CC BY 4.0 (2025-02-27 portal update) / CC-BY-SA 2.1 JP",
+  "project_distribution_policy": "CC-BY-SA-4.0",
+  "attribution": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+  "acquisition_date": "2026-09-29",
+  "original_filename": "FMA72977.stl",
+  "originalFilename": "FMA72977.stl",
+  "original_format": "binary STL (BodyParts3D segment)",
+  "original_hash": "2586b9df7a37d40d5082b0fa212856e285c6cbebb0bac3c7cbf1af06678f949a",
+  "source_coordinate_space": "dicom_lps_whole_body",
+  "source_units": "millimeters (mm)",
+  "source_metadata": {
+    "distribution_name": "Insula (right)",
+    "distribution_laterality": "right",
+    "asset_category": "CORTEX",
+    "measured_source_center_x_mm": -33.97,
+    "measured_source_triangles": 12240,
+    "laterality_basis": "paired-segment source geometry: bbox center on the declared side in the asserted source frame (DICOM LPS, +X Left), bulk of span declared-side",
+    "continuity": "DISCONNECTED distribution segment; no continuity with any other segment is claimed or implemented (see docs/PHASE_5_5_ANATOMICAL_SCOPE.md continuity decision)",
+    "parcel_mapping": "NONE - surface-derived segment only; no atlas parcel was mapped onto this mesh"
+  },
+  "ingestion_status": "SOURCE_VERIFIED"
+}

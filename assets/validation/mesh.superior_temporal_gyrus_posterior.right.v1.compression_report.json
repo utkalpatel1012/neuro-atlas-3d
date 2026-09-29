@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.superior_temporal_gyrus_posterior.right.v1",
+  "timestamp": "2026-09-29T15:58:20.241Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/lod/mesh.superior_temporal_gyrus_posterior.right.v1.lod0.glb",
+      "uncompressedByteLength": 189568,
+      "uncompressedSha256": "f52af354a5965f8e88cb025d186b83c40364b60368df98051b31cab3ab8006c0",
+      "runtimeGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/runtime/mesh.superior_temporal_gyrus_posterior.right.v1.lod0.meshopt.glb",
+      "compressedByteLength": 122808,
+      "compressedSha256": "163b6cccfe8d43c036eb74de7a2375fbf39dbaf256254e1698f1186f581a8806",
+      "compressionRatio": 1.54,
+      "savingsPercent": 35.22,
+      "vertexCount": 5238,
+      "triangleCount": 10472,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/lod/mesh.superior_temporal_gyrus_posterior.right.v1.lod1.glb",
+      "uncompressedByteLength": 142444,
+      "uncompressedSha256": "930acafa6a3d0624edad6805ba4acf851dde8dbfc63a28cebf79055583dfd005",
+      "runtimeGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/runtime/mesh.superior_temporal_gyrus_posterior.right.v1.lod1.meshopt.glb",
+      "compressedByteLength": 95036,
+      "compressedSha256": "d3070863ede8d76d5d904fdfd2c1c92f82e1f1532b56a5821a329395828160b3",
+      "compressionRatio": 1.5,
+      "savingsPercent": 33.28,
+      "vertexCount": 3929,
+      "triangleCount": 7854,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/lod/mesh.superior_temporal_gyrus_posterior.right.v1.lod2.glb",
+      "uncompressedByteLength": 95320,
+      "uncompressedSha256": "6dc7b3aa3bdc4600d5d2d7a5da23571757953c52b359e88548259e07b381f89e",
+      "runtimeGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/runtime/mesh.superior_temporal_gyrus_posterior.right.v1.lod2.meshopt.glb",
+      "compressedByteLength": 65840,
+      "compressedSha256": "f35bab582c68b02c78bf994e7440ca8563c652e7f43bea6fa3e741a43d2762bf",
+      "compressionRatio": 1.45,
+      "savingsPercent": 30.93,
+      "vertexCount": 2620,
+      "triangleCount": 5236,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/lod/mesh.superior_temporal_gyrus_posterior.right.v1.lod3.glb",
+      "uncompressedByteLength": 48192,
+      "uncompressedSha256": "da05c477396fe3768eb3a2f23af41e318d866ece991fad7c79ca870ca3881df2",
+      "runtimeGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/runtime/mesh.superior_temporal_gyrus_posterior.right.v1.lod3.meshopt.glb",
+      "compressedByteLength": 35088,
+      "compressedSha256": "6b552488498ec99cfecf4a3786c8694bdd75745fa22abf8ee824e536d7a3343f",
+      "compressionRatio": 1.37,
+      "savingsPercent": 27.19,
+      "vertexCount": 1311,
+      "triangleCount": 2618,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 475524,
+  "overallCompressedBytes": 318772,
+  "overallSavingsPercent": 32.96,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.superior_temporal_gyrus_posterior.right.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-29T15:58:20.241Z"
+  }
+}

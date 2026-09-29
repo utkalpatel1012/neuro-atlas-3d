@@ -1,0 +1,81 @@
+{
+  "assetId": "mesh.superior_temporal_gyrus_posterior.left.v1",
+  "timestamp": "2026-09-29T15:58:34.884Z",
+  "compressionAlgorithm": "EXT_meshopt_compression (ATTRIBUTES + TRIANGLES)",
+  "targetRuntimeDirectory": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/runtime",
+  "levels": [
+    {
+      "lodName": "lod0",
+      "uncompressedGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/lod/mesh.superior_temporal_gyrus_posterior.left.v1.lod0.glb",
+      "uncompressedByteLength": 189568,
+      "uncompressedSha256": "2deddb943c70e9ca57deebbe180bd534f3ad7173045950876bb27f26dc6a162d",
+      "runtimeGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/runtime/mesh.superior_temporal_gyrus_posterior.left.v1.lod0.meshopt.glb",
+      "compressedByteLength": 122768,
+      "compressedSha256": "85db77812e8d9c40b92457e2357e994968a2fb41e3444a437ca341e7f922dba9",
+      "compressionRatio": 1.54,
+      "savingsPercent": 35.24,
+      "vertexCount": 5238,
+      "triangleCount": 10472,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod1",
+      "uncompressedGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/lod/mesh.superior_temporal_gyrus_posterior.left.v1.lod1.glb",
+      "uncompressedByteLength": 142444,
+      "uncompressedSha256": "59dee41f89bdd6d6415add1e48f279a105de9c9773e1703a69fca261f60d36ca",
+      "runtimeGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/runtime/mesh.superior_temporal_gyrus_posterior.left.v1.lod1.meshopt.glb",
+      "compressedByteLength": 94824,
+      "compressedSha256": "2b80f7962770b9f577019f7cd0dac8df6d052a9c253412a219902348da959c65",
+      "compressionRatio": 1.5,
+      "savingsPercent": 33.43,
+      "vertexCount": 3929,
+      "triangleCount": 7854,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod2",
+      "uncompressedGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/lod/mesh.superior_temporal_gyrus_posterior.left.v1.lod2.glb",
+      "uncompressedByteLength": 95316,
+      "uncompressedSha256": "bd235909073c8c84ff54a4f89b0df4d869870b7b5a7c6033cae00e15dffdd07f",
+      "runtimeGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/runtime/mesh.superior_temporal_gyrus_posterior.left.v1.lod2.meshopt.glb",
+      "compressedByteLength": 65732,
+      "compressedSha256": "3dc193e4e4b021fdbe54fe9ba9e96dbdef5a8f34fb94b2c7e3d2d8dc6a4fa9a5",
+      "compressionRatio": 1.45,
+      "savingsPercent": 31.04,
+      "vertexCount": 2620,
+      "triangleCount": 5236,
+      "roundTripVerified": true
+    },
+    {
+      "lodName": "lod3",
+      "uncompressedGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/lod/mesh.superior_temporal_gyrus_posterior.left.v1.lod3.glb",
+      "uncompressedByteLength": 48192,
+      "uncompressedSha256": "10b8a1bd424be06cdd7f5d6184462fd16bedc611fb776adddcc2b91b410fde13",
+      "runtimeGlbPath": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/runtime/mesh.superior_temporal_gyrus_posterior.left.v1.lod3.meshopt.glb",
+      "compressedByteLength": 35140,
+      "compressedSha256": "27dc31761f51aa9b9af74d654c4a6391d26deeb82fc4c1830c9cfa807961d596",
+      "compressionRatio": 1.37,
+      "savingsPercent": 27.08,
+      "vertexCount": 1311,
+      "triangleCount": 2618,
+      "roundTripVerified": true
+    }
+  ],
+  "overallUncompressedBytes": 475520,
+  "overallCompressedBytes": 318464,
+  "overallSavingsPercent": 33.03,
+  "transformationRecord": {
+    "transformation_id": "tx.mesh.superior_temporal_gyrus_posterior.left.v1.meshopt_optimization",
+    "tool": "MeshoptEncoder / NeuroAtlas3D Runtime Pipeline",
+    "tool_version": "meshoptimizer 1.3.0",
+    "parameters": {
+      "extension": "EXT_meshopt_compression",
+      "attributeMode": "ATTRIBUTES",
+      "indexMode": "TRIANGLES",
+      "meshopt_roundtrip_lossless_vs_lod_input": true,
+      "meshopt_roundtrip_max_delta_mm": 0.000001,
+      "qem_simplification_lossy": true
+    },
+    "timestamp": "2026-09-29T15:58:34.884Z"
+  }
+}
