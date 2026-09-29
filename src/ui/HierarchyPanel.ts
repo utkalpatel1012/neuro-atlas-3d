@@ -28,24 +28,91 @@ export class HierarchyPanel {
   private app: AtlasApplication;
   private nodes: HierarchyNode[] = [];
   private manifestAssets: Record<string, { validation_status?: string; structure_id?: string }> = {};
+  private ready: Promise<void>;
+  private resolveReady: () => void = () => undefined;
 
   constructor(container: HTMLElement, app: AtlasApplication) {
     this.app = app;
+    this.ready = new Promise<void>((resolve) => {
+      this.resolveReady = resolve;
+    });
     this.element = document.createElement('section');
     this.element.className = 'neuro-hierarchy-panel';
     this.element.setAttribute('aria-label', 'Anatomical hierarchy browser');
     this.element.innerHTML = `
       <div class="controls-group">
-        <span class="controls-label">Anatomy:</span>
+        <button id="btn-tree-toggle" class="btn btn-secondary" aria-label="Expand or collapse the anatomy tree" aria-expanded="false">Anatomy ▸</button>
         <span id="hierarchy-status" role="status">loading hierarchy…</span>
+        <button id="btn-load-all" class="btn btn-secondary" aria-label="Load all available structures">Load all</button>
       </div>
-      <div id="hierarchy-tree" role="tree" aria-label="Anatomical hierarchy"></div>
-      <div class="controls-group">
-        <small>DOCUMENTED = identity known, no geometry. AVAILABLE = validated geometry, loads on demand. Default view loads only the 4 production assets.</small>
+      <div id="hierarchy-tree" role="tree" aria-label="Anatomical hierarchy" hidden></div>
+      <div class="controls-group hierarchy-note" hidden>
+        <small>DOCUMENTED = identity known, no geometry. AVAILABLE = validated geometry. The full atlas loads automatically; use the tree to inspect individual structures.</small>
       </div>
     `;
     container.appendChild(this.element);
+    const toggleBtn = this.element.querySelector('#btn-tree-toggle');
+    const tree = this.element.querySelector('#hierarchy-tree');
+    const note = this.element.querySelector('.hierarchy-note');
+    if (toggleBtn && tree) {
+      toggleBtn.addEventListener('click', () => {
+        const hidden = tree.hasAttribute('hidden');
+        if (hidden) {
+          tree.removeAttribute('hidden');
+          if (note) note.removeAttribute('hidden');
+          toggleBtn.setAttribute('aria-expanded', 'true');
+          toggleBtn.textContent = 'Anatomy ▾';
+        } else {
+          tree.setAttribute('hidden', '');
+          if (note) note.setAttribute('hidden', '');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+          toggleBtn.textContent = 'Anatomy ▸';
+        }
+      });
+    }
+    const loadAllBtn = this.element.querySelector('#btn-load-all');
+    if (loadAllBtn) {
+      loadAllBtn.addEventListener('click', () => {
+        loadAllBtn.setAttribute('disabled', 'true');
+        void this.loadAllAvailable().finally(() => loadAllBtn.removeAttribute('disabled'));
+      });
+    }
     void this.initialize();
+  }
+
+  /**
+   * Load every AVAILABLE + CLEARED structure that is not already loaded.
+   * Runs in the background: each asset is error-isolated so one failure never
+   * blocks the rest, and progress is reported in the panel status line.
+   * This is what makes the full atlas visible instead of only the 4 defaults.
+   */
+  public async loadAllAvailable(): Promise<{ loaded: number; failed: string[] }> {
+    // Wait for the hierarchy + manifest fetch; otherwise an early call sees zero nodes.
+    await this.ready;
+    let loaded = 0;
+    const failed: string[] = [];
+    const status = this.element.querySelector('#hierarchy-status');
+    const loadables = this.nodes.filter((n) => this.isLoadable(n));
+    let i = 0;
+    for (const node of loadables) {
+      i++;
+      // Re-check: a node may have become loaded (or unloadable) while we worked.
+      if (!this.isLoadable(node)) continue;
+      if (status) status.textContent = `loading anatomy… ${i}/${loadables.length} (${node.name})`;
+      try {
+        await this.loadNode(node);
+        loaded++;
+      } catch (err) {
+        failed.push(`${node.asset_id}: ${(err as Error).message}`);
+      }
+    }
+    this.render();
+    if (status) {
+      const base = `${loaded} structures loaded`;
+      status.textContent = failed.length === 0 ? base : `${base} · ${failed.length} failed (see console)`;
+    }
+    if (failed.length > 0) console.warn('[HierarchyPanel] load-all failures:', failed);
+    return { loaded, failed };
   }
 
   private async initialize(): Promise<void> {
@@ -66,6 +133,8 @@ export class HierarchyPanel {
     } catch (err) {
       const status = this.element.querySelector('#hierarchy-status');
       if (status) status.textContent = `hierarchy unavailable (${(err as Error).message})`;
+    } finally {
+      this.resolveReady();
     }
   }
 
@@ -161,6 +230,10 @@ export class HierarchyPanel {
       volumeCm3: record.spatial.estimated_volume_cm3 ?? 0,
       topologyClass: record.representations?.[0]?.metadata?.topology || 'UNKNOWN',
       validationStatus: 'APPROVED',
+      // Visibility fix: flag cavity casts so the renderer draws them translucent.
+      // Without this, ventricular CSF spaces rendered as opaque solids.
+      isCavity: Array.isArray(record.representations) &&
+        record.representations.some((r: any) => r?.representation_type === 'cavity_cast'),
       upstreamDataset: record.asset_provenance?.dataset_name || 'BodyParts3D Release 3.0',
       // Phase 5.2 provenance review MAJOR-1: this used to be a hardcoded 'CC BY 4.0'
       // literal. The manifest records the upstream files as CC_BY_SA_2_1_JP and marks

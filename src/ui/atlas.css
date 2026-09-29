@@ -100,6 +100,67 @@ body, html {
   color: #E2E8F0;
 }
 
+/* Phase 9 / visibility fix: the hierarchy browser previously shipped with no
+   styling, so the only path to the 45 non-default structures was effectively
+   invisible. Anchored right side below the info panel; scrollable; canvas layout
+   (#app / #canvas-container geometry, DPR, sizing) is untouched. */
+.neuro-hierarchy-panel {
+  position: absolute;
+  top: 120px;
+  right: 12px;
+  z-index: 10;
+  width: 300px;
+  max-height: calc(100vh - 220px);
+  display: flex;
+  flex-direction: column;
+  background: rgba(7, 11, 20, 0.88);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 8px;
+  padding: 8px 10px;
+  backdrop-filter: blur(6px);
+  color: #CBD5E1;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.neuro-hierarchy-panel .controls-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.neuro-hierarchy-panel .controls-label {
+  font-weight: 700;
+  color: #E2E8F0;
+}
+
+.neuro-hierarchy-panel #hierarchy-status {
+  flex: 1;
+  color: #94A3B8;
+}
+
+.neuro-hierarchy-panel #hierarchy-tree {
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.neuro-hierarchy-panel #hierarchy-tree [role="treeitem"] {
+  padding: 1px 0;
+}
+
+.neuro-hierarchy-panel .state-available {
+  color: #6EE7B7;
+}
+
+.neuro-hierarchy-panel .state-documented {
+  color: #64748B;
+}
+
+.neuro-hierarchy-panel small {
+  color: #64748B;
+}
+
 /* Header Branding */
 .atlas-header {
   position: absolute;

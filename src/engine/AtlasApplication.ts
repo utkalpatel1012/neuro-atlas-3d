@@ -273,8 +273,10 @@ export class AtlasApplication {
     const loaded = await this.assetManager.loadAsset(entityRecord.assetId, 'lod0');
     const mesh = loaded.mesh;
 
-    // Register material
-    const material = this.materialManager.registerEntityMaterial(entityRecord.entityId);
+    // Register material (cavities render translucent so a CSF space never reads as solid tissue)
+    const material = this.materialManager.registerEntityMaterial(entityRecord.entityId, {
+      translucent: entityRecord.isCavity === true
+    });
     mesh.material = material;
 
     // Phase 4A: clipping follows the material, never the entity record.

@@ -14,6 +14,12 @@ export interface MaterialOptions {
   baseColor?: number | string;
   roughness?: number;
   metalness?: number;
+  /**
+   * Visibility fix: translucent cutaway-style material for cavity casts
+   * (ventricular CSF spaces). Opaque rendering made cavities read as solid
+   * lumps of tissue — the opposite of what they are.
+   */
+  translucent?: boolean;
 }
 
 export class MaterialManager {
@@ -34,15 +40,17 @@ export class MaterialManager {
     entityId: string,
     options: MaterialOptions = {}
   ): THREE.MeshStandardMaterial {
+    const translucent = options.translucent === true;
     const mat = new THREE.MeshStandardMaterial({
       color: new THREE.Color(options.baseColor ?? MaterialManager.DEFAULT_HIPPOCAMPUS_COLOR),
       roughness: options.roughness ?? 0.65,
       metalness: options.metalness ?? 0.08,
       emissive: new THREE.Color(0x000000),
       emissiveIntensity: 0.0,
-      transparent: false,
-      opacity: 1.0,
-      side: THREE.FrontSide
+      transparent: translucent,
+      opacity: translucent ? 0.35 : 1.0,
+      depthWrite: !translucent,
+      side: translucent ? THREE.DoubleSide : THREE.FrontSide
     });
 
     mat.name = `Mat_${entityId}`;

@@ -145,6 +145,12 @@ export interface AnatomicalEntityRecord {
   representations?: EntityRepresentation[];
   granularValidation?: GranularValidationRecord;
   status?: 'AVAILABLE' | 'UNAVAILABLE' | 'PENDING_INGESTION';
+  /**
+   * Visibility fix: true for CSF-cavity casts (ventricular system). Cavities are
+   * boundaries of spaces, not solid tissue, so they render translucent instead of
+   * opaque. Set from the structure record's representation_type at load time.
+   */
+  isCavity?: boolean;
 }
 
 export type GroupSemanticType =

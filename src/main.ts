@@ -217,8 +217,8 @@ async function bootstrap() {
     new MriPanel(appContainer, app);
 
     // Phase 5.0: hierarchy browser (DOCUMENTED vs AVAILABLE; on-demand load
-    // through the existing entity pipeline — default loaded set unchanged).
-    new HierarchyPanel(appContainer, app);
+    // through the existing entity pipeline).
+    const hierarchyPanel = new HierarchyPanel(appContainer, app);
 
     // 5. Select bilateral cerebrum by default to showcase macroanatomy
     app.getAssemblyManager().selectGroup('division.cerebrum');
@@ -227,6 +227,15 @@ async function bootstrap() {
 
     // 6. Start Render Loop
     app.start();
+
+    // Visibility fix: the 4 defaults used to be all a visitor ever saw, because the
+    // only path to the other 45 validated structures was an unstyled panel. Load the
+    // full AVAILABLE set in the background after first paint — error-isolated per
+    // asset, same CLEARED-gated pipeline as manual loads, LOD-managed by distance.
+    // First paint is not blocked; progress shows in the hierarchy panel.
+    void hierarchyPanel.loadAllAvailable().then(({ loaded, failed }) => {
+      console.info(`[Bootstrap] Background load-all finished: ${loaded} loaded, ${failed.length} failed.`);
+    });
 
     console.info('[Bootstrap] Neuro Atlas 3D successfully initialized with bilateral hippocampal assembly.');
   } catch (err) {
