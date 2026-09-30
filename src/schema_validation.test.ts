@@ -413,15 +413,29 @@ export function runValidationSuite(): { passed: boolean; message: string; checks
     }
   }
 
-  // Verify evidence claims domain alignment
-  const enigmaClaim = hippocampus.evidence_claims.find(c => c.id === 'claim.hpc.volume_reduction.mdd.enigma2016');
-  if (!enigmaClaim || enigmaClaim.evidence_domain !== 'clinical' || enigmaClaim.evidence_assessment_framework !== 'GRADE') {
-    throw new Error('ENIGMA claim evidence domain or GRADE framework mismatch');
+  // Phase 8 repair: the exemplar previously carried uncited clinical/mechanism/causal
+  // blocks (psychiatric_relevance, functional_neuroanatomy, neurological_deficits,
+  // imaging findings, evidence_claims incl. ENIGMA/neurogenesis/lesion-causal, and
+  // their references). Independent review flagged them as violating the scientific
+  // prohibitions, so they were removed with an audit record. This suite now asserts
+  // the compliant state: prohibited blocks absent, audit trail present, anatomy intact.
+  for (const key of ['functional_neuroanatomy', 'psychiatric_relevance', 'neurological_deficits', 'imaging', 'evidence_claims', 'evidence_claim_ids', 'references']) {
+    if ((hippocampus as any)[key] !== undefined) {
+      throw new Error(`Prohibited block '${key}' present in exemplar anatomy record (removed per Phase 8 review)`);
+    }
   }
-  const neurogenesisClaim = hippocampus.evidence_claims.find(c => c.id === 'claim.hpc.neurogenesis_hypothesis.mdd');
-  if (!neurogenesisClaim || neurogenesisClaim.evidence_domain !== 'mechanistic' || neurogenesisClaim.certainty_grade !== 'NOT_APPLICABLE_NON_CLINICAL') {
-    throw new Error('Neurogenesis claim was inappropriately graded under clinical GRADE');
+  checks.push('Exemplar hippocampus_left.json carries no clinical/mechanism/causal blocks.');
+  const removal = (hippocampus as any).removed_prohibited_content;
+  if (!removal || !Array.isArray(removal.removed_keys) || removal.removed_keys.length === 0) {
+    throw new Error('Missing audit record for removed prohibited content in exemplar');
   }
+  checks.push('Removal audit record present with removed-key list.');
+  for (const key of ['id', 'subtype', 'canonical_name', 'ontology', 'hierarchy', 'spatial', 'representations', 'asset_id', 'asset_provenance', 'topography', 'vasculature', 'presentation']) {
+    if ((hippocampus as any)[key] === undefined) {
+      throw new Error(`Anatomical field '${key}' missing from exemplar after prohibited-content removal`);
+    }
+  }
+  checks.push('Exemplar anatomical fields intact after prohibited-content removal.');
 
   checks.push('Exemplar data/structures/hippocampus_left.json passed complete structural and scientific audit.');
 

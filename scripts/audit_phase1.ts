@@ -73,16 +73,25 @@ export function runPhase1Audit(): boolean {
     details: `Entity ID: "${entityId}" != Asset ID: "${assetId}"`
   });
 
-  // Verify Oxford CEBM evidence claim alignment
-  const scovilleClaim = hpcData?.evidence_claims?.find((c: any) => c.id === 'claim.lesion.bilateral_hpc.scoville1957');
-  const cebmAligned = scovilleClaim &&
-    scovilleClaim.evidence_assessment_framework === 'OXFORD_CEBM' &&
-    scovilleClaim.evidence_type === 'case_series_or_case_report' &&
-    scovilleClaim.certainty_summary?.includes('Oxford CEBM Level 4');
+  // Phase 8 repair: this gate asserted the presence of a clinical lesion-causation
+  // claim (Scoville 1957, direct_causal_mechanism) inside an ANATOMY record.
+  // Independent review flagged that content as prohibited (uncited clinical/causal
+  // claims violate the scientific prohibitions), so it was removed with an audit
+  // record. A gate that requires the violation's presence would force its return.
+  // The gate now asserts the compliant state: no clinical evidence claims in the
+  // exemplar anatomy record, with the removal audit present.
+  const exemplarClinicalClaims = Array.isArray(hpcData?.evidence_claims) ? hpcData.evidence_claims.length : 0;
+  const exemplarHasPsychiatry = hpcData?.psychiatric_relevance !== undefined ||
+    hpcData?.functional_neuroanatomy !== undefined;
+  const exemplarRemovalAudited = !!hpcData?.removed_prohibited_content &&
+    Array.isArray(hpcData.removed_prohibited_content.removed_keys);
+  const cebmAligned = exemplarClinicalClaims === 0 && !exemplarHasPsychiatry && exemplarRemovalAudited;
   section1Checks.push({
     name: 'Oxford CEBM Claim Alignment',
     passed: !!cebmAligned,
-    details: cebmAligned ? 'Scoville 1957 classified as Oxford CEBM Level 4 case series' : 'Misaligned CEBM claim'
+    details: cebmAligned
+      ? 'Exemplar anatomy record carries no clinical evidence claims; prohibited-content removal audited'
+      : 'Exemplar anatomy record still carries clinical claims or lacks the removal audit'
   });
 
   sections.push({

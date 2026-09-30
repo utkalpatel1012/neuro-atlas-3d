@@ -1,0 +1,273 @@
+{
+  "_comment": "Phase 8 named systems under study. Each system is a STUDY TOPIC ONLY: members are listed ONLY where our own atlas structure records support gross-anatomical co-location; every other classically described member is an explicit member_gap (NOT_REPRESENTED). Overall certainty is LOW for all systems with stated reasons. RDoC is cited as framework identity only — no matrix/domain/construct content is asserted.",
+  "registry_version": "8.0.0",
+  "framework_identity_note": "The NIMH Research Domain Criteria (RDoC) framework (https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc) is cited below as framework identity only: it names the research-framework context in which systems of this kind are studied. No RDoC domain, construct, subconstruct, unit-of-analysis, or matrix content is asserted for any system — none was verified against the matrix.",
+  "systems": [
+    {
+      "system_id": "cstc",
+      "display_name": "Cortico-striato-thalamo-cortical (CSTC) loop",
+      "kind": "named_circuit_under_study",
+      "description": "Named CSTC loop under study as a circuit topic in systems neuroscience and psychiatry education. This entry makes no functional, mechanistic, or disorder claim; it groups atlas-recorded gross structures that lie within the loop's classically described territory.",
+      "framework_citations": [
+        {
+          "label": "NIMH RDoC framework (identity only)",
+          "url": "https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc",
+          "scope_note": "Cited as framework identity only. No RDoC domain, construct, or matrix content is asserted for the CSTC loop (not verified)."
+        }
+      ],
+      "members": [
+        { "structure_id": "brain.telencephalon.left.frontal_lobe.middle_frontal_gyrus", "relationship_id": "p8.cstc.middle_frontal_gyrus_left", "membership_basis": "Atlas-recorded gross frontal structure within the classically described cortical territory of the loop." },
+        { "structure_id": "brain.telencephalon.right.frontal_lobe.middle_frontal_gyrus", "relationship_id": "p8.cstc.middle_frontal_gyrus_right", "membership_basis": "Atlas-recorded gross frontal structure within the classically described cortical territory of the loop." },
+        { "structure_id": "brain.telencephalon.left.limbic.cingulate_gyrus", "relationship_id": "p8.cstc.cingulate_gyrus_left", "membership_basis": "Atlas-recorded gross structure within the classically described cortical territory of the loop." },
+        { "structure_id": "brain.telencephalon.right.limbic.cingulate_gyrus", "relationship_id": "p8.cstc.cingulate_gyrus_right", "membership_basis": "Atlas-recorded gross structure within the classically described cortical territory of the loop." },
+        { "structure_id": "brain.basal_ganglia.left.caudate_nucleus", "relationship_id": "p8.cstc.caudate_nucleus_left", "membership_basis": "Atlas-recorded gross striatal structure within the classically described striatal territory of the loop." },
+        { "structure_id": "brain.basal_ganglia.right.caudate_nucleus", "relationship_id": "p8.cstc.caudate_nucleus_right", "membership_basis": "Atlas-recorded gross striatal structure within the classically described striatal territory of the loop." },
+        { "structure_id": "brain.basal_ganglia.left.putamen", "relationship_id": "p8.cstc.putamen_left", "membership_basis": "Atlas-recorded gross striatal structure within the classically described striatal territory of the loop." },
+        { "structure_id": "brain.basal_ganglia.right.putamen", "relationship_id": "p8.cstc.putamen_right", "membership_basis": "Atlas-recorded gross striatal structure within the classically described striatal territory of the loop." },
+        { "structure_id": "brain.basal_ganglia.left.globus_pallidus", "relationship_id": "p8.cstc.globus_pallidus_left", "membership_basis": "Atlas-recorded gross pallidal structure within the classically described pallidal territory of the loop." },
+        { "structure_id": "brain.basal_ganglia.right.globus_pallidus", "relationship_id": "p8.cstc.globus_pallidus_right", "membership_basis": "Atlas-recorded gross pallidal structure within the classically described pallidal territory of the loop." },
+        { "structure_id": "brain.diencephalon.left.thalamus", "relationship_id": "p8.cstc.thalamus_left", "membership_basis": "Atlas-recorded gross thalamic structure within the classically described thalamic territory of the loop (whole-thalamus resolution; relay nuclei NOT separated)." },
+        { "structure_id": "brain.diencephalon.right.thalamus", "relationship_id": "p8.cstc.thalamus_right", "membership_basis": "Atlas-recorded gross thalamic structure within the classically described thalamic territory of the loop (whole-thalamus resolution; relay nuclei NOT separated)." },
+        { "structure_id": "brain.white_matter.internal_capsule_anterior_limb_left", "relationship_id": "p8.cstc.internal_capsule_anterior_limb_left", "membership_basis": "Atlas-recorded gross white-matter structure within the described course of the loop (fiber connectivity NOT traced)." },
+        { "structure_id": "brain.white_matter.internal_capsule_anterior_limb_right", "relationship_id": "p8.cstc.internal_capsule_anterior_limb_right", "membership_basis": "Atlas-recorded gross white-matter structure within the described course of the loop (fiber connectivity NOT traced)." }
+      ],
+      "member_gaps": [
+        { "classical_member": "Nucleus accumbens / ventral striatum", "reason": "No structure record in data/structures (knowledge artifact only, geometry-free); omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Subthalamic nucleus", "reason": "No structure record in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Substantia nigra", "reason": "No structure record in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Ventral tegmental area", "reason": "No structure record in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Mediodorsal and anterior thalamic nuclei", "reason": "Thalamus is recorded at whole-organ resolution only; relay nuclei NOT separated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Orbitofrontal subfields", "reason": "No orbitofrontal structure record in data/structures (knowledge artifact only); subfield specificity NOT represented.", "status": "NOT_REPRESENTED" }
+      ],
+      "overall_certainty": "LOW",
+      "overall_certainty_reasons": [
+        "No clinical corpus, no receptor-mapping dataset, no trial data, and no expert review in this project.",
+        "Membership is gross-anatomical co-location at whole-structure resolution; subfields, nuclei, and segments are NOT separated.",
+        "Fiber-level connectivity is NOT traced; the loop order itself is NOT evidenced here, only co-location of its gross territories."
+      ]
+    },
+    {
+      "system_id": "papez",
+      "display_name": "Papez circuit",
+      "kind": "named_circuit_under_study",
+      "description": "Named Papez circuit under study as a classical circuit topic in systems neuroscience and psychiatry education. This entry makes no functional, mechanistic, or disorder claim; it groups atlas-recorded gross structures that lie within the circuit's classically described territory.",
+      "framework_citations": [
+        {
+          "label": "NIMH RDoC framework (identity only)",
+          "url": "https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc",
+          "scope_note": "Cited as framework identity only. No RDoC domain, construct, or matrix content is asserted for the Papez circuit (not verified)."
+        }
+      ],
+      "members": [
+        { "structure_id": "brain.telencephalon.left.limbic.hippocampus", "relationship_id": "p8.papez.hippocampus_left", "membership_basis": "Atlas-recorded gross structure within the classically described hippocampal territory of the circuit." },
+        { "structure_id": "brain.telencephalon.right.limbic.hippocampus", "relationship_id": "p8.papez.hippocampus_right", "membership_basis": "Atlas-recorded gross structure within the classically described hippocampal territory of the circuit." },
+        { "structure_id": "brain.telencephalon.left.limbic.parahippocampal_gyrus", "relationship_id": "p8.papez.parahippocampal_gyrus_left", "membership_basis": "Atlas-recorded gross structure within the classically described parahippocampal territory of the circuit." },
+        { "structure_id": "brain.telencephalon.right.limbic.parahippocampal_gyrus", "relationship_id": "p8.papez.parahippocampal_gyrus_right", "membership_basis": "Atlas-recorded gross structure within the classically described parahippocampal territory of the circuit." },
+        { "structure_id": "brain.telencephalon.left.limbic.cingulate_gyrus", "relationship_id": "p8.papez.cingulate_gyrus_left", "membership_basis": "Atlas-recorded gross structure within the classically described cingulate territory of the circuit (whole-gyrus resolution)." },
+        { "structure_id": "brain.telencephalon.right.limbic.cingulate_gyrus", "relationship_id": "p8.papez.cingulate_gyrus_right", "membership_basis": "Atlas-recorded gross structure within the classically described cingulate territory of the circuit (whole-gyrus resolution)." },
+        { "structure_id": "brain.diencephalon.bilateral.hypothalamus.mammillary_body", "relationship_id": "p8.papez.mammillary_body", "membership_basis": "Atlas-recorded gross structure; the sole hypothalamic node present in our structure records." },
+        { "structure_id": "brain.white_matter.fornix_left", "relationship_id": "p8.papez.fornix_left", "membership_basis": "Atlas-recorded gross white-matter tract of the described circuit (fiber connectivity NOT traced)." },
+        { "structure_id": "brain.white_matter.fornix_right", "relationship_id": "p8.papez.fornix_right", "membership_basis": "Atlas-recorded gross white-matter tract of the described circuit (fiber connectivity NOT traced)." },
+        { "structure_id": "brain.white_matter.fornix_commissure", "relationship_id": "p8.papez.fornix_commissure", "membership_basis": "Atlas-recorded gross white-matter tract of the described circuit (fiber connectivity NOT traced)." },
+        { "structure_id": "brain.diencephalon.left.thalamus", "relationship_id": "p8.papez.thalamus_left", "membership_basis": "Atlas-recorded gross thalamic structure as whole-organ proxy; the anterior nucleus is NOT separately represented." },
+        { "structure_id": "brain.diencephalon.right.thalamus", "relationship_id": "p8.papez.thalamus_right", "membership_basis": "Atlas-recorded gross thalamic structure as whole-organ proxy; the anterior nucleus is NOT separately represented." }
+      ],
+      "member_gaps": [
+        { "classical_member": "Anterior thalamic nucleus", "reason": "Thalamus is recorded at whole-organ resolution only; the anterior nucleus is NOT separated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Mammillothalamic tract", "reason": "No structure record for this tract in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Entorhinal cortex", "reason": "NOT separately represented; parahippocampal gyrus is recorded at whole-gyrus resolution only.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Retrosplenial cortex", "reason": "No structure record in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Cingulum bundle", "reason": "No structure record in data/structures (knowledge artifact only, geometry-free); omitted, not approximated.", "status": "NOT_REPRESENTED" }
+      ],
+      "overall_certainty": "LOW",
+      "overall_certainty_reasons": [
+        "No clinical corpus, no receptor-mapping dataset, no trial data, and no expert review in this project.",
+        "Membership is gross-anatomical co-location at whole-structure resolution; subfields and nuclei are NOT separated.",
+        "Fiber-level connectivity is NOT traced; the circuit order itself is NOT evidenced here, only co-location of its gross territories."
+      ]
+    },
+    {
+      "system_id": "salience",
+      "display_name": "Salience network",
+      "kind": "named_network_under_study",
+      "description": "Named salience network under study as a large-scale network topic in systems neuroscience and psychiatry education. This entry makes no functional, mechanistic, or disorder claim; it groups atlas-recorded gross structures that lie within the network's classically described territory.",
+      "framework_citations": [
+        {
+          "label": "NIMH RDoC framework (identity only)",
+          "url": "https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc",
+          "scope_note": "Cited as framework identity only. No RDoC domain, construct, or matrix content is asserted for the salience network (not verified)."
+        }
+      ],
+      "members": [
+        { "structure_id": "brain.telencephalon.left.insular_lobe.insula", "relationship_id": "p8.salience.insula_left", "membership_basis": "Atlas-recorded gross structure within the classically described insular territory of the network (whole-insula resolution)." },
+        { "structure_id": "brain.telencephalon.right.insular_lobe.insula", "relationship_id": "p8.salience.insula_right", "membership_basis": "Atlas-recorded gross structure within the classically described insular territory of the network (whole-insula resolution)." },
+        { "structure_id": "brain.telencephalon.left.limbic.cingulate_gyrus", "relationship_id": "p8.salience.cingulate_gyrus_left", "membership_basis": "Atlas-recorded gross structure within the classically described cingulate territory of the network (whole-gyrus resolution)." },
+        { "structure_id": "brain.telencephalon.right.limbic.cingulate_gyrus", "relationship_id": "p8.salience.cingulate_gyrus_right", "membership_basis": "Atlas-recorded gross structure within the classically described cingulate territory of the network (whole-gyrus resolution)." },
+        { "structure_id": "brain.telencephalon.left.limbic.amygdala", "relationship_id": "p8.salience.amygdala_left", "membership_basis": "Atlas-recorded gross structure within the classically described amygdalar territory of the network." },
+        { "structure_id": "brain.telencephalon.right.limbic.amygdala", "relationship_id": "p8.salience.amygdala_right", "membership_basis": "Atlas-recorded gross structure within the classically described amygdalar territory of the network." }
+      ],
+      "member_gaps": [
+        { "classical_member": "Anterior insula subdivision", "reason": "Insula is recorded at whole-organ resolution only; anterior/posterior subdivisions NOT separated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Dorsal anterior cingulate subdivision", "reason": "Cingulate gyrus is recorded at whole-gyrus resolution only; subregions NOT separated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Ventral tegmental area", "reason": "No structure record in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Substantia nigra", "reason": "No structure record in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Temporoparietal junction", "reason": "No structure record for this region in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Hypothalamic nodes", "reason": "Only the mammillary body is recorded; all other hypothalamic nuclei are NOT represented.", "status": "NOT_REPRESENTED" }
+      ],
+      "overall_certainty": "LOW",
+      "overall_certainty_reasons": [
+        "No clinical corpus, no receptor-mapping dataset, no trial data, and no expert review in this project.",
+        "Membership is gross-anatomical co-location at whole-structure resolution; network-defining subdivisions are NOT separated.",
+        "Functional co-activation membership is NOT evidenced here; only co-location of gross territories is recorded."
+      ]
+    },
+    {
+      "system_id": "default_mode",
+      "display_name": "Default-mode network",
+      "kind": "named_network_under_study",
+      "description": "Named default-mode network under study as a large-scale network topic in systems neuroscience and psychiatry education. This entry makes no functional, mechanistic, or disorder claim; it groups atlas-recorded gross structures that lie within the network's classically described territory.",
+      "framework_citations": [
+        {
+          "label": "NIMH RDoC framework (identity only)",
+          "url": "https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc",
+          "scope_note": "Cited as framework identity only. No RDoC domain, construct, or matrix content is asserted for the default-mode network (not verified)."
+        }
+      ],
+      "members": [
+        { "structure_id": "brain.telencephalon.left.limbic.cingulate_gyrus", "relationship_id": "p8.default_mode.cingulate_gyrus_left", "membership_basis": "Atlas-recorded gross structure within the classically described cingulate territory of the network (whole-gyrus resolution)." },
+        { "structure_id": "brain.telencephalon.right.limbic.cingulate_gyrus", "relationship_id": "p8.default_mode.cingulate_gyrus_right", "membership_basis": "Atlas-recorded gross structure within the classically described cingulate territory of the network (whole-gyrus resolution)." },
+        { "structure_id": "brain.telencephalon.left.limbic.parahippocampal_gyrus", "relationship_id": "p8.default_mode.parahippocampal_gyrus_left", "membership_basis": "Atlas-recorded gross structure within the classically described medial-temporal territory of the network." },
+        { "structure_id": "brain.telencephalon.right.limbic.parahippocampal_gyrus", "relationship_id": "p8.default_mode.parahippocampal_gyrus_right", "membership_basis": "Atlas-recorded gross structure within the classically described medial-temporal territory of the network." },
+        { "structure_id": "brain.telencephalon.left.limbic.hippocampus", "relationship_id": "p8.default_mode.hippocampus_left", "membership_basis": "Atlas-recorded gross structure within the classically described medial-temporal territory of the network." },
+        { "structure_id": "brain.telencephalon.right.limbic.hippocampus", "relationship_id": "p8.default_mode.hippocampus_right", "membership_basis": "Atlas-recorded gross structure within the classically described medial-temporal territory of the network." },
+        { "structure_id": "brain.telencephalon.left.parietal_lobe.angular_gyrus", "relationship_id": "p8.default_mode.angular_gyrus_left", "membership_basis": "Atlas-recorded gross parietal structure within the classically described inferior-parietal territory of the network." },
+        { "structure_id": "brain.telencephalon.right.parietal_lobe.angular_gyrus", "relationship_id": "p8.default_mode.angular_gyrus_right", "membership_basis": "Atlas-recorded gross parietal structure within the classically described inferior-parietal territory of the network." }
+      ],
+      "member_gaps": [
+        { "classical_member": "Precuneus", "reason": "No structure record in data/structures (knowledge artifact only, geometry-free); omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Medial prefrontal subdivision", "reason": "Frontal gyri are recorded at whole-gyrus resolution only; medial prefrontal territory NOT separated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Posterior cingulate subdivision", "reason": "Cingulate gyrus is recorded at whole-gyrus resolution only; subregions NOT separated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Retrosplenial cortex", "reason": "No structure record in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Inferior parietal subfields", "reason": "Angular gyrus is recorded as a gross parietal structure; functional subfields NOT separated.", "status": "NOT_REPRESENTED" }
+      ],
+      "overall_certainty": "LOW",
+      "overall_certainty_reasons": [
+        "No clinical corpus, no receptor-mapping dataset, no trial data, and no expert review in this project.",
+        "Membership is gross-anatomical co-location at whole-structure resolution; network-defining subdivisions are NOT separated.",
+        "Functional co-activation membership is NOT evidenced here; only co-location of gross territories is recorded."
+      ]
+    },
+    {
+      "system_id": "central_executive",
+      "display_name": "Central-executive network",
+      "kind": "named_network_under_study",
+      "description": "Named central-executive network under study as a large-scale network topic in systems neuroscience and psychiatry education. This entry makes no functional, mechanistic, or disorder claim; it groups atlas-recorded gross structures that lie within the network's classically described territory.",
+      "framework_citations": [
+        {
+          "label": "NIMH RDoC framework (identity only)",
+          "url": "https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc",
+          "scope_note": "Cited as framework identity only. No RDoC domain, construct, or matrix content is asserted for the central-executive network (not verified)."
+        }
+      ],
+      "members": [
+        { "structure_id": "brain.telencephalon.left.frontal_lobe.middle_frontal_gyrus", "relationship_id": "p8.central_executive.middle_frontal_gyrus_left", "membership_basis": "Atlas-recorded gross frontal structure within the classically described lateral-frontal territory of the network." },
+        { "structure_id": "brain.telencephalon.right.frontal_lobe.middle_frontal_gyrus", "relationship_id": "p8.central_executive.middle_frontal_gyrus_right", "membership_basis": "Atlas-recorded gross frontal structure within the classically described lateral-frontal territory of the network." },
+        { "structure_id": "brain.telencephalon.left.frontal_lobe.superior_frontal_gyrus", "relationship_id": "p8.central_executive.superior_frontal_gyrus_left", "membership_basis": "Atlas-recorded gross frontal structure within the classically described lateral-frontal territory of the network." },
+        { "structure_id": "brain.telencephalon.right.frontal_lobe.superior_frontal_gyrus", "relationship_id": "p8.central_executive.superior_frontal_gyrus_right", "membership_basis": "Atlas-recorded gross frontal structure within the classically described lateral-frontal territory of the network." },
+        { "structure_id": "brain.telencephalon.left.parietal_lobe.angular_gyrus", "relationship_id": "p8.central_executive.angular_gyrus_left", "membership_basis": "Atlas-recorded gross parietal structure within the classically described lateral-parietal territory of the network." },
+        { "structure_id": "brain.telencephalon.right.parietal_lobe.angular_gyrus", "relationship_id": "p8.central_executive.angular_gyrus_right", "membership_basis": "Atlas-recorded gross parietal structure within the classically described lateral-parietal territory of the network." },
+        { "structure_id": "brain.telencephalon.left.parietal_lobe.supramarginal_gyrus", "relationship_id": "p8.central_executive.supramarginal_gyrus_left", "membership_basis": "Atlas-recorded gross parietal structure within the classically described lateral-parietal territory of the network." },
+        { "structure_id": "brain.telencephalon.right.parietal_lobe.supramarginal_gyrus", "relationship_id": "p8.central_executive.supramarginal_gyrus_right", "membership_basis": "Atlas-recorded gross parietal structure within the classically described lateral-parietal territory of the network." }
+      ],
+      "member_gaps": [
+        { "classical_member": "Dorsolateral prefrontal subfield", "reason": "Frontal gyri are recorded at whole-gyrus resolution only; prefrontal subfields NOT separated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Intraparietal sulcus region", "reason": "No structure record for this sulcal region in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Frontal eye fields", "reason": "No structure record for this functional territory in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Superior parietal subregions", "reason": "Superior parietal territory is NOT separated into functional subregions in our records.", "status": "NOT_REPRESENTED" }
+      ],
+      "overall_certainty": "LOW",
+      "overall_certainty_reasons": [
+        "No clinical corpus, no receptor-mapping dataset, no trial data, and no expert review in this project.",
+        "Membership is gross-anatomical co-location at whole-structure resolution; network-defining subdivisions are NOT separated.",
+        "Functional co-activation membership is NOT evidenced here; only co-location of gross territories is recorded."
+      ]
+    },
+    {
+      "system_id": "reward",
+      "display_name": "Reward system",
+      "kind": "named_system_under_study",
+      "description": "Named reward system under study as a systems topic in neuroscience and psychiatry education. This entry makes no functional, mechanistic, or disorder claim; it groups atlas-recorded gross structures that lie within the system's classically described territory.",
+      "framework_citations": [
+        {
+          "label": "NIMH RDoC framework (identity only)",
+          "url": "https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc",
+          "scope_note": "Cited as framework identity only. No RDoC domain, construct, or matrix content is asserted for the reward system (not verified)."
+        }
+      ],
+      "members": [
+        { "structure_id": "brain.basal_ganglia.left.caudate_nucleus", "relationship_id": "p8.reward.caudate_nucleus_left", "membership_basis": "Atlas-recorded gross striatal structure within the classically described striatal territory of the system." },
+        { "structure_id": "brain.basal_ganglia.right.caudate_nucleus", "relationship_id": "p8.reward.caudate_nucleus_right", "membership_basis": "Atlas-recorded gross striatal structure within the classically described striatal territory of the system." },
+        { "structure_id": "brain.basal_ganglia.left.putamen", "relationship_id": "p8.reward.putamen_left", "membership_basis": "Atlas-recorded gross striatal structure within the classically described striatal territory of the system." },
+        { "structure_id": "brain.basal_ganglia.right.putamen", "relationship_id": "p8.reward.putamen_right", "membership_basis": "Atlas-recorded gross striatal structure within the classically described striatal territory of the system." },
+        { "structure_id": "brain.basal_ganglia.left.globus_pallidus", "relationship_id": "p8.reward.globus_pallidus_left", "membership_basis": "Atlas-recorded gross pallidal structure within the classically described pallidal territory of the system." },
+        { "structure_id": "brain.basal_ganglia.right.globus_pallidus", "relationship_id": "p8.reward.globus_pallidus_right", "membership_basis": "Atlas-recorded gross pallidal structure within the classically described pallidal territory of the system." },
+        { "structure_id": "brain.telencephalon.left.frontal_lobe.middle_frontal_gyrus", "relationship_id": "p8.reward.middle_frontal_gyrus_left", "membership_basis": "Atlas-recorded gross frontal structure within the classically described prefrontal territory of the system." },
+        { "structure_id": "brain.telencephalon.right.frontal_lobe.middle_frontal_gyrus", "relationship_id": "p8.reward.middle_frontal_gyrus_right", "membership_basis": "Atlas-recorded gross frontal structure within the classically described prefrontal territory of the system." },
+        { "structure_id": "brain.telencephalon.left.frontal_lobe.superior_frontal_gyrus", "relationship_id": "p8.reward.superior_frontal_gyrus_left", "membership_basis": "Atlas-recorded gross frontal structure adjacent to the described prefrontal territory (thin support; ventral/orbital territories absent)." },
+        { "structure_id": "brain.telencephalon.right.frontal_lobe.superior_frontal_gyrus", "relationship_id": "p8.reward.superior_frontal_gyrus_right", "membership_basis": "Atlas-recorded gross frontal structure adjacent to the described prefrontal territory (thin support; ventral/orbital territories absent)." },
+        { "structure_id": "brain.telencephalon.left.limbic.amygdala", "relationship_id": "p8.reward.amygdala_left", "membership_basis": "Atlas-recorded gross structure within the classically described amygdalar territory of the system." },
+        { "structure_id": "brain.telencephalon.right.limbic.amygdala", "relationship_id": "p8.reward.amygdala_right", "membership_basis": "Atlas-recorded gross structure within the classically described amygdalar territory of the system." }
+      ],
+      "member_gaps": [
+        { "classical_member": "Nucleus accumbens / ventral striatum", "reason": "No structure record in data/structures (knowledge artifact only, geometry-free); omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Ventral tegmental area", "reason": "No structure record in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Substantia nigra", "reason": "No structure record in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Orbitofrontal cortex", "reason": "No orbitofrontal structure record in data/structures (knowledge artifact only); omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Lateral habenula", "reason": "No structure record in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" }
+      ],
+      "overall_certainty": "LOW",
+      "overall_certainty_reasons": [
+        "No clinical corpus, no receptor-mapping dataset, no trial data, and no expert review in this project.",
+        "Membership is gross-anatomical co-location at whole-structure resolution; ventral striatal and midbrain nodes are NOT represented at all.",
+        "No transmitter, receptor, or pharmacology claim is made or implied by this grouping."
+      ]
+    },
+    {
+      "system_id": "fear_threat",
+      "display_name": "Fear/threat system",
+      "kind": "named_system_under_study",
+      "description": "Named fear/threat system under study as a systems topic in neuroscience and psychiatry education. This entry makes no functional, mechanistic, or disorder claim; it groups atlas-recorded gross structures that lie within the system's classically described territory.",
+      "framework_citations": [
+        {
+          "label": "NIMH RDoC framework (identity only)",
+          "url": "https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc",
+          "scope_note": "Cited as framework identity only. No RDoC domain, construct, or matrix content is asserted for the fear/threat system (not verified)."
+        }
+      ],
+      "members": [
+        { "structure_id": "brain.telencephalon.left.limbic.amygdala", "relationship_id": "p8.fear_threat.amygdala_left", "membership_basis": "Atlas-recorded gross structure within the classically described amygdalar territory of the system." },
+        { "structure_id": "brain.telencephalon.right.limbic.amygdala", "relationship_id": "p8.fear_threat.amygdala_right", "membership_basis": "Atlas-recorded gross structure within the classically described amygdalar territory of the system." },
+        { "structure_id": "brain.telencephalon.left.limbic.hippocampus", "relationship_id": "p8.fear_threat.hippocampus_left", "membership_basis": "Atlas-recorded gross structure within the classically described hippocampal territory of the system." },
+        { "structure_id": "brain.telencephalon.right.limbic.hippocampus", "relationship_id": "p8.fear_threat.hippocampus_right", "membership_basis": "Atlas-recorded gross structure within the classically described hippocampal territory of the system." },
+        { "structure_id": "brain.telencephalon.left.insular_lobe.insula", "relationship_id": "p8.fear_threat.insula_left", "membership_basis": "Atlas-recorded gross structure within the classically described insular territory of the system." },
+        { "structure_id": "brain.telencephalon.right.insular_lobe.insula", "relationship_id": "p8.fear_threat.insula_right", "membership_basis": "Atlas-recorded gross structure within the classically described insular territory of the system." },
+        { "structure_id": "brain.telencephalon.left.limbic.cingulate_gyrus", "relationship_id": "p8.fear_threat.cingulate_gyrus_left", "membership_basis": "Atlas-recorded gross structure within the classically described cingulate territory of the system (whole-gyrus resolution)." },
+        { "structure_id": "brain.telencephalon.right.limbic.cingulate_gyrus", "relationship_id": "p8.fear_threat.cingulate_gyrus_right", "membership_basis": "Atlas-recorded gross structure within the classically described cingulate territory of the system (whole-gyrus resolution)." },
+        { "structure_id": "brain.diencephalon.bilateral.hypothalamus.mammillary_body", "relationship_id": "p8.fear_threat.mammillary_body", "membership_basis": "Atlas-recorded gross structure; sole hypothalamic node present in our records (thin proxy support)." }
+      ],
+      "member_gaps": [
+        { "classical_member": "Ventromedial prefrontal subdivision", "reason": "Frontal gyri are recorded at whole-gyrus resolution only; ventromedial territory NOT separated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Periaqueductal gray", "reason": "No structure record in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Bed nucleus of the stria terminalis", "reason": "No structure record in this atlas; omitted, not approximated.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Hypothalamic nuclei beyond the mammillary body", "reason": "Only the mammillary body is recorded; all other hypothalamic nuclei are NOT represented.", "status": "NOT_REPRESENTED" },
+        { "classical_member": "Brainstem nodes", "reason": "No brainstem structure records at the resolution of the described nodes; omitted, not approximated.", "status": "NOT_REPRESENTED" }
+      ],
+      "overall_certainty": "LOW",
+      "overall_certainty_reasons": [
+        "No clinical corpus, no receptor-mapping dataset, no trial data, and no expert review in this project.",
+        "Membership is gross-anatomical co-location at whole-structure resolution; amygdalar nuclei and prefrontal subdivisions are NOT separated.",
+        "No threat-response, conditioning, or disorder claim is made or implied by this grouping."
+      ]
+    }
+  ]
+}
