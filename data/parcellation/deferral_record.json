@@ -1,0 +1,41 @@
+{
+  "_comment": "Phase 7 documented deferral record (registry-explicit alternative: 'physically-separated parcellation OR documented deferral with reason'). No parcel is rendered, no parcel is mapped, no parcel geometry ships. Rendering is MAPPING_PENDING for every atlas; each entry names exactly what would unblock it.",
+  "phase": "7",
+  "outcome": "DOCUMENTED_DEFERRAL",
+  "scope_reference": "docs/PHASE_7_ANATOMICAL_SCOPE.md",
+  "mapping_gate": "CLOSED",
+  "verified_mapping_records": 0,
+  "deferrals": [
+    {
+      "atlas": "HCP_MMP1",
+      "rendering_state": "MAPPING_PENDING",
+      "reason": "HCP Open Access Data Use Terms require formal legal review before any import (project standing policy, docs/PRODUCTION_DATASET_LICENSE_MATRIX.md). No legal review has occurred; no HCP bytes are ingested; no exact dataset version was acquired or pinned.",
+      "unblocks": [
+        "Legal review of the HCP Open Access Data Use Terms with a recorded outcome",
+        "Exact upstream dataset version identified, acquired, and pinned in provenance",
+        "Terms acceptance record filed in the repo provenance chain",
+        "Validated registration method (parcel space to project canonical space) with QA report on disk"
+      ]
+    },
+    {
+      "atlas": "Brodmann",
+      "rendering_state": "MAPPING_PENDING",
+      "reason": "Classical cytoarchitectonic areas (BA 1-52) originate from published maps, not from a single downloadable geometry release with a clean license chain available to this project. No verified source/version/license triple is established; no Brodmann geometry is ingested.",
+      "unblocks": [
+        "Verified source release identified: exact source plus exact version plus exact license (verified triple)",
+        "License chain verified as usable by this project with a recorded outcome",
+        "Validated registration method (parcel space to project canonical space) with QA report on disk"
+      ]
+    }
+  ],
+  "shared_unblock_conditions": [
+    "Validated registration method for projecting parcels onto project geometry — visual approximation is explicitly prohibited and is not attempted",
+    "QA report for the registration/mapping recorded on disk before any parcel reaches a render path"
+  ],
+  "hard_stops_observed": [
+    "No parcel geometry ingested",
+    "No parcel mapping claimed",
+    "No HCP terms accepted or circumvented",
+    "No Brodmann source invented"
+  ]
+}
