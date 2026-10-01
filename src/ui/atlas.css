@@ -598,3 +598,163 @@ body, html {
 .knowledge-claim { margin-bottom: 6px; }
 .knowledge-claim-type { font-weight: 700; font-size: 0.72rem; }
 .knowledge-claim-source, .knowledge-claim-citation, .knowledge-claim-type-hint { color: var(--text-muted); font-size: 0.72rem; }
+
+/* Phase 9: study panels (notes / flashcards / saved views / quiz).
+   Collapsible sections visually consistent with the hierarchy panel;
+   collapsed by default so the canvas is never obscured. Touch + responsive
+   rules only below — no existing rules touched. */
+.neuro-study-panel {
+  background: rgba(7, 11, 20, 0.88);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 8px;
+  padding: 8px 10px;
+  backdrop-filter: blur(6px);
+  color: #CBD5E1;
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 8px 0;
+}
+
+.neuro-study-panel .controls-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.neuro-study-panel .study-status {
+  flex: 1;
+  color: #94A3B8;
+}
+
+.neuro-study-panel .study-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.neuro-study-panel .study-title {
+  font-weight: 700;
+  color: #E2E8F0;
+  font-size: 0.8rem;
+}
+
+.neuro-study-panel .study-note-input,
+.neuro-study-panel .study-view-label,
+.neuro-study-panel .study-quiz-answer {
+  width: 100%;
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  padding: 8px 10px;
+  user-select: text;
+}
+
+.neuro-study-panel .study-card-front {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.neuro-study-panel .study-card-back {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  white-space: pre-line;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 8px;
+  border-radius: var(--radius-md);
+}
+
+.neuro-study-panel .study-quiz-prompt {
+  font-size: 0.85rem;
+  color: #FFFFFF;
+}
+
+.neuro-study-panel .study-quiz-verdict,
+.neuro-study-panel .study-quiz-score {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.neuro-study-panel .study-views-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.neuro-study-panel .study-view-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Phase 9 touch: canvas keeps the OS gesture stream (OrbitControls maps
+   1-finger rotate / tap-select, 2-finger pinch-zoom + pan — verified, not
+   rebuilt; see docs/PHASE_9_TOUCH_SUPPORT.md). Panels must never swallow
+   canvas gestures: they are separate DOM layers with their own hit areas. */
+#canvas-container canvas {
+  touch-action: none;
+}
+
+/* Phase 9 coarse-pointer: 44px minimum tap targets inside study panels. */
+@media (pointer: coarse) {
+  .neuro-study-panel .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .neuro-study-panel .study-note-input,
+  .neuro-study-panel .study-view-label,
+  .neuro-study-panel .study-quiz-answer {
+    font-size: 1rem;
+  }
+}
+
+/* Phase 9 responsive: at tablet widths panels narrow and cap height so the
+   canvas stays usable; bodies start collapsed (hidden) by markup default. */
+@media (max-width: 1024px) {
+  .neuro-info-panel {
+    width: 300px;
+  }
+  .neuro-hierarchy-panel {
+    width: 260px;
+  }
+  .neuro-study-panel .study-views-list {
+    max-height: 160px;
+  }
+}
+
+/* Phase 9 responsive: at 768px study panels become a collapsed bottom sheet
+   (full-width, capped height, above the controls bar); canvas default view
+   is never covered because every study body ships hidden until toggled. */
+  @media (max-width: 768px) {
+    /* Phase 9 review fix: this rule previously applied the SAME fixed sheet
+       geometry to every .neuro-study-panel, so the container + 4 children stacked
+       at identical coordinates once mounted. Now only the StudyPanel container
+       becomes a bottom sheet; child panels flow inside it in normal layout. */
+    .neuro-study-panel.neuro-study-container {
+      position: fixed;
+      left: 8px;
+      right: 8px;
+      bottom: 76px;
+      z-index: 30;
+      max-height: 40vh;
+      overflow-y: auto;
+      margin: 0;
+    }
+  .neuro-info-panel {
+    width: calc(100vw - 32px);
+    max-height: 44vh;
+  }
+  .neuro-hierarchy-panel {
+    width: calc(100vw - 32px);
+    max-height: 32vh;
+    top: auto;
+    bottom: calc(76px + 40vh + 8px);
+  }
+}

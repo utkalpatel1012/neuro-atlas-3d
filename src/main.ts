@@ -15,6 +15,8 @@ import { SectionPresentationPanel } from './ui/SectionPresentationPanel';
 import { MriPanel } from './ui/MriPanel';
 import { HierarchyPanel } from './ui/HierarchyPanel';
 import { SearchPanel } from './ui/SearchPanel';
+import { StudyPanel } from './ui/StudyPanel';
+import type { SavedView } from './study/studyStore';
 import { AnatomicalEntityRecord } from './engine/types';
 
 async function bootstrap() {
@@ -224,6 +226,62 @@ async function bootstrap() {
     // Phase 6: knowledge search (query → ranked results → existing
     // selection/focus pipeline → cited detail in the info panel).
     new SearchPanel(appContainer, app, infoPanel, hierarchyPanel);
+
+    // Phase 9: study tools (notes, flashcards, saved views, quiz). Single shared
+    // store; adapters wire capture/apply through the EXISTING managers (camera,
+    // selection, planes, presentation, labels) — no duplicated state systems.
+    // Mounted collapsed by default; canvas default view is unaffected.
+    new StudyPanel(appContainer, {
+      viewAdapters: {
+        captureCamera: () => {
+          try {
+            const cam = app.getCameraManager();
+            const pos = cam.getCamera().position;
+            const tgt = cam.getTarget();
+            return { position: [pos.x, pos.y, pos.z], target: [tgt.x, tgt.y, tgt.z] };
+          } catch { return null; }
+        },
+        captureSelection: () => {
+          try {
+            return { selectedEntityId: app.getSelectionManager().getSelectedEntityId() };
+          } catch { return { selectedEntityId: null }; }
+        },
+        captureClipping: () => {
+          try {
+            // Key must be `planes` (not `planeSet`): the store validator requires
+            // 'planes' in the envelope, and a wrong key silently refuses every save.
+            return {
+              planes: app.getSectionPlaneSet().serialize(),
+              presentation: app.getSectionPresentation().serialize(),
+            } as any;
+          } catch { return null; }
+        },
+        captureLabelsEnabled: () => {
+          try { return app.getLabelManager().getEnabled(); } catch { return true; }
+        },
+        applyView: (view: SavedView) => {
+          if (view.camera) {
+            const cam = app.getCameraManager();
+            cam.getCamera().position.set(view.camera.position[0], view.camera.position[1], view.camera.position[2]);
+            if (cam.controls) {
+              cam.controls.target.set(view.camera.target[0], view.camera.target[1], view.camera.target[2]);
+              cam.controls.update();
+            }
+          }
+          try {
+            app.getSelectionManager().select(view.selection?.selectedEntityId ?? null);
+          } catch (err) { console.warn('[StudyPanel] selection restore failed:', err); }
+          try {
+            const clip: any = view.clipping;
+            if (clip?.planes) app.getSectionPlaneSet().deserialize(clip.planes);
+            if (clip?.presentation) app.getSectionPresentation().deserialize(clip.presentation);
+          } catch (err) { console.warn('[StudyPanel] clipping restore failed:', err); }
+          try {
+            app.getLabelManager().setEnabled(view.labelsEnabled !== false);
+          } catch (err) { console.warn('[StudyPanel] labels restore failed:', err); }
+        },
+      },
+    });
 
     // 5. Select bilateral cerebrum by default to showcase macroanatomy
     app.getAssemblyManager().selectGroup('division.cerebrum');
