@@ -44,6 +44,33 @@ function copyRuntimeAssets() {
   console.info('[Vite] Successfully copied neuro runtime 3D models, manifests, and data into dist/.');
 }
 
+// Phase 10: copy the PWA shell files (sw.js + webmanifest) into dist/ and
+// stamp the worker's __NEURO_ATLAS_VERSION__ placeholder with the build
+// (package.json) version, so cache names derive from the release and can
+// never go stale. Nothing else is modified.
+function stampPwaVersion() {
+  const distDir = path.resolve(process.cwd(), 'dist');
+  if (!fs.existsSync(distDir)) return;
+  const pkgVersion = (JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'package.json'), 'utf8')) as { version: string }).version;
+
+  const publicDir = path.resolve(process.cwd(), 'public');
+  for (const file of ['sw.js', 'manifest.webmanifest']) {
+    const src = path.join(publicDir, file);
+    const dst = path.join(distDir, file);
+    if (fs.existsSync(src) && !fs.existsSync(dst)) {
+      fs.copyFileSync(src, dst);
+    }
+  }
+
+  const swDst = path.join(distDir, 'sw.js');
+  if (fs.existsSync(swDst)) {
+    const stamped = fs.readFileSync(swDst, 'utf8').split('__NEURO_ATLAS_VERSION__').join(pkgVersion);
+    fs.writeFileSync(swDst, stamped);
+  }
+
+  console.info(`[Vite] PWA stamped: sw.js + manifest.webmanifest at version ${pkgVersion}.`);
+}
+
 export default defineConfig({
   base: './',
   root: '.',
@@ -80,6 +107,7 @@ export default defineConfig({
       name: 'copy-neuro-runtime-assets',
       closeBundle() {
         copyRuntimeAssets();
+        stampPwaVersion();
       }
     }
   ],

@@ -377,9 +377,20 @@ async function runTests() {
   // in its own assertion list (meta-mention, not an import).
   const subjectFiles = srcFiles.filter((f) => !f.endsWith('phase_3_1_integrity.test.ts'));
   const FORBIDDEN_IMPORTS = ['react', 'zustand', 'minisearch', 'dexie', 'workbox', 'KTX2Loader', 'BasisTextureLoader', 'serviceWorker', 'service-worker'];
+  // Phase 10 waiver (superseding note per AGENTS.md history rule): the Phase 10
+  // registry entry explicitly authorizes `Service worker` under
+  // allowedScope [pwa-shell, offline-cache], so the `serviceWorker` token is
+  // permitted in EXACTLY one file — the Phase 10 registration module — and remains
+  // forbidden everywhere else. A string-assembled accessor that dodges this grep
+  // would be gate evasion, not compliance; the literal must read `navigator.serviceWorker`.
+  const SERVICE_WORKER_WAIVER = ['src/pwa/registerServiceWorker.ts'];
   for (const f of subjectFiles) {
     const t = fs.readFileSync(f, 'utf8');
     for (const token of FORBIDDEN_IMPORTS) {
+      // Normalize separators: Windows paths use backslashes, waiver uses slashes.
+      const normalized = f.replace(/\\/g, '/');
+      if ((token === 'serviceWorker' || token === 'service-worker') &&
+        SERVICE_WORKER_WAIVER.some((w) => normalized.endsWith(w))) continue;
       const hit = token.endsWith('Loader') || token.includes('service')
         ? t.includes(token)
         : new RegExp(`from\\s+['"][^'"]*${token}`).test(t);

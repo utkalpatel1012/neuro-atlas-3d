@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="description" content="Interactive 3D Human Brain Atlas for Academic Neuropsychiatry" />
   <meta name="theme-color" content="#070B14" />
+  <link rel="manifest" href="manifest.webmanifest" />
   <title>Neuro Atlas 3D — Academic Human Brain Atlas</title>
   <link rel="stylesheet" href="/src/ui/atlas.css" />
 </head>
@@ -51,5 +52,9 @@
   </div>
 
   <script type="module" src="/src/main.ts"></script>
+  <script type="module">
+    import { registerServiceWorker } from '/src/pwa/registerServiceWorker';
+    void registerServiceWorker();
+  </script>
 </body>
 </html>
