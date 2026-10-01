@@ -1,0 +1,70 @@
+{
+  "_comment": "Phase 11 tutor intent routing. ROUTING ONLY: keyword/regex matchers that map free-text questions onto (a) recorded Phase 8 refusal topics, (b) recorded Phase 8 system ids, (c) the Phase 7 parcel-deferral state, (d) anatomical-vocabulary used only to distinguish NOT_REPRESENTED from UNKNOWN. References Phase 6/8 records by id only. Duplicates NO claim text, NO citations, NO evidence, NO mechanisms, NO criteria — all answer content is read live from the recorded layers at query time.",
+  "registry_version": "11.0.0",
+  "refusal_routes": [
+    {
+      "route_id": "tutor.route.receptor_localization",
+      "refusal_topic": "receptor_localization",
+      "match_substrings": ["receptor", "autoradiography", "binding potential", "transcriptomic", "immunohistochemical"],
+      "note": "Backstop: Phase 8 clinical-intent patterns already route receptor/transmitter phrasing to the guard. Residual receptor-localization phrasing maps to the recorded NOT_REPRESENTED template."
+    },
+    {
+      "route_id": "tutor.route.drug_mechanism",
+      "refusal_topic": "drug_mechanism",
+      "match_substrings": ["mechanism of action", "agonist", "antagonist", "reuptake", "affinity", "pharmacology", "pharmacokinetic", "antidepressant", "antipsychotic", "anxiolytic", "benzodiazepine", "psychostimulant", "ssri", "snri"],
+      "note": "Backstop: drug/mechanism phrasing is normally caught by the clinical-intent guard first. Maps to the recorded NOT_REPRESENTED template."
+    },
+    {
+      "route_id": "tutor.route.disorder_causation",
+      "refusal_topic": "disorder_causation",
+      "match_substrings": ["causes schizophrenia", "causes depression", "causes anxiety", "causes bipolar", "brain damage causes", "lesion causes"],
+      "note": "Causal phrasing about conditions maps to the recorded INSUFFICIENT_EVIDENCE template. Correlation is not causation."
+    },
+    {
+      "route_id": "tutor.route.dsm_criteria",
+      "refusal_topic": "dsm_criteria",
+      "match_substrings": ["diagnostic manual", "diagnostic criteria", "dsm 5", "dsm iv"],
+      "note": "Backstop: bare 'dsm' is already clinical-intent. Manual/criteria phrasing maps to the recorded NOT_REPRESENTED template."
+    },
+    {
+      "route_id": "tutor.route.diagnosis_request",
+      "refusal_topic": "diagnosis_request",
+      "match_substrings": ["diagnos", "do i have", "my diagnosis", "differential diagnosis"],
+      "note": "Backstop: diagnostic phrasing is normally caught by the clinical-intent guard first. Maps to the recorded INSUFFICIENT_EVIDENCE template."
+    },
+    {
+      "route_id": "tutor.route.treatment_request",
+      "refusal_topic": "treatment_request",
+      "match_substrings": ["dosage", "prescrib", "side effect", "should i take", "what should i", "recommend", "first line"],
+      "note": "Backstop: treatment/dose/prognosis phrasing is normally caught by the clinical-intent guard first. Maps to the recorded INSUFFICIENT_EVIDENCE template."
+    },
+    {
+      "route_id": "tutor.route.neuromodulation_request",
+      "refusal_topic": "neuromodulation_request",
+      "match_substrings": ["neuromodulation", "brain stimulation", "stimulation protocol", "rtms", "tdcs", " vns ", "deep brain stimulation"],
+      "note": "Backstop: bare tms/ect/dbs tokens are already clinical-intent. Protocol phrasing maps to the recorded NOT_REPRESENTED template."
+    }
+  ],
+  "system_aliases": [
+    { "system_id": "cstc", "match_substrings": ["cstc", "cortico-striato", "cortico striato"] },
+    { "system_id": "papez", "match_substrings": ["papez"] },
+    { "system_id": "salience", "match_substrings": ["salience"] },
+    { "system_id": "default_mode", "match_substrings": ["default mode", "default-mode", "default_mode"] },
+    { "system_id": "central_executive", "match_substrings": ["central executive", "central-executive", "central_executive"] },
+    { "system_id": "reward", "match_substrings": ["reward"] },
+    { "system_id": "fear_threat", "match_substrings": ["fear threat", "fear-threat", "fear_threat", "fear conditioning"] }
+  ],
+  "parcel_substrings": ["hcp", "brodmann", "parcel", "parcellation"],
+  "parcel_regexes": ["\\bba\\s?\\d", "\\bmmp", "\\bv\\d+[a-z]?\\b", "180 areas"],
+  "anatomical_vocab": [
+    "gland", "nucleus", "artery", "vein", "nerve", "ganglion", "gyrus", "sulcus",
+    "lobe", "cortex", "ventricle", "thalamus", "hypothalamus", "cerebellum",
+    "brainstem", "pons", "medulla", "midbrain", "hippocampus", "amygdala",
+    "striatum", "pallidum", "capsule", "commissure", "chiasm", "tract",
+    "fasciculus", "cingulum", "fornix", "fissure", "insula", "operculum",
+    "cuneus", "precuneus", "substantia", "nigra", "rubra", "olivary",
+    "colliculus", "pineal", "pituitary", "choroid", "corpus", "septum",
+    "claustrum", "putamen", "caudate", "globus", "dentate", "vermis",
+    "white matter", "gray matter", "grey matter", "spinal cord", "thalamic"
+  ]
+}

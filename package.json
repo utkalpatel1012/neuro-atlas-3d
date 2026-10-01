@@ -33,6 +33,7 @@
     "test:psychiatry8": "tsx src/phase8_psychiatry.test.ts",
     "test:study9": "tsx src/phase9_study.test.ts",
     "test:offline10": "tsx src/phase10_offline.test.ts",
+    "test:tutor11": "tsx src/phase11_tutor.test.ts",
     "knowledge:build": "tsx scripts/knowledge/build_knowledge.ts",
     "asset:validate": "tsx scripts/validate_asset.ts",
     "audit:phase1": "tsx scripts/audit_phase1.ts",

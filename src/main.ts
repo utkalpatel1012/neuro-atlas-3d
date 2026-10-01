@@ -15,6 +15,7 @@ import { SectionPresentationPanel } from './ui/SectionPresentationPanel';
 import { MriPanel } from './ui/MriPanel';
 import { HierarchyPanel } from './ui/HierarchyPanel';
 import { SearchPanel } from './ui/SearchPanel';
+import { TutorPanel } from './ui/TutorPanel';
 import { StudyPanel } from './ui/StudyPanel';
 import type { SavedView } from './study/studyStore';
 import { AnatomicalEntityRecord } from './engine/types';
@@ -226,6 +227,10 @@ async function bootstrap() {
     // Phase 6: knowledge search (query → ranked results → existing
     // selection/focus pipeline → cited detail in the info panel).
     new SearchPanel(appContainer, app, infoPanel, hierarchyPanel);
+
+    // Phase 11: grounded tutor (local retrieval over verified content, no external
+    // model). Mounted collapsed by default; canvas default view is unaffected.
+    new TutorPanel(appContainer, app, infoPanel, hierarchyPanel);
 
     // Phase 9: study tools (notes, flashcards, saved views, quiz). Single shared
     // store; adapters wire capture/apply through the EXISTING managers (camera,

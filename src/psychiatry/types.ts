@@ -26,7 +26,7 @@ export type PsychEvidenceLevel =
 
 /** Certainty of a Phase 8 relationship. All shipped records are LOW (no
  * clinical corpus, no receptor data, no trial data, no expert review). */
-export type PsychCertainty = 'HIGH' | 'MODERATE' | 'LOW';
+export type PsychCertainty = 'HIGH' | 'MODERATE' | 'LOW' | 'VERY_LOW';
 
 /**
  * A single structure→system relationship. The ONLY supportable claim shape:
