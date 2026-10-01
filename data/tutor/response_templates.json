@@ -1,0 +1,59 @@
+{
+  "_comment": "Phase 11 tutor response templates. SCAFFOLDING ONLY: fixed sentence frames with {placeholders} that are filled exclusively with values read live from the recorded layers (Phase 6 claims, Phase 8 relationships/refusals, Phase 7 deferral record) at query time. No template contains anatomy, mechanism, criteria, dosage, or outcome statements. The educational-use guard is referenced by pointer and rendered verbatim from src/psychiatry/types.ts.",
+  "registry_version": "11.0.0",
+  "answer_anatomy": {
+    "header": "ANSWER — grounded in recorded atlas layers (local retrieval; no external model).",
+    "structure_line": "Structure: {display_name} ({structure_id}) — {geometry_note}.",
+    "geometry_available": "AVAILABLE geometry (3D selection and camera focus supported)",
+    "geometry_documented": "DOCUMENTED only — catalog entry with no geometry (no 3D selection, no camera move)",
+    "claims_intro": "Recorded claims ({claim_count} — statement + source + evidence per line):",
+    "claim_line": "- {statement} [evidence: {evidence_level} | source: {source}]",
+    "citations_intro": "Checkable citations:",
+    "citation_line": "- {citation}",
+    "gaps_intro": "Recorded gaps (omitted topics, not silently absent):",
+    "gap_line": "- {topic}: {reason}",
+    "action_available": "3D action: entity {structure_id} can be selected and focused through the existing selection/focus pipeline.",
+    "action_documented": "3D action: none — DOCUMENTED entries have no geometry; the cited detail card is shown instead, with no camera move."
+  },
+  "answer_system": {
+    "header": "ANSWER — recorded named-system co-location only (local retrieval; no external model).",
+    "system_line": "Named system under study: {display_name} ({system_id}) — overall certainty {certainty}.",
+    "members_intro": "Recorded atlas members ({member_count} — anatomical co-location, correlation only):",
+    "member_line": "- {structure_id} [{relationship_id} | evidence: {evidence_level} | certainty: {certainty}]",
+    "causation_pointer": "Every member record carries the causation disclaimer verbatim; this list asserts co-location only — no functional membership and no condition association of any kind.",
+    "action_note": "3D action: none for the list itself — each AVAILABLE member can be selected and focused individually through the existing selection/focus pipeline; DOCUMENTED members show the cited detail card with no camera move."
+  },
+  "refusal_clinical": {
+    "header": "REFUSED — clinical-intent question routed through the Phase 8 guard (no clinical answer is synthesized).",
+    "reason_line": "Reason: {reason}",
+    "template_line": "Recorded refusal ({refusal_id}): {template}",
+    "citation_line": "- data/psychiatry/refusal_templates.json ({refusal_id})"
+  },
+  "refusal_topic": {
+    "header": "REFUSED — beyond the supportable layer (no answer is synthesized).",
+    "reason_line": "Reason: {reason}",
+    "template_line": "Recorded refusal ({refusal_id}): {template}",
+    "citation_line": "- data/psychiatry/refusal_templates.json ({refusal_id})"
+  },
+  "refusal_parcel": {
+    "header": "NOT REPRESENTED — parcel question hits the closed Phase 7 mapping gate (no parcel is rendered or mapped).",
+    "atlas_line": "- {atlas_state}",
+    "reason_line": "Reason: {reason}",
+    "unblocks_intro": "Recorded unblock conditions (what would change this):",
+    "unblock_line": "- {condition}",
+    "citation_lines": ["- data/parcellation/deferral_record.json", "- data/parcellation/atlas_registry.json"],
+    "action_note": "3D action: none — no parcel geometry exists in this atlas and no parcel is mapped onto anatomy."
+  },
+  "unknown": {
+    "header": "UNKNOWN — the question resolves to nothing in the recorded layers (no answer is synthesized).",
+    "reason_line": "Reason: {reason}",
+    "citation_line": "- data/knowledge/search_index.json (searched {entry_count} indexed structures; no match)"
+  },
+  "not_represented": {
+    "header": "NOT REPRESENTED — no indexed structure matches (nothing is generated to fill the gap).",
+    "reason_line": "Reason: {reason}",
+    "citation_line": "- data/knowledge/search_index.json (searched {entry_count} indexed structures; no match)"
+  },
+  "guard_pointer": "educational_use_guard",
+  "no_llm_note": "Local retrieval + fixed templates only. No external model is called; no model weights, keys, or remote endpoints exist in this tutor."
+}
