@@ -1,0 +1,55 @@
+{
+  "_comment": "Phase 8 refusal architecture. When a natural question (receptors, drug mechanisms, disorder causation, DSM criteria, diagnosis, treatment, neuromodulation) has no supportable answer, the layer returns one of these explicit REFUSAL templates — never a synthesized answer. Each template states what is missing and why. The educational-use guard is prepended at render time (see src/psychiatry/index.ts).",
+  "registry_version": "8.0.0",
+  "templates": [
+    {
+      "refusal_id": "p8.refuse.receptor_localization",
+      "topic": "receptor_localization",
+      "status": "NOT_REPRESENTED",
+      "reason": "This project holds no receptor-mapping dataset (no autoradiography, PET binding, transcriptomic, or immunohistochemical receptor atlas was ingested), so any receptor-localization statement would be invented.",
+      "template": "Receptor localization is NOT REPRESENTED in this atlas: no receptor-mapping dataset was ingested, and no receptor claim is recorded for any structure. This question cannot be answered from the Phase 8 layer. No localization is stated or implied."
+    },
+    {
+      "refusal_id": "p8.refuse.drug_mechanism",
+      "topic": "drug_mechanism",
+      "status": "NOT_REPRESENTED",
+      "reason": "This project holds no pharmacology corpus, affinity dataset, or trial data, so any drug-mechanism or drug-target statement would be invented.",
+      "template": "Drug mechanisms are NOT REPRESENTED in this atlas: no pharmacology corpus or trial data was ingested, and no drug-target claim is recorded. This question cannot be answered from the Phase 8 layer. No mechanism is stated or implied."
+    },
+    {
+      "refusal_id": "p8.refuse.disorder_causation",
+      "topic": "disorder_causation",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "reason": "Circuit-to-disorder causal claims require clinical evidence this project does not hold (no clinical corpus, no trial data, no expert review). Correlation is not causation.",
+      "template": "Disorder-causation claims are refused: the Phase 8 layer records anatomical co-location only (correlation only), and this project holds no clinical evidence base for causal claims about any condition. Correlation is not causation. No causal claim is made."
+    },
+    {
+      "refusal_id": "p8.refuse.dsm_criteria",
+      "topic": "dsm_criteria",
+      "status": "NOT_REPRESENTED",
+      "reason": "DSM criteria were not ingested in this atlas; stating criteria from general knowledge would be an uncited psychiatric claim.",
+      "template": "DSM criteria are NOT REPRESENTED in this atlas: no diagnostic manual content was ingested, and no criteria are recorded. This question cannot be answered from the Phase 8 layer. No criteria are stated or implied."
+    },
+    {
+      "refusal_id": "p8.refuse.diagnosis_request",
+      "topic": "diagnosis_request",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "reason": "Anatomy-browsing software with no clinical corpus, no validated diagnostic data, and no expert review cannot support diagnosis; any diagnostic output would be diagnostic automation (registry hard stop).",
+      "template": "Diagnosis is refused: this teaching layer cannot support diagnostic output of any kind — it is an anatomical study aid, not a diagnostic instrument. No diagnostic statement is made. Please consult qualified clinical supervision for any diagnostic question."
+    },
+    {
+      "refusal_id": "p8.refuse.treatment_request",
+      "topic": "treatment_request",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "reason": "Anatomy-browsing software with no trial data, no pharmacology corpus, and no expert review cannot support treatment decisions; any treatment output would be a hard-stop violation.",
+      "template": "Treatment guidance is refused: this teaching layer cannot support treatment decisions, prescribing, dosing, or any patient-specific recommendation. No treatment statement is made. Please consult qualified clinical supervision for any treatment question."
+    },
+    {
+      "refusal_id": "p8.refuse.neuromodulation_request",
+      "topic": "neuromodulation_request",
+      "status": "NOT_REPRESENTED",
+      "reason": "This project holds no neuromodulation corpus (no stimulation protocols, targets, parameters, or indications were ingested with evidence), so any stimulation guidance would be invented.",
+      "template": "Neuromodulation guidance is NOT REPRESENTED in this atlas: no stimulation protocols, targets, parameters, or indications were ingested with evidence. This question cannot be answered from the Phase 8 layer. No target, parameter, or indication is stated or implied."
+    }
+  ]
+}

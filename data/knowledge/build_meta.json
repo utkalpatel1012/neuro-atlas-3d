@@ -1,0 +1,18 @@
+{
+  "phase": "6",
+  "generated_by": "scripts/knowledge/build_knowledge.ts",
+  "structure_files_indexed": 63,
+  "available_records": 63,
+  "documented_records": 74,
+  "total_records": 137,
+  "claim_types_used": [
+    "DISTRIBUTION",
+    "RECORD",
+    "ONTOLOGY"
+  ],
+  "literature_claims": 0,
+  "sources": [
+    "data/structures/*.json",
+    "data/anatomical_hierarchy.json"
+  ]
+}

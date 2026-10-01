@@ -1,0 +1,121 @@
+{
+  "knowledge_id": "knowledge.brain.basal_ganglia.left.putamen",
+  "structure_id": "brain.basal_ganglia.left.putamen",
+  "structure_record": "data/structures/putamen_left.json",
+  "geometry_state": "AVAILABLE",
+  "asset_id": "mesh.putamen.left.v1",
+  "display_name": "Putamen (Left)",
+  "latin_name": "Putamen",
+  "clinical_aliases": [],
+  "abbreviations": [],
+  "laterality": "left",
+  "representation_scope": "paired_separate",
+  "hierarchy_path": [
+    "Brain",
+    "Basal ganglia (caudate, putamen, pallidum — Phase 5.1 batch)",
+    "Left putamen"
+  ],
+  "claims": [
+    {
+      "claim_id": "p6.basal-ganglia-left-putamen.distribution-source",
+      "statement": "Source segment FMA72829 from BodyParts3D (Database Center for Life Sciences - DBCLS, Japan) Release 3.0 (2011/06/20) is the distribution source for this structure.",
+      "claim_type": "DISTRIBUTION",
+      "source": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan) Release 3.0 (2011/06/20) (parts_list_e.txt authority, via structure record asset_provenance)",
+      "citation": "data/structures/putamen_left.json (asset_provenance.upstream_asset_id, dataset_name, dataset_version); upstream listing: https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/master/assets/BodyParts3D_data/stl/FMA72829.stl",
+      "evidence_level": "DISTRIBUTION_LISTING"
+    },
+    {
+      "claim_id": "p6.basal-ganglia-left-putamen.identity",
+      "statement": "Official English name \"Putamen (Left)\" with Latin name \"Putamen\", as recorded in the structure record.",
+      "claim_type": "RECORD",
+      "source": "Project structure record data/structures/putamen_left.json",
+      "citation": "data/structures/putamen_left.json (name.official_english, name.official_latin, canonical_name, latin_name)",
+      "evidence_level": "PROJECT_RECORD"
+    },
+    {
+      "claim_id": "p6.basal-ganglia-left-putamen.hierarchy",
+      "statement": "Catalogued under hierarchy path \"Brain › Basal ganglia (caudate, putamen, pallidum — Phase 5.1 batch) › Left putamen\" (catalog node \"Left putamen\"); containment follows the recorded part_of relationship.",
+      "claim_type": "RECORD",
+      "source": "Project hierarchy catalog + structure record hierarchy block",
+      "citation": "data/anatomical_hierarchy.json (node \"brain.basal_ganglia.left.putamen\" or catalog path); data/structures/putamen_left.json (hierarchy.parent_id, hierarchy.groups)",
+      "evidence_level": "PROJECT_RECORD"
+    },
+    {
+      "claim_id": "p6.basal-ganglia-left-putamen.laterality",
+      "statement": "Laterality \"left\" with representation scope \"paired_separate\", as recorded in the structure record.",
+      "claim_type": "RECORD",
+      "source": "Project structure record data/structures/putamen_left.json",
+      "citation": "data/structures/putamen_left.json (laterality, representation_scope)",
+      "evidence_level": "PROJECT_RECORD"
+    },
+    {
+      "claim_id": "p6.basal-ganglia-left-putamen.measurements",
+      "statement": "Measured spatial facts: estimated volume 4.996 cm3; registered centroid [-23.84, 3.32, -35.84] mm in canonical_atlas_ras (bounding-box center, NOT vertex mean); registration_status REGISTRATION_PENDING (no template registration computed).",
+      "claim_type": "RECORD",
+      "source": "Project QA measurement recorded in data/structures/putamen_left.json",
+      "citation": "data/structures/putamen_left.json (spatial.estimated_volume_cm3, spatial.stereotaxic_registration, spatial.bounding_box, spatial.centroid_convention)",
+      "evidence_level": "PROJECT_MEASUREMENT"
+    },
+    {
+      "claim_id": "p6.basal-ganglia-left-putamen.asset",
+      "statement": "Servable asset \"mesh.putamen.left.v1\" (validation CLEARED); upstream license CC_BY_SA_2_1_JP; commercial redistribution LEGAL_REVIEW_REQUIRED (portal-listing retroactivity unresolved).",
+      "claim_type": "RECORD",
+      "source": "Project asset provenance in data/structures/putamen_left.json + assets manifest",
+      "citation": "data/structures/putamen_left.json (asset_id, asset_provenance.validation_status, asset_provenance.upstream_license, asset_provenance.legal_review_notes); assets/manifests/assets.manifest.json",
+      "evidence_level": "PROJECT_RECORD"
+    }
+  ],
+  "ontology": {
+    "fma_id": {
+      "value": "FMA:72829",
+      "verification": "VERIFIED",
+      "basis": "Record FMA number equals distribution upstream segment number (FMA72829); distribution-verified via data/structures/putamen_left.json."
+    },
+    "ta2_id": {
+      "value": null,
+      "verification": "UNVERIFIED",
+      "basis": "No TA2 lookup performed (record states UNVERIFIED / lookup pass required); omitted as unverified. Source: data/structures/putamen_left.json."
+    },
+    "uberon_id": {
+      "value": null,
+      "verification": "UNVERIFIED",
+      "basis": "No Uberon lookup performed (record states UNVERIFIED / lookup pass required); omitted as unverified. Source: data/structures/putamen_left.json."
+    }
+  },
+  "gaps": [
+    {
+      "topic": "boundaries",
+      "reason": "Delimiting boundaries beyond the distribution segment surface are not stated in the structure record or hierarchy catalog; omitted (no checkable source)."
+    },
+    {
+      "topic": "neighbors",
+      "reason": "Adjacent-structure relationships beyond recorded part_of containment are not stated in the indexed sources; omitted (no checkable source)."
+    },
+    {
+      "topic": "vascular-relations",
+      "reason": "Arterial supply and venous drainage are not stated in the structure record or hierarchy catalog; omitted (no checkable source)."
+    },
+    {
+      "topic": "role-in-behavior-or-physiology",
+      "reason": "Role in behavior or physiology is not stated in the indexed sources and is out of scope for Phase 6; reserved for a later evidenced layer. No functional claim is made or implied."
+    },
+    {
+      "topic": "clinical-associations",
+      "reason": "Clinical, diagnostic, and disorder-related associations are out of scope for Phase 6 (unauthorized without a later evidenced layer) and are omitted. No clinical claim is made or implied."
+    },
+    {
+      "topic": "imaging-appearance",
+      "reason": "Modality-specific imaging appearance is not stated in the indexed sources; omitted (no checkable source)."
+    },
+    {
+      "topic": "microstructure",
+      "reason": "Histology, lamination, and subfield microstructure are not resolved in the indexed macroscopic sources; omitted (no checkable source)."
+    },
+    {
+      "topic": "ontology-lookups",
+      "reason": "TA2/Uberon identifiers stay UNVERIFIED (no lookup pass performed); FMA is VERIFIED only where the record number equals the distribution upstream segment number. No ontology identifier is invented."
+    }
+  ],
+  "generated_by": "scripts/knowledge/build_knowledge.ts",
+  "phase": "6"
+}

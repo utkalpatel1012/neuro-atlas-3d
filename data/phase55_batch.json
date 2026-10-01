@@ -1,0 +1,105 @@
+{
+  "batch": "phase55-cortical-completion",
+  "generated_at": "2026-09-29T15:56:14.993Z",
+  "generator": "scripts/pipeline/prepare_cortical55_batch.ts",
+  "items": [
+    {
+      "assetId": "mesh.inferior_temporal_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.temporal_lobe.inferior_temporal_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CORTEX",
+      "detail": "Staged FMA72687 (13056 tris), SHA-256 matches committed pin in data/phase55_source_hashes.json; right-geometry measured (X -58.6..-17.1). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.inferior_temporal_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.temporal_lobe.inferior_temporal_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CORTEX",
+      "detail": "Staged FMA72688 (13040 tris), SHA-256 matches committed pin in data/phase55_source_hashes.json; left-geometry measured (X 15.8..57.3). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.fusiform_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.temporal_lobe.fusiform_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CORTEX",
+      "detail": "Staged FMA72689 (6150 tris), SHA-256 matches committed pin in data/phase55_source_hashes.json; right-geometry measured (X -41.5..-11.1). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.fusiform_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.temporal_lobe.fusiform_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CORTEX",
+      "detail": "Staged FMA72690 (6148 tris), SHA-256 matches committed pin in data/phase55_source_hashes.json; left-geometry measured (X 9.9..40.1). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.parahippocampal_gyrus.right.v1",
+      "structureId": "brain.telencephalon.right.limbic.parahippocampal_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CORTEX",
+      "detail": "Staged FMA72705 (3454 tris), SHA-256 matches committed pin in data/phase55_source_hashes.json; right-geometry measured (X -29.6..-9.6). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.parahippocampal_gyrus.left.v1",
+      "structureId": "brain.telencephalon.left.limbic.parahippocampal_gyrus",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CORTEX",
+      "detail": "Staged FMA72706 (3452 tris), SHA-256 matches committed pin in data/phase55_source_hashes.json; left-geometry measured (X 8.3..28.3). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.superior_temporal_gyrus_anterior.right.v1",
+      "structureId": "brain.telencephalon.right.temporal_lobe.superior_temporal_gyrus_anterior",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CORTEX",
+      "detail": "Staged FMA72800 (8348 tris), SHA-256 matches committed pin in data/phase55_source_hashes.json; right-geometry measured (X -60.3..-26.4). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.superior_temporal_gyrus_anterior.left.v1",
+      "structureId": "brain.telencephalon.left.temporal_lobe.superior_temporal_gyrus_anterior",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CORTEX",
+      "detail": "Staged FMA72801 (8338 tris), SHA-256 matches committed pin in data/phase55_source_hashes.json; left-geometry measured (X 25.1..59.0). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.superior_temporal_gyrus_posterior.right.v1",
+      "structureId": "brain.telencephalon.right.temporal_lobe.superior_temporal_gyrus_posterior",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CORTEX",
+      "detail": "Staged FMA72804 (10472 tris), SHA-256 matches committed pin in data/phase55_source_hashes.json; right-geometry measured (X -67.4..-37.1). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.superior_temporal_gyrus_posterior.left.v1",
+      "structureId": "brain.telencephalon.left.temporal_lobe.superior_temporal_gyrus_posterior",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CORTEX",
+      "detail": "Staged FMA72805 (10472 tris), SHA-256 matches committed pin in data/phase55_source_hashes.json; left-geometry measured (X 35.8..66.1). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.insula.right.v1",
+      "structureId": "brain.telencephalon.right.insular_lobe.insula",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CORTEX",
+      "detail": "Staged FMA72977 (12240 tris), SHA-256 matches committed pin in data/phase55_source_hashes.json; right-geometry measured (X -43.1..-24.8). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.insula.left.v1",
+      "structureId": "brain.telencephalon.left.insular_lobe.insula",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CORTEX",
+      "detail": "Staged FMA72978 (12242 tris), SHA-256 matches committed pin in data/phase55_source_hashes.json; left-geometry measured (X 23.5..41.8). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.occipital_lobe.right.v1",
+      "structureId": "brain.telencephalon.right.occipital_lobe",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CORTEX",
+      "detail": "Staged FMA72975 (18762 tris), SHA-256 matches committed pin in data/phase55_source_hashes.json; right-geometry measured (X -42.6..-1.2). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    },
+    {
+      "assetId": "mesh.occipital_lobe.left.v1",
+      "structureId": "brain.telencephalon.left.occipital_lobe",
+      "state": "SOURCE_AVAILABLE",
+      "category": "CORTEX",
+      "detail": "Staged FMA72976 (18746 tris), SHA-256 matches committed pin in data/phase55_source_hashes.json; left-geometry measured (X -0.1..41.2). Mirror conversion itself remains MIRROR_CONVERSION_UNVERIFIED."
+    }
+  ]
+}

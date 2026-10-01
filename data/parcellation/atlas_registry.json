@@ -1,0 +1,53 @@
+{
+  "_comment": "Phase 7 cortical parcellation atlas registry — BIBLIOGRAPHIC IDENTITY ONLY. No parcel geometry is ingested, no dataset was acquired, no version is pinned where none was acquired. Statuses are honest license/source postures, not clearances.",
+  "registry_version": "7.0.0-deferral",
+  "atlases": [
+    {
+      "atlas": "HCP_MMP1",
+      "display_name": "HCP Multi-Modal Parcellation 1.0",
+      "bibliographic_identity": {
+        "citation": "Glasser et al., Nature 2016",
+        "areas_per_hemisphere": 180,
+        "note": "Bibliographic identity only — no geometry, no dataset acquired."
+      },
+      "dataset_acquired": false,
+      "atlas_version": null,
+      "version_note": "No version pinned because no dataset was acquired.",
+      "governing_terms": "HCP Open Access Data Use Terms",
+      "terms_accepted": false,
+      "terms_acceptance_record": null,
+      "status": "LEGAL_REVIEW_REQUIRED",
+      "mapping_state": "MAPPING_PENDING",
+      "geometry_bytes_in_repo": "NONE",
+      "unblock_conditions": [
+        "Formal legal review of the HCP Open Access Data Use Terms with a recorded outcome",
+        "Exact upstream dataset version identified and pinned (dataset acquisition)",
+        "Terms acceptance record filed in the repo provenance chain",
+        "Validated registration method from parcel space to project canonical space, with QA report on disk"
+      ]
+    },
+    {
+      "atlas": "Brodmann",
+      "display_name": "Brodmann cytoarchitectonic areas (classical BA 1-52)",
+      "bibliographic_identity": {
+        "citation": "Brodmann, Vergleichende Lokalisationslehre der Grosshirnrinde, 1909",
+        "areas": "BA 1-52 (classical numbering)",
+        "note": "Bibliographic identity only — classical published maps, no geometry, no single downloadable geometry release available to this project."
+      },
+      "dataset_acquired": false,
+      "atlas_version": null,
+      "version_note": "No verified source release established; nothing to pin a version to.",
+      "governing_terms": null,
+      "terms_accepted": false,
+      "terms_acceptance_record": null,
+      "status": "SOURCE_UNVERIFIED",
+      "mapping_state": "MAPPING_PENDING",
+      "geometry_bytes_in_repo": "NONE",
+      "unblock_conditions": [
+        "Verified source release identified (verified source/license triple: exact source, exact version, exact license)",
+        "License chain verified as usable by this project with a recorded outcome",
+        "Validated registration method from parcel space to project canonical space, with QA report on disk"
+      ]
+    }
+  ]
+}

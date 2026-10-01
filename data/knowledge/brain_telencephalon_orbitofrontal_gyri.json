@@ -1,0 +1,103 @@
+{
+  "knowledge_id": "knowledge.brain.telencephalon.orbitofrontal_gyri",
+  "structure_id": "brain.telencephalon.orbitofrontal_gyri",
+  "structure_record": null,
+  "geometry_state": "DOCUMENTED",
+  "asset_id": null,
+  "display_name": "Orbitofrontal gyri (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)",
+  "latin_name": null,
+  "clinical_aliases": [],
+  "abbreviations": [],
+  "laterality": "unspecified",
+  "representation_scope": null,
+  "hierarchy_path": [
+    "Brain",
+    "Telencephalon (cerebrum)",
+    "Left cerebral hemisphere",
+    "Left frontal lobe",
+    "Orbitofrontal gyri (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)"
+  ],
+  "claims": [
+    {
+      "claim_id": "p6.telencephalon-orbitofrontal-gyri.catalog-state",
+      "statement": "Catalogued in the project hierarchy as DOCUMENTED (identity known, no geometry) under \"Left frontal lobe\". No mesh exists and none was synthesized.",
+      "claim_type": "RECORD",
+      "source": "Project hierarchy catalog",
+      "citation": "data/anatomical_hierarchy.json (node \"brain.telencephalon.orbitofrontal_gyri\", geometry_state DOCUMENTED)",
+      "evidence_level": "CATALOG_ENTRY"
+    },
+    {
+      "claim_id": "p6.telencephalon-orbitofrontal-gyri.catalog-identity",
+      "statement": "Catalog identity is the hierarchy node name \"Orbitofrontal gyri (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)\" at level 3 with laterality \"unspecified\" derived from the node identifier and name.",
+      "claim_type": "RECORD",
+      "source": "Project hierarchy catalog",
+      "citation": "data/anatomical_hierarchy.json (node \"brain.telencephalon.orbitofrontal_gyri\": name, level)",
+      "evidence_level": "CATALOG_ENTRY"
+    }
+  ],
+  "ontology": {
+    "fma_id": {
+      "value": null,
+      "verification": "UNVERIFIED",
+      "basis": "No ontology identifier recorded for this catalog entry; omitted as unverified. Source: data/anatomical_hierarchy.json (node \"brain.telencephalon.orbitofrontal_gyri\")."
+    },
+    "ta2_id": {
+      "value": null,
+      "verification": "UNVERIFIED",
+      "basis": "No TA2 identifier recorded for this catalog entry; omitted as unverified. Source: data/anatomical_hierarchy.json (node \"brain.telencephalon.orbitofrontal_gyri\")."
+    },
+    "uberon_id": {
+      "value": null,
+      "verification": "UNVERIFIED",
+      "basis": "No Uberon identifier recorded for this catalog entry; omitted as unverified. Source: data/anatomical_hierarchy.json (node \"brain.telencephalon.orbitofrontal_gyri\")."
+    }
+  },
+  "gaps": [
+    {
+      "topic": "boundaries",
+      "reason": "Delimiting boundaries beyond the distribution segment surface are not stated in the structure record or hierarchy catalog; omitted (no checkable source)."
+    },
+    {
+      "topic": "neighbors",
+      "reason": "Adjacent-structure relationships beyond recorded part_of containment are not stated in the indexed sources; omitted (no checkable source)."
+    },
+    {
+      "topic": "vascular-relations",
+      "reason": "Arterial supply and venous drainage are not stated in the structure record or hierarchy catalog; omitted (no checkable source)."
+    },
+    {
+      "topic": "role-in-behavior-or-physiology",
+      "reason": "Role in behavior or physiology is not stated in the indexed sources and is out of scope for Phase 6; reserved for a later evidenced layer. No functional claim is made or implied."
+    },
+    {
+      "topic": "clinical-associations",
+      "reason": "Clinical, diagnostic, and disorder-related associations are out of scope for Phase 6 (unauthorized without a later evidenced layer) and are omitted. No clinical claim is made or implied."
+    },
+    {
+      "topic": "imaging-appearance",
+      "reason": "Modality-specific imaging appearance is not stated in the indexed sources; omitted (no checkable source)."
+    },
+    {
+      "topic": "microstructure",
+      "reason": "Histology, lamination, and subfield microstructure are not resolved in the indexed macroscopic sources; omitted (no checkable source)."
+    },
+    {
+      "topic": "geometry",
+      "reason": "No mesh exists for this catalog entry (geometry_state DOCUMENTED: identity known, no geometry). Nothing was synthesized; see NOT CURRENTLY REPRESENTED handling in the viewer."
+    },
+    {
+      "topic": "latin-name",
+      "reason": "No Latin name is recorded for this catalog entry in the indexed sources; omitted (no checkable source)."
+    },
+    {
+      "topic": "aliases-abbreviations",
+      "reason": "No aliases or abbreviations are recorded for this catalog entry in the indexed sources; none are indexed for search (no checkable source)."
+    },
+    {
+      "topic": "measurements",
+      "reason": "No measured spatial facts (volume, centroid, bounding box) exist for this catalog entry; omitted (no geometry to measure)."
+    }
+  ],
+  "generated_by": "scripts/knowledge/build_knowledge.ts",
+  "phase": "6"
+}

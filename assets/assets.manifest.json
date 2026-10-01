@@ -1,8 +1,8 @@
 {
   "manifest_version": "1.1.0",
-  "generated_at": "2026-09-28T11:02:24.105Z",
+  "generated_at": "2026-09-29T15:59:53.542Z",
   "generator_script": "scripts/pipeline/update_manifest.ts",
-  "total_assets": 49,
+  "total_assets": 63,
   "assets": {
     "mesh.amygdala.left.v1": {
       "asset_id": "mesh.amygdala.left.v1",
@@ -3376,6 +3376,348 @@
         }
       }
     },
+    "mesh.fusiform_gyrus.left.v1": {
+      "asset_id": "mesh.fusiform_gyrus.left.v1",
+      "structure_id": "brain.telencephalon.left.temporal_lobe.fusiform_gyrus",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72690",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-29",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72690.stl",
+            "verified_source_sha256": "f7573954276f752193fe5b80b2ebab8e717d0e6c2b11f8ccea12c632c8abea3a",
+            "source_byte_length": 307484
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 8.179
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 33.08,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "c8cd73195139503ff3d4cdd27056dfdd9b8434ea7078602842f7b6d532e3b7c2",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72690 fusiform gyrus (left)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        -25,
+        -24.65,
+        -20
+      ],
+      "dimensions_mm": [
+        30.3,
+        25.39,
+        57.7
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.fusiform_gyrus.left.v1/canonical/mesh.fusiform_gyrus.left.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.fusiform_gyrus.left.v1/lod/mesh.fusiform_gyrus.left.v1.lod0.glb",
+          "sha256": "9ed7a5d3deb56d94d2d5c8ed79b9d7d973f05e38943804e2006daf69f2f220a5",
+          "triangles": 6148,
+          "bytes": 111696
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.fusiform_gyrus.left.v1/lod/mesh.fusiform_gyrus.left.v1.lod1.glb",
+          "sha256": "5716ef546a259a5ea5452fc1cb736f6e688ac2ab831e1dc68e8c066c5fedd4ce",
+          "triangles": 4610,
+          "bytes": 84012
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.fusiform_gyrus.left.v1/lod/mesh.fusiform_gyrus.left.v1.lod2.glb",
+          "sha256": "f28ad74af86fb3b6a7a8bfbef7067328fe6a91f400c7012d42b1cabcd09e02d9",
+          "triangles": 3074,
+          "bytes": 56364
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.fusiform_gyrus.left.v1/lod/mesh.fusiform_gyrus.left.v1.lod3.glb",
+          "sha256": "b6da594f6eaa795904398f3a2c2ed0539d96a6773b085bbd33802f69a680d3e3",
+          "triangles": 1536,
+          "bytes": 28672
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.fusiform_gyrus.left.v1/runtime/mesh.fusiform_gyrus.left.v1.lod0.meshopt.glb",
+          "sha256": "d763649a7e50b414c90976287fb167972ff628e1e778648e31849bf0aaa232c1",
+          "bytes": 72444,
+          "compression_ratio": 1.54
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.fusiform_gyrus.left.v1/runtime/mesh.fusiform_gyrus.left.v1.lod1.meshopt.glb",
+          "sha256": "428695df8597aa032e5c8ed887a550703d7419844f1c533366a4f35b649ea97d",
+          "bytes": 55932,
+          "compression_ratio": 1.5
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.fusiform_gyrus.left.v1/runtime/mesh.fusiform_gyrus.left.v1.lod2.meshopt.glb",
+          "sha256": "17a4c45be607da0d08a6e36c5a96c91a3296274a2729b06ca7696bba85a68794",
+          "bytes": 38912,
+          "compression_ratio": 1.45
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.fusiform_gyrus.left.v1/runtime/mesh.fusiform_gyrus.left.v1.lod3.meshopt.glb",
+          "sha256": "3864bc94bf213679d44d0b2169fa603d041ae945b34da74457922883702a1bce",
+          "bytes": 20584,
+          "compression_ratio": 1.39
+        }
+      }
+    },
+    "mesh.fusiform_gyrus.right.v1": {
+      "asset_id": "mesh.fusiform_gyrus.right.v1",
+      "structure_id": "brain.telencephalon.right.temporal_lobe.fusiform_gyrus",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72689",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-29",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72689.stl",
+            "verified_source_sha256": "5f7263b7768b54a4ef8b8e31a1d0ef7a7d8f72ccce5011fcbfce66b36a27ad58",
+            "source_byte_length": 307584
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 8.178
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 33.01,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "15de064af14c3276f171eb18a04f0890b05fd40d2cbf81a1c2344c84043cb233",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72689 fusiform gyrus (right)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        26.29,
+        -24.64,
+        -20.01
+      ],
+      "dimensions_mm": [
+        30.32,
+        25.4,
+        57.69
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.fusiform_gyrus.right.v1/canonical/mesh.fusiform_gyrus.right.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.fusiform_gyrus.right.v1/lod/mesh.fusiform_gyrus.right.v1.lod0.glb",
+          "sha256": "da62a9a9ff5f1375eb5e806578bdf06f00650fc7db7f52cf16cbbb5dc118447c",
+          "triangles": 6150,
+          "bytes": 111728
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.fusiform_gyrus.right.v1/lod/mesh.fusiform_gyrus.right.v1.lod1.glb",
+          "sha256": "3a56b4fe889d02ccddcad21316f6fee66faa0eca7588e37ba41f741d04ea2357",
+          "triangles": 4612,
+          "bytes": 84044
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.fusiform_gyrus.right.v1/lod/mesh.fusiform_gyrus.right.v1.lod2.glb",
+          "sha256": "a87de03289d7f63b3f2607cb8e213fccc8091400984858712570387033508283",
+          "triangles": 3074,
+          "bytes": 56360
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.fusiform_gyrus.right.v1/lod/mesh.fusiform_gyrus.right.v1.lod3.glb",
+          "sha256": "d9c01f03c8686b816911eb62440aef4b3a0788c2bb92887b7fb50798196c11c6",
+          "triangles": 1536,
+          "bytes": 28668
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.fusiform_gyrus.right.v1/runtime/mesh.fusiform_gyrus.right.v1.lod0.meshopt.glb",
+          "sha256": "6fb980a72ededf707b3d5b56bab70c32194b1c25aef5a94bea6ba18eecbaf7a5",
+          "bytes": 72720,
+          "compression_ratio": 1.54
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.fusiform_gyrus.right.v1/runtime/mesh.fusiform_gyrus.right.v1.lod1.meshopt.glb",
+          "sha256": "e46ace743343dbd90c369c16b859999c5293e09e0730da04a65a3797709564fc",
+          "bytes": 55996,
+          "compression_ratio": 1.5
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.fusiform_gyrus.right.v1/runtime/mesh.fusiform_gyrus.right.v1.lod2.meshopt.glb",
+          "sha256": "250bbfc931947873e6a316f8f61d5634af08143f248de69a73d757c735e027d4",
+          "bytes": 38752,
+          "compression_ratio": 1.45
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.fusiform_gyrus.right.v1/runtime/mesh.fusiform_gyrus.right.v1.lod3.meshopt.glb",
+          "sha256": "48361b790b4d3c1666312772dcf565b438b6a95970c43df068dc88db9110d2c7",
+          "bytes": 20652,
+          "compression_ratio": 1.39
+        }
+      }
+    },
     "mesh.globus_pallidus.left.v1": {
       "asset_id": "mesh.globus_pallidus.left.v1",
       "structure_id": "brain.basal_ganglia.left.globus_pallidus",
@@ -4057,6 +4399,690 @@
           "sha256": "c97238089be5bc415c1f50ea5846649c4e394bee12c18fb04a3f97a5f9f60b3f",
           "bytes": 14700,
           "compression_ratio": 1.43
+        }
+      }
+    },
+    "mesh.inferior_temporal_gyrus.left.v1": {
+      "asset_id": "mesh.inferior_temporal_gyrus.left.v1",
+      "structure_id": "brain.telencephalon.left.temporal_lobe.inferior_temporal_gyrus",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72688",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-29",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72688.stl",
+            "verified_source_sha256": "fe75592f16a8c604c07f17e788e22f34801467f14f4a1e9d1066da3759a7616f",
+            "source_byte_length": 652084
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 18.502
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 34.18,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "08fac89e3be8e2d913fb20550648bb2a5169cfc8c0482c154187fedd2c5d2379",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72688 inferior temporal gyrus (left)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        -36.53,
+        -25.38,
+        -14.65
+      ],
+      "dimensions_mm": [
+        41.51,
+        27.96,
+        90.81
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.inferior_temporal_gyrus.left.v1/canonical/mesh.inferior_temporal_gyrus.left.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.left.v1/lod/mesh.inferior_temporal_gyrus.left.v1.lod0.glb",
+          "sha256": "a996ab50bd46629e76bfd2f4a31527d3834c9fa14dc44c3f9bf60a09513e424e",
+          "triangles": 13040,
+          "bytes": 235772
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.left.v1/lod/mesh.inferior_temporal_gyrus.left.v1.lod1.glb",
+          "sha256": "b9382a4e8620883d19666c2b86bc59340c8a7c7c3fd2f83f91ce3f409d4aa5aa",
+          "triangles": 9780,
+          "bytes": 177092
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.left.v1/lod/mesh.inferior_temporal_gyrus.left.v1.lod2.glb",
+          "sha256": "52b401ba9f14394ef2a91232d5e9ffbbce453353f1bb0c2f878a6c113434ac2b",
+          "triangles": 6520,
+          "bytes": 118412
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.left.v1/lod/mesh.inferior_temporal_gyrus.left.v1.lod3.glb",
+          "sha256": "03a9cc76d0360dedc4e6af20a023b786ddc3bff17a1a0f7341039959a405faa9",
+          "triangles": 3260,
+          "bytes": 59732
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.left.v1/runtime/mesh.inferior_temporal_gyrus.left.v1.lod0.meshopt.glb",
+          "sha256": "30c702c7fe2c2442fd4d04fccd92ab26b395b9b3d43520edd1479bf02774c8cd",
+          "bytes": 150892,
+          "compression_ratio": 1.56
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.left.v1/runtime/mesh.inferior_temporal_gyrus.left.v1.lod1.meshopt.glb",
+          "sha256": "a427564d2ad124950b1e83e95dc61bf96a170f765cce4dd29147e62b79f08baf",
+          "bytes": 116044,
+          "compression_ratio": 1.53
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.left.v1/runtime/mesh.inferior_temporal_gyrus.left.v1.lod2.meshopt.glb",
+          "sha256": "fb14e97961a338eccd4f8576a76d3af9afef05d5ee0f1a9f67e82c11ae6fb718",
+          "bytes": 79988,
+          "compression_ratio": 1.48
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.left.v1/runtime/mesh.inferior_temporal_gyrus.left.v1.lod3.meshopt.glb",
+          "sha256": "53105fe94f670bd10481ad08a42b3151da3b166b3a4754cb8002a000b40cf6c7",
+          "bytes": 42100,
+          "compression_ratio": 1.42
+        }
+      }
+    },
+    "mesh.inferior_temporal_gyrus.right.v1": {
+      "asset_id": "mesh.inferior_temporal_gyrus.right.v1",
+      "structure_id": "brain.telencephalon.right.temporal_lobe.inferior_temporal_gyrus",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72687",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-29",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72687.stl",
+            "verified_source_sha256": "ec04eabe123163d811f4eb4cbca8baf6cfc018ee5994bfe48b04a6b1991ad479",
+            "source_byte_length": 652884
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 18.509
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 34.17,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "449c8009ec9e130a0b8e48d347cb40fc8d33f967158a3c9bb904dba77aa6e915",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72687 inferior temporal gyrus (right)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        37.85,
+        -25.38,
+        -14.64
+      ],
+      "dimensions_mm": [
+        41.5,
+        27.97,
+        90.81
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.inferior_temporal_gyrus.right.v1/canonical/mesh.inferior_temporal_gyrus.right.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.right.v1/lod/mesh.inferior_temporal_gyrus.right.v1.lod0.glb",
+          "sha256": "0de98d0e50b4743f0e7babdbb946d0d01222157cc06d1d71590126dcb29f2224",
+          "triangles": 13056,
+          "bytes": 236060
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.right.v1/lod/mesh.inferior_temporal_gyrus.right.v1.lod1.glb",
+          "sha256": "3cf507bbb576dc8dabe703e18f4f055c6b764628029a83f54531777640b6a97a",
+          "triangles": 9792,
+          "bytes": 177308
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.right.v1/lod/mesh.inferior_temporal_gyrus.right.v1.lod2.glb",
+          "sha256": "5b13ccd144c32046e39f1c1592c06fa7762cfedf47f6c4dfa956e3955dea048c",
+          "triangles": 6528,
+          "bytes": 118556
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.right.v1/lod/mesh.inferior_temporal_gyrus.right.v1.lod3.glb",
+          "sha256": "3eff5c77d137f0737cff93c4fe582a53047e212104b4e4e218a536235bc26760",
+          "triangles": 3264,
+          "bytes": 59804
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.right.v1/runtime/mesh.inferior_temporal_gyrus.right.v1.lod0.meshopt.glb",
+          "sha256": "3367929e3e8943cd2f215f1073662da022087a18ebb289927680220e6a00cb96",
+          "bytes": 150996,
+          "compression_ratio": 1.56
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.right.v1/runtime/mesh.inferior_temporal_gyrus.right.v1.lod1.meshopt.glb",
+          "sha256": "37604314702c3f0d5b068e6691e95138407f743dbc4fdf470bb01e50087ec690",
+          "bytes": 116248,
+          "compression_ratio": 1.53
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.right.v1/runtime/mesh.inferior_temporal_gyrus.right.v1.lod2.meshopt.glb",
+          "sha256": "5bd09babe77ab9ea16a227b75061fc3ddd461608d46d3d63df39210bf02a1c57",
+          "bytes": 80044,
+          "compression_ratio": 1.48
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.inferior_temporal_gyrus.right.v1/runtime/mesh.inferior_temporal_gyrus.right.v1.lod3.meshopt.glb",
+          "sha256": "0bd4b926e7e234fa16ee1024435f5ea844936ff37d1895a2e01c1e973aab9478",
+          "bytes": 42276,
+          "compression_ratio": 1.41
+        }
+      }
+    },
+    "mesh.insula.left.v1": {
+      "asset_id": "mesh.insula.left.v1",
+      "structure_id": "brain.telencephalon.left.insular_lobe.insula",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72978",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-29",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72978.stl",
+            "verified_source_sha256": "8ab8b6fdee006cf8776db3b3c9857dd10aa9d60cd1851c2e7975eb7978c8d57b",
+            "source_byte_length": 612184
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 9.562
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 36.14,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "e7ceb8dfba9e8c3ce2412ae80822b64694e1fb0024eab51a91d8aceddcbdac2e",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72978 insula (left)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        -32.66,
+        7.38,
+        -35.45
+      ],
+      "dimensions_mm": [
+        18.31,
+        32.73,
+        48.94
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.insula.left.v1/canonical/mesh.insula.left.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.insula.left.v1/lod/mesh.insula.left.v1.lod0.glb",
+          "sha256": "6403229ec7245afdb987fc7973f40546c5fb87d38ba517c6691b92e19aadcb63",
+          "triangles": 12242,
+          "bytes": 221376
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.insula.left.v1/lod/mesh.insula.left.v1.lod1.glb",
+          "sha256": "593f9727d7ca48732a01357dbcadff1ab799caa24f1d359b6902fda908ef1fdb",
+          "triangles": 9180,
+          "bytes": 166260
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.insula.left.v1/lod/mesh.insula.left.v1.lod2.glb",
+          "sha256": "52f8d696bda4de965230b1361f19d33692513b7680ac09c2dbeaa229d5403c75",
+          "triangles": 6120,
+          "bytes": 111180
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.insula.left.v1/lod/mesh.insula.left.v1.lod3.glb",
+          "sha256": "fbebb174e77d5e6eeb2a0d203950e3eb888d952ef22468402f0f22cb2e151469",
+          "triangles": 3060,
+          "bytes": 56096
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.insula.left.v1/runtime/mesh.insula.left.v1.lod0.meshopt.glb",
+          "sha256": "dfc22f9b370c24385dbda5a4cdc58831b0f94b12a297ee4e770a943ceed4ef6e",
+          "bytes": 137404,
+          "compression_ratio": 1.61
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.insula.left.v1/runtime/mesh.insula.left.v1.lod1.meshopt.glb",
+          "sha256": "8c30708ee5841a69450b09c312baa7660a9b02522e7d2a0a2e0bbef0f4b8262f",
+          "bytes": 105692,
+          "compression_ratio": 1.57
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.insula.left.v1/runtime/mesh.insula.left.v1.lod2.meshopt.glb",
+          "sha256": "adf99785980e674e801468ab6c72dddbe3c84e880507dbdbaebe338e32a38ee4",
+          "bytes": 72768,
+          "compression_ratio": 1.53
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.insula.left.v1/runtime/mesh.insula.left.v1.lod3.meshopt.glb",
+          "sha256": "ee27f57a32ca26e29e8b70a421bbdc0f69672721893213e75c201164836dee6f",
+          "bytes": 38512,
+          "compression_ratio": 1.46
+        }
+      }
+    },
+    "mesh.insula.right.v1": {
+      "asset_id": "mesh.insula.right.v1",
+      "structure_id": "brain.telencephalon.right.insular_lobe.insula",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72977",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-29",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72977.stl",
+            "verified_source_sha256": "2586b9df7a37d40d5082b0fa212856e285c6cbebb0bac3c7cbf1af06678f949a",
+            "source_byte_length": 612084
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 9.563
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 35.98,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "95a509ef13a7e3da663e194afad0241aa5dd0c5ee53cf549723bdd10f362879c",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72977 insula (right)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        33.97,
+        7.38,
+        -35.46
+      ],
+      "dimensions_mm": [
+        18.32,
+        32.74,
+        48.95
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.insula.right.v1/canonical/mesh.insula.right.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.insula.right.v1/lod/mesh.insula.right.v1.lod0.glb",
+          "sha256": "7d10747c614c37d55491ca74cac0396c3e47743f8704968d51060bfdb1aa3e97",
+          "triangles": 12240,
+          "bytes": 221340
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.insula.right.v1/lod/mesh.insula.right.v1.lod1.glb",
+          "sha256": "88a164f52ffa8a7ff5c32529242f2fc7481d85cd71a7dad50e32a4a7f542af17",
+          "triangles": 9180,
+          "bytes": 166260
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.insula.right.v1/lod/mesh.insula.right.v1.lod2.glb",
+          "sha256": "8337147a87a5838cf5a80b41ede6cbd012acdeed06044a0096f5f3b3172ddf24",
+          "triangles": 6120,
+          "bytes": 111180
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.insula.right.v1/lod/mesh.insula.right.v1.lod3.glb",
+          "sha256": "2769cff8af736aa9c08189ee81b210d20584e3e0be0e874b2b2d447452c86bb6",
+          "triangles": 3060,
+          "bytes": 56096
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.insula.right.v1/runtime/mesh.insula.right.v1.lod0.meshopt.glb",
+          "sha256": "76e96cb40e5cd4c870f0658df240aec9e2df8b11f58222f3ad56edb1a6fa3a5a",
+          "bytes": 137800,
+          "compression_ratio": 1.61
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.insula.right.v1/runtime/mesh.insula.right.v1.lod1.meshopt.glb",
+          "sha256": "603ab22fb2fa02fc967ce5633e9127819055afb86f01a179e5d43c4bea9cca9e",
+          "bytes": 105864,
+          "compression_ratio": 1.57
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.insula.right.v1/runtime/mesh.insula.right.v1.lod2.meshopt.glb",
+          "sha256": "b6bc7f6f2b064c642a417aacce2125c92532ad81ae29d84133c88d4fee744739",
+          "bytes": 72948,
+          "compression_ratio": 1.52
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.insula.right.v1/runtime/mesh.insula.right.v1.lod3.meshopt.glb",
+          "sha256": "bc0db16f4fa204064d54b9809f4067ce1074a3c91ba1dc0a61ad5243f139d143",
+          "bytes": 38632,
+          "compression_ratio": 1.45
         }
       }
     },
@@ -5457,6 +6483,348 @@
         }
       }
     },
+    "mesh.occipital_lobe.left.v1": {
+      "asset_id": "mesh.occipital_lobe.left.v1",
+      "structure_id": "brain.telencephalon.left.occipital_lobe",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72976",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-29",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72976.stl",
+            "verified_source_sha256": "8f718a0c60a316c7e6b60fa440909865927de819d2229c2c513f9dee97644a0a",
+            "source_byte_length": 937384
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 32.697
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 33.92,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "007fc8ce8b3c5c09d1d5ee3220d1c957d35c372006a0207f3c81846445d9d28b",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72976 occipital lobe (left)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        -20.57,
+        -9.81,
+        35.64
+      ],
+      "dimensions_mm": [
+        41.34,
+        51.41,
+        60.02
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.occipital_lobe.left.v1/canonical/mesh.occipital_lobe.left.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.occipital_lobe.left.v1/lod/mesh.occipital_lobe.left.v1.lod0.glb",
+          "sha256": "aa56765ca4c84cc84e7a4e1e7e208376566c4c1b16bee0f0c437b3376d3c0ba2",
+          "triangles": 18746,
+          "bytes": 338464
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.occipital_lobe.left.v1/lod/mesh.occipital_lobe.left.v1.lod1.glb",
+          "sha256": "055c48623e25dcc9c093158f299eb7bd8655f0895a3f913c456b09e24896d611",
+          "triangles": 14058,
+          "bytes": 254076
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.occipital_lobe.left.v1/lod/mesh.occipital_lobe.left.v1.lod2.glb",
+          "sha256": "f64005353966dad5bd48d957c41d9f3dcfe938375c903e4555770085ecedf928",
+          "triangles": 9372,
+          "bytes": 169728
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.occipital_lobe.left.v1/lod/mesh.occipital_lobe.left.v1.lod3.glb",
+          "sha256": "595947952c4e192fa4784c60196033e4864b55274341d210ba3133119b1c4a60",
+          "triangles": 4686,
+          "bytes": 85380
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.occipital_lobe.left.v1/runtime/mesh.occipital_lobe.left.v1.lod0.meshopt.glb",
+          "sha256": "c42a593af753629aed08ef409d67716e55e3615d789e0be244ad0338041f0879",
+          "bytes": 217144,
+          "compression_ratio": 1.56
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.occipital_lobe.left.v1/runtime/mesh.occipital_lobe.left.v1.lod1.meshopt.glb",
+          "sha256": "e6023b50144c65e78b1be569d2fd921fda8ba58692d93a26368d7d4ea125d4e5",
+          "bytes": 166872,
+          "compression_ratio": 1.52
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.occipital_lobe.left.v1/runtime/mesh.occipital_lobe.left.v1.lod2.meshopt.glb",
+          "sha256": "410de6dfd4b6548c509e4dbabcc9d46f981830fbd2d048638e588c5c1e46ed72",
+          "bytes": 114816,
+          "compression_ratio": 1.48
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.occipital_lobe.left.v1/runtime/mesh.occipital_lobe.left.v1.lod3.meshopt.glb",
+          "sha256": "fe35736c61bade9341cbddd47f28e0f5380fe24044c764c61fe355a8c9e2c5e0",
+          "bytes": 61300,
+          "compression_ratio": 1.39
+        }
+      }
+    },
+    "mesh.occipital_lobe.right.v1": {
+      "asset_id": "mesh.occipital_lobe.right.v1",
+      "structure_id": "brain.telencephalon.right.occipital_lobe",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72975",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-29",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72975.stl",
+            "verified_source_sha256": "1ce0984b5f92adef2278d7adb2d6eada578f20da6d00ce642eb085af60711138",
+            "source_byte_length": 938184
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 32.697
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 34.05,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "e722310895e99861e95a6ef64e1f53fafba0a2e6c184a46be89c2f153b781ff8",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72975 occipital lobe (right)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        21.89,
+        -9.81,
+        35.63
+      ],
+      "dimensions_mm": [
+        41.35,
+        51.42,
+        60.04
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.occipital_lobe.right.v1/canonical/mesh.occipital_lobe.right.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.occipital_lobe.right.v1/lod/mesh.occipital_lobe.right.v1.lod0.glb",
+          "sha256": "d8641fd5e4e6c409bbee7909b1d5ca5fd048fa85426de90aaffe5e2d5af6c280",
+          "triangles": 18762,
+          "bytes": 338752
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.occipital_lobe.right.v1/lod/mesh.occipital_lobe.right.v1.lod1.glb",
+          "sha256": "3fb9723a8b6d4febd357e712ced42d8fb2e858361a46f6c4346419b3588d53a2",
+          "triangles": 14070,
+          "bytes": 254292
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.occipital_lobe.right.v1/lod/mesh.occipital_lobe.right.v1.lod2.glb",
+          "sha256": "8411914aff864e868bfd615b93b842d578e5ed6d8d4959c048d800ffdac8b8ae",
+          "triangles": 9380,
+          "bytes": 169872
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.occipital_lobe.right.v1/lod/mesh.occipital_lobe.right.v1.lod3.glb",
+          "sha256": "914905d46c8a4a41dbdd2471eb38fab0760e5b16f70803d25561459e74134937",
+          "triangles": 4690,
+          "bytes": 85452
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.occipital_lobe.right.v1/runtime/mesh.occipital_lobe.right.v1.lod0.meshopt.glb",
+          "sha256": "c84a2704e92160f5b1a0384f91501a66a01ed69aca7fa0085559d5571bc1de32",
+          "bytes": 216816,
+          "compression_ratio": 1.56
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.occipital_lobe.right.v1/runtime/mesh.occipital_lobe.right.v1.lod1.meshopt.glb",
+          "sha256": "f486cac2fb869133657ec2c2c710836f367296d5f262c1efe7b82707cc6f9283",
+          "bytes": 166660,
+          "compression_ratio": 1.53
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.occipital_lobe.right.v1/runtime/mesh.occipital_lobe.right.v1.lod2.meshopt.glb",
+          "sha256": "38192360d817045c800086fd67099beb566d1aeeaa751baff847365881819993",
+          "bytes": 114880,
+          "compression_ratio": 1.48
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.occipital_lobe.right.v1/runtime/mesh.occipital_lobe.right.v1.lod3.meshopt.glb",
+          "sha256": "40d916c7f058c51ec3ad27a221d52e57c7103e23a441157398b93bc5ec4dc924",
+          "bytes": 61172,
+          "compression_ratio": 1.4
+        }
+      }
+    },
     "mesh.optic_chiasm.midline.v1": {
       "asset_id": "mesh.optic_chiasm.midline.v1",
       "structure_id": "brain.cranial_nerves.optic_chiasm",
@@ -6309,6 +7677,348 @@
           "sha256": "da1829c9579ff84cdf6cc14234a0c1a41b7424f2d73ad773a4f4bf055363abef",
           "bytes": 31648,
           "compression_ratio": 1.47
+        }
+      }
+    },
+    "mesh.parahippocampal_gyrus.left.v1": {
+      "asset_id": "mesh.parahippocampal_gyrus.left.v1",
+      "structure_id": "brain.telencephalon.left.limbic.parahippocampal_gyrus",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72706",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-29",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72706.stl",
+            "verified_source_sha256": "fa2679accd8a5134422e3d06012d30ac7db37cac3dcccba5526b9c9c3c55438b",
+            "source_byte_length": 172684
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 3.179
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 32.01,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "d07c9683509c6111bcc5cddf8fd0b15dd5b1939622bd6cb7484682e4ed7ba7e0",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72706 parahippocampal gyrus (left)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        -18.27,
+        -21.06,
+        -16.05
+      ],
+      "dimensions_mm": [
+        19.97,
+        20.94,
+        46.92
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.parahippocampal_gyrus.left.v1/canonical/mesh.parahippocampal_gyrus.left.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.left.v1/lod/mesh.parahippocampal_gyrus.left.v1.lod0.glb",
+          "sha256": "7af4fc5a5a42fb2d857580d5e1b79a8fe0ae973aad486d89d895883041c59012",
+          "triangles": 3452,
+          "bytes": 63184
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.left.v1/lod/mesh.parahippocampal_gyrus.left.v1.lod1.glb",
+          "sha256": "0c34c61c4b626b804da6a56107a18aa7baafddc040fd7aaa6034dbf2b9cb7242",
+          "triangles": 2588,
+          "bytes": 47628
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.left.v1/lod/mesh.parahippocampal_gyrus.left.v1.lod2.glb",
+          "sha256": "547f8ff4972791881da23c4e0b4ad8f23637d229f3a34eb1cc00ce6c07d7389d",
+          "triangles": 1726,
+          "bytes": 32112
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.left.v1/lod/mesh.parahippocampal_gyrus.left.v1.lod3.glb",
+          "sha256": "c2c18a3950178c05e532f71db2c190f2387768bffc51247380b79d64ff111ff8",
+          "triangles": 862,
+          "bytes": 16556
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.left.v1/runtime/mesh.parahippocampal_gyrus.left.v1.lod0.meshopt.glb",
+          "sha256": "b69b8a9411649d0d3d39da8259cdbed18c9e6af445e69d80fc58a0fa0c8699dc",
+          "bytes": 41464,
+          "compression_ratio": 1.52
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.left.v1/runtime/mesh.parahippocampal_gyrus.left.v1.lod1.meshopt.glb",
+          "sha256": "98665f0e79224dc57b0cd94d17b3738bba24b4afa357b0621776473e9e85be8f",
+          "bytes": 32180,
+          "compression_ratio": 1.48
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.left.v1/runtime/mesh.parahippocampal_gyrus.left.v1.lod2.meshopt.glb",
+          "sha256": "17ebeca3a2a6c1856e8dea9097bcbedc5ae4d27846feee38b441d2c6438243ab",
+          "bytes": 22552,
+          "compression_ratio": 1.42
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.left.v1/runtime/mesh.parahippocampal_gyrus.left.v1.lod3.meshopt.glb",
+          "sha256": "885caac3c5df00b35011b6c9c1ab33f2922723bdfbbfb0e531b69cf81edfca5a",
+          "bytes": 12236,
+          "compression_ratio": 1.35
+        }
+      }
+    },
+    "mesh.parahippocampal_gyrus.right.v1": {
+      "asset_id": "mesh.parahippocampal_gyrus.right.v1",
+      "structure_id": "brain.telencephalon.right.limbic.parahippocampal_gyrus",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72705",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-29",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72705.stl",
+            "verified_source_sha256": "fd317edc429ea14f0cc4398198bfb5a6f3a06d1ab9b2b24e5d41a63756899e0a",
+            "source_byte_length": 172784
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 3.177
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 31.84,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "ab1654bd858881f5d6d60aceba27c17806b2dbe8f56f264c43257e675b8feda0",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72705 parahippocampal gyrus (right)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        19.59,
+        -21.05,
+        -16.05
+      ],
+      "dimensions_mm": [
+        19.97,
+        20.95,
+        46.93
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.parahippocampal_gyrus.right.v1/canonical/mesh.parahippocampal_gyrus.right.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.right.v1/lod/mesh.parahippocampal_gyrus.right.v1.lod0.glb",
+          "sha256": "1267117e3ae22700520af6d933b7e2b24e7a55fec2bc344ee945f2517d1503e2",
+          "triangles": 3454,
+          "bytes": 63220
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.right.v1/lod/mesh.parahippocampal_gyrus.right.v1.lod1.glb",
+          "sha256": "4ec5df064a62c07adb129ddf68b3af1e71a4dc5f0ff430bd138d14ce0ce4c896",
+          "triangles": 2590,
+          "bytes": 47668
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.right.v1/lod/mesh.parahippocampal_gyrus.right.v1.lod2.glb",
+          "sha256": "36565c9ab8a91fcd2f194063affc82157c66fb6781ac900c20fe33af095ac223",
+          "triangles": 1726,
+          "bytes": 32112
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.right.v1/lod/mesh.parahippocampal_gyrus.right.v1.lod3.glb",
+          "sha256": "57514bb7a0344fb0e1769c2095954d9958785e2b1efef2eb770fba9938437985",
+          "triangles": 862,
+          "bytes": 16556
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.right.v1/runtime/mesh.parahippocampal_gyrus.right.v1.lod0.meshopt.glb",
+          "sha256": "4cf00e76eaa39be3ee00aec26bd6f0c666c5fa6158a94729dec3e5e14286fd25",
+          "bytes": 41676,
+          "compression_ratio": 1.52
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.right.v1/runtime/mesh.parahippocampal_gyrus.right.v1.lod1.meshopt.glb",
+          "sha256": "adaf1062f2d6871710db6d040e1a7d85a50faed2d423dad705a11da4057ae087",
+          "bytes": 32304,
+          "compression_ratio": 1.48
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.right.v1/runtime/mesh.parahippocampal_gyrus.right.v1.lod2.meshopt.glb",
+          "sha256": "dd16e158ea6900d1bd3e2a174e9e0a2260d4f27ea4ea9369589e8551235c67ef",
+          "bytes": 22560,
+          "compression_ratio": 1.42
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.parahippocampal_gyrus.right.v1/runtime/mesh.parahippocampal_gyrus.right.v1.lod3.meshopt.glb",
+          "sha256": "ceff48fc2e301941426feaef4c41111ce095bc9aa28454707de785cc78dbd354",
+          "bytes": 12212,
+          "compression_ratio": 1.36
         }
       }
     },
@@ -7895,6 +9605,690 @@
         }
       }
     },
+    "mesh.superior_temporal_gyrus_anterior.left.v1": {
+      "asset_id": "mesh.superior_temporal_gyrus_anterior.left.v1",
+      "structure_id": "brain.telencephalon.left.temporal_lobe.superior_temporal_gyrus_anterior",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72801",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-29",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72801.stl",
+            "verified_source_sha256": "72022c802774b46f1ed6b3ae4afc705649d0a0a55a4eb50eef01ba40cb1278cb",
+            "source_byte_length": 416984
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 8.988
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 33.96,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "5131b747f28c6ddbcc245202f26eb55f123e111642bcb7be3b5eff6accec3a7e",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72801 superior temporal gyrus, anterior part (left)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        -42.04,
+        -6.3,
+        -30.4
+      ],
+      "dimensions_mm": [
+        33.96,
+        46.3,
+        69.78
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.superior_temporal_gyrus_anterior.left.v1/canonical/mesh.superior_temporal_gyrus_anterior.left.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.left.v1/lod/mesh.superior_temporal_gyrus_anterior.left.v1.lod0.glb",
+          "sha256": "24f2ff57699c22f61bae7839adc036685df1e48b8627a06a95b18a7fc20c3b48",
+          "triangles": 8338,
+          "bytes": 151152
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.left.v1/lod/mesh.superior_temporal_gyrus_anterior.left.v1.lod1.glb",
+          "sha256": "532ce6f78b85c6a3d4cf7f3d50d1247d44516e81d435a42436a5887fd0aac27c",
+          "triangles": 6252,
+          "bytes": 113604
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.left.v1/lod/mesh.superior_temporal_gyrus_anterior.left.v1.lod2.glb",
+          "sha256": "c33d13a93d5f6a224b1618707dd5f2a683ee79886bcfd22019a189a8c9643b2d",
+          "triangles": 4168,
+          "bytes": 76092
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.left.v1/lod/mesh.superior_temporal_gyrus_anterior.left.v1.lod3.glb",
+          "sha256": "05f7f94503e27253fbe5fc579a09bd5e7264eb3602688e76eff7ca9689fc2322",
+          "triangles": 2084,
+          "bytes": 38580
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.left.v1/runtime/mesh.superior_temporal_gyrus_anterior.left.v1.lod0.meshopt.glb",
+          "sha256": "053a91e2802b32f066127c30682d9fa9b03677a1b9f0a24e4b3ada0bcbaf6c60",
+          "bytes": 96852,
+          "compression_ratio": 1.56
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.left.v1/runtime/mesh.superior_temporal_gyrus_anterior.left.v1.lod1.meshopt.glb",
+          "sha256": "24505907bcfcff1ab89066cfa621dc50a64f18602a4792cfb80dd16f542162d6",
+          "bytes": 74672,
+          "compression_ratio": 1.52
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.left.v1/runtime/mesh.superior_temporal_gyrus_anterior.left.v1.lod2.meshopt.glb",
+          "sha256": "f6851abfc70a901e19dda8afea72863ac3e300426d0c78cce7cb28c8c68d55f3",
+          "bytes": 51528,
+          "compression_ratio": 1.48
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.left.v1/runtime/mesh.superior_temporal_gyrus_anterior.left.v1.lod3.meshopt.glb",
+          "sha256": "87018887e8d6e2c70c2220514a48624ed59af09aee6818e8f4f224a27e000f66",
+          "bytes": 27532,
+          "compression_ratio": 1.4
+        }
+      }
+    },
+    "mesh.superior_temporal_gyrus_anterior.right.v1": {
+      "asset_id": "mesh.superior_temporal_gyrus_anterior.right.v1",
+      "structure_id": "brain.telencephalon.right.temporal_lobe.superior_temporal_gyrus_anterior",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72800",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-29",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72800.stl",
+            "verified_source_sha256": "19cde3a87977e5e3ba6c4a7f5570686108354193ce1e57c4b2607461ef6444cf",
+            "source_byte_length": 417484
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 8.995
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 33.82,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "87ba9eeb3c771f93f086b90da51a7ce4c83f2aae11d8462939bb72b57e5582e3",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72800 superior temporal gyrus, anterior part (right)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        43.36,
+        -6.3,
+        -30.39
+      ],
+      "dimensions_mm": [
+        33.96,
+        46.32,
+        69.79
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.superior_temporal_gyrus_anterior.right.v1/canonical/mesh.superior_temporal_gyrus_anterior.right.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.right.v1/lod/mesh.superior_temporal_gyrus_anterior.right.v1.lod0.glb",
+          "sha256": "11f38b52b3ccf3acadd05ef49c82c52faaf0f732aeef0e8de331710e1facf8ad",
+          "triangles": 8348,
+          "bytes": 151336
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.right.v1/lod/mesh.superior_temporal_gyrus_anterior.right.v1.lod1.glb",
+          "sha256": "ac8add2f7dca675baaed6a724eedb7db0e2a8b9bf787682763296a104052bbe5",
+          "triangles": 6260,
+          "bytes": 113752
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.right.v1/lod/mesh.superior_temporal_gyrus_anterior.right.v1.lod2.glb",
+          "sha256": "79189934caa5975e39dbb270f93befecc7ca298215dee02016e3f9a8780e6608",
+          "triangles": 4174,
+          "bytes": 76200
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.right.v1/lod/mesh.superior_temporal_gyrus_anterior.right.v1.lod3.glb",
+          "sha256": "73f0178f53d73abcd5fb4ca76273acfdc62748c93feaa934db21032fb1cf5224",
+          "triangles": 2086,
+          "bytes": 38612
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.right.v1/runtime/mesh.superior_temporal_gyrus_anterior.right.v1.lod0.meshopt.glb",
+          "sha256": "6ac532bd7d5e823b9e88dc077e178718885be83ce43f869fbc744454b1c472af",
+          "bytes": 97112,
+          "compression_ratio": 1.56
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.right.v1/runtime/mesh.superior_temporal_gyrus_anterior.right.v1.lod1.meshopt.glb",
+          "sha256": "ad830a3cc5f99c963ac2d5c865dc12d8ece67714a8b09397a9a4eac471bf2fd0",
+          "bytes": 74804,
+          "compression_ratio": 1.52
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.right.v1/runtime/mesh.superior_temporal_gyrus_anterior.right.v1.lod2.meshopt.glb",
+          "sha256": "c0f48771bbb07f2922c4b63e4e9fb084303d3847fbaeac7b5ee47a89e770f3f8",
+          "bytes": 51864,
+          "compression_ratio": 1.47
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_anterior.right.v1/runtime/mesh.superior_temporal_gyrus_anterior.right.v1.lod3.meshopt.glb",
+          "sha256": "4f36d7453ef8e2609fb31757f123cee4caf308f2f2ea43eea94edc86fa44a521",
+          "bytes": 27620,
+          "compression_ratio": 1.4
+        }
+      }
+    },
+    "mesh.superior_temporal_gyrus_posterior.left.v1": {
+      "asset_id": "mesh.superior_temporal_gyrus_posterior.left.v1",
+      "structure_id": "brain.telencephalon.left.temporal_lobe.superior_temporal_gyrus_posterior",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72805",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-29",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72805.stl",
+            "verified_source_sha256": "8ee112c9d3387d6dcceacca5c13b27792466a55ecad95766c0cdee541a7e8210",
+            "source_byte_length": 523684
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 13.856
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 33.03,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "3ca25dd8d8797ff8ac63019d4370dda351f1234a163e57211dea264e7191d3d2",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72805 superior temporal gyrus, posterior part (left)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        -50.94,
+        -1.42,
+        0.3
+      ],
+      "dimensions_mm": [
+        30.38,
+        36.99,
+        69.89
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/canonical/mesh.superior_temporal_gyrus_posterior.left.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/lod/mesh.superior_temporal_gyrus_posterior.left.v1.lod0.glb",
+          "sha256": "2deddb943c70e9ca57deebbe180bd534f3ad7173045950876bb27f26dc6a162d",
+          "triangles": 10472,
+          "bytes": 189568
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/lod/mesh.superior_temporal_gyrus_posterior.left.v1.lod1.glb",
+          "sha256": "59dee41f89bdd6d6415add1e48f279a105de9c9773e1703a69fca261f60d36ca",
+          "triangles": 7854,
+          "bytes": 142444
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/lod/mesh.superior_temporal_gyrus_posterior.left.v1.lod2.glb",
+          "sha256": "bd235909073c8c84ff54a4f89b0df4d869870b7b5a7c6033cae00e15dffdd07f",
+          "triangles": 5236,
+          "bytes": 95316
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/lod/mesh.superior_temporal_gyrus_posterior.left.v1.lod3.glb",
+          "sha256": "10b8a1bd424be06cdd7f5d6184462fd16bedc611fb776adddcc2b91b410fde13",
+          "triangles": 2618,
+          "bytes": 48192
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/runtime/mesh.superior_temporal_gyrus_posterior.left.v1.lod0.meshopt.glb",
+          "sha256": "85db77812e8d9c40b92457e2357e994968a2fb41e3444a437ca341e7f922dba9",
+          "bytes": 122768,
+          "compression_ratio": 1.54
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/runtime/mesh.superior_temporal_gyrus_posterior.left.v1.lod1.meshopt.glb",
+          "sha256": "2b80f7962770b9f577019f7cd0dac8df6d052a9c253412a219902348da959c65",
+          "bytes": 94824,
+          "compression_ratio": 1.5
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/runtime/mesh.superior_temporal_gyrus_posterior.left.v1.lod2.meshopt.glb",
+          "sha256": "3dc193e4e4b021fdbe54fe9ba9e96dbdef5a8f34fb94b2c7e3d2d8dc6a4fa9a5",
+          "bytes": 65732,
+          "compression_ratio": 1.45
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.left.v1/runtime/mesh.superior_temporal_gyrus_posterior.left.v1.lod3.meshopt.glb",
+          "sha256": "27dc31761f51aa9b9af74d654c4a6391d26deeb82fc4c1830c9cfa807961d596",
+          "bytes": 35140,
+          "compression_ratio": 1.37
+        }
+      }
+    },
+    "mesh.superior_temporal_gyrus_posterior.right.v1": {
+      "asset_id": "mesh.superior_temporal_gyrus_posterior.right.v1",
+      "structure_id": "brain.telencephalon.right.temporal_lobe.superior_temporal_gyrus_posterior",
+      "dataset_name": "BodyParts3D Release 3.0",
+      "acquisition_channel": "Third-party GitHub mirror of DBCLS data (ingest_asset.ts sourceUrl)",
+      "source_authority_urls": [
+        "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+        "https://github.com/Kevin-Mattheus-Moerman/BodyParts3D"
+      ],
+      "dataset_version": "Release 3.0 (2011)",
+      "source_url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html",
+      "upstream_asset_id": "FMA72804",
+      "upstream_license": "CC_BY_SA_2_1_JP",
+      "attribution_text_required": "BodyParts3D, Copyright (c) 2008-2011 Life Science Integrated Database Center licensed by CC Attribution-Share Alike 2.1 Japan. Upstream portal lists CC Attribution 4.0 International (listing observed 2025-02-27); whether that listing applies retroactively to these Release 3.0 files is UNRESOLVED.",
+      "acquisition_date": "2026-09-29",
+      "modifications_applied": [
+        {
+          "step_number": 1,
+          "operation_name": "Raw_Asset_Ingestion",
+          "script_relative_path": "scripts/pipeline/ingest_asset.ts",
+          "parameters": {
+            "source_file": "FMA72804.stl",
+            "verified_source_sha256": "812a311901ebf3947d8bf37341b91e9ce25560c14cb65834ea4a1e707310af51",
+            "source_byte_length": 523684
+          },
+          "executed_by": "Pipeline_Ingestion_Engine",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:30:00Z"
+        },
+        {
+          "step_number": 2,
+          "operation_name": "Geometric_QA_Validation",
+          "script_relative_path": "scripts/pipeline/validate_mesh.ts",
+          "parameters": {
+            "topology_class": "CLOSED_SURFACE",
+            "manifold_edges_required": 0,
+            "zero_area_faces_allowed": 0,
+            "duplicate_faces_allowed": 0,
+            "watertight_required": true,
+            "measured_volume_cm3": 13.858
+          },
+          "executed_by": "MeshValidation_Auditor",
+          "git_commit_hash": "e5c89b2aec68eda7c19ad7cbee7df75afba3af04",
+          "timestamp": "2026-09-26T22:35:00Z"
+        },
+        {
+          "step_number": 3,
+          "operation_name": "Coordinate_Canonicalization_And_Normals",
+          "script_relative_path": "scripts/pipeline/canonicalize_mesh.ts",
+          "parameters": {
+            "adapter_id": "bodyparts3d-lps-to-ras",
+            "source_space": "ASSERTED_DICOM_LPS_WHOLE_BODY (unproven; BodyParts3D universal coords)",
+            "target_space": "INTERNAL_CANONICAL (+X Right, +Y Superior, +Z Posterior; NOT RAS, NOT MNI)",
+            "transform": "x_negated_yz_swapped__tx0_ty-1561.7_tz+70.1",
+            "normals": "area_weighted_smooth"
+          },
+          "executed_by": "Canonicalization_Engine",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:40:00Z"
+        },
+        {
+          "step_number": 4,
+          "operation_name": "Multi_LOD_Simplification",
+          "script_relative_path": "scripts/pipeline/generate_lods.ts",
+          "parameters": {
+            "algorithm": "Quadric_Error_Metric",
+            "levels_generated": 4,
+            "ratios": "1.0, 0.75, 0.50, 0.25"
+          },
+          "executed_by": "Meshopt_LOD_Generator",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:45:00Z"
+        },
+        {
+          "step_number": 5,
+          "operation_name": "Runtime_Meshopt_Compression",
+          "script_relative_path": "scripts/pipeline/optimize_meshopt.ts",
+          "parameters": {
+            "extension": "EXT_meshopt_compression",
+            "overall_savings_percent": 32.96,
+            "meshopt_roundtrip_lossless_vs_lod_input": true,
+            "meshopt_roundtrip_max_delta_mm": 0.000001,
+            "qem_simplification_lossy": true
+          },
+          "executed_by": "Meshopt_Runtime_Optimizer",
+          "git_commit_hash": "606a36d18f0ee6110750bb0f654a9cd91f7fe1a5",
+          "timestamp": "2026-09-26T22:50:00Z"
+        }
+      ],
+      "resulting_sha256_hash": "6c1570ecf6726995d7d63399465b89a12e8fa54395459c7ff89aa05563444fc7",
+      "resulting_license": "CC-BY-SA 4.0",
+      "project_distribution_policy": "CC-BY-SA-4.0",
+      "production_eligibility": "PRODUCTION_ALLOWED",
+      "commercial_redistribution": "LEGAL_REVIEW_REQUIRED",
+      "restrictions_and_covenants": [
+        "Preserve attribution to BodyParts3D / LSIDC in application notices and UI",
+        "Derived 3D meshes shared under CC-BY-SA 4.0 terms",
+        "Conservative licensing posture: historical files CC-BY-SA 2.1 JP; upstream portal lists CC BY (2025-02-27); derivatives distributed CC-BY-SA 4.0. Whether the portal listing retroactively extinguishes the 2.1-JP ShareAlike condition is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution."
+      ],
+      "validation_status": "CLEARED",
+      "expert_review_status": "EXPERT_REVIEW_PENDING",
+      "legal_review_notes": "Ingested from BodyParts3D Release 3.0 (FMA72804 superior temporal gyrus, posterior part (right)) via third-party mirror. Historical Release 3.0 files: CC-BY-SA 2.1 JP. Upstream portal lists CC BY (verified 2025-02-27 against dbarchive/LSDB pages). Project distributes derivatives under CC-BY-SA 4.0. Whether the portal CC BY listing retroactively extinguishes the 2.1-JP ShareAlike condition for these files is UNRESOLVED — LEGAL_REVIEW_REQUIRED before commercial redistribution. No NC-licensed bytes present in production paths (verified by quarantine test).",
+      "coordinate_space": "canonical_atlas_ras (internal: +X Right, +Y Superior, +Z Posterior; NOT RAS-ordered, NOT MNI152)",
+      "centroid_mm": [
+        52.25,
+        -1.42,
+        0.29
+      ],
+      "dimensions_mm": [
+        30.39,
+        36.98,
+        69.89
+      ],
+      "topology_class": "CLOSED_SURFACE",
+      "geometric_qa_status": "GEOMETRY_VALIDATED",
+      "anatomical_qa_status": "ANATOMY_VALIDATED",
+      "licensing_posture_notes": "Historical Release 3.0 files CC-BY-SA 2.1 JP; DBCLS portal lists CC BY (verified 2025-02-27); derivatives published CC-BY-SA 4.0. Retroactivity UNRESOLVED — LEGAL_REVIEW_REQUIRED.",
+      "canonical_glb_path": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/canonical/mesh.superior_temporal_gyrus_posterior.right.v1.canonical.glb",
+      "lod_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/lod/mesh.superior_temporal_gyrus_posterior.right.v1.lod0.glb",
+          "sha256": "f52af354a5965f8e88cb025d186b83c40364b60368df98051b31cab3ab8006c0",
+          "triangles": 10472,
+          "bytes": 189568
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/lod/mesh.superior_temporal_gyrus_posterior.right.v1.lod1.glb",
+          "sha256": "930acafa6a3d0624edad6805ba4acf851dde8dbfc63a28cebf79055583dfd005",
+          "triangles": 7854,
+          "bytes": 142444
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/lod/mesh.superior_temporal_gyrus_posterior.right.v1.lod2.glb",
+          "sha256": "6dc7b3aa3bdc4600d5d2d7a5da23571757953c52b359e88548259e07b381f89e",
+          "triangles": 5236,
+          "bytes": 95320
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/lod/mesh.superior_temporal_gyrus_posterior.right.v1.lod3.glb",
+          "sha256": "da05c477396fe3768eb3a2f23af41e318d866ece991fad7c79ca870ca3881df2",
+          "triangles": 2618,
+          "bytes": 48192
+        }
+      },
+      "runtime_files": {
+        "lod0": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/runtime/mesh.superior_temporal_gyrus_posterior.right.v1.lod0.meshopt.glb",
+          "sha256": "163b6cccfe8d43c036eb74de7a2375fbf39dbaf256254e1698f1186f581a8806",
+          "bytes": 122808,
+          "compression_ratio": 1.54
+        },
+        "lod1": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/runtime/mesh.superior_temporal_gyrus_posterior.right.v1.lod1.meshopt.glb",
+          "sha256": "d3070863ede8d76d5d904fdfd2c1c92f82e1f1532b56a5821a329395828160b3",
+          "bytes": 95036,
+          "compression_ratio": 1.5
+        },
+        "lod2": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/runtime/mesh.superior_temporal_gyrus_posterior.right.v1.lod2.meshopt.glb",
+          "sha256": "f35bab582c68b02c78bf994e7440ca8563c652e7f43bea6fa3e741a43d2762bf",
+          "bytes": 65840,
+          "compression_ratio": 1.45
+        },
+        "lod3": {
+          "path": "assets/derived/mesh.superior_temporal_gyrus_posterior.right.v1/runtime/mesh.superior_temporal_gyrus_posterior.right.v1.lod3.meshopt.glb",
+          "sha256": "6b552488498ec99cfecf4a3786c8694bdd75745fa22abf8ee824e536d7a3343f",
+          "bytes": 35088,
+          "compression_ratio": 1.37
+        }
+      }
+    },
     "mesh.supramarginal_gyrus.left.v1": {
       "asset_id": "mesh.supramarginal_gyrus.left.v1",
       "structure_id": "brain.telencephalon.left.parietal_lobe.supramarginal_gyrus",
@@ -8786,10 +11180,16 @@
     "mesh.fornix.right.v1",
     "mesh.fornix_commissure.midline.v1",
     "mesh.fourth_ventricle.midline.v1",
+    "mesh.fusiform_gyrus.left.v1",
+    "mesh.fusiform_gyrus.right.v1",
     "mesh.globus_pallidus.left.v1",
     "mesh.globus_pallidus.right.v1",
     "mesh.hippocampus.left.v1",
     "mesh.hippocampus.right.v1",
+    "mesh.inferior_temporal_gyrus.left.v1",
+    "mesh.inferior_temporal_gyrus.right.v1",
+    "mesh.insula.left.v1",
+    "mesh.insula.right.v1",
     "mesh.internal_capsule_anterior_limb.left.v1",
     "mesh.internal_capsule_anterior_limb.right.v1",
     "mesh.interventricular_foramen.midline.v1",
@@ -8798,11 +11198,15 @@
     "mesh.middle_frontal_gyrus.right.v1",
     "mesh.middle_temporal_gyrus.left.v1",
     "mesh.middle_temporal_gyrus.right.v1",
+    "mesh.occipital_lobe.left.v1",
+    "mesh.occipital_lobe.right.v1",
     "mesh.optic_chiasm.midline.v1",
     "mesh.optic_nerve.left.v1",
     "mesh.optic_nerve.right.v1",
     "mesh.optic_tract.left.v1",
     "mesh.optic_tract.right.v1",
+    "mesh.parahippocampal_gyrus.left.v1",
+    "mesh.parahippocampal_gyrus.right.v1",
     "mesh.postcentral_gyrus.left.v1",
     "mesh.postcentral_gyrus.right.v1",
     "mesh.posterior_commissure.midline.v1",
@@ -8812,6 +11216,10 @@
     "mesh.putamen.right.v1",
     "mesh.superior_frontal_gyrus.left.v1",
     "mesh.superior_frontal_gyrus.right.v1",
+    "mesh.superior_temporal_gyrus_anterior.left.v1",
+    "mesh.superior_temporal_gyrus_anterior.right.v1",
+    "mesh.superior_temporal_gyrus_posterior.left.v1",
+    "mesh.superior_temporal_gyrus_posterior.right.v1",
     "mesh.supramarginal_gyrus.left.v1",
     "mesh.supramarginal_gyrus.right.v1",
     "mesh.thalamus.left.v1",

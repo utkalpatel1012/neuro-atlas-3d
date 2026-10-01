@@ -1,0 +1,121 @@
+{
+  "knowledge_id": "knowledge.brain.white_matter.anterior_commissure",
+  "structure_id": "brain.white_matter.anterior_commissure",
+  "structure_record": "data/structures/anterior_commissure_midline.json",
+  "geometry_state": "AVAILABLE",
+  "asset_id": "mesh.anterior_commissure.midline.v1",
+  "display_name": "Anterior commissure",
+  "latin_name": "Commissura anterior",
+  "clinical_aliases": [],
+  "abbreviations": [],
+  "laterality": "midline",
+  "representation_scope": "single_midline_mesh",
+  "hierarchy_path": [
+    "Brain",
+    "White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims)",
+    "Anterior commissure"
+  ],
+  "claims": [
+    {
+      "claim_id": "p6.white-matter-anterior-commissure.distribution-source",
+      "statement": "Source segment FMA61961 from BodyParts3D (Database Center for Life Sciences - DBCLS, Japan) Release 3.0 (2011/06/20) is the distribution source for this structure.",
+      "claim_type": "DISTRIBUTION",
+      "source": "BodyParts3D (Database Center for Life Sciences - DBCLS, Japan) Release 3.0 (2011/06/20) (parts_list_e.txt authority, via structure record asset_provenance)",
+      "citation": "data/structures/anterior_commissure_midline.json (asset_provenance.upstream_asset_id, dataset_name, dataset_version); upstream listing: https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/master/assets/BodyParts3D_data/stl/FMA61961.stl",
+      "evidence_level": "DISTRIBUTION_LISTING"
+    },
+    {
+      "claim_id": "p6.white-matter-anterior-commissure.identity",
+      "statement": "Official English name \"Anterior commissure\" with Latin name \"Commissura anterior\", as recorded in the structure record.",
+      "claim_type": "RECORD",
+      "source": "Project structure record data/structures/anterior_commissure_midline.json",
+      "citation": "data/structures/anterior_commissure_midline.json (name.official_english, name.official_latin, canonical_name, latin_name)",
+      "evidence_level": "PROJECT_RECORD"
+    },
+    {
+      "claim_id": "p6.white-matter-anterior-commissure.hierarchy",
+      "statement": "Catalogued under hierarchy path \"Brain › White matter + major pathways (substrate only, Phase 5.3 batch; no functional-network claims) › Anterior commissure\" (catalog node \"Anterior commissure\"); containment follows the recorded part_of relationship.",
+      "claim_type": "RECORD",
+      "source": "Project hierarchy catalog + structure record hierarchy block",
+      "citation": "data/anatomical_hierarchy.json (node \"brain.white_matter.anterior_commissure\" or catalog path); data/structures/anterior_commissure_midline.json (hierarchy.parent_id, hierarchy.groups)",
+      "evidence_level": "PROJECT_RECORD"
+    },
+    {
+      "claim_id": "p6.white-matter-anterior-commissure.laterality",
+      "statement": "Laterality \"midline\" with representation scope \"single_midline_mesh\", as recorded in the structure record.",
+      "claim_type": "RECORD",
+      "source": "Project structure record data/structures/anterior_commissure_midline.json",
+      "citation": "data/structures/anterior_commissure_midline.json (laterality, representation_scope)",
+      "evidence_level": "PROJECT_RECORD"
+    },
+    {
+      "claim_id": "p6.white-matter-anterior-commissure.measurements",
+      "statement": "Measured spatial facts: estimated volume 0.076 cm3; registered centroid [0.65, -1.93, -41.82] mm in canonical_atlas_ras (bounding-box center, NOT vertex mean); registration_status REGISTRATION_PENDING (no template registration computed).",
+      "claim_type": "RECORD",
+      "source": "Project QA measurement recorded in data/structures/anterior_commissure_midline.json",
+      "citation": "data/structures/anterior_commissure_midline.json (spatial.estimated_volume_cm3, spatial.stereotaxic_registration, spatial.bounding_box, spatial.centroid_convention)",
+      "evidence_level": "PROJECT_MEASUREMENT"
+    },
+    {
+      "claim_id": "p6.white-matter-anterior-commissure.asset",
+      "statement": "Servable asset \"mesh.anterior_commissure.midline.v1\" (validation CLEARED); upstream license CC_BY_SA_2_1_JP; commercial redistribution LEGAL_REVIEW_REQUIRED (portal-listing retroactivity unresolved).",
+      "claim_type": "RECORD",
+      "source": "Project asset provenance in data/structures/anterior_commissure_midline.json + assets manifest",
+      "citation": "data/structures/anterior_commissure_midline.json (asset_id, asset_provenance.validation_status, asset_provenance.upstream_license, asset_provenance.legal_review_notes); assets/manifests/assets.manifest.json",
+      "evidence_level": "PROJECT_RECORD"
+    }
+  ],
+  "ontology": {
+    "fma_id": {
+      "value": "FMA:61961",
+      "verification": "VERIFIED",
+      "basis": "Record FMA number equals distribution upstream segment number (FMA61961); distribution-verified via data/structures/anterior_commissure_midline.json."
+    },
+    "ta2_id": {
+      "value": null,
+      "verification": "UNVERIFIED",
+      "basis": "No TA2 lookup performed (record states UNVERIFIED / lookup pass required); omitted as unverified. Source: data/structures/anterior_commissure_midline.json."
+    },
+    "uberon_id": {
+      "value": null,
+      "verification": "UNVERIFIED",
+      "basis": "No Uberon lookup performed (record states UNVERIFIED / lookup pass required); omitted as unverified. Source: data/structures/anterior_commissure_midline.json."
+    }
+  },
+  "gaps": [
+    {
+      "topic": "boundaries",
+      "reason": "Delimiting boundaries beyond the distribution segment surface are not stated in the structure record or hierarchy catalog; omitted (no checkable source)."
+    },
+    {
+      "topic": "neighbors",
+      "reason": "Adjacent-structure relationships beyond recorded part_of containment are not stated in the indexed sources; omitted (no checkable source)."
+    },
+    {
+      "topic": "vascular-relations",
+      "reason": "Arterial supply and venous drainage are not stated in the structure record or hierarchy catalog; omitted (no checkable source)."
+    },
+    {
+      "topic": "role-in-behavior-or-physiology",
+      "reason": "Role in behavior or physiology is not stated in the indexed sources and is out of scope for Phase 6; reserved for a later evidenced layer. No functional claim is made or implied."
+    },
+    {
+      "topic": "clinical-associations",
+      "reason": "Clinical, diagnostic, and disorder-related associations are out of scope for Phase 6 (unauthorized without a later evidenced layer) and are omitted. No clinical claim is made or implied."
+    },
+    {
+      "topic": "imaging-appearance",
+      "reason": "Modality-specific imaging appearance is not stated in the indexed sources; omitted (no checkable source)."
+    },
+    {
+      "topic": "microstructure",
+      "reason": "Histology, lamination, and subfield microstructure are not resolved in the indexed macroscopic sources; omitted (no checkable source)."
+    },
+    {
+      "topic": "ontology-lookups",
+      "reason": "TA2/Uberon identifiers stay UNVERIFIED (no lookup pass performed); FMA is VERIFIED only where the record number equals the distribution upstream segment number. No ontology identifier is invented."
+    }
+  ],
+  "generated_by": "scripts/knowledge/build_knowledge.ts",
+  "phase": "6"
+}

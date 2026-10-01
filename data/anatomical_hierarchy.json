@@ -33,7 +33,9 @@
       "geometry_state": "DOCUMENTED",
       "children": [
         "brain.telencephalon.left",
-        "brain.telencephalon.right"
+        "brain.telencephalon.right",
+        "brain.telencephalon.major_sulci",
+        "brain.telencephalon.longitudinal_fissure"
       ]
     },
     {
@@ -45,7 +47,9 @@
         "brain.telencephalon.left.frontal_lobe",
         "brain.telencephalon.left.parietal_lobe",
         "brain.telencephalon.left.temporal_lobe",
-        "brain.telencephalon.left.limbic_lobe"
+        "brain.telencephalon.left.limbic_lobe",
+        "brain.telencephalon.left.insular_lobe",
+        "brain.telencephalon.left.occipital_lobe"
       ]
     },
     {
@@ -57,7 +61,9 @@
         "brain.telencephalon.right.frontal_lobe",
         "brain.telencephalon.right.parietal_lobe",
         "brain.telencephalon.right.temporal_lobe",
-        "brain.telencephalon.right.limbic_lobe"
+        "brain.telencephalon.right.limbic_lobe",
+        "brain.telencephalon.right.insular_lobe",
+        "brain.telencephalon.right.occipital_lobe"
       ]
     },
     {
@@ -68,7 +74,10 @@
       "children": [
         "brain.telencephalon.left.frontal_lobe.superior_frontal_gyrus",
         "brain.telencephalon.left.frontal_lobe.middle_frontal_gyrus",
-        "brain.telencephalon.left.frontal_lobe.precentral_gyrus"
+        "brain.telencephalon.left.frontal_lobe.precentral_gyrus",
+        "brain.telencephalon.inferior_frontal_gyrus",
+        "brain.telencephalon.orbitofrontal_gyri",
+        "brain.telencephalon.medial_frontal_gyrus"
       ]
     },
     {
@@ -79,7 +88,10 @@
       "children": [
         "brain.telencephalon.right.frontal_lobe.superior_frontal_gyrus",
         "brain.telencephalon.right.frontal_lobe.middle_frontal_gyrus",
-        "brain.telencephalon.right.frontal_lobe.precentral_gyrus"
+        "brain.telencephalon.right.frontal_lobe.precentral_gyrus",
+        "brain.telencephalon.inferior_frontal_gyrus",
+        "brain.telencephalon.orbitofrontal_gyri",
+        "brain.telencephalon.medial_frontal_gyrus"
       ]
     },
     {
@@ -90,7 +102,10 @@
       "children": [
         "brain.telencephalon.left.parietal_lobe.postcentral_gyrus",
         "brain.telencephalon.left.parietal_lobe.supramarginal_gyrus",
-        "brain.telencephalon.left.parietal_lobe.angular_gyrus"
+        "brain.telencephalon.left.parietal_lobe.angular_gyrus",
+        "brain.telencephalon.superior_parietal_lobule",
+        "brain.telencephalon.inferior_parietal_lobule_whole",
+        "brain.telencephalon.precuneus_bp"
       ]
     },
     {
@@ -101,7 +116,10 @@
       "children": [
         "brain.telencephalon.right.parietal_lobe.postcentral_gyrus",
         "brain.telencephalon.right.parietal_lobe.supramarginal_gyrus",
-        "brain.telencephalon.right.parietal_lobe.angular_gyrus"
+        "brain.telencephalon.right.parietal_lobe.angular_gyrus",
+        "brain.telencephalon.superior_parietal_lobule",
+        "brain.telencephalon.inferior_parietal_lobule_whole",
+        "brain.telencephalon.precuneus_bp"
       ]
     },
     {
@@ -110,7 +128,12 @@
       "name": "Left temporal lobe",
       "geometry_state": "DOCUMENTED",
       "children": [
-        "brain.telencephalon.left.temporal_lobe.middle_temporal_gyrus"
+        "brain.telencephalon.left.temporal_lobe.middle_temporal_gyrus",
+        "brain.telencephalon.left.temporal_lobe.inferior_temporal_gyrus",
+        "brain.telencephalon.left.temporal_lobe.fusiform_gyrus",
+        "brain.telencephalon.left.temporal_lobe.superior_temporal_gyrus_anterior",
+        "brain.telencephalon.left.temporal_lobe.superior_temporal_gyrus_posterior",
+        "brain.telencephalon.superior_temporal_gyrus_whole"
       ]
     },
     {
@@ -119,7 +142,12 @@
       "name": "Right temporal lobe",
       "geometry_state": "DOCUMENTED",
       "children": [
-        "brain.telencephalon.right.temporal_lobe.middle_temporal_gyrus"
+        "brain.telencephalon.right.temporal_lobe.middle_temporal_gyrus",
+        "brain.telencephalon.right.temporal_lobe.inferior_temporal_gyrus",
+        "brain.telencephalon.right.temporal_lobe.fusiform_gyrus",
+        "brain.telencephalon.right.temporal_lobe.superior_temporal_gyrus_anterior",
+        "brain.telencephalon.right.temporal_lobe.superior_temporal_gyrus_posterior",
+        "brain.telencephalon.superior_temporal_gyrus_whole"
       ]
     },
     {
@@ -130,7 +158,8 @@
       "children": [
         "brain.telencephalon.left.limbic.cingulate_gyrus",
         "brain.telencephalon.left.limbic.hippocampus",
-        "brain.telencephalon.left.limbic.amygdala"
+        "brain.telencephalon.left.limbic.amygdala",
+        "brain.telencephalon.left.limbic.parahippocampal_gyrus"
       ]
     },
     {
@@ -141,7 +170,8 @@
       "children": [
         "brain.telencephalon.right.limbic.cingulate_gyrus",
         "brain.telencephalon.right.limbic.hippocampus",
-        "brain.telencephalon.right.limbic.amygdala"
+        "brain.telencephalon.right.limbic.amygdala",
+        "brain.telencephalon.right.limbic.parahippocampal_gyrus"
       ]
     },
     {
@@ -932,6 +962,218 @@
       "name": "Vertebrobasilar system (DOCUMENTED — absent from the BodyParts3D distribution, which segments gross organs, not vessels; fabrication prohibited)",
       "geometry_state": "DOCUMENTED",
       "children": []
+    },
+    {
+      "id": "brain.telencephalon.left.insular_lobe",
+      "level": 2,
+      "name": "Left insular lobe",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.telencephalon.left.insular_lobe.insula",
+        "brain.telencephalon.circular_sulcus_insulae"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.left.insular_lobe.insula",
+      "level": 3,
+      "name": "Left insula",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.insula.left.v1",
+      "structure_record": "data/structures/insula_left.json"
+    },
+    {
+      "id": "brain.telencephalon.left.occipital_lobe",
+      "level": 2,
+      "name": "Left occipital lobe",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.occipital_lobe.left.v1",
+      "structure_record": "data/structures/occipital_lobe_left.json",
+      "children": [
+        "brain.telencephalon.cuneus",
+        "brain.telencephalon.lingual_gyrus"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.left.temporal_lobe.inferior_temporal_gyrus",
+      "level": 3,
+      "name": "Left inferior temporal gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.inferior_temporal_gyrus.left.v1",
+      "structure_record": "data/structures/inferior_temporal_gyrus_left.json"
+    },
+    {
+      "id": "brain.telencephalon.left.temporal_lobe.fusiform_gyrus",
+      "level": 3,
+      "name": "Left fusiform gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.fusiform_gyrus.left.v1",
+      "structure_record": "data/structures/fusiform_gyrus_left.json"
+    },
+    {
+      "id": "brain.telencephalon.left.temporal_lobe.superior_temporal_gyrus_anterior",
+      "level": 3,
+      "name": "Left superior temporal gyrus, anterior part",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.superior_temporal_gyrus_anterior.left.v1",
+      "structure_record": "data/structures/superior_temporal_gyrus_anterior_left.json"
+    },
+    {
+      "id": "brain.telencephalon.left.temporal_lobe.superior_temporal_gyrus_posterior",
+      "level": 3,
+      "name": "Left superior temporal gyrus, posterior part",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.superior_temporal_gyrus_posterior.left.v1",
+      "structure_record": "data/structures/superior_temporal_gyrus_posterior_left.json"
+    },
+    {
+      "id": "brain.telencephalon.left.limbic.parahippocampal_gyrus",
+      "level": 3,
+      "name": "Left parahippocampal gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.parahippocampal_gyrus.left.v1",
+      "structure_record": "data/structures/parahippocampal_gyrus_left.json"
+    },
+    {
+      "id": "brain.telencephalon.right.insular_lobe",
+      "level": 2,
+      "name": "Right insular lobe",
+      "geometry_state": "DOCUMENTED",
+      "children": [
+        "brain.telencephalon.right.insular_lobe.insula",
+        "brain.telencephalon.circular_sulcus_insulae"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.right.insular_lobe.insula",
+      "level": 3,
+      "name": "Right insula",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.insula.right.v1",
+      "structure_record": "data/structures/insula_right.json"
+    },
+    {
+      "id": "brain.telencephalon.right.occipital_lobe",
+      "level": 2,
+      "name": "Right occipital lobe",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.occipital_lobe.right.v1",
+      "structure_record": "data/structures/occipital_lobe_right.json",
+      "children": [
+        "brain.telencephalon.cuneus",
+        "brain.telencephalon.lingual_gyrus"
+      ]
+    },
+    {
+      "id": "brain.telencephalon.right.temporal_lobe.inferior_temporal_gyrus",
+      "level": 3,
+      "name": "Right inferior temporal gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.inferior_temporal_gyrus.right.v1",
+      "structure_record": "data/structures/inferior_temporal_gyrus_right.json"
+    },
+    {
+      "id": "brain.telencephalon.right.temporal_lobe.fusiform_gyrus",
+      "level": 3,
+      "name": "Right fusiform gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.fusiform_gyrus.right.v1",
+      "structure_record": "data/structures/fusiform_gyrus_right.json"
+    },
+    {
+      "id": "brain.telencephalon.right.temporal_lobe.superior_temporal_gyrus_anterior",
+      "level": 3,
+      "name": "Right superior temporal gyrus, anterior part",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.superior_temporal_gyrus_anterior.right.v1",
+      "structure_record": "data/structures/superior_temporal_gyrus_anterior_right.json"
+    },
+    {
+      "id": "brain.telencephalon.right.temporal_lobe.superior_temporal_gyrus_posterior",
+      "level": 3,
+      "name": "Right superior temporal gyrus, posterior part",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.superior_temporal_gyrus_posterior.right.v1",
+      "structure_record": "data/structures/superior_temporal_gyrus_posterior_right.json"
+    },
+    {
+      "id": "brain.telencephalon.right.limbic.parahippocampal_gyrus",
+      "level": 3,
+      "name": "Right parahippocampal gyrus",
+      "geometry_state": "AVAILABLE",
+      "asset_id": "mesh.parahippocampal_gyrus.right.v1",
+      "structure_record": "data/structures/parahippocampal_gyrus_right.json"
+    },
+    {
+      "id": "brain.telencephalon.inferior_frontal_gyrus",
+      "level": 3,
+      "name": "Inferior frontal gyrus (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)",
+      "geometry_state": "DOCUMENTED"
+    },
+    {
+      "id": "brain.telencephalon.orbitofrontal_gyri",
+      "level": 3,
+      "name": "Orbitofrontal gyri (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)",
+      "geometry_state": "DOCUMENTED"
+    },
+    {
+      "id": "brain.telencephalon.medial_frontal_gyrus",
+      "level": 3,
+      "name": "Medial frontal gyrus (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)",
+      "geometry_state": "DOCUMENTED"
+    },
+    {
+      "id": "brain.telencephalon.superior_parietal_lobule",
+      "level": 3,
+      "name": "Superior parietal lobule (DOCUMENTED - absent from the BodyParts3D distribution; no source geometry, not fabricated)",
+      "geometry_state": "DOCUMENTED"
+    },
+    {
+      "id": "brain.telencephalon.inferior_parietal_lobule_whole",
+      "level": 3,
+      "name": "Inferior parietal lobule as a whole (DOCUMENTED - only its supramarginal and angular parts are AVAILABLE as separate segments; no whole-lobule mesh synthesized)",
+      "geometry_state": "DOCUMENTED"
+    },
+    {
+      "id": "brain.telencephalon.cuneus",
+      "level": 3,
+      "name": "Cuneus (DOCUMENTED - absent from the BodyParts3D distribution as a separate segment; the occipital lobe ships whole, not subdivided)",
+      "geometry_state": "DOCUMENTED"
+    },
+    {
+      "id": "brain.telencephalon.lingual_gyrus",
+      "level": 3,
+      "name": "Lingual gyrus (DOCUMENTED - absent from the BodyParts3D distribution as a separate segment; the occipital lobe ships whole, not subdivided)",
+      "geometry_state": "DOCUMENTED"
+    },
+    {
+      "id": "brain.telencephalon.major_sulci",
+      "level": 2,
+      "name": "Major sulci as separate segments (DOCUMENTED - central and lateral sulci absent from the distribution as segments; sulcal boundaries not fabricated)",
+      "geometry_state": "DOCUMENTED"
+    },
+    {
+      "id": "brain.telencephalon.superior_temporal_gyrus_whole",
+      "level": 3,
+      "name": "Superior temporal gyrus as a whole (DOCUMENTED - only the anterior and posterior parts are AVAILABLE as separate segments; no whole-gyrus mesh synthesized)",
+      "geometry_state": "DOCUMENTED"
+    },
+    {
+      "id": "brain.telencephalon.precuneus_bp",
+      "level": 3,
+      "name": "Precuneus / superior parietal BP48/49/50 (DOCUMENTED - listed under non-standard BP identifiers, source identity uncertain; NOT imported - uncertain-source-identity hard stop)",
+      "geometry_state": "DOCUMENTED"
+    },
+    {
+      "id": "brain.telencephalon.circular_sulcus_insulae",
+      "level": 3,
+      "name": "Circular sulcus of insula (DOCUMENTED - absent from the distribution as a separate segment; peri-insular boundary not fabricated)",
+      "geometry_state": "DOCUMENTED"
+    },
+    {
+      "id": "brain.telencephalon.longitudinal_fissure",
+      "level": 2,
+      "name": "Longitudinal cerebral fissure as a separate segment (DOCUMENTED - absent from the distribution; not fabricated)",
+      "geometry_state": "DOCUMENTED"
     }
   ],
   "relationships": [
