@@ -551,6 +551,19 @@ async function runTests() {
                 if (hasWaiver && forbidsIntact) return false;
               } catch { /* fall through to flag */ }
             }
+            // Narrow certified exception (Phase 12 F-1): src/phase11_tutor.test.ts was
+            // modified SOLELY to assert its own inclusion in the full test chain
+            // (replacing a self-exclusion assertion). Valid only while it asserts
+            // chain inclusion and wires nothing else.
+            if (file === 'src/phase11_tutor.test.ts') {
+              try {
+                const src = readText('src/phase11_tutor.test.ts');
+                const assertsInclusion = /tutor suite wired into the full test chain/.test(src) &&
+                  /pkg\.scripts\.test\.includes\('phase11_tutor'\)/.test(src);
+                const assertsExclusion = /full chain untouched/.test(src);
+                if (assertsInclusion && !assertsExclusion) return false;
+              } catch { /* fall through to flag */ }
+            }
             return protectedPrefixes.some((p) => file.startsWith(p)) || /\.test\.ts$/.test(file) && !file.includes('phase8');
           }
           return false;

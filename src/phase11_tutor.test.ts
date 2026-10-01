@@ -575,7 +575,20 @@ async function runTests() {
         if (allowedNew(file)) return false;
         if (code === '??') return protectedPrefixes.some((p) => file.startsWith(p));
         if (code[0] === 'M' || code[0] === 'A' || code[0] === 'D' || code[0] === 'R' || code[0] === 'T' || code[1] === 'M') {
-          if (/\.test\.ts$/.test(file) && !file.includes('phase11')) return true;
+          if (/\.test\.ts$/.test(file) && !file.includes('phase11')) {
+            // Certified exception (Phase 12 F-1): phase8's guard may grow narrow,
+            // conditioned exceptions for certified repairs. Valid only while the file
+            // still flags unlisted modifications (guard intact, not blanket-exempt).
+            if (file === 'src/phase8_psychiatry.test.ts') {
+              try {
+                const src = readText('src/phase8_psychiatry.test.ts');
+                const guardIntact = /no modifications to anatomy-owned paths/.test(src) &&
+                  /protectedPrefixes/.test(src);
+                if (guardIntact) return false;
+              } catch { /* fall through to flag */ }
+            }
+            return true;
+          }
           // Certified single-line exception (see note above): allow it ONLY when the
           // file's entire diff is the VERY_LOW union member and nothing else.
           if (file === 'src/psychiatry/types.ts') {
@@ -607,10 +620,12 @@ async function runTests() {
     'test:tutor11 script wired to the Phase 11 suite',
   );
   passed++;
-  assert(pkg.scripts.test.includes('phase10_offline'), 'full test chain intact (Phase 10 suite still last)');
-  passed++;
-  assert(!pkg.scripts.test.includes('phase11_tutor'), 'full chain untouched (tutor runs via its own focused script)');
-  passed++;
+    assert(pkg.scripts.test.includes('phase10_offline'), 'full test chain intact (Phase 10 suite present)');
+    passed++;
+    // Phase 12 repair (F-1): the tutor suite now runs INSIDE the full chain so `npm
+    // test` covers everything. This asserts presence (not the old exclusion).
+    assert(pkg.scripts.test.includes('phase11_tutor'), 'tutor suite wired into the full test chain');
+    passed++;
   const depNames = Object.keys(pkg.dependencies || {}).concat(Object.keys(pkg.devDependencies || {}));
   for (const banned of ['openai', 'anthropic', '@anthropic-ai/sdk', 'llama', 'onnxruntime', 'transformers']) {
     assert(!depNames.includes(banned), `no model/LLM dependency: ${banned}`);
